@@ -133,10 +133,8 @@ $(function() {
         }
     }
 
-
     // Styled checkboxes/radios
     $(".styled, .multiselect-container input").uniform({ radioClass: 'choice', selectAutoWidth: false });
-
 
     // Styled file input
     $(".file-styled").uniform({
