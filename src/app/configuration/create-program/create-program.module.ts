@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { CreateProgramRoutingModule } from './create-program-routing.module';
 import { CreateProgramComponent } from './create-program.component';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -13,6 +13,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     CreateProgramRoutingModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })
