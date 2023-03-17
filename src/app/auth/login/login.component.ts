@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username:['', Validators.required],
       password: ['', Validators.required],
+      admin: false
     });
   }
   ngOnInit(){
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
       console.log(this.loginForm);
       this.authService.login(this.loginForm.value).pipe().subscribe((res:any) =>{
         if (res){
+          localStorage.setItem('token', JSON.stringify(res))
           this.router.navigate(['/family-member'])
         }
       });
