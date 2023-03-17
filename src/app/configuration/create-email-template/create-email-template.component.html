@@ -360,7 +360,7 @@
 			<!-- Main content -->
 			<div class="content-wrapper">
 				<div class="content">
-				<form data-toggle="validator" action="#"> 
+				<form data-toggle="validator" [formGroup]="form"> 
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -386,25 +386,14 @@
 										<div class="row">
 											<div class="form-group col-lg-6">
 												<label class="text-semibold">Program Code</label>
-												<input type="text" value="" class="form-control input-xs" placeholder="Program Code">
+												<input type="text" value="" class="form-control input-xs" placeholder="Program Code" formControlName="programCode">
 											</div>
 											<div class="form-group col-lg-6">
 												<label class="text-semibold">Registration Status <span class="text-danger"> *</span></label>
-												<select class="form-control input-xs" data-error="Please Select Registration Status." required>
+												<select class="form-control input-xs" data-error="Please Select Registration Status." required formControlName="registrationStatus">
 													<option value="" selected>Select Registration Status</option>
-													<option value="">PENDING</option>
-													<option value="">PROCESSING</option>
-													<option value="">ACCEPTED</option>
-													<option value="">WITHDRAWN</option>
-													<option value="">CANCELLED</option>
-													<option value="">INVALID_DOC</option>
-													<option value="">NOSHOW</option>
-													<option value="">ATTENDED</option>
-													<option value="">WAITLISTED</option>
-													<option value="">MBRUPDATE</option>
-													<option value="">ONHOLD</option>
-													<option value="">REGRET</option>
-													<option value="">AT_CAPACITY</option>
+													<option *ngFor="let status of registrationStatuses" [ngValue]="status">{{ status }}</option>
+										
 												</select>
 												<div class="help-block with-errors"></div>
 											</div>
@@ -412,25 +401,18 @@
 										<div class="row">
 											<div class="form-group col-lg-6">
 												<label class="text-semibold">Payment Status <span class="text-danger"> *</span></label>
-												<select class="form-control input-xs" data-error="Please Select Registration Status." required>
+												<select class="form-control input-xs" data-error="Please Select Registration Status." required formControlName="paymentStatus">
 													<option value="" selected>Select Payment Status</option>
-													<option value="">IN_PROGRESS</option>
-													<option value="">PAID</option>
-													<option value="">BALANCE_DUE</option>
-													<option value="">PARTIAL_PAYMENT</option>
-													<option value="">REFUNG</option>
-													<option value="">NO-DUES</option>
-													<option value="">SPCL_CONSIDERATION</option>
-													<option value="">PRE_AUTH SUCCESS</option>
-													<option value="">PRE_AUTH FAILED</option>
+													<option *ngFor="let status of paymentStatuses" [ngValue]="status">{{status}}</option>
+											
 												</select>
 												<div class="help-block with-errors"></div>
 											</div>
 											<div class="form-group col-lg-6">
 												<label class="text-semibold">Existing Templates <span class="text-danger"> *</span></label>
-												<select class="form-control input-xs" data-error="Please Select Registration Status." required>
+												<select class="form-control input-xs" data-error="Please Select Registration Status." required formControlName="existingTemplate">
 													<option value="" selected>Select Template</option>
-													<option value="">Pending_Pre_Auth_Success</option>
+													<option *ngFor="let template of existingTemplates" [ngValue]="template">{{template}}</option>
 												</select>
 												<div class="help-block with-errors"></div>
 											</div>
@@ -438,21 +420,21 @@
 										<div class="row">
 											<div class="form-group col-lg-12">
 												<label class="text-semibold">Email Template Name<span class="text-danger"> *</span></label>
-												<input type="text" class="form-control input-xs" placeholder="Email Template Name"  data-error="Please Enter Email Template Name." required="required">
+												<input type="text" formControlName="emailTemplateName" class="form-control input-xs" placeholder="Email Template Name"  data-error="Please Enter Email Template Name." required="required">
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="form-group col-lg-12">
 												<label class="text-semibold">Subject<span class="text-danger"> *</span></label>
-												<input type="text" class="form-control input-xs" placeholder="Subject" data-error="Please Enter Subject." required="required">
+												<input type="text" formControlName="subject" class="form-control input-xs" placeholder="Subject" data-error="Please Enter Subject." required="required">
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="form-group col-lg-12">
 												<label class="text-semibold">Sender Email<span class="text-danger"> *</span></label>
-												<input type="text" class="form-control input-xs" placeholder="Sender Email" data-error="Please Enter Sender Email." required="required">
+												<input type="text" formControlName="senderEmail" class="form-control input-xs" placeholder="Sender Email" data-error="Please Enter Sender Email." required="required">
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
@@ -460,9 +442,9 @@
 											<div class="col-lg-12">
 												<label class="text-semibold">Body<span class="text-danger"> *</span></label>
 												<div class="form-group">
-													<form action="#">
+													<form [formGroup]="form">
 														<div class="content-group">
-															<textarea style="width:100%;height:250px;resize: vertical;" name="editor-full" id="editor-full1" rows="3" cols="3">
+															<textarea formControlName="body" style="width:100%;height:250px;resize: vertical;" name="editor-full" id="editor-full1" rows="3" cols="3">
 
 															</textarea>
 														</div>
@@ -501,7 +483,7 @@
 							</div> 
 							
 							<div class="panel-footer btn-align p-20">
-								<a href="#">
+								<a (click)="createEmailTemplate()">
 									<button type="button" class="btn bg-primary-400 btn-labeled btn-xs mb-5 text-semibold"><b><i class="icon-add"></i></b> Create</button>
 								</a>
 								<a href="volunteer_signup.html">
