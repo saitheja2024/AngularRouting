@@ -19,7 +19,7 @@ export class AuthenticationService {
    }
 
   login(body:any): Observable<any>{
-    return this.http.post(`${this.environment.baseUrl}/MR/auth/login`, body);
+    return this.http.post(`${this.environment.baseUrl}/MR/login/validateLogin`, body);
   }
 
   getFamilyDetails(body:any): Observable<any>{

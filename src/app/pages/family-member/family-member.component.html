@@ -564,52 +564,51 @@
                     <div class="page-header" style="margin: 0; border-bottom: 0; background-color: #fff;">
                         <div class="breadcrumb-line p-10">
                             <ul class="breadcrumb ml-20">
-                                <li class="dropdown" [ngClass]="{'open':show}" (click)="searchToggleButton()">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></a>
-									<button type="button" class="btn bg-primary-400 btn-labeled text-semibold btn-xs dropdown-toggle" data-toggle="dropdown" area-expanded="true"><b><i class="icon-search4"></i></b> Search</button>
-                           			<div class="panel panel-default width-300 dropdown-menu dropdown-menu-left" style="height: auto;overflow-y: auto;">
+                                <li class="dropdown" ngbDropdown>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></a>
+                                    <button ngbDropdownToggle id="drop" type="button" class="btn bg-primary-400 btn-labeled text-semibold btn-xs dropdown-toggle" data-toggle="dropdown" area-expanded="true"><b><i class="icon-search4"></i></b> Search</button>
+                           			<div ngbDropdownMenu="drop" class="panel panel-default width-300 dropdown-menu dropdown-menu-left" style="height: auto;overflow-y: auto;">
 										<div class="panel-body p-10">
-											<form class="form-horizontal" action="#" data-toggle="validator">
+											<form [formGroup]="form" class="form-horizontal" data-toggle="validator">
 												<fieldset class="content-group no-margin-bottom">
 													<legend class="text-bold no-margin-bottom">
-													SEARCH HERE
+													    SEARCH HERE
 													</legend>
-
 													<ul class="media-list p-15">
 														<li class="media">
 															<div class="form-group mb-10">
 																<label><span class="text-semibold">Family ID</span></label> 
-																<input type="text" class="form-control input-xs" placeholder="Family ID" >
+																<input type="text" class="form-control input-xs" placeholder="Family ID" formControlName="familyID">
 															</div> 
 															<div class="form-group mb-10">
 																<label><span class="text-semibold">Last Name</span></label> 
-																<input type="text" class="form-control input-xs" placeholder="Last Name" >
+																<input type="text" class="form-control input-xs" placeholder="Last Name" formControlName="lastName">
 															</div> 
 															<div class="form-group mb-10">
 																<label><span class="text-semibold">First Name</span></label> 
-																<input type="text" class="form-control input-xs" placeholder="First Name">
+																<input type="text" class="form-control input-xs" placeholder="First Name" formControlName="firstName">
 															</div> 
 															<div class="form-group mb-10">
 																<label><span class="text-semibold">Home Phone</span></label> 
-																<input type="text" class="form-control input-xs" placeholder="Primary Phone">
+																<input type="text" class="form-control input-xs" placeholder="Primary Phone" formControlName="homePhone">
 															</div> 
 															<div class="form-group mb-10">
 																<label><span class="text-semibold">Email</span></label> 
-																<input type="text" class="form-control input-xs" placeholder="Email">
+																<input type="text" class="form-control input-xs" placeholder="Email" formControlName="email">
 															</div> 
 															<div class="form-group mb-10">
 																<label><span class="text-semibold">Registrant Type</span></label> 
-																<select class="form-control">
+																<select class="form-control" formControlName="registrantType">
 																	<option value="">-Select-</option>
-																	<!-- <option *ngFor="let item of registrantTypes" [ ngValue ]="item">{{ item }}</option> -->
+																	<option *ngFor="let item of registrantTypes" [ngValue]="item">{{ item }}</option>
 																
 																</select>
 															</div>
 															<div class="form-group mb-10">
 																<label><span class="text-semibold">Chapter</span></label> 
-																<select class="form-control">
+																<select class="form-control" formControlName="chapter">
 																	<option value="">-Select-</option>
-																	<!-- <option *ngFor="let item of chapters" [ ngValue ]="item">{{ item }}</option> -->
+																	<option *ngFor="let item of chapters" [ngValue]="item">{{ item }}</option>
                                                                     
 																</select>
 															</div>
@@ -729,7 +728,10 @@
 									</div>	
 								</div>-->
                             </div>
-                            <table class="table datatable-key-basic table-hover table-striped table-xxs">
+                            <div class="datatable-scroll-wrap">
+                                <div style="position: absolute; height: 1px; width: 0px; overflow: hidden;"><input
+                                        type="text" tabindex="0"></div>
+                            <table class="table datatable-key-basic table-hover table-framed table-striped table-xxs dataTable no-footer">
                                 <thead>
                                     <tr>
                                         <th class="text-nowrap">Manage Family</th>
@@ -820,6 +822,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
 
 

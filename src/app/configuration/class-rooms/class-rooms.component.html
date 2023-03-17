@@ -1,4 +1,4 @@
-<body class="navbar-top sidebar-secondary-hidden">
+<div class="navbar-top sidebar-secondary-hidden">
 	<!-- Main navbar -->
 	<app-header></app-header>
 	<!-- /main navbar -->
@@ -389,13 +389,12 @@
 									<div class="col-lg-12">
 										<div class="row">
 											<div class="col-lg-4"></div>
-											<div class="form-group col-lg-4 col-sm-12 col-xs-12">
+											<div class="form-group col-lg-4 col-sm-12 col-xs-12" [formGroup]="form">
 												<label class="text-semibold">Organization<span class="text-danger"> *</span></label>
-												<select class="form-control input-xs" data-error="Please Select Organization Code." required>
-													<option value="">Chinmaya Mission</option>
-													<option value="">Chinmaya Somnath, Chantilly, VA</option>
-													<option value="">Chinmayam, Silver Spring, MD</option>
-													<option value="">Frediric Chapter, Frederic, MD</option>
+												<select class="form-control input-xs" data-error="Please Select Organization Code." required formControlName="organization" (change)="selectOraganization()">
+													<option value="">--select--</option>
+													<option *ngFor="let organization of organizations" [ngValue]="organization">{{ organization }}</option>
+													
 												</select>
 												<div class="help-block with-errors"></div>
 											</div>
@@ -407,7 +406,7 @@
 									<div class="panel-heading panel-body">
 										<h5 class="panel-title text-semibold">
 										<img class="img-cls" src="assets/images/SVG-color/Class Room Details-icon.svg"> Class Room Details</h5>
-										<div class="heading-elements">	
+										<div class="heading-elements" (click)="addClassRooms()">	
 											<button id="addBtn" type="button" class="btn btn-xs bg-primary-400 btn-labeled text-semibold"><b>
 											<i class="icon-add"></i></b> Add
 											</button>
@@ -422,10 +421,10 @@
 											</tr>
 										</thead>
 										<tbody id="tbody">
-											<tr>
-												<td><input type="text" class="form-control input-xs" placeholder="Class Room Name"></td>
-												<td><input type="text" class="form-control input-xs" placeholder="Capacity"></td>
-												<td><span class="text-danger remove" style="cursor:pointer;"><i class="icon icon-bin position-left" style="font-size:24px;"></i></span></td>
+											<tr *ngFor="let row of rowArray; let i = index" [formGroup]="form">
+												<td><input type="text" class="form-control input-xs" placeholder="Class Room Name" formControlName="classRoomName"></td>
+												<td><input type="text" class="form-control input-xs" placeholder="Capacity" formControlName="capacity"></td>
+												<td><span class="text-danger remove" style="cursor:pointer;"><i (click)="deleteRow(i)" class="icon icon-bin position-left" style="font-size:24px;"></i></span></td>
 											</tr>
 										</tbody>
 									</table>
@@ -470,42 +469,5 @@
 		
 	</div>
 	<!-- /page container -->
-
 	
-	<script>
-		$(document).ready(function () {
-
-		  // jQuery button click event to add a row
-		  $('#addBtn').on('click', function () {
-
-			// Adding a row inside the tbody.
-			$('#tbody').append(`<tr><td><input type="text" class="form-control input-xs" placeholder="Class Room Name"></td><td><input type="text" class="form-control input-xs" placeholder="Capacity"></td><td><span class="text-danger remove" style="cursor:pointer;"><i class="icon icon-bin position-left" style="font-size:24px;"></i></span></td></tr>`);
-		  });
-
-		  // jQuery button click event to remove a row.
-		  $('#tbody').on('click', '.remove', function () {
-
-			// Getting all the rows next to the row
-			// containing the clicked button
-			var child = $(this).closest('tr').nextAll();
-
-			// Removing the current row.
-			$(this).closest('tr').remove();
-
-		  });
-		});
-  	</script>
-	
-	<script type="text/javascript"> 
-		var today = moment();
-			$('.date').datepicker({
-			format: 'mm/dd/yyyy', 
-			todayHighlight: true,
-			autoclose: true,
-			startDate: today .toDate()
-		}); 
-	</script>
-		
-		
-		
-</body>
+</div>

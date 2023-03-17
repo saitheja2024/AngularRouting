@@ -1,11 +1,11 @@
-<body class="navbar-top sidebar-secondary-hidden">
+<div class="navbar-top sidebar-secondary-hidden">
 	<!-- Main navbar -->
 	<app-header></app-header>
 	<!-- /main navbar -->
 
 
 	<!-- Page container -->
-	<div class="page-container">
+	<div class="page-container" style="min-height:708px">
 
 		<!-- Page content -->
 		<div class="page-content">
@@ -13,6 +13,7 @@
 			<!-- Main sidebar -->
 			<div class="sidebar sidebar-main sidebar-fixed">
 				<div class="sidebar-content">
+
 					<!-- User menu -->
 					<div class="sidebar-user">
 						<div class="category-content">
@@ -47,11 +48,11 @@
 									<a href="Dashboard.html"><img src="assets/images/SVG/01-dashboard-icon.svg"
 											class="img_cls2 mr-5" alt="Dashboard"> <span>Dashboard</span></a>
 								</li>
-								<li class="active">
-									<a routerLink="/family-member"><img src="assets/images/SVG/Family.svg"
+								<li>
+									<a href="#" class="has-ul"><img src="assets/images/SVG/Family.svg"
 											class="img_cls2 mr-5" alt=""> <span>Family</span></a>
-									<ul>
-										<li class="active">
+									<ul class="hidden-ul">
+										<li>
 											<a href="manage_family.html"><img
 													src="assets/images/SVG/03-manage family-icon.svg"
 													class="img_cls2 mr-5" alt="Consultant">Manage Family</a>
@@ -59,9 +60,9 @@
 									</ul>
 								</li>
 								<li>
-									<a href="#"><img src="assets/images/SVG/04-registration-icon.svg"
+									<a href="#" class="has-ul"><img src="assets/images/SVG/04-registration-icon.svg"
 											class="img_cls2 mr-5" alt=""> <span>Registration</span></a>
-									<ul>
+									<ul class="hidden-ul">
 										<li>
 											<a href="membership.html"><img src="assets/images/SVG/Membership-icon.svg"
 													class="img_cls2 mr-5" alt=""><span>Membership</span></a>
@@ -69,7 +70,7 @@
 										<li>
 											<div class="category-content1">
 												<div class="form-group">
-													<select name="select" class="form-control input-xs" required>
+													<select name="select" class="form-control input-xs" required="">
 														<option value="">-Select Chapter-</option>
 														<option value="">CSVA</option>
 														<option value="">CHMD</option>
@@ -104,7 +105,8 @@
 										<li>
 											<a href="create_account.html"><img
 													src="assets/images/SVG/06-add family register-icon.svg"
-													class="img_cls2 mr-5" alt=""><span>Add Family & Register</span></a>
+													class="img_cls2 mr-5" alt=""><span>Add Family &amp;
+													Register</span></a>
 										</li>
 										<li>
 											<a href="show_registration.html"><img
@@ -139,8 +141,8 @@
 										</li>
 									</ul>
 								</li>
-								<li>
-									<a href="#"><img src="assets/images/SVG/13-configuration-icon.svg"
+								<li class="active">
+									<a href="#" class="has-ul"><img src="assets/images/SVG/13-configuration-icon.svg"
 											class="img_cls2 mr-5" alt=""> <span>Configuration</span></a>
 									<ul>
 										<li>
@@ -150,8 +152,8 @@
 										</li>
 										<li>
 											<a href="search_and_modify_program.html"><img
-													src="assets/images/SVG/15-serch & modify program-icon.svg"
-													class="img_cls2 mr-5" alt=""><span>Search & Modify
+													src="assets/images/SVG/15-serch &amp; modify program-icon.svg"
+													class="img_cls2 mr-5" alt=""><span>Search &amp; Modify
 													Program</span></a>
 										</li>
 										<li>
@@ -159,11 +161,12 @@
 													src="assets/images/SVG/16-view program-icon.svg"
 													class="img_cls2 mr-5" alt=""><span>View Program</span></a>
 										</li>
-										<li>
-											<a href="#"><img src="assets/images/SVG/17-access management-icon.svg"
+										<li class="active">
+											<a href="#" class="has-ul"><img
+													src="assets/images/SVG/17-access management-icon.svg"
 													class="img_cls2 mr-5" alt=""><span>Access Management</span></a>
 											<ul>
-												<li>
+												<li class="active">
 													<a href="role.html"><img src="assets/images/SVG/18-role-icon.svg"
 															class="img_cls2 mr-5" alt=""><span>Role</span></a>
 												</li>
@@ -202,9 +205,10 @@
 									</ul>
 								</li>
 								<li>
-									<a href="#"><img src="assets/images/SVG/25-event configuration-icon.svg"
+									<a href="#" class="has-ul"><img
+											src="assets/images/SVG/25-event configuration-icon.svg"
 											class="img_cls2 mr-5" alt=""> <span>Event Configuration</span></a>
-									<ul>
+									<ul class="hidden-ul">
 										<li>
 											<a href="create_event.html"><img
 													src="assets/images/SVG/26-create event-icon.svg"
@@ -212,7 +216,7 @@
 										</li>
 										<li>
 											<a href="search_and_modify_event.html"><img
-													src="assets/images/SVG/27-search & modify event-icon.svg"
+													src="assets/images/SVG/27-search &amp; modify event-icon.svg"
 													class="img_cls2 mr-5" alt=""><span>Search and Modify
 													Event</span></a>
 										</li>
@@ -229,13 +233,14 @@
 									</ul>
 								</li>
 								<li>
-									<a href="#"><img src="assets/images/SVG/30-reports-icon.svg" class="img_cls2 mr-5"
-											alt=""> <span>Reports</span></a>
-									<ul>
+									<a href="#" class="has-ul"><img src="assets/images/SVG/30-reports-icon.svg"
+											class="img_cls2 mr-5" alt=""> <span>Reports</span></a>
+									<ul class="hidden-ul">
 										<li>
-											<a href="#"><img src="assets/images/SVG/31-roster-reports-icon.svg"
+											<a href="#" class="has-ul"><img
+													src="assets/images/SVG/31-roster-reports-icon.svg"
 													class="img_cls2 mr-5" alt=""><span>Roster Reports</span></a>
-											<ul>
+											<ul class="hidden-ul">
 												<li>
 													<a href="class.html"><img src="assets/images/SVG/32-class-icon.svg"
 															class="img_cls2 mr-5" alt=""><span>Class</span> </a>
@@ -280,9 +285,10 @@
 													class="img_cls2 mr-5" alt=""><span>Accounting Extract</span></a>
 										</li>
 										<li>
-											<a href="#"><img src="assets/images/SVG/40-summary-reports-icon.svg"
+											<a href="#" class="has-ul"><img
+													src="assets/images/SVG/40-summary-reports-icon.svg"
 													class="img_cls2 mr-5" alt=""><span>Summary Report</span></a>
-											<ul>
+											<ul class="hidden-ul">
 												<li>
 													<a href="post_registration_count.html"><img
 															src="assets/images/SVG/41-post-registration-count-icon.svg"
@@ -310,9 +316,10 @@
 											</ul>
 										</li>
 										<li>
-											<a href="#"><img src="assets/images/SVG/45-registration-reports-icon.svg"
+											<a href="#" class="has-ul"><img
+													src="assets/images/SVG/45-registration-reports-icon.svg"
 													class="img_cls2 mr-5" alt=""><span>Registration Reports</span></a>
-											<ul>
+											<ul class="hidden-ul">
 												<li>
 													<a href="adults_vs_children.html"><img
 															src="assets/images/SVG/46-adult-vs-children-icon.svg"
@@ -373,9 +380,10 @@
 													class="img_cls2 mr-5" alt=""><span>Volunteer</span></a>
 										</li>
 										<li>
-											<a href="#"><img src="assets/images/SVG/56-summer camp-icon.svg"
+											<a href="#" class="has-ul"><img
+													src="assets/images/SVG/56-summer camp-icon.svg"
 													class="img_cls2 mr-5" alt=""><span>Summer Camp Reports</span></a>
-											<ul>
+											<ul class="hidden-ul">
 												<li>
 													<a href="profile_report.html"><img
 															src="assets/images/SVG/57-profile-reports-icon.svg"
@@ -443,15 +451,16 @@
 											</ul>
 										</li>
 										<li>
-											<a href="#"><img src="assets/images/SVG/68-Leadership Reports-icon.svg"
+											<a href="#" class="has-ul"><img
+													src="assets/images/SVG/68-Leadership Reports-icon.svg"
 													class="img_cls2 mr-5" alt=""><span>Leadership Reports</span></a>
-											<ul>
+											<ul class="hidden-ul">
 												<li>
-													<a href="#"><img
+													<a href="#" class="has-ul"><img
 															src="assets/images/SVG/69-Membership based comparison reports-icon.svg"
 															class="img_cls2 mr-5" alt=""><span>Membership based
 															comparison reports</span></a>
-													<ul>
+													<ul class="hidden-ul">
 														<li>
 															<a href="membership_count_cmprsn_bw_ly_ny_reg.html"><img
 																	src="assets/images/SVG/84-Membership count comparison between last year and new year registration-icon.svg"
@@ -475,11 +484,11 @@
 													</ul>
 												</li>
 												<li>
-													<a href="#"><img
+													<a href="#" class="has-ul"><img
 															src="assets/images/SVG/72-Program Registration Comparison Reports-icon.svg"
 															class="img_cls2 mr-5" alt=""><span>Program registration
 															comparison reports</span></a>
-													<ul>
+													<ul class="hidden-ul">
 														<li>
 															<a href="droplist_balavihar_report.html"><img
 																	src="assets/images/SVG/73-DropList-Balavihar Reports-icon.svg"
@@ -557,9 +566,9 @@
 						</div>
 					</div>
 					<!-- /main navigation -->
+
 				</div>
 			</div>
-
 			<!-- /main sidebar -->
 
 
@@ -575,9 +584,9 @@
 										src="assets/images/SVG-color/Role Access Level Manager Detailsicon.svg"> Role
 									Access Level Manager Details
 								</h5>
-								<div class="heading-elements">
+								<div class="heading-elements" [ngClass]="{'visible':show}">
 									<div class="heading-btn">
-										<button id="addBtn" type="button"
+										<button id="addBtn" type="button" (click)="createNewRole()"
 											class="btn bg-primary-400 btn-labeled btn-xs mb-5 text-semibold"><b><i
 													class="icon-add"></i></b> Create New Role</button>
 
@@ -586,62 +595,147 @@
 													class="icon-rotate-ccw2"></i></b> Update</button>
 									</div>
 								</div>
+								<a class="heading-elements-toggle"><i (click)="isVisible()" class="icon-menu"></i></a>
 							</div>
-							<table class="table datatable-key-basic table-hover table-framed table-striped table-xxs">
-								<thead>
-									<tr>
-										<th class="text-nowrap" colspan="3"></th>
-										<th class="text-nowrap" colspan="11">Access Level</th>
-									</tr>
-									<tr>
-										<th class="text-nowrap">Roles</th>
-										<th class="text-nowrap">Active</th>
-										<th class="text-nowrap">Edit Amount Payable</th>
-										<th class="text-nowrap">Add/Edit Program Config</th>
-										<th class="text-nowrap">Add/Edit Program Registration</th>
-										<th class="text-nowrap">Can generate Report with financial data</th>
-										<th class="text-nowrap">Can generate Roster Report</th>
-										<th class="text-nowrap">View Program Config</th>
-										<th class="text-nowrap">Can Generate Accounting Extract Report</th>
-										<th class="text-nowrap">Update Program Config</th>
-										<th class="text-nowrap">Add/Edit Event Config</th>
-										<th class="text-nowrap">View Event Report</th>
-										<th class="text-nowrap">FRC</th>
-										<th class="text-nowrap">Arpanam</th>
-									</tr>
-								</thead>
-								<tbody id="tbody">
-									<tr>
-										<td><input type="text" class="form-control input-xs" value="Non-Member"
-												style="width: 200px !important;"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-										<td><input type="checkbox" class="chkbxwidth"></td>
-									</tr>
-								</tbody>
-							</table>
+							<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+								<div class="datatable-header">
+									<div id="DataTables_Table_0_filter" class="dataTables_filter">
+										<label><span>Filter:</span> <input type="search" class=""
+												placeholder="Type to filter..."
+												aria-controls="DataTables_Table_0"></label>
+									</div>
+									<div class="dataTables_length" id="DataTables_Table_0_length">
+										<label><span>Show:</span> <select name="DataTables_Table_0_length"
+												aria-controls="DataTables_Table_0" class="select2-hidden-accessible"
+												tabindex="-1" aria-hidden="true">
+												<option value="10">10</option>
+												<option value="25">25</option>
+												<option value="50">50</option>
+												<option value="100">100</option>
+											</select><span class="select2 select2-container select2-container--default"
+												dir="ltr" style="width: auto;"><span class="selection"><span
+														class="select2-selection select2-selection--single"
+														role="combobox" aria-haspopup="true" aria-expanded="false"
+														tabindex="0"
+														aria-labelledby="select2-DataTables_Table_0_length-o2-container"><span
+															class="select2-selection__rendered"
+															id="select2-DataTables_Table_0_length-o2-container"
+															title="10">10</span><span class="select2-selection__arrow"
+															role="presentation"><b
+																role="presentation"></b></span></span></span><span
+													class="dropdown-wrapper" aria-hidden="true"></span></span></label>
+									</div>
+								</div>
+								<div class="datatable-scroll-wrap">
+									<div style="position: absolute; height: 1px; width: 0px; overflow: hidden;"><input
+											type="text" tabindex="0"></div>
+									<table
+										class="table datatable-key-basic table-hover table-framed table-striped table-xxs dataTable no-footer"
+										id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info"
+										style="position: relative;">
+										<thead>
+											<tr role="row">
+												<th class="text-nowrap" colspan="3" rowspan="1"></th>
+												<th class="text-nowrap" colspan="11" rowspan="1">Access Level</th>
+											</tr>
+											<tr role="row">
+												<th class="text-nowrap sorting_asc" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-sort="ascending"
+													aria-label="Roles: activate to sort column descending">Roles</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Active: activate to sort column ascending">Active</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Edit Amount Payable: activate to sort column ascending">
+													Edit Amount Payable</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Add/Edit Program Config: activate to sort column ascending">
+													Add/Edit Program Config</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Add/Edit Program Registration: activate to sort column ascending">
+													Add/Edit Program Registration</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Can generate Report with financial data: activate to sort column ascending">
+													Can generate Report with financial data</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Can generate Roster Report: activate to sort column ascending">
+													Can generate Roster Report</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="View Program Config: activate to sort column ascending">
+													View Program Config</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Can Generate Accounting Extract Report: activate to sort column ascending">
+													Can Generate Accounting Extract Report</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Update Program Config: activate to sort column ascending">
+													Update Program Config</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Add/Edit Event Config: activate to sort column ascending">
+													Add/Edit Event Config</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="View Event Report: activate to sort column ascending">
+													View Event Report</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="FRC: activate to sort column ascending">FRC</th>
+												<th class="text-nowrap sorting" tabindex="0"
+													aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+													aria-label="Arpanam: activate to sort column ascending">Arpanam</th>
+											</tr>
+										</thead>
+										<tbody id="tbody">
+
+											<tr role="row" class="odd" *ngFor="let count of rowArray; let i=index">
+												<td class="sorting_1"><input type="text" class="form-control input-xs"
+														value="Non-Member" style="width: 200px !important;"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+												<td><input type="checkbox" class="chkbxwidth"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="datatable-footer">
+									<div class="dataTables_info" id="DataTables_Table_0_info" role="status"
+										aria-live="polite">Showing 1 to 1 of 1 entries</div>
+									<div class="dataTables_paginate paging_simple_numbers"
+										id="DataTables_Table_0_paginate"><a class="paginate_button previous disabled"
+											aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0"
+											id="DataTables_Table_0_previous">←</a><span><a
+												class="paginate_button current" aria-controls="DataTables_Table_0"
+												data-dt-idx="1" tabindex="0">1</a></span><a
+											class="paginate_button next disabled" aria-controls="DataTables_Table_0"
+											data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next">→</a></div>
+								</div>
+							</div>
 						</div>
 					</div>
 
 
 
 					<!-- Footer -->
-					<div class="navbar navbar-default navbar-sm navbar-fixed-bottom">
-						<div class="navbar text-center pt-10">
-							&copy; 2023. Powered by <a href="http://softthink.com" target="_blank">Softthink
-								Solutions</a>
-						</div>
-					</div>
+				<app-footer></app-footer>
 					<!-- /footer -->
 
 				</div>
@@ -681,6 +775,4 @@
 		});
 	</script>
 
-
-
-</body>
+</div>

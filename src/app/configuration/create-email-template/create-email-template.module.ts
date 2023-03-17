@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { CreateEmailTemplateRoutingModule } from './create-email-template-routing.module';
 import { CreateEmailTemplateComponent } from './create-email-template.component';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -13,6 +13,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     CreateEmailTemplateRoutingModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })
