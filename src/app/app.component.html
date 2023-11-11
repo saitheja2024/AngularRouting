@@ -1,1 +1,6 @@
+<!-- <ngb-toast [autohide]="false"> I am a simple static toast. </ngb-toast> -->
+
+<ng-container *ngIf="spinnerService.isVisible | async as isVisible">
+    <app-spinner *ngIf="isVisible"></app-spinner>
+  </ng-container>
 <router-outlet></router-outlet>

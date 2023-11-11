@@ -1,7 +1,7 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,7 +12,8 @@ import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 // #fake-start#
 import { FakeAPIService } from './_fake/fake-api.service';
-import { SharedModule } from './modules/shared/shared.module';
+import { ChinmayaSharedModule } from './modules/chinmaya-shared/chinmaya-shared.module';
+import { SpinnerInterceptor } from './modules/chinmaya-shared/interceptors/SpinnerInterceptor/spinner.interceptor';
 // #fake-end#
 
 
@@ -23,22 +24,14 @@ import { SharedModule } from './modules/shared/shared.module';
     BrowserModule,
     BrowserAnimationsModule,
     TranslateModule.forRoot(),
-    SharedModule,
+    ChinmayaSharedModule,
     ClipboardModule,
-    // #fake-start#
-    environment.isMockEnabled
-      ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
-          passThruUnknownUrl: true,
-          dataEncapsulation: false,
-        })
-      : [],
-    // #fake-end#
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
   ],
   providers: [
-   
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
