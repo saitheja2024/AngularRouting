@@ -9,6 +9,7 @@ import { RegistrationStepsComponent } from './components/registration-steps/regi
 import { SignuUpCodesComponent } from './components/signu-up-codes/signu-up-codes.component';
 import { ReviewConfigurationComponent } from './components/review-configuration/review-configuration.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -53,7 +54,8 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forChild(routes),
-    ChinmayaSharedModule
+    ChinmayaSharedModule,
+    NgbNavModule
 
   ]
 })

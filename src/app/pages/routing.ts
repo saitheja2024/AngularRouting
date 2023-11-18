@@ -20,7 +20,7 @@ const Routing: Routes = [
  
   {
     path: '',
-    redirectTo: '/config/',
+    redirectTo: 'config', 
     pathMatch: 'full',
   },
   {
