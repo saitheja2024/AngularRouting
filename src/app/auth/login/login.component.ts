@@ -25,13 +25,14 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     if(this.loginForm.valid){
       console.log(this.loginForm);
-      this.authService.login(this.loginForm.value).pipe().subscribe((res:any) =>{
-        if (res){
-          localStorage.setItem('token', JSON.stringify(res))
-          this.router.navigate(['/family-member'])
-        }
-      });
-      
+      this.router.navigate(['/family-member'])
+      // this.authService.login(this.loginForm.value).pipe().subscribe((res:any) =>{
+      //   if (res){
+      //     localStorage.setItem('token', JSON.stringify(res))
+      //     this.router.navigate(['/family-member'])
+      //   }
+      // });
+        
     }
   }
 }
