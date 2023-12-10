@@ -1,0 +1,18 @@
+.nav.nav-pills.nav-pills-custom .nav-link.active {
+    background-color: transparent;
+    transition-duration: 1ms;
+    position: relative;
+  }
+
+  .nav.nav-pills.nav-pills-custom .nav-link {
+    border: 1px dashed var(--bs-border-dashed-color);
+    border-radius: .625rem;
+  }
+
+  .btn:not(.btn-shadow):not(.shadow):not(.shadow-sm):not(.shadow-lg):not(.shadow-xs) {
+    box-shadow: none;
+  }
+
+  .btn.btn-active-color-primary.active {
+    color: var(--bs-text-primary);
+  }

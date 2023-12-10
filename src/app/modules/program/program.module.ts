@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProgramDetailsComponent } from './components/program-details/program-details.component';
-// import { SharedModule  } from '../../_metronic/shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ConfigDetailsComponent } from './components/config-details/config-details.component';
 import { ProgramComponent } from './program.component';
 import { RegistrationStepsComponent } from './components/registration-steps/registration-steps.component';
-import { SignuUpCodesComponent } from './components/signu-up-codes/signu-up-codes.component';
 import { ReviewConfigurationComponent } from './components/review-configuration/review-configuration.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { SignUpCodesModule } from './components/signu-up-codes/sign-up-codes.module';
 
 const routes: Routes = [
   {
@@ -34,7 +33,8 @@ const routes: Routes = [
       },
       {
         path: 'program/signupCodeTab',
-        component: SignuUpCodesComponent,
+        loadChildren: () =>
+        import('./components/signu-up-codes/sign-up-codes.module').then((m) => m.SignUpCodesModule), 
       },
        { path: '', redirectTo: 'program/configurationDetailsTab', pathMatch: 'full' },
       // { path: '**', redirectTo: 'program/configurationDetailsTab', pathMatch: 'full' },
@@ -49,14 +49,13 @@ const routes: Routes = [
     ConfigDetailsComponent,
     ProgramComponent,
     RegistrationStepsComponent,
-    SignuUpCodesComponent,
     ReviewConfigurationComponent
   ],
   imports: [
     RouterModule.forChild(routes),
+    SignUpCodesModule,
     ChinmayaSharedModule,
     NgbNavModule
-
   ]
 })
 export class ProgramModule { }

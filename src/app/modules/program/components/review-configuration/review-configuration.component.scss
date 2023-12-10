@@ -1,0 +1,21 @@
+details { 
+	width:100%;
+	padding: 1rem;
+	border-radius:10px;
+	background: #fff;
+}
+
+summary {
+	cursor: pointer;
+}
+
+summary h1 {
+	display: inline;
+	margin-left: 1rem;
+	font-size: 1.25rem;
+}
+
+details p {
+	margin-left: 1.75rem;
+	opacity: 0.7
+}

@@ -1,2 +1,119 @@
-<p>registration-steps works!</p>
- 
+<div class="row px-3">
+	<div class="card card-flush p-0" style="border: 1px solid #ddd;border-radius:0px;">
+		<!--begin::Card header-->
+		<div class="card-header align-items-center px-4" style="border-bottom: 1px solid #ddd !important;"> 
+			<!--begin::Card title-->
+			<div class="card-title">
+				<div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+					<h3 class="panel-title fw-semibold"><img src="assets/chinmaya_media/images/SVG-color/Registration Steps-icon.svg" class="img_cls" style="width: 25px;"> Registration Steps </h3>
+				</div>
+			</div>
+			<!--begin::Card title-->
+			<!--begin::Card toolbar-->
+			<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+				<div class="d-flex align-items-center gap-2 gap-lg-3">
+					<!--begin::Primary button-->
+					<a href="#" class="btn btn-sm fw-semibold btn-primary fs-6">
+						<i class="icon-add fs-4"></i>
+						<span class="fs-6">Add</span>
+					</a>
+
+					<a href="#" class="btn btn-sm fw-semibold btn-danger fs-6">
+						<i class="icon-bin fs-4"></i>
+						Delete
+					</a>
+					<!--end::Primary button-->
+				</div>
+			</div>
+			<!--end::Card toolbar-->
+		</div>
+		<!--end::Card header-->
+		<!--begin::Card body-->
+		<div class="card-body p-0">
+			<!--begin::Table-->
+			<div class="table-responsive px-2">
+				<table class="table table-responsive align-middle table-row-dashed fs-6 gy-5 dataTable" id="kt_ecommerce_products_table">
+					<!--<table class="table datatable-key-basic table-hover table-striped table-bordered dataTable" id="kt_ecommerce_products_table"></table>-->
+					<thead>
+						<tr class="text-start fw-bold fs-7 text-uppercase gs-0">
+							<th class="min-w-150px required text-center">Registration Status</th>
+							<th class="min-w-150px required text-center">Payment Status</th>
+							<th class="min-w-150px required text-center">Sequence</th>
+							<th class="min-w-100px text-center">Email</th>
+						</tr>
+					</thead>
+					<tbody class="text-gray-600 fw-semibold">
+						<tr>
+							<td class="text-center text-nowrap">
+								<select class="form-select form-select-sm" aria-label="Select example">
+									<option value="">- Select Status-</option>
+									<option value="">ACCEPTED</option>
+									<option value="">ATTENDED</option>
+									<option value="">AT_CAPACITY</option>
+									<option value="">CANCELLED</option>
+									<option value="">FEE_ACCEPTED</option>
+									<option value="">INVALID_DOC</option>
+									<option value="">MBRUPDATE</option>
+									<option value="">NOSHOW</option>
+									<option value="">ONHOLD</option>
+									<option value="">PENDING</option>
+									<option value="">PROCESSING</option>
+									<option value="">REGRET</option>
+									<option value="">WAITLISTED</option>
+									<option value="">WITHDRAWN</option>
+								</select>
+							</td>
+							<td class="text-center text-nowrap tdwidth">
+								<select class="form-select form-select-sm" aria-label="Select example">
+									<option value="">- Select Status-</option>
+									<option value="">BALANCE_DUE</option>
+									<option value="">IN_PROGRESS</option>
+									<option value="">NO_DUES</option>
+									<option value="">PAID</option>
+									<option value="">PARTIAL_PAYMENT</option>
+									<option value="">PRE_AUTH_FAILED</option>
+									<option value="">PRE_AUTH_SUCCESS</option>
+									<option value="">REFUND</option>
+									<option value="">SPCL_CONSIDERATION</option>
+								</select>
+							</td>
+							<td>
+								<input type="text" name="" class="form-control form-control-sm" placeholder="Sequence">
+							</td>
+							<td class="text-center">
+								<span style="top: 8px; position: inherit;cursor:pointer;" (click)="openEmailModal()">Email</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--end::Table-->
+		</div>
+		<!--end::Card body-->
+	</div>
+</div>
+
+<div id="Note" class="col-lg-12 p-4" style="display: block;">
+	<span class="text-danger"><span class="fw-semibold">Note:</span> Fields with * are required.</span>
+</div>
+
+<div class="card-footer p-5" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+	<div class="row">
+		<div class="d-flex justify-content-center">
+			<div class="m-0">
+				<a href="#" class="btn btn-primary btn-sm my-1 fs-6" style="margin-right:5px;">
+					<i class="icon-backward fs-4"></i> Back
+				</a>
+
+				<a href="#" class="btn btn-primary btn-sm my-1 fs-6" style="margin-right:5px;">
+					<i class="icon-floppy-disk fs-4"></i> Save
+				</a>
+
+				<a href="#" class="btn btn-primary btn-sm my-1 fs-6">
+					<i class="icon-floppy-disks fs-4"></i> Save & Next
+				</a>
+
+			</div>
+		</div>
+	</div>
+</div>

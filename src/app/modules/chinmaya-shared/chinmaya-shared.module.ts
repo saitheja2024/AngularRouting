@@ -4,9 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { ModalsModule } from 'src/app/_metronic/partials';
+import { RouterModule } from '@angular/router';
 
 
-const MODULES = [CommonModule, FormsModule,ReactiveFormsModule, HttpClientModule]
+const MODULES = [CommonModule, FormsModule,ReactiveFormsModule, HttpClientModule,ModalsModule]
 const COMPONENTS:any = [SpinnerComponent,ToastComponent]
 
 @NgModule({

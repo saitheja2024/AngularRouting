@@ -1,0 +1,153 @@
+<div id="qw2" >
+    <div class="d-flex flex-column flex-md-row rounded border p-6">
+        <div style="width:100%;margin:auto;">
+            <div class="col-lg-12" style="display:contents;">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 sud mb-4 pe-lg-4">
+                        <app-sign-up-code-menu></app-sign-up-code-menu>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade active show" id="kt_vtab_pane_4" role="tabpanel">
+                                <div class="card shadow-sm card-flush p-0" style="border: 1px solid #ddd;border-radius:5px;">
+                                    <!--begin::Card header-->
+                                    <div class="card-header align-items-center px-4" style="border-bottom: 1px solid #ddd !important;"> 
+                                        <!--begin::Card title-->
+                                        <div class="card-title">
+                                            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                                                <h3 class="panel-title fw-semibold">
+                                                    <img class="img_cls" src="assets/chinmaya_media/images/SVG-color/Add Choice Detailsicon.svg" style="width:25px;"> Add Choice Details
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <!--begin::Card title-->
+                                        <!--begin::Card toolbar-->
+                                        <div class="card-toolbar">
+                                            <!--begin::Toolbar-->
+                                            <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                                                <!--begin::Add user-->
+                                                <a href="#" class="btn btn-sm fw-semibold btn-primary fs-6" style="margin-right:5px;">
+                                                    <i class="icon-add fs-4"></i>
+                                                    <span class="fs-6">Add</span>
+                                                </a>
+                                                <!--end::Add user-->
+                                            </div>
+                                            <!--end::Toolbar-->
+                                            <!--begin::Search-->
+                                            <div class="d-flex align-items-center position-relative my-1">
+                                                <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                                <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search user" />
+                                            </div>
+                                            <!--end::Search-->
+                                        </div>
+                                        <!--end::Card toolbar-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-0">
+                                        <!--begin::Table-->
+                                        <div class="col-lg-12 p-4" style="border-bottom:1px dotted #ccc;">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12 col-sm-12 fv-row fv-plugins-icon-container">
+                                                    <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                                                        <div class="row aaa">
+                                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="width:75%;">
+                                                                <label class="col-form-label fw-semibold required">Does this Sign-up Code provide Choices?</label>
+                                                            </div>
+                                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4" style="width:25%;">
+                                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                                    <input class="form-check-input" type="checkbox" value="1">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive px-2">
+                                            <table class="table table-responsive align-middle table-row-dashed fs-6 gy-5 dataTable" id="kt_ecommerce_products_table">
+                                                <!--<table class="table datatable-key-basic table-hover table-striped table-bordered dataTable" id="kt_ecommerce_products_table"></table>-->
+                                                <thead>
+                                                    <tr class="text-start fw-bold fs-7 gs-0">
+                                                        <th class="min-w-150px required text-center text-nowrap">Code</th>
+                                                        <th class="min-w-150px required text-center text-nowrap">Label</th>
+                                                        <th class="min-w-150px required text-center text-nowrap">Description</th>
+                                                        <th class="min-w-150px required text-center text-nowrap">Control</th>
+                                                        <th class="min-w-150px required text-center text-nowrap">Display Order</th>
+                                                        <th class="min-w-150px text-center text-nowrap">Active</th>
+                                                        <th class="min-w-150px text-center text-nowrap">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="text-gray-600 fw-semibold">
+                                                    <tr>
+                                                        <td class="text-center text-nowrap">
+                                                            <input type="text" name="" class="form-control form-control-sm" placeholder="Code">
+                                                        </td>
+                                                        <td class="text-center text-nowrap tdwidth">
+                                                            <input type="text" name="" class="form-control form-control-sm" placeholder="Label">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" class="form-control form-control-sm" placeholder="Description">
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <select class="form-select form-select-sm min-w-150px" aria-label="Select example">
+                                                                <option value="">- Select -</option>
+                                                                <option value="">Date</option>
+                                                                <option value="">Text</option>
+                                                                <option value="">Dropdown</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="" class="form-control form-control-sm" placeholder="Display Order">
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <div class="form-check form-check-sm form-check-solid">
+                                                                <label class="col-form-label fw-semibold pb-0">
+                                                                    <input class="form-check-input" type="checkbox" value="1">
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <span class="text-danger remove" style="cursor:pointer;">
+                                                                <i class="icon icon-bin fs-2"></i>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--end::Table-->
+                                    </div>
+                                    <!--end::Card body-->
+                                    <div class="card-footer p-5" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+                                        <div class="row">
+                                            <div class="d-flex justify-content-center">
+                                                <div class="m-0">
+                                                    <a href="#" class="btn btn-primary btn-sm mb-2 me-md-2 fs-6" style="margin-right:5px;">
+                                                        <i class="icon-backward fs-4"></i> Back
+                                                    </a>
+                                                        
+                                                    <a href="#" class="btn btn-primary btn-sm mb-2 me-md-2 fs-6" style="margin-right:5px;">
+                                                        <i class="icon-floppy-disk fs-4"></i> Save
+                                                    </a>
+                                                    
+                                                    <a href="#" class="btn btn-primary btn-sm mb-2 fs-6">
+                                                        <i class="icon-floppy-disks fs-4"></i> Save &amp; Next
+                                                    </a>                                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

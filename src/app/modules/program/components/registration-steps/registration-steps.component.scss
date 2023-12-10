@@ -1,0 +1,32 @@
+  /*show it on devices with max of 767 px and lower*/
+  @media (max-width: 767px) {
+    .FamilyInAccordian{
+        display: block !important;
+        margin-top:75px;
+       }     
+       .FamilyinTable{
+        display: none !important;
+       }
+
+  }
+  @media (max-width: 992px) {
+    .FamilyInAccordian{
+        display: block !important;
+       }     
+       .FamilyinTable{
+        display: none !important;
+       }           
+  }
+  
+  @media (max-width: 1200px) {
+    .FamilyInAccordian{
+        display: block !important;
+       }     
+       .FamilyinTable{
+        display: none !important;
+       }          
+  }
+
+  
+
+  
