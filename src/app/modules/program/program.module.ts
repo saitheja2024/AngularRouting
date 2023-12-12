@@ -15,7 +15,7 @@ const routes: Routes = [
     path: '',
     component: ProgramComponent,
     children: [
-      {
+            {
         path: 'program/configurationDetailsTab',
         component: ConfigDetailsComponent,
       },
@@ -36,7 +36,7 @@ const routes: Routes = [
         loadChildren: () =>
         import('./components/signu-up-codes/sign-up-codes.module').then((m) => m.SignUpCodesModule), 
       },
-       { path: '', redirectTo: 'program/configurationDetailsTab', pathMatch: 'full' },
+      { path: '', redirectTo: 'program/configurationDetailsTab', pathMatch: 'full' },
       // { path: '**', redirectTo: 'program/configurationDetailsTab', pathMatch: 'full' },
     ],
   },
@@ -52,10 +52,9 @@ const routes: Routes = [
     ReviewConfigurationComponent
   ],
   imports: [
-    RouterModule.forChild(routes),
-    SignUpCodesModule,
     ChinmayaSharedModule,
-    NgbNavModule
+    NgbNavModule,
+    RouterModule.forChild(routes),
   ]
 })
 export class ProgramModule { }

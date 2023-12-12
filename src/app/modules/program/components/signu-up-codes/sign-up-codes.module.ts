@@ -71,11 +71,9 @@ const routes: Routes = [
     RegistrationStepsComponent 
   ],
   imports: [
-    RouterModule.forChild(routes),
-    ChinmayaSharedModule
-   
-  ],
-  exports:[
+    ChinmayaSharedModule,
+    RouterModule.forChild(routes)
   ]
+ 
 })
 export class SignUpCodesModule { }
