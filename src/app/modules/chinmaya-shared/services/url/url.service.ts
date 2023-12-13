@@ -8,10 +8,14 @@ export class UrlService {
   constructor() { }
 
   organzationURL={
-    fetchAllOrgnaztion:"organization/fetchChaptersList"
+    fetchAllOrgnaztion : "organization/fetchChaptersList"
   }
 
   registrationURL={
-    fetchAllPrograms:"registration/fetchProgramsByChapter"
+    fetchAllPrograms : "registration/fetchProgramsByChapter"
   } 
+
+  reportsURL={
+    fetchProgramYears : "reports/fetchProgramYears"
+  }
 }
