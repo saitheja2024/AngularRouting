@@ -17,10 +17,14 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../modules/program/program.module').then((m) => m.ProgramModule),
   },
- 
+  {
+    path: 'family',
+    loadChildren: () =>
+      import('../modules/family/family.module').then((m) => m.FamilyModule),
+  },
   {
     path: '',
-    redirectTo: 'config', 
+    redirectTo: 'family', 
     pathMatch: 'full',
   },
   {
