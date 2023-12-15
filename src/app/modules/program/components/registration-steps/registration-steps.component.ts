@@ -14,9 +14,12 @@ export class RegistrationStepsComponent {
     
   }
 
-
   async openEmailModal(){
-    const modalRef = await this.modalService.open(EmailModalComponent);
+    const modalRef = await this.modalService.open(EmailModalComponent,{ size: 'lg' });
+  }
+
+  async closeEmailModal(){
+    const modalRef = await this.modalService.dismissAll();
   }
 
 }
