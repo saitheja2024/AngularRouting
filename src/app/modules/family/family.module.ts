@@ -5,11 +5,12 @@ import { FamilyRoutingModule } from './family-routing.module';
 import { FamilyComponent } from './components/family/family.component';
 import { AllFamilyMembersComponent } from './components/all-family-members/all-family-members.component';
 import { AllFamiliesComponent } from './components/all-families/all-families.component';
+import { FamilyMemberDetailsComponent } from './components/family-member-details/family-member-details.component';
 
 
 
 @NgModule({
-  declarations: [FamilyComponent,AllFamiliesComponent,AllFamilyMembersComponent],
+  declarations: [FamilyComponent,AllFamiliesComponent,AllFamilyMembersComponent, FamilyMemberDetailsComponent,FamilyMemberDetailsComponent],
   imports: [
     FamilyRoutingModule,
     ChinmayaSharedModule
