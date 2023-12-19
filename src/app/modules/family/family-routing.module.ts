@@ -4,6 +4,7 @@ import { AllFamiliesComponent } from './components/all-families/all-families.com
 import { AllFamilyMembersComponent } from './components/all-family-members/all-family-members.component';
 import { FamilyComponent } from './components/family/family.component';
 
+
 const routes: Routes = [
   {
     path: '',
