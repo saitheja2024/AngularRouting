@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AllFamiliesComponent } from './components/all-families/all-families.component';
 import { AllFamilyMembersComponent } from './components/all-family-members/all-family-members.component';
 import { FamilyComponent } from './components/family/family.component';
+import { FamilyMemberDetailsComponent } from './components/family-member-details/family-member-details.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,11 @@ const routes: Routes = [
         path: 'allFamilyMembers',
         component: AllFamilyMembersComponent,
       },
+      {
+        path: 'familyMemberDetails',
+        component: FamilyMemberDetailsComponent,
+      },
+     
      
       { path: '', redirectTo: 'allFamilies', pathMatch: 'full' },
     ],
