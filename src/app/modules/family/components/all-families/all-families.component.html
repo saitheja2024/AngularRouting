@@ -47,7 +47,6 @@
 					</tr>
 				</thead>
 			    <tbody>
-					
 			        <tr>
 						<td class="text-start text-nowrap">							
 							<a  href="#" routerLink="/family/allFamilyMembers" class="nav-link" >
@@ -137,6 +136,39 @@
 				</tbody>
 			</table>
 			<!--end::Table-->
+		</div>
+		<div class="row">
+			<div class="col-sm-12 col-md-5 py-lg-4 d-flex align-items-center justify-content-center justify-content-md-start">
+				<div class="dataTables_length">
+					<label>
+						<select class="form-select form-select-sm form-select-solid">
+							<option value="10">10</option>
+							<option value="25">25</option>
+							<option value="50">50</option>
+							<option value="100">100</option>
+						</select>
+					</label>
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+				<div class="paging_simple_numbers">
+					<ul class="pagination">
+						<li class="paginate_button page-item previous disabled">
+							<a href="#" data-dt-idx="0" tabindex="0" class="page-link">
+								<i class="previous"></i>
+							</a>
+						</li>
+						<li class="paginate_button page-item active">
+							<a href="#" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+						</li>
+						<li class="paginate_button page-item next disabled">
+							<a href="#" data-dt-idx="2" tabindex="0" class="page-link">
+								<i class="next"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!--end::Card body-->
