@@ -6,14 +6,15 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { ModalsModule } from 'src/app/_metronic/partials';
 import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
-const MODULES = [CommonModule, FormsModule,ReactiveFormsModule, HttpClientModule,ModalsModule]
-const COMPONENTS:any = [SpinnerComponent,ToastComponent]
+const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, ModalsModule, NgbModule]
+const COMPONENTS: any = [SpinnerComponent, ToastComponent]
 
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [...MODULES],
-  exports:[...MODULES,...COMPONENTS]
+  exports: [...MODULES, ...COMPONENTS]
 })
 export class ChinmayaSharedModule { }
