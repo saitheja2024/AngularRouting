@@ -20,6 +20,7 @@ export class UrlService {
   }
 
   familyURL = {
-    searchFamilies: "manageFamily/manageFamilySearch"
+    searchFamilies: "manageFamily/manageFamilySearch",
+    fetchFamilyDetailsByFamilyID: "manageFamily/fetchfamilyDetails"
   }
 }

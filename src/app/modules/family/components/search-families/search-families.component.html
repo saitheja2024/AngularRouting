@@ -17,23 +17,27 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Last Name</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Last Name" name="last_name">
+                    <input type="text" class="form-control form-control-sm" placeholder="Last Name"
+                        formControlName="lastName">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-semibold">First Name</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="First Name" name="first_name">
+                    <input type="text" class="form-control form-control-sm" placeholder="First Name"
+                        formControlName="firstName">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Home Phone</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Home Phone" name="home_phone">
+                    <input type="text" class="form-control form-control-sm" placeholder="Home Phone"
+                        formControlName="homePhone">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Email</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Email" name="email">
+                    <input type="text" class="form-control form-control-sm" placeholder="Email" formControlName="email">
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Registrant Type</label>
-                    <select class="form-select form-select-sm" aria-label="Select example">
+                    <select class="form-select form-select-sm" aria-label="Select example"
+                        formControlName="registrantType">
                         <option>- Select -</option>
                         <option>Adult</option>
                         <option>Youth</option>
@@ -42,12 +46,9 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Chapter</label>
-                    <select class="form-select form-select-sm" aria-label="Select example">
-                        <option>- Select -</option>
-                        <option>Chinmaya Somnath</option>
-                        <option>Chinmayam</option>
-                        <option>Fredrick</option>
-                        <option>Chinmaya Richmond</option>
+                    <select class="form-select form-select-sm" aria-label="Select example" formControlName="chapter">
+                        <option value="">- Select -</option>
+                        <option [value]="org.code" *ngFor="let org of chapterList ">{{org.description}}</option>
                     </select>
                 </div>
                 <div class="d-flex justify-content-center">

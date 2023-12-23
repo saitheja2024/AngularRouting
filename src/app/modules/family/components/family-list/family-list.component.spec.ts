@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllFamiliesComponent } from './all-families.component';
+import { AllFamiliesComponent } from './family-list.component';
 
 describe('AllFamiliesComponent', () => {
   let component: AllFamiliesComponent;

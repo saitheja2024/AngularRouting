@@ -1,6 +1,6 @@
-import { AllFamiliesComponent } from "./all-families/all-families.component";
-import { AllFamilyMembersComponent } from "./all-family-members/all-family-members.component";
+import { FamilyListomponent } from "./family-list/family-list.component";
 import { FamilyMemberDetailsComponent } from "./family-member-details/family-member-details.component";
+import { FamilyMemberListComponent } from "./family-member-list/family-member-list.component";
 import { FamilyComponent } from "./family/family.component";
 import { SearchFamiliesComponent } from "./search-families/search-families.component";
 
@@ -8,9 +8,8 @@ import { SearchFamiliesComponent } from "./search-families/search-families.compo
 
 export const FAMILY_COMPONENTS = [
     FamilyComponent,
-    AllFamiliesComponent,
-    AllFamilyMembersComponent,
-    FamilyMemberDetailsComponent,
+    FamilyListomponent,
+    FamilyMemberListComponent,
     FamilyMemberDetailsComponent,
     SearchFamiliesComponent
 ]

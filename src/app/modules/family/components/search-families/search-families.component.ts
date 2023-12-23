@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { FamilySearch } from 'src/app/modules/chinmaya-shared/interfaces/family-interfaces/family-search';
+import { FamilySearchInterface } from 'src/app/modules/chinmaya-shared/interfaces/family-interfaces/family-search';
 import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/family.service';
+import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
+import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program/program.service';
 
 @Component({
   selector: 'app-search-families',
@@ -11,25 +13,35 @@ import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/f
 export class SearchFamiliesComponent {
 
 
-  @Output() familyList= new EventEmitter<any>();
+  @Output() familyList = new EventEmitter<any>();
   searchForm: any;
+  chapterList: any;
 
 
 
   constructor(
     private familyService: FamilyService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private programService: ProgramService,
+    private masterService: MasterService
   ) { }
 
-  ngOnInit() {
+
+
+
+  async ngOnInit() {
     this.prepareSearchForm();
+    this.onSearchSubmit();
+    this.chapterList = await this.programService.fetchChapterList();
   }
+
+
 
   prepareSearchForm() {
     this.searchForm = this.fb.group({
       familyID: [''],
       lastName: [''],
-      firstName: [''],
+      firstName: ['moh'],
       homePhone: [''],
       email: ['', [Validators.email]],
       registrantType: [''],
@@ -41,13 +53,13 @@ export class SearchFamiliesComponent {
 
 
 
-async onSearchSubmit() {
-  let searchParams:FamilySearch=this.searchForm.value;
-  let familyList = await this.familyService.searchFamilies(searchParams);
+  async onSearchSubmit() {
+    let searchParams: FamilySearchInterface = this.searchForm.value;
+    let familyList = await this.familyService.searchFamilies(searchParams);
 
-  this.familyList.emit(familyList);
+    this.familyList.emit(familyList);
 
-}
+  }
 
 }
 
