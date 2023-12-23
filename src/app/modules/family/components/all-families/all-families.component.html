@@ -1,60 +1,6 @@
-<div class="d-flex align-items-center gap-2 gap-lg-3">
-	<div class="m-0">
-		<a href="#" class="btn btn-primary btn-sm my-1 fs-6" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-			<i class="icon-search4"></i> Search
-		</a>
-		<div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true">
-			<div class="px-7 py-5">
-				<div class="fs-5 text-dark fs-7 text-uppercase fw-semibold">Filter Options</div>
-			</div>
-			<div class="separator border-gray-200"></div>
-			<div class="p-4">
-				<div class="mb-3">
-					<label class="form-label fw-semibold">Family ID</label>
-					<input type="text" class="form-control form-control-sm" placeholder="Family ID" name="family_id" value="">
-				</div>
-				<div class="mb-3">
-					<label class="form-label fw-semibold">Last Name</label>
-					<input type="text" class="form-control form-control-sm" placeholder="Last Name" name="last_name" value="">
-				</div>
-				<div class="mb-3">
-					<label class="form-label fw-semibold">First Name</label>
-					<input type="text" class="form-control form-control-sm" placeholder="First Name" name="first_name" value="">
-				</div>
-				<div class="mb-3">
-					<label class="form-label fw-semibold">Home Phone</label>
-					<input type="text" class="form-control form-control-sm" placeholder="Home Phone" name="home_phone" value="">
-				</div>
-				<div class="mb-3">
-					<label class="form-label fw-semibold">Email</label>
-					<input type="text" class="form-control form-control-sm" placeholder="Email" name="email" value="">
-				</div>
-				<div class="mb-3">
-					<label class="form-label fw-semibold">Registrant Type</label>
-					<select class="form-select form-select-sm" aria-label="Select example">
-						<option>- Select -</option>
-						<option value="">Adult</option>
-						<option value="">Youth</option>
-						<option value="">Child</option>
-					</select>
-				</div>
-				<div class="mb-3">
-					<label class="form-label fw-semibold">Chapter</label>
-					<select class="form-select form-select-sm" aria-label="Select example">
-						<option>- Select -</option>
-						<option value="">Chinmaya Somnath</option>
-						<option value="">Chinmayam</option>
-						<option value="">Fredrick</option>
-						<option value="">Chinmaya Richmond</option>
-					</select>
-				</div>
-				<div class="d-flex justify-content-center">
-					<button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Apply</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<app-search-families (familyList)="showFamilyList($event)"></app-search-families>
+
+
 
 <div class="card card-flush cardborder mt-4">
 	<div class="card-header align-items-center float-end py-2 bg-white"
@@ -109,51 +55,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td class="text-start text-nowrap">
-							<a href="#" routerLink="/family/allFamilyMembers" class="nav-link">
-								<img src="assets/chinmaya_media/images/SVG-color/Family-icon.svg" alt=""
-									style="width: 20px;">
-							</a>
-						</td>
-						<td class="text-start text-nowrap">
-							1122
-						</td>
-						<td class="text-start text-nowrap">
-							1234
-						</td>
-						<td class="text-start text-nowrap">
-							Mark
-						</td>
-						<td class="text-start text-nowrap">
-							D
-						</td>
-						<td class="text-start text-nowrap">
-							Dwain
-						</td>
-						<td class="text-start text-nowrap">
-							Male
-						</td>
-						<td class="text-start text-nowrap">
-							12-05-1990
-						</td>
-						<td class="text-start text-nowrap">
-							ADULT
-						</td>
-						<td class="text-start text-nowrap">
-							(653)-434-3434
-						</td>
-						<td class="text-start text-nowrap">
-							1122@mymail.com
-						</td>
-						<td class="text-start text-nowrap">
-							(653)-434-3434
-						</td>
-						<td class="text-start text-nowrap">
-							Yes
-						</td>
-					</tr>
-					<tr *ngFor="let i of [1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7]">
+				
+					<tr *ngFor="let family of familyList">
 						<td class="text-start text-nowrap">
 							<a href="#">
 								<img src="assets/chinmaya_media/images/SVG-color/Family-icon.svg" alt=""
@@ -161,13 +64,13 @@
 							</a>
 						</td>
 						<td class="text-start text-nowrap">
-							1122
+							{{family.familyId}}
 						</td>
 						<td class="text-start text-nowrap">
-							1234
+							{{family.firstName}}
 						</td>
 						<td class="text-start text-nowrap">
-							Mark
+							{{family.lastName}}
 						</td>
 						<td class="text-start text-nowrap">
 							D

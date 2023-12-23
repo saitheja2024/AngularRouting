@@ -24,7 +24,7 @@ const Routing: Routes = [
   },
   {
     path: '',
-    redirectTo: 'family', 
+    redirectTo: 'config', 
     pathMatch: 'full',
   },
   {

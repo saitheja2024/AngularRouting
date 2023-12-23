@@ -1,0 +1,60 @@
+<div class="d-flex align-items-center gap-2 gap-lg-3">
+    <div class="m-0">
+        <a href="#" class="btn btn-primary btn-sm my-1 fs-6" data-kt-menu-trigger="click"
+            data-kt-menu-placement="bottom-end">
+            <i class="icon-search4"></i> Search
+        </a>
+        <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true">
+            <div class="px-7 py-5">
+                <div class="fs-5 text-dark fs-7 text-uppercase fw-semibold">Filter Options</div>
+            </div>
+            <div class="separator border-gray-200"></div>
+            <div class="p-4" [formGroup]="searchForm">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Family ID</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Family ID"
+                        formControlName="familyID">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Last Name</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Last Name" name="last_name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">First Name</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="First Name" name="first_name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Home Phone</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Home Phone" name="home_phone">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Email</label>
+                    <input type="text" class="form-control form-control-sm" placeholder="Email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Registrant Type</label>
+                    <select class="form-select form-select-sm" aria-label="Select example">
+                        <option>- Select -</option>
+                        <option>Adult</option>
+                        <option>Youth</option>
+                        <option>Child</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Chapter</label>
+                    <select class="form-select form-select-sm" aria-label="Select example">
+                        <option>- Select -</option>
+                        <option>Chinmaya Somnath</option>
+                        <option>Chinmayam</option>
+                        <option>Fredrick</option>
+                        <option>Chinmaya Richmond</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true"
+                        (click)="onSearchSubmit()">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

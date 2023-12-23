@@ -7,15 +7,19 @@ export class UrlService {
 
   constructor() { }
 
-  organzationURL={
-    fetchAllOrgnaztion : "organization/fetchChaptersList"
+  organzationURL = {
+    fetchAllOrgnaztion: "organization/fetchChaptersList"
   }
 
-  registrationURL={
-    fetchAllPrograms : "registration/fetchProgramsByChapter"
-  } 
+  registrationURL = {
+    fetchAllPrograms: "registration/fetchProgramsByChapter"
+  }
 
-  reportsURL={
-    fetchProgramYears : "reports/fetchProgramYears"
+  reportsURL = {
+    fetchProgramYears: "reports/fetchProgramYears"
+  }
+
+  familyURL = {
+    searchFamilies: "manageFamily/manageFamilySearch"
   }
 }
