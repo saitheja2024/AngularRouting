@@ -23,4 +23,8 @@ export class UrlService {
     searchFamilies: "manageFamily/manageFamilySearch",
     fetchFamilyDetailsByFamilyID: "manageFamily/fetchfamilyDetails"
   }
+
+  masterURL = {
+    fetchPersonType: "master/fetchPersonTypeList"
+  }
 }

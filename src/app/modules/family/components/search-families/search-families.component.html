@@ -38,10 +38,8 @@
                     <label class="form-label fw-semibold">Registrant Type</label>
                     <select class="form-select form-select-sm" aria-label="Select example"
                         formControlName="registrantType">
-                        <option>- Select -</option>
-                        <option>Adult</option>
-                        <option>Youth</option>
-                        <option>Child</option>
+                        <option value="">- Select -</option>
+                        <option *ngFor="let type of personType" [value]="type.code">{{type.code}}</option>
                     </select>
                 </div>
                 <div class="mb-3">

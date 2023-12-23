@@ -16,6 +16,7 @@ export class SearchFamiliesComponent {
   @Output() familyList = new EventEmitter<any>();
   searchForm: any;
   chapterList: any;
+  personType: any;
 
 
 
@@ -31,8 +32,9 @@ export class SearchFamiliesComponent {
 
   async ngOnInit() {
     this.prepareSearchForm();
-    this.onSearchSubmit();
+    //this.onSearchSubmit();
     this.chapterList = await this.programService.fetchChapterList();
+    this.personType = await this.masterService.getPersonType();
   }
 
 
@@ -41,7 +43,7 @@ export class SearchFamiliesComponent {
     this.searchForm = this.fb.group({
       familyID: [''],
       lastName: [''],
-      firstName: ['moh'],
+      firstName: [''],
       homePhone: [''],
       email: ['', [Validators.email]],
       registrantType: [''],
