@@ -18,3 +18,11 @@
 * {
     font-family: 'Catamaran', sans-serif;
 }
+
+/* Add a custom CSS file or include these styles in your existing CSS file */
+input[type="text"],
+textarea,
+select,
+option {
+    font-weight: bold !important;
+}
