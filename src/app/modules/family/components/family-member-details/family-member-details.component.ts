@@ -32,8 +32,11 @@ export class FamilyMemberDetailsComponent {
     this.selectedFamilyMember = this.familyService.getSelectedFamilyMember();
     this.initForm();
     await this.fetchMasterData();
-    let params = { personID: this.selectedFamilyMember.personID }
-    this.familyMember = await this.familyService.fetchPersonByPersonId(params);
+    this.familyMember = null;
+    if (this.selectedFamilyMember) {
+      let params = { personID: this.selectedFamilyMember.personID }
+      this.familyMember = await this.familyService.fetchPersonByPersonId(params);
+    }
     this.loadDataIntoForm(this.familyMember)
   }
 
@@ -49,6 +52,7 @@ export class FamilyMemberDetailsComponent {
 
 
   loadDataIntoForm(data: any) {
+    this.familyMemberDetailsForm.reset();
     this.familyMemberDetailsForm.patchValue(data);
   }
 
