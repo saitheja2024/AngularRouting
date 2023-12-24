@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FamilyMemberSearchInterface, FamilySearchInterface } from '../../interfaces/family-interfaces/family-search';
+import { FamilyMemberSearchInterface, FamilySearchInterface, SearchPersonByPersonIdInterface } from '../../interfaces/family-interfaces/family-search';
 import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
 
@@ -9,10 +9,12 @@ import { UrlService } from '../url/url.service';
 export class FamilyService {
 
 
+
   familyList: any = [];
   familyMembersList: any = null;
   selectedFamilyMember: any;
   selectedFamily: any;
+  familyMember: any;
 
 
 
@@ -38,6 +40,22 @@ export class FamilyService {
     }
 
     return [];
+
+  }
+
+  async fetchPersonByPersonId(params: SearchPersonByPersonIdInterface) {
+    let options: Options = {
+      url: this.urlService.familyURL.fetchPersonByPersonId,
+      body: params
+    }
+
+    let personDetails: any = await this.httpService.post(options);
+
+    if (personDetails) {
+      this.familyMember = personDetails;
+    }
+
+    return this.familyMember;
 
   }
 

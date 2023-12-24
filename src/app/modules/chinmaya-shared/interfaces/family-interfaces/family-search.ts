@@ -13,3 +13,8 @@ export interface FamilySearchInterface {
 export interface FamilyMemberSearchInterface {
     familyId: number;
 }
+
+
+export interface SearchPersonByPersonIdInterface {
+    personID: number;
+}

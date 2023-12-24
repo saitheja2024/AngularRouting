@@ -18,21 +18,24 @@
     </div>
 
     <!--begin::Card body-->
-    <div class="card-body pt-0">
+    <div class="card-body pt-0" [formGroup]="familyMemberDetailsForm">
         <div class="row mt-3">
             <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
                 <label class="col-form-label required fw-semibold fs-6">First Name</label>
-                <input type="text" name="" class="form-control form-control-sm required" placeholder="First Name">
+                <input type="text" name="firstName" class="form-control form-control-sm required"
+                    placeholder="First Name" formControlName="firstName">
                 <div class="help-block with-errors text-danger mt-2"></div>
             </div>
             <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
                 <label class="col-form-label required fw-semibold fs-6">Middle Name</label>
-                <input type="text" name="" class="form-control form-control-sm" placeholder="First Name">
+                <input type="text" name="middleName" class="form-control form-control-sm" placeholder="Middle Name"
+                    formControlName="middleName">
                 <div class="help-block with-errors text-danger mt-2"></div>
             </div>
             <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
                 <label class="col-form-label required fw-semibold fs-6">Last Name</label>
-                <input type="text" name="" class="form-control form-control-sm required" placeholder="Last Name">
+                <input type="text" name="lastName" class="form-control form-control-sm required" placeholder="Last Name"
+                    formControlName="lastName">
                 <div class="help-block with-errors text-danger mt-2"></div>
             </div>
         </div>
@@ -41,11 +44,11 @@
             <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
                 <div class="d-flex flex-column fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">Registrant Type</label>
-                    <select class="form-select form-select-sm" aria-label="Select example">
-                        <option>- Select -</option>
-                        <option value="">Adult</option>
-                        <option value="">Youth</option>
-                        <option value="">Child</option>
+                    <select class="form-select form-select-sm" aria-label="Select example" formControlName="personType">
+                        <option value="">- Select -</option>
+                        <option *ngFor="let personType of personTypeList" [value]="personType.code">{{personType.code}}
+                        </option>
+
                     </select>
                     <div class="help-block with-errors text-danger mt-2"></div>
                 </div>
@@ -53,8 +56,9 @@
             <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
                 <div class="d-flex flex-column fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">Gender</label>
-                    <select class="form-select form-select-sm" aria-label="Select example" id="example">
-                        <option>- Select -</option>
+                    <select class="form-select form-select-sm" aria-label="Select example" id="example"
+                        formControlName="gender">
+                        <option value="">- Select -</option>
                         <option value="">Male</option>
                         <option value="">Female</option>
                     </select>
@@ -64,7 +68,8 @@
             <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
                 <div class="d-flex flex-column fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">Date of Birth (MM/DD/YYYY)</label>
-                    <input class="form-control form-control-sm flatpickr-input" placeholder="MM/DD/YYYY" type="date">
+                    <input class="form-control form-control-sm flatpickr-input" placeholder="MM/DD/YYYY" type="date"
+                        formControlName="dateOfBirth">
                 </div>
                 <div class="help-block with-errors text-danger mt-2"></div>
             </div>
@@ -75,9 +80,8 @@
                 <div class="d-flex flex-column fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">Status</label>
                     <select class="form-select form-select-sm" aria-label="Select example">
-                        <option>- Status-</option>
-                        <option value="">Active</option>
-                        <option value="">Inactive</option>
+                        <option value="">- Status-</option>
+                        <option [value]="status.code" *ngFor="let status of statusList">{{status.code}}</option>
                     </select>
                     <div class="help-block with-errors text-danger mt-2"></div>
                 </div>
@@ -87,8 +91,8 @@
                     <label class="col-form-label required fw-semibold fs-6 required">Marrital Status</label>
                     <select class="form-select form-select-sm" aria-label="Select example">
                         <option>- Select-</option>
-                        <option value="">Married</option>
-                        <option value="">Single</option>
+                        <option [value]="status.code" *ngFor="let status of maritialStatusList">{{status.code}}</option>
+
                     </select>
                     <div class="help-block with-errors text-danger mt-2"></div>
                 </div>
@@ -117,9 +121,9 @@
                         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
                             <label class="col-form-label required fw-semibold fs-6 required">Chapter Code</label>
                             <select class="form-select form-select-sm" aria-label="Select example">
-                                <option>- Select-</option>
-                                <option value="">Active</option>
-                                <option value="">Inactive</option>
+                                <option value="">- Select-</option>
+                                <option *ngFor="let chapter of chapterCodes" [value]="chapter.code">
+                                    {{chapter.description}}</option>
                             </select>
                         </div>
                         <div class="help-block with-errors text-danger mt-2"></div>
@@ -144,7 +148,7 @@
                             <label class="col-form-label required fw-semibold fs-6 required">Address</label>
                             <div class="input-group">
                                 <textarea class="form-control form-control-sm" aria-label="With textarea"
-                                    placeholder="Address"></textarea>
+                                    placeholder="Address" formControlName="address"></textarea>
                             </div>
                         </div>
                         <div class="help-block with-errors text-danger mt-2"></div>
@@ -153,7 +157,7 @@
                         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
                             <div class="input-group mt-8 asd">
                                 <textarea class="form-control form-control-sm" aria-label="With textarea"
-                                    placeholder="Address Line1"></textarea>
+                                    placeholder="Address Line1" formControlName="address2"></textarea>
                             </div>
                         </div>
                         <div class="help-block with-errors text-danger mt-2"></div>
@@ -162,7 +166,7 @@
                         <div class="d-flex flex-column fv-row fv-plugins-icon-container">
                             <div class="input-group mt-8 asd">
                                 <textarea class="form-control form-control-sm" aria-label="With textarea"
-                                    placeholder="Address Line2"></textarea>
+                                    placeholder="Address Line2" formControlName="address3"></textarea>
                             </div>
                         </div>
                         <div class="help-block with-errors text-danger mt-2"></div>
@@ -217,19 +221,22 @@
             <div class="row">
                 <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">City</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="City" name="city">
+                    <input type="text" class="form-control form-control-sm" placeholder="City" name="city"
+                        formControlName="city">
                     <div class="help-block with-errors text-danger mt-2"></div>
                 </div>
                 <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">State</label>
-                    <select class="form-select form-select-sm" aria-label="Select example">
-                        <option>- Select State-</option>
+                    <select class="form-select form-select-sm" aria-label="Select example" formControlName="state">
+                        <option value="">- Select State-</option>
+                        <option *ngFor="let state of stateList" [value]="state.code">{{state.description}}</option>
                     </select>
                     <div class="help-block with-errors text-danger mt-2"></div>
                 </div>
                 <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">Zip Code</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Zip Code" name="zip_code">
+                    <input type="text" class="form-control form-control-sm" placeholder="Zip Code" name="zip_code"
+                        formControlName="zipCode">
                     <div class="help-block with-errors text-danger mt-2"></div>
                 </div>
             </div>
@@ -239,7 +246,9 @@
             <div class="row">
                 <div class="col-lg-6 mt-2 fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">Home Phone</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Home Phone" name="first_name">
+                    <input type="text" class="form-control form-control-sm" placeholder="Home Phone" name="first_name"
+                        formControlName="homePhone">
+
                     <label class="mt-1">
                         <input type="checkbox">
                         <small class="fw-semibold text-danger ms-2">Use in case of emergency</small>
@@ -248,7 +257,7 @@
                 <div class="col-lg-6 mt-2 fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">Mobile Phone</label>
                     <input type="text" class="form-control form-control-sm" placeholder="Mobile Phone"
-                        name="mobile_phone">
+                        name="mobile_phone" formControlName="phoneNumber">
                     <label class="mt-1">
                         <input type="checkbox">
                         <small class="fw-semibold text-danger ms-2">Use in case of emergency</small>
@@ -261,7 +270,9 @@
             <div class="row">
                 <div class="col-lg-6 mt-2 fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">Work Phone</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Work Phone" name="work_phone">
+                    <input type="text" class="form-control form-control-sm" placeholder="Work Phone" name="work_phone"
+                        formControlName="workPhone">
+
                     <label class="mt-1">
                         <input type="checkbox">
                         <small class="fw-semibold text-danger ms-2">Use in case of emergency</small>
@@ -270,7 +281,8 @@
                 </div>
                 <div class="col-lg-6 mt-2 fv-row fv-plugins-icon-container">
                     <label class="col-form-label required fw-semibold fs-6 required">Email</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Email" name="email">
+                    <input type="text" class="form-control form-control-sm" placeholder="Email" name="email"
+                        formControlName="emailAddress">
                     <div class="fv-plugins-message-container invalid-feedback"></div>
                 </div>
             </div>

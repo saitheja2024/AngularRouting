@@ -21,10 +21,15 @@ export class UrlService {
 
   familyURL = {
     searchFamilies: "manageFamily/manageFamilySearch",
-    fetchFamilyDetailsByFamilyID: "manageFamily/fetchfamilyDetails"
+    fetchFamilyDetailsByFamilyID: "manageFamily/fetchfamilyDetails",
+    fetchPersonByPersonId: "registration/fetchPersonByPersonId"
   }
 
   masterURL = {
-    fetchPersonType: "master/fetchPersonTypeList"
+    fetchPersonType: "master/fetchPersonTypeList",
+    fetchStatusList: "master/fetchStatusList",
+    fetchStateList: "master/fetchStatesList",
+    fetchMaritialList: "master/fetchMaritalStatusList",
+    fetchGenderList: "master/fetchGenderList"
   }
 }

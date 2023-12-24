@@ -32,7 +32,7 @@ export class SearchFamiliesComponent {
 
   async ngOnInit() {
     this.prepareSearchForm();
-    //this.onSearchSubmit();
+    this.onSearchSubmit();
     this.chapterList = await this.programService.fetchChapterList();
     this.personType = await this.masterService.getPersonType();
   }
@@ -43,7 +43,7 @@ export class SearchFamiliesComponent {
     this.searchForm = this.fb.group({
       familyID: [''],
       lastName: [''],
-      firstName: [''],
+      firstName: ['moh'],
       homePhone: [''],
       email: ['', [Validators.email]],
       registrantType: [''],
