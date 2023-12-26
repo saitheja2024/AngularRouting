@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AllFamiliesComponent } from './components/all-families/all-families.component';
-import { AllFamilyMembersComponent } from './components/all-family-members/all-family-members.component';
+
 import { FamilyComponent } from './components/family/family.component';
 import { FamilyMemberDetailsComponent } from './components/family-member-details/family-member-details.component';
+import { FamilyListomponent } from './components/family-list/family-list.component';
+import { FamilyMemberListComponent } from './components/family-member-list/family-member-list.component';
 
 
 const routes: Routes = [
@@ -13,24 +14,24 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'allFamilies',
+        redirectTo: 'familyList',
         pathMatch: 'full',
       },
       {
-        path: 'allFamilies',
-        component: AllFamiliesComponent,
+        path: 'familyList',
+        component: FamilyListomponent,
       },
       {
-        path: 'allFamilyMembers',
-        component: AllFamilyMembersComponent,
+        path: 'familyMemberList/:forceFetch',
+        component: FamilyMemberListComponent,
       },
       {
         path: 'familyMemberDetails',
         component: FamilyMemberDetailsComponent,
       },
-     
-     
-      { path: '', redirectTo: 'allFamilies', pathMatch: 'full' },
+
+
+      { path: '', redirectTo: 'familyList', pathMatch: 'full' },
     ],
   },
 ];
@@ -39,4 +40,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FamilyRoutingModule {}
+export class FamilyRoutingModule { }

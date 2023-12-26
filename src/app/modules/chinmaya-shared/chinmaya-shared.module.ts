@@ -1,20 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { SpinnerComponent } from './components/spinner/spinner.component';
-import { ToastComponent } from './components/toast/toast.component';
-import { ModalsModule } from 'src/app/_metronic/partials';
-import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { COMPONENTS } from './components/components.index';
+import { MODULES } from './module.index';
 
 
-const MODULES = [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule, ModalsModule, NgbModule]
-const COMPONENTS: any = [SpinnerComponent, ToastComponent]
+const ALL_MODULES = MODULES;
+const ALL_COMPONENTS: any = COMPONENTS;
 
 @NgModule({
-  declarations: [...COMPONENTS],
-  imports: [...MODULES],
-  exports: [...MODULES, ...COMPONENTS]
+  declarations: [...ALL_COMPONENTS],
+  imports: [...ALL_MODULES],
+  exports: [...ALL_MODULES, ...COMPONENTS]
 })
 export class ChinmayaSharedModule { }
