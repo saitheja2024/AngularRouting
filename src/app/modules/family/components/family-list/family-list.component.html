@@ -28,9 +28,9 @@
 			<table class="table align-middle table-row-dashed fs-6 gy-3">
 				<thead style="background-color: #f6f6f6;">
 					<tr class="text-start fw-bold fs-7 text-uppercase gs-0">
-						<th class="text-start min-w-100px text-nowrap">Manage Family</th>
+						<!--<th class="text-start min-w-100px text-nowrap">Manage Family</th>-->
+                        <th class="text-start min-w-100px text-nowrap">Family ID</th>
 						<th class="text-start min-w-100px text-nowrap">Person ID</th>
-						<th class="text-start min-w-100px text-nowrap">Family ID</th>
 						<th class="text-start min-w-100px text-nowrap">First Name</th>
 						<th class="text-start min-w-100px text-nowrap">Middle Name</th>
 						<th class="text-start min-w-100px text-nowrap">Last Name</th>
@@ -44,19 +44,20 @@
 					</tr>
 				</thead>
 				<tbody>
-
 					<tr *ngFor="let family of familyList">
-						<td class="text-start text-nowrap">
+						<!--<td class="text-start text-nowrap">
 							<a (click)="showFamilyMemberList(family)">
 								<img src="assets/chinmaya_media/images/SVG-color/Family-icon.svg" alt=""
 									style="width: 20px;cursor: pointer;">
 							</a>
+						</td>-->
+                        <td class="text-start text-nowrap fw-semibold familyid">
+                            <a (click)="showFamilyMemberList(family)" style="cursor: pointer;color:#0036F7">
+							{{family.familyId}}
+                            </a>
 						</td>
 						<td class="text-start text-nowrap" (click)="showFamilyMemberList(family)">
 							{{family.personID}}
-						</td>
-						<td class="text-start text-nowrap" (click)="showFamilyMemberList(family)">
-							{{family.familyId}}
 						</td>
 						<td class="text-start text-nowrap">
 							{{family.firstName}}
