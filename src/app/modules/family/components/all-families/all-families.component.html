@@ -1,6 +1,4 @@
-<app-search-families (familyList)="showFamilyList($event)"></app-search-families> 
-
-
+<!--<app-search-families (familyList)="showFamilyList($event)"></app-search-families> -->
 
 <div class="card card-flush cardborder mt-4">
 	<div class="card-header align-items-center float-end py-2 bg-white"
@@ -55,12 +53,10 @@
 					</tr>
 				</thead>
 				<tbody>
-				
 					<tr *ngFor="let family of familyList">
 						<td class="text-start text-nowrap">
 							<a href="#">
-								<img src="assets/chinmaya_media/images/SVG-color/Family-icon.svg" alt=""
-									style="width: 20px;">
+								<img src="assets/chinmaya_media/images/SVG-color/Family-icon.svg" alt="" style="width: 20px;">
 							</a>
 						</td>
 						<td class="text-start text-nowrap">
