@@ -11,7 +11,7 @@ const Routing: Routes = [
     loadChildren: () =>
       import('./builder/builder.module').then((m) => m.BuilderModule),
   },
- 
+
   {
     path: 'config',
     loadChildren: () =>
@@ -23,8 +23,13 @@ const Routing: Routes = [
       import('../modules/family/family.module').then((m) => m.FamilyModule),
   },
   {
+    path: 'search-family-view',
+    loadChildren: () =>
+      import('../modules/search-family-view/search-family-view.module').then((m) => m.SearchFamilyViewModule),
+  },
+  {
     path: '',
-    redirectTo: 'config', 
+    redirectTo: 'config',
     pathMatch: 'full',
   },
   {
