@@ -12,3 +12,21 @@
 // Layout
 @import "./core/layout/base/layout";
 @import "layout/layout";
+
+.menu-link1:hover {
+    background: #f2f2f2;
+    border-radius: 5px;
+}
+
+.symbol1 {
+    display: inline-block;
+    flex-shrink: 0;
+    position: relative;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    padding: 3px;
+  }
+
+  .btn-sm {
+    padding: 7px 15px !important;
+  }
