@@ -28,6 +28,11 @@ const Routing: Routes = [
       import('../modules/search-family-view/search-family-view.module').then((m) => m.SearchFamilyViewModule),
   },
   {
+    path: 'registration-processing',
+    loadChildren: () =>
+      import('../modules/registration-processing/registration-processing.module').then((m) => m.RegistrationProcessingModule),
+  },
+  {
     path: '',
     redirectTo: 'config',
     pathMatch: 'full',
