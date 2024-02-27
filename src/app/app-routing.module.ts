@@ -21,6 +21,7 @@ export const routes: Routes = [
       import('./_metronic/layout/layout.module').then((m) => m.LayoutModule),
   },
   //{ path: 'Registration_Processing', loadChildren: () => import('./configuration/about/about.module').then(m => m.AboutModule) },
+  //{ path: 'Registration_Processing', loadChildren: () => import('./configuration/registration-processing/registration-processing.module').then(m => m.RegistrationProcessingModule) },
   { path: '**', redirectTo: 'error/404' },
 ];
 
