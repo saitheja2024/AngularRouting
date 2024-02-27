@@ -33,6 +33,11 @@ const Routing: Routes = [
       import('../modules/registration-processing/registration-processing.module').then((m) => m.RegistrationProcessingModule),
   },
   {
+    path: 'email-processing',
+    loadChildren: () =>
+      import('../modules/email-processing/email-processing.module').then((m) => m.EmailProcessingModule),
+  },
+  {
     path: '',
     redirectTo: 'config',
     pathMatch: 'full',
