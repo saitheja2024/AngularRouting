@@ -7,6 +7,10 @@ export class UrlService {
 
   constructor() { }
 
+  authURL={
+    login : "login/validateLogin"
+  }
+
   organzationURL = {
     fetchAllOrgnaztion: "organization/fetchChaptersList"
   }

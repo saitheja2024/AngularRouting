@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { NgbModule, NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule, NgbDropdownModule, NgbToastModule } from "@ng-bootstrap/ng-bootstrap";
 import { ModalsModule } from "src/app/_metronic/partials";
 
 
@@ -13,5 +13,6 @@ export const MODULES = [
     HttpClientModule,
     ModalsModule,
     NgbModule,
-    NgbDropdownModule 
+    NgbDropdownModule,
+    NgbToastModule
 ]

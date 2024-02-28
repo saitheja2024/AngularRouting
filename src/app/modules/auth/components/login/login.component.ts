@@ -14,8 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit, OnDestroy {
   // KeenThemes mock, change it to:
   defaultAuth: any = {
-    email: 'admin@demo.com',
-    password: 'demo',
+    username: '',
+    password: '',
   };
   loginForm: FormGroup;
   hasError: boolean;
@@ -52,21 +52,18 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.loginForm = this.fb.group({
-      email: [
+      username: [
         this.defaultAuth.email,
         Validators.compose([
-          Validators.required,
-          Validators.email,
-          Validators.minLength(3),
-          Validators.maxLength(320), // https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address
+          Validators.required
+          
         ]),
       ],
       password: [
         this.defaultAuth.password,
         Validators.compose([
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(100),
+          Validators.required
+         
         ]),
       ],
     });
@@ -74,17 +71,18 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   submit() {
     this.hasError = false;
-    const loginSubscr = this.authService
-      .login(this.f.email.value, this.f.password.value)
-      .pipe(first())
-      .subscribe((user: UserModel | undefined) => {
-        if (user) {
-          this.router.navigate([this.returnUrl]);
-        } else {
-          this.hasError = true;
-        }
-      });
-    this.unsubscribe.push(loginSubscr);
+    var loginParam = this.loginForm.value;
+    loginParam.password=  window.btoa(loginParam.password);
+    const user = this.authService.login(loginParam);
+      // .pipe(first())
+      // .subscribe((user: UserModel | undefined) => {
+      //   if (user) {
+      //     this.router.navigate([this.returnUrl]);
+      //   } else {
+      //     this.hasError = true;
+      //   }
+      // });
+    //this.unsubscribe.push(loginSubscr);
   }
 
   ngOnDestroy() {

@@ -6,6 +6,8 @@ import { AuthModel } from '../models/auth.model';
 import { AuthHTTPService } from './auth-http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { HttpService, Options } from '../../chinmaya-shared/services/https-service/http-service';
+import { UrlService } from '../../chinmaya-shared/services/url/url.service';
 
 export type UserType = UserModel | undefined;
 
@@ -23,8 +25,8 @@ export class AuthService implements OnDestroy {
   currentUserSubject: BehaviorSubject<UserType>;
   isLoadingSubject: BehaviorSubject<boolean>;
 
-  get currentUserValue(): UserType {
-    return this.currentUserSubject.value;
+  get currentUserValue(): any {
+    return ""
   }
 
   set currentUserValue(user: UserType) {
@@ -33,31 +35,24 @@ export class AuthService implements OnDestroy {
 
   constructor(
     private authHttpService: AuthHTTPService,
-    private router: Router
+    private router: Router,
+    private httpService:HttpService,
+    private urlService: UrlService
   ) {
-    this.isLoadingSubject = new BehaviorSubject<boolean>(false);
-    this.currentUserSubject = new BehaviorSubject<UserType>(undefined);
-    this.currentUser$ = this.currentUserSubject.asObservable();
-    this.isLoading$ = this.isLoadingSubject.asObservable();
-    const subscr = this.getUserByToken().subscribe();
-    this.unsubscribe.push(subscr);
+    
   }
 
   // public methods
-  login(email: string, password: string): Observable<UserType> {
-    this.isLoadingSubject.next(true);
-    return this.authHttpService.login(email, password).pipe(
-      map((auth: AuthModel) => {
-        const result = this.setAuthFromLocalStorage(auth);
-        return result;
-      }),
-      switchMap(() => this.getUserByToken()),
-      catchError((err) => {
-        console.error('err', err);
-        return of(undefined);
-      }),
-      finalize(() => this.isLoadingSubject.next(false))
-    );
+  async login(params:any){
+    let options: Options = {
+      url: this.urlService.familyURL.searchFamilies,
+      body: params
+    }
+
+    let response: any = await this.httpService.post(options);
+
+    return response;
+    
   }
 
   logout() {
@@ -88,19 +83,8 @@ export class AuthService implements OnDestroy {
   }
 
   // need create new user then login
-  registration(user: UserModel): Observable<any> {
-    this.isLoadingSubject.next(true);
-    return this.authHttpService.createUser(user).pipe(
-      map(() => {
-        this.isLoadingSubject.next(false);
-      }),
-      switchMap(() => this.login(user.email, user.password)),
-      catchError((err) => {
-        console.error('err', err);
-        return of(undefined);
-      }),
-      finalize(() => this.isLoadingSubject.next(false))
-    );
+  registration(user: UserModel){
+   
   }
 
   forgotPassword(email: string): Observable<boolean> {
