@@ -1,21 +1,11 @@
 <div class="card mb-5 mb-xl-10">
     <!--begin::Card header-->
-    <div class="card-header d-flex justify-content-start p-2 ps-4">
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#00B0F0;">
-            Accepted
-        </button>
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
-            Paid
-        </button>
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
-            Partially Paid
-        </button>
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
-            Pre-Auth-Success
-        </button>
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#F79646;">
-            Session 1
-        </button>
+    <div class="card-header border-0 cursor-pointer ps-6 pe-6" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+        <!--begin::Card title-->
+        <div class="card-title m-0">
+            <h3 class="fw-bold m-0">Filters</h3>
+        </div>
+        <!--end::Card title-->
     </div>
     <!--begin::Card header-->
     <!--begin::Content-->
@@ -24,13 +14,351 @@
         <form id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
             <!--begin::Card body-->
             <div class="card-body border-top p-6">
+
+                <!-------- Begin Registration Status -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="required fw-semibold fs-6 mt-2 mb-2">Registration Status:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Pending</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Accepted</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Waitlisted</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Cancelled</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Withdrawn</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Registration Status -------->
+
+                <!-------- Begin Payment Status -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="required fw-semibold fs-6 mt-2 mb-2">Payment Status:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Partially Paid</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Paid</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Balance Due</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">No Dues</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Payment Status -------->
+
+                <!-------- Begin Session Choice 1 -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice 1:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Session Choice 1 -------->
+
+                <!-------- Begin Session Choice 2 -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice 2:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Session Choice 2 -------->
+
+				<!-------- Begin Session Choice 3 -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice 3:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Session Choice 3 -------->
+				
+                <!-------- Begin Assigned Session -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Assigned Session:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Assigned Session -------->
+
+                <!-------- Begin Sign-up Code -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Sign-Up Code:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>                             
+                                </select> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Sign-up Code -------->
+
+                <!-------- Begin Class -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Class:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>                             
+                                </select> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Class -------->
+
+                <!-------- Begin Current School Grade -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Current School Grade:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>                             
+                                </select> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Current School Grade -------->
+
+                <!-------- Begin Rising School Grade -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Rising School Grade:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>                             
+                                </select> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Rising School Grade -------->
+
+                <!-------- Begin Family ID -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Family ID:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <input type="text" placeholder="Family ID" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Family ID -------->
+
+                <!-------- Begin First Name -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">First Name:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <input type="text" placeholder="First Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End First Name -------->
+
+                <!-------- Begin Last Name -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Last Name:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <input type="text" placeholder="Last Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Last Name -------->
+
+                <!-------- Begin Home Phone -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Home Phone:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <input type="text" placeholder="Home Phone" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Home Phone -------->
 				
             </div>
             <!--end::Card body-->
             <!--begin::Actions-->
             <div class="card-footer d-flex justify-content-end py-6 px-9">
                 <button type="reset" class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 me-4">Cancel</button>
-                <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                <button type="submit" class="btn btn-sm btn-primary">Search</button>
             </div>
             <!--end::Actions-->
         <input type="hidden"></form>
@@ -38,3 +366,4 @@
     </div>
     <!--end::Content-->
 </div>
+
