@@ -1,1 +1,799 @@
-<p>email-search-results works!</p>
+<div class="card mb-5 mb-xl-10">
+    <!--begin::Card header-->
+    <div class="card-header d-flex p-2 ps-4">
+        <div class="justify-content-start d-flex d-flex1">
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#00B0F0;">
+                Accepted
+            </button>
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
+                Paid
+            </button>
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
+                Partially Paid
+            </button>
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
+                Pre-Auth-Success
+            </button>
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#F79646;">
+                Session 1
+            </button>
+        </div>
+        
+        <div class="justify-content-end mb-2 mt-1">
+            <span class="fs-6 me-4" style="color:#92D050;">Records Selected: 40</span>
+            <i class="ki-duotone ki-arrows-circle me-4 mt-3 fs-2 text-dark fw-bold">
+                <span class="path1"></span>
+                <span class="path2"></span>
+            </i>
+        </div>
+    </div>
+    <!--begin::Card header-->
+    <!--begin::Content-->
+    <div id="kt_account_settings_profile_details" class="collapse show">
+        <!--begin::Form-->
+        <form id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+            <!--begin::Card body-->
+            <div class="card-body border-top p-0">
+				<div class="table-responsive" style="max-height:500px !important;">
+                    <table class="table align-middle table-row-dashed fs-6 gy-3 mb-0">
+                        <thead style="background: #f9f9f9;">
+                            <tr>
+                                <th class="text-start min-w-100px text-nowrap fw-semibold fs-6 ps-4" style="vertical-align:middle;">Select</th>
+                                <th class="text-start min-w-100px text-nowrap fw-semibold fs-6" style="vertical-align:middle;">Family ID</th>
+                                <th class="text-start min-w-100px text-nowrap fw-semibold fs-6" style="vertical-align:middle;">Primary Person Name</th>
+                                <th class="text-start min-w-100px text-nowrap fw-semibold fs-6" style="vertical-align:middle;">Registration Status</th>
+                                <th class="text-start min-w-100px text-nowrap fw-semibold fs-6" style="vertical-align:middle;">Payment Status</th>
+                                <th class="text-start min-w-100px text-nowrap fw-semibold fs-6" style="vertical-align:middle;">Sessioned Choic1 / <br> Assigned Sesstion</th>
+                                <th class="text-start min-w-100px text-nowrap fw-semibold fs-6" style="vertical-align:middle;">Emai Sent Date</th>
+                                <th class="text-start min-w-100px text-nowrap fw-semibold fs-6" style="vertical-align:middle;">Template ID & Preview</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr> <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>124</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Partially Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 2</u></a>                       
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Pre-Auth-Success</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6 ps-4">
+                                    <input class="form-check-input" type="checkbox" value="1">                                   
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>123</u></a>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>John Doe</span>                       
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Accepted</span>                          
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span class="text-uppercase">Paid</span>                              
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <span>Sunday Session 1</span>               
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+
+                                </td>
+                                <td class="text-start min-w-100px text-nowrap fw-normal fs-6">
+                                    <a href="javascript:void(0);"><u>Template 1</u></a>                       
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--end::Card body-->
+            <!--begin::Actions-->
+            <div class="card-footer d-flex justify-content-end py-6 px-9">
+                <button type="reset" class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 me-4">Cancel</button>
+                <button type="submit" class="btn btn-sm btn-primary">Send</button>
+            </div>
+            <!--end::Actions-->
+        <input type="hidden"></form>
+        <!--end::Form-->
+    </div>
+    <!--end::Content-->
+</div>

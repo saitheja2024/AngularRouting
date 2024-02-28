@@ -97,15 +97,9 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     newUser.setUser(result);
     const registrationSubscr = this.authService
       .registration(newUser)
-      .pipe(first())
-      .subscribe((user: UserModel) => {
-        if (user) {
-          this.router.navigate(['/']);
-        } else {
-          this.hasError = true;
-        }
-      });
-    this.unsubscribe.push(registrationSubscr);
+     
+     
+    //this.unsubscribe.push(registrationSubscr);
   }
 
   ngOnDestroy() {

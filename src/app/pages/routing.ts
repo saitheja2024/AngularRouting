@@ -38,6 +38,12 @@ const Routing: Routes = [
       import('../modules/email-processing/email-processing.module').then((m) => m.EmailProcessingModule),
   },
   {
+    path: 'payment-adjustment',
+    loadChildren: () =>
+      import('../modules/adjustment/adjustment.module').then((m) => m.AdjustmentModule),
+  },
+  
+  {
     path: '',
     redirectTo: 'config',
     pathMatch: 'full',

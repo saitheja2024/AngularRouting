@@ -1,0 +1,30 @@
+.form-check-input {
+    width: 1.3rem !important;
+    height: 1.3rem !important;
+    top: -1px !important;
+    vertical-align: middle !important;
+    position: relative !important;
+    border-radius: 3px !important;
+    border: 1px solid #a8a8a8 !important;
+  }
+
+  @media (max-width:575px) {
+  .col-xs-6 {
+    width:50% !important;
+  }
+  .col-xs-12 {
+    width:100% !important;
+  }
+}
+
+@media(max-width:768px) {
+    .d-flex1 {
+        display: block !important;
+    }
+}
+
+@media(max-width:1200px) and (min-width:992px) {
+    .d-flex2 {
+        display: block !important;
+    }
+}
