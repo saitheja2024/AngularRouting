@@ -1,491 +1,377 @@
 <div class="card mb-5 mb-xl-10">
     <!--begin::Card header-->
-    <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+    <div class="card-header border-0 cursor-pointer ps-6 pe-6" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
         <!--begin::Card title-->
         <div class="card-title m-0">
-            <h3 class="fw-bold m-0">Registration Processing</h3>
+            <h3 class="fw-bold m-0">Registraton Processing</h3>
         </div>
+        <!--end::Card title-->
     </div>
-            <!--begin::Form-->
-            <form id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
-                <!--begin::Card body-->
-                <div class="card-body border-top p-9" data-select2-id="select2-data-135-v1zv">
-                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                        <!--begin::User-->
-                        <div class="d-flex flex-column">
-                            <!--begin::Name-->
-                            <div class="d-flex align-items-center mb-2">
-                                <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">Filters :</a> 
-                            </div>
+    <!--begin::Card header-->
+    <!--begin::Content-->
+    <div id="kt_account_settings_profile_details" class="collapse show">
+        <!--begin::Form-->
+        <form id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+            <!--begin::Card body-->
+            <div class="card-body border-top p-6">
+
+                <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <h4 class="text-gray-900 fs-2 fw-semibold me-1">Filters :</h4>                        
                         </div>
-                        <!--end::User-->
                     </div>
-                    <!--begin::Input group-->
-                    <fieldset style="border: 2px gray;">
-                        <legend>Registration Status</legend>
-                        <div class="row">
-                            <!--begin::Label-->
-                            <label class="col-lg-3 col-form-label required fw-semibold fs-6">Registration Status :</label>
-                            <!--end::Label-->
-                            <!--begin::Col-->
-                            <div class="col-lg-9 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
-                                <!--begin::Options-->
-                                <div class="row">
-                                    <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-                                        <!--begin::Option-->
-                                        <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                            <input class="form-check-input" name="communication[]" type="checkbox" value="1">
-                                            <span class="fw-semibold ps-2 fs-6">PENDING</span>
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                    <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-                                        <!--begin::Option-->
-                                        <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                            <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                            <span class="fw-semibold ps-2 fs-6">ACCEPTED</span>
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                    
-                                    <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-                                        <!--begin::Option-->
-                                        <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                            <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                            <span class="fw-semibold ps-2 fs-6">WAITLISTED</span>
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                    <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-                                        <!--begin::Option-->
-                                        <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                            <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                            <span class="fw-semibold ps-2 fs-6">CANCELLED</span>
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                    <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-                                        <!--begin::Option-->
-                                        <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                            <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                            <span class="fw-semibold ps-2 fs-6">WITHDRAWN</span>
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                    <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
+                </div>
 
-                                    </div>
-                                </div>
-
-                                <div class="d-flex align-items-center mt-3">
-                                    <!--end::Options-->
-                                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                        </div>
-                    </fieldset>
-                    <!--end::Input group-->
-
-                    <!--begin::Input group-->
+                <!-------- Begin Registration Status -------->
+                <div class="col-lg-12 mb-2">
                     <div class="row">
-                        <!--begin::Label-->
-                        <label class="col-lg-3 col-form-label required fw-semibold fs-6">Payment Status :</label>
-                        <!--end::Label-->
-                        <!--begin::Col-->
-                        <div class="col-lg-9 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
-                            <!--begin::Options-->
-                            <div class="row">
-                                <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-                                    <!--begin::Option-->
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="required fw-semibold fs-6 mt-2 mb-2">Registration Status:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                                     <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" name="communication[]" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-6">PARTIALLY PAID
-                                        </span>
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Pending</span>
                                     </label>
                                 </div>
-                                <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-                                    <!--begin::Option-->
-                                    <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                        <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                        <span class="fw-semibold ps-2 fs-6">PAID</span>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Accepted</span>
                                     </label>
-                                    <!--end::Option-->
                                 </div>
-                                <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-                                    <!--begin::Option-->
-                                    <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                        <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                        <span class="fw-semibold ps-2 fs-6">BALANCE DUE
-                                        </span>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Waitlisted</span>
                                     </label>
-                                    <!--end::Option-->
                                 </div>
-                                <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-                                    <!--begin::Option-->
-                                    <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                        <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                        <span class="fw-semibold ps-2 fs-6">NO DUES
-                                        </span>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Cancelled</span>
                                     </label>
-                                    <!--end::Option-->
                                 </div>
-                                <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
-
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Withdrawn</span>
+                                    </label>
                                 </div>
-                                <div class="col-lg-2 col-xs-2 col-sm-6 col-md-6 col-6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Registration Status -------->
 
+                <!-------- Begin Payment Status -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="required fw-semibold fs-6 mt-2 mb-2">Payment Status:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Partially Paid</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Paid</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Balance Due</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">No Dues</span>
+                                    </label>
                                 </div>
                             </div>
-
-                            <div class="d-flex align-items-center mt-3">
-                            </div>
-                            <!--end::Options-->
-                            <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
-                    <!--end::Col-->
                     </div>
-                
-                <!--end::Input group-->
-                
-                <!--begin::Input group-->
-                <div class="row">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">Session Choice 1 :</label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-9 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
-                        <!--begin::Options-->
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="1">
-                                    <span class="fw-semibold ps-2 fs-6">Sunday 9:15 AM – 10:45 AM
-                                    </span>
-                                </label>
-                                <!--end::Option-->
-                            </div>
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                    <span class="fw-semibold ps-2 fs-6">Sunday 12:15 PM – 1:50 PM</span>
-                                </label>
-                                <!--end::Option-->
-                            </div>
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                    <span class="fw-semibold ps-2 fs-6">FRIDAY 6:45 PM – 8:20 PM
-                                    </span>
-                                </label>
-                                <!--end::Option-->
-                            </div> 
-                        </div>
-                        <div class="d-flex align-items-center mt-3">
-
-                        </div>
-                        <!--end::Options-->
-                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                    </div>
-                    <!--end::Col-->
                 </div>
-                <!--end::Input group-->
+                <!-------- End Payment Status -------->
 
-                <!--begin::Input group-->
-                <div class="row">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">Session Choice 2 :</label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-9 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
-                        <!--begin::Options-->
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="1">
-                                    <span class="fw-semibold ps-2 fs-6">Sunday 9:15 AM – 10:45 AM
-                                    </span>
-                                </label>
-                                <!--end::Option-->
-                            </div>
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                    <span class="fw-semibold ps-2 fs-6">Sunday 12:15 PM – 1:50 PM</span>
-                                </label>
-                                <!--end::Option-->
-                            </div>
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                    <span class="fw-semibold ps-2 fs-6">FRIDAY 6:45 PM – 8:20 PM
-                                    </span>
-                                </label>
-                                <!--end::Option-->
-                            </div> 
+                <!-------- Begin Session Choice 1 -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice 1:</label>
                         </div>
-
-                        <div class="d-flex align-items-center mt-3">
-
-                        </div>
-                        <!--end::Options-->
-                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                    </div>
-                    <!--end::Col-->
-                </div>
-                <!--end::Input group-->
-
-                <!--begin::Input group-->
-                <div class="row">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">Session Choice 3 :</label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-9 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
-                        <!--begin::Options-->
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="1">
-                                    <span class="fw-semibold ps-2 fs-6">Sunday 9:15 AM – 10:45 AM
-                                    </span>
-                                </label>
-                                <!--end::Option-->
-                            </div>
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                    <span class="fw-semibold ps-2 fs-6">Sunday 12:15 PM – 1:50 PM</span>
-                                </label>
-                                <!--end::Option-->
-                            </div>
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                    <span class="fw-semibold ps-2 fs-6">FRIDAY 6:45 PM – 8:20 PM
-                                    </span>
-                                </label>
-                                <!--end::Option-->
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="d-flex align-items-center mt-3">
-                        </div>
-                        <!--end::Options-->
-                    <div class="fv-plugins-message-container invalid-feedback"></div></div>
-                    <!--end::Col-->
+                    </div>
                 </div>
-                <!--end::Input group-->
+                <!-------- End Session Choice 1 -------->
 
-                <!--begin::Input group-->
-                <div class="row">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">Assigned Session :
-                    </label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-9 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
-                        <!--begin::Options-->
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="1">
-                                    <span class="fw-semibold ps-2 fs-6">Sunday 9:15 AM – 10:45 AM
-                                    </span>
-                                </label>
-                                <!--end::Option-->
-                            </div>
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                    <span class="fw-semibold ps-2 fs-6">Sunday 12:15 PM – 1:50 PM</span>
-                                </label>
-                                <!--end::Option-->
-                            </div>
-                            <div class="col-lg-4">
-                                <!--begin::Option-->
-                                <label class="form-check form-check-custom form-check-inline is-valid text-nowrap m-2">
-                                    <input class="form-check-input" name="communication[]" type="checkbox" value="2">
-                                    <span class="fw-semibold ps-2 fs-6">FRIDAY 6:45 PM – 8:20 PM
-                                    </span>
-                                </label>
-                                <!--end::Option-->
+                <!-------- Begin Session Choice 2 -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice 2:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <!-------- End Session Choice 2 -------->
 
-                        <div class="d-flex align-items-center mt-3">
-
+				<!-------- Begin Session Choice 3 -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice 3:</label>
                         </div>
-                        <!--end::Options-->
-                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!--end::Col-->
                 </div>
-                <!--end::Input group-->
-                
-                <!--begin::Input group-->
-                <div class="row mb-2">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">
-                        <span class="">Sign-Up Code :
-                        </span> 
-                    </label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-5 fv-row fv-plugins-icon-container" data-select2-id="select2-data-134-801d">
-                        <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-sm fw-semibold select2-hidden-accessible" data-select2-id="select2-data-10-9p9o" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
-                            <option value="" data-select2-id="select2-data-12-o9lb">Select an Option...</option>                             
-                        </select> 
-                    <div class="fv-plugins-message-container invalid-feedback"></div></div>
-                    <div class="4"></div>
-                    <!--end::Col-->
-                </div>
-                <!--end::Input group-->
-                
-                <!--begin::Input group-->
-                <div class="row mb-2">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">
-                        <span class="">Class :
-                        </span> 
-                    </label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-5 fv-row fv-plugins-icon-container" data-select2-id="select2-data-134-801d">
-                        <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-sm fw-semibold select2-hidden-accessible" data-select2-id="select2-data-10-9p9o" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
-                            <option value="" data-select2-id="select2-data-12-o9lb">Select an Option...</option>                             
-                        </select> 
-                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                <!-------- End Session Choice 3 -------->
+				
+                <!-------- Begin Assigned Session -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Assigned Session:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="4"></div>
-                    <!--end::Col-->
-                    <!-------- End Session Choice 3 -------->
                 </div>
-                <!--end::Input group-->
-                
-                <!--begin::Input group-->
-                <div class="row mb-2">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">
-                        <span class="">Current School Grade :
-                        </span> 
-                    </label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-5 fv-row fv-plugins-icon-container" data-select2-id="select2-data-134-801d">
-                        <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-sm fw-semibold select2-hidden-accessible" data-select2-id="select2-data-10-9p9o" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
-                            <option value="" data-select2-id="select2-data-12-o9lb">Select an Option...</option>                             
-                        </select> 
-                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                    </div>
-                    <div class="4"></div>
-                    <!--end::Col-->
-                </div>
-                <!--end::Input group-->
-                
-                <!--begin::Input group-->
-                <div class="row mb-2">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">
-                        <span class="">Rising School Grade :
-                        </span> 
-                    </label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-5 fv-row fv-plugins-icon-container" data-select2-id="select2-data-134-801d">
-                        <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-sm fw-semibold select2-hidden-accessible" data-select2-id="select2-data-10-9p9o" tabindex="-1" aria-hidden="true" data-kt-initialized="1">
-                            <option value="" data-select2-id="select2-data-12-o9lb">Select an Option...</option>                             
-                        </select> 
-                        <div class="fv-plugins-message-container invalid-feedback"></div>
-                    </div>
-                    <div class="4"></div>
-                    <!--end::Col-->
-                </div>
-                <!--end::Input group-->
+                <!-------- End Assigned Session -------->
 
-                <!--begin::Input group-->
-                <div class="row mb-2">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label  fw-semibold fs-6">Family ID :
-                    </label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-5 fv-row fv-plugins-icon-container">
-                        <input type="text" name="company" class="form-control form-control-sm" placeholder="Family ID">
-                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                <!-------- Begin Sign-up Code -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Sign-Up Code:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>                             
+                                </select> 
+                            </div>
+                        </div>
                     </div>
-                    <div class="4"></div>
-                    <!--end::Col-->
                 </div>
-                <!--end::Input group-->
-                
-                <!--begin::Input group-->
-                <div class="row mb-2">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">First Name :
-                    </label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-5 fv-row fv-plugins-icon-container">
-                        <input type="text" name="company" class="form-control form-control-sm" placeholder="First Name">
-                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                <!-------- End Sign-up Code -------->
+
+                <!-------- Begin Class -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Class:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>                             
+                                </select> 
+                            </div>
+                        </div>
                     </div>
-                    <div class="4"></div>
-                    <!--end::Col-->
                 </div>
-                <!--end::Input group-->
-                
-                <!--begin::Input group-->
-                <div class="row mb-2">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">Last Name :
-                    </label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-5 fv-row fv-plugins-icon-container">
-                        <input type="text" name="company" class="form-control form-control-sm" placeholder="Last Name">
-                    <div class="fv-plugins-message-container invalid-feedback"></div></div>
-                    <div class="4"></div>
-                    <!--end::Col-->
+                <!-------- End Class -------->
+
+                <!-------- Begin Current School Grade -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Current School Grade:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>                             
+                                </select> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!--end::Input group-->
-                
-                <!--begin::Input group-->
-                <div class="row mb-2">
-                    <!--begin::Label-->
-                    <label class="col-lg-3 col-form-label fw-semibold fs-6">Home Phone :
-                    </label>
-                    <!--end::Label-->
-                    <!--begin::Col-->
-                    <div class="col-lg-5 fv-row fv-plugins-icon-container">
-                        <input type="text" name="company" class="form-control form-control-sm" placeholder="Home Phone">
-                    <div class="fv-plugins-message-container invalid-feedback"></div></div>
-                    <div class="4"></div>
-                    <!--end::Col-->
+                <!-------- End Current School Grade -------->
+
+                <!-------- Begin Rising School Grade -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Rising School Grade:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>                             
+                                </select> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!--end::Input group-->
+                <!-------- End Rising School Grade -------->
+
+                <!-------- Begin Family ID -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Family ID:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <input type="text" placeholder="Family ID" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Family ID -------->
+
+                <!-------- Begin First Name -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">First Name:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <input type="text" placeholder="First Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End First Name -------->
+
+                <!-------- Begin Last Name -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Last Name:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <input type="text" placeholder="Last Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Last Name -------->
+
+                <!-------- Begin Home Phone -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                            <label class="fw-semibold fs-6 mt-2 mb-2">Home Phone:</label>
+                        </div>
+                        <div class="col-lg-10 d-flex">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <input type="text" placeholder="Home Phone" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Home Phone -------->
+				
             </div>
-            </form>
-        <!--end::Card body-->
-        
+            <!--end::Card body-->
+        </form>
+        <!--end::Form-->
         <!--begin::Actions-->
         <div class="card-footer d-flex justify-content-end py-6 px-9">
             <div class="row">
                 <div class="d-flex justify-content-center">
                     <!--begin::Filter menu-->
                     <div class="m-0">
-                        <a href="" class="btn btn-danger btn-sm me-2 ">
+                        <a href="javascript:void(0);" class="btn btn-danger btn-sm me-2 ">
                             <i class="icon-cancel-circle2 fs-4"></i> Cancel
                         </a>
 
@@ -495,11 +381,11 @@
                     </div>
                 </div>
                 <!--end::Actions-->
-                <input type="hidden">
-                
-                <!--end::Form-->
             </div>
             <!--end::Content-->
         </div>
-        
+        <!--end::Actions-->
     </div>
+    <!--end::Content-->
+</div>
+
