@@ -3,11 +3,12 @@ import { REGISTRATION_PROCESSING_COMPONENTS } from './components/registration-pr
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
 import { RegistrationProcessingRoutingModule } from './registration-processing-routing.module';
 import { RegistrationSearchResultsComponent } from './components/registration-search-results/registration-search-results.component';
+import { FamilyRegistrationDetailsComponent } from './components/family-registration-details/family-registration-details.component';
 
 
 
 @NgModule({
-  declarations: [REGISTRATION_PROCESSING_COMPONENTS, RegistrationSearchResultsComponent],
+  declarations: [REGISTRATION_PROCESSING_COMPONENTS, RegistrationSearchResultsComponent, FamilyRegistrationDetailsComponent],
   imports: [
     ChinmayaSharedModule,
     RegistrationProcessingRoutingModule
