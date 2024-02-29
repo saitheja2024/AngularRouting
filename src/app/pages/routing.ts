@@ -42,6 +42,11 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../modules/adjustment/adjustment.module').then((m) => m.AdjustmentModule),
   },
+  {
+    path: 'payment-schedule-and-history',
+    loadChildren: () =>
+      import('../modules/payment-schedule-and-history/payment-schedule-and-history.module').then((m) => m.PaymentScheduleAndHistoryModule),
+  },
   
   {
     path: '',
