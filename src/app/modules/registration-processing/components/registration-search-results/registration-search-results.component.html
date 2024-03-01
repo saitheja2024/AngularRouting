@@ -1,35 +1,38 @@
 <div class="card mb-5 mb-xl-10">
     <!--begin::Card header-->
-    <div class="card-header d-flex justify-content-start p-2 ps-4">
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#00B0F0;">
-            Pending
-        </button>
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#00B0F0;">
-            WAITLISTED
-        </button>
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
-            Paid
-        </button>
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
-            Partially Paid
-        </button>
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
-            Pre-Auth-Success
-        </button>
-        <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#F79646;">
-            Session 1
-        </button>
-        <button type="button" class="btn btn-sm btn-link text-uppercase text-success fw-bold me-3 mb-2 mt-2">
-            Records Selected: 4
-        </button>
-        <button class="btn btn-link btn-sm">     
-            <i class="ki-duotone ki-arrows-circle fs-1 text-dark">
-            <span class="path1"></span>
-            <span class="path2"></span>
-            </i>      
-        </button>
+    <div class="card-header d-flex p-2 ps-4">
+        <div class="justify-content-start">
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#00B0F0;">
+                Pending
+            </button>
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#00B0F0;">
+                WAITLISTED
+            </button>
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
+                Paid
+            </button>
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
+                Partially Paid
+            </button>
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
+                Pre-Auth-Success
+            </button>
+            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#F79646;">
+                Session 1
+            </button>
+        </div>
 
-        
+        <div class="justify-content-end">
+            <button type="button" class="btn btn-sm btn-link text-uppercase text-success fw-bold me-3 mb-2 mt-2">
+                Records Selected: 4
+            </button>
+            <button class="btn btn-link btn-sm">     
+                <i class="ki-duotone ki-arrows-circle fs-1 text-dark">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                </i>      
+            </button>
+        </div>
     </div>
     <!--begin::Card header-->
     <!--begin::Content-->
@@ -39,14 +42,14 @@
             <!--begin::Card body-->
             <div class="card-body border-top p-2">
                 <div class="d-flex justify-content-end mb-2">
-                <div class="d-flex align-items-center position-relative my-1">
-                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                    </i>
-                    <input type="text" id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
+                    <div class="d-flex align-items-center position-relative my-1">
+                        <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        <input type="text" id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
+                    </div>
                 </div>
-            </div>
                 <div class="table-responsive" style="max-height:500px !important;">
                     <table class="table align-middle table-hover table-rounded table-striped table-bordered fs-6 gy-3">
                         <thead class="bg-primary text-white">
@@ -133,14 +136,16 @@
                 </div>
             </div>
             <!--end::Card body-->
-            <!--begin::Actions-->
-            <div class="card-footer d-flex justify-content-end py-6 px-9">
-                <button type="reset" class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 me-4">Cancel</button>
-                <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-            </div>
-            <!--end::Actions-->
-        <input type="hidden"></form>
+        </form>
         <!--end::Form-->
+        <!--begin::Actions-->
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <a routerLink="/registration-processing/registration-search" class="btn btn-danger btn-sm me-2">
+                <i class="icon-cancel-circle2 fs-4"></i> Cancel
+            </a>
+            <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+        </div>
+        <!--end::Actions-->
     </div>
     <!--end::Content-->
 </div>

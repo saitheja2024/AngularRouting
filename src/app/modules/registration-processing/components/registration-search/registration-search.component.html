@@ -3,7 +3,7 @@
     <div class="card-header border-0 cursor-pointer ps-6 pe-6" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
         <!--begin::Card title-->
         <div class="card-title m-0">
-            <h3 class="fw-bold m-0">Registration Processing</h3>
+            <h3 class="fw-bold m-0">Registraton Processing</h3>
         </div>
         <!--end::Card title-->
     </div>
@@ -240,7 +240,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Sign-Up Code:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                     <option value="">Select an Option...</option>                             
                                 </select> 
@@ -257,7 +257,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Class:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                     <option value="">Select an Option...</option>                             
                                 </select> 
@@ -274,7 +274,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Current School Grade:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                     <option value="">Select an Option...</option>                             
                                 </select> 
@@ -291,7 +291,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Rising School Grade:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                     <option value="">Select an Option...</option>                             
                                 </select> 
@@ -308,7 +308,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Family ID:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <input type="text" placeholder="Family ID" class="form-control form-control-sm">
                             </div>
                         </div>
@@ -323,7 +323,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">First Name:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <input type="text" placeholder="First Name" class="form-control form-control-sm">
                             </div>
                         </div>
@@ -338,7 +338,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Last Name:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <input type="text" placeholder="Last Name" class="form-control form-control-sm">
                             </div>
                         </div>
@@ -353,7 +353,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Home Phone:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <input type="text" placeholder="Home Phone" class="form-control form-control-sm">
                             </div>
                         </div>
@@ -363,14 +363,28 @@
 				
             </div>
             <!--end::Card body-->
-            <!--begin::Actions-->
-            <div class="card-footer d-flex justify-content-end py-6 px-9">
-                <button type="reset" class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 me-4">Cancel</button>
-                <button type="submit" class="btn btn-sm btn-primary">Search</button>
-            </div>
-            <!--end::Actions-->
-        <input type="hidden"></form>
+        </form>
         <!--end::Form-->
+        <!--begin::Actions-->
+        <div class="card-footer d-flex justify-content-end py-6 px-9">
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <!--begin::Filter menu-->
+                    <div class="m-0">
+                        <a href="javascript:void(0);" class="btn btn-danger btn-sm me-2 ">
+                            <i class="icon-cancel-circle2 fs-4"></i> Cancel
+                        </a>
+
+                        <a  class="btn btn-primary btn-sm" style="margin-right:5px;" routerLink="/registration-processing/registration-search-results">
+                            <i class="icon-search4 fs-4"></i> Search
+                        </a>
+                    </div>
+                </div>
+                <!--end::Actions-->
+            </div>
+            <!--end::Content-->
+        </div>
+        <!--end::Actions-->
     </div>
     <!--end::Content-->
 </div>
