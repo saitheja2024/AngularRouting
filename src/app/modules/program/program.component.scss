@@ -1,5 +1,17 @@
 .nav .nav-item.active {
-    background-color: #007bff; /* Set your desired background color */
+    background: #9eb72c; /* Set your desired background color */
     color: #fff; /* Set your desired text color */
 }
 
+.nav.nav-pills.nav-pills-custom .nav-link.active .nav-text {
+    color: #fff !important;
+    transition: color 0s ease;
+  }
+
+  .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: #9eb72c;
+  }
+
+  .nav.nav-pills.nav-pills-custom .nav-link.active .nav-text {
+    color: #fff !important;
+  }
