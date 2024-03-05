@@ -18,15 +18,14 @@
   menu-icon-muted menu-state-primary fw-semibold p-1 fs-base w-150px'
   data-kt-menu='true'>
 
-  <!-- <ng-container *ngIf="menuMode$ | async as menuMode">
-     begin::Menu item  
+  <ng-container *ngIf="menuMode$ | async as menuMode">
+     <!--begin::Menu item  -->
     <div class='menu-item my-0'>
       <a class="menu-link menu-link1" [ngClass]="{'active': menuMode === 'light'}" (click)="switchMode('light')">
-        <span class='menu-title'><i class="icon-switch2 position-left me-4 mt-1"></i> Sign Out12</span>
+        <span class='menu-title'><i class="icon-switch2 position-left me-4 mt-1"></i> Sign Out</span>
       </a>
     </div>
-    end::Menu item 
-
-  </ng-container> -->
+    <!--end::Menu item -->
+  </ng-container> 
 </div>
 <!-- end::Menu -->
