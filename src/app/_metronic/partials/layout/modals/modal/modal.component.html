@@ -1,13 +1,13 @@
 <ng-template #modal>
   <div class="modal-content">
-    <div class="modal-header">
+    <div class="modal-header p-4">
       <!--begin::Modal title-->
-      <h2>{{ modalConfig.modalTitle }}</h2>
+      <span class="fs-2 fw-semibold">{{ modalConfig.modalTitle }}</span>
       <!--end::Modal title-->
       <!--begin::Close-->
       <div class="btn btn-sm btn-icon btn-active-color-primary" (click)="dismiss()"
         *ngIf="modalConfig.hideDismissButton === undefined || !modalConfig.hideDismissButton()">
-        <app-keenicon name="cross" class="fs-1"></app-keenicon>
+        <app-keenicon name="cross" class="fs-1 text-black"></app-keenicon>
         <!--end::Svg Icon-->
       </div>
       <!--end::Close-->
@@ -15,16 +15,16 @@
     <div class="modal-body">
       <ng-content></ng-content>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="dismiss()"
+    <div class="modal-footer p-4">
+      <button type="button" class="btn btn-primary btn-sm" (click)="dismiss()"
         *ngIf="modalConfig.hideDismissButton === undefined || !modalConfig.hideDismissButton()"
         [disabled]="modalConfig.disableDismissButton !== undefined && modalConfig.disableDismissButton()">
-        {{ modalConfig.dismissButtonLabel }}
+        <i class="icon-paperplane"></i> {{ modalConfig.dismissButtonLabel }}
       </button>
-      <button type="button" class="btn btn-outline-primary" (click)="close()"
+      <button type="button" class="btn btn-danger btn-sm" (click)="close()"
         *ngIf="modalConfig.hideCloseButton === undefined || !modalConfig.hideCloseButton()"
         [disabled]="modalConfig.disableCloseButton !== undefined && modalConfig.disableCloseButton()">
-        {{ modalConfig.closeButtonLabel }}
+        <i class="icon icon-cancel-circle2"></i> {{ modalConfig.closeButtonLabel }}
       </button>
     </div>
   </div>

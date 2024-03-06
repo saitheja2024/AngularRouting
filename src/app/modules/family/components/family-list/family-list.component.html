@@ -22,25 +22,25 @@
 	</div>
 
 	<!--begin::Card body-->
-	<div class="card-body p-5">
+	<div class="card-body p-0">
 		<!--begin::Table-->
 		<div class="table-responsive" style="max-height:500px !important;">
 			<table class="table align-middle table-row-dashed fs-6 gy-3">
 				<thead style="background-color: #f6f6f6;">
 					<tr class="text-start fw-bold fs-7 text-uppercase gs-0">
 						<!--<th class="text-start min-w-100px text-nowrap">Manage Family</th>-->
-                        <th class="text-start min-w-100px text-nowrap">Family ID</th>
-						<th class="text-start min-w-100px text-nowrap">Person ID</th>
-						<th class="text-start min-w-100px text-nowrap">First Name</th>
-						<th class="text-start min-w-100px text-nowrap">Middle Name</th>
-						<th class="text-start min-w-100px text-nowrap">Last Name</th>
-						<th class="text-start min-w-100px text-nowrap">Gender</th>
-						<th class="text-start min-w-100px text-nowrap">DOB</th>
-						<th class="text-start min-w-100px text-nowrap">Registration Type</th>
-						<th class="text-start min-w-100px text-nowrap">Home Phone</th>
-						<th class="text-start min-w-100px text-nowrap">Email Address</th>
-						<th class="text-start min-w-100px text-nowrap">Mobile Address</th>
-						<th class="text-start min-w-100px text-nowrap">Primary Contact</th>
+                        <th class="text-start min-w-100px text-nowrap p-2 py-4">Family ID</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">Person ID</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">First Name</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">Middle Name</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">Last Name</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">Gender</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">DOB</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">Registration Type</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">Home Phone</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">Email Address</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">Mobile Address</th>
+						<th class="text-start min-w-100px text-nowrap p-2 py-4">Primary Contact</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -51,42 +51,42 @@
 									style="width: 20px;cursor: pointer;">
 							</a>
 						</td>-->
-                        <td class="text-start text-nowrap fw-semibold familyid">
+                        <td class="text-start text-nowrap fw-semibold familyid p-2 py-2">
                             <a (click)="showFamilyMemberList(family)" style="cursor: pointer;color:#009EF7">
 							{{family.familyId}}
                             </a>
 						</td>
-						<td class="text-start text-nowrap" (click)="showFamilyMemberList(family)">
+						<td class="text-start text-nowrap p-2 py-2" (click)="showFamilyMemberList(family)">
 							{{family.personID}}
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							{{family.firstName}}
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							{{family.middleName}}
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							{{family.lastName}}
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							{{family.gender}}
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							{{family.dateOfBirth}}
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							{{family.personType}}
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							{{family.homePhone}}
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							{{family.emailAddress}}
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							NA
 						</td>
-						<td class="text-start text-nowrap">
+						<td class="text-start text-nowrap p-2 py-2">
 							Yes
 						</td>
 					</tr>
