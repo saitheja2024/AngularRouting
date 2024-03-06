@@ -3,3 +3,9 @@
         width:100% !important;
     }
 }
+
+@media(max-width:600px) {
+    .col-xs-12 {
+        width: 100% !important;
+    }
+}

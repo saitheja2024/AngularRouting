@@ -15,16 +15,16 @@
     <div class="modal-body">
       <ng-content></ng-content>
     </div>
-    <div class="modal-footer p-4">
-      <button type="button" class="btn btn-primary btn-sm" (click)="dismiss()"
-        *ngIf="modalConfig.hideDismissButton === undefined || !modalConfig.hideDismissButton()"
-        [disabled]="modalConfig.disableDismissButton !== undefined && modalConfig.disableDismissButton()">
-        <i class="icon-paperplane"></i> {{ modalConfig.dismissButtonLabel }}
-      </button>
+    <div class="p-4" style="border-top:1px solid #eee;">
       <button type="button" class="btn btn-danger btn-sm" (click)="close()"
         *ngIf="modalConfig.hideCloseButton === undefined || !modalConfig.hideCloseButton()"
         [disabled]="modalConfig.disableCloseButton !== undefined && modalConfig.disableCloseButton()">
         <i class="icon icon-cancel-circle2"></i> {{ modalConfig.closeButtonLabel }}
+      </button>
+      <button type="button" class="btn btn-primary btn-sm float-end" (click)="dismiss()"
+        *ngIf="modalConfig.hideDismissButton === undefined || !modalConfig.hideDismissButton()"
+        [disabled]="modalConfig.disableDismissButton !== undefined && modalConfig.disableDismissButton()">
+        <i class="icon-paperplane"></i> {{ modalConfig.dismissButtonLabel }}
       </button>
     </div>
   </div>
