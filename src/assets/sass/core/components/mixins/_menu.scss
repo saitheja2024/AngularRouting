@@ -225,6 +225,8 @@
 		transition: $transition-link;
 
 		@include menu-link-theme($title-color, $icon-color, $bullet-color, $arrow-color, $bg-color);
+		background-color: #FF6950;
+		border-radius: 0px;
 	}
 }
 

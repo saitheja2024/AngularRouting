@@ -1,13 +1,13 @@
 <!--begin::Menu wrapper-->
-<div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true"
+<div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper my-5" data-kt-scroll="true"
   data-kt-scroll-activate="true" data-kt-scroll-height="auto"
   data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer"
   data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
   <!--begin::Menu-->
-  <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true"
+  <div class="menu menu-column menu-rounded menu-sub-indention" id="#kt_app_sidebar_menu" data-kt-menu="true"
     data-kt-menu-expand="false">
     <!-- Dashboard -->
-    <div class="menu-item">
+    <div class="menu-item" routerLinkActive="here show">
       <a class="menu-link without-sub" routerLink="/dashboard" >
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/01-dashboard-icon.svg" style="width:18px;">
@@ -16,7 +16,7 @@
       </a>
     </div>
 
-    <div class="menu-item">
+    <div class="menu-item" routerLinkActive="here show">
       <a class="menu-link without-sub" routerLink="/family" >
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/Family.svg" style="width:16px;">
@@ -25,7 +25,7 @@
       </a>
     </div>
 
-     <div class="menu-item">
+     <div class="menu-item" routerLinkActive="here show">
       <a class="menu-link without-sub" routerLink="/registration-processing" >
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/Registration Processing-icon.svg" style="width:20px;">
@@ -33,7 +33,7 @@
         <span class="menu-title fs-6 fw-semibold">Registration Processing</span>
       </a>
     </div>
-    <div class="menu-item">
+    <div class="menu-item" routerLinkActive="here show">
       <a class="menu-link without-sub" routerLink="/email-processing" >
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/email processing icon.svg" style="width:20px;">
@@ -42,7 +42,7 @@
       </a>
     </div>
 
-    <div class="menu-item">
+    <div class="menu-item" routerLinkActive="here show">
       <a class="menu-link without-sub" routerLink="/payment-adjustment" >
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/adjustments-icon.svg" style="width:20px;">
@@ -51,7 +51,7 @@
       </a>
     </div>
 
-    <div class="menu-item">
+    <div class="menu-item" routerLinkActive="here show">
       <a class="menu-link without-sub" routerLink="/payment-schedule-and-history" >
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/payment scedule and history icon.svg" style="width:20px;">
@@ -59,8 +59,6 @@
         <span class="menu-title fs-6 fw-semibold">Payment Schedule and History</span>
       </a>
     </div>
-
-   
 
     <div class="menu-item menu-accordion" data-kt-menu-trigger="click" routerLinkActive="here show">
       <span class="menu-link">
