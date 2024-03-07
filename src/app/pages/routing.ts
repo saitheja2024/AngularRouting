@@ -47,6 +47,11 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../modules/payment-schedule-and-history/payment-schedule-and-history.module').then((m) => m.PaymentScheduleAndHistoryModule),
   },
+  {
+    path: 'membership-call-worklist',
+    loadChildren: () =>
+      import('../modules/membership-call-worklist/membership-call-worklist.module').then((m) => m.MembershipCallWorklistModule),
+  },
   
   {
     path: '',
