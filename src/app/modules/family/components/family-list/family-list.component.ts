@@ -44,6 +44,7 @@ export class FamilyListomponent {
 
   showFamilyList(familyList: any) {
     this.familyList = familyList;
+    this.dataSource.data=this.familyList.slice(); 
   }
 
   showFamilyMemberList(family: any) {

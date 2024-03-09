@@ -1,5 +1,9 @@
-.mat-table {
-  width: 100%; /* Use a specific width or percentage based on your design */
-  max-height: 400px; /* Set a maximum height to make it scrollable if needed */
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
-}
+.mat-mdc-table {
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+  }
+  
+  .mat-column-name {
+    height: 100px;
+  }
