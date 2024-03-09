@@ -1,4 +1,7 @@
 <div class="card card-flush cardborder">
+
+   
+
 	<div class="card-header align-items-center float-end  px-4 bg-white"
 		style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
 		<!--begin::Card title-->
@@ -18,116 +21,24 @@
 			<app-search-families (familyList)="showFamilyList($event)"></app-search-families>
 			<!--end::Search-->
 		</div>
+
+		<div>
+		
+		<table mat-table [dataSource]="dataSource"  matSort class="mat-table">
+	
+			<ng-container *ngFor="let columnName of displayColumns; let i = index" matColumnDef="{{columnName}}">
+				<th mat-header-cell *matHeaderCellDef> {{ columnName }} </th>
+				<td mat-cell *matCellDef="let element"> {{ element[columnName] }} </td>
+			  </ng-container>
+	
+				  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+				  <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+		 </table>  
+		</div>
 		<!--end::Card title-->
 	</div>
 
 	<!--begin::Card body-->
-	<div class="card-body p-0">
-		<!--begin::Table-->
-		<div class="table-responsive" style="max-height:500px !important;">
-			<table class="table align-middle table-row-dashed fs-6 gy-3">
-				<thead style="background-color: #f6f6f6;">
-					<tr class="text-start fw-bold fs-7 text-uppercase gs-0">
-						<!--<th class="text-start min-w-100px text-nowrap">Manage Family</th>-->
-                        <th class="text-start min-w-100px text-nowrap p-2 py-4">Family ID</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">Person ID</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">First Name</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">Middle Name</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">Last Name</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">Gender</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">DOB</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">Registration Type</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">Home Phone</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">Email Address</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">Mobile Address</th>
-						<th class="text-start min-w-100px text-nowrap p-2 py-4">Primary Contact</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let family of familyList">
-						<!--<td class="text-start text-nowrap">
-							<a (click)="showFamilyMemberList(family)">
-								<img src="assets/chinmaya_media/images/SVG-color/Family-icon.svg" alt=""
-									style="width: 20px;cursor: pointer;">
-							</a>
-						</td>-->
-                        <td class="text-start text-nowrap fw-semibold familyid p-2 py-2">
-                            <a (click)="showFamilyMemberList(family)" style="cursor: pointer;color:#009EF7">
-							{{family.familyId}}
-                            </a>
-						</td>
-						<td class="text-start text-nowrap p-2 py-2" (click)="showFamilyMemberList(family)">
-							{{family.personID}}
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							{{family.firstName}}
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							{{family.middleName}}
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							{{family.lastName}}
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							{{family.gender}}
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							{{family.dateOfBirth}}
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							{{family.personType}}
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							{{family.homePhone}}
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							{{family.emailAddress}}
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							NA
-						</td>
-						<td class="text-start text-nowrap p-2 py-2">
-							Yes
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<!--end::Table-->
-		</div>
-		<div class="row m-2">
-			<div
-				class="col-sm-12 col-md-5 p-4 d-flex align-items-center justify-content-center justify-content-md-start">
-				<div class="dataTables_length">
-					<label>
-						<select class="form-select form-select-sm form-select-solid">
-							<option value="10">10</option>
-							<option value="25">25</option>
-							<option value="50">50</option>
-							<option value="100">100</option>
-						</select>
-					</label>
-				</div>
-			</div>
-			<div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
-				<div class="paging_simple_numbers">
-					<ul class="pagination">
-						<li class="paginate_button page-item previous disabled">
-							<a href="#" data-dt-idx="0" tabindex="0" class="page-link">
-								<i class="previous"></i>
-							</a>
-						</li>
-						<li class="paginate_button page-item active">
-							<a href="#" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-						</li>
-						<li class="paginate_button page-item next disabled">
-							<a href="#" data-dt-idx="2" tabindex="0" class="page-link">
-								<i class="next"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 	<!--end::Card body-->
 </div>

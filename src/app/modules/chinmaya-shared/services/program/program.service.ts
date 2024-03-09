@@ -34,7 +34,7 @@ export class ProgramService {
 
   async fetchAllPrograms(orgCode: any) {
     let options:Options={
-      url: this.urlService.registrationURL.fetchAllPrograms,
+      url: this.urlService.registrationProcessingURL.fetchAllPrograms,
       body: {code:orgCode}
     }
 

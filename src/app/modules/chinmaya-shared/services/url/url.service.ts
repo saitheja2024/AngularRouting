@@ -15,12 +15,18 @@ export class UrlService {
     fetchAllOrgnaztion: "organization/fetchChaptersList"
   }
 
-  registrationURL = {
-    fetchAllPrograms: "registration/fetchProgramsByChapter"
+  registrationProcessingURL = {
+    fetchAllPrograms: "registration/fetchProgramsByChapter",
+    fetchRegistrationDetailsBasedOnSearch:"registration/fetchRegistrationDetailsBasedOnSearch",
+    fetchRegistrationDetailsBasedOnFamilyId:"registration/fetchRegistrationDetailsBasedOnFamilyId",
+    fetchProgramCodesByChapterCodeAndAcademicyear:"registration/fetchProgramCodesByChapterCodeAndAcademicyear"
   }
 
   reportsURL = {
-    fetchProgramYears: "reports/fetchProgramYears"
+    fetchProgramYears: "reports/fetchProgramYears",
+    fetchSessionChoicesList:"/reports/fetchSessionChoicesList",
+    fetchSignupcodes:"/reports/fetchSignupcodes",
+    fetchClassList:"/reports/fetchClassList"
   }
 
   familyURL = {
@@ -34,6 +40,13 @@ export class UrlService {
     fetchStatusList: "master/fetchStatusList",
     fetchStateList: "master/fetchStatesList",
     fetchMaritialList: "master/fetchMaritalStatusList",
-    fetchGenderList: "master/fetchGenderList"
+    fetchGenderList: "master/fetchGenderList",
+    fetchRegistrationStatusList:"/master/fetchRegistrationStatusList",
+    fetchPaymentStatusList:"/master/fetchPaymentStatusList",
+    fetchSchoolGradeList:"/master/fetchSchoolGradeList"
+   
+
+
+
   }
 }

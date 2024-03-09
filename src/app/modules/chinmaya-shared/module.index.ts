@@ -3,6 +3,10 @@ import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgbModule, NgbDropdownModule, NgbToastModule } from "@ng-bootstrap/ng-bootstrap";
 import { ModalsModule } from "src/app/_metronic/partials";
+import { Component, ViewChild } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input'
 
 
 
@@ -14,5 +18,8 @@ export const MODULES = [
     ModalsModule,
     NgbModule,
     NgbDropdownModule,
-    NgbToastModule
+    NgbToastModule,
+    MatTableModule,
+    MatSortModule,
+    MatInputModule
 ]

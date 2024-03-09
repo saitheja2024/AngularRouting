@@ -1,11 +1,5 @@
-.table > thead {
-    vertical-align: bottom !important;
-    position: sticky !important;
-    top: 0px !important;
-    background: #fafafa !important;
-  }
-
-  .familyid:hover {
-    text-decoration: underline;
-    color:#009EF7;
-  }
+.mat-table {
+  width: 100%; /* Use a specific width or percentage based on your design */
+  max-height: 400px; /* Set a maximum height to make it scrollable if needed */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+}
