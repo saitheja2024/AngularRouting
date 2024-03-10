@@ -115,6 +115,7 @@ export class HttpService {
   async getToken() {
 
     return new Promise((resolve, reject) => {
+      
 
       if (this.token && !this.isTokenExpired()) {
 

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { of, throwError } from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlerService {
 
-  constructor(){}
+  constructor(private snackBar: MatSnackBar,private router:Router){}
 
   handleError(error: HttpErrorResponse) {
     let errorMessage ="Unknow error";
@@ -23,9 +25,15 @@ export class ErrorHandlerService {
       console.error(JSON.stringify(error.error,null,4));
       errorMessage=error?.error?.message
     }
-
-   
-    alert(errorMessage);
+    
+    if(errorMessage.indexOf("jwt")>-1){
+      this.router.navigateByUrl("/auth/login")
+      return of(null);
+    }
+    let config:any = {duration:2000,horizontalPosition:"center",verticalPosition:"top"}
+    let action;
+    this.snackBar.open(errorMessage,action,config)
+    //alert(errorMessage);
 
 
    

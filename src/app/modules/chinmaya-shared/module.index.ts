@@ -7,6 +7,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input'
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 
 
@@ -21,5 +22,6 @@ export const MODULES = [
     NgbToastModule,
     MatTableModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
 ]
