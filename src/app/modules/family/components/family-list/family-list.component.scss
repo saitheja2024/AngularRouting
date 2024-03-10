@@ -1,9 +1,23 @@
 .mat-mdc-table {
     width: 100%;
-    max-height: 500px;
-    overflow: auto;
+    table-layout: fixed;
+    padding:0px;
+    margin:0px;
+
+    th{
+      background-color: #efefef;
+      font-weight: bold;
+    }
   }
   
   .mat-column-name {
     height: 100px;
   }
+
+  .table-container{
+    max-height: 500px;
+    margin:0px;
+    padding:0px;
+    overflow-y: auto;
+  }
+

@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     var loginParam = this.loginForm.value;
     loginParam.password=  window.btoa(loginParam.password);
     const user = await this.authService.login(loginParam);
-    this.router.navigate(["/"])    ;
+    this.router.navigate([""]);
   }
 
   ngOnDestroy() {
