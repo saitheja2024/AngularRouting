@@ -55,7 +55,7 @@ const Routing: Routes = [
   
   {
     path: '',
-    redirectTo: 'config',
+    redirectTo: 'family',
     pathMatch: 'full',
   },
   {

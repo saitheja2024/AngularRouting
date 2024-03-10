@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './modules/auth/services/auth.guard';
 
 export const routes: Routes = [
-  // {
-  //   path: 'auth',
-  //   loadChildren: () =>
-  //     import('./modules/auth/auth.module').then((m) => m.AuthModule),
-  // },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
   
   {
     path: 'error',
@@ -16,7 +16,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    //canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./_metronic/layout/layout.module').then((m) => m.LayoutModule),
   },

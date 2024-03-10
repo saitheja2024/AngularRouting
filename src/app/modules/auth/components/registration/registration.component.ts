@@ -25,11 +25,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private router: Router
   ) {
-    this.isLoading$ = this.authService.isLoading$;
-    // redirect to home if already logged in
-    if (this.authService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
+   
   }
 
   ngOnInit(): void {

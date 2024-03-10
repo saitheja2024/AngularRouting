@@ -24,7 +24,6 @@ export class ForgotPasswordComponent implements OnInit {
   // private fields
   private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
   constructor(private fb: FormBuilder, private authService: AuthService) {
-    this.isLoading$ = this.authService.isLoading$;
   }
 
   ngOnInit(): void {

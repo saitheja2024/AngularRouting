@@ -2,8 +2,7 @@
 
 <div  >
 <!--begin::Form-->
-<form class="form w-100" [formGroup]="loginForm"  (ngSubmit)="submit()">
-
+<form class="form w-100" [formGroup]="loginForm"  >
 
   <div class="text-center pb-6 pt-6">
     <span class="titletext fw-semibold">
@@ -47,9 +46,9 @@
 
   <!--begin::Action-->
   <div class="d-grid mb-10">
-    <button type="submit" id="kt_sign_in_submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+    <button type="submit" id="kt_sign_in_submit" class="btn btn-primary" (click)="onLogin()" >
       
-        <span class="indicator-label">Login</span>
+        <span class="indicator-label" >Login</span>
     </button>
   </div>
 

@@ -31,9 +31,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.isLoading$ = this.authService.isLoading$;
     // redirect to home if already logged in
-    if (this.authService.currentUserValue) {
+    if (this.authService.getLoggedInUser()) {
       this.router.navigate(['/']);
     }
   }
@@ -69,20 +68,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  submit() {
+  async onLogin() {
     this.hasError = false;
     var loginParam = this.loginForm.value;
     loginParam.password=  window.btoa(loginParam.password);
-    const user = this.authService.login(loginParam);
-      // .pipe(first())
-      // .subscribe((user: UserModel | undefined) => {
-      //   if (user) {
-      //     this.router.navigate([this.returnUrl]);
-      //   } else {
-      //     this.hasError = true;
-      //   }
-      // });
-    //this.unsubscribe.push(loginSubscr);
+    const user = await this.authService.login(loginParam);
+    this.router.navigate(["/"])    ;
   }
 
   ngOnDestroy() {
