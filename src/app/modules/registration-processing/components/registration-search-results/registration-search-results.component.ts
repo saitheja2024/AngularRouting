@@ -12,22 +12,18 @@ export class RegistrationSearchResultsComponent {
   searchCriteria: any;
   searchResults: any;
 
-  ELEMENT_DATA:any = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  
+
+
+  displayColumns: string[] = [
+  "familyId",
+  "primaryFirstName",
+  "primaryLastName",
+  "paymentStatus",
+  "registrationStatus",
+  "paymentSubmittedDate",
   ];
-
-
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(this.ELEMENT_DATA);
+  dataSource:any = new MatTableDataSource<any>(); 
   @ViewChild(MatSort) sort: MatSort;
 
   ngAfterViewInit() {
@@ -46,8 +42,16 @@ export class RegistrationSearchResultsComponent {
 
   async performSearch(){
 
-    this.searchResults = this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria)
+    this.searchResults = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria)
+    this.dataSource.data=this.searchResults.slice(); 
 
+  }
+
+   formatColumnName(key: string): string {
+    return key
+      .replace(/([a-z])([A-Z])/g, '$1 $2') // Add space between camelCase words
+      .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2') // Handle consecutive uppercase letters
+      .replace(/\b\w/g, (match) => match.toUpperCase()); // Capitalize the first letter of each word
   }
 
 

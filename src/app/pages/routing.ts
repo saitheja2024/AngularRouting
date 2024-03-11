@@ -55,7 +55,7 @@ const Routing: Routes = [
   
   {
     path: '',
-    redirectTo: 'family',
+    redirectTo: 'registration-processing',
     pathMatch: 'full',
   },
   {

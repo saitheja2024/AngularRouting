@@ -27,9 +27,6 @@
             <!--begin::Card body-->
             <div class="card-body border-top p-6">
               <div [formGroup]="searchCriteriaForm">
-                <div formGroupName="requestRegistrationProcessingSearch">
-
-               
                 <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                     <div class="d-flex flex-column">
                         <div class="d-flex align-items-center mb-2">
@@ -40,20 +37,42 @@
 
                 <!-------- Begin Registration Status -------->
                 <div class="col-lg-12 mb-2">
-                    {{searchCriteriaForm?.value | json}}
                     <div class="row">
                         <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
                             <label class="required fw-semibold fs-6 mt-2 mb-2">Registration Status:</label>
                         </div>
-                        <div class="col-lg-10 d-flex" formArrayName="registrationStatusList" >
+                        <div class="col-lg-10 d-flex">
                             <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" *ngFor="let status of registrationStatusArray?.controls; let i = index">
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                                     <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox"  [formControlName]="i" value="registrationStatus[i].description">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">{{registrationStatus[i].description}}</span>
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Pending</span>
                                     </label>
                                 </div>
-                               
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Accepted</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Waitlisted</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Cancelled</span>
+                                    </label>
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Withdrawn</span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -396,7 +415,6 @@
 				
             </div>
             </div>
-        </div>
             <!--end::Card body-->
         </form>
         <!--end::Form-->

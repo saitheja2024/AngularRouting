@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { RegistrationService } from '../../../chinmaya-shared/services/registration-processing/registration.service';
@@ -14,8 +14,8 @@ import { MatSort } from '@angular/material/sort';
 export class RegistrationSearchComponent implements OnInit {
   
   
-  registrationStatusList: any;
   searchCriteriaForm:any
+  registrationStatus: any;
 
   constructor(
     private masterService:MasterService,
@@ -25,11 +25,11 @@ export class RegistrationSearchComponent implements OnInit {
     
   }
 
-  ngOnInit(){
+  async ngOnInit(){
 
 
     
-    this.fetchRegistrationStatusList();
+    await this.fetchRegistrationStatusList();
     //this.fetchSessionChoicesList();
     this.prepareSearchCriteriaForm();
 
@@ -52,8 +52,8 @@ export class RegistrationSearchComponent implements OnInit {
       requestRegistrationProcessingSearch: this.fb.group({
         chapterID: ['CSVA'],
         programCode: ['CS_BALAVIHAR_2023-24'],
-        registrationStatus: [''],
-        paymentStatus: [''],
+        registrationStatusList: new FormArray([]),
+        paymentStatusList: [],
         choiceLabel: [''],
         choiceCode: [''],
         assignedSession: [''],
@@ -68,17 +68,42 @@ export class RegistrationSearchComponent implements OnInit {
       })
     });
 
+    for(let i=0;i<this.registrationStatus.length;i++){
+      this.registrationStatusArray.push(new FormControl(false));
+    }
+
   }
+
+
+  get registrationStatusArray(): FormArray {
+    let retValue = this.searchCriteriaForm.controls.requestRegistrationProcessingSearch.controls.registrationStatusList as FormArray;
+    return retValue;
+  }
+ 
 
 
   async fetchRegistrationStatusList() {
-    this.registrationStatusList=await this.masterService.fetchRegistrationStatusList()
+    this.registrationStatus=await this.masterService.fetchRegistrationStatusList()
   }
 
   onSearchButtonClick(){
-   this.regiStrationService.setSearchCriteria(this.searchCriteriaForm.value);
+   let searchFormValues:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value))
+   const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList);
+   searchFormValues.requestRegistrationProcessingSearch.registrationStatusList = selectedCodes;
+   this.regiStrationService.setSearchCriteria(searchFormValues);
    this.router.navigateByUrl("/registration-processing/registration-search-results")
 
   }
 
+
+
+  mapBooleanArrayToCodes(booleanArray: boolean[]): string[] {
+    
+    return booleanArray
+      .map((value, index) => (value ? this.registrationStatus[index].code : null))
+      .filter(Boolean);
   }
+  
+ 
+
+}

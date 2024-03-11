@@ -17,18 +17,18 @@ export class UrlService {
 
   registrationProcessingURL = {
     fetchAllPrograms: "registration/fetchProgramsByChapter",
-    fetchRegistrationDetailsBasedOnSearch:"registration/fetchRegistrationDetailsBasedOnSearch",
-    fetchRegistrationDetailsBasedOnFamilyId:"registration/fetchRegistrationDetailsBasedOnFamilyId",
-    fetchProgramCodesByChapterCodeAndAcademicyear:"registration/fetchProgramCodesByChapterCodeAndAcademicyear"
+    fetchRegistrationDetailsBasedOnSearch:"registrationProcessing/fetchRegistrationDetailsBasedOnSearch",
+    fetchRegistrationDetailsBasedOnFamilyId:"registrationProcessing/fetchRegistrationDetailsBasedOnFamilyId",
+    fetchProgramCodesByChapterCodeAndAcademicyear:"registrationProcessing/fetchProgramCodesByChapterCodeAndAcademicyear"
   }
 
   reportsURL = {
     fetchProgramYears: "reports/fetchProgramYears",
     fetchSessionChoicesList:"/reports/fetchSessionChoicesList",
     fetchSignupcodes:"/reports/fetchSignupcodes",
-    fetchClassList:"/reports/fetchClassList"
+    fetchClassList:"/reports/fetchClassList" 
   }
-
+ 
   familyURL = {
     searchFamilies: "manageFamily/manageFamilySearch",
     fetchFamilyDetailsByFamilyID: "manageFamily/fetchfamilyDetails",

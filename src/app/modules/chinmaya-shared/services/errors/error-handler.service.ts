@@ -26,10 +26,10 @@ export class ErrorHandlerService {
       errorMessage=error?.error?.message
     }
     
-    if(errorMessage.indexOf("jwt")>-1){
-      this.router.navigateByUrl("/auth/login")
-      return of(null);
-    }
+    // if(errorMessage.indexOf("jwt")>-1){
+    //   this.router.navigateByUrl("/auth/login")
+    //   return of(null);
+    // }
     let config:any = {duration:2000,horizontalPosition:"center",verticalPosition:"top"}
     let action;
     this.snackBar.open(errorMessage,action,config)

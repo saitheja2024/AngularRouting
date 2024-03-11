@@ -1,35 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-  
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-  
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-     <!-- Weight Column -->
-<ng-container matColumnDef="weight">
-<th mat-header-cell *matHeaderCellDef> Weight </th>
-<td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-</ng-container>
-
-<!-- Symbol Column -->
-<ng-container matColumnDef="symbol">
-<th mat-header-cell *matHeaderCellDef> Symbol </th>
-<td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-</ng-container>
-
-<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
- </table>  
 
 <div class="card mb-5 mt-4 mb-xl-10">
     <!--begin::Card header-->
@@ -83,55 +52,25 @@
                         <input type="text" id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
                     </div>
                 </div>
-                <div class="table-responsive" style="max-height:500px !important;">
-                    <table class="table align-middle table-hover table-rounded table-striped table-bordered fs-6 gy-3">
-                        <thead class="bg-primary text-white">
-                            <tr class="text-start fw-bold fs-5 gs-0">                                
-                                <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1" style="width: 29.9px;" aria-label="">
-															<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-																<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1">
-															</div>
-														</th>
-                        <th class="text-start min-w-100px text-nowrap">Family ID</th>
-						<th class="text-start min-w-100px text-nowrap">Primary Person Name</th>
-						<th class="text-start min-w-100px text-nowrap">Registration Status</th>
-						<th class="text-start min-w-100px text-nowrap">Payment Status</th>
-						<th class="text-start min-w-100px text-nowrap">Session Preference 1</th>
-						<th class="text-start min-w-100px text-nowrap">Payment Status Date</th> 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10]"> 
-                                <td>
-                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                    </div>
-                                </td>
-                                <td class="text-start text-nowrap fw-semibold">
-                                    <a style="cursor: pointer;color:#009EF7;" routerLink="../family-registration-details">
-                                  <u>123</u>
-                                    </a>
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    John Doe
-                                </td>
-                                <td class="text-start text-nowrap text-uppercase">
-                                    pending
-                                </td>
-                                <td class="text-start text-uppercase text-nowrap">
-                                    PAID 
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Sunday Session 1
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    4/10/2024 
-                                </td>                                
-                            </tr>
-                           
-                        </tbody>
-                    </table>
+                <div class="table-container">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+                        <ng-container *ngFor="let columnName of displayColumns; let i = index" matColumnDef="{{columnName}}" >
+                            <th mat-header-cell *matHeaderCellDef  mat-sort-header > {{ formatColumnName(columnName) }} </th>
+                            <td mat-cell *matCellDef="let element">
+                                <ng-container *ngIf="columnName === 'familyId'; else regularCell">
+                                  <a  style="cursor: pointer;">{{ element[columnName] }}</a>
+                                </ng-container>
+                                <ng-template #regularCell>{{ element[columnName] }}</ng-template>
+                              </td>
+                        </ng-container>
+                       
+                    
+                    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+                     </table>  
                     <!--end::Table-->
+
+                   
                 </div>
                 <div class="row">
                     <div
@@ -182,3 +121,54 @@
     </div>
     <!--end::Content-->
 </div>
+
+<!-- Table designed by Ravi -->
+<!-- <div class="table-responsive" style="max-height:500px !important;">
+    <table class="table align-middle table-hover table-rounded table-striped table-bordered fs-6 gy-3">
+        <thead class="bg-primary text-white">
+            <tr class="text-start fw-bold fs-5 gs-0">                                
+                <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1" style="width: 29.9px;" aria-label="">
+                                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                                <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1">
+                                            </div>
+                                        </th>
+        <th class="text-start min-w-100px text-nowrap">Family ID</th>
+        <th class="text-start min-w-100px text-nowrap">Primary Person Name</th>
+        <th class="text-start min-w-100px text-nowrap">Registration Status</th>
+        <th class="text-start min-w-100px text-nowrap">Payment Status</th>
+        <th class="text-start min-w-100px text-nowrap">Session Preference 1</th>
+        <th class="text-start min-w-100px text-nowrap">Payment Status Date</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10]"> 
+                <td>
+                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                        <input class="form-check-input" type="checkbox" value="1">
+                    </div>
+                </td>
+                <td class="text-start text-nowrap fw-semibold">
+                    <a style="cursor: pointer;color:#009EF7;" routerLink="../family-registration-details">
+                  <u>123</u>
+                    </a>
+                </td>
+                <td class="text-start text-nowrap">
+                    John Doe
+                </td>
+                <td class="text-start text-nowrap text-uppercase">
+                    pending
+                </td>
+                <td class="text-start text-uppercase text-nowrap">
+                    PAID 
+                </td>
+                <td class="text-start text-nowrap">
+                    Sunday Session 1
+                </td>
+                <td class="text-start text-nowrap">
+                    4/10/2024 
+                </td>                                
+            </tr>
+           
+        </tbody>
+    </table>
+    </div> -->
