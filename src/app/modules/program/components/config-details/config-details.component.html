@@ -1,196 +1,193 @@
-    <!--begin::Products-->
-        <div class="card card-flush h-xl-100 cardtop" style="border-radius:0px 0px 5px 5px;box-shadow: none !important;">
-        
-            <!--begin::Body-->
-            <div class="card-body p-0">
-                <!--begin::Tab Content-->
-                <div class="tab-content">
-                    <!--begin::Tap pane-->
-                    <div class="tab-pane fade active show" id="kt_stats_widget_16_tab_1" role="tabpanel" aria-labelledby="#kt_stats_widget_16_tab_link_1">
-                        <!--begin::Table container-->
-                        <div class="card card-flush">
-                            <!--begin::Card body-->
-                            <div class="card-body p-6">
-                                <div class="row">
-                                    <div class="col-lg-4 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                                            <label class="col-form-label fw-semibold"> Do You Want To Clone from previous configuration</label>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-4 mt-4 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex fv-row fv-plugins-icon-container">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;">
-                                                <!--begin::Radio-->
-                                                <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12 chk-dv">
-                                                    <label data-kt-button="true" class="btn active d-flex text-start p-0">
-                                                        <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                            <input type="radio" name="usage" class="styled">
-                                                        </span>
-                                                        <span class="ms-5">
-                                                            <span class="fs-6 mb-1 d-block text-gray-800">
-                                                                Yes
-                                                            </span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <!--end::Radio-->
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;">
-                                                <!--begin::Radio-->
-                                                <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12 chk-dv">
-                                                    <label data-kt-button="true" class="btn active d-flex text-start p-0">
-                                                        <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                            <input type="radio" name="usage" class="styled">
-                                                        </span>
-                                                        <span class="ms-5">
-                                                            <span class="fs-6 mb-1 d-block text-gray-800">
-                                                                No
-                                                            </span>
-                                                        </span>
-                                                    </label>
-                                                </div>
-                                                <!--end::Radio-->
-                                            </div>
-                                        </div>
-                                    </div>
+<!--begin::Products-->
+<div class="card card-flush h-xl-100 cardtop" style="border-radius:0px 0px 5px 5px;box-shadow: none !important;">        
+    <!--begin::Body-->
+    <div class="card-body p-0">
+		<!--begin::Tab Content-->
+        <div class="tab-content">
+			<!--begin::Tap pane-->
+            <div class="tab-pane fade active show" id="kt_stats_widget_16_tab_1" role="tabpanel" aria-labelledby="#kt_stats_widget_16_tab_link_1">
+				<!--begin::Table container-->
+                <div class="card card-flush">
+					<!--begin::Card body-->
+                    <div class="card-body p-6">
+						<div class="row">
+							<div class="col-lg-4 fv-row fv-plugins-icon-container">
+								<div class="d-flex flex-column fv-row fv-plugins-icon-container">
+									<label class="col-form-label fw-semibold"> Do You Want To Clone from previous configuration</label>
                                 </div>
-                                
-                                <div class="row mt-3">
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                                            <label class="col-form-label fw-semibold required">Organization Code</label>
-                                            <select class="form-select form-select-sm" aria-label="Select example" (change)="onChapterSelection($event)">
-                                                <option value="">- Select -</option>
-                                                <option [value]="org.code" *ngFor="let org of chapterList ">{{org.description}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                                            <label class="col-form-label fw-semibold required">Previous Configuration Details</label>
-                                            <select class="form-select form-select-sm" aria-label="Select example" (change)="onProgramSelection($event)">
-                                                <option value="">- Select -</option>
-                                                <option [value]="program.code" *ngFor="let program of programList">{{program.description}}</option>
-                                             
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <label class="col-form-label required fw-semibold fs-6">Previous Year Program Code</label>
-                                        <input type="text" name="" class="form-control form-control-sm" placeholder="Previous Year Program Code">
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                                            <label class="col-form-label fw-semibold required">Select the Program-Year for New Program</label>
-                                            <select class="form-select form-select-sm" aria-label="Select example">
-                                                <option value="">- Select Program Year -</option>
-                                                <option [value]="year.code" *ngFor="let year of programYears">{{year.description}}</option>
-                                               
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <label class="col-form-label required fw-semibold fs-6">Enter the New Program Code</label>
-                                        <input type="text" name="fname" class="form-control form-control-sm" placeholder="Program Code">
-                                    </div>
-                                    
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <label class="col-form-label required fw-semibold fs-6">Enter the Description for New Program</label>
-                                        <textarea rows="1" cols="1" aria-label="With textarea" placeholder="Program Description" class="form-control form-control-sm"></textarea>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                                            <label class="col-form-label fw-semibold required">Enter the Start-Date of New Program </label>
-                                            <input class="form-control form-control-sm flatpickr-input" placeholder="Program Start Date" type="date">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                                            <label class="col-form-label fw-semibold required">Enter the End-Date of New Program </label>
-                                            <input class="form-control form-control-sm flatpickr-input" placeholder="Program Start Date" type="date">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                                            <label class="col-form-label fw-semibold required">Enter the Registration-Start-Date of New Program </label>
-                                            <input class="form-control form-control-sm flatpickr-input" placeholder="Registration Start Date" type="date">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                                            <label class="col-form-label fw-semibold required">Enter the Registration-End-Date of New Program </label>
-                                            <input class="form-control form-control-sm flatpickr-input" placeholder="Registration End Date" type="date">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                                            <label class="col-form-label fw-semibold required">Program for the year</label>
-                                            <select class="form-select form-select-sm" aria-label="Select example">
-                                                <option value="">- Select Program Year -</option>
-                                                <option value="">2024-2025</option>
-                                                <option value="">2023-2024</option>
-                                                <option value="">2022-2023</option>
-                                                <option value="">2021-2022</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                                        <label class="col-form-label required fw-semibold fs-6">Program Code</label>
-                                        <input type="text" name="" class="form-control form-control-sm" placeholder="Program Code">
-                                    </div>
-                                </div>
-                                
-                                <div id="Note" class="col-lg-12 mt-8" style="display: block;">
-                                    <span class="text-danger"><span class="fw-semibold">Note:</span> Fields with * are required.</span>
-                                </div>
-                                
                             </div>
-                            <div class="card-footer p-5" style="border-top: 1px solid var(--bs-card-border-color) !important;">
-                                <div class="row">
-                                    <div class="d-flex justify-content-center">
-                                        <div class="m-0">
-                                            <a href="#" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
-                                                <i class=" icon-spinner9 fs-6"></i> Clone Program
-                                            </a>
-                                                
-                                            <a href="#" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
-                                                <i class="icon-floppy-disk fs-6"></i> Save &amp; Next
-                                            </a>
-                                            
-                                            <a href="#" class="btn btn-danger btn-sm m-1" style="font-size:13px;">
-                                                <i class="icon-cancel-circle2 fs-6"></i> Cancel
-                                            </a>                                                                        
+                                    
+                            <div class="col-lg-4 mt-4 fv-row fv-plugins-icon-container">
+								<div class="d-flex fv-row fv-plugins-icon-container">
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;">
+										<!--begin::Radio-->
+										<div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12 chk-dv">
+											<label data-kt-button="true" class="btn active d-flex text-start p-0">
+												<span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+													<input type="radio" name="usage" class="styled">
+												</span>
+                                                <span class="ms-5">
+													<span class="fs-6 mb-1 d-block text-gray-800">
+														Yes
+                                                    </span>
+                                                </span>
+                                            </label>
                                         </div>
+                                        <!--end::Radio-->
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="width:50%;">
+                                        <!--begin::Radio-->
+                                        <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12 chk-dv">
+                                            <label data-kt-button="true" class="btn active d-flex text-start p-0">
+                                                <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
+                                                    <input type="radio" name="usage" class="styled">
+                                                </span>
+                                                <span class="ms-5">
+                                                    <span class="fs-6 mb-1 d-block text-gray-800">
+                                                        No
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <!--end::Radio-->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--end::Table container-->
+                                
+                        <div class="row mt-3">
+							<div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<div class="d-flex flex-column fv-row fv-plugins-icon-container">
+									<label class="col-form-label fw-semibold required">Organization Code</label>
+									<select class="form-select form-select-sm" aria-label="Select example" (change)="onChapterSelection($event)">
+										<option value="">- Select -</option>
+                                        <option [value]="org.code" *ngFor="let org of chapterList ">{{org.description}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                                    
+                            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                                    <label class="col-form-label fw-semibold required">Previous Configuration Details</label>
+                                   <select class="form-select form-select-sm" aria-label="Select example" (change)="onProgramSelection($event)">
+										<option value="">- Select -</option>
+                                        <option [value]="program.code" *ngFor="let program of programList">{{program.description}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                                    
+                            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                                <label class="col-form-label required fw-semibold fs-6">Previous Year Program Code</label>
+                                <input type="text" name="" class="form-control form-control-sm" placeholder="Previous Year Program Code">
+                            </div>
+                        </div>
+                                
+                        <div class="row">
+							<div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<div class="d-flex flex-column fv-row fv-plugins-icon-container">
+									<label class="col-form-label fw-semibold required">Select the Program-Year for New Program</label>
+                                    <select class="form-select form-select-sm" aria-label="Select example">
+										<option value="">- Select Program Year -</option>
+                                        <option [value]="year.code" *ngFor="let year of programYears">{{year.description}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                                    
+                            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<label class="col-form-label required fw-semibold fs-6">Enter the New Program Code</label>
+                                <input type="text" name="fname" class="form-control form-control-sm" placeholder="Program Code">
+                            </div>
+                                    
+                            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<label class="col-form-label required fw-semibold fs-6">Enter the Description for New Program</label>
+                                <textarea rows="1" cols="1" aria-label="With textarea" placeholder="Program Description" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
+                                
+                        <div class="row">
+							<div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<div class="d-flex flex-column fv-row fv-plugins-icon-container">
+									<label class="col-form-label fw-semibold required">Enter the Start-Date of New Program </label>
+                                    <input class="form-control form-control-sm flatpickr-input" placeholder="Program Start Date" type="date">
+                                </div>
+                            </div>
+                                    
+                            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<div class="d-flex flex-column fv-row fv-plugins-icon-container">
+									<label class="col-form-label fw-semibold required">Enter the End-Date of New Program </label>
+                                    <input class="form-control form-control-sm flatpickr-input" placeholder="Program Start Date" type="date">
+                                </div>
+                            </div>
+                                    
+                            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<div class="d-flex flex-column fv-row fv-plugins-icon-container">
+									<label class="col-form-label fw-semibold required">Enter the Registration-Start-Date of New Program </label>
+                                    <input class="form-control form-control-sm flatpickr-input" placeholder="Registration Start Date" type="date">
+                                </div>
+                            </div>
+                        </div>
+                                
+                        <div class="row">
+							<div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<div class="d-flex flex-column fv-row fv-plugins-icon-container">
+									<label class="col-form-label fw-semibold required">Enter the Registration-End-Date of New Program </label>
+                                    <input class="form-control form-control-sm flatpickr-input" placeholder="Registration End Date" type="date">
+                                </div>
+                            </div>
+                                    
+                            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<div class="d-flex flex-column fv-row fv-plugins-icon-container">
+									<label class="col-form-label fw-semibold required">Program for the year</label>
+                                    <select class="form-select form-select-sm" aria-label="Select example">
+										<option value="">- Select Program Year -</option>
+                                        <option value="">2024-2025</option>
+                                        <option value="">2023-2024</option>
+                                        <option value="">2022-2023</option>
+                                        <option value="">2021-2022</option>
+                                    </select>
+                                </div>
+                            </div>
+                                    
+                            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+								<label class="col-form-label required fw-semibold fs-6">Program Code</label>
+                                <input type="text" name="" class="form-control form-control-sm" placeholder="Program Code">
+                            </div>
+                        </div>
+                                
+                        <div id="Note" class="col-lg-12 mt-8" style="display: block;">
+							<span class="text-danger"><span class="fw-semibold">Note:</span> Fields with * are required.</span>
+                        </div>
+                                
                     </div>
-                    <!--end::Tap pane-->
-                    <!--end::Table container-->
+                    <div class="card-footer p-5" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+						<div class="row">
+							<div class="d-flex justify-content-center">
+								<div class="m-0">
+									<a href="#" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+										<i class=" icon-spinner9 fs-6"></i> Clone Program
+                                    </a>
+                                                
+                                    <a href="#" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+										<i class="icon-floppy-disk fs-6"></i> Save &amp; Next
+                                    </a>
+                                            
+                                    <a href="#" class="btn btn-danger btn-sm m-1" style="font-size:13px;">
+										<i class="icon-cancel-circle2 fs-6"></i> Cancel
+                                    </a>                                                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Card Footer-->
                 </div>
-                <!--end::Tab Content-->
+                <!--end::Table container-->
             </div>
-            <!--end: Card Body-->
+			<!--end::Tap pane-->
         </div>
-        <!--end::Content container-->
+        <!--end::Tab Content-->
+    </div>
+    <!--end: Card Body-->
+</div>
+<!--end::Content container-->
 
        
