@@ -66,32 +66,15 @@
                         <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
                             <label class="required fw-semibold fs-6 mt-2 mb-2">Payment Status:</label>
                         </div>
-                        <div class="col-lg-10 d-flex">
+                        <div class="col-lg-10 d-flex" formArrayName="paymentStatusList" >
                             <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" *ngFor="let status of paymentStatusArray?.controls; let i = index">
                                     <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Partially Paid</span>
+                                        <input class="form-check-input" type="checkbox"  [formControlName]="i" value="paymentStatus[i].description">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">{{paymentStatus[i].description}}</span>
                                     </label>
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Paid</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Balance Due</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">No Dues</span>
-                                    </label>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>

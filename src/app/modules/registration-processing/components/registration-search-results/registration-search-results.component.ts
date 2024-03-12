@@ -34,14 +34,11 @@ export class RegistrationSearchResultsComponent {
   constructor(private registrationService:RegistrationService){}
 
   ngOnInit(){
-
     this.searchCriteria = this.registrationService.getSearchCriteria();
-
     this.performSearch();
   }
 
   async performSearch(){
-
     this.searchResults = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria)
     this.dataSource.data=this.searchResults.slice(); 
 

@@ -16,6 +16,7 @@ export class RegistrationSearchComponent implements OnInit {
   
   searchCriteriaForm:any
   registrationStatus: any;
+  paymentStatus: any;
 
   constructor(
     private masterService:MasterService,
@@ -30,13 +31,12 @@ export class RegistrationSearchComponent implements OnInit {
 
     
     await this.fetchRegistrationStatusList();
+    await this.fetchPaymentStatusList();
     //this.fetchSessionChoicesList();
     this.prepareSearchCriteriaForm();
 
   }
 
-
-  
 
   
   
@@ -53,7 +53,7 @@ export class RegistrationSearchComponent implements OnInit {
         chapterID: ['CSVA'],
         programCode: ['CS_BALAVIHAR_2023-24'],
         registrationStatusList: new FormArray([]),
-        paymentStatusList: [],
+        paymentStatusList: new FormArray([]),
         choiceLabel: [''],
         choiceCode: [''],
         assignedSession: [''],
@@ -72,7 +72,14 @@ export class RegistrationSearchComponent implements OnInit {
       this.registrationStatusArray.push(new FormControl(false));
     }
 
+
+    for(let i=0;i<this.paymentStatus.length;i++){
+      this.paymentStatusArray.push(new FormControl(false));
+    }
+
   }
+
+  
 
 
   get registrationStatusArray(): FormArray {
@@ -81,15 +88,29 @@ export class RegistrationSearchComponent implements OnInit {
   }
  
 
+  get paymentStatusArray(): FormArray {
+    let retValue = this.searchCriteriaForm.controls.requestRegistrationProcessingSearch.controls.paymentStatusList as FormArray;
+    return retValue;
+  }
+
 
   async fetchRegistrationStatusList() {
     this.registrationStatus=await this.masterService.fetchRegistrationStatusList()
   }
 
+  async fetchPaymentStatusList(){
+    this.paymentStatus=await this.masterService.fetchPaymentStatusList()
+  }
+
+
   onSearchButtonClick(){
    let searchFormValues:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value))
-   const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList);
+   const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus);
    searchFormValues.requestRegistrationProcessingSearch.registrationStatusList = selectedCodes;
+
+   const selectedPaymentStatus = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList,this.paymentStatus);
+   searchFormValues.requestRegistrationProcessingSearch.paymentStatusList = selectedPaymentStatus;
+
    this.regiStrationService.setSearchCriteria(searchFormValues);
    this.router.navigateByUrl("/registration-processing/registration-search-results")
 
@@ -97,10 +118,10 @@ export class RegistrationSearchComponent implements OnInit {
 
 
 
-  mapBooleanArrayToCodes(booleanArray: boolean[]): string[] {
+  mapBooleanArrayToCodes(booleanArray: boolean[],codesArray: any[]): string[] {
     
     return booleanArray
-      .map((value, index) => (value ? this.registrationStatus[index].code : null))
+      .map((value, index) => (value ? codesArray[index].code : null))
       .filter(Boolean);
   }
   
