@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
+import { ReportsService } from '../reports/reports.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
   
+  
   searchCriteria: any;
   
 
   constructor(
     private httpService:HttpService,
-    private urlService:UrlService) { }
+    private urlService:UrlService,
+    private reportService:ReportsService) { }
 
   setSearchCriteria(value: any) {
     this.searchCriteria=value;
@@ -40,6 +43,11 @@ export class RegistrationService {
   
       return [];
   
+  }
+
+  async fetchSignupCodes(orgCode: string, programCode: string) {
+    let response = await this.reportService.fetchSignupcode(orgCode,programCode);
+    return response;
   }
 
 }

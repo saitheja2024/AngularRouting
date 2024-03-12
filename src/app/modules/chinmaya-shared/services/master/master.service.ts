@@ -13,7 +13,7 @@ export class MasterService {
   private maritialStatusList: any = null;
   private stateList: any = null;
   registrationStatusList: any;
-  paymentStatusList: null;
+  paymentStatusList: any;
 
   constructor(
     private httpService: HttpService,
@@ -146,7 +146,7 @@ export class MasterService {
       return this.paymentStatusList;
     }
 
-    this.registrationStatusList = []
+    this.paymentStatusList = []
     let options: Options = {
       url: this.urlService.masterURL.fetchPaymentStatusList,
       body: null

@@ -5,6 +5,7 @@ import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/m
 import { RegistrationService } from '../../../chinmaya-shared/services/registration-processing/registration.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { ReportsService } from 'src/app/modules/chinmaya-shared/services/reports/reports.service';
 
 @Component({
   selector: 'app-registration-search',
@@ -17,12 +18,14 @@ export class RegistrationSearchComponent implements OnInit {
   searchCriteriaForm:any
   registrationStatus: any;
   paymentStatus: any;
+  signupCodes: any;
 
   constructor(
     private masterService:MasterService,
     private fb:FormBuilder,
     private router:Router,
-    private regiStrationService:RegistrationService){
+    private regiStrationService:RegistrationService,
+    ){
     
   }
 
@@ -32,6 +35,7 @@ export class RegistrationSearchComponent implements OnInit {
     
     await this.fetchRegistrationStatusList();
     await this.fetchPaymentStatusList();
+    await this.fetchSignupCodes();
     //this.fetchSessionChoicesList();
     this.prepareSearchCriteriaForm();
 
@@ -52,8 +56,8 @@ export class RegistrationSearchComponent implements OnInit {
       requestRegistrationProcessingSearch: this.fb.group({
         chapterID: ['CSVA'],
         programCode: ['CS_BALAVIHAR_2023-24'],
-        registrationStatusList: new FormArray([]),
-        paymentStatusList: new FormArray([]),
+        registrationStatusList: this.fb.array([]),
+        paymentStatusList: this.fb.array([]),
         choiceLabel: [''],
         choiceCode: [''],
         assignedSession: [''],
@@ -83,13 +87,13 @@ export class RegistrationSearchComponent implements OnInit {
 
 
   get registrationStatusArray(): FormArray {
-    let retValue = this.searchCriteriaForm.controls.requestRegistrationProcessingSearch.controls.registrationStatusList as FormArray;
+    let retValue = this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.registrationStatusList as FormArray;
     return retValue;
   }
  
 
   get paymentStatusArray(): FormArray {
-    let retValue = this.searchCriteriaForm.controls.requestRegistrationProcessingSearch.controls.paymentStatusList as FormArray;
+    let retValue = this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.paymentStatusList as FormArray;
     return retValue;
   }
 
@@ -100,6 +104,10 @@ export class RegistrationSearchComponent implements OnInit {
 
   async fetchPaymentStatusList(){
     this.paymentStatus=await this.masterService.fetchPaymentStatusList()
+  }
+
+  async fetchSignupCodes(){
+    this.signupCodes = await this.regiStrationService.fetchSignupCodes("CSVA","CS_BALAVIHAR_2023-24");
   }
 
 

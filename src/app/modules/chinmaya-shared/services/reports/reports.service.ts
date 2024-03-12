@@ -10,6 +10,7 @@ import { UrlService } from '../url/url.service';
 export class ReportsService {
   
   programYears: any;
+  signupCodes: never[];
 
   constructor(private httpService:HttpService,private urlService:UrlService) { }
 
@@ -31,6 +32,26 @@ export class ReportsService {
       }
       return this.programYears;
   }
+
+
+  async fetchSignupcode(orgCode:any,programCode:any,reload?:any){
+    let options:Options={
+      url: this.urlService.reportsURL.fetchSignupcodes,
+      body: {organizationCode:orgCode,programCode:programCode}
+    }
+
+    if(!reload && this.signupCodes){
+      return this.signupCodes;
+    }
+
+    this.signupCodes=[];
+    let signupCodes:any = await this.httpService.post(options);
+    if(signupCodes && signupCodes.selectDropdownList){
+      this.signupCodes=signupCodes.selectDropdownList;
+      
+    }
+    return this.signupCodes;
+}
 
   
 
