@@ -1,5 +1,3 @@
-
-
 <div class="card mb-5 mt-4 mb-xl-10">
     <!--begin::Card header-->
     <div class="card-header d-flex p-2 ps-4">
@@ -42,9 +40,9 @@
         <!--begin::Form-->
         <form id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
             <!--begin::Card body-->
-            <div class="card-body border-top p-2">
-                <div class="d-flex justify-content-end mb-2">
-                    <div class="d-flex align-items-center position-relative my-1">
+            <div class="card-body border-top p-0">
+                <div class="d-flex justify-content-end mb-1 mt-1">
+                    <div class="d-flex align-items-center position-relative m-2">
                         <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
                             <span class="path1"></span>
                             <span class="path2"></span>
@@ -63,18 +61,13 @@
                                 <ng-template #regularCell>{{ element[columnName] }}</ng-template>
                               </td>
                         </ng-container>
-                       
-                    
-                    <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
-                     </table>  
+                        <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true;background:lightgray"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+                    </table>  
                     <!--end::Table-->
-
-                   
                 </div>
-                <div class="row">
-                    <div
-                        class="col-sm-6 col-md-5 col-6">
+                <div class="row p-2">
+                    <div class="col-sm-6 col-md-5 col-6">
                         <div class="dataTables_length">
                             <label>
                                 <select class="form-select form-select-sm">

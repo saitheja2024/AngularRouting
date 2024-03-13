@@ -1,16 +1,4 @@
-
-
-
-
-
-
 <div class="card mb-5 mb-xl-10" >
-
-     
-
-
-
-
     <!--begin::Card header-->
     <div class="card-header border-0 cursor-pointer ps-6 pe-6" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
         <!--begin::Card title-->
@@ -23,269 +11,265 @@
     <!--begin::Content-->
     <div id="kt_account_settings_profile_details" class="collapse show">
         <!--begin::Form-->
-            <!--begin::Card body-->
-            <div class="card-body border-top p-6">
-              <div [formGroup]="searchCriteriaForm" *ngIf="searchCriteriaForm">
+        <!--begin::Card body-->
+        <div class="card-body border-top p-6">
+            <div [formGroup]="searchCriteriaForm" *ngIf="searchCriteriaForm">
                 <div formGroupName="requestRegistrationProcessingSearch">
-
-               
-                <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                    <div class="d-flex flex-column">
-                        <div class="d-flex align-items-center mb-2">
-                            <h4 class="text-gray-900 fs-2 fw-semibold me-1">Filters :</h4>                        
+                    <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                        <div class="d-flex flex-column">
+                            <div class="d-flex align-items-center mb-2">
+                                <h4 class="text-gray-900 fs-2 fw-semibold me-1">Filters :</h4>                        
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-------- Begin Registration Status -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="required fw-semibold fs-6 mt-2 mb-2">Registration Status:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex" formArrayName="registrationStatusList" *ngIf="registrationStatusArray">
-                            <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" *ngFor="let status of registrationStatusArray?.controls; let i = index">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox"   [formControlName]="i" value="registrationStatus[i].description">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">{{registrationStatus[i].description}}</span>
-                                    </label>
+                    <!-------- Begin Registration Status -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="required fw-semibold fs-6 mt-2 mb-2">Registration Status:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex" formArrayName="registrationStatusList" *ngIf="registrationStatusArray">
+                                <div class="row d-flex2" style="width:100%;">
+                                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" *ngFor="let status of registrationStatusArray?.controls; let i = index">
+                                        <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                            <input class="form-check-input" type="checkbox"   [formControlName]="i" value="registrationStatus[i].description">
+                                            <span class="fw-semibold ps-2 fs-7 text-uppercase">{{registrationStatus[i].description}}</span>
+                                        </label>
+                                    </div>
+                                
                                 </div>
-                               
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Registration Status -------->
+                    <!-------- End Registration Status -------->
 
-                <!-------- Begin Payment Status -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="required fw-semibold fs-6 mt-2 mb-2">Payment Status:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex" formArrayName="paymentStatusList" *ngIf="paymentStatusArray">
-                            <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" *ngFor="let status of paymentStatusArray?.controls; let i = index">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox"  [formControlName]="i" value="paymentStatus[i].description">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">{{paymentStatus[i].description}}</span>
-                                    </label>
+                    <!-------- Begin Payment Status -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="required fw-semibold fs-6 mt-2 mb-2">Payment Status:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex" formArrayName="paymentStatusList" *ngIf="paymentStatusArray">
+                                <div class="row d-flex2" style="width:100%;">
+                                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" *ngFor="let status of paymentStatusArray?.controls; let i = index">
+                                        <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                            <input class="form-check-input" type="checkbox"  [formControlName]="i" value="paymentStatus[i].description">
+                                            <span class="fw-semibold ps-2 fs-7 text-uppercase">{{paymentStatus[i].description}}</span>
+                                        </label>
+                                    </div>
+                                
                                 </div>
-                               
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Payment Status -------->
+                    <!-------- End Payment Status -------->
 
-                <!-------- Begin Session Choice -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select Session</option>    
-                                    <option value="">Session Choice 1</option> 
-                                    <option value="">Session Choice 2</option> 
-                                    <option value="">Session Choice 2</option>                          
-                                </select> 
+                    <!-------- Begin Session Choice -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                        <option value="">Select Session</option>    
+                                        <option value="">Session Choice 1</option> 
+                                        <option value="">Session Choice 2</option> 
+                                        <option value="">Session Choice 2</option>                          
+                                    </select> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Session Choice -------->
+                    <!-------- End Session Choice -------->
 
-                <!-------- Begin Choice -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Choice:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select Choice</option>    
-                                    <option value="">Friday (06:45-08:20 PM)</option> 
-                                    <option value="">Sunday 1 (9:15-10:50 AM)</option> 
-                                    <option value="">Sunday 2 (12:15-1:50 PM)</option>                          
-                                </select> 
+                    <!-------- Begin Choice -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Choice:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                        <option value="">Select Choice</option>    
+                                        <option value="">Friday (06:45-08:20 PM)</option> 
+                                        <option value="">Sunday 1 (9:15-10:50 AM)</option> 
+                                        <option value="">Sunday 2 (12:15-1:50 PM)</option>                          
+                                    </select> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Choice -------->
-
-                
+                    <!-------- End Choice -------->
 				
-                <!-------- Begin Assigned Session -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Assigned Session:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
+                    <!-------- Begin Assigned Session -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Assigned Session:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="row d-flex2" style="width:100%;">
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                            <input class="form-check-input" type="checkbox" value="1">
+                                            <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                            <input class="form-check-input" type="checkbox" value="1">
+                                            <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                            <input class="form-check-input" type="checkbox" value="1">
+                                            <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-------- End Assigned Session -------->
+
+                    <!-------- Begin Sign-up Code -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Sign-Up Code:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <select  formControlName="signupCode" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                        <option value="">Select an Option...</option>   
+                                        <option *ngFor="let code of signupCodes" [value]="code.code"> {{code.description}}</option>                          
+                                    </select> 
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-------- End Sign-up Code -------->
+
+                    <!-------- Begin Class -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Class:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                        <option value="">Select an Option...</option>                             
+                                    </select> 
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Assigned Session -------->
+                    <!-------- End Class -------->
 
-                <!-------- Begin Sign-up Code -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Sign-Up Code:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select  formControlName="signupCode" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>   
-                                    <option *ngFor="let code of signupCodes" [value]="code.code"> {{code.description}}</option>                          
-                                </select> 
+                    <!-------- Begin Current School Grade -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Current School Grade:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                        <option value="">Select an Option...</option>                             
+                                    </select> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Sign-up Code -------->
+                    <!-------- End Current School Grade -------->
 
-                <!-------- Begin Class -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Class:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>                             
-                                </select> 
+                    <!-------- Begin Rising School Grade -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Rising School Grade:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                        <option value="">Select an Option...</option>                             
+                                    </select> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Class -------->
+                    <!-------- End Rising School Grade -------->
 
-                <!-------- Begin Current School Grade -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Current School Grade:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>                             
-                                </select> 
+                    <!-------- Begin Family ID -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Family ID:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <input type="text" placeholder="Family ID" class="form-control form-control-sm">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Current School Grade -------->
+                    <!-------- End Family ID -------->
 
-                <!-------- Begin Rising School Grade -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Rising School Grade:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>                             
-                                </select> 
+                    <!-------- Begin First Name -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">First Name:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <input type="text" placeholder="First Name" class="form-control form-control-sm">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Rising School Grade -------->
+                    <!-------- End First Name -------->
 
-                <!-------- Begin Family ID -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Family ID:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <input type="text" placeholder="Family ID" class="form-control form-control-sm">
+                    <!-------- Begin Last Name -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Last Name:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <input type="text" placeholder="Last Name" class="form-control form-control-sm">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End Family ID -------->
+                    <!-------- End Last Name -------->
 
-                <!-------- Begin First Name -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">First Name:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <input type="text" placeholder="First Name" class="form-control form-control-sm">
+                    <!-------- Begin Home Phone -------->
+                    <div class="col-lg-12 mb-2">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Home Phone:</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <input type="text" placeholder="Home Phone" class="form-control form-control-sm">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-------- End First Name -------->
-
-                <!-------- Begin Last Name -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Last Name:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <input type="text" placeholder="Last Name" class="form-control form-control-sm">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-------- End Last Name -------->
-
-                <!-------- Begin Home Phone -------->
-                <div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Home Phone:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <input type="text" placeholder="Home Phone" class="form-control form-control-sm">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-------- End Home Phone -------->
+                    <!-------- End Home Phone -------->
 				
-            </div>
+                </div>
             </div>
         </div>
-            <!--end::Card body-->
+        <!--end::Card body-->
         <!--end::Form-->
         <!--begin::Actions-->
         <div class="card-footer d-flex justify-content-end p-4">
