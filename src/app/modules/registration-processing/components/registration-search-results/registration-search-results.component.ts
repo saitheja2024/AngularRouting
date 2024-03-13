@@ -51,5 +51,10 @@ export class RegistrationSearchResultsComponent {
       .replace(/\b\w/g, (match) => match.toUpperCase()); // Capitalize the first letter of each word
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 
 }

@@ -47,7 +47,7 @@
                             <span class="path1"></span>
                             <span class="path2"></span>
                         </i>
-                        <input type="text" id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
+                        <input matInput (keyup)="applyFilter($event)" type="text" id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
                     </div>
                 </div>
                 <div class="table-container">

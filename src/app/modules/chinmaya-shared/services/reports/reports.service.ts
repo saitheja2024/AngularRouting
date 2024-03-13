@@ -10,8 +10,9 @@ import { UrlService } from '../url/url.service';
 export class ReportsService {
   
   programYears: any;
-  signupCodes: never[];
-  classList: any;
+  signupCodes: any[];
+  classList: any[]=[];
+  sessionChoice: any[]=[];
 
   constructor(private httpService:HttpService,private urlService:UrlService) { }
 
@@ -60,10 +61,7 @@ async fetchClassList(params:any, reload?: any) {
       body: params
   }
 
-  if (!reload && this.classList.length > 0) {
-      return this.classList;
-  }
-
+  
   this.classList = [];
   let classList: any = await this.httpService.post(options);
   if (classList && classList.selectDropdownList) {
@@ -71,6 +69,24 @@ async fetchClassList(params:any, reload?: any) {
   }
   
   return this.classList;
+}
+
+
+
+async fetchSessionChoice(params:any, reload?: any) {
+  let options: Options = {
+      url: this.urlService.reportsURL.fetchSessionChoicesList,
+      body: params
+  }
+
+  
+  this.sessionChoice = [];
+  let sessionChoice: any = await this.httpService.post(options);
+  if (sessionChoice && sessionChoice.selectDropdownList) {
+      this.sessionChoice = sessionChoice.selectDropdownList; 
+  }
+  
+  return this.sessionChoice;
 }
 
 

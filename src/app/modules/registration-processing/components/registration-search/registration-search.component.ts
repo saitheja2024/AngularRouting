@@ -19,6 +19,9 @@ export class RegistrationSearchComponent implements OnInit {
   registrationStatus: any;
   paymentStatus: any;
   signupCodes: any;
+  classList: any;
+  sessionChoice: any;
+  schoolGrade: any;
 
   constructor(
     private masterService:MasterService,
@@ -36,6 +39,8 @@ export class RegistrationSearchComponent implements OnInit {
     await this.fetchRegistrationStatusList();
     await this.fetchPaymentStatusList();
     await this.fetchSignupCodes();
+    await this.fetchSessionChoice();
+    await this.fetchSchoolGradeList();
     //this.fetchSessionChoicesList();
     this.prepareSearchCriteriaForm();
 
@@ -108,6 +113,32 @@ export class RegistrationSearchComponent implements OnInit {
 
   async fetchSignupCodes(){
     this.signupCodes = await this.regiStrationService.fetchSignupCodes("CSVA","CS_BALAVIHAR_2023-24");
+  }
+
+
+
+  async fecthClassList(params:any){
+    this.classList = await this.regiStrationService.fetchClassList(params);
+  }
+
+  async fetchSchoolGradeList(){
+    this.schoolGrade = await this.regiStrationService.fetchSchoolGradeList() 
+  }
+
+  async fetchSessionChoice(){
+    let params = {
+      "programCode": "CS_BALAVIHAR_2023-24"
+    }
+    this.sessionChoice = await this.regiStrationService.fetchSessionChoice(params);
+  }
+
+  onSignupCodeChange(ev:any){
+    let params={
+      "programCode": "CS_BALAVIHAR_2023-24",
+      "chapterCode": "CSVA",
+      "signupCode": ev.target.value,
+    }
+    this.fecthClassList(params);
   }
 
 

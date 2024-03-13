@@ -73,11 +73,9 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <select formControlName="choiceLabel" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                         <option value="">Select Session</option>    
-                                        <option value="">Session Choice 1</option> 
-                                        <option value="">Session Choice 2</option> 
-                                        <option value="">Session Choice 2</option>                          
+                                        <option value="" *ngFor="let choice of sessionChoice" [value]="choice.code">{{choice.code}}</option>                    
                                     </select> 
                                 </div>
                             </div>
@@ -93,11 +91,9 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <select formControlName="choiceCode" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                         <option value="">Select Choice</option>    
-                                        <option value="">Friday (06:45-08:20 PM)</option> 
-                                        <option value="">Sunday 1 (9:15-10:50 AM)</option> 
-                                        <option value="">Sunday 2 (12:15-1:50 PM)</option>                          
+                                        <option value="" *ngFor="let time of sessionChoice" [value]="time.description">{{time.description}}</option> 
                                     </select> 
                                 </div>
                             </div>
@@ -145,9 +141,9 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <select  formControlName="signupCode" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <select  formControlName="signupCode" (change)="onSignupCodeChange($event)" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                         <option value="">Select an Option...</option>   
-                                        <option *ngFor="let code of signupCodes" [value]="code.code"> {{code.description}}</option>                          
+                                        <option *ngFor="let code of signupCodes" [value]="code.code" > {{code.description}}</option>                          
                                     </select> 
                                 </div>
                             </div>
@@ -163,8 +159,9 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                        <option value="">Select an Option...</option>                             
+                                    <select  formControlName="className" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                        <option value="">Select an Option...</option>    
+                                        <option *ngFor="let code of classList" [value]="code.code" > {{code.description}}</option>                              
                                     </select> 
                                 </div>
                             </div>
@@ -180,8 +177,9 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                        <option value="">Select an Option...</option>                             
+                                    <select formControlName="currentSchoolGrade" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                        <option value="">Select an Option...</option>                           
+                                        <option *ngFor="let code of schoolGrade" [value]="code.code" > {{code.description}}</option>                                
                                     </select> 
                                 </div>
                             </div>
@@ -197,8 +195,9 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <select  aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                        <option value="">Select an Option...</option>                             
+                                    <select formControlName="risingSchoolGrade" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                        <option value="">Select an Option...</option>                           
+                                        <option *ngFor="let code of schoolGrade" [value]="code.code" > {{code.description}}</option>                                
                                     </select> 
                                 </div>
                             </div>
@@ -214,7 +213,7 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <input type="text" placeholder="Family ID" class="form-control form-control-sm">
+                                    <input formControlName="familyID" type="text" placeholder="Family ID" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>
@@ -229,7 +228,7 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <input type="text" placeholder="First Name" class="form-control form-control-sm">
+                                    <input formControlName="firstName" type="text" placeholder="First Name" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>
@@ -244,7 +243,7 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <input type="text" placeholder="Last Name" class="form-control form-control-sm">
+                                    <input formControlName="lastName" type="text" placeholder="Last Name" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>
@@ -259,7 +258,7 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <input type="text" placeholder="Home Phone" class="form-control form-control-sm">
+                                    <input formControlName="homePhone" type="text" placeholder="Home Phone" class="form-control form-control-sm">
                                 </div>
                             </div>
                         </div>

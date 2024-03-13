@@ -14,6 +14,7 @@ export class MasterService {
   private stateList: any = null;
   registrationStatusList: any;
   paymentStatusList: any;
+  schoolGradeList: any;
 
   constructor(
     private httpService: HttpService,
@@ -160,6 +161,35 @@ export class MasterService {
 
     return this.paymentStatusList;
   } 
+
+
+  async fetchSchoolGradeList() {
+    if (this.schoolGradeList != null) {
+      return this.schoolGradeList;
+    }
+
+    this.schoolGradeList = []
+    let options: Options = {
+      url: this.urlService.masterURL.fetchSchoolGradeList,
+      body: null
+    }
+
+    let schoolGradeList: any = await this.httpService.get(options);
+
+    if (schoolGradeList && schoolGradeList.selectDropdownList) {
+      this.schoolGradeList = schoolGradeList.selectDropdownList;
+    }
+
+    return this.schoolGradeList;
+  } 
+
+
+
+
+
+
+
+
 
 
   
