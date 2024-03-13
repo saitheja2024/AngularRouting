@@ -8,11 +8,12 @@ import { MasterService } from '../master/master.service';
   providedIn: 'root'
 })
 export class RegistrationService {
-  
+ 
   
   
   
   searchCriteria: any;
+  selectedFamily: any;
   
 
   constructor(
@@ -29,6 +30,15 @@ export class RegistrationService {
   getSearchCriteria() {
     return this.searchCriteria;
   }
+
+  setSelectedFamily(selectedFamily: any) {
+    this.selectedFamily = selectedFamily;
+  }
+
+  getSelectedFamily(){
+    return this.selectedFamily;
+  }
+  
 
 
   async fetchRegistrationDetailsBasedOnSearch(searchCriteria: any) {

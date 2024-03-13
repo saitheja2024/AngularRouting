@@ -56,7 +56,7 @@
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef  mat-sort-header > {{ formatColumnName(columnName) }} </th>
                             <td mat-cell *matCellDef="let element">
                                 <ng-container *ngIf="columnName === 'familyId'; else regularCell">
-                                  <a  style="cursor: pointer;">{{ element[columnName] }}</a>
+                                  <a  style="cursor: pointer;" (click)="showRegistrationDetails(element)">{{ element[columnName] }}</a>
                                 </ng-container>
                                 <ng-template #regularCell>{{ element[columnName] }}</ng-template>
                               </td>
