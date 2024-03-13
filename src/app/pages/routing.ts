@@ -52,6 +52,11 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../modules/membership-call-worklist/membership-call-worklist.module').then((m) => m.MembershipCallWorklistModule),
   },
+  {
+    path: 'unlock-account',
+    loadChildren: () =>
+      import('../modules/unlock-account/unlock-account.module').then((m) => m.UnlockAccountModule),
+  },
   
   {
     path: '',

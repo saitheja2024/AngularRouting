@@ -11,6 +11,7 @@ export class ReportsService {
   
   programYears: any;
   signupCodes: never[];
+  classList: any;
 
   constructor(private httpService:HttpService,private urlService:UrlService) { }
 
@@ -52,6 +53,26 @@ export class ReportsService {
     }
     return this.signupCodes;
 }
+
+async fetchClassList(params:any, reload?: any) {
+  let options: Options = {
+      url: this.urlService.reportsURL.fetchClassList,
+      body: params
+  }
+
+  if (!reload && this.classList.length > 0) {
+      return this.classList;
+  }
+
+  this.classList = [];
+  let classList: any = await this.httpService.post(options);
+  if (classList && classList.selectDropdownList) {
+      this.classList = classList.selectDropdownList;
+  }
+  
+  return this.classList;
+}
+
 
   
 
