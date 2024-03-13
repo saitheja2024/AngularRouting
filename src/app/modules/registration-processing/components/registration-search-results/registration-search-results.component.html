@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="table-container">
-                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort style="border-bottom: 1px solid #eee">
                         <ng-container *ngFor="let columnName of displayColumns; let i = index" matColumnDef="{{columnName}}" >
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef  mat-sort-header > {{ formatColumnName(columnName) }} </th>
                             <td mat-cell *matCellDef="let element">
