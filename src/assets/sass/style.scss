@@ -13,6 +13,10 @@
 @import "./core/layout/base/layout";
 @import "layout/layout";
 
+#kt_app_toolbar { 
+  display: none !important;
+}
+
 .menu-link1:hover {
     background: #f2f2f2;
     border-radius: 5px;
