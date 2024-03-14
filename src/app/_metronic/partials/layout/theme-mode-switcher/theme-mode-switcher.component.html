@@ -13,5 +13,36 @@
 <!-- end::Menu toggle -->
 
 <!-- begin::Menu -->
+<!-- begin::Menu toggle -->
+<div class="btn btn-icon" [ngClass]="toggleBtnClass" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+  data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
+  <ng-container *ngIf="mode$ | async as mode">
+    <ng-container *ngIf="mode === 'dark'">
+      <img class="symbol1 h-100" src="./assets/media/avatars/little-krishna.png" [ngClass]="toggleBtnIconClass"/>
+    </ng-container>
+    <ng-container *ngIf="mode === 'light'">
+      <img class="symbol1 h-100" src="./assets/media/avatars/little-krishna.png" [ngClass]="toggleBtnIconClass"/>
+    </ng-container>
+  </ng-container>
+</div>
+<!-- end::Menu toggle -->
 
-<!-- end::Menu -->
+<!-- begin::Menu 
+<div
+  class='menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-title-gray-700 
+  menu-icon-muted menu-state-primary fw-semibold p-1 fs-base w-150px'
+  data-kt-menu='true'>
+
+   <ng-container *ngIf="menuMode$ | async as menuMode">
+
+    <div class='menu-item my-0'>
+      <a class="menu-link menu-link1" [ngClass]="{'active': menuMode === 'light'}" (click)="switchMode('light')">
+        <span class='menu-title'><i class="icon-switch2 position-left me-4 mt-1"></i> Sign Out</span>
+      </a>
+    </div>
+
+
+  </ng-container> 
+</div>
+
+end::Menu -->
