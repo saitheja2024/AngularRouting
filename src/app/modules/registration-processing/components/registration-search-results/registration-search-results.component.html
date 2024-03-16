@@ -1,37 +1,28 @@
 <div class="card mb-5 mt-4 mb-xl-10 mt-8">
     <!--begin::Card header-->
     <div class="card-header d-flex p-2 ps-4">
-        <div class="justify-content-start">
-            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#00B0F0;">
-                Pending
-            </button>
-            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#00B0F0;">
-                WAITLISTED
-            </button>
-            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
-                Paid
-            </button>
-            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
-                Partially Paid
-            </button>
-            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#7030A0;">
-                Pre-Auth-Success
-            </button>
-            <button type="button" class="btn btn-sm btn-default text-uppercase text-white me-3 mb-2 mt-2" style="background-color:#F79646;">
-                Session 1
-            </button>
+        <div class="justify-content-start" style="margin-top:8px">
+
+            <button type="button" class="chip-button" *ngFor="let filter of searchCriteria.
+            requestRegistrationProcessingSearch.registrationStatusList">
+                {{filter}} <i class="bi bi-x"></i>
+              </button>
+              <button type="button" class="chip-button" *ngFor="let filter of searchCriteria.
+              requestRegistrationProcessingSearch.paymentStatusList">
+                  {{filter}} <i class="bi bi-x"></i>
+                </button>
+            
+           
         </div>
 
         <div class="justify-content-end">
-            <button type="button" class="btn btn-sm btn-link text-uppercase text-success fw-bold me-3 mb-2 mt-2">
-                Records Selected: 4
-            </button>
-            <button class="btn btn-link btn-sm">     
-                <i class="ki-duotone ki-arrows-circle fs-1 text-dark">
-                <span class="path1"></span>
-                <span class="path2"></span>
-                </i>      
-            </button>
+                <div class="d-flex align-items-center position-relative m-2">
+                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    <input matInput (keyup)="applyFilter($event)" type="text" id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
+                </div>
         </div>
     </div>
     <!--begin::Card header-->
@@ -41,25 +32,22 @@
         <form id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
             <!--begin::Card body-->
             <div class="card-body border-top p-0">
-                <div class="d-flex justify-content-end mb-1 mt-1">
-                    <div class="d-flex align-items-center position-relative m-2">
-                        <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <input matInput (keyup)="applyFilter($event)" type="text" id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
-                    </div>
-                </div>
+                
+              
                 <div class="table-container">
                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort style="border-bottom: 1px solid #eee">
                         <ng-container *ngFor="let columnName of displayColumns; let i = index" matColumnDef="{{columnName}}" >
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef  mat-sort-header > {{ formatColumnName(columnName) }} </th>
                             <td mat-cell *matCellDef="let element">
-                                <ng-container *ngIf="columnName === 'familyId'; else regularCell">
+                                <ng-container *ngIf="columnName === 'familyId'">
                                   <a  style="cursor: pointer;" (click)="showRegistrationDetails(element)">{{ element[columnName] }}</a>
                                 </ng-container>
-                                <ng-template #regularCell>{{ element[columnName] }}</ng-template>
-                              </td>
+                                <ng-container *ngIf="columnName === 'paymentSubmittedDate'">
+                                    {{ element[columnName] | date:'MM/dd/yyyy'}}
+                                  </ng-container>
+                                  <ng-container *ngIf="columnName !== 'familyId' && columnName !== 'paymentSubmittedDate'">
+                                    {{ element[columnName] }}
+                                  </ng-container>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true;background:lightgray"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
