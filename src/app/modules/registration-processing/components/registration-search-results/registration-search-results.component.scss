@@ -1,6 +1,5 @@
 .mat-mdc-table {
     width: 100%;
-    table-layout: fixed;
     padding:0px;
     margin:0px;
 
@@ -21,5 +20,17 @@
     overflow-y: auto;
     z-index: 0;
     position: relative;
+  }
+
+  .mat-elevation-z8 {    
+    overflow-x: auto;
+   }
+
+   .mdc-data-table__header-cell {
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: auto !important;
+    outline: none;
+    text-align: left;
   }
 

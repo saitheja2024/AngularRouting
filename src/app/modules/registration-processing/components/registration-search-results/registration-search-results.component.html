@@ -50,7 +50,7 @@
                         <input matInput (keyup)="applyFilter($event)" type="text" id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
                     </div>
                 </div>
-                <div class="table-container">
+                <div class="table-container table-responsive">
                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort style="border-bottom: 1px solid #eee">
                         <ng-container *ngFor="let columnName of displayColumns; let i = index" matColumnDef="{{columnName}}" >
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef  mat-sort-header > {{ formatColumnName(columnName) }} </th>
@@ -66,6 +66,7 @@
                     </table>  
                     <!--end::Table-->
                 </div>
+                
                 <div class="row p-4">
                     <div class="col-sm-6 col-md-5 col-6">
                         <div class="dataTables_length">
