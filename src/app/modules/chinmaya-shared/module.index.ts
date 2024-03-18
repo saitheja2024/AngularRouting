@@ -8,6 +8,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input'
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatChipsModule} from '@angular/material/chips';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -23,5 +25,8 @@ export const MODULES = [
     MatTableModule,
     MatSortModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule,
+    MatIconModule
+   
 ]
