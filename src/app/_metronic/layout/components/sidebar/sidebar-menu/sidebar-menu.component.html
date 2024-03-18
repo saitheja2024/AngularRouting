@@ -9,20 +9,17 @@
 
     <!-- Dashboard -->
     <div class="menu-item" routerLinkActive="here show">
-      <select class="form-select form-select-sm ms-4" style="width:90%;">
+      <select class="form-select form-select-sm ms-4" style="width:90%;" (change)="onAcademicYerChange($event)">
         <option>Select Acadamic Year</option>
-        <option value="">Acadamic Year 2023-24</option>
-        <option value="">Acadamic Year 2024-25</option>
+        <option *ngFor = "let year of academicYear">{{year.description}}</option>
     </select>
     </div>
 
     <div class="menu-item mt-1" routerLinkActive="here show">
-      <select class="form-select form-select-sm ms-4" style="width:90%;">
+      <select class="form-select form-select-sm ms-4" style="width:90%;" (change)="onChapterChange($event)">
         <option>Select Chapter</option>
-        <option value="">Chinmayam</option>
-        <option value="">Chinmaya Somnath, Chantilly, VA</option>
-        <option value="">Chinmayam, Silver Spring, MD</option>
-        <option value="">Frederic Chapter, Frederic, MD</option>
+        <option *ngFor="let chapter of chapterList" [value]="chapter.code">{{chapter.description}}</option>
+       
     </select>
     </div>
 
@@ -44,14 +41,29 @@
       </a>
     </div>
 
-     <div class="menu-item" routerLinkActive="here show">
-      <a class="menu-link without-sub" routerLink="/registration-processing" >
+
+    <div class="menu-item menu-accordion" data-kt-menu-trigger="click" >
+      <span class="menu-link">
         <span class="menu-icon">
-          <img class="img_cls" src="assets/chinmaya_media/images/SVG/Registration Processing-icon.svg" style="width:20px;">
+          <img class="img_cls" src="assets/chinmaya_media/images/SVG/Registration Processing-icon.svg" style="width:18px;">
         </span>
-        <span class="menu-title fs-6 fw-semibold">Registration Processing</span>
-      </a>
+        <span class="menu-title fs-6 fw-semibold" data-link="/registration-processing">Registration Processing
+        </span>
+        <span class="menu-arrow"></span>
+      </span>
+      <div class="menu-sub menu-sub-accordion">
+        <div class="menu-item" *ngFor="let program of programs">
+          <a class="menu-link without-sub" (click)="onProgramSelection(program)">
+            <span class="menu-bullet">
+              <img class="img_cls" src="assets/chinmaya_media/images/SVG/14-create program-icon.svg">
+            </span>
+            <span class="menu-title fs-6 fw-semibold">{{program.description}}</span>
+          </a>
+        </div>
+      </div>
     </div>
+
+    
     <div class="menu-item" routerLinkActive="here show">
       <a class="menu-link without-sub" routerLink="/email-processing" >
         <span class="menu-icon">

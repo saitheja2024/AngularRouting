@@ -27,7 +27,6 @@ export class HttpService {
   ) { }
 
   get(opt: any) {
-    console.log("============= [HttpSerive] Get method invoked with following parameters =============== ");
 
     return new Promise(async (resolve, reject) => {
       let token: any = await this.getToken();
@@ -57,7 +56,6 @@ export class HttpService {
 
 
   post(opt: any) {
-    console.log("============= [HttpSerive] Post method invoked with following parameters =============== ");
 
     return new Promise(async (resolve, reject) => {
       let token: any = await this.getToken();

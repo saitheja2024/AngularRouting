@@ -36,15 +36,13 @@ export class ReportsService {
   }
 
 
-  async fetchSignupcode(orgCode:any,programCode:any,reload?:any){
+  async fetchSignupcode(orgCode:any,programCode:any){
     let options:Options={
       url: this.urlService.reportsURL.fetchSignupcodes,
       body: {organizationCode:orgCode,programCode:programCode}
     }
 
-    if(!reload && this.signupCodes){
-      return this.signupCodes;
-    }
+  
 
     this.signupCodes=[];
     let signupCodes:any = await this.httpService.post(options);

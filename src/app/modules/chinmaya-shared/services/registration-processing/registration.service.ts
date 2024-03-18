@@ -8,7 +8,7 @@ import { MasterService } from '../master/master.service';
   providedIn: 'root'
 })
 export class RegistrationService {
- 
+  
   
   
   
@@ -80,5 +80,8 @@ export class RegistrationService {
     let response = await this.masterService.fetchSchoolGradeList();
     return response;
   }
+
+  
+ 
 
 }

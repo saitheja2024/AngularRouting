@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { of, throwError } from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +27,10 @@ export class ErrorHandlerService {
       errorMessage=error?.error?.message
     }
     
-    // if(errorMessage.indexOf("jwt")>-1){
-    //   this.router.navigateByUrl("/auth/login")
-    //   return of(null);
-    // }
+    if(errorMessage.toLowerCase().indexOf("jwt")>-1){
+      this.router.navigateByUrl("/auth/login")
+      return of(null);
+    }
     let config:any = {duration:2000,horizontalPosition:"center",verticalPosition:"top"}
     let action;
     this.snackBar.open(errorMessage,action,config)

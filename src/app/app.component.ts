@@ -9,6 +9,8 @@ import {locale as deLang} from './modules/i18n/vocabs/de';
 import {locale as frLang} from './modules/i18n/vocabs/fr';
 import {ThemeModeService} from './_metronic/partials/layout/theme-mode-switcher/theme-mode.service';
 import { SpinnerService } from './modules/chinmaya-shared/services/spinner/spinner.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './modules/auth';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -22,7 +24,10 @@ export class AppComponent implements OnInit {
   constructor(
     private translationService: TranslationService,
     private modeService: ThemeModeService,
-    public spinnerService: SpinnerService
+    public spinnerService: SpinnerService,
+    private activatedRoute:ActivatedRoute,
+    private authService:AuthService,
+    private router:Router
   ) {
     // register translations
     this.translationService.loadTranslations(
@@ -35,7 +40,13 @@ export class AppComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
+   ngOnInit() {
     this.modeService.init();
+    this.activatedRoute.queryParams.subscribe(async params => {
+      let userName = params["key"];
+      console.log(userName);
+      const user = await this.authService.login({username:userName,password:"123456"});
+      this.router.navigateByUrl("")
+    });
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
+import { MasterService } from '../master/master.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,25 +12,12 @@ export class ProgramService {
   
   chapterList: any;
 
-  constructor(private httpService:HttpService,private urlService:UrlService) { }
+  constructor(private httpService:HttpService,private urlService:UrlService,
+    private masterService:MasterService) { }
 
   async fetchChapterList(reload?:any){
-      let options:Options={
-        url: this.urlService.organzationURL.fetchAllOrgnaztion,
-        body: null
-      }
-
-      if(!reload && this.chapterList){
-        return this.chapterList;
-      }
-
-      this.chapterList=[];
-      let chapterList:any = await this.httpService.get(options);
-      if(chapterList && chapterList.selectDropdownList){
-        this.chapterList=chapterList.selectDropdownList;
-        
-      }
-      return this.chapterList;
+     let chapterList=await this.masterService.fetchChaptherList();
+     return chapterList;
   }
 
   async fetchAllPrograms(orgCode: any) {

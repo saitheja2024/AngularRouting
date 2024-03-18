@@ -12,14 +12,18 @@ export class UrlService {
   }
 
   organzationURL = {
-    fetchAllOrgnaztion: "organization/fetchChaptersList"
+    fetchAllOrgnaztion: "organization/fetchChaptersList",
+    fetchAcadamicYear: "registrationProcessing/fetchProgramYearDropdown",
+    fetchProgramCodesByChapterCodeAndAcacademicyear:"registrationProcessing/fetchProgramCodesByChapterCodeAndAcademicyear"
+    
   }
 
   registrationProcessingURL = {
+    
     fetchAllPrograms: "registration/fetchProgramsByChapter",
     fetchRegistrationDetailsBasedOnSearch:"registrationProcessing/fetchRegistrationDetailsBasedOnSearch",
-    fetchRegistrationDetailsBasedOnFamilyId:"registrationProcessing/fetchRegistrationDetailsBasedOnFamilyId",
-    fetchProgramCodesByChapterCodeAndAcademicyear:"registrationProcessing/fetchProgramCodesByChapterCodeAndAcademicyear"
+    fetchRegistrationDetailsBasedOnFamilyId:"registrationProcessing/fetchRegistrationDetailsBasedOnFamilyId"
+    
   }
 
   reportsURL = {

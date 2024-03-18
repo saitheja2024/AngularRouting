@@ -6,6 +6,7 @@ import { RegistrationService } from '../../../chinmaya-shared/services/registrat
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ReportsService } from 'src/app/modules/chinmaya-shared/services/reports/reports.service';
+import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 
 @Component({
   selector: 'app-registration-search',
@@ -22,26 +23,52 @@ export class RegistrationSearchComponent implements OnInit {
   classList: any;
   sessionChoice: any;
   schoolGrade: any;
+  selectedAcademicYear: any;
+  selectedChapterCode: any;
+  selectedProgram: any;
 
   constructor(
     private masterService:MasterService,
     private fb:FormBuilder,
     private router:Router,
     private regiStrationService:RegistrationService,
+    private store:StoreService
     ){
     
   }
 
   async ngOnInit(){
 
+    this.store.onProgramUpdate().subscribe(async program=>{
+      this.selectedProgram=program;
+      await this.populateData()
+    })
 
+    this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
+    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    this.selectedProgram = this.store.getValue(KEYS.program);
+
+   if(!this.selectedAcademicYear || !this.selectedChapterCode || !this.selectedProgram){
+    return;
+   }
+   this.populateData();
     
+   
+    //this.fetchSessionChoicesList();
+   
+
+  }
+
+  async populateData(){
+
+    this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
+    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    this.selectedProgram = this.store.getValue(KEYS.program);
     await this.fetchRegistrationStatusList();
     await this.fetchPaymentStatusList();
     await this.fetchSignupCodes();
     await this.fetchSessionChoice();
     await this.fetchSchoolGradeList();
-    //this.fetchSessionChoicesList();
     this.prepareSearchCriteriaForm();
 
   }
@@ -59,8 +86,8 @@ export class RegistrationSearchComponent implements OnInit {
         sortOrder: ['']
       }),
       requestRegistrationProcessingSearch: this.fb.group({
-        chapterID: ['CSVA'],
-        programCode: ['CS_BALAVIHAR_2023-24'],
+        chapterID: [this.selectedChapterCode],
+        programCode: [this.selectedProgram.code],
         registrationStatusList: this.fb.array([]),
         paymentStatusList: this.fb.array([]),
         choiceLabel: [''],
@@ -112,7 +139,12 @@ export class RegistrationSearchComponent implements OnInit {
   }
 
   async fetchSignupCodes(){
-    this.signupCodes = await this.regiStrationService.fetchSignupCodes("CSVA","CS_BALAVIHAR_2023-24");
+    // if(!this.selectedChapterCode || !this.selectedProgram){
+    //   this.signupCodes=[];
+    //   return;
+    // }
+    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    this.signupCodes = await this.regiStrationService.fetchSignupCodes(this.selectedChapterCode,this.selectedProgram.code);
   }
 
 
@@ -127,15 +159,15 @@ export class RegistrationSearchComponent implements OnInit {
 
   async fetchSessionChoice(){
     let params = {
-      "programCode": "CS_BALAVIHAR_2023-24"
+      "programCode":this.selectedProgram.code
     }
     this.sessionChoice = await this.regiStrationService.fetchSessionChoice(params);
   }
 
   onSignupCodeChange(ev:any){
     let params={
-      "programCode": "CS_BALAVIHAR_2023-24",
-      "chapterCode": "CSVA",
+      "programCode": this.selectedProgram.code,
+      "chapterCode": this.selectedChapterCode,
       "signupCode": ev.target.value,
     }
     this.fecthClassList(params);

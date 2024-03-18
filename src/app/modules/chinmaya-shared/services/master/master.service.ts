@@ -12,9 +12,11 @@ export class MasterService {
   private statusList: any = null;
   private maritialStatusList: any = null;
   private stateList: any = null;
-  registrationStatusList: any;
-  paymentStatusList: any;
-  schoolGradeList: any;
+  private registrationStatusList: any;
+  private paymentStatusList: any;
+  private schoolGradeList: any;
+  private acadamicYear: any=null;
+  private chapterList: any=null;
 
   constructor(
     private httpService: HttpService,
@@ -184,18 +186,68 @@ export class MasterService {
   } 
 
 
+  async fetchAcademicYear(reload?:any) {
+
+    if (!reload && this.acadamicYear != null) {
+      return this.acadamicYear;
+    }
+
+    this.acadamicYear = []
+    
+    let options: Options = {
+      url: this.urlService.organzationURL.fetchAcadamicYear,
+      body: null
+    }
+
+    let acadamicYear: any = await this.httpService.get(options);
+
+    if (acadamicYear && acadamicYear.dropDownList) {
+      this.acadamicYear = acadamicYear.dropDownList;
+    }
+
+    return this.acadamicYear;
+  }
 
 
+  async fetchChaptherList(reload?:any) {
+
+    let options:Options={
+      url: this.urlService.organzationURL.fetchAllOrgnaztion,
+      body: null
+    }
+
+    if(!reload && this.chapterList){
+      return this.chapterList;
+    }
+
+    this.chapterList=[];
+    let chapterList:any = await this.httpService.get(options);
+    if(chapterList && chapterList.selectDropdownList){
+      this.chapterList=chapterList.selectDropdownList;
+      
+    }
+    return this.chapterList;
+  }
 
 
+  async fetchProgramsByAcademicYearAndChapterCode(year:any,chapterCode:any){
 
-
-
-
-  
-
-
-
+    let options:Options={
+      url: this.urlService.organzationURL.fetchProgramCodesByChapterCodeAndAcacademicyear,
+      body: {
+        chapterCode:chapterCode,
+        academicYear:year
+      }
+    }
 
    
+    let chapterList:any = await this.httpService.post(options);
+    if(chapterList && chapterList.selectDropdownList){
+      return chapterList.selectDropdownList;
+      
+    }
+    return this.chapterList;
+
+  }
+
 } 

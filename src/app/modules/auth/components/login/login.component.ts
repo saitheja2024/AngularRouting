@@ -24,24 +24,27 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   // private fields
   private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
+  userName: any;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
     // redirect to home if already logged in
-    if (this.authService.getLoggedInUser()) {
-      this.router.navigate(['/']);
-    }
+    // if (this.authService.getLoggedInUser()) {
+    //   this.router.navigate(['/']);
+    // }
   }
 
   ngOnInit(): void {
     this.initForm();
-    // get return url from route parameters or default to '/'
-    this.returnUrl =
-      this.route.snapshot.queryParams['returnUrl'.toString()] || '/';
+    
+  
+
+    
+   
   }
 
   // convenience getter for easy access to form fields
@@ -52,7 +55,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   initForm() {
     this.loginForm = this.fb.group({
       username: [
-        this.defaultAuth.email,
+        this.userName,
         Validators.compose([
           Validators.required
           
@@ -73,7 +76,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     var loginParam = this.loginForm.value;
     loginParam.password=  window.btoa(loginParam.password);
     const user = await this.authService.login(loginParam);
-    this.router.navigate([""]);
+    this.router.navigateByUrl("")
   }
 
   ngOnDestroy() {
