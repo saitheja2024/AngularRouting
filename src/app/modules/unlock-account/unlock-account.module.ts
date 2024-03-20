@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UnlockAcounntHomeComponent } from './components/unlock-acounnt-home/unlock-acounnt-home.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
 import { RouterModule, Routes } from '@angular/router';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: '',
@@ -33,7 +33,9 @@ const routes: Routes = [
   ],
   imports: [
     ChinmayaSharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class UnlockAccountModule { }

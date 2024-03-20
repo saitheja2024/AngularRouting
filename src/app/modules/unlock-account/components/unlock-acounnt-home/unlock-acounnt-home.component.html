@@ -11,6 +11,7 @@
     <!--begin::Content-->
     <div id="kt_account_settings_profile_details" class="collapse show">
         <!--begin::Form-->
+        <form [formGroup]="unlockAccForm">
         <!--begin::Card body-->
         <div class="card-body border-top p-6">
             <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
@@ -29,7 +30,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Family ID</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <input formControlName="familyID" type="text" placeholder="Family ID" class="form-control form-control-sm">
+                            <input formControlName="familyId" type="text" placeholder="Family ID" class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="col-lg-6 d-flex d-flex1">
@@ -37,7 +38,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">First Name</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <input formControlName="First Name" type="text" placeholder="First Name" class="form-control form-control-sm">
+                            <input formControlName="firstName" type="text" placeholder="First Name" class="form-control form-control-sm">
                         </div>
                     </div>
                 </div>
@@ -51,7 +52,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Last Name</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <input formControlName="Last Name" type="text" placeholder="Last Name" class="form-control form-control-sm">
+                            <input formControlName="lastName" type="text" placeholder="Last Name" class="form-control form-control-sm">
                         </div>
                     </div>
                     <div class="col-lg-6 d-flex d-flex1">
@@ -59,7 +60,7 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Email</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <input formControlName="Email" type="text" placeholder="Email" class="form-control form-control-sm">
+                            <input formControlName="emailAddress" type="text" placeholder="Email" class="form-control form-control-sm">
                         </div>
                     </div>
                 </div>
@@ -74,7 +75,7 @@
                 <div class="d-flex">
                     <!--begin::Filter menu-->
                     <div class="m-0">
-                        <a  class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                        <a href="javascript:void(0);" (click)="searchFilter();"  class="btn btn-primary btn-sm m-1" style="font-size:13px;">
                             <i class="icon-search4 fs-6"></i> Search
                         </a>
                     </div>
@@ -84,6 +85,9 @@
             <!--end::Content-->
         </div>
         <!--end::Actions-->
+
+  </form>
+     
     </div>
     <!--end::Content-->
 </div>
@@ -114,177 +118,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let item of unlockResponseList">
                                 <td class="text-start text-nowrap fw-semibold">
-                                    123
+                                    {{item?.familyId}}
                                 </td>
                                 <td class="text-start text-nowrap">
-                                    Ram
+                                    {{item?.firstName}}
                                 </td>
                                 <td class="text-start text-nowrap">
-                                    Laxman
+                                    {{item?.lastName}}
                                 </td>
                                 <td class="text-start text-nowrap">
-                                    ram@gmail.com
+                                    {{item?.emailAddress}}
                                 </td>
                                 <td class="text-start text-nowrap">
-                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;">
+                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;" (click)="unlockAccount(item.personId);">
                                         Unlock
                                     </a>
                                 </td>                          
                             </tr>
-                            <tr>
-                                <td class="text-start text-nowrap fw-semibold">
-                                    123
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Ram
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Laxman
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    ram@gmail.com
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;">
-                                        Unlock
-                                    </a>
-                                </td>                          
-                            </tr>
-                            <tr>
-                                <td class="text-start text-nowrap fw-semibold">
-                                    123
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Ram
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Laxman
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    ram@gmail.com
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;">
-                                        Unlock
-                                    </a>
-                                </td>                          
-                            </tr>
-                            <tr>
-                                <td class="text-start text-nowrap fw-semibold">
-                                    123
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Ram
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Laxman
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    ram@gmail.com
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;">
-                                        Unlock
-                                    </a>
-                                </td>                          
-                            </tr>
-                            <tr>
-                                <td class="text-start text-nowrap fw-semibold">
-                                    123
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Ram
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Laxman
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    ram@gmail.com
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;">
-                                        Unlock
-                                    </a>
-                                </td>                          
-                            </tr>
-                            <tr>
-                                <td class="text-start text-nowrap fw-semibold">
-                                    123
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Ram
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Laxman
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    ram@gmail.com
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;">
-                                        Unlock
-                                    </a>
-                                </td>                          
-                            </tr>
-                            <tr>
-                                <td class="text-start text-nowrap fw-semibold">
-                                    123
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Ram
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Laxman
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    ram@gmail.com
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;">
-                                        Unlock
-                                    </a>
-                                </td>                          
-                            </tr>
-                            <tr>
-                                <td class="text-start text-nowrap fw-semibold">
-                                    123
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Ram
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Laxman
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    ram@gmail.com
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;">
-                                        Unlock
-                                    </a>
-                                </td>                          
-                            </tr>
-                            <tr>
-                                <td class="text-start text-nowrap fw-semibold">
-                                    123
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Ram
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    Laxman
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    ram@gmail.com
-                                </td>
-                                <td class="text-start text-nowrap">
-                                    <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;">
-                                        Unlock
-                                    </a>
-                                </td>                          
-                            </tr>
+                           
                         </tbody>
                     </table>
                     <!--end::Table-->
