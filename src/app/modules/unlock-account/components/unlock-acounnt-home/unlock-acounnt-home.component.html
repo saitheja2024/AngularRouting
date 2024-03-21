@@ -1,4 +1,4 @@
-<div class="card mb-4 mt-8 mb-xl-10" >
+<div class="card mb-4 mt-8 mb-xl-10" style="border-radius: 5px;">
     <!--begin::Card header-->
     <div class="card-header border-0 cursor-pointer ps-6 pe-6" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
         <!--begin::Card title-->
@@ -12,87 +12,84 @@
     <div id="kt_account_settings_profile_details" class="collapse show">
         <!--begin::Form-->
         <form [formGroup]="unlockAccForm">
-        <!--begin::Card body-->
-        <div class="card-body border-top p-6">
-            <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
-                <div class="d-flex flex-column">
-                    <div class="d-flex align-items-center mb-2">
-                        <h4 class="text-gray-900 fs-2 fw-semibold me-1">Filters :</h4>                        
+            <!--begin::Card body-->
+            <div class="card-body border-top p-6">
+                <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex align-items-center mb-2">
+                            <h4 class="text-gray-900 fs-2 fw-semibold me-1">Filters :</h4>                        
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-------- Begin Family ID -------->
-            <div class="col-lg-12 mb-2">
+                <!-------- Begin Family ID -------->
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-6 d-flex d-flex1">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Family ID</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <input formControlName="familyId" type="text" placeholder="Family ID" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex d-flex1">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">First Name</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <input formControlName="firstName" type="text" placeholder="First Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Family ID -------->
+
+                <div class="col-lg-12 mb-2">
+                    <div class="row">
+                        <div class="col-lg-6 d-flex d-flex1">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Last Name</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <input formControlName="lastName" type="text" placeholder="Last Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex d-flex1">
+                            <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Email</label>
+                            </div>
+                            <div class="col-lg-10 d-flex">
+                                <input formControlName="emailAddress" type="text" placeholder="Email" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-------- End Family ID -------->
+            </div>
+            <!--end::Card body-->
+            <!--begin::Actions-->
+            <div class="card-footer d-flex justify-content-end p-4">
                 <div class="row">
-                    <div class="col-lg-6 d-flex d-flex1">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Family ID</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <input formControlName="familyId" type="text" placeholder="Family ID" class="form-control form-control-sm">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 d-flex d-flex1">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">First Name</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <input formControlName="firstName" type="text" placeholder="First Name" class="form-control form-control-sm">
+                    <div class="d-flex">
+                        <!--begin::Filter menu-->
+                        <div class="m-0">
+                            <a href="javascript:void(0);" (click)="searchFilter();"  class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                                <i class="icon-search4 fs-6"></i> Search
+                            </a>
                         </div>
                     </div>
+                    <!--end::Actions-->
                 </div>
+                <!--end::Content-->
             </div>
-            <!-------- End Family ID -------->
-
-            <div class="col-lg-12 mb-2">
-                <div class="row">
-                    <div class="col-lg-6 d-flex d-flex1">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Last Name</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <input formControlName="lastName" type="text" placeholder="Last Name" class="form-control form-control-sm">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 d-flex d-flex1">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Email</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <input formControlName="emailAddress" type="text" placeholder="Email" class="form-control form-control-sm">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-------- End Family ID -------->
-        </div>
-        <!--end::Card body-->
-        <!--end::Form-->
-        <!--begin::Actions-->
-        <div class="card-footer d-flex justify-content-end p-4">
-            <div class="row">
-                <div class="d-flex">
-                    <!--begin::Filter menu-->
-                    <div class="m-0">
-                        <a href="javascript:void(0);" (click)="searchFilter();"  class="btn btn-primary btn-sm m-1" style="font-size:13px;">
-                            <i class="icon-search4 fs-6"></i> Search
-                        </a>
-                    </div>
-                </div>
-                <!--end::Actions-->
-            </div>
-            <!--end::Content-->
-        </div>
-        <!--end::Actions-->
-
-  </form>
-     
+            <!--end::Actions-->
+        </form>
     </div>
     <!--end::Content-->
 </div>
 
-<div class="card mt-4 mb-xl-10">
+<div class="card mt-4 mb-xl-10" style="border-radius: 5px;">
     <!--begin::Card header-->
     <div class="card-header d-flex p-2 ps-4">
         <div class="card-title m-0">
@@ -137,7 +134,6 @@
                                     </a>
                                 </td>                          
                             </tr>
-                           
                         </tbody>
                     </table>
                     <!--end::Table-->
@@ -184,7 +180,9 @@
             <a routerLink="/registration-processing/registration-search" class="btn btn-danger btn-sm me-2">
                 <i class="icon-cancel-circle2 fs-4"></i> Cancel
             </a>
-            <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+            <button type="submit" class="btn btn-sm btn-primary">
+                <i class="icon-floppy-disk"></i> Save Changes
+            </button>
         </div>
         <!--end::Actions-->
     </div>
