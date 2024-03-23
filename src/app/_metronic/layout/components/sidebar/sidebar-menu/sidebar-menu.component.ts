@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/modules/auth';
+import { ProgramInterface } from 'src/app/modules/chinmaya-shared/services/master/master-interface';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 
@@ -14,14 +16,20 @@ export class SidebarMenuComponent implements OnInit {
   programs: any;
   selectedChapterCode: any;
   selectedYear: any;
+  loggedInUser: any;
 
   constructor(private masterService:MasterService,
     private store:StoreService,
-    private router:Router) { }
+    private router:Router,
+    private authService:AuthService) { }
 
   async ngOnInit() {
+
+
+    this.loggedInUser = this.authService.getLoggedInUser();
     this.academicYear = await  this.masterService.fetchAcademicYear(true);
-    this.chapterList = await this.masterService.fetchChaptherList(true);
+    this.chapterList = await this.masterService.fetchChaptherList({username:this.loggedInUser.username},true);
+   
   }
 
   async onAcademicYerChange(ev:any){
@@ -41,7 +49,15 @@ export class SidebarMenuComponent implements OnInit {
     if(!this.selectedYear || !this.selectedChapterCode){
       return ;
     }
-    this.programs = await this.masterService.fetchProgramsByAcademicYearAndChapterCode(this.selectedYear,this.selectedChapterCode)
+
+    let params:ProgramInterface={
+      chapterCode:this.selectedChapterCode,
+      academicYear:this.selectedYear,
+      userName:this.loggedInUser.username
+    }
+
+
+    this.programs = await this.masterService.fetchProgramsByAcademicYearAndChapterCode(params)
 
   }
 

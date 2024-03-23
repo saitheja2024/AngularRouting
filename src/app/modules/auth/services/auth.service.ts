@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { HttpService, Options } from '../../chinmaya-shared/services/https-service/http-service';
 import { UrlService } from '../../chinmaya-shared/services/url/url.service';
+import { KEYS, StoreService } from '../../chinmaya-shared/services/store/store.service';
 
 export type UserType = UserModel | undefined;
 
@@ -15,6 +16,7 @@ export type UserType = UserModel | undefined;
   providedIn: 'root',
 })
 export class AuthService implements OnDestroy {
+ 
   currentUserSubject: BehaviorSubject<UserType>;
   isLoadingSubject: BehaviorSubject<boolean>;
   loggedInUser:any
@@ -30,7 +32,8 @@ export class AuthService implements OnDestroy {
     private authHttpService: AuthHTTPService,
     private router: Router,
     private httpService:HttpService,
-    private urlService: UrlService
+    private urlService: UrlService,
+    private store:StoreService
   ) {
  
   }
@@ -38,29 +41,24 @@ export class AuthService implements OnDestroy {
   // public methods
   async login(params:any){
     let options: Options = {
-      url: this.urlService.familyURL.searchFamilies,
+      url: this.urlService.authURL.login,
       body: params
     }
 
     let response: any = await this.httpService.post(options);
-    this.setLoggedInUser(response);
-
+    this.store.setValue(KEYS.loggedInUser,response)
     return response;
     
   }
 
-  getLoggedInUser(){
-    return this.loggedInUser;
+
+  getLoggedInUser() {
+    return this.store.getValue(KEYS.loggedInUser);
   }
 
-  setLoggedInUser(user:any){
-    this.loggedInUser=user;
-    this.loggedInUser$.next(user)
-  }
+  
 
-  public onLoggedInUser(): Observable<any> {
-    return this.loggedInUser$.asObservable();
-  }
+ 
 
 
   logout() {

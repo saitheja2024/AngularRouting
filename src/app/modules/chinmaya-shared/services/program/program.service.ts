@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
 import { MasterService } from '../master/master.service';
+import { AuthService } from 'src/app/modules/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,19 @@ import { MasterService } from '../master/master.service';
 export class ProgramService {
   
   chapterList: any;
+  loggedInUser: any;
 
   constructor(private httpService:HttpService,private urlService:UrlService,
-    private masterService:MasterService) { }
+    private masterService:MasterService,
+    private autService:AuthService) { }
+
+
+    ngOnInit(){
+      this.loggedInUser = this.autService.getLoggedInUser()
+    }
 
   async fetchChapterList(reload?:any){
-     let chapterList=await this.masterService.fetchChaptherList();
+     let chapterList=await this.masterService.fetchChaptherList({username:this.loggedInUser.username});
      return chapterList;
   }
 

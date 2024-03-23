@@ -42,9 +42,14 @@ export class AppComponent implements OnInit {
 
    ngOnInit() {
     this.modeService.init();
-    this.activatedRoute.queryParams.subscribe(async params => {
+    this.activatedRoute.queryParams.subscribe(async (params:any) => {
       let userName = params["key"];
       console.log(userName);
+      if(!userName){
+        this.router.navigateByUrl("/auth");
+        console.log("returning to login page");
+        return;
+      }
       const user = await this.authService.login({username:userName,password:"123456"});
       this.router.navigateByUrl("")
     });

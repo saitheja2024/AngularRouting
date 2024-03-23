@@ -4,7 +4,8 @@ import { Observable, Subject } from 'rxjs';
 export const KEYS={
   chapter:"chapter",
   program:"program",
-  academicYear:"academicYear"
+  academicYear:"academicYear",
+  loggedInUser:"loggedInUser"
 }
 
 @Injectable({
@@ -15,6 +16,7 @@ export class StoreService{
   private store:any={};
   private storeSubject$: Subject<any> = new Subject();
   private programSubject$: Subject<any> = new Subject();
+  private loggedInUserSubject$ : Subject<any> = new Subject();
 
 
   constructor() { }
@@ -23,8 +25,12 @@ export class StoreService{
     this.store[key] = obj;
     console.log("###########   Current Store values ##################");
     console.log(JSON.stringify(this.store,null,4));
+    // If Program's value is updated then
     if(key==KEYS.program){
       this.programSubject$.next(obj);
+    }
+    if(key==KEYS.loggedInUser){
+      this.loggedInUserSubject$.next(obj);
     }
     this.storeSubject$.next(this.store);
   }
@@ -44,6 +50,11 @@ export class StoreService{
   public onProgramUpdate(): Observable<any> {
     return this.programSubject$.asObservable();
   }
+
+  public onloggedInUser(): Observable<any> {
+    return this.loggedInUserSubject$.asObservable();
+  }
+
 
 
 

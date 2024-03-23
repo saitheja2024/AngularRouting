@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { Observable, catchError, finalize, map, of } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ErrorHandlerService } from "../errors/error-handler.service";
-import { NgbToast } from "@ng-bootstrap/ng-bootstrap";
 
 
 export interface Options {
@@ -43,7 +42,7 @@ export class HttpService {
             return this.errorHandler.handleError(error)
           })
         )
-        .subscribe(resp => {
+        .subscribe((resp:any) => {
           // console.log(JSON.stringify(resp,null,4))
           resolve(resp);
         }
@@ -70,7 +69,7 @@ export class HttpService {
             return this.errorHandler.handleError(error)
           })
         )
-        .subscribe(resp => {
+        .subscribe((resp:any) => {
           // console.log(JSON.stringify(opt,null,4))
           // console.log(JSON.stringify(resp,null,4))
           resolve(resp);
@@ -99,7 +98,7 @@ export class HttpService {
             return this.errorHandler.handleError(error)
           })
         )
-        .subscribe(resp => {
+        .subscribe((resp:any) => {
           // console.log(JSON.stringify(opt,null,4))
           // console.log(JSON.stringify(resp,null,4))
           resolve(resp);

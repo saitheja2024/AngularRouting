@@ -23,6 +23,8 @@ export class RegistrationSearchResultsComponent {
   "paymentStatus",
   "registrationStatus",
   "paymentSubmittedDate",
+  "choiceCode",
+  "choicePreference"
   ];
   dataSource:any = new MatTableDataSource<any>(); 
   @ViewChild(MatSort) sort: MatSort;
@@ -43,7 +45,7 @@ export class RegistrationSearchResultsComponent {
 
   async performSearch(){
     this.searchResults = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria)
-    this.dataSource.data=this.searchResults.slice(); 
+    this.dataSource.data=this.searchResults.projectSummaryList.slice(); 
   }
 
 

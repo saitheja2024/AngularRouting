@@ -51,8 +51,8 @@ export class RegistrationService {
   
       let response: any = await this.httpService.post(options);
   
-      if (response && response.responseRegistationList) {
-        return response.responseRegistationList
+      if (response) {
+        return response;
       }
   
       return [];
