@@ -1,13 +1,19 @@
 
 
-    export interface ProgramInterface {
+    export interface ProgramRequestInterface {
         "chapterCode": string;
         "academicYear": string;
         "userName": string
     }  
 
-    export interface ChapterInterface {
+    export interface ChapterCodeRequestInterface {
         username:string
+    }
+
+    export interface signupCodeRequestInteface {
+        organizationCode:string,
+        programCode: string,
+        userName: string
     }
 
 

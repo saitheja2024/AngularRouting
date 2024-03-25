@@ -46,6 +46,8 @@ export class AuthService implements OnDestroy {
     }
 
     let response: any = await this.httpService.post(options);
+    response.username=params.username;
+    response.password=params.password;
     this.store.setValue(KEYS.loggedInUser,response)
     return response;
     

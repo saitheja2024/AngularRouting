@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
+import { signupCodeRequestInteface } from '../master/master-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -36,10 +37,10 @@ export class ReportsService {
   }
 
 
-  async fetchSignupcode(orgCode:any,programCode:any){
+  async fetchSignupcode(params:signupCodeRequestInteface){
     let options:Options={
       url: this.urlService.reportsURL.fetchSignupcodes,
-      body: {organizationCode:orgCode,programCode:programCode}
+      body: params
     }
 
   

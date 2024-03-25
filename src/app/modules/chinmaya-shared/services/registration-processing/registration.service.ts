@@ -3,6 +3,8 @@ import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
 import { ReportsService } from '../reports/reports.service';
 import { MasterService } from '../master/master.service';
+import { AuthService } from 'src/app/modules/auth';
+import { signupCodeRequestInteface } from '../master/master-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class RegistrationService {
   constructor(
     private httpService:HttpService,
     private urlService:UrlService,
+    private authServie:AuthService,
     private reportService:ReportsService,
     private masterService:MasterService) { }
 
@@ -37,6 +40,10 @@ export class RegistrationService {
 
   getSelectedFamily(){
     return this.selectedFamily;
+  }
+
+  getLoggedInUser(){
+    return this.authServie.getLoggedInUser();
   }
   
 
@@ -59,8 +66,8 @@ export class RegistrationService {
   
   }
 
-  async fetchSignupCodes(orgCode: string, programCode: string) {
-    let response = await this.reportService.fetchSignupcode(orgCode,programCode);
+  async fetchSignupCodes(params:signupCodeRequestInteface) {
+    let response = await this.reportService.fetchSignupcode(params);
     return response;
   }
 

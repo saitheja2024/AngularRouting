@@ -31,7 +31,7 @@ export class ErrorHandlerService {
       this.router.navigateByUrl("/auth/login")
       return of(null);
     }
-    let config:any = {duration:2000,horizontalPosition:"center",verticalPosition:"top"}
+    let config:any = {duration:3000,horizontalPosition:"center",verticalPosition:"top"}
     let action;
     this.snackBar.open(errorMessage,action,config)
     //alert(errorMessage);

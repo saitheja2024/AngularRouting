@@ -52,37 +52,15 @@
                 </div>
                 
                 <div class="row p-4">
-                    <div class="col-sm-6 col-md-5 col-6">
-                        <div class="dataTables_length">
-                            <label>
-                                <select class="form-select form-select-sm">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-7 col-6 d-flex justify-content-end">
-                        <div class="paging_simple_numbers">
-                            <ul class="pagination">
-                                <li class="paginate_button page-item previous disabled">
-                                    <a href="#" data-dt-idx="0" tabindex="0" class="page-link">
-                                        <i class="previous"></i>
-                                    </a>
-                                </li>
-                                <li class="paginate_button page-item active">
-                                    <a href="#" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                </li>
-                                <li class="paginate_button page-item next disabled">
-                                    <a href="#" data-dt-idx="2" tabindex="0" class="page-link">
-                                        <i class="next"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <mat-paginator #paginator 
+                    (page)="handlePageEvent($event)"
+                    length="paginationConfig.length"
+                    [pageSize]="paginationConfig.pageSize"
+                    [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+                    [pageSizeOptions]="paginationConfig.pageSizeOptions"
+                    [pageIndex]="paginationConfig.pageIndex"
+                    aria-label="Select page">
+                </mat-paginator>
                 </div>
             </div>
             <!--end::Card body-->

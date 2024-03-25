@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -12,6 +13,14 @@ import { RegistrationService } from 'src/app/modules/chinmaya-shared/services/re
 export class RegistrationSearchResultsComponent {
   searchCriteria: any;
   searchResults: any;
+
+  paginationConfig={
+  pageSize : 5,
+  pageIndex : 0,
+  pageSizeOptions :[5, 10, 25],
+  showFirstLastButtons : true,
+  length:10
+  }
 
   
 
@@ -28,9 +37,11 @@ export class RegistrationSearchResultsComponent {
   ];
   dataSource:any = new MatTableDataSource<any>(); 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator:MatPaginator
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+    //this.dataSource.paginator=this.paginator  
   }
 
 
@@ -46,6 +57,11 @@ export class RegistrationSearchResultsComponent {
   async performSearch(){
     this.searchResults = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria)
     this.dataSource.data=this.searchResults.projectSummaryList.slice(); 
+
+    this.paginationConfig.length=this.searchResults.totalProjectSummary
+    this.paginationConfig.pageSize=this.searchResults.size;
+    
+    this.dataSource.paginator =this.paginator;
   }
 
 
@@ -66,6 +82,10 @@ export class RegistrationSearchResultsComponent {
   showRegistrationDetails(selectedFamily:any){
     this.registrationService.setSelectedFamily(selectedFamily);
     this.router.navigateByUrl("/registration-processing/family-registration-details")
+  }
+
+  handlePageEvent(ev:any){
+   console.log(JSON.stringify(ev,null,4));
   }
 
 

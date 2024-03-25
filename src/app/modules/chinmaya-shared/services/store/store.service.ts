@@ -32,10 +32,12 @@ export class StoreService{
     if(key==KEYS.loggedInUser){
       this.loggedInUserSubject$.next(obj);
     }
+    
     this.storeSubject$.next(this.store);
   }
 
   getValue(key: string): any {
+    
     return this.store[key];
   }
 

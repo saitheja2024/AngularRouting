@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   hasError: boolean;
   returnUrl: string;
   isLoading$: Observable<boolean>;
+  loggedInUser:any
 
   // private fields
   private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
@@ -39,7 +40,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    
+    this.loggedInUser=this.authService.getLoggedInUser()
+    if(this.loggedInUser){
+      this.defaultAuth.username="nmohamme12345";
+      this.defaultAuth.password="123456"
+    }
     this.initForm();
+
+    if(this.loggedInUser){
+      this.onLogin();
+    }
     
   
 
@@ -70,7 +81,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       ],
     });
   }
-
+ 
   async onLogin() {
     this.hasError = false;
     var loginParam = this.loginForm.value;

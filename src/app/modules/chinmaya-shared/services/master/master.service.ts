@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
-import { ChapterInterface, ProgramInterface } from './master-interface';
+import { ChapterCodeRequestInterface, ProgramRequestInterface } from './master-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -210,7 +210,7 @@ export class MasterService {
   }
 
 
-  async fetchChaptherList(param:ChapterInterface,reload?:any) {
+  async fetchChaptherList(param:ChapterCodeRequestInterface,reload?:any) {
 
     let options:Options={
       url: this.urlService.organzationURL.fetchAllOrgnaztion,
@@ -231,7 +231,7 @@ export class MasterService {
   }
 
 
-  async fetchProgramsByAcademicYearAndChapterCode(param:ProgramInterface){
+  async fetchProgramsByAcademicYearAndChapterCode(param:ProgramRequestInterface){
 
     let options:Options={
       url: this.urlService.organzationURL.fetchProgramCodesByChapterCodeAndAcacademicyear,

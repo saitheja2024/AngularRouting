@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth';
-import { ProgramInterface } from 'src/app/modules/chinmaya-shared/services/master/master-interface';
+import { ProgramRequestInterface } from 'src/app/modules/chinmaya-shared/services/master/master-interface';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 
@@ -50,7 +50,7 @@ export class SidebarMenuComponent implements OnInit {
       return ;
     }
 
-    let params:ProgramInterface={
+    let params:ProgramRequestInterface={
       chapterCode:this.selectedChapterCode,
       academicYear:this.selectedYear,
       userName:this.loggedInUser.username

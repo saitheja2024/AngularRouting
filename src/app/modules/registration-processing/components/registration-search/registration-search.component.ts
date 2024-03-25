@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ReportsService } from 'src/app/modules/chinmaya-shared/services/reports/reports.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
+import { signupCodeRequestInteface } from 'src/app/modules/chinmaya-shared/services/master/master-interface';
 
 @Component({
   selector: 'app-registration-search',
@@ -26,6 +27,7 @@ export class RegistrationSearchComponent implements OnInit {
   selectedAcademicYear: any;
   selectedChapterCode: any;
   selectedProgram: any;
+  loggedInUser: any;
 
   constructor(
     private masterService:MasterService,
@@ -47,6 +49,7 @@ export class RegistrationSearchComponent implements OnInit {
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     this.selectedProgram = this.store.getValue(KEYS.program);
+    this.loggedInUser = this.regiStrationService.getLoggedInUser();
 
    if(!this.selectedAcademicYear || !this.selectedChapterCode || !this.selectedProgram){
     return;
@@ -143,8 +146,15 @@ export class RegistrationSearchComponent implements OnInit {
     //   this.signupCodes=[];
     //   return;
     // }
+
+    let param:signupCodeRequestInteface = {
+    organizationCode:this.selectedChapterCode,
+    programCode:this.selectedProgram.code,
+    userName:this.loggedInUser.username
+    }
+
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
-    this.signupCodes = await this.regiStrationService.fetchSignupCodes(this.selectedChapterCode,this.selectedProgram.code);
+    this.signupCodes = await this.regiStrationService.fetchSignupCodes(param);
   }
 
 
