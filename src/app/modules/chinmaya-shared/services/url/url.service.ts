@@ -48,9 +48,7 @@ export class UrlService {
     fetchRegistrationStatusList:"/master/fetchRegistrationStatusList",
     fetchPaymentStatusList:"/master/fetchPaymentStatusList",
     fetchSchoolGradeList:"/master/fetchSchoolGradeList"
-   
-
-
-
   }
+
+  
 }

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { UserModel } from '../../models/user.model';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../chinmaya-shared/services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

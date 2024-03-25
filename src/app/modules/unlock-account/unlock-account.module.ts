@@ -33,9 +33,8 @@ const routes: Routes = [
   ],
   imports: [
     ChinmayaSharedModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule,
-    FormsModule
+    RouterModule.forChild(routes)
+  
   ]
 })
 export class UnlockAccountModule { }

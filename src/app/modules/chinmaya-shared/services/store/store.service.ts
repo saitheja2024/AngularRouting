@@ -36,10 +36,14 @@ export class StoreService{
     this.storeSubject$.next(this.store);
   }
 
+
+
   getValue(key: string): any {
-    
     return this.store[key];
   }
+
+
+
 
   getStore(){
     return this.store;;
