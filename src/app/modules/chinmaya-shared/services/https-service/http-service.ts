@@ -38,7 +38,9 @@ export class HttpService {
       this.httpClient.get(environment.baseURL + opt.url, { headers })
         .pipe(
           catchError((error: any) => {
-
+            if(error?.errorMessage?.toLowerCase().indexOf("jwt")>-1){
+              this.token=null;
+            }
             return this.errorHandler.handleError(error)
           })
         )
@@ -66,6 +68,9 @@ export class HttpService {
       this.httpClient.post(environment.baseURL + opt.url, opt?.body, { headers })
         .pipe(
           catchError((error: any) => {
+            if(error?.errorMessage?.toLowerCase().indexOf("jwt")>-1){
+              this.token=null;
+            }
             return this.errorHandler.handleError(error)
           })
         )
@@ -94,7 +99,9 @@ export class HttpService {
       this.httpClient.delete(environment.baseURL + opt.url, { body: opt?.body })
         .pipe(
           catchError((error: any) => {
-
+            if(error?.errorMessage?.toLowerCase().indexOf("jwt")>-1){
+              this.token=null;
+            }
             return this.errorHandler.handleError(error)
           })
         )
@@ -139,7 +146,6 @@ export class HttpService {
     let returnValue = false;
     const expiry = (JSON.parse(atob(this.token.accessToken.split('.')[1]))).exp;
     returnValue = (Math.floor((new Date).getTime() / 1000)) >= expiry;;
-    console.log("Token is expired >>", returnValue);
     return returnValue;
   }
 }  

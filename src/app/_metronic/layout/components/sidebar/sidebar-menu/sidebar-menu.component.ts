@@ -35,12 +35,14 @@ export class SidebarMenuComponent implements OnInit {
   async onAcademicYerChange(ev:any){
       this.selectedYear=ev.target.value;
       this.store.setValue(KEYS.academicYear,this.selectedYear);
+      this.router.navigateByUrl("/registration-processing");
       await this.fetchProgramsByAcademicYearAndChapterCode();
   }
 
   async onChapterChange(ev:any){
     this.selectedChapterCode = ev.target.value;
     this.store.setValue(KEYS.chapter,this.selectedChapterCode);
+    this.router.navigateByUrl("/registration-processing");
     await this.fetchProgramsByAcademicYearAndChapterCode();
   }
 

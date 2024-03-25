@@ -54,7 +54,7 @@
                 <div class="row p-4">
                     <mat-paginator #paginator 
                     (page)="handlePageEvent($event)"
-                    length="paginationConfig.length"
+                    [length]="paginationConfig.length"
                     [pageSize]="paginationConfig.pageSize"
                     [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
                     [pageSizeOptions]="paginationConfig.pageSizeOptions"

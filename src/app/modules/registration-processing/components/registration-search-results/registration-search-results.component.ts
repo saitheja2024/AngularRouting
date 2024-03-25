@@ -15,7 +15,7 @@ export class RegistrationSearchResultsComponent {
   searchResults: any;
 
   paginationConfig={
-  pageSize : 5,
+  pageSize : 10,
   pageIndex : 0,
   pageSizeOptions :[5, 10, 25],
   showFirstLastButtons : true,
@@ -60,6 +60,7 @@ export class RegistrationSearchResultsComponent {
 
     this.paginationConfig.length=this.searchResults.totalProjectSummary
     this.paginationConfig.pageSize=this.searchResults.size;
+    this.paginationConfig.pageIndex=this.searchResults.page;
     
     this.dataSource.paginator =this.paginator;
   }
