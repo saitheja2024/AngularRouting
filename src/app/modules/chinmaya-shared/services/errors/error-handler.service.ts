@@ -4,13 +4,14 @@ import { of, throwError } from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth';
+import { KEYS, StoreService } from '../store/store.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorHandlerService {
 
-  constructor(private snackBar: MatSnackBar,private router:Router){}
+  constructor(private snackBar: MatSnackBar,private router:Router,private store:StoreService){}
 
   handleError(error: HttpErrorResponse) {
     let errorMessage ="Unknow error";
@@ -29,6 +30,7 @@ export class ErrorHandlerService {
     
     if(errorMessage.toLowerCase().indexOf("jwt")>-1){
       this.router.navigateByUrl("/auth/login")
+      this.store.setValue(KEYS.loggedInUser,null);
       return of(null);
     }
     let config:any = {duration:3000,horizontalPosition:"center",verticalPosition:"top"}
