@@ -41,7 +41,7 @@ export class RegistrationSearchComponent implements OnInit {
 
   async ngOnInit(){
 
-    this.store.onProgramUpdate().subscribe(async program=>{
+    this.store.onProgramUpdate().subscribe(async (program:any)=>{
       this.selectedProgram=program;
       await this.populateData()
     })

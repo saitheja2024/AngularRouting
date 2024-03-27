@@ -70,6 +70,13 @@ export class RegistrationSearchResultsComponent {
     
   }
 
+  onFilterClick(filterName:any,filter:any){
+      this.searchCriteria.requestRegistrationProcessingSearch[filterName] = this.searchCriteria.requestRegistrationProcessingSearch[filterName].filter((item:any)=>item!=filter)
+
+   
+    this.performSearch();
+  }
+
 
 
    formatColumnName(key: string): string {
