@@ -42,14 +42,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     
     this.loggedInUser=this.authService.getLoggedInUser()
-    if(this.loggedInUser){
-      this.defaultAuth.username="nmohamme12345";
-      this.defaultAuth.password="123456"
-    }
+    // if(this.loggedInUser){
+    //   this.defaultAuth.username="nmohamme12345";
+    //   this.defaultAuth.password="123456"
+    // }
     this.initForm();
 
     if(this.loggedInUser){
-      this.onLogin();
+      this.onLogin(false);
     }
     
   
@@ -66,14 +66,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   initForm() {
     this.loginForm = this.fb.group({
       username: [
-        this.defaultAuth.username,
+        '',
         Validators.compose([
           Validators.required
           
         ]),
       ],
       password: [
-        this.defaultAuth.password,
+        '',
         Validators.compose([
           Validators.required
          
@@ -82,10 +82,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
  
-  async onLogin() {
+  async onLogin(loginFromAdminPortal:any) {
     this.hasError = false;
     var loginParam = this.loginForm.value;
-    loginParam.password=  window.btoa(loginParam.password);
+    if(loginFromAdminPortal){
+      loginParam.password=  window.btoa(loginParam.password);
+    }
     const user = await this.authService.login(loginParam);
     this.router.navigateByUrl("")
   }
