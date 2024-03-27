@@ -32,12 +32,4 @@ export class AuthenticationService {
     return this.http.post(`${this.environment.baseUrl}/MR/manageFamily/manageFamilySearch`, body);
   }
 
-  unlockAccount(body:any): Observable<any>{
-    return this.http.post(`${this.environment.baseUrl}/MR/onlineaccount/saveuserUnblock`, body);
-  }
-
-  searchUnlockAccount(body:any): Observable<any>{
-    return this.http.post(`${this.environment.baseUrl}/MR/onlineaccount/searchunblockAccount`, body);
-  }
-
 }
