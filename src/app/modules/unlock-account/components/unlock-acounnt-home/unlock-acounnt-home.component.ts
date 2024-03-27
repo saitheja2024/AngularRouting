@@ -4,7 +4,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { map } from 'rxjs-compat/operator/map';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2'
-
+import { UnlockaccountService } from 'src/app/modules/chinmaya-shared/services/unlock-account/unlockaccount.service';
 @Component({
   selector: 'app-unlock-acounnt-home',
   templateUrl: './unlock-acounnt-home.component.html',
@@ -15,7 +15,7 @@ export class UnlockAcounntHomeComponent {
   unlockAccForm:FormGroup;
   unlockResponseList:any;
 
-  constructor(private authService:AuthenticationService, private fb:FormBuilder){
+  constructor(private authService:AuthenticationService, private fb:FormBuilder, private unlockService:UnlockaccountService){
     this.unlockAccForm = this.fb.group({
       familyId:new FormControl(''),
       homePhone:new FormControl('') ,
@@ -25,46 +25,19 @@ export class UnlockAcounntHomeComponent {
     }); 
   }
 
-  searchFilter(){
+ async searchFilter(){
     let srcParam:any = this.unlockAccForm.value;
-    this.authService.searchUnlockAccount(srcParam).subscribe(response => {
-      this.unlockResponseList = response;
-    },(err : HttpErrorResponse)=>{
-      var msg = err.error;    
-      Swal.fire({
-        // position: 'top-end',
-         icon: 'error',
-         title: msg.message,
-         showConfirmButton: true,
-         //timer: 1500
-       });    
-    });
-    
+    this.unlockResponseList = await this.unlockService.fetchUnlockAccount(srcParam);
+       
   }
 
-  unlockAccount(personId:any){
+  async unlockAccount(personId:any){
     let param={
       personId:personId
-    }
-    this.authService.unlockAccount(param).subscribe(response => {
-      this.unlockResponseList = response;
-      Swal.fire({
-        // position: 'top-end',
-         icon: 'success',
-         title: response.message,
-         showConfirmButton: true,
-         //timer: 1500
-       });
-    },(err : HttpErrorResponse)=>{
-      var msg = err.error;  
-      Swal.fire({
-        // position: 'top-end',
-         icon: 'error',
-         title: msg.message,
-         showConfirmButton: true,
-         //timer: 1500
-       });    
-    });
+    };
+
+    this.unlockResponseList =   await this.unlockService.getUnlockAccount(param);
+  
   }
 
 

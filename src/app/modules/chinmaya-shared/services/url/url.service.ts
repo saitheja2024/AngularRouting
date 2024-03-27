@@ -50,5 +50,10 @@ export class UrlService {
     fetchSchoolGradeList:"/master/fetchSchoolGradeList"
   }
 
+  unLockAccountURL={
+    unlockAccount:'onlineaccount/saveuserUnblock',
+    searchUnlockAccount:'onlineaccount/searchunblockAccount'
+  }
+
   
 }
