@@ -12,12 +12,12 @@ import { RegistrationService } from 'src/app/modules/chinmaya-shared/services/re
 })
 export class RegistrationSearchResultsComponent {
   searchCriteria: any;
-  searchResults: any;
+  searchResults: any=[];
 
   paginationConfig={
   pageSize : 10,
   pageIndex : 0,
-  pageSizeOptions :[5, 10, 25],
+  pageSizeOptions :[10, 20,30],
   showFirstLastButtons : true,
   length:10
   }
@@ -41,7 +41,7 @@ export class RegistrationSearchResultsComponent {
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
-    //this.dataSource.paginator=this.paginator  
+   
   }
 
 
@@ -55,14 +55,26 @@ export class RegistrationSearchResultsComponent {
   }
 
   async performSearch(){
-    this.searchResults = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria)
-    this.dataSource.data=this.searchResults.projectSummaryList.slice(); 
+    let results  = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria)
+     //this.searchResults.push(...results.projectSummaryList);
+    this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
+    this.paginator.length=results.totalProjectSummary
+    this.dataSource._updateChangeSubscription();
+  
+ 
 
-    this.paginationConfig.length=this.searchResults.totalProjectSummary
-    this.paginationConfig.pageSize=this.searchResults.size;
-    this.paginationConfig.pageIndex=this.searchResults.page;
+    //this.paginationConfig.length=100
+    //this.paginationConfig.pageSize=this.searchResults.size;
+    //this.paginationConfig.pageIndex=this.searchResults.page;
     
-    this.dataSource.paginator =this.paginator;
+    
+  }
+
+  onFilterClick(filterName:any,filter:any){
+      this.searchCriteria.requestRegistrationProcessingSearch[filterName] = this.searchCriteria.requestRegistrationProcessingSearch[filterName].filter((item:any)=>item!=filter)
+
+   
+    this.performSearch();
   }
 
 
@@ -85,8 +97,17 @@ export class RegistrationSearchResultsComponent {
     this.router.navigateByUrl("/registration-processing/family-registration-details")
   }
 
-  handlePageEvent(ev:any){
-   console.log(JSON.stringify(ev,null,4));
+  handlePageEvent(event:any){
+   console.log(JSON.stringify(event,null,4));
+   let pageIndex = event.pageIndex;
+   let pageSize = event.pageSize;
+
+   let previousIndex = event.previousPageIndex;
+
+   let previousSize = pageSize * pageIndex;
+   this.searchCriteria.requestPageModel.page=pageIndex;
+   this.searchCriteria.requestPageModel.size=pageSize;
+   this.performSearch();
   }
 
 

@@ -3,11 +3,11 @@
     <div class="card-header d-flex p-2 ps-4">
         <div class="justify-content-start" style="margin-top:8px">
             <button type="button" class="chip-button" *ngFor="let filter of searchCriteria.
-                requestRegistrationProcessingSearch.registrationStatusList">
+                requestRegistrationProcessingSearch.registrationStatusList" (click)="onFilterClick('registrationStatusList',filter)">
                 {{filter}} <i class="bi bi-x"></i>
             </button>
             <button type="button" class="chip-button" *ngFor="let filter of searchCriteria.
-                requestRegistrationProcessingSearch.paymentStatusList">
+                requestRegistrationProcessingSearch.paymentStatusList" (click)="onFilterClick('paymentStatusList',filter)">
                 {{filter}} <i class="bi bi-x"></i>
             </button>
         </div>
@@ -54,11 +54,10 @@
                 <div class="row p-4">
                     <mat-paginator #paginator 
                     (page)="handlePageEvent($event)"
-                    [length]="paginationConfig.length"
-                    [pageSize]="paginationConfig.pageSize"
+                                     
                     [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
                     [pageSizeOptions]="paginationConfig.pageSizeOptions"
-                    [pageIndex]="paginationConfig.pageIndex"
+                   
                     aria-label="Select page">
                 </mat-paginator>
                 </div>
