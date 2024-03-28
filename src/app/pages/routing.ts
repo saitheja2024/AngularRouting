@@ -57,6 +57,11 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../modules/unlock-account/unlock-account.module').then((m) => m.UnlockAccountModule),
   },
+  {
+    path: 'programregistration',
+    loadChildren: () =>
+      import('../modules/programregistration/programregistration.module').then((m) => m.ProgramregistrationModule),
+  },
   
   {
     path: '',
