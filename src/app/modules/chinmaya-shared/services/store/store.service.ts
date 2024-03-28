@@ -5,7 +5,8 @@ export const KEYS={
   chapter:"chapter",
   program:"program",
   academicYear:"academicYear",
-  loggedInUser:"loggedInUser"
+  loggedInUser:"loggedInUser",
+  selectedFamily:"selectedFamily"
 }
 
 @Injectable({
