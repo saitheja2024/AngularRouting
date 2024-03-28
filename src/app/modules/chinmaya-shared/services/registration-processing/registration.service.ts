@@ -5,6 +5,7 @@ import { ReportsService } from '../reports/reports.service';
 import { MasterService } from '../master/master.service';
 import { AuthService } from 'src/app/modules/auth';
 import { signupCodeRequestInteface } from '../master/master-interface';
+import { KEYS, StoreService } from '../store/store.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class RegistrationService {
     private urlService:UrlService,
     private authServie:AuthService,
     private reportService:ReportsService,
-    private masterService:MasterService) { }
+    private masterService:MasterService,
+    private store:StoreService) { }
 
   setSearchCriteria(value: any) {
     this.searchCriteria=value;
@@ -35,11 +37,11 @@ export class RegistrationService {
   }
 
   setSelectedFamily(selectedFamily: any) {
-    this.selectedFamily = selectedFamily;
+    this.store.setValue(KEYS.selectedFamily,selectedFamily);
   }
 
   getSelectedFamily(){
-    return this.selectedFamily;
+    return this.store.getValue(KEYS.selectedFamily);
   }
 
   getLoggedInUser(){
