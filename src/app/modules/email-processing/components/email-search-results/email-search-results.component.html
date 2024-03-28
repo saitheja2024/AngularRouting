@@ -1,4 +1,4 @@
-<div class="card mb-5 mb-xl-10 mt-8">
+<div class="card mb-5 mb-xl-10">
     <!--begin::Card header-->
     <div class="card-header d-flex p-2 ps-4">
         <div class="justify-content-start">
@@ -512,10 +512,17 @@
         <!--end::Form-->
         <!--begin::Actions-->
         <div class="card-footer d-flex justify-content-end py-6 px-9">
-            <a routerLink="/email-processing/email-search" href="/email-processing/email-search" class="btn btn-danger btn-sm me-2">
+            <!--<a routerLink="/email-processing/email-search" href="/email-processing/email-search" class="btn btn-danger btn-sm me-2">
                 <i class="icon-cancel-circle2 fs-4"></i> Cancel
-            </a>
-            <button type="submit" class="btn btn-sm btn-primary">Send</button>
+            </a>-->
+
+            <button type="button" class="btn btn-danger btn-sm m-1" routerLink="/email-processing/email-search" style="font-size: 13px;">
+                <i class="icon-cancel-circle2 fs-6"></i> Cancel
+            </button>
+
+            <button type="button" class="btn btn-primary btn-sm m-1" style="font-size: 13px;">
+                <i class="icon-paperplane fs-6"></i> Send
+            </button>
         </div>
         <!--end::Actions-->
     </div>
