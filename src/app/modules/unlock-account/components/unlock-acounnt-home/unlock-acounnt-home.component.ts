@@ -28,7 +28,6 @@ export class UnlockAcounntHomeComponent {
  async searchFilter(){
     let srcParam:any = this.unlockAccForm.value;
     this.unlockResponseList = await this.unlockService.fetchUnlockAccount(srcParam);
-       
   }
 
   async unlockAccount(personId:any){
@@ -37,7 +36,20 @@ export class UnlockAcounntHomeComponent {
     };
 
     this.unlockResponseList =   await this.unlockService.getUnlockAccount(param);
-  
+    if(this.unlockResponseList){
+      Swal.fire({
+        // position: 'top-end',
+         icon: 'success',
+         title:this.unlockResponseList.message,
+         showConfirmButton: true,
+         //timer: 1500
+       }).then(async (result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.searchFilter();
+        }
+       });
+    }
   }
 
 
