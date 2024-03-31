@@ -28,9 +28,10 @@ export class UrlService {
 
   reportsURL = {
     fetchProgramYears: "reports/fetchProgramYears",
-    fetchSessionChoicesList:"/reports/fetchSessionChoicesList",
-    fetchSignupcodes:"/reports/fetchSignupcodes",
-    fetchClassList:"/reports/fetchClassList" 
+    fetchSessionChoicesList:"reports/fetchSessionChoicesList",
+    fetchSignupcodes:"reports/fetchSignupcodes",
+    fetchClassList:"reports/fetchClassList",
+    fetchAssignedSubClass:"reports/fetchAssignedSubClass"
   }
  
   familyURL = {

@@ -74,7 +74,7 @@ export class RegistrationSearchResultsComponent {
       this.searchCriteria.requestRegistrationProcessingSearch[filterName] = this.searchCriteria.requestRegistrationProcessingSearch[filterName].filter((item:any)=>item!=filter)
 
    
-    this.performSearch();
+     this.performSearch();
   }
 
 

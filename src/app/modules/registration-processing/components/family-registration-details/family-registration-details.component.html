@@ -17,552 +17,202 @@
 			<!--begin::Card header-->
 			<!--begin::Content-->
 			<div id="kt_account_settings_profile_details" class="collapse show">
+				<!-- <form [formGroup]="registrationForm" *ngIf="registrationDetails">
+					<div *ngIf="registrationForm?.get('registrationDetailsList')?.controls.length>0">
+					<div formArrayName="registrationDetailsList">
+					  <div *ngFor="let detailsGroup of registrationForm.get('registrationDetailsList').controls; let i = index">
+						<div [formGroupName]="i">
+						  <h3>Registration Details {{ i + 1 }}</h3>
+						  <p>Person ID: {{ detailsGroup.get('personId').value }}</p>
+						  <div formArrayName="responsePersonProgramList">
+							<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j = index">
+							  <div [formGroupName]="j">
+								<h4>Program Details {{ j + 1 }}</h4>
+								<p>First Name: {{ programGroup.get('firstName').value }}</p>
+								<p>Last Name: {{ programGroup.get('lastName').value }}</p>
+							  </div>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div>
+					<button type="submit" >Submit123</button>
+				  </form> -->
+				  
+				  
 				<!--begin::Form-->
-				<form id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+				<form [formGroup]="registrationForm" *ngIf="registrationDetails">
 					<!--begin::Card body-->
 					<div class="card-body border-top py-5" style="height: 750px !important;overflow: hidden;overflow-y: scroll;">
-						<h4 class="mb-6">- John  (Primary) – Male</h4>
-						<div class="px-7">
-							<h6 class="fw-semibold mb-3">Session Choice 1:  Friday (06:45 PM – 8:20 PM) Session Choice 2: Sunday (9:15 AM – 10:45 AM) Session Choice 3: (12:15 PM – 1:50 PM)</h6>
-							<!--begin::Input group-->
-							<div class="row mb-2">	
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-bold fs-6 text-success">2024-25 Annual Pledge</label>
-								<!--end::Label-->
-								
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Row-->
-									<div class="row">
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Registration Status :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Payment Status :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-									</div>
-									<!--end::Row-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
 
-							<!--begin::Input group-->
-							<div class="row mb-2">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;"></label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Row-->
-									<div class="row">
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned Session :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned 
-													Sub-class:
-													</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-									</div>
-									<!--end::Row-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
+						<div>
 
-							<!--begin::Input group-->
-							<div class="row mb-6">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;">
-								</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									 <!--begin::Input group-->
-									 <div class="row">
-										<!--begin::Label-->
-										<label class="col-lg-2 col-form-label fw-semibold fs-6">Comments :
-										 </label>
-										<!--end::Label-->
-										<!--begin::Col-->
-										<div class="col-lg-10 fv-row fv-plugins-icon-container">
-											<input type="text" name="website" class="form-control form-control-sm widthcls" placeholder=""></div>
-										<!--end::Col-->
-									</div>
-									<!--end::Input group-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
+							<div *ngIf="registrationForm?.get('registrationDetailsList')?.controls.length>0">
+								{{registrationForm.value | json}}
+								<div formArrayName="registrationDetailsList">
+								  <div *ngFor="let detailsGroup of registrationForm.get('registrationDetailsList').controls; let i = index">
+									<div [formGroupName]="i">
 
-							<!--begin::Input group-->
-							<div class="row mb-2">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-bold fs-6 text-success">Yoga Class</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Row-->
-									<div class="row">
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Registration Status :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Payment Status :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-									</div>
-									<!--end::Row-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
+										<h4 class="mb-6">Person ID: {{ detailsGroup.get('personId').value }}</h4>
 
-							<!--begin::Input group-->
-							<div class="row mb-2">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;">
-								</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Row-->
-									<div class="row">
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned Session :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											 <!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned 
-													Sub-class:
-												</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-									</div>
-									<!--end::Row-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
+										<div formArrayName="responsePersonProgramList">
+											<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j = index">
+											  <div [formGroupName]="j">
 
-							<!--begin::Input group-->
-							<div class="row mb-6">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;">
-								</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Input group-->
-									<div class="row">
-										<!--begin::Label-->
-										<label class="col-lg-2 col-form-label fw-semibold fs-6">Comments :
-										</label>
-										<!--end::Label-->
-										<!--begin::Col-->
-										<div class="col-lg-10 fv-row fv-plugins-icon-container">
-											<input type="text" name="website" class="form-control form-control-sm widthcls" placeholder="">
-										</div>
-										<!--end::Col-->
+												<div class="px-7">
+													<h6 class="fw-semibold mb-3">{{programGroup.get('sessions').value}}</h6>
+													<!--begin::Input group-->
+													<div class="row mb-2">	
+														<!--begin::Label-->
+														<label class="col-lg-3 col-form-label fw-bold fs-6 text-success">{{programGroup.get('classAssignment').value}}</label>
+														<!--end::Label-->
+														
+														<!--begin::Col-->
+														<div class="col-lg-9">
+															<!--begin::Row-->
+															<div class="row">
+																<!--begin::Col-->
+																<div class="col-lg-6 fv-row fv-plugins-icon-container">
+																	<!--begin::Input group-->
+																	<div class="row">
+																		<!--begin::Label-->
+																		<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Registration Status :</label>
+																		<!--end::Label-->
+																		<!--begin::Col-->
+																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
+																			<select formControlName="registrationStatus" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+																				<option value="" >Select an Option...</option>      
+																				<option [value]="registrationStatus" *ngFor = " let registrationStatus of registrtionStatusList">{{registrationStatus.description}}</option>                             
+																			</select> 
+																		</div>
+																		<!--end::Col-->
+																	</div>
+																	<!--end::Input group-->
+																</div>
+																<!--end::Col-->
+																<!--begin::Col-->
+																<div class="col-lg-6 fv-row fv-plugins-icon-container">
+																	<!--begin::Input group-->
+																	<div class="row">
+																		<!--begin::Label-->
+																		<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Payment Status :</label>
+																		<!--end::Label-->
+																		<!--begin::Col-->
+																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
+																			<select name="paymentStatus" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+																				<option value="">Select an Option...</option>   
+																				<option [value]="paymentStatus.code" *ngFor = " let paymentStatus of paymentStatusList">{{paymentStatus.description}}</option>                               
+																			</select> 
+																		</div>
+																		<!--end::Col-->
+																	</div>
+																	<!--end::Input group-->
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Row-->
+														</div>
+														<!--end::Col-->
+													</div>
+													<!--end::Input group-->
+		
+													<!--begin::Input group-->
+													<div class="row mb-2">
+														<!--begin::Label-->
+														<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;"></label>
+														<!--end::Label-->
+														<!--begin::Col-->
+														<div class="col-lg-9">
+															<!--begin::Row-->
+															<div class="row">
+																<!--begin::Col-->
+																<div class="col-lg-6 fv-row fv-plugins-icon-container">
+																	<!--begin::Input group-->
+																	<div class="row">
+																		<!--begin::Label-->
+																		<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned Session :</label>
+																		<!--end::Label-->
+																		<!--begin::Col-->
+																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
+																			<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+																				<option value="">Select an Option...</option>                             
+																			</select> 
+																		</div>
+																		<!--end::Col-->
+																	</div>
+																	<!--end::Input group-->
+																</div>
+																<!--end::Col-->
+																<!--begin::Col-->
+																<div class="col-lg-6 fv-row fv-plugins-icon-container">
+																	<!--begin::Input group-->
+																	<div class="row">
+																		<!--begin::Label-->
+																		<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned 
+																			Sub-class:
+																			</label>
+																		<!--end::Label-->
+																		<!--begin::Col-->
+																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
+																			<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+																				<option value="">Select an Option...</option>                             
+																			</select> 
+																		</div>
+																		<!--end::Col-->
+																	</div>
+																	<!--end::Input group-->
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Row-->
+														</div>
+														<!--end::Col-->
+													</div>
+													<!--end::Input group-->
+		
+													<!--begin::Input group-->
+													<div class="row mb-6">
+														<!--begin::Label-->
+														<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;">
+														</label>
+														<!--end::Label-->
+														<!--begin::Col-->
+														<div class="col-lg-9">
+															<!--begin::Input group-->
+															<div class="row">
+																<!--begin::Label-->
+																<label class="col-lg-2 col-form-label fw-semibold fs-6">Comments :
+																</label>
+																<!--end::Label-->
+																<!--begin::Col-->
+																<div class="col-lg-10 fv-row fv-plugins-icon-container">
+																	<input type="text" name="website" class="form-control form-control-sm widthcls" placeholder=""></div>
+																<!--end::Col-->
+															</div>
+															<!--end::Input group-->
+														</div>
+														<!--end::Col-->
+													</div>
+													<!--end::Input group-->
+		
+		
+												
+													
+												</div>
+											</div>
+											</div>
+										</div>			
+										
+
 									</div>
-									<!--end::Input group-->
+								  </div>	
 								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
+							</div>	
+
 						</div>
 
-						<h4 class="mb-5">- Child 1 – Male – 5th grade as of Sept 2024  - Class Assigned:  Sundaram</h4> 
-						<div class="px-7">
-							<!--begin::Input group-->
-							<div class="row mb-2">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-bold fs-6 text-success">Bala Vihar Class
-								</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Row-->
-									<div class="row">
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Registration Status :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Payment Status :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-									</div>
-									<!--end::Row-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
-
-							<!--begin::Input group-->
-							<div class="row mb-2">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;">
-								</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Row-->
-									<div class="row">
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned Session :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned 
-													Sub-class:
-													</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-									</div>
-									<!--end::Row-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
-
-							<!--begin::Input group-->
-							<div class="row mb-6">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;">
-								</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Input group-->
-									<div class="row">
-										<!--begin::Label-->
-										<label class="col-lg-2 col-form-label fw-semibold fs-6">Comments :
-										 </label>
-										<!--end::Label-->
-										<!--begin::Col-->
-										<div class="col-lg-10 fv-row fv-plugins-icon-container">
-											<input type="text" name="website" class="form-control form-control-sm widthcls" placeholder=""></div>
-										<!--end::Col-->
-									</div>
-									<!--end::Input group-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
-						</div>    
 						
-						<h4 class="mb-6">- Child 1 – Male – 5th grade as of Sept 2024</h4> 
-						<div class="px-7">
-							<h6 class="fw-semibold mb-3">Session Choice 1:  Friday (06:45 PM – 8:20 PM) Session Choice 2: Sunday (9:15 AM – 10:45 AM) Session Choice 3: (12:15 PM – 1:50 PM)</h6>
-
-							<!--begin::Input group-->
-							<div class="row mb-2">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-bold fs-6 text-success">Shloka Class
-								</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Row-->
-									<div class="row">
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Registration Status :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Payment Status :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-									</div>
-									<!--end::Row-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
-
-							<!--begin::Input group-->
-							<div class="row mb-2">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;">
-								</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									<!--begin::Row-->
-									<div class="row">
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned Session :</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-										<!--begin::Col-->
-										<div class="col-lg-6 fv-row fv-plugins-icon-container">
-											<!--begin::Input group-->
-											<div class="row">
-												<!--begin::Label-->
-												<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned 
-													Sub-class:
-													</label>
-												<!--end::Label-->
-												<!--begin::Col-->
-												<div class="col-lg-7 fv-row fv-plugins-icon-container">
-													<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-														<option value="">Select an Option...</option>                             
-													</select> 
-												</div>
-												<!--end::Col-->
-											</div>
-											<!--end::Input group-->
-										</div>
-										<!--end::Col-->
-									</div>
-									<!--end::Row-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
-
-							<!--begin::Input group-->
-							<div class="row mb-6">
-								<!--begin::Label-->
-								<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;">
-								</label>
-								<!--end::Label-->
-								<!--begin::Col-->
-								<div class="col-lg-9">
-									 <!--begin::Input group-->
-									 <div class="row">
-										<!--begin::Label-->
-										<label class="col-lg-2 col-form-label fw-semibold fs-6">Comments :
-										 </label>
-										<!--end::Label-->
-										<!--begin::Col-->
-										<div class="col-lg-10 fv-row fv-plugins-icon-container">
-											<input type="text" name="website" class="form-control form-control-sm widthcls" placeholder=""></div>
-										<!--end::Col-->
-									</div>
-									<!--end::Input group-->
-								</div>
-								<!--end::Col-->
-							</div>
-							<!--end::Input group-->
-						</div>
 					</div>
 					<!--end::Card body-->
 				</form>
