@@ -20,6 +20,7 @@ export class FamilyRegistrationDetailsComponent {
   sessionChoice: any;
   assignedSubClassList:any={};
   assignedSession: any;
+  address: any;
 
  constructor(
   private alertService:AlertService,
@@ -101,11 +102,13 @@ createProgramFormGroup(programData:any): FormGroup {
         programCode: this.selectedProgram.code
   }
    this.registrationDetails = await this.registrationService.getSelectedFamilyRegistrationDetails(param);
+   
 
    for(let i=0;i<this.registrationDetails.registrationDetailsList.length;i++){
     let registrationDetails:any = this.registrationDetails.registrationDetailsList[i];
     for(let j=0;j<registrationDetails.responsePersonProgramList.length;j++){
       let program = registrationDetails.responsePersonProgramList[j];
+      this.address=program.address;
       if(program.personType=='CHILD'){
        let params= {
          programCode:this.selectedProgram.code,
