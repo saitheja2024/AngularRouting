@@ -6,7 +6,7 @@
 				<!--begin::Card title-->
 				<div class="card-title m-0">
 					<span class="m-0 me-5">
-						<b>Family ID / Name:</b> <span> 123 - Doe</span>
+						<b>Family ID / Name:</b> <span> {{selectedFamily.familyId}} - {{selectedFamily.primaryFirstName}} {{selectedFamily.primaryLastName}}</span>
 					</span>
 					<span class="m-0 me-5">
 						<b>Address:</b> <span> 123 Main St, Chantilly, VA 20151</span>
@@ -49,7 +49,7 @@
 						<div>
 
 							<div *ngIf="registrationForm?.get('registrationDetailsList')?.controls.length>0">
-								{{registrationForm.value | json}}
+								<!-- {{registrationForm.value | json}} -->
 								<div formArrayName="registrationDetailsList">
 								  <div *ngFor="let detailsGroup of registrationForm.get('registrationDetailsList').controls; let i = index">
 									<div [formGroupName]="i">
@@ -57,11 +57,11 @@
 										<h4 class="mb-6">Person ID: {{ detailsGroup.get('personId').value }}</h4>
 
 										<div formArrayName="responsePersonProgramList">
-											<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j = index">
+											<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j=index">
 											  <div [formGroupName]="j">
 
 												<div class="px-7">
-													<h6 class="fw-semibold mb-3">{{programGroup.get('sessions').value}}</h6>
+													<h6 class="fw-semibold mb-3">{{programGroup.get('sessions')?.value}}</h6>
 													<!--begin::Input group-->
 													<div class="row mb-2">	
 														<!--begin::Label-->
@@ -83,7 +83,7 @@
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
 																			<select formControlName="registrationStatus" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
 																				<option value="" >Select an Option...</option>      
-																				<option [value]="registrationStatus" *ngFor = " let registrationStatus of registrtionStatusList">{{registrationStatus.description}}</option>                             
+																				<option [value]="registrationStatus.code" *ngFor = "let registrationStatus of registrtionStatusList">{{registrationStatus.description}}</option>                             
 																			</select> 
 																		</div>
 																		<!--end::Col-->
@@ -100,7 +100,7 @@
 																		<!--end::Label-->
 																		<!--begin::Col-->
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
-																			<select name="paymentStatus" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+																			<select formControlName="paymentStatus" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
 																				<option value="">Select an Option...</option>   
 																				<option [value]="paymentStatus.code" *ngFor = " let paymentStatus of paymentStatusList">{{paymentStatus.description}}</option>                               
 																			</select> 
@@ -135,8 +135,9 @@
 																		<!--end::Label-->
 																		<!--begin::Col-->
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
-																			<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-																				<option value="">Select an Option...</option>                             
+																			<select   formControlName="sessionAssignment" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+																				<option value="">Select an Option...</option>         
+																				<option [value]="assignedSession.choicecode" *ngFor = "let assignedSession of assignedSession">{{assignedSession.description}}</option>                                                   
 																			</select> 
 																		</div>
 																		<!--end::Col-->
@@ -155,8 +156,10 @@
 																		<!--end::Label-->
 																		<!--begin::Col-->
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
-																			<select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-																				<option value="">Select an Option...</option>                             
+																			<select formControlName="subClassAssignment" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+																				<option value="">Select an Option...</option>
+																				<option [value]="subClass.description" *ngFor="let subClass of getAssignedSubClassListFun(programGroup.get('registrationId').value)">{{subClass.description}}</option>
+																				                             
 																			</select> 
 																		</div>
 																		<!--end::Col-->
@@ -187,7 +190,7 @@
 																<!--end::Label-->
 																<!--begin::Col-->
 																<div class="col-lg-10 fv-row fv-plugins-icon-container">
-																	<input type="text" name="website" class="form-control form-control-sm widthcls" placeholder=""></div>
+																	<input formControlName="adminComment" type="text"  class="form-control form-control-sm widthcls" placeholder=""></div>
 																<!--end::Col-->
 															</div>
 															<!--end::Input group-->
@@ -229,6 +232,6 @@
 		<a href="#" class="btn btn-primary mb-5" style="width: 90% !important;">Apply Payment</a>
 		<a href="#" class="btn btn-primary mb-20" style="width: 90% !important;">Re-Send Receipt</a>
 		<a href="#" class="btn btn-primary mb-5" style="width: 90% !important;">Cancel</a><br>
-		<a href="#" class="btn btn-primary mb-5" style="width: 90% !important;">Save</a>
+		<a  class="btn btn-primary mb-5" style="width: 90% !important;" (click)="onSaveButtonClick()">Save</a>
 	</div>
 </div>

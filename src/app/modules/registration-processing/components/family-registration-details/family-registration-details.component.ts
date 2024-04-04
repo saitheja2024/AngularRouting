@@ -18,8 +18,8 @@ export class FamilyRegistrationDetailsComponent {
   registrtionStatusList: any;
   paymentStatusList: any;
   sessionChoice: any;
-  assignedSubClass: any;
-  assignedSubclass: void;
+  assignedSubClassList:any={};
+  assignedSession: any;
 
  constructor(
   private alertService:AlertService,
@@ -30,8 +30,7 @@ export class FamilyRegistrationDetailsComponent {
 
  async  ngOnInit(){
   await this.populateData();
-  this.registrtionStatusList = await this.registrationService.fetchRegistrationStatus();
-  this.paymentStatusList = await this.registrationService.fetchPaymentStatus();
+ 
   this.initRegistrationDetailsForm();
  }
 
@@ -64,6 +63,10 @@ export class FamilyRegistrationDetailsComponent {
   programDataList.forEach((programData:any) => {
     const programFormGroup = this.createProgramFormGroup(programData);
     responsePersonProgramList.push(programFormGroup);
+
+
+
+   
   });
 
   return detailsGroup;
@@ -74,9 +77,10 @@ createProgramFormGroup(programData:any): FormGroup {
   const programFormGroup = this.fb.group({});
   
   // Loop through each property in the program object
-  Object.keys(programData).forEach(key => {
+  Object.keys(programData).forEach(async key => {
     // Add a new FormControl for each property in the program object
     programFormGroup.addControl(key, this.fb.control(programData[key]));
+   
   });
 
   return programFormGroup;
@@ -88,35 +92,54 @@ createProgramFormGroup(programData:any): FormGroup {
   this.selectedFamily = this.registrationService.getSelectedFamily();
   this.selectedProgram = this.registrationService.getSelectedProgram();
   this.selectedChapterID = this.registrationService.getSelectedChapter();
+  this.registrtionStatusList = await this.registrationService.fetchRegistrationStatus();
+  this.paymentStatusList = await this.registrationService.fetchPaymentStatus();
+  this.fetchSessionChoice();
   let param={
     familyID: this.selectedFamily.familyId,
         chapterID: this.selectedChapterID,
         programCode: this.selectedProgram.code
   }
    this.registrationDetails = await this.registrationService.getSelectedFamilyRegistrationDetails(param);
-   this.assignedSubclass = await this.fetchAssignedSubClass();
 
+   for(let i=0;i<this.registrationDetails.registrationDetailsList.length;i++){
+    let registrationDetails:any = this.registrationDetails.registrationDetailsList[i];
+    for(let j=0;j<registrationDetails.responsePersonProgramList.length;j++){
+      let program = registrationDetails.responsePersonProgramList[j];
+      if(program.personType=='CHILD'){
+       let params= {
+         programCode:this.selectedProgram.code,
+          signupCode:program.signupCode,
+          classCode:program.classAssignment,
+          schoolGradeCode:program.schoolGradeCode
+      }
+      let assignedSubClassDropDownValues = await this.fetchAssignedSubClass(params);
+      let tempString=program.registrationId+"";
+      this.assignedSubClassList[tempString]=assignedSubClassDropDownValues;
+    }
+      
+    }
+   }
+  
  }
+
+ getAssignedSubClassListFun(registrtationId:any){
+  
+   return this.assignedSubClassList[registrtationId];
+ }
+
+
 
  async fetchSessionChoice(){
   let params = {
     "programCode":this.selectedProgram.code
   }
-  this.sessionChoice = await this.registrationService.fetchSessionChoice(params);
+  this.assignedSession = await this.registrationService.fetchSessionChoice(params);
 }
 
-async fetchAssignedSubClass(){
- this.alertService.showErrorALert("Pankaj : Not Fetchingup Assigned Sub Class as request parameters are not clear.");
-  return;
-  let params = {
-    "programCode": "CS_BALAVIHAR_2024-25",
-    "chapterCode": "",
-    "signupCodeCategory": 0,
-    "signupCode": "SHLOKA_CLASS",
-    "classCode": "SHLOKA",
-    "subClassCode": ""
-  }
-  this.assignedSubClass = await this.registrationService.fetchAssignedSubClass(params);
+async fetchAssignedSubClass(params:any){
+  let  assignedSubClass = await this.registrationService.fetchAssignedSubClass(params);
+  return assignedSubClass;
 }
 
 
@@ -126,5 +149,34 @@ async fetchAssignedSubClass(){
   onAcceptFamily(){}
 
   onAssignChoice(){}
+
+  async onSaveButtonClick(){
+    console.log(JSON.stringify(this.registrationForm.value,null,4));
+
+    let personProgramList:any=[]
+    let registrationList = this.registrationForm.value.registrationDetailsList;
+
+    for(let i=0;i<registrationList.length;i++){
+       let registrationDetails = registrationList[i];
+       let responsePersonProgramList = registrationDetails.responsePersonProgramList;
+       for(let j=0;j<responsePersonProgramList.length;j++){
+        let program:any = responsePersonProgramList[j];
+        personProgramList.push(program);
+       }
+    }
+
+
+    let list = {
+      personProgramList:personProgramList
+    }
+    await this.registrationService.saveFamilyRegistrationDetails(list);
+    let param={
+      familyID: this.selectedFamily.familyId,
+          chapterID: this.selectedChapterID,
+          programCode: this.selectedProgram.code
+    }
+     this.registrationDetails = await this.registrationService.getSelectedFamilyRegistrationDetails(param);
+
+  }
 
 }

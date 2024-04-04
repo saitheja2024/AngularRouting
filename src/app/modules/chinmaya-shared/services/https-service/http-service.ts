@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { Observable, catchError, finalize, map, of } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ErrorHandlerService } from "../errors/error-handler.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { AlertService } from "../alert/alert.service";
 
 
 export interface Options {
@@ -21,7 +23,8 @@ export class HttpService {
 
   constructor(
     private httpClient: HttpClient,
-    private errorHandler: ErrorHandlerService
+    private errorHandler: ErrorHandlerService,
+    private alertService: AlertService
 
   ) { }
 
@@ -77,6 +80,9 @@ export class HttpService {
         .subscribe((resp:any) => {
           // console.log(JSON.stringify(opt,null,4))
           // console.log(JSON.stringify(resp,null,4))
+          if(resp["message"]){
+            this.alertService.showSuccessAlert(resp["message"]);
+          }
           resolve(resp);
         }
         );
