@@ -23,7 +23,9 @@ export class UrlService {
     fetchAllPrograms: "registration/fetchProgramsByChapter",
     fetchRegistrationDetailsBasedOnSearch:"registrationProcessing/fetchRegistrationDetailsBasedOnSearch",
     fetchRegistrationDetailsBasedOnFamilyId:"registrationProcessing/fetchRegistrationDetailsBasedOnFamilyId",
-    saveRegistrationDetails:"registrationProcessing/saveRegistrationDetails"
+    saveRegistrationDetails:"registrationProcessing/saveRegistrationDetails",
+    acceptFamily:"registrationProcessing/acceptFamily",
+    assignChoice:"registrationProcessing/assignChoice"
     
   }
 

@@ -53,14 +53,21 @@ export class FamilyRegistrationDetailsComponent {
 
  createDetailsFormGroup(detailsData:any): FormGroup {
   // Create a form group for each registration details
+
+  const programDataList = detailsData.responsePersonProgramList;
+  let personName="";
+  if(programDataList && programDataList.length>0){
+    personName = programDataList[0].firstName+" "+programDataList[0].lastName;
+  }
   const detailsGroup = this.fb.group({
     personId: detailsData.personId,
+    personName:personName,
     responsePersonProgramList: this.fb.array([]) // Create form array for responsePersonProgramList
   });
 
   // Iterate over responsePersonProgramList and push form groups into the array
   const responsePersonProgramList = detailsGroup.get('responsePersonProgramList') as FormArray;
-  const programDataList = detailsData.responsePersonProgramList;
+  
   programDataList.forEach((programData:any) => {
     const programFormGroup = this.createProgramFormGroup(programData);
     responsePersonProgramList.push(programFormGroup);
@@ -149,9 +156,35 @@ async fetchAssignedSubClass(params:any){
  
 
   
-  onAcceptFamily(){}
+  async onAcceptFamilyButtonClick(){
 
-  onAssignChoice(){}
+    let param = {
+    "familyID": this.selectedFamily.familyId,
+    "chapterID": this.selectedChapterID,
+    "programCode": this.selectedProgram.code
+    }
+
+    await this.registrationService.acceptFamily(param);
+
+
+    await this.populateData();
+    this.initRegistrationDetailsForm();
+
+  } 
+
+  async onAssignChoiceButtonClick(){
+    let param = {
+      "familyID": this.selectedFamily.familyId,
+      "chapterID": this.selectedChapterID,
+      "programCode": this.selectedProgram.code
+      }
+  
+      await this.registrationService.assignChoice(param);
+  
+  
+      await this.populateData();
+      this.initRegistrationDetailsForm();
+  }
 
   async onSaveButtonClick(){
     console.log(JSON.stringify(this.registrationForm.value,null,4));

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="margin-top:8px;">
 	<div class="col-lg-10">
 		<div class="card mb-5 mb-xl-10">
 			<!--begin::Card header-->
@@ -34,13 +34,13 @@
 								  <div *ngFor="let detailsGroup of registrationForm.get('registrationDetailsList').controls; let i = index" >
 									<div [formGroupName]="i" >
 
-										
+										<h4 style="background:#f3f3f3;padding:4px">{{ detailsGroup.get('personName').value }} </h4>
 
 										<div formArrayName="responsePersonProgramList" >
 											<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j=index">
 											  <div [formGroupName]="j" class="card" style="border:1px solid lightgray !important;margin-bottom:8px">
 												<div class="card-title" style="padding:8px;">
-												<h4 >{{ programGroup.get('firstName').value }} {{ programGroup.get('lastName').value }}</h4>
+												
 											</div>
 
 												<div class="px-7">
@@ -208,13 +208,13 @@
 		</div>
 	</div>
 	<div class="col-lg-2">
-		<a href="#" class="btn btn-primary mb-5" style="width: 90% !important;">Accept Family</a>
-		<a href="#" class="btn btn-primary mb-5" style="width: 90% !important;">Assign Choice 1</a>
-		<a href="#" class="btn btn-primary mb-5" style="width: 90% !important;">View Payment Schedule</a>
-		<a href="#" class="btn btn-primary mb-5" style="width: 90% !important;">Apply Adjustment</a>
-		<a href="#" class="btn btn-primary mb-5" style="width: 90% !important;">Apply Payment</a>
-		<a href="#" class="btn btn-primary mb-20" style="width: 90% !important;">Re-Send Receipt</a>
-		<a href="#" class="btn btn-primary mb-5" style="width: 90% !important;">Cancel</a><br>
+		<a  class="btn btn-primary mb-5" style="width: 90% !important;" (click)="onAcceptFamilyButtonClick()">Accept Family</a>
+		<a  class="btn btn-primary mb-5" style="width: 90% !important;" (click)="onAssignChoiceButtonClick()">Assign Choice 1</a>
+		<a  class="btn btn-primary mb-5" style="width: 90% !important;">View Payment Schedule</a>
+		<a  class="btn btn-primary mb-5" style="width: 90% !important;">Apply Adjustment</a>
+		<a  class="btn btn-primary mb-5" style="width: 90% !important;">Apply Payment</a>
+		<a  class="btn btn-primary mb-20" style="width: 90% !important;">Re-Send Receipt</a>
+		<a  class="btn btn-primary mb-5" style="width: 90% !important;">Cancel</a><br>
 		<a  class="btn btn-primary mb-5" style="width: 90% !important;" (click)="onSaveButtonClick()">Save</a>
 	</div>
 </div>
