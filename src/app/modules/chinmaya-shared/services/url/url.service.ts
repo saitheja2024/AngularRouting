@@ -33,7 +33,7 @@ export class UrlService {
     fetchProgramYears: "reports/fetchProgramYears",
     fetchSessionChoicesList:"reports/fetchSessionChoicesList",
     fetchSignupcodes:"reports/fetchSignupcodes",
-    fetchClassList:"reports/fetchClassList",
+    fetchClassList:"reports/fetchClassDropdown",
     fetchAssignedSubClass:"reports/fetchSubClassDropdown"
   }
  
