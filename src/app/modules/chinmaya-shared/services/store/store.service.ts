@@ -18,6 +18,7 @@ export class StoreService{
   private storeSubject$: Subject<any> = new Subject();
   private programSubject$: Subject<any> = new Subject();
   private loggedInUserSubject$ : Subject<any> = new Subject();
+  chapterSubject$: Subject<any> = new Subject();
 
 
   constructor() { 
@@ -66,9 +67,14 @@ export class StoreService{
     if(key==KEYS.program){
       this.programSubject$.next(obj);
     }
-    if(key==KEYS.loggedInUser){
+    else if(key==KEYS.loggedInUser){
       this.loggedInUserSubject$.next(obj);
     }
+    else if(key==KEYS.chapter){
+      this.chapterSubject$.next(obj);
+    }
+
+
     
     this.storeSubject$.next(this.store);
   }
@@ -94,6 +100,10 @@ export class StoreService{
 
   public onProgramUpdate(): Observable<any> {
     return this.programSubject$.asObservable();
+  }
+
+  public onChapterUpdate(): Observable<any> {
+    return this.chapterSubject$.asObservable();
   }
 
   public onloggedInUser(): Observable<any> {
