@@ -13,6 +13,10 @@
 @import "./core/layout/base/layout";
 @import "layout/layout";
 
+.mat-sort-header-content { 
+  text-align: left !important;
+}
+
 #kt_app_toolbar { 
   display: none !important;
 }
@@ -42,6 +46,7 @@
   .app-container {
 		padding-left: 20px !important;
     padding-right: 20px !important;
+    padding-top: 10px !important;
 	}
 
   .form-check-input {

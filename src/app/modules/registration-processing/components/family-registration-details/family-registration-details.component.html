@@ -1,4 +1,4 @@
-<div class="row" style="margin-top:8px;">
+<div class="row">
 	<div class="col-lg-10">
 		<div class="card mb-5 mb-xl-10">
 			<!--begin::Card header-->
@@ -17,30 +17,21 @@
 			<!--begin::Card header-->
 			<!--begin::Content-->
 			<div id="kt_account_settings_profile_details" class="collapse show">
-			
-					
-				  
-				  
 				<!--begin::Form-->
 				<form [formGroup]="registrationForm" *ngIf="registrationDetails">
 					<!--begin::Card body-->
 					<div class="card-body border-top py-5" style="height: 750px !important;overflow: hidden;overflow-y: scroll;">
-
 						<div>
-
 							<div *ngIf="registrationForm?.get('registrationDetailsList')?.controls.length>0">
 								<!-- {{registrationForm.value | json}} -->
 								<div formArrayName="registrationDetailsList">
 								  <div *ngFor="let detailsGroup of registrationForm.get('registrationDetailsList').controls; let i = index" >
 									<div [formGroupName]="i" >
-
 										<h4 style="background:#f3f3f3;padding:4px">{{ detailsGroup.get('personName').value }} </h4>
-
 										<div formArrayName="responsePersonProgramList" >
 											<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j=index">
 											  <div [formGroupName]="j" class="card" style="border:1px solid lightgray !important;margin-bottom:8px">
 												<div class="card-title" style="padding:8px;">
-												
 											</div>
 
 												<div class="px-7">
@@ -65,7 +56,7 @@
 																		<!--begin::Col-->
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
 																			<select formControlName="registrationStatus" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-																				<option value="" >Select an Option...</option>      
+																				<option value="" >Select an Option</option>      
 																				<option [value]="registrationStatus.code" *ngFor = "let registrationStatus of registrtionStatusList">{{registrationStatus.description}}</option>                             
 																			</select> 
 																		</div>
@@ -84,7 +75,7 @@
 																		<!--begin::Col-->
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
 																			<select formControlName="paymentStatus" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-																				<option value="">Select an Option...</option>   
+																				<option value="">Select an Option</option>   
 																				<option [value]="paymentStatus.code" *ngFor = " let paymentStatus of paymentStatusList">{{paymentStatus.description}}</option>                               
 																			</select> 
 																		</div>
@@ -119,7 +110,7 @@
 																		<!--begin::Col-->
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
 																			<select   formControlName="sessionAssignment" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-																				<option value="">Select an Option...</option>         
+																				<option value="">Select an Option</option>         
 																				<option [value]="assignedSession.choicecode" *ngFor = "let assignedSession of assignedSession">{{assignedSession.description}}</option>                                                   
 																			</select> 
 																		</div>
@@ -140,9 +131,8 @@
 																		<!--begin::Col-->
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
 																			<select formControlName="subClassAssignment" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-																				<option value="">Select an Option...</option>
+																				<option value="">Select an Option</option>
 																				<option [value]="subClass.description" *ngFor="let subClass of getAssignedSubClassListFun(programGroup.get('registrationId').value)">{{subClass.description}}</option>
-																				                             
 																			</select> 
 																		</div>
 																		<!--end::Col-->
@@ -181,24 +171,15 @@
 														<!--end::Col-->
 													</div>
 													<!--end::Input group-->
-		
-		
-												
-													
 												</div>
 											</div>
 											</div>
-										</div>			
-										
-
+										</div>		
 									</div>
 								  </div>	
 								</div>
 							</div>	
-
 						</div>
-
-						
 					</div>
 					<!--end::Card body-->
 				</form>
@@ -208,13 +189,13 @@
 		</div>
 	</div>
 	<div class="col-lg-2">
-		<a  class="btn btn-primary mb-5" style="width: 90% !important;" (click)="onAcceptFamilyButtonClick()">Accept Family</a>
-		<a  class="btn btn-primary mb-5" style="width: 90% !important;" (click)="onAssignChoiceButtonClick()">Assign Choice 1</a>
-		<a  class="btn btn-primary mb-5" style="width: 90% !important;">View Payment Schedule</a>
-		<a  class="btn btn-primary mb-5" style="width: 90% !important;">Apply Adjustment</a>
-		<a  class="btn btn-primary mb-5" style="width: 90% !important;">Apply Payment</a>
-		<a  class="btn btn-primary mb-20" style="width: 90% !important;">Re-Send Receipt</a>
-		<a  class="btn btn-primary mb-5" style="width: 90% !important;">Cancel</a><br>
-		<a  class="btn btn-primary mb-5" style="width: 90% !important;" (click)="onSaveButtonClick()">Save</a>
+		<a  class="btn btn-primary mb-5 mt-8" style="width: 100% !important;" (click)="onAcceptFamilyButtonClick()">Accept Family</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;" (click)="onAssignChoiceButtonClick()">Assign Choice 1</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;">View Payment Schedule</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Apply Adjustment</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Apply Payment</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Re-Send Receipt</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Cancel</a><br>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;" (click)="onSaveButtonClick()">Save</a>
 	</div>
 </div>
