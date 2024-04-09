@@ -27,7 +27,7 @@
 								<div formArrayName="registrationDetailsList">
 								  <div *ngFor="let detailsGroup of registrationForm.get('registrationDetailsList').controls; let i = index" >
 									<div [formGroupName]="i" >
-										<h4 style="background:#f3f3f3;padding:4px">{{ detailsGroup.get('personName').value }} </h4>
+										<h4 style="background:#f3f3f3;padding:4px">{{getPersonSummary(detailsGroup)}} </h4>
 										<div formArrayName="responsePersonProgramList" >
 											<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j=index">
 											  <div [formGroupName]="j" class="card" style="border:1px solid lightgray !important;margin-bottom:8px">
