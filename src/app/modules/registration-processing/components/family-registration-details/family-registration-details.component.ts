@@ -250,4 +250,9 @@ getPersonSummary(detailsGroup: any) {
 
   }
 
+
+  onCancelButtonClick(){
+    this.router.navigateByUrl("/registration-processing/registration-search-results");
+  }
+
 }
