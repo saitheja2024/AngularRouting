@@ -100,7 +100,7 @@ createProgramFormGroup(programData:any): FormGroup {
   // Loop through each property in the program object
   Object.keys(programData).forEach(async key => {
     // Add a new FormControl for each property in the program object
-    programFormGroup.addControl(key, this.fb.control(programData[key]));
+    programFormGroup.addControl(key, this.fb.control(programData[key]?programData[key]:""));
    
   });
 
