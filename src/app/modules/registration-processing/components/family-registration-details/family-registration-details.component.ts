@@ -56,12 +56,23 @@ export class FamilyRegistrationDetailsComponent {
 
   const programDataList = detailsData.responsePersonProgramList;
   let personName="";
+  let gender="";
+  let schoolGradeCodeDescription="";
+  let classAssignment="";
   if(programDataList && programDataList.length>0){
     personName = programDataList[0].firstName+" "+programDataList[0].lastName;
+    gender = programDataList[0].genderDescription;
+    schoolGradeCodeDescription=programDataList[0].schoolGradeCodeDescription;
+    classAssignment=programDataList[0].classAssignment;
+
+
   }
   const detailsGroup = this.fb.group({
     personId: detailsData.personId,
     personName:personName,
+    gender:gender,
+    schoolGradeCodeDescription:schoolGradeCodeDescription,
+    classAssignment:classAssignment,
     responsePersonProgramList: this.fb.array([]) // Create form array for responsePersonProgramList
   });
 
@@ -151,6 +162,30 @@ async fetchAssignedSubClass(params:any){
   let  assignedSubClass = await this.registrationService.fetchAssignedSubClass(params);
   return assignedSubClass;
 }
+
+
+
+getPersonSummary(detailsGroup: any) {
+  let summary = detailsGroup.get('personName').value;
+
+  // Check if gender is not empty or null
+  if (detailsGroup.get('gender').value) {
+    summary += ' - ' + detailsGroup.get('gender').value;
+  }
+
+  // Check if schoolGradeCodeDescription is not empty or null
+  if (detailsGroup.get('schoolGradeCodeDescription').value) {
+    summary += ' - ' + detailsGroup.get('schoolGradeCodeDescription').value;
+  }
+
+  // Check if classAssignment is not empty or null
+  if (detailsGroup.get('classAssignment').value) {
+    summary += ' - ' + detailsGroup.get('classAssignment').value;
+  }
+
+  return summary;
+}
+
 
 
  
