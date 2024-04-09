@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import { RegistrationService } from 'src/app/modules/chinmaya-shared/services/registration-processing/registration.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-family-registration-details',
@@ -25,7 +26,8 @@ export class FamilyRegistrationDetailsComponent {
  constructor(
   private alertService:AlertService,
   private registrationService:RegistrationService,
-  private fb:FormBuilder){}
+  private fb:FormBuilder,
+  private router:Router){}
 
 
 
