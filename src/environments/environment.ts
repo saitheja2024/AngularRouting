@@ -10,6 +10,7 @@ export const environment = {
   apiUrl: 'api',
   appThemeName: 'Metronic',
   appPurchaseUrl: 'https://1.envato.market/EA4JP',
+  memberRegPortalURL:"https://nonregqa.cmwrcregistration.org/MemberReg",
   appHTMLIntegration:
     'https://preview.keenthemes.com/metronic8/demo1/documentation/base/helpers/flex-layouts.html',
   appPreviewUrl: 'https://preview.keenthemes.com/metronic8/angular/demo1/',
