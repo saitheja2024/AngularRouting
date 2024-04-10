@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FamilyMemberSearchInterface, FamilySearchInterface, SearchPersonByPersonIdInterface } from '../../interfaces/family-interfaces/family-search';
 import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
+import { FamilyMemberSearchInterface, FamilySearchInterface, SearchPersonByPersonIdInterface } from '../../interfaces/family-interfaces/family-search';
 
 @Injectable({
   providedIn: 'root'

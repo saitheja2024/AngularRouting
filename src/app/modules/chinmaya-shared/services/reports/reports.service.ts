@@ -10,6 +10,7 @@ import { signupCodeRequestInteface } from '../master/master-interface';
 })
 export class ReportsService {
   
+  
   programYears: any;
   signupCodes: any[];
   classList: any[]=[];
@@ -89,6 +90,17 @@ async fetchSessionChoice(params:any, reload?: any) {
 }
 
 
+async  fetchAssignedSubClass(params:any) {
+  let options: Options = {
+    url: this.urlService.reportsURL.fetchAssignedSubClass,
+    body:params
+}
+
+
+let response: any = await this.httpService.post(options);
+
+return response;
+}
   
 
   

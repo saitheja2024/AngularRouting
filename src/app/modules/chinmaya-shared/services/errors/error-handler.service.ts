@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth';
 import { KEYS, StoreService } from '../store/store.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,13 @@ export class ErrorHandlerService {
     }
     
     if(errorMessage.toLowerCase().indexOf("jwt")>-1){
-      this.router.navigateByUrl("/auth/login")
-      this.store.setValue(KEYS.loggedInUser,null);
+      if(errorMessage.toLowerCase().indexOf("jwt")>-1){
+        this.store.setValue(KEYS.loggedInUser,null);
+        window.location.href = environment.memberRegPortalURL
+        //this.router.navigateByUrl("/auth/login")
+        
+        return of(null);
+      }
       return of(null);
     }
     let config:any = {duration:3000,horizontalPosition:"center",verticalPosition:"top"}

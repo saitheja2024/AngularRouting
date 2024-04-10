@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ThemeModeService, ThemeModeType } from './theme-mode.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-theme-mode-switcher',
@@ -23,5 +24,10 @@ export class ThemeModeSwitcherComponent implements OnInit {
 
   switchMode(_mode: ThemeModeType): void {
     this.modeService.switchMode(_mode);
+  }
+
+
+  onLogOutButtonClick(){
+    window.location.href = environment.memberRegPortalURL
   }
 }

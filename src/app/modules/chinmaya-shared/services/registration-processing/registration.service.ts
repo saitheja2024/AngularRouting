@@ -6,11 +6,14 @@ import { MasterService } from '../master/master.service';
 import { AuthService } from 'src/app/modules/auth';
 import { signupCodeRequestInteface } from '../master/master-interface';
 import { KEYS, StoreService } from '../store/store.service';
+import { fetchRegistrationDetailsBasedOnFamilyIdRequestInterface } from './registration.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistrationService {
+  
+  
   
   
   
@@ -26,6 +29,14 @@ export class RegistrationService {
     private reportService:ReportsService,
     private masterService:MasterService,
     private store:StoreService) { }
+
+    getSelectedChapter(): any {
+       return this.store.getValue(KEYS.chapter);
+    }
+
+    getSelectedProgram(): any {
+      return this.store.getValue(KEYS.program);
+   }
 
   setSearchCriteria(value: any) {
     this.searchCriteria=value;
@@ -47,6 +58,29 @@ export class RegistrationService {
   getLoggedInUser(){
     return this.authServie.getLoggedInUser();
   }
+
+
+
+  async acceptFamily(param:any) {
+    let options: Options = {
+      url: this.urlService.registrationProcessingURL.acceptFamily,
+      body: param
+    }
+
+    let response: any = await this.httpService.post(options);
+
+  }
+
+
+  async assignChoice(param: any) {
+    let options: Options = {
+      url: this.urlService.registrationProcessingURL.assignChoice,
+      body: param
+    }
+
+    let response: any = await this.httpService.post(options);
+  }
+ 
   
 
 
@@ -90,7 +124,47 @@ export class RegistrationService {
     return response;
   }
 
+  async getSelectedFamilyRegistrationDetails(params:fetchRegistrationDetailsBasedOnFamilyIdRequestInterface)
+  {
+    let options: Options = {
+      url: this.urlService.registrationProcessingURL.fetchRegistrationDetailsBasedOnFamilyId,
+      body: params
+    }
+    let response: any = await this.httpService.post(options);
+    return response;
+  }
+
+
+  async fetchPaymentStatus() {
+    return await this.masterService.fetchPaymentStatusList();
+  }
+
+  async fetchRegistrationStatus() {
+    return await this.masterService.fetchRegistrationStatusList()
+  }
   
+  async fetchAssignedSubClass(params:any) {
+    let response =  await this.reportService.fetchAssignedSubClass(params);
+    if(response && response.selectDropdownList){
+      return response.selectDropdownList;
+    }
+
+    return [];
+  }
+
+
+  async saveFamilyRegistrationDetails(param:any) {
+    let options: Options = {
+      url: this.urlService.registrationProcessingURL.saveRegistrationDetails,
+      body: param
+    }
+
+    let response: any = await this.httpService.post(options);
+  }
+  
+    
  
 
 }
+
+

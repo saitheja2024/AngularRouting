@@ -22,15 +22,19 @@ export class UrlService {
     
     fetchAllPrograms: "registration/fetchProgramsByChapter",
     fetchRegistrationDetailsBasedOnSearch:"registrationProcessing/fetchRegistrationDetailsBasedOnSearch",
-    fetchRegistrationDetailsBasedOnFamilyId:"registrationProcessing/fetchRegistrationDetailsBasedOnFamilyId"
+    fetchRegistrationDetailsBasedOnFamilyId:"registrationProcessing/fetchRegistrationDetailsBasedOnFamilyId",
+    saveRegistrationDetails:"registrationProcessing/saveRegistrationDetails",
+    acceptFamily:"registrationProcessing/acceptFamily",
+    assignChoice:"registrationProcessing/assignChoice"
     
   }
 
   reportsURL = {
     fetchProgramYears: "reports/fetchProgramYears",
-    fetchSessionChoicesList:"/reports/fetchSessionChoicesList",
-    fetchSignupcodes:"/reports/fetchSignupcodes",
-    fetchClassList:"/reports/fetchClassList" 
+    fetchSessionChoicesList:"reports/fetchSessionChoicesList",
+    fetchSignupcodes:"reports/fetchSignupcodes",
+    fetchClassList:"reports/fetchClassDropdown",
+    fetchAssignedSubClass:"reports/fetchSubClassDropdown"
   }
  
   familyURL = {
