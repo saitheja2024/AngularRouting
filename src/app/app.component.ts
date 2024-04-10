@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
       this.router.navigateByUrl("");
       return;
     }
-    let  route= "/registration-processing/family-registration-details"
+    let  route= "/registration-processing"
     if(!this.authService.getLoggedInUser()){
       route="/auth";
     }
