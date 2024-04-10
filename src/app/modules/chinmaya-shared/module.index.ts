@@ -11,7 +11,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatChipsModule} from '@angular/material/chips';
 import {MatIconModule} from '@angular/material/icon';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 export const MODULES = [
@@ -29,6 +29,7 @@ export const MODULES = [
     MatSnackBarModule,
     MatChipsModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCheckboxModule
    
 ]

@@ -12,3 +12,37 @@
     position: sticky !important;
     top: 0px !important;
   }
+
+  .templatePopup_wrap{
+    width: 100%;
+  }
+
+  .overlay_template{
+    width:100%;
+    background:rgba(0,0,0,0.4);
+    position: fixed;
+    left:0;
+    top:0;
+    height:100%;
+    z-index: 999;
+  }
+
+  .template_popup_window{
+    background-color: #fff;
+    width: 300px;
+    border-radius: 4px;
+    z-index: 9999;
+    position: absolute;
+    top: 40%;
+    margin: 0 auto;
+    left: 50%;
+    padding: 12px 11px;
+  }
+
+  .close_icon{
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    font-size: 14px;
+    color: #000;
+  }

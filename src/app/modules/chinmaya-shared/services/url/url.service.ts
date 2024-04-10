@@ -55,5 +55,16 @@ export class UrlService {
     searchUnlockAccount:'onlineaccount/searchunblockAccount'
   }
 
+  emailProcessingSearchDropDown ={
+    fetchRegistrationStatusList:'master/fetchRegistrationStatusList',
+    fetchPaymentStatusList:'master/fetchPaymentStatusList',
+    fetchSessionChoicesList:'reports/fetchSessionChoicesList',
+    fetchSignupcodes:'reports/fetchSignupcodes',
+    fetchClassDropdown:'reports/fetchClassDropdown',
+    fetchSchoolGradeList:'master/fetchSchoolGradeList',
+  }
+  emailProcessingSearch = {
+    fetchRegistrationDetailsBasedOnSearch:'registrationProcessing/fetchRegistrationDetailsBasedOnSearch'
+  }
   
 }

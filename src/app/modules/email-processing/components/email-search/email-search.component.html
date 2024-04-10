@@ -11,10 +11,11 @@
     <!--begin::Content-->
     <div id="kt_account_settings_profile_details" class="collapse show">
         <!--begin::Form-->
-        <form id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+        <form [formGroup]="searchCriteriaForm">
+            <div formGroupName="requestRegistrationProcessingSearch">
             <!--begin::Card body-->
             <div class="card-body border-top p-6">
-
+               
                 <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
                     <div class="d-flex flex-column">
                         <div class="d-flex align-items-center mb-2">
@@ -30,37 +31,19 @@
                             <label class="required fw-semibold fs-6 mt-2 mb-2">Registration Status:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Pending</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Accepted</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Waitlisted</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Cancelled</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Withdrawn</span>
-                                    </label>
-                                </div>
+                            <div class="row d-flex2" style="width:100%;" >
+                                <ng-container>
+                                    <div>    
+                                    <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-6" >
+                                            <div >
+                                            <label  class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                                <input  class="form-check-input" type="checkbox"   [value]="">
+                                                <span class="fw-semibold ps-2 fs-7 text-uppercase"></span>
+                                            </label>
+                                         </div>
+                                      </div>
+                                      </div>
+                                </ng-container>
                             </div>
                         </div>
                     </div>
@@ -74,132 +57,24 @@
                             <label class="required fw-semibold fs-6 mt-2 mb-2">Payment Status:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Partially Paid</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Paid</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Balance Due</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">No Dues</span>
-                                    </label>
-                                </div>
+                            <div class="row d-flex2" style="width:100%;" >
+                                <ng-container  >
+                                    <div>  
+                                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" >
+                                            <div>
+                                            <label  class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                                <input  class="form-check-input" type="checkbox"   [value]="">
+                                                <span class="fw-semibold ps-2 fs-7 text-uppercase"></span>
+                                            </label>
+                                         </div>
+                                      </div>
+                                    </div>  
+                                </ng-container>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-------- End Payment Status -------->
-
-                <!-------- Begin Session Choice 1 -------->
-                <!--<div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice 1:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-                <!-------- End Session Choice 1 -------->
-
-                <!-------- Begin Session Choice 2 -------->
-                <!--<div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice 2:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-                <!-------- End Session Choice 2 -------->
-
-				<!-------- Begin Session Choice 3 -------->
-                <!--<div class="col-lg-12 mb-2">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                            <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice 3:</label>
-                        </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-                <!-------- End Session Choice 3 -------->
 
                 <!-------- Begin Session Choice -------->
                 <div class="col-lg-12 mb-2">
@@ -207,13 +82,12 @@
                         <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
                             <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice:</label>
                         </div>
+                        
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                <select formControlName="choiceLabel"  class="form-select form-select-sm fw-semibold">
                                     <option value="">Select Session</option>    
-                                    <option value="">Session Choice 1</option> 
-                                    <option value="">Session Choice 2</option> 
-                                    <option value="">Session Choice 2</option>                          
+                                    <option *ngFor="let item of sessionChoice?.selectDropdownList" [value]="item.choicecode">{{item.description}}</option> 
                                 </select> 
                             </div>
                         </div>
@@ -229,11 +103,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                <select formControlName="choiceCode"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                     <option value="">Select Choice</option>    
-                                    <option value="">Friday (06:45-08:20 PM)</option> 
-                                    <option value="">Sunday 1 (9:15-10:50 AM)</option> 
-                                    <option value="">Sunday 2 (12:15-1:50 PM)</option>                          
+                                    <option *ngFor="let item of sessionChoice?.selectDropdownList" [value]="item.choicecode">{{item.description}}</option>                        
                                 </select> 
                             </div>
                         </div>
@@ -251,22 +123,11 @@
                             <div class="row d-flex2" style="width:100%;">
                                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                                     <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
+                                        <input class="form-check-input" type="checkbox" value="1" formControlName="assignedSessionList" />
                                         <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
                                     </label>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1">
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                                    </label>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -281,8 +142,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>                             
+                                <select formControlName="signupCode"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option> 
+                                    <option *ngFor="let item of signupCodes?.selectDropdownList" [value]="item.code">{{item.description}}</option>                             
                                 </select> 
                             </div>
                         </div>
@@ -298,8 +160,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>                             
+                                <select formControlName="className"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>  
+                                    <option *ngFor="let item of classList?.selectDropdownList" [value]="item.code">{{item.description}}</option>                            
                                 </select> 
                             </div>
                         </div>
@@ -315,8 +178,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>                             
+                                <select formControlName="currentSchoolGrade"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>   
+                                    <option *ngFor="let item of schoolGrade?.selectDropdownList" [value]="item.code">{{item.description}}</option>                           
                                 </select> 
                             </div>
                         </div>
@@ -332,8 +196,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>                             
+                                <select formControlName="risingSchoolGrade"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option...</option>        
+                                    <option *ngFor="let item of schoolGrade?.selectDropdownList" [value]="item.code">{{item.description}}</option>                      
                                 </select> 
                             </div>
                         </div>
@@ -349,7 +214,7 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <input type="text" placeholder="Family ID" class="form-control form-control-sm">
+                                <input formControlName="familyID"  type="text" placeholder="Family ID" class="form-control form-control-sm">
                             </div>
                         </div>
                     </div>
@@ -364,7 +229,7 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <input type="text" placeholder="First Name" class="form-control form-control-sm">
+                                <input formControlName="firstName"  type="text" placeholder="First Name" class="form-control form-control-sm">
                             </div>
                         </div>
                     </div>
@@ -379,7 +244,7 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <input type="text" placeholder="Last Name" class="form-control form-control-sm">
+                                <input formControlName="lastName"  type="text" placeholder="Last Name" class="form-control form-control-sm">
                             </div>
                         </div>
                     </div>
@@ -394,7 +259,7 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <input type="text" placeholder="Home Phone" class="form-control form-control-sm">
+                                <input formControlName="homePhone"  type="text" placeholder="Home Phone" class="form-control form-control-sm">
                             </div>
                         </div>
                     </div>
@@ -403,19 +268,22 @@
 				
             </div>
             <!--end::Card body-->
-        </form>
-        <!--end::Form-->
-        <!--begin::Actions-->
+
+             <!--begin::Actions-->
         <div class="card-footer d-flex justify-content-end p-4">
             <a href="javascript:void(0);" class="btn btn-danger btn-sm m-1" style="font-size: 13px;">
                 <i class="icon-cancel-circle2 fs-6"></i> Cancel
             </a>
 
-            <a  (click)="onSearch()"  class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+            <a   class="btn btn-primary btn-sm m-1" style="font-size:13px;" (click)="onSubmitSearch();">
                 <i class="icon-search4 fs-6"></i> Search 
             </a>
         </div>
+        </div>
         <!--end::Actions-->
+        </form>
+        <!--end::Form-->
+       
     </div>
     <!--end::Content-->
 </div>

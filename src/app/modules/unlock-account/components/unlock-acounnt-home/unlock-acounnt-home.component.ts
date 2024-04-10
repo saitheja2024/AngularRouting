@@ -3,7 +3,7 @@ import { AuthenticationService } from 'src/app/shared/services/authentication.se
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { map } from 'rxjs-compat/operator/map';
 import { HttpErrorResponse } from '@angular/common/http';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import { UnlockaccountService } from 'src/app/modules/chinmaya-shared/services/unlock-account/unlockaccount.service';
 @Component({
   selector: 'app-unlock-acounnt-home',
