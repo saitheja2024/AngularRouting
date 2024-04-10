@@ -27,7 +27,7 @@
 								<div formArrayName="registrationDetailsList">
 								  <div *ngFor="let detailsGroup of registrationForm.get('registrationDetailsList').controls; let i = index" >
 									<div [formGroupName]="i" >
-										<h4 style="background:#f3f3f3;padding:4px">{{ detailsGroup.get('personName').value }} </h4>
+										<h4 style="background:#f3f3f3;padding:4px">{{getPersonSummary(detailsGroup)}} </h4>
 										<div formArrayName="responsePersonProgramList" >
 											<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j=index">
 											  <div [formGroupName]="j" class="card" style="border:1px solid lightgray !important;margin-bottom:8px">
@@ -195,7 +195,7 @@
 		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Apply Adjustment</a>
 		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Apply Payment</a>
 		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Re-Send Receipt</a>
-		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Cancel</a><br>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;" (click)="onCancelButtonClick()">Cancel</a><br>
 		<a  class="btn btn-primary mb-5" style="width: 100% !important;" (click)="onSaveButtonClick()">Save</a>
 	</div>
 </div>
