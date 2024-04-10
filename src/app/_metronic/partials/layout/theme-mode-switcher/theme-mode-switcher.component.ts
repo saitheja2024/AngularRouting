@@ -24,4 +24,9 @@ export class ThemeModeSwitcherComponent implements OnInit {
   switchMode(_mode: ThemeModeType): void {
     this.modeService.switchMode(_mode);
   }
+
+
+  onLogOutButtonClick(){
+    window.location.href = environment.memberRegPortalURL
+  }
 }

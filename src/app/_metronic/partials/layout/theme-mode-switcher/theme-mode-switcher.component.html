@@ -23,7 +23,7 @@
    <ng-container *ngIf="menuMode$ | async as menuMode">
      <!--begin::Menu item  -->
     <div class='menu-item my-0'>
-      <a class="menu-link menu-link1" [ngClass]="{'active': menuMode === 'light'}" (click)="switchMode('light')">
+      <a class="menu-link menu-link1" [ngClass]="{'active': menuMode === 'light'}" (click)="onLogOutButtonClick()">
         <span class='menu-title'><i class="icon-switch2 position-left me-4 mt-1"></i> Sign Out</span>
       </a>
     </div>
