@@ -61,11 +61,13 @@ export class FamilyRegistrationDetailsComponent {
   let gender="";
   let schoolGradeCodeDescription="";
   let classAssignment="";
+  let yearBasedFlag="";
   if(programDataList && programDataList.length>0){
     personName = programDataList[0].firstName+" "+programDataList[0].lastName;
     gender = programDataList[0].genderDescription;
     schoolGradeCodeDescription=programDataList[0].schoolGradeCodeDescription;
     classAssignment=programDataList[0].classAssignment;
+    yearBasedFlag=programDataList[0].yearBasedFlag;
 
 
   }
@@ -75,6 +77,7 @@ export class FamilyRegistrationDetailsComponent {
     gender:gender,
     schoolGradeCodeDescription:schoolGradeCodeDescription,
     classAssignment:classAssignment,
+    yearBasedFlag:yearBasedFlag,
     responsePersonProgramList: this.fb.array([]) // Create form array for responsePersonProgramList
   });
 
@@ -115,7 +118,7 @@ createProgramFormGroup(programData:any): FormGroup {
   this.selectedChapterID = this.registrationService.getSelectedChapter();
   this.registrtionStatusList = await this.registrationService.fetchRegistrationStatus();
   this.paymentStatusList = await this.registrationService.fetchPaymentStatus();
-  this.fetchSessionChoice();
+  await this.fetchSessionChoice();
   let param={
     familyID: this.selectedFamily.familyId,
         chapterID: this.selectedChapterID,
@@ -178,6 +181,11 @@ getPersonSummary(detailsGroup: any) {
   // Check if schoolGradeCodeDescription is not empty or null
   if (detailsGroup.get('schoolGradeCodeDescription').value) {
     summary += ' - ' + detailsGroup.get('schoolGradeCodeDescription').value;
+  }
+
+  // Check if schoolGradeCodeDescription is not empty or null
+  if (detailsGroup.get('yearBasedFlag').value) {
+    summary += '  ' + detailsGroup.get('yearBasedFlag').value;
   }
 
   // Check if classAssignment is not empty or null
