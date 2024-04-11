@@ -118,6 +118,12 @@ export class RegistrationService {
     return response;
   }
 
+  async fetchSessionChoiceForFamily(params: any) {
+    let response = await this.reportService.fetchSessionChoiceForFamily(params);
+    return response;
+  }
+  
+
 
   async fetchSchoolGradeList() {
     let response = await this.masterService.fetchSchoolGradeList();

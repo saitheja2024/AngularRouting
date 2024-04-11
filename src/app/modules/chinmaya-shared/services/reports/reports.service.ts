@@ -11,6 +11,7 @@ import { signupCodeRequestInteface } from '../master/master-interface';
 export class ReportsService {
   
   
+  
   programYears: any;
   signupCodes: any[];
   classList: any[]=[];
@@ -87,6 +88,22 @@ async fetchSessionChoice(params:any, reload?: any) {
   }
   
   return this.sessionChoice;
+}
+
+
+async fetchSessionChoiceForFamily(params: any) {
+  let options: Options = {
+    url: this.urlService.reportsURL.fetchSessionChoiceDropDown,
+    body: params
+}
+
+
+let sessionChoice:any = [];
+sessionChoice = await this.httpService.post(options);
+if (sessionChoice && sessionChoice.selectDropdownList) {
+    return sessionChoice.selectDropdownList; 
+}
+return sessionChoice
 }
 
 
