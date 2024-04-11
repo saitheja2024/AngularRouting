@@ -42,6 +42,7 @@
 														<label class="col-lg-3 col-form-label fw-bold fs-6 text-success">{{programGroup.get('signupCodeDescription').value}}</label>
 														<!--end::Label-->
 														
+													
 														<!--begin::Col-->
 														<div class="col-lg-9">
 															<!--begin::Row-->
@@ -108,10 +109,10 @@
 																		<label class="col-lg-5 col-form-label fw-semibold fs-6 text-nowrap">Assigned Session :</label>
 																		<!--end::Label-->
 																		<!--begin::Col-->
-																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
-																			<select   formControlName="sessionAssignment" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+																		<div class="col-lg-7 fv-row fv-plugins-icon-container" >
+																			<select    formControlName="sessionAssignment" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
 																				<option value="">Select an Option</option>         
-																				<option [value]="assignedSession.choicecode" *ngFor = "let assignedSession of assignedSession">{{assignedSession.description}}</option>                                                   
+																				<option [value]="assignedSession.choicecode" *ngFor = "let assignedSession of getAssignedSessionListFun(programGroup.get('registrationId').value)">{{assignedSession.description}}</option>                                                   
 																			</select> 
 																		</div>
 																		<!--end::Col-->
@@ -191,10 +192,10 @@
 	<div class="col-lg-2">
 		<a  class="btn btn-primary mb-5 mt-8" style="width: 100% !important;" (click)="onAcceptFamilyButtonClick()">Accept Family</a>
 		<a  class="btn btn-primary mb-5" style="width: 100% !important;" (click)="onAssignChoiceButtonClick()">Assign Choice 1</a>
-		<a  class="btn btn-primary mb-5" style="width: 100% !important;">View Payment Schedule</a>
-		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Apply Adjustment</a>
-		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Apply Payment</a>
-		<a  class="btn btn-primary mb-5" style="width: 100% !important;">Re-Send Receipt</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;display:none">View Payment Schedule</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;display:none">Apply Adjustment</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;display:none">Apply Payment</a>
+		<a  class="btn btn-primary mb-5" style="width: 100% !important;display:none">Re-Send Receipt</a>
 		<a  class="btn btn-primary mb-5" style="width: 100% !important;" (click)="onCancelButtonClick()">Cancel</a><br>
 		<a  class="btn btn-primary mb-5" style="width: 100% !important;" (click)="onSaveButtonClick()">Save</a>
 	</div>

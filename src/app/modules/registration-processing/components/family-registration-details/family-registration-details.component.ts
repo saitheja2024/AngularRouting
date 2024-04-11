@@ -22,6 +22,7 @@ export class FamilyRegistrationDetailsComponent {
   assignedSubClassList:any={};
   assignedSession: any;
   address: any;
+  assignedSessionList: any={};
 
  constructor(
   private alertService:AlertService,
@@ -118,7 +119,6 @@ createProgramFormGroup(programData:any): FormGroup {
   this.selectedChapterID = this.registrationService.getSelectedChapter();
   this.registrtionStatusList = await this.registrationService.fetchRegistrationStatus();
   this.paymentStatusList = await this.registrationService.fetchPaymentStatus();
-  await this.fetchSessionChoice();
   let param={
     familyID: this.selectedFamily.familyId,
         chapterID: this.selectedChapterID,
@@ -132,6 +132,14 @@ createProgramFormGroup(programData:any): FormGroup {
     for(let j=0;j<registrationDetails.responsePersonProgramList.length;j++){
       let program = registrationDetails.responsePersonProgramList[j];
       this.address=program.address;
+      let tempString=program.registrationId+"";
+      let params:any = {
+        programCode:this.selectedProgram.code,
+        signupCode:program.signupCode
+      }
+
+      let assignedSessionDropDownValues = await this.fetchSessionChoiceForFamily(params);
+      this.assignedSessionList[tempString]=assignedSessionDropDownValues;
       if(program.personType=='CHILD'){
        let params= {
          programCode:this.selectedProgram.code,
@@ -140,14 +148,18 @@ createProgramFormGroup(programData:any): FormGroup {
           schoolGradeCode:program.schoolGradeCode
       }
       let assignedSubClassDropDownValues = await this.fetchAssignedSubClass(params);
-      let tempString=program.registrationId+"";
+      
       this.assignedSubClassList[tempString]=assignedSubClassDropDownValues;
+
+     
+
     }
       
     }
    }
   
  }
+ 
 
  getAssignedSubClassListFun(registrtationId:any){
   
@@ -155,12 +167,15 @@ createProgramFormGroup(programData:any): FormGroup {
  }
 
 
+ getAssignedSessionListFun(registrtationId:any){
+  return this.assignedSessionList[registrtationId];
+}
 
- async fetchSessionChoice(){
-  let params = {
-    "programCode":this.selectedProgram.code
-  }
-  this.assignedSession = await this.registrationService.fetchSessionChoice(params);
+
+
+ async fetchSessionChoiceForFamily(params:any){
+  let  assignedSession = await this.registrationService.fetchSessionChoiceForFamily(params);
+  return assignedSession;
 }
 
 async fetchAssignedSubClass(params:any){

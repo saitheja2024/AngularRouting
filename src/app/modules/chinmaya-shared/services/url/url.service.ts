@@ -25,7 +25,7 @@ export class UrlService {
     fetchRegistrationDetailsBasedOnFamilyId:"registrationProcessing/fetchRegistrationDetailsBasedOnFamilyId",
     saveRegistrationDetails:"registrationProcessing/saveRegistrationDetails",
     acceptFamily:"registrationProcessing/acceptFamily",
-    assignChoice:"registrationProcessing/assignChoice"
+    assignChoice:"registrationProcessing/assignChoice",
     
   }
 
@@ -34,7 +34,8 @@ export class UrlService {
     fetchSessionChoicesList:"reports/fetchSessionChoicesList",
     fetchSignupcodes:"reports/fetchSignupcodes",
     fetchClassList:"reports/fetchClassDropdown",
-    fetchAssignedSubClass:"reports/fetchSubClassDropdown"
+    fetchAssignedSubClass:"reports/fetchSubClassDropdown",
+    fetchSessionChoiceDropDown: "reports/fetchSessionChoicesDropdown"
   }
  
   familyURL = {
@@ -59,16 +60,5 @@ export class UrlService {
     searchUnlockAccount:'onlineaccount/searchunblockAccount'
   }
 
-  emailProcessingSearchDropDown ={
-    fetchRegistrationStatusList:'master/fetchRegistrationStatusList',
-    fetchPaymentStatusList:'master/fetchPaymentStatusList',
-    fetchSessionChoicesList:'reports/fetchSessionChoicesList',
-    fetchSignupcodes:'reports/fetchSignupcodes',
-    fetchClassDropdown:'reports/fetchClassDropdown',
-    fetchSchoolGradeList:'master/fetchSchoolGradeList',
-  }
-  emailProcessingSearch = {
-    fetchRegistrationDetailsBasedOnSearch:'registrationProcessing/fetchRegistrationDetailsBasedOnSearch'
-  }
   
 }
