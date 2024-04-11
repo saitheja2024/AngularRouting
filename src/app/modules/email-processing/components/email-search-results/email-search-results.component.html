@@ -42,52 +42,68 @@
                     </div>
                 </div>
                 <div class="table-container table-responsive">
-                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort style="border-bottom: 1px solid #eee">
-                        <ng-container *ngFor="let columnName of displayColumns; let i = index" matColumnDef="{{columnName}}" >
-                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef  mat-sort-header > {{ formatColumnName(columnName) }} </th>
-                            <td mat-cell *matCellDef="let element;">
-                                <ng-container *ngIf="columnName === 'familyId'">
-                                    <a  style="cursor: pointer;" (click)="showRegistrationDetails(element)">{{ element[columnName] }}</a>
-                                </ng-container>
-                                <ng-container *ngIf="columnName == 'primaryPersonName'">
-                                    {{ element['primaryFirstName']+' '+ element['primaryLastName']}}
-                                </ng-container>
+                    <table mat-table [dataSource]="dataSource">
 
-                                <ng-container *ngIf="columnName == 'registrationStatus'">
-                                    {{ element['registrationStatus'] }}
-                                </ng-container>
-
-                                <ng-container *ngIf="columnName == 'paymentStatus'">
-                                    {{ element['paymentStatus'] }}
-                                </ng-container>
-
-                                <ng-container *ngIf="columnName == 'sessionChoice1/AssignedSession'">
-                                    {{ element[columnName] }}
-                                </ng-container>
-                                <ng-container *ngIf="columnName == 'emailSentDate'">
-                                    {{ element['dateSent'] | date:'MM/dd/yyyy'}}
-                                </ng-container>
-                                <ng-container *ngIf="columnName == 'templateId&Preview'">
-                                    <a href="javascript:void(0)" (click)="previewTemplate(element);">Template</a>
-                                </ng-container>
-                            </td>
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="select">
+                          <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? masterToggle() : null"
+                                          [checked]="selection.hasValue() && isAllSelected()"
+                                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+                            </mat-checkbox>
+                          </th>
+                          <td mat-cell *matCellDef="let row">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                                          (change)="$event ? selection.toggle(row) : null"
+                                          [checked]="selection.isSelected(row)">
+                            </mat-checkbox>
+                          </td>
                         </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true;background:lightgray"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
-                    </table>  
-                    <!--end::Table-->
+                      
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="familyId">
+                          <th mat-header-cell *matHeaderCellDef>Family Id</th>
+                          <td mat-cell *matCellDef="let element"> {{element.familyId}}</td>
+                        </ng-container>
+                      
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="primaryFirstName">
+                          <th mat-header-cell *matHeaderCellDef> Primary Person Name </th>
+                          <td mat-cell *matCellDef="let element"> {{element.primaryFirstName}} </td>
+                        </ng-container>
+                      
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="registrationStatus">
+                          <th mat-header-cell *matHeaderCellDef> Registration Status </th>
+                          <td mat-cell *matCellDef="let element"> {{element.registrationStatus}} </td>
+                        </ng-container>
+                      
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="paymentStatus">
+                          <th mat-header-cell *matHeaderCellDef> Payment Status </th>
+                          <td mat-cell *matCellDef="let element"> {{element.paymentStatus}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="choiceLabel">
+                            <th mat-header-cell *matHeaderCellDef>Session Choice1 /Assigned Session</th>
+                            <td mat-cell *matCellDef="let element"> {{element.choiceLabel}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="TemplateID">
+                            <th mat-header-cell *matHeaderCellDef>Template ID & Preview</th>
+                            <td mat-cell *matCellDef="let element"><a href="javascript:void(0);" (click)="previewTemplate(element);">Template</a></td>
+                          </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                            (click)="selection.toggle(row)">
+                        </tr>
+                      </table>
+                        <mat-paginator #paginator 
+                        (page)="handlePageEvent($event)"  [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+                        [pageSizeOptions]="paginationConfig.pageSizeOptions"></mat-paginator>
                 </div>
                 
-                <div class="row p-4">
-                    <mat-paginator #paginator 
-                    (page)="handlePageEvent($event)"
-                                     
-                    [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
-                    [pageSizeOptions]="paginationConfig.pageSizeOptions"
-                   
-                    aria-label="Select page">
-                </mat-paginator>
-                </div>
             </div>
             <!--end::Card body-->
         </form>
@@ -102,7 +118,7 @@
                 <i class="icon-cancel-circle2 fs-6"></i> Cancel
             </button>
 
-            <button type="button" class="btn btn-primary btn-sm m-1" style="font-size: 13px;">
+            <button (click)="sendEmail();" type="button" class="btn btn-primary btn-sm m-1" style="font-size: 13px;">
                 <i class="icon-paperplane fs-6"></i> Send
             </button>
         </div>
@@ -111,7 +127,7 @@
     <!--end::Content-->
 </div>
 
-<div class="templatePopup_wrap" *ngIf="showpopupFlag">
+<!-- <div class="templatePopup_wrap" *ngIf="showpopupFlag">
    <div class="overlay_template"></div>
    <div class="template_popup_window">
     <a href="javascript:void(0)" class="close_icon" (click)="closeTemplatePopup();">X</a>
@@ -123,4 +139,4 @@
     <p><b>Registration Status:&nbsp;</b>{{popupTemplateData.registrationStatus}}</p>
     <p><b>Payment Status:&nbsp;</b>{{popupTemplateData.paymentStatus}}</p>
    </div>
-</div>
+</div> -->

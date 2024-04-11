@@ -16,7 +16,9 @@ import { EmailProcessingServices } from 'src/app/modules/chinmaya-shared/service
 })
 export class EmailSearchComponent{
 
-  searchCriteriaForm:FormGroup;
+ 
+  
+  searchCriteriaForm:any
   registrationStatus: any;
   paymentStatus: any;
   signupCodes: any;
@@ -27,12 +29,6 @@ export class EmailSearchComponent{
   selectedChapterCode: any;
   selectedProgram: any;
   loggedInUser: any;
-  emailSearchResult:any;
-  get EP(): { [key: string]: AbstractControl } {
-    return this.searchCriteriaForm.controls;
-  }
-
-
 
   constructor(
     private masterService:MasterService,
@@ -40,106 +36,187 @@ export class EmailSearchComponent{
     private router:Router,
     private regiStrationService:RegistrationService,
     private store:StoreService,
-    private EmailProServices:EmailProcessingServices
+    private emailproService:EmailProcessingServices
     ){
-      this.searchCriteriaForm = this.fb.group({
-        requestPageModel: this.fb.group({
-          page: [0],
-          size: [0],
-          sortFieldName: [''],
-          sortOrder: ['']                                                   
-        }),
-        requestRegistrationProcessingSearch: this.fb.group({
-          chapterID: new FormControl('CSVA'),
-          programCode: new FormControl('CS_BALAVIHAR_2024-25'),
-          registrationStatusList:this.fb.array(['PENDING']),
-          paymentStatusList:this.fb.array(['BALANCE_DUE', 'PAID']),
-          choiceLabel: new FormControl(''),
-          choiceCode: new FormControl(''),
-          assignedSessionList:this.fb.array(['']),
-          signupCode: new FormControl(''),
-          className: new FormControl(''),
-          currentSchoolGrade:new FormControl(''),
-          risingSchoolGrade: new FormControl(''),
-          familyID: new FormControl(''),
-          firstName:new FormControl(''),
-          lastName: new FormControl(''),
-          homePhone: new FormControl('')
-        })
-      });
+    
   }
 
   async ngOnInit(){
 
-   
-
     this.store.onProgramUpdate().subscribe(async (program:any)=>{
       this.selectedProgram=program;
-    })
+      await this.populateData()
+    });
 
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     this.selectedProgram = this.store.getValue(KEYS.program);
-    this.loggedInUser = this.regiStrationService.getLoggedInUser();
+    this.loggedInUser = this.emailproService.getLoggedInUser();
+
+   if(!this.selectedAcademicYear || !this.selectedChapterCode || !this.selectedProgram){
+    return;
+   }
+   this.populateData();
+  
+  }
+
+  async populateData(){
+
+    this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
+    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    this.selectedProgram = this.store.getValue(KEYS.program);
+    await this.fetchRegistrationStatusList();
+    await this.fetchPaymentStatusList();
+    await this.fetchSignupCodes();
+    await this.fetchSessionChoice();
+    await this.fetchSchoolGradeList();
+    this.prepareSearchCriteriaForm();
+
+  }
+
 
   
-   this.fetchRegistrationStatusList();
-   this.fetchsessionChoice();
-   this.fecthClassList();
-   this.fetchSchoolGradeList();
-   this.fetchSignupcodes();
-   this.fetchPaymentStatusList();
+  
+
+  prepareSearchCriteriaForm(){
+    this.searchCriteriaForm = this.fb.group({
+      requestPageModel: this.fb.group({
+        page: [0],
+        size: [0],
+        sortFieldName: [''],
+        sortOrder: ['']
+      }),
+      requestRegistrationProcessingSearch: this.fb.group({
+        chapterID: [this.selectedChapterCode],
+        programCode: [this.selectedProgram.code],
+        registrationStatusList: this.fb.array([]),
+        paymentStatusList: this.fb.array([]),
+        choiceLabel: [''],
+        choiceCode: [''],
+        assignedSessionList: this.fb.array([]),
+        signupCode: [''],
+        className: [''],
+        currentSchoolGrade: [''],
+        risingSchoolGrade: [''],
+        familyID: [""],
+        firstName: [''],
+        lastName: [''],
+        homePhone: ['']
+      })
+    });
+
+    for(let i=0;i<this.registrationStatus.length;i++){
+      this.registrationStatusArray.push(new FormControl(false));
+    }
+
+
+    for(let i=0;i<this.paymentStatus.length;i++){
+      this.paymentStatusArray.push(new FormControl(false));
+    }
+
+    for(let i=0;i<this.sessionChoice.length;i++){
+      this.assignedSessionArray.push(new FormControl(false));
+    }
+
   }
 
   
-  async fetchPaymentStatusList(){
-    this.paymentStatus=await this.EmailProServices.PaymentStatusList()
+
+
+  get registrationStatusArray(): FormArray {
+    let retValue = this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.registrationStatusList as FormArray;
+    return retValue;
   }
+ 
+
+  get paymentStatusArray(): FormArray {
+    let retValue = this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.paymentStatusList as FormArray;
+    return retValue;
+  }
+
+  get assignedSessionArray(): FormArray {
+    let retValue = this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.assignedSessionList as FormArray;
+    return retValue;
+  }
+
 
   async fetchRegistrationStatusList() {
-    this.registrationStatus= await this.EmailProServices.RegistrationStatusList();
+    this.registrationStatus=await this.masterService.fetchRegistrationStatusList()
   }
 
-  async fetchsessionChoice(){
-   
-    let params:any = {
-      programCode:"CS_BALAVIHAR_2024-25" //this.selectedProgram.code
-    }
-    this.sessionChoice= await this.EmailProServices.SessionChoicesList(params);
+  async fetchPaymentStatusList(){
+    this.paymentStatus=await this.masterService.fetchPaymentStatusList()
   }
 
-  async fecthClassList(){
-    let classParam = {
-      programCode: "CS_BALAVIHAR_2024-25",
-      chapterCode: "CSVA",
-      signupCodeCategory: 0,
-      signupCode: "",
-      classCode: "",
-      subClassCode: ""
+  async fetchSignupCodes(){
+    // if(!this.selectedChapterCode || !this.selectedProgram){
+    //   this.signupCodes=[];
+    //   return;
+    // }
+
+    let param:signupCodeRequestInteface = {
+    organizationCode:this.selectedChapterCode,
+    programCode:this.selectedProgram.code,
+    userName:this.loggedInUser.username
     }
-    this.classList = await this.EmailProServices.ClassDropdown(classParam);
+
+    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    this.signupCodes = await this.regiStrationService.fetchSignupCodes(param);
+  }
+
+
+
+  async fecthClassList(params:any){
+    this.classList = await this.regiStrationService.fetchClassList(params);
   }
 
   async fetchSchoolGradeList(){
-    this.schoolGrade = await this.EmailProServices.SchoolGradeList() 
+    this.schoolGrade = await this.regiStrationService.fetchSchoolGradeList() 
   }
 
-  async fetchSignupcodes(){
-    let codeParam = {
-        organizationCode: "",
-        programCode: "CS_BALAVIHAR_2024-25",
-        userName: "ip1"
+  async fetchSessionChoice(){
+    let params = {
+      programCode:this.selectedProgram.code
     }
-    this.signupCodes = await this.EmailProServices.Signupcodes(codeParam) 
+    this.sessionChoice = await this.regiStrationService.fetchSessionChoice(params);
   }
+
+  onSignupCodeChange(ev:any){
+    let params={
+      "programCode": this.selectedProgram.code,
+      "chapterCode": this.selectedChapterCode,
+      "signupCode": ev.target.value,
+    }
+    this.fecthClassList(params);
+  }
+
 
   onSubmitSearch(){
-    let searchFormValues:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value))
-   this.emailSearchResult = this.EmailProServices.RegistrationDetailsBasedOnSearch(searchFormValues);
-   this.EmailProServices.setEmailSearchCriteria(searchFormValues);
-    this.router.navigateByUrl("/email-processing/email-search-results")
+   let searchFormValues:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value))
+   const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus,"code");
+   searchFormValues.requestRegistrationProcessingSearch.registrationStatusList = selectedCodes;
+
+   const selectedPaymentStatus = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList,this.paymentStatus,"code");
+   searchFormValues.requestRegistrationProcessingSearch.paymentStatusList = selectedPaymentStatus;
+
+   const assignedSession = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.assignedSessionList,this.sessionChoice,"choicecode");
+   searchFormValues.requestRegistrationProcessingSearch.assignedSessionList = assignedSession;
+
+   this.emailproService.setEmailSearchCriteria(searchFormValues);
+   this.router.navigateByUrl("/email-processing/email-search-results");
 
   }
+
+
+
+  mapBooleanArrayToCodes(booleanArray: boolean[],codesArray: any[],key:string): string[] {
+    
+    return booleanArray
+      .map((value, index) => (value ? codesArray[index][key] : null))
+      .filter(Boolean);
+  }
+  
+ 
 
    
   }

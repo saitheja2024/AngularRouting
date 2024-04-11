@@ -102,4 +102,22 @@ import { AuthService } from 'src/app/modules/auth';
             return response;
           }
 
+          async fetchviewTemplate(params:RegistrationStatusList) {
+            let options: Options = {
+                url: this.urlService.ViewTemplate.fetchviewTemplate,
+                body: params
+              }
+            let response = await await this.httpService.post(options);
+            return response;
+          }
+
+          async sendEmailTemplate(params:RegistrationStatusList) {
+            let options: Options = {
+                url: this.urlService.sendEmailInfo.sendEmail,
+                body: params
+              }
+            let response = await await this.httpService.post(options);
+            return response;
+          }
+
   }

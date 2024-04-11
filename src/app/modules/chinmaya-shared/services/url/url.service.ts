@@ -70,5 +70,13 @@ export class UrlService {
   emailProcessingSearch = {
     fetchRegistrationDetailsBasedOnSearch:'registrationProcessing/fetchRegistrationDetailsBasedOnSearch'
   }
+
+  ViewTemplate={
+    fetchviewTemplate:'registrationProcessing/viewTemplate'
+  }
+
+  sendEmailInfo={
+    sendEmail:'registrationProcessing/sendEmail'
+  }
   
 }

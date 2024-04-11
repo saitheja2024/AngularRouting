@@ -68,6 +68,12 @@ export class SidebarMenuComponent implements OnInit {
     this.router.navigateByUrl("/registration-processing");
 
   }
+
+  async onProgramSelectionEmail(program:any){
+    this.store.setValue(KEYS.program,program);
+    this.router.navigateByUrl("/email-processing");
+
+  }
   
 
 }

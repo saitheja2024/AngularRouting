@@ -22,16 +22,17 @@ export class EmailSearchResultsComponent {
     showFirstLastButtons : true,
     length:10
     }
+    displayedColumns: string[] = ['select', 'familyId', 'primaryFirstName', 'registrationStatus', 'paymentStatus','choiceLabel', 'TemplateID'];
 
-  displayColumns: string[] = [
-    "familyId",
-    "primaryPersonName",
-    "registrationStatus",
-    "paymentStatus",
-    "sessionChoice1/AssignedSession",
-    "emailSentDate",
-    "templateId&Preview",
-    ];
+  // displayColumns: string[] = [
+  //   "familyId",
+  //   "primaryPersonName",
+  //   "registrationStatus",
+  //   "paymentStatus",
+  //   "sessionChoice1/AssignedSession",
+  //   "emailSentDate",
+  //   "templateId&Preview",
+  //   ];
     dataSource:any = new MatTableDataSource<any>(); 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator:MatPaginator
@@ -100,14 +101,54 @@ handlePageEvent(event:any){
  
  popupTemplateData:any;
 showpopupFlag:boolean=false;
- previewTemplate(data:any){
-  this.popupTemplateData=data;
+ async previewTemplate(data:any){
+  //this.popupTemplateData=data;
+  let param:any = {
+    familyId: data.familyId,
+    programCode: data.programCode,
+    chapterId:data.chapterCode,
+    registrationStatus: data.registrationStatus,
+    paymentStatus:data.paymentStatus
+  }
   this.showpopupFlag=true;
+  this.popupTemplateData= await this.emailProcService.fetchviewTemplate(param);
  }
  
  closeTemplatePopup(){
   this.showpopupFlag=false;
  }
+
+ isAllSelected() {
+  const numSelected = this.selection.selected.length;
+  const numRows = this.dataSource.data.length;
+  return numSelected === numRows;
+}
+
+/** Selects all rows if they are not all selected; otherwise clear selection. */
+masterToggle() {
+  this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach((row: any) => this.selection.select(row));
+}
  
+sendEmail(){
+
+  let param:any = {
+    sendEmailRequestList: []
+  };
+  this.selection.selected.forEach(item => param.sendEmailRequestList.push({
+    familyId: item.familyId,
+    programCode: item.programCode,
+    chapterId:item.chapterCode,
+    registrationStatus: item.registrationStatus,
+    paymentStatus:item.paymentStatus
+  }));
+  
+
+  
+  this.popupTemplateData= this.emailProcService.sendEmailTemplate(param);
+
+}
+
 
 }

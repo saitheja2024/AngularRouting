@@ -24,52 +24,42 @@
                     </div>
                 </div>
 
-                <!-------- Begin Registration Status -------->
-                <div class="col-lg-12 mb-2">
+                 <!-------- Begin Registration Status -------->
+                 <div class="col-lg-12 mb-2">
                     <div class="row">
                         <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
                             <label class="required fw-semibold fs-6 mt-2 mb-2">Registration Status:</label>
                         </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="row d-flex2" style="width:100%;" >
-                                <ng-container>
-                                    <div>    
-                                    <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-6" >
-                                            <div >
-                                            <label  class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                                <input  class="form-check-input" type="checkbox"   [value]="">
-                                                <span class="fw-semibold ps-2 fs-7 text-uppercase"></span>
-                                            </label>
-                                         </div>
-                                      </div>
-                                      </div>
-                                </ng-container>
+                        <div class="col-lg-10 d-flex" formArrayName="registrationStatusList" *ngIf="registrationStatusArray">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" *ngFor="let status of registrationStatusArray?.controls; let i = index">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox"   [formControlName]="i" value="registrationStatus[i].description">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">{{registrationStatus[i].description}}</span>
+                                    </label>
+                                </div>
+                            
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-------- End Registration Status -------->
 
-                <!-------- Begin Payment Status -------->
-                <div class="col-lg-12 mb-2">
+                 <!-------- Begin Payment Status -------->
+                 <div class="col-lg-12 mb-2">
                     <div class="row">
                         <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
                             <label class="required fw-semibold fs-6 mt-2 mb-2">Payment Status:</label>
                         </div>
-                        <div class="col-lg-10 d-flex">
-                            <div class="row d-flex2" style="width:100%;" >
-                                <ng-container  >
-                                    <div>  
-                                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" >
-                                            <div>
-                                            <label  class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                                <input  class="form-check-input" type="checkbox"   [value]="">
-                                                <span class="fw-semibold ps-2 fs-7 text-uppercase"></span>
-                                            </label>
-                                         </div>
-                                      </div>
-                                    </div>  
-                                </ng-container>
+                        <div class="col-lg-10 d-flex" formArrayName="paymentStatusList" *ngIf="paymentStatusArray">
+                            <div class="row d-flex2" style="width:100%;">
+                                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6" *ngFor="let status of paymentStatusArray?.controls; let i = index">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
+                                        <input class="form-check-input" type="checkbox"  [formControlName]="i" value="paymentStatus[i].description">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">{{paymentStatus[i].description}}</span>
+                                    </label>
+                                </div>
+                            
                             </div>
                         </div>
                     </div>
@@ -82,12 +72,11 @@
                         <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
                             <label class="fw-semibold fs-6 mt-2 mb-2">Session Choice:</label>
                         </div>
-                        
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select formControlName="choiceLabel"  class="form-select form-select-sm fw-semibold">
+                                <select formControlName="choiceLabel" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                     <option value="">Select Session</option>    
-                                    <option *ngFor="let item of sessionChoice?.selectDropdownList" [value]="item.choicecode">{{item.description}}</option> 
+                                    <option value="" *ngFor="let choice of sessionChoice" [value]="choice.code">{{choice.code}}</option>                    
                                 </select> 
                             </div>
                         </div>
@@ -103,9 +92,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select formControlName="choiceCode"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                <select formControlName="choiceCode" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                     <option value="">Select Choice</option>    
-                                    <option *ngFor="let item of sessionChoice?.selectDropdownList" [value]="item.choicecode">{{item.description}}</option>                        
+                                    <option value="" *ngFor="let time of sessionChoice" [value]="time.choicecode">{{time.description}}</option> 
                                 </select> 
                             </div>
                         </div>
@@ -120,14 +109,15 @@
                             <label class="fw-semibold fs-6 mt-2 mb-2">Assigned Session:</label>
                         </div>
                         <div class="col-lg-10 d-flex">
-                            <div class="row d-flex2" style="width:100%;">
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2">
-                                        <input class="form-check-input" type="checkbox" value="1" formControlName="assignedSessionList" />
-                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                            <div class="row d-flex2" style="width:100%;" formArrayName="assignedSessionList">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"  *ngFor="let session of assignedSessionArray?.controls; let i = index">
+                                    <label class="form-check form-check-custom form-check-inline me-5 is-valid text-nowrap m-2" >
+                                        <input class="form-check-input" type="checkbox" [formControlName]="i" value="sessionChoice[i].choiceCode">
+                                        <span class="fw-semibold ps-2 fs-7 text-uppercase">{{sessionChoice[i].description}}</span>
                                     </label>
                                 </div>
-                               
+                              
+                              
                             </div>
                         </div>
                     </div>
@@ -142,9 +132,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select formControlName="signupCode"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option> 
-                                    <option *ngFor="let item of signupCodes?.selectDropdownList" [value]="item.code">{{item.description}}</option>                             
+                                <select  formControlName="signupCode" (change)="onSignupCodeChange($event)" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option</option>   
+                                    <option *ngFor="let code of signupCodes" [value]="code.code" > {{code.description}}</option>                          
                                 </select> 
                             </div>
                         </div>
@@ -160,9 +150,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select formControlName="className"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>  
-                                    <option *ngFor="let item of classList?.selectDropdownList" [value]="item.code">{{item.description}}</option>                            
+                                <select  formControlName="className" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option</option>    
+                                    <option *ngFor="let code of classList" [value]="code.code" > {{code.description}}</option>                              
                                 </select> 
                             </div>
                         </div>
@@ -178,9 +168,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select formControlName="currentSchoolGrade"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>   
-                                    <option *ngFor="let item of schoolGrade?.selectDropdownList" [value]="item.code">{{item.description}}</option>                           
+                                <select formControlName="currentSchoolGrade" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option</option>                           
+                                    <option *ngFor="let code of schoolGrade" [value]="code.code" > {{code.description}}</option>                                
                                 </select> 
                             </div>
                         </div>
@@ -196,9 +186,9 @@
                         </div>
                         <div class="col-lg-10 d-flex">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <select formControlName="risingSchoolGrade"  name="country" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
-                                    <option value="">Select an Option...</option>        
-                                    <option *ngFor="let item of schoolGrade?.selectDropdownList" [value]="item.code">{{item.description}}</option>                      
+                                <select formControlName="risingSchoolGrade" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <option value="">Select an Option</option>                           
+                                    <option *ngFor="let code of schoolGrade" [value]="code.code" > {{code.description}}</option>                                
                                 </select> 
                             </div>
                         </div>
