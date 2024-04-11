@@ -127,16 +127,12 @@
     <!--end::Content-->
 </div>
 
-<!-- <div class="templatePopup_wrap" *ngIf="showpopupFlag">
+<div class="templatePopup_wrap" *ngIf="showpopupFlag">
    <div class="overlay_template"></div>
    <div class="template_popup_window">
     <a href="javascript:void(0)" class="close_icon" (click)="closeTemplatePopup();">X</a>
     <h2>Template Preview</h2>
     <br/>
-    <p><b>Family Id:&nbsp;</b>{{popupTemplateData.familyId}}</p>
-    <p><b>Program Code:&nbsp;</b>{{popupTemplateData.programCode}}</p>
-    <p><b>Chapter Id:&nbsp;</b>{{popupTemplateData.chapterId}}</p>
-    <p><b>Registration Status:&nbsp;</b>{{popupTemplateData.registrationStatus}}</p>
-    <p><b>Payment Status:&nbsp;</b>{{popupTemplateData.paymentStatus}}</p>
+     <div [innerHtml]="popupTemplateData.emailBody"></div>
    </div>
-</div> -->
+</div>

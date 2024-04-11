@@ -29,13 +29,13 @@
 
   .template_popup_window{
     background-color: #fff;
-    width: 300px;
+    width:90%;
     border-radius: 4px;
     z-index: 9999;
     position: absolute;
-    top: 40%;
+    top: 20%;
     margin: 0 auto;
-    left: 50%;
+    left: 5%;
     padding: 12px 11px;
   }
 
@@ -45,4 +45,11 @@
     top: 4px;
     font-size: 14px;
     color: #000;
+  }
+  .heading td{
+    font-weight: bold !important;
+  }
+
+  .item {
+    background:rgb(255, 255, 255) !important;
   }

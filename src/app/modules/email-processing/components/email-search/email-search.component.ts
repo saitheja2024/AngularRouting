@@ -45,7 +45,7 @@ export class EmailSearchComponent{
 
     this.store.onProgramUpdate().subscribe(async (program:any)=>{
       this.selectedProgram=program;
-      await this.populateData()
+      await this.populateEmailData()
     });
 
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
@@ -56,11 +56,11 @@ export class EmailSearchComponent{
    if(!this.selectedAcademicYear || !this.selectedChapterCode || !this.selectedProgram){
     return;
    }
-   this.populateData();
+   this.populateEmailData();
   
   }
 
-  async populateData(){
+  async populateEmailData(){
 
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
@@ -70,15 +70,12 @@ export class EmailSearchComponent{
     await this.fetchSignupCodes();
     await this.fetchSessionChoice();
     await this.fetchSchoolGradeList();
-    this.prepareSearchCriteriaForm();
-
+    this.prepareEmailSearchCriteriaForm();
   }
 
 
-  
-  
 
-  prepareSearchCriteriaForm(){
+  prepareEmailSearchCriteriaForm(){
     this.searchCriteriaForm = this.fb.group({
       requestPageModel: this.fb.group({
         page: [0],
@@ -120,9 +117,6 @@ export class EmailSearchComponent{
 
   }
 
-  
-
-
   get registrationStatusArray(): FormArray {
     let retValue = this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.registrationStatusList as FormArray;
     return retValue;
@@ -149,11 +143,7 @@ export class EmailSearchComponent{
   }
 
   async fetchSignupCodes(){
-    // if(!this.selectedChapterCode || !this.selectedProgram){
-    //   this.signupCodes=[];
-    //   return;
-    // }
-
+   
     let param:signupCodeRequestInteface = {
     organizationCode:this.selectedChapterCode,
     programCode:this.selectedProgram.code,
