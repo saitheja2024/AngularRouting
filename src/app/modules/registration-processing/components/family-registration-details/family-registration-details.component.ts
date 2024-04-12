@@ -108,6 +108,12 @@ createProgramFormGroup(programData:any): FormGroup {
    
   });
 
+  if(programData["signupCode"]=="ANNUALPLEDGE"){
+    programFormGroup.get("sessionAssignment")?.disable();
+    programFormGroup.get("subClassAssignment")?.disable();
+
+  }
+
   return programFormGroup;
 
   
