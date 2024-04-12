@@ -53,7 +53,7 @@
       </span>
       <div class="menu-sub menu-sub-accordion">
         <div class="menu-item" *ngFor="let program of programs">
-          <a class="menu-link without-sub" (click)="onProgramSelection(program)">
+          <a class="menu-link without-sub" (click)="onProgramSelection(program,'/registration-processing')">
             <span class="menu-bullet">
               <img class="img_cls" src="assets/chinmaya_media/images/SVG/14-create program-icon.svg">
             </span>
@@ -75,7 +75,7 @@
       </span>
       <div class="menu-sub menu-sub-accordion">
         <div class="menu-item" *ngFor="let program of programs">
-          <a class="menu-link without-sub" (click)="onProgramSelectionEmail(program)">
+          <a class="menu-link without-sub" (click)="onProgramSelection(program,'/email-processing')">
             <span class="menu-bullet">
               <img class="img_cls" src="assets/chinmaya_media/images/SVG/14-create program-icon.svg">
             </span>

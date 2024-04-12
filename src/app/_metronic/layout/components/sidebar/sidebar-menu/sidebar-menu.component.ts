@@ -58,22 +58,16 @@ export class SidebarMenuComponent implements OnInit {
       userName:this.loggedInUser.username
     }
 
-
     this.programs = await this.masterService.fetchProgramsByAcademicYearAndChapterCode(params)
 
   }
 
-  async onProgramSelection(program:any){
+  async onProgramSelection(program:any,url:any){
     this.store.setValue(KEYS.program,program);
-    this.router.navigateByUrl("/registration-processing");
-
+    this.router.navigateByUrl(url);
   }
 
-  async onProgramSelectionEmail(program:any){
-    this.store.setValue(KEYS.program,program);
-    this.router.navigateByUrl("/email-processing");
 
-  }
   
 
 }
