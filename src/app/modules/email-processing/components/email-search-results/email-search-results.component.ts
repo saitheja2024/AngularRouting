@@ -18,7 +18,7 @@ export class EmailSearchResultsComponent {
   paginationConfig={
     pageSize : 10,
     pageIndex : 0,
-    pageSizeOptions :[10, 20,30],
+    pageSizeOptions :[10, 20,30,50,100],
     showFirstLastButtons : true,
     length:10
     }
@@ -65,8 +65,10 @@ export class EmailSearchResultsComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   
+  totalRecCount:any='';
   async performSearch(){
-    let results:any  = await this.emailProcService.RegistrationDetailsBasedOnSearch(this.searchCriteria)
+    let results:any  = await this.emailProcService.RegistrationDetailsBasedOnSearch(this.searchCriteria);
+    this.totalRecCount = results;
      //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     this.paginator.length=results.totalProjectSummary

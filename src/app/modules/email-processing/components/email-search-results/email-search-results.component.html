@@ -15,7 +15,7 @@
 
         <div class="justify-content-end">
             <button type="button" class="btn btn-sm btn-link text-uppercase text-success fw-bold me-3 mb-2 mt-2">
-                Records Selected: 4
+                Records Selected: {{totalRecCount?.totalProjectSummary}}
             </button>
             <button class="btn btn-link btn-sm">     
                 <i class="ki-duotone ki-arrows-circle fs-1 text-dark">
@@ -49,13 +49,13 @@
                           <th mat-header-cell *matHeaderCellDef>
                             <mat-checkbox (change)="$event ? masterToggle() : null"
                                           [checked]="selection.hasValue() && isAllSelected()"
-                                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+                                          [indeterminate]="selection.hasValue() && !isAllSelected()" >
                             </mat-checkbox>
                           </th>
                           <td mat-cell *matCellDef="let row">
                             <mat-checkbox (click)="$event.stopPropagation()"
                                           (change)="$event ? selection.toggle(row) : null"
-                                          [checked]="selection.isSelected(row)">
+                                          [checked]="selection.isSelected(row)" >
                             </mat-checkbox>
                           </td>
                         </ng-container>
@@ -95,8 +95,7 @@
                           </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-                            (click)="selection.toggle(row)">
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
                         </tr>
                       </table>
                         <mat-paginator #paginator 
@@ -133,6 +132,6 @@
     <a href="javascript:void(0)" class="close_icon" (click)="closeTemplatePopup();">X</a>
     <h2>Template Preview</h2>
     <br/>
-     <div [innerHtml]="popupTemplateData.emailBody"></div>
+     <div [innerHtml]="popupTemplateData?.emailBody" class="email_template_cust"></div>
    </div>
 </div>

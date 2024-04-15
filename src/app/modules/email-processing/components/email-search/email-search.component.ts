@@ -115,6 +115,14 @@ export class EmailSearchComponent{
       this.assignedSessionArray.push(new FormControl(false));
     }
 
+    setTimeout( ()=>{
+      this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.choiceLabel.setValue('');
+      this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.choiceCode.setValue('');
+      this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.signupCode.setValue('');
+      this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.className.setValue('');
+    },500)
+    
+
   }
 
   get registrationStatusArray(): FormArray {
