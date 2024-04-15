@@ -24,15 +24,6 @@ export class EmailSearchResultsComponent {
     }
     displayedColumns: string[] = ['select', 'familyId', 'primaryFirstName', 'registrationStatus', 'paymentStatus','choiceLabel', 'TemplateID'];
 
-  // displayColumns: string[] = [
-  //   "familyId",
-  //   "primaryPersonName",
-  //   "registrationStatus",
-  //   "paymentStatus",
-  //   "sessionChoice1/AssignedSession",
-  //   "emailSentDate",
-  //   "templateId&Preview",
-  //   ];
     dataSource:any = new MatTableDataSource<any>(); 
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator:MatPaginator
