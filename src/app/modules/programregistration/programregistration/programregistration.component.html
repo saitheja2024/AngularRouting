@@ -27,10 +27,24 @@
         <div class="row1 mb-3">
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
                 <div  class="d-grid">
-                    <button  class="btn hover-scale btndiv btncolor">Registration</button></div></div><!--ng-container-->
+                    <button  class="btn hover-scale btndiv btncolor">Registration</button>
+                </div>
+            </div><!--ng-container-->
                     <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
                         <div  class="d-grid">
-                            <button  class="btn hover-scale btndiv btn-secondary">Additional Details</button></div></div><!--ng-container-->
+                            <button  class="btn hover-scale btndiv btn-secondary">Additional Details</button>
+                        </div>
+                        </div><!--ng-container-->
+                        <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
+                            <div  class="d-grid">
+                                <button  class="btn hover-scale btndiv btn-secondary">Health Information</button>
+                            </div>
+                            </div>
+                            <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
+                                <div  class="d-grid">
+                                    <button  class="btn hover-scale btndiv btn-secondary">Time Slots SignUp</button>
+                                </div>
+                                </div>
                             <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
                                 <div  class="d-grid">
                                     <button  class="btn hover-scale btndiv btn-secondary">Review</button></div></div><!--ng-container-->
@@ -274,7 +288,7 @@
 
 
 
-`<div class="card shadow-sm mt-5 border border-gray-300 mb-5">
+<div class="card shadow-sm mt-5 border border-gray-300 mb-5">
     <div class="card-header">
         <h3 class="card-title">Additional Details</h3>
         
@@ -683,6 +697,868 @@
    
 </div>
 
+
+
+<div class="card shadow-sm mb-5">
+    <div class="card-header">
+        <h3 class="card-title">Health Information</h3>
+    </div>
+    <div class="card-body">
+       
+        
+<div  class="card card1">
+    <div  class="card-body p-0">
+        <form  novalidate="novalidate" id="kt_stepper_example_basic_form" class="form mx-auto">
+            <div  class="mb-2">
+                <div  data-kt-stepper-element="content" class="flex-column current">
+                    <div  class="row">
+                        <div  class="col-lg-12 float-end mb-5">
+                            <div  class="float-end">
+                                <button  type="button" class="btn btn-primary btn-sm" disabled="">Next</button>
+                            </div>
+                            <div  class="float-end" style="margin-right: 5px;">
+                                <button  type="button" class="btn btn-primary btn-sm" disabled="">Save</button>
+                            </div>
+                            <div  class="float-end" style="margin-right: 5px;">
+                                <button  type="button" class="btn btn-light border border-primary border-active active text-primary backbtn1 btn-sm">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div  class="mb-0">
+                <div  data-kt-stepper-element="content" class="flex-column current">
+                    <div  class="row">
+                        <div  class="col-lg-6 mb-5">
+                            <div  class="card shadow-sm border border-gray-300">
+                                <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
+                                    <div  class="card-title">
+                                        <h4 >Health Information</h4>
+                                    </div>
+                                </div>
+                                <div  class="card-body" style="padding: 0px 10px;">
+                                    <div  class="table-responsive">
+                                        <table  class="table mb-0">
+                                            <tbody >
+                                                <tr  class="trpad">
+                                                    <td  style="padding: 5px 15px;">
+                                                        <div  class="form-check form-check-custom form-check-solid">
+                                                            <label  data-kt-button="true" class="btn active d-flex text-start p-2">
+                                                                <span  class="form-check form-check-custom form-check-solid form-check-sm align-items-start">
+                                                                    <input  type="radio" autocomplete="off" id="flexRadioChecked" class="styled" value="14133">
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                    <td  class="fw-bold" style="width: 55%; padding: 10px 15px; color: red;"> Sont Mk </td>
+                                                    <td  class="fw-bold" style="width: 45%; padding: 10px 15px; color: rgb(252, 154, 39);"> Pending </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form  novalidate="" autocomplete="off">
+                <div  class="mb-2">
+                    <div class="flex-column current">
+                        <div class="row">
+                            <div  class="col-lg-6 mb-5">
+                                <div  class="card shadow-sm border border-gray-300">
+                                    <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
+                                        <div  class="card-title">
+                                            <h6 >Add Doctor Information Details</h6>
+                                        </div>
+                                    </div>
+                                    <div  class="card-body p-3">
+                                        <div  class="row">
+                                            <div  class="col-lg-6 fv-row mb-1">
+                                                <label  class="col-form-label required fw-semibold fs-6">Office Name</label>
+                                                <input  type="text" formcontrolname="officeName" placeholder="Office name" class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0">
+                                                <div  class="help-block with-errors text-danger">  </div>
+                                            </div>
+                                            <div  class="col-lg-6 fv-row">
+                                                <label  class="col-form-label required fw-semibold fs-6">Office Phone</label>
+                                                <input  type="text" name="" placeholder="Office Phone" formcontrolname="officePhone" appphonenumberformat="" maxlength="14" title="Office Phone" class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0">
+                                                <div  class="help-block with-errors text-danger"> </div>
+                                            </div>
+                                        </div>
+                                        <div  class="row">
+                                            <div  class="col-lg-6 fv-row mb-1">
+                                                <label  class="col-form-label required fw-semibold fs-6">First Name </label>
+                                                <input  type="text" autocomplete="off" id="doctorinformation-firstname" name="Doctorinformation[FirstName]" required="" formcontrolname="firstName" title="First Name" placeholder="First Name" aria-required="true" class="form-control py-sm-2 px-sm-4 captilize_txt " >
+                                                <div  class="help-block with-errors text-danger"> 
+                                                     </div></div>
+                                                     <div  class="col-lg-6 fv-row mb-1">
+                                                        <label  class="col-form-label fw-semibold fs-6">Middle Name</label>
+                                                        <input  type="text" autocomplete="off" id="doctorinformation-middlename" name="Doctorinformation[MiddleName]" formcontrolname="middleName" title="Middle Name" placeholder="Middle Name" class="form-control py-sm-2 px-sm-4 captilize_txt">
+                                                        <div  class="help-block with-errors text-danger">  </div>
+                                                    </div></div>
+                                                    <div  class="row">
+                                                        <div  class="col-lg-6 fv-row mb-1">
+                                                            <label  class="col-form-label required fw-semibold fs-6">Last Name</label>
+                                                            <input  type="text" autocomplete="off" id="doctorinformation-lastname" name="Doctorinformation[LastName]" required="" formcontrolname="lastName" title="Last Name" placeholder="Last Name" aria-required="true" class="form-control py-sm-2 px-sm-4 captilize_txt">
+                                                            <div  class="help-block with-errors text-danger">  </div>
+                                                        </div>
+                                                        <div  class="col-lg-6 fv-row mb-1">
+                                                            <label  class="col-form-label required fw-semibold fs-6">Address1</label>
+                                                            <input  type="text" autocomplete="off" id="doctorinformation-address1" name="Doctorinformation[Address1]" formcontrolname="address1" title="Address1" placeholder="Address1" class="form-control py-sm-2 px-sm-4 captilize_txt">
+                                                            <div  class="help-block with-errors text-danger">  </div>
+                                                        </div>
+                                                    </div>
+                                                    <div  class="row">
+                                                        <div  class="col-lg-6 fv-row mb-1">
+                                                            <label  class="col-form-label fw-semibold fs-6">Address2</label>
+                                                            <input  type="text" autocomplete="off" id="doctorinformation-address2" name="Doctorinformation[Address2]" formcontrolname="address2" title="Address2" placeholder="Address2" class="form-control py-sm-2 px-sm-4 captilize_txt">
+                                                            <div  class="help-block with-errors text-danger">  </div>
+                                                        </div>
+                                                        <div  class="col-lg-6 fv-row mb-1">
+                                                            <label  class="col-form-label required fw-semibold fs-6">City</label>
+                                                            <input  type="text" autocomplete="off" id="doctorinformation-city" name="Doctorinformation[City]" required="" formcontrolname="city" title="City" placeholder="City" class="form-control py-sm-2 px-sm-4 captilize_txt">
+                                                            <div  class="help-block with-errors text-danger">  </div>
+                                                        </div>
+                                                    </div>
+                                                    <div  class="row">
+                                                        <div  class="col-lg-6 fv-row mb-1">
+                                                            <label  class="col-form-label required fw-semibold fs-6">State</label>
+                                                            <select  id="doctorinformation-state" required="" formcontrolname="state" name="Doctorinformation[State]" class="form-control py-sm-2 px-sm-4">
+                                                                <option  value="">Select</option>
+                                                                <option  value="Al">Alabama</option>
+                                                                <option  value="AK">Alaska</option>
+                                                                <option  value="AZ">Arizona</option>
+                                                                <option  value="AR">Arkansas</option>
+                                                                <option  value="CA">California</option>
+                                                                <option  value="CO">Colorado</option>
+                                                                <option  value="CT">Connecticut</option>
+                                                                <option  value="DE">Delaware</option>
+                                                                <option  value="DC">District Of Columbia</option>
+                                                                <option  value="FL">Florida</option>
+                                                                <option  value="GA">Georgia</option>
+                                                                <option  value="HI">Hawaii</option>
+                                                </select><div  class="help-block with-errors text-danger"> </div>
+                                            </div>
+                                            <div  class="col-lg-6 fv-row mb-1">
+                                                <label  class="col-form-label required fw-semibold fs-6">Zip Code</label>
+                                                <input  type="number" autocomplete="off" required="" id="doctorinformation-zipcode" formcontrolname="zipcode" title="Zipcode" placeholder="Zipcode" class="form-control py-sm-2 px-sm-4">
+                                                <div  class="help-block with-errors text-danger">  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="col-lg-6 mb-5">
+                                <div  class="card shadow-sm border border-gray-300">
+                                    <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
+                                        <div  class="card-title">
+                                            <h6 >Add Insurance Information Details</h6>
+                                        </div>
+                                    </div>
+                                    <div  class="card-body p-3">
+                                        <div  class="row">
+                                            <div  class="col-lg-12 fv-row mb-1">
+                                                <label  class="col-form-label required fw-semibold fs-6">Insurance Company Name</label>
+                                                <input  type="text" autocomplete="off" formcontrolname="insuranceCompanyName" id="doctorinformation-insurancecompanyname" name="Doctorinformation[InsuranceCompanyName]" title="Insurance Company Name" placeholder="Insurance Company Name" maxlength="100" class="form-control py-sm-2 px-sm-4">
+                                                <div  class="help-block with-errors text-danger">  </div>
+                                            </div>
+                                        </div>
+                                        <div  class="row">
+                                            <div  class="col-lg-12 fv-row mb-1">
+                                                <label  class="col-form-label required fw-semibold fs-6">Policy #</label>
+                                                <input  type="text" name="name" placeholder="Policy #" formcontrolname="policy" class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0">
+                                                <div  class="help-block with-errors text-danger"></div>
+                                            </div>
+                                        </div>
+                                        <div  class="row">
+                                            <div  class="col-lg-12 fv-row mb-1">
+                                                <label  class="col-form-label required fw-semibold fs-6">Group #</label>
+                                                <input  type="text" name="name" placeholder="Group #" formcontrolname="group" class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0">
+                                                <div  class="help-block with-errors text-danger"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="row mb-5">
+                                <div  class="col-lg-12">
+                                    <div  class="form-check form-check-custom form-check-solid">
+                                        <input  type="radio" formcontrolname="allergyConsent" name="allergyConsent" class="styled" style="margin-right: 6px;">
+                                        <label  class="form-check-label text-black fs-6"> Yes, I want to update allergy information. </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  class="row mb-5">
+                                <div  class="col-lg-12">
+                                    <div  class="form-check form-check-custom form-check-solid">
+                                        <input  type="radio" formcontrolname="allergyConsent" name="allergyConsent" class="styled" style="margin-right: 6px;">
+                                        <label  class="form-check-label text-black fs-6"> No, Allergy information is not applicable </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div  formgroupname="otherHealthProblem" class="">
+                            <div  class="row">
+                                <div  class="col-lg-6 mb-5">
+                                    <div  class="card shadow-sm border border-gray-300">
+                                        <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
+                                            <div  class="card-title">
+                                                <h6  class="required">Other Health Information Details.</h6>
+                                            </div>
+                                        </div>
+                                        <div  class="card-body p-4">
+                                            <div  class="row">
+                                                <div  class="col-lg-12 fv-row mb-1">
+                                                    <div  class="input-group input-group-solid">
+                                                        <textarea  autocomplete="off" id="otherhealthproblems-description" formcontrolname="description" size="60" maxlength="1000" aria-required="true" class="form-control input-xxs" style="margin-left: 3px; width: 98%; height: 100px;"></textarea>
+                                                        <div  class="help-block with-errors text-danger"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div  class="row mt-2">
+                                                <div  class="col-lg-12 fv-row mb-1">
+                                                    <div  class="fs-6">
+                                                        <span  class="text-danger">Note:</span> Herbal medicines, vitamins and over the counter medicines like Benadryl come under this category. If not applicable, please enter N/A. </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div  class="col-lg-6 mb-5">
+                                        <div  class="card shadow-sm border border-gray-300">
+                                            <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
+                                                <div  class="card-title">
+                                                    <h6  class="required">Additional Health Information.</h6>
+                                                </div>
+                                            </div>
+                                            <div  class="card-body p-4">
+                                                <div  class="row">
+                                                    <div  class="col-lg-12 fv-row mb-1">
+                                                        <div  class="input-group input-group-solid">
+                                                            <textarea  autocomplete="off" formcontrolname="additionalDesc" size="60" maxlength="1000" class="form-control input-xxs ng-untouched ng-pristine ng-invalid" style="margin-left: 3px; width: 98%; height: 100px;"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div  class="row mt-2">
+                                                    <div  class="col-lg-12 fv-row mb-1">
+                                                        <div  class="fs-6">
+                                                            <span  class="text-danger">Note:</span> Dental implants, vision or hearing aids come under this category. If not applicable, please enter N/A. </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div  class="row">
+                                        <div  class="col-lg-6 mb-5">
+                                            <div  class="card shadow-sm border border-gray-300">
+                                                <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
+                                                    <div  class="card-title">
+                                                        <h6  class="required">Confidential Health/Behavioral Information</h6>
+                                                    </div>
+                                                </div>
+                                                <div  class="card-body p-4">
+                                                    <div  class="row">
+                                                        <div  class="col-lg-8 fv-row mrgbtm">
+                                                            <div  class="fs-6"> Is there any confidential health/behavioral information you would like to discuss with the Camp Director/Coordinator? </div>
+                                                        </div>
+                                                        <div  class="col-lg-4 mrgbtm1">
+                                                            <div class="row mw-500px mb-5">
+                                                                <div  class="col-lg-6">
+                                                                    <div  class="form-check form-check-custom form-check-solid mb-2">
+                                                                        <input  type="radio" autocomplete="off" formcontrolname="confidential" name="confidential" value="1" class="styled">
+                                                                        <label  for="flexRadioChecked" class="form-check-label text-gray-800 fs-6"> Yes </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div  class="col-lg-6">
+                                                                    <div  class="form-check form-check-custom form-check-solid">
+                                                                        <input  type="radio" autocomplete="off" formcontrolname="confidential" name="confidential" value="0" class="styed">
+                                                                        <label  for="flexRadioChecked" class="form-check-label text-gray-800 fs-6"> No </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="col-lg-6 mb-5">
+                                            <div  class="card shadow-sm border border-gray-300">
+                                                <div  class="card-body p-4">
+                                                    <div  class="row">
+                                                        <div  class="col-lg-12 fv-row mb-1">
+                                                            <div  class="fs-6"> Please note: </div>
+                                                            <div  class="fs-6 mt-2"> 1. For any medication stored on campus during the camp, a Medication Authorization Form must be submitted. </div>
+                                                            <div  class="fs-6 mt-2"> 2. The registration will be placed on hold if the required documents are not submitted. </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div  class="row">
+                                        <div  class="col-lg-6 mb-5">
+                                            <div  class="card shadow-sm border border-gray-300">
+                                                <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
+                                                    <div  class="card-title"><h6  class="required">Immunization Details</h6></div>
+                                                </div>
+                                                <div  class="card-body p-4">
+                                                    <div  class="row">
+                                                        <div  class="col-lg-8 fv-row mrgbtm">
+                                                            <div  class="fs-6"> Is your child's Immunization up to date ? </div>
+                                                        </div>
+                                                        <div  class="col-lg-4 mrgbtm1">
+                                                            <div class="row mw-500px">
+                                                                <div  class="col-lg-6">
+                                                                    <div  class="form-check form-check-custom form-check-solid mb-2">
+                                                                        <input  type="radio" autocomplete="off" formcontrolname="immunization" name="immunization" value="Y" class="styled">
+                                                                        <label  class="form-check-label text-gray-800 fs-6"> Yes </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div  class="col-lg-6">
+                                                                    <div  class="form-check form-check-custom form-check-solid">
+                                                                        <input  type="radio" autocomplete="off" formcontrolname="immunization" name="immunization" value="N" class="styled">
+                                                                        <label  class="form-check-label text-gray-800 fs-6"> No </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div  class="d-flex justify-content-end mt-5">
+                        <button  type="button" class="btn btn-light border border-primary border-active active text-primary backbtn1 btn-sm" style="margin-right: 5px;"> Back </button>
+                        <button  type="button" class="btn btn-primary btn-sm" style="margin-right: 5px;" disabled=""> Save </button>
+                        <button  type="button" class="btn btn-primary btn-sm" disabled=""> Next </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="card shadow-sm">
+    <div class="card-header">
+        <h3 class="card-title">Time Slot SignUp</h3>
+    </div>
+    <div class="card-body">
+       
+      
+
+
+<form  novalidate="novalidate" id="kt_stepper_example_basic_form" class="form mx-auto">
+    <div  class="mb-2">
+        <div  data-kt-stepper-element="content" class="flex-column current">
+            <div  class="row"><div  class="col-lg-12 float-end mb-5">
+                <div  class="float-end" style="margin-right: 5px;">
+                    <button  type="button" class="btn btn-primary btn-sm">Save &amp; Next</button>
+                </div>
+                <div  class="float-end" style="margin-right: 5px;">
+                    <button  type="button" class="btn btn-light border border-primary border-active active text-primary backbtn1 btn-sm">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div  class="mb-0">
+    <h6  class="panel-title" style="font-weight: bold; text-decoration: none; font-size: 16px;">  </h6>
+    <div  data-kt-stepper-element="content" class="flex-column current">
+        <div  class="row mb-2">
+            <div  class="col-lg-12">
+                <div  class="card shadow-sm border border-gray-300">
+                    <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
+                        <div  class="card-title">
+                            <h6 ><u >Instructions</u></h6>
+                        </div>
+                    </div>
+                    <div  class="card-body p-4">
+                        <div  class="fs-6" style="text-align: justify;">
+                            <span >
+                                <p><font color="#FF0000">Time Slot Sign-up:</font></p>
+                                <p>Scroll down to Pick a Time-Slot for EACH participant in your family.</p>
+                                <p><font>The mandatory parent volunteer slots selection will open on May 1, 2024. A reminder email will be sent to the primary email on the family record</font></p>
+                            </span>
+                        </div>
+                        <div  class="fs-6">
+                            <div  class="row">
+                                <div  class="col-lg-12 d-flex radiocheck"><div >
+                                    <div  class="form-check form-check-custom form-check-solid me-10">
+                                        <input  type="radio" class="mr-5 ng-untouched ng-pristine ng-valid" ng-reflect-value="2" ng-reflect-is-disabled="false" ng-reflect-model="2" ng-reflect-options="[object Object]">
+                                        <label  class="form-check-label fs-6 fw-semibold"> I will volunteer. </label>
+                                    </div>
+                                </div>
+                                <div >
+                                    <div  class="form-check form-check-custom form-check-solid me-10">
+                                        <input  type="radio" class="mr-5 ng-untouched ng-pristine ng-valid" ng-reflect-value="1" ng-reflect-is-disabled="false" ng-reflect-model="2" ng-reflect-options="[object Object]">
+                                        <label  class="form-check-label fs-6 fw-semibold"> I cannot volunteer. Instead, I will pay $250.00 </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="row mb-2">
+        <div  class="col-lg-12">
+            <div  class="card shadow-sm border border-gray-300">
+                <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
+                    <div  class="card-title">
+                        <h5 ><u >Time Slot(s) Selection</u></h5>
+                    </div>
+                </div>
+                <div  class="card-body p-3">
+                    <div  class="col-lg-9">
+                        <div  class="row">
+                            <div  class="col-lg-3 mb-2 mt-2">
+                                <div  class="form-check form-check-custom form-check-solid me-10">
+                                    <input  type="radio" class="mr-5" value="14131">
+                                    <label  class="form-check-label fs-6 fw-semibold"> Mohan Mk </label>
+                                </div>
+                            </div>
+                            <div  class="col-lg-9 mb-2 mt-2">
+                                <div  class="fs-6"><span >Time slot not selected</span>
+                                </div>
+                            </div>
+                            <div  class="col-lg-9 mb-2">
+                                <table  width="100%">
+                                    <tbody >
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div  class="row mb-6">
+        <div  class="col-lg-12">
+            <div  class="card shadow-sm border border-gray-300">
+                <div  class="card-body p-0">
+                    <div  class="p-4">
+                        <form  novalidate="" autocomplete="off" ng-reflect-form="[object Object]" class="ng-untouched ng-pristine ng-valid">
+                            <div  class="col-lg-6 d-flex days">
+                                <div  class="form-check form-check-custom form-check-solid me-10"><div >
+                                    <input  type="radio" formcontrolname="selectedDuration" class="mr-5 ng-untouched ng-pristine ng-valid" ng-reflect-form-control-name="selectedDuration" ng-reflect-name="selectedDuration" ng-reflect-value="8">
+                                    <label  class="form-check-label fs-6 fw-semibold"> Full Day </label>
+                                </div>
+                            </div>
+                            <div  class="form-check form-check-custom form-check-solid me-10">
+                                <div >
+                                    <input  type="radio" formcontrolname="selectedDuration" class="mr-5 ng-untouched ng-pristine ng-valid" ng-reflect-form-control-name="selectedDuration" ng-reflect-name="selectedDuration" ng-reflect-value="4">
+                                    <label  class="form-check-label fs-6 fw-semibold"> Half Day </label>
+                                </div> 
+                            </div>
+                            <div  class="form-check form-check-custom form-check-solid me-10">
+                                <div >
+                                    <input  type="radio" formcontrolname="selectedDuration" class="mr-5 ng-untouched ng-pristine ng-valid" ng-reflect-form-control-name="selectedDuration" ng-reflect-name="selectedDuration" ng-reflect-value="2">
+                                    <label  class="form-check-label fs-6 fw-semibold"> Reoccurring Days </label>
+                                </div> 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div  id="calendar-wrap">
+                    <div  class="header"> August 2024 </div>
+                    <div  class="mobileheader" style="display: none;">
+                        <span  class="prev mt-1">◀</span><span  class="next mt-1">▶</span>
+                    </div>
+                    <div  id="calendar">
+                        <ul  class="weekdays"><li >Sun</li><li >Mon</li><li >Tue</li><li >Wed</li><li >Thu</li><li >Fri</li><li >Sat</li></ul>
+                        <ul  class="days">
+                            <li  class="day">
+                                <div  class="date"></div>
+                                <div  class="fc-day-content">
+                                    <div  style="position: relative;">
+                                        <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  class="day">
+                                <div  class="date"></div>
+                                <div  class="fc-day-content">
+                                    <div  style="position: relative;">
+                                        <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  class="day">
+                                <div  class="date"></div>
+                                <div  class="fc-day-content">
+                                    <div  style="position: relative;">
+                                        <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  class="day">
+                                <div  class="date"></div>
+                                <div  class="fc-day-content">
+                                    <div  style="position: relative;">
+                                        <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  class="day">
+                                <div  class="date">
+                                    <span  class="day">Thu,</span>1</div>
+                                    <div  class="fc-day-content">
+                                        <div  style="position: relative;">
+                                            <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;">
+                                                    <span  class="fc-title">
+                                                        <p  class="event-desc"> Event Slots </p>
+                                                        <p  class="event-desc1"> Total Slots : 65 </p>
+                                                        <p  class="event-desc1"> Available Slots : 56 </p>
+                                                        <a  class="add_event_label"> Sign - Up</a>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li  class="day">
+                                    <div  class="date">
+                                        <span  class="day">Fri,</span>2</div>
+                                        <div  class="fc-day-content">
+                                            <div  style="position: relative;">
+                                                <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                    <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 0.5;">
+                                                        <span  class="fc-title">
+                                                            <p  class="event-desc"> Event Slots </p>
+                                                            <p  class="event-desc1"> Total Slots : 2 </p>
+                                                            <p  class="event-desc1"> Available Slots : 0 </p>
+                                                            <a  class="add_event_label"> Sign - Up</a>
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li  class="day">
+                                        <div  class="date">
+                                            <span  class="day">Sat,</span>3</div>
+                                            <div  class="fc-day-content">
+                                                <div  style="position: relative;">
+                                                    <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                                </div>
+                                            </div>
+                                        </li></ul>
+                                        <ul  class="days">
+                                            <li  class="day">
+                                                <div  class="date">
+                                                    <span  class="day">Sun,</span>4</div>
+                                                    <div  class="fc-day-content">
+                                                        <div  style="position: relative;">
+                                                            <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li  class="day">
+                                                    <div  class="date">
+                                                        <span  class="day">Mon,</span>5</div>
+                                                        <div  class="fc-day-content">
+                                                            <div  style="position: relative;">
+                                                                <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                                    <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 0.5;">
+                                                                        <span  class="fc-title">
+                                                                            <p  class="event-desc"> Event Slots </p>
+                                                                            <p  class="event-desc1"> Total Slots : 2 </p>
+                                                                            <p  class="event-desc1"> Available Slots : 0 </p>
+                                                                            <a  class="add_event_label"> Sign - Up</a>
+                                                                        </span>
+                                                                    </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li  class="day">
+                                <div  class="date">
+                                    <span  class="day">Tue,</span>6</div>
+                                    <div  class="fc-day-content">
+                                        <div  style="position: relative;">
+                                            <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;">
+                                                    <span  class="fc-title">
+                                                        <p  class="event-desc"> Event Slots </p>
+                                                        <p  class="event-desc1"> Total Slots : 2 </p>
+                                                        <p  class="event-desc1"> Available Slots : 1 </p>
+                                                        <a  class="add_event_label"> Sign - Up</a>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li  class="day">
+                                    <div  class="date">
+                                        <span  class="day">Wed,</span>
+                                            7</div>
+                                            <div  class="fc-day-content">
+                                                <div  style="position: relative;">
+                                                    <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"><div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 0.5;">
+                                                        <span  class="fc-title">
+                                                            <p  class="event-desc"> Event Slots </p>
+                                                            <p  class="event-desc1"> Total Slots : 2 </p>
+                                                            <p  class="event-desc1"> Available Slots : 0 </p>
+                                                            <a  class="add_event_label"> Sign - Up</a>
+                                                        </span>
+                                                    </div>
+                                        </a></div></div>
+                                    </li>
+                                    <li  class="day">
+                                        <div  class="date">
+                                            <span  class="day">Thu,</span>8</div>
+                                            <div  class="fc-day-content">
+                                                <div  style="position: relative;">
+                                                    <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                        <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;">
+                                                            <span  class="fc-title"><p  class="event-desc"> Event Slots </p>
+                                                                <p  class="event-desc1"> Total Slots : 4 </p>
+                                                                <p  class="event-desc1"> Available Slots : 2 </p>
+                                                                <a  class="add_event_label"> Sign - Up</a>
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li  class="day">
+                                            <div  class="date">
+                                                <span  class="day">Fri,</span>9</div>
+                                                <div  class="fc-day-content">
+                                                    <div  style="position: relative;">
+                                                        <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                            <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;">
+                                                                <span  class="fc-title">
+                                                                    <p  class="event-desc"> Event Slots </p>
+                                                                    <p  class="event-desc1"> Total Slots : 2 </p>
+                                                                    <p  class="event-desc1"> Available Slots : 2 </p>
+                                                                    <a  class="add_event_label"> Sign - Up</a>
+                                                                </span>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li  class="day">
+                                                <div  class="date">
+                                                    <span  class="day">Sat,</span>10</div>
+                                                    <div  class="fc-day-content">
+                                                        <div  style="position: relative;">
+                                                            <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul  class="days">
+                                                <li  class="day">
+                                                    <div  class="date">
+                                                        <span  class="day">Sun,</span>11</div>
+                                                        <div  class="fc-day-content">
+                                                            <div  style="position: relative;">
+                                                                <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li  class="day">
+                                                        <div  class="date">
+                                                            <span  class="day">Mon,</span>12</div>
+                                                            <div  class="fc-day-content">
+                                                                <div  style="position: relative;">
+                                                                    <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                                        <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;">
+                                                                            <span  class="fc-title">
+                                                                                <p  class="event-desc"> Event Slots </p>
+                                                                                <p  class="event-desc1"> Total Slots : 2 </p>
+                                                                                <p  class="event-desc1"> Available Slots : 2 </p>
+                                                                                <a  class="add_event_label"> Sign - Up</a>
+                                                                            </span>
+                                                                        </div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li  class="day">
+                                                            <div  class="date">
+                                                                <span  class="day">Tue,</span>13</div>
+                                                                <div  class="fc-day-content">
+                                                                    <div  style="position: relative;">
+                                                                        <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                                            <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;">
+                                                                                <span  class="fc-title">
+                                                                                    <p  class="event-desc"> Event Slots </p>
+                                                                                    <p  class="event-desc1"> Total Slots : 2 </p>
+                                                                                    <p  class="event-desc1"> Available Slots : 1 </p>
+                                                                                    <a  class="add_event_label"> Sign - Up</a>
+                                                                                </span>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li  class="day">
+                                                                <div  class="date">
+                                                                    <span  class="day">Wed,</span>14</div>
+                                                                    <div  class="fc-day-content">
+                                                                        <div  style="position: relative;">
+                                                                            <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                                                <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 0.5;">
+                                                                                    <span  class="fc-title">
+                                                                                        <p  class="event-desc"> Event Slots </p>
+                                                                                        <p  class="event-desc1"> Total Slots : 2 </p>
+                                                                                        <p  class="event-desc1"> Available Slots : 0 </p>
+                                                                                        <a  class="add_event_label"> Sign - Up</a>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li  class="day">
+                                                                    <div  class="date">
+                                                                        <span  class="day">Thu,</span>15</div>
+                                                                        <div  class="fc-day-content">
+                                                                            <div  style="position: relative;">
+                                                                                <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"><div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;"><span  class="fc-title"><p  class="event-desc"> Event Slots </p><p  class="event-desc1"> Total Slots : 4 </p><p  class="event-desc1"> Available Slots : 2 </p><a  class="add_event_label"> Sign - Up</a></span></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li  class="day">
+                                    <div  class="date">
+                                                <span  class="day">Fri,</span>
+                                                16</div>
+                                                <div  class="fc-day-content">
+                                                    <div  style="position: relative;">
+                                                        <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                            <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;">
+                                                                <span  class="fc-title">
+                                                                    <p  class="event-desc"> Event Slots </p>
+                                                                    <p  class="event-desc1"> Total Slots : 2 </p>
+                                                                    <p  class="event-desc1"> Available Slots : 2 </p>
+                                                                    <a  class="add_event_label"> Sign - Up</a>
+                                                                </span>
+                                                            </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li  class="day">
+                                        <div  class="date">
+                                            <span  class="day">Sat,</span>17</div>
+                                            <div  class="fc-day-content">
+                                                <div  style="position: relative;">
+                                                    <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                                </ul>
+                                                <ul  class="days">
+                                                    <li  class="day">
+                                                        <div  class="date">
+                                                            <span  class="day">Sun,</span>18</div>
+                                                            <div  class="fc-day-content">
+                                                                <div  style="position: relative;">
+                                                                    <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li  class="day">
+                                                            <div  class="date">
+                                                                <span  class="day">Mon,</span>
+                                                    19</div>
+                                                    <div  class="fc-day-content">
+                                                        <div  style="position: relative;">
+                                                            <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;">
+                                                                <div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;">
+                                                                    <span  class="fc-title">
+                                                                        <p  class="event-desc"> Event Slots </p>
+                                                                        <p  class="event-desc1"> Total Slots : 2 </p>
+                                                                        <p  class="event-desc1"> Available Slots : 2 </p>
+                                                                        <a  class="add_event_label"> Sign - Up</a>
+                                                                    </span>
+                                                                </div>
+                                                    </a></div>
+                                                </div>
+                                            </li>
+                                            <li  class="day">
+                                                <div  class="date">
+                                                    <span  class="day">Tue,</span>20</div>
+                                                    <div  class="fc-day-content">
+                                                        <div  style="position: relative;">
+                                                            <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"><div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;"><span  class="fc-title"><p  class="event-desc"> Event Slots </p><p  class="event-desc1"> Total Slots : 2 </p><p  class="event-desc1"> Available Slots : 1 </p><a  class="add_event_label"> Sign - Up</a></span></div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li  class="day">
+                                                <div  class="date">
+                                                    <span  class="day">Wed,</span>
+                                                            21</div>
+                                                            <div  class="fc-day-content"><div  style="position: relative;"><a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"><div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;"><span  class="fc-title"><p  class="event-desc"> Event Slots </p><p  class="event-desc1"> Total Slots : 2 </p><p  class="event-desc1"> Available Slots : 2 </p><a  class="add_event_label"> Sign - Up</a></span></div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li  class="day">
+                                                    <div  class="date">
+                                                        <span  class="day">Thu,</span>22</div>
+                                                        <div  class="fc-day-content">
+                                                            <div  style="position: relative;">
+                                                                <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"><div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;"><span  class="fc-title"><p  class="event-desc"> Event Slots </p><p  class="event-desc1"> Total Slots : 2 </p><p  class="event-desc1"> Available Slots : 1 </p><a  class="add_event_label"> Sign - Up</a></span></div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li  class="day">
+                                                        <div  class="date">
+                                                            <span  class="day">Fri,</span>23</div>
+                                                            <div  class="fc-day-content">
+                                                                <div  style="position: relative;"><a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"><div  class="fc-content" ng-reflect-ng-style="[object Object]" style="opacity: 1;"><span  class="fc-title"><p  class="event-desc"> Event Slots </p><p  class="event-desc1"> Total Slots : 2 </p><p  class="event-desc1"> Available Slots : 1 </p><a  class="add_event_label"> Sign - Up</a></span></div>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li  class="day">
+                                                            <div  class="date">
+                                                                <span  class="day">Sat,</span>
+                                                                        24</div>
+                                                                        <div  class="fc-day-content">
+                                                                            <div  style="position: relative;">
+                                                                                <a  class="fc-day-grid-event fc-h-event fc-event fc-start fc-end" style="background: #3a87ad; opacity: 1;"></a></div></div></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div  align="right" class="col-md-12 pad-20">
+                                                                        <button  type="button" class="btn btn-light border border-primary border-active active text-primary backbtn1 tsspbb btn-sm" style="margin-right: 5px;"> Back </button>
+                                                                        <button  type="button" class="btn btn-primary btn-sm" style="margin-right: 5px;"> Save &amp; Next </button></div>
+                                                                        </form>
+
+
+    </div>
+    
+</div>
 
 
 
