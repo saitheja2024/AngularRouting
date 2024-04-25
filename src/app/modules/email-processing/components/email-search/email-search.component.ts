@@ -9,6 +9,8 @@ import { ReportsService } from 'src/app/modules/chinmaya-shared/services/reports
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { signupCodeRequestInteface } from 'src/app/modules/chinmaya-shared/services/master/master-interface';
 import { EmailProcessingServices } from 'src/app/modules/chinmaya-shared/services/email-processing/emailprocessing.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-email-search',
   templateUrl: './email-search.component.html',
@@ -29,6 +31,8 @@ export class EmailSearchComponent{
   selectedChapterCode: any;
   selectedProgram: any;
   loggedInUser: any;
+  errorpaymentStatusListFlag:boolean=false;
+  errorregistrationStatusListFlag:boolean=false;
 
   constructor(
     private masterService:MasterService,
@@ -115,13 +119,6 @@ export class EmailSearchComponent{
       this.assignedSessionArray.push(new FormControl(false));
     }
 
-    setTimeout( ()=>{
-      this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.choiceLabel.setValue('');
-      this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.choiceCode.setValue('');
-      this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.signupCode.setValue('');
-      this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.className.setValue('');
-    },500)
-    
 
   }
 
@@ -188,8 +185,42 @@ export class EmailSearchComponent{
     this.fecthClassList(params);
   }
 
+  paymentStatusListCheck(eve:any){
+    let searchFormValuesCheck:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value))
+     
+    const selectedPaymentStatus = this.mapBooleanArrayToCodes(searchFormValuesCheck.requestRegistrationProcessingSearch.paymentStatusList,this.paymentStatus,"code");
+    searchFormValuesCheck.requestRegistrationProcessingSearch.paymentStatusList = selectedPaymentStatus;
 
+    if(searchFormValuesCheck.requestRegistrationProcessingSearch.paymentStatusList.length==0){
+      this.errorpaymentStatusListFlag=true;
+      this.MessageofpayError='Payment Status field is required.'
+     }else{
+      this.errorpaymentStatusListFlag=false;
+      this.MessageofpayError='';
+    }
+    
+  }
+
+  regiStatusListCheck(eve:any){
+
+    let searchFormValuesregiCheck:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value))
+    const selectedCodes = this.mapBooleanArrayToCodes(searchFormValuesregiCheck.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus,"code");
+    searchFormValuesregiCheck.requestRegistrationProcessingSearch.registrationStatusList = selectedCodes;
+  
+    if(searchFormValuesregiCheck.requestRegistrationProcessingSearch.registrationStatusList.length==0){
+      this.errorregistrationStatusListFlag=true;
+      this.MessageofRegiError='Registration Status field is required.'
+     }else{
+      this.errorregistrationStatusListFlag=false;
+      this.MessageofRegiError=''
+     }
+  }
+
+  MessageofpayError:string='';
+  MessageofRegiError:string='';
   onSubmitSearch(){
+    this.errorpaymentStatusListFlag=false;
+    this.errorregistrationStatusListFlag=false;
    let searchFormValues:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value))
    const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus,"code");
    searchFormValues.requestRegistrationProcessingSearch.registrationStatusList = selectedCodes;
@@ -199,9 +230,30 @@ export class EmailSearchComponent{
 
    const assignedSession = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.assignedSessionList,this.sessionChoice,"choicecode");
    searchFormValues.requestRegistrationProcessingSearch.assignedSessionList = assignedSession;
-
-   this.emailproService.setEmailSearchCriteria(searchFormValues);
+   
+   if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length>0 && searchFormValues.requestRegistrationProcessingSearch.registrationStatusList.length>0){
+    this.emailproService.setEmailSearchCriteria(searchFormValues);
    this.router.navigateByUrl("/email-processing/email-search-results");
+   }else{
+     if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length==0){
+      this.errorpaymentStatusListFlag=true;
+      this.MessageofpayError='Payment Status field is required.'
+     }
+     if(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList.length==0){
+      this.errorregistrationStatusListFlag=true;
+      this.MessageofRegiError='Registration Status field is required.'
+     }
+
+    //  Swal.fire({
+    //   // position: 'top-end',
+    //    icon: 'success',
+    //    title:this.unlockResponseList.message,
+    //    showConfirmButton: true,
+    //    //timer: 1500
+    //  })
+     
+   }
+   
 
   }
 
