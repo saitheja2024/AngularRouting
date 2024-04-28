@@ -53,3 +53,9 @@
   .item {
     background:rgb(255, 255, 255) !important;
   }
+
+  ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+    border-color: #ff6950 !important;
+    background-color: #ff6950 !important;
+}
+
