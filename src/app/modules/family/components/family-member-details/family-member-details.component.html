@@ -1,428 +1,326 @@
-<div class="card card-flush cardborder">
-    <div class="card-header align-items-center float-end  px-4 bg-white"
-        style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
-        <!--begin::Card title-->
-        <div class="card-title float-sm-end">
-            <!--begin::Search-->
-            <div class="d-flex align-items-center position-relative my-1">
-                <button type="button" class="btn btn-primary btn-xs p-2 px-sm-4" routerLink="/family/familyMemberList/false" style="margin-right:5px;">
-                    <i class="bi bi-arrow-left" style="font-size:16px"></i>
-                </button>
-                <h3 class="panel-title">
-                    <img src="assets/chinmaya_media/images/SVG-color/Add Family Registration Details-icon.svg"
-                        style="width: 25px;"> Add Family Registration Details
-                </h3>
-            </div>
-            <!--end::Search-->
+
+
+<div  class="card DivDesk" style="border: 1px solid #ddd; display: block;">
+    <div class="card-header align-items-center  px-4 bg-white"
+    style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+    <!--begin::Card title-->
+    <div class="card-title float-sm-end">
+        <!--begin::Search-->
+        <div class="d-flex align-items-center position-relative my-1">
+            <button type="button" class="btn btn-primary btn-xs p-2 px-sm-4" routerLink="/family/familyMemberList/false" style="margin-right:5px;">
+                <i class="bi bi-arrow-left" style="font-size:16px"></i>
+            </button>
+            <h3 class="panel-title">
+                <img src="assets/chinmaya_media/images/SVG-color/Add Family Registration Details-icon.svg"
+                    style="width: 25px;"> Add Family Registration Details
+            </h3>
         </div>
-    </div>
-
-    <!--begin::Card body-->
-    <div class="card-body pt-0" [formGroup]="familyMemberDetailsForm">
-        <div class="row mt-3">
-            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                <label class="col-form-label required fw-semibold fs-6">First Name</label>
-                <input type="text" name="firstName" class="form-control form-control-sm required"
-                    placeholder="First Name" formControlName="firstName">
-                <div class="help-block with-errors te xt-danger mt-2"></div>
-            </div>
-            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                <label class="col-form-label required fw-semibold fs-6">Middle Name</label>
-                <input type="text" name="middleName" class="form-control form-control-sm" placeholder="Middle Name"
-                    formControlName="middleName">
-                <div class="help-block with-errors text-danger mt-2"></div>
-            </div>
-            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                <label class="col-form-label required fw-semibold fs-6">Last Name</label>
-                <input type="text" name="lastName" class="form-control form-control-sm required" placeholder="Last Name"
-                    formControlName="lastName">
-                <div class="help-block with-errors text-danger mt-2"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Registrant Type</label>
-                    <select class="form-select form-select-sm" aria-label="Select example" formControlName="personType">
-                        <option value="">- Select -</option>
-                        <option *ngFor="let personType of personTypeList" [value]="personType.code">{{personType.code}}
-                        </option>
-
-                    </select>
-                    <div class="help-block with-errors text-danger mt-2"></div>
-                </div>
-            </div>
-            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Gender</label>
-                    <select class="form-select form-select-sm" aria-label="Select example" id="example"
-                        formControlName="gender">
-                        <option value="">- Select -</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
-                    </select>
-                    <div class="help-block with-errors text-danger mt-2"></div>
-                </div>
-            </div>
-            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Date of Birth (MM/DD/YYYY)</label>
-                    <input class="form-control form-control-sm flatpickr-input" placeholder="MM/DD/YYYY" type="date"
-                        formControlName="dateOfBirth">
-                </div>
-                <div class="help-block with-errors text-danger mt-2"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Status</label>
-                    <select class="form-select form-select-sm" aria-label="Select example">
-                        <option value="">- Status-</option>
-                        <option [value]="status.code" *ngFor="let status of statusList">{{status.code}}</option>
-                    </select>
-                    <div class="help-block with-errors text-danger mt-2"></div>
-                </div>
-            </div>
-            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Marrital Status</label>
-                    <select class="form-select form-select-sm" aria-label="Select example">
-                        <option>- Select-</option>
-                        <option [value]="status.code" *ngFor="let status of maritialStatusList">{{status.code}}</option>
-
-                    </select>
-                    <div class="help-block with-errors text-danger mt-2"></div>
-                </div>
-            </div>
-            <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Relation with Primary
-                        Contact</label>
-                    <select class="form-select form-select-sm" aria-label="Select example">
-                        <option>Select Relation with Primary Contact</option>
-                        <option value="">Spouse</option>
-                        <option value="">Parent</option>
-                        <option value="">Grand Parent</option>
-                        <option value="">Aunt</option>
-                        <option value="">Uncle</option>
-                    </select>
-                    <div class="help-block with-errors text-danger mt-2"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                <div class="row">
-                    <div class="col-lg-6 mt-2">
-                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                            <label class="col-form-label required fw-semibold fs-6 required">Chapter Code</label>
-                            <select class="form-select form-select-sm" aria-label="Select example">
-                                <option value="">- Select-</option>
-                                <option *ngFor="let chapter of chapterCodes" [value]="chapter.code">
-                                    {{chapter.description}}</option>
-                            </select>
-                        </div>
-                        <div class="help-block with-errors text-danger mt-2"></div>
-                    </div>
-                    <div class="col-lg-6 mt-2">
-                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                            <label class="col-form-label required fw-semibold fs-6 required">Does this Individual
-                                currently live at the given family address? </label>
-                            <select class="form-select form-select-sm" aria-label="Select example">
-                                <option>- Select-</option>
-                                <option value="">Yes</option>
-                                <option value="">No</option>
-                            </select>
-                        </div>
-                        <div class="help-block with-errors text-danger mt-2"></div>
-                    </div>
-                </div>
-
-                <div class="row mt-2">
-                    <div class="col-lg-4 mt-2">
-                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                            <label class="col-form-label required fw-semibold fs-6 required">Address</label>
-                            <div class="input-group">
-                                <textarea class="form-control form-control-sm" aria-label="With textarea"
-                                    placeholder="Address" formControlName="address"></textarea>
-                            </div>
-                        </div>
-                        <div class="help-block with-errors text-danger mt-2"></div>
-                    </div>
-                    <div class="col-lg-4 mt-7 asd">
-                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                            <div class="input-group mt-8 asd">
-                                <textarea class="form-control form-control-sm" aria-label="With textarea"
-                                    placeholder="Address Line1" formControlName="address2"></textarea>
-                            </div>
-                        </div>
-                        <div class="help-block with-errors text-danger mt-2"></div>
-                    </div>
-                    <div class="col-lg-4 mt-7 asd">
-                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
-                            <div class="input-group mt-8 asd">
-                                <textarea class="form-control form-control-sm" aria-label="With textarea"
-                                    placeholder="Address Line2" formControlName="address3"></textarea>
-                            </div>
-                        </div>
-                        <div class="help-block with-errors text-danger mt-2"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 fv-row fv-plugins-icon-container mt-2">
-                <div class="row">
-                    <label class="col-form-label required fw-semibold fs-6 required">Individual Passport Size
-                        Photo</label>
-                    <div class="image-input image-input-empty mt-2" data-kt-image-input="true">
-                        <!--begin::Image preview wrapper-->
-                        <div class="image-input-wrapper w-125px h-125px"
-                            style="background-image: url('assets/media/svg/avatars/blank.svg');border:1px solid #ccc;">
-                        </div>
-                        <!--end::Image preview wrapper-->
-
-                        <!--begin::Edit button-->
-                        <label
-                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="change" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                            title="Change avatar">
-                            <i class="ki-duotone ki-pencil fs-6"><span class="path1"></span><span
-                                    class="path2"></span></i>
-
-                            <!--begin::Inputs-->
-                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                            <input type="hidden" name="avatar_remove" />
-                            <!--end::Inputs-->
-                        </label>
-                        <!--end::Edit button-->
-
-                        <!--begin::Cancel button-->
-                        <span
-                            class="btn btn-icon btn-circle btn-color-muted btn-active-color-primary w-25px h-25px bg-body shadow"
-                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" data-bs-dismiss="click"
-                            title="Cancel avatar">
-                            <i class="ki-outline ki-cross fs-3"></i>
-                        </span>
-                        <!--end::Remove button-->
-                    </div>
-                    <span class="mt-1">
-                        <span class="text-danger text-semibold">Note:</span> Upload Flyer with format - jpg, jpeg, png,
-                        etc.
-                    </span>
-                    <!--end::Image input-->
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-8">
-            <div class="row">
-                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">City</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="City" name="city"
-                        formControlName="city">
-                    <div class="help-block with-errors text-danger mt-2"></div>
-                </div>
-                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">State</label>
-                    <select class="form-select form-select-sm" aria-label="Select example" formControlName="state">
-                        <option value="">- Select State-</option>
-                        <option *ngFor="let state of stateList" [value]="state.code">{{state.description}}</option>
-                    </select>
-                    <div class="help-block with-errors text-danger mt-2"></div>
-                </div>
-                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Zip Code</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Zip Code" name="zip_code"
-                        formControlName="zipCode">
-                    <div class="help-block with-errors text-danger mt-2"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-8">
-            <div class="row">
-                <div class="col-lg-6 mt-2 fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Home Phone</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Home Phone" name="first_name"
-                        formControlName="homePhone">
-
-                    <label class="mt-1">
-                        <input type="checkbox">
-                        <small class="fw-semibold text-danger ms-2">Use in case of emergency</small>
-                    </label>
-                </div>
-                <div class="col-lg-6 mt-2 fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Mobile Phone</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Mobile Phone"
-                        name="mobile_phone" formControlName="phoneNumber">
-                    <label class="mt-1">
-                        <input type="checkbox">
-                        <small class="fw-semibold text-danger ms-2">Use in case of emergency</small>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-8">
-            <div class="row">
-                <div class="col-lg-6 mt-2 fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Work Phone</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Work Phone" name="work_phone"
-                        formControlName="workPhone">
-
-                    <label class="mt-1">
-                        <input type="checkbox">
-                        <small class="fw-semibold text-danger ms-2">Use in case of emergency</small>
-                    </label>
-                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                </div>
-                <div class="col-lg-6 mt-2 fv-row fv-plugins-icon-container">
-                    <label class="col-form-label required fw-semibold fs-6 required">Email</label>
-                    <input type="text" class="form-control form-control-sm" placeholder="Email" name="email"
-                        formControlName="emailAddress">
-                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-6 mt-5">
-                <span class="text-danger fw-semibold">
-                    Note: If you do not have work phone, Please enter your Mobile phone again.
-                </span>
-            </div>
-        </div>
-
-        <div class="col-lg-12 mt-4">
-            <div class="row">
-                <div class="col-lg-6 mt-4">
-                    <div class="card shadow-sm">
-                        <div class="p-5">
-                            <h5 class="text-uppercase fs-6 fw-semibold mb-0">Parent Relationship (for Child Record)</h5>
-                        </div>
-                        <hr class="mx-sm-2 m-0">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                    <label class="col-form-label fw-semibold fs-6">Relationship 1</label>
-                                    <select class="form-select form-select-sm" aria-label="Select example">
-                                        <option>- Select-</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6 mt-13 fv-row fv-plugins-icon-container">
-                                    <select class="form-select form-select-sm" aria-label="Select example">
-                                        <option>- Select State-</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 mt-4 fv-row fv-plugins-icon-container">
-                                    <label class="col-form-label fw-semibold fs-6 required">Relationship2</label>
-                                    <select class="form-select form-select-sm" aria-label="Select example">
-                                        <option>- Select-</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-6 mt-17 fv-row fv-plugins-icon-container">
-                                    <select class="form-select form-select-sm" aria-label="Select example">
-                                        <option>- Select State-</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 mt- fv-row fv-plugins-icon-container">
-                                    <label class="col-form-label fw-semibold fs-6 required">Please declare any legal
-                                        custody agreement</label>
-                                    <select class="form-select form-select-sm" aria-label="Select example">
-                                        <option>- Select-</option>
-                                        <option>Yes</option>
-                                        <option>No</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 mt-4">
-                    <div class="card shadow-sm">
-                        <div class="p-5">
-                            <h5 class="text-uppercase fs-6 fw-semibold mb-0">Third Party Emergency Contacts</h5>
-                        </div>
-                        <hr class="mx-sm-2 m-0">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                    <label class="col-form-label fw-semibold fs-6">Emergency Contact 1</label>
-                                    <input type="text" class="form-control form-control-sm"
-                                        placeholder="Emergency Contact 1" name="emergency_contact1">
-                                </div>
-                                <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                    <label class="col-form-label fw-semibold fs-6">Phone 1</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Phone 1"
-                                        name="phone1">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6 mt-4 fv-row fv-plugins-icon-container">
-                                    <label class="col-form-label fw-semibold fs-6">Emergency Contact 2</label>
-                                    <input type="text" class="form-control form-control-sm"
-                                        placeholder="Emergency Contact 2" name="emergency_contact2">
-                                </div>
-                                <div class="col-lg-6 mt-4 fv-row fv-plugins-icon-container">
-                                    <label class="col-form-label fw-semibold fs-6">Phone 2</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Phone 2"
-                                        name="phone2">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="py-5">
-                <div class="d-flex align-items-center rounded py-5 px-5 bg-light-primary ">
-                    <i class="ki-duotone ki-information-5 fs-3x text-warning me-5">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                        <span class="path3"></span>
-                    </i>
-                    <div class="text-gray-700 fs-6">
-                        a) This email address used for any communication related to the programs that this individual is
-                        regestered for. To Unsubscribe please contact the respective program coordinator.
-                        <br><br>
-                        b) The information provided will be used for Mission purpose only. Including Mission
-                        publications and websited unless otherwise specified by a written request to the Mission from
-                        the Member For privacy, the names will not be included on website.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="d-flex justify-content-center">
-                <!--begin::Filter menu-->
-                <div class="m-0">
-
-                    <a href="#" class="btn btn-primary btn-sm mb-2 mt-4" style="margin-right:5px;">
-                        <i class="icon-floppy-disk fs-4"></i> Save
-                    </a>
-
-                    <a href="#" class="btn btn-primary btn-sm mb-2 mt-4" style="margin-right:5px;">
-                        <i class="icon-floppy-disks fs-4"></i> Save & Add another Number
-                    </a>
-
-                    <a routerLink="/family/familyMemberList/false" class="btn btn-danger btn-sm mb-2 mt-4">
-                        <i class="icon-cancel-circle2 fs-4"></i> Cancel
-                    </a>
-
-                </div>
-            </div>
-        </div>
-
+        <!--end::Search-->
     </div>
 </div>
+       
+            <div  class="card-body p-4">
+                <form  novalidate="" autocomplete="off" id="kt_account_profile_details_form" class="form">
+                    <div  class="border border-active active p-4 mb-4" style="border-radius: 5px !important; border: 1px solid #ddd !important;">
+                        <div  class="row">
+                            <div  class="col-lg-4 fv-row">
+                                <label  class="col-lg-4 col-form-label required fw-semibold fs-6">First Name</label>
+                                <input formcontrolname="firstName" autocomplete="off" type="text" name="fname" placeholder="First name" class="form-control form-control-md mb-3 mb-lg-0 p-2">
+                                </div>
+                                <div  class="col-lg-4 fv-row">
+                                    <label  class="col-lg-4 col-form-label fw-semibold fs-6">Middle Name</label>
+                                    <input  type="text" name="lname" formcontrolname="middleName" autocomplete="off" placeholder="Middle name" class="form-control form-control-md p-2">
+                                </div>
+                                <div  class="col-lg-4 fv-row">
+                                    <label  class="col-lg-4 col-form-label required fw-semibold fs-6">Last Name</label>
+                                    <input   formcontrolname="lastName" autocomplete="off" type="text" name="lname" placeholder="Last name" class="form-control form-control-md p-2 ">
+                                    </div>
+                                </div>
+                                <div  class="row mb-6">
+                                    <div  class="col-lg-3 fv-row">
+                                        <label  class="col-form-label required fw-semibold fs-6">Status</label>
+                                        <select class="form-select form-select-sm" aria-label="Select example">
+                                            <option value="">- Status-</option>
+                                            <option [value]="status.code" *ngFor="let status of statusList">{{status.code}}</option>
+                                        </select>
+                                    </div>
+                                    <div  class="col-lg-3 fv-row">
+                                        <label  class="col-form-label required fw-semibold fs-6">Type of Person</label>
+                                        <select  formcontrolname="personType" name="country" id="country" aria-label="Type of Person" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                            <option  value="">Select</option>
+                                            <option  value="ADULT"> Adult (&gt; 26 year old)</option>
+                                            <option  value="CHILD"> Child (12th grade and lower)</option>
+                                            <option  value="YOUTH"> Youth ( Above 12th grade and below 27th year old) </option>
+                                        </select>
+                                    </div>
+                                    <div  class="col-lg-3 fv-row">
+                                        <label  class="col-form-label required fw-semibold fs-6">Gender</label>
+                                        <select  formcontrolname="gender" aria-label="Select a Gender" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold ">
+                                            <option  value="">Select Gender</option>
+                                            <option  value="M"> Male</option>
+                                            <option  value="F"> Female</option>
+                                        </select>
+                                    </div>
+                                    <div  class="col-lg-3 fv-row">
+                                        <label  class="col-form-label required fw-semibold fs-6">Marital Status</label>
+                                        <select  formcontrolname="maritalStatus" name="MaritalStatus" aria-label="Select a Marital Status" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold ">
+                                            <option  value="" ng-reflect-value="">Select</option>
+                                            <option  value="Married" ng-reflect-value="Married"> Married</option>
+                                            <option  value="Single" ng-reflect-value="Single"> Single</option>
+                                        </select>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div  class="row">
+                                    <div  class="col-lg-8">
+                                        <div  class="border border-active active p-4 mb-4" style="border-radius: 5px !important; border: 1px solid #ddd !important;">
+                                            <div  class="row mb-2">
+                                                <div  class="col-lg-6 fv-row">
+                                                    <label  class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
+                                                    <input  type="email" formcontrolname="emailAddress" name="email" placeholder="Email Address" autocomplete="off" class="form-control form-control-md p-2 mb-3 mb-lg-0">
+                                                </div>
+                                                <div  class="col-lg-6 fv-row">
+                                                    <label  class="col-form-label required fw-semibold fs-6">Primary contact is my?</label>
+                                                    <select  formcontrolname="relationShipPrimaryContact" name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                                        <option  value="">Select Primary contact is my?</option>
+                                                        <option  value="H" ng-reflect-value="H">Husband</option>
+                                                        <option  value="W" ng-reflect-value="W">Wife</option>
+                                                        <option  value="F" ng-reflect-value="F">Father</option>
+                                                        <option  value="M" ng-reflect-value="M">Mother</option>
+                                                        <option  value="GF" ng-reflect-value="GF">Grand Father</option>
+                                                        <option  value="GM" ng-reflect-value="GM">Grand Mother</option>
+                                                        <option  value="A" ng-reflect-value="A">Aunt</option>
+                                                        <option  value="U" ng-reflect-value="U">Uncle</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div  class="row mb-2">
+                                                <div  class="col-lg-6 fv-row">
+                                                    <label  class="col-form-label fw-semibold fs-6 mb-2">Does this individual currently live at the given family address?</label>
+                                                    <select  formcontrolname="livingAtHomeAddress" name="youth" aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                                        <option  value="1"> Yes</option>
+                                                        <option  value="0"> No</option>
+                                                    </select>
+                                                </div> 
+                                            <div class="col-lg-6"></div>
+                                            </div>
+
+                                            <div  class="row mb-2 mt-4">
+                                                <label  class="col-lg-4 col-form-label required fw-semibold fs-6">Address 1 </label>
+                                                <div  class="col-lg-8 fv-row">
+                                                    <input   formcontrolname="address" autocomplete="off" type="text" name="company" placeholder="Address" value="" class="form-control form-control-md p-2 text_transform_cap " ng-reflect-name="address" readonly="">
+                                                </div>
+                                            </div>
+                                            <div  class="row mb-2">
+                                                <label  class="col-lg-4 col-form-label fw-semibold fs-6">Address 2 </label>
+                                                <div  class="col-lg-8 fv-row">
+                                                    <input   formcontrolname="address2" autocomplete="off" type="text" name="company" placeholder="Address" value="" class="form-control form-control-md p-2 text_transform_cap " ng-reflect-name="address2" readonly="">
+                                                </div>
+                                            </div>
+                                            <div  class="row mb-2">
+                                                <label  class="col-lg-4 col-form-label fw-semibold fs-6">Address 3 </label>
+                                                <div  class="col-lg-8 fv-row"><input   formcontrolname="address3" autocomplete="off" type="text" name="company" placeholder="Address" value="" class="form-control form-control-md p-2 text_transform_cap " ng-reflect-name="address3" readonly="">
+                                                </div>
+                                            </div>
+                                            <div  class="row mb-6">
+                                                <div  class="col-lg-4 fv-row">
+                                                    <label  class="col-lg-4 col-form-label required fw-semibold fs-6">City </label>
+                                                    <input   formcontrolname="city" autocomplete="off" type="text" name="phone" placeholder="City" class="form-control form-control-md p-2 text_transform_cap " ng-reflect-name="city" readonly="">
+                                                </div>
+                                                <div  class="col-lg-4 fv-row">
+                                                    <label  class="col-form-label required fw-semibold fs-6">State </label>
+                                                    <select  formcontrolname="state" name="state" aria-label="Select a state" data-control="select2" data-placeholder="Select a State..." class="form-select form-select-md p-2 fw-semibold ng-untouched ng-pristine" ng-reflect-name="state" disabled="">
+                                                        <option  value="" ng-reflect-value="">Select State</option>
+                                                        <option  value="Al" ng-reflect-value="Al"> Alabama</option>
+                                                        <option  value="AK" ng-reflect-value="AK"> Alaska</option>
+                                                        <option  value="AZ" ng-reflect-value="AZ"> Arizona</option>
+                                                        <option  value="AR" ng-reflect-value="AR"> Arkansas</option>
+                                                        <option  value="CA" ng-reflect-value="CA"> California</option>
+                                                        <option  value="CO" ng-reflect-value="CO"> Colorado</option>
+                                                        <option  value="CT" ng-reflect-value="CT"> Connecticut</option>
+                                                        <option  value="DE" ng-reflect-value="DE"> Delaware</option>
+                                                        <option  value="DC" ng-reflect-value="DC"> District Of Columbia</option>
+                                                        <option  value="FL" ng-reflect-value="FL"> Florida</option>
+                                                        <option  value="GA" ng-reflect-value="GA"> Georgia</option>
+                                                        <option  value="HI" ng-reflect-value="HI"> Hawaii</option>
+                                                        <option  value="ID" ng-reflect-value="ID"> Idaho</option>
+                                                        <option  value="IL" ng-reflect-value="IL"> Illinois</option>
+                                                        <option  value="IN" ng-reflect-value="IN"> Indiana</option>
+                                                        <option  value="IA" ng-reflect-value="IA"> Iowa</option>
+                                                        <option  value="KS" ng-reflect-value="KS"> Kansas</option>
+                                                        <option  value="KY" ng-reflect-value="KY"> Kentucky</option>
+                                                        <option  value="LA" ng-reflect-value="LA"> Louisiana</option>
+                                                        <option  value="ME" ng-reflect-value="ME"> Maine</option>
+                                                        <option  value="MD" ng-reflect-value="MD"> Maryland</option>
+                                                        <option  value="MA" ng-reflect-value="MA"> Massachusetts</option>
+                                                        </select>
+                                                    </div>
+                                                    <div  class="col-lg-4 fv-row">
+                                                        <label  class="col-form-label required fw-semibold fs-6">Zip Code</label>
+                                                        <input  type="text" onkeypress="if(this.value.length==5) return false;" maxlength="5" name="ZipCode" placeholder="Zip Code" formcontrolname="zipCode" required="" autocomplete="off" class="form-control form-control-md p-2 " ng-reflect-required="" ng-reflect-maxlength="5" ng-reflect-name="zipCode" readonly="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="col-lg-4 ps-0">
+                                            <div  class="border border-active active p-4 mb-4 divsize" style="border-radius: 5px !important; border: 1px solid #ddd !important;">
+                                                <div  class="row mb-6">
+                                                    <div  class="col-lg-2"></div>
+                                                    <div  class="col-lg-8 text-center">
+                                                        <label  class="col-form-label fw-semibold fs-6 text-center">Individual Passport Size Photo</label>
+                                                        <div  class="text-center">
+                                                            <div  data-kt-image-input="true" class="image-input image-input-outline">
+                                                                <div  class="image-input-wrapper w-90px h-90px">
+                                                                    <img  loading="lazy" role="presentation" alt="Image Display Here" src="assets/media/jellyfish.png" style="width: 80px; height: 80px;">
+                                                                </div>
+                                                                <label  data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar" class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow">
+                                                                    <i  class="ki-duotone ki-pencil fs-7">
+                                                                        <span  class="path1"></span>
+                                                                        <span  class="path2"></span>
+                                                                    </i>
+                                                                    <input  type="file" name="avatar" accept=".png, .jpg, .jpeg">
+                                                                    <input  type="hidden" name="avatar_remove">
+                                                                </label>
+                                                                <span  data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar" class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow">
+                                                                    <i  class="ki-duotone ki-cross fs-2">
+                                                                        <span  class="path1"></span>
+                                                                        <span  class="path2"></span>
+                                                                    </i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div  class="form-text text-dark text-nowrap">Image size not be exceed 10 MB<br > Format : JPG/JPEG/PNG</div>
+                                                    </div>
+                                                    <div  class="col-lg-2"></div>
+                                                </div>
+                                            </div>
+                                            <div  class="border border-active active p-4 mb-4 divsize" style="border-radius: 5px !important; border: 1px solid #ddd !important;">
+                                                <div  class="row">
+                                                    <label  class="col-form-label required fw-semibold fs-6"> Would you like to create login credentials for this individual ? </label>
+                                                    <div  class="col-lg-5 text-nowrap">
+                                                        <div  class="d-flex flex-wrap align-items-center text-gray-600 gap-5 mb-2">
+                                                            <div  class="form-check form-check-custom form-check-solid">
+                                                                <input  type="radio" autocomplete="off" value="Yes" formcontrolname="credentialCheck" id="all_conditions" class="styled " ng-reflect-value="Yes" ng-reflect-form-control-name="credentialCheck" ng-reflect-name="credentialCheck">
+                                                                <label  for="all_conditions" class="form-check-label">Yes</label>
+                                                            </div>
+                                                            <div  class="form-check form-check-custom form-check-solid">
+                                                                <input  formcontrolname="credentialCheck" type="radio" value="No" checked="" id="any_conditions" class="styled " ng-reflect-form-control-name="credentialCheck" ng-reflect-value="No" ng-reflect-name="credentialCheck">
+                                                                <label  for="any_conditions" class="form-check-label">No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div  class="row">
+                                        <div  class="col-lg-8">
+                                            <div  class="border border-active active p-4" style="border-radius: 5px !important; border: 1px solid #ddd !important;">
+                                                <div  class="row">
+                                                    <div  class="col-lg-6 fv-row">
+                                                        <div  class="row">
+                                                            <label  class="col-lg-4 col-form-label required fw-semibold fs-6">Home Phone</label>
+                                                            <div  class="col-lg-8 fv-row">
+                                                                <input  type="text" id="homePhone" maxlength="14" minlength="14" formcontrolname="homePhone" name="homephone" autocomplete="off" placeholder="Home Phone" value="" class="form-control form-control-md p-2 " ng-reflect-minlength="14" ng-reflect-maxlength="14" ng-reflect-name="homePhone" readonly="">
+                                                                <div  class="form-check d-flex mt-2 ps-0">
+                                                                    <input  type="checkbox" formcontrolname="sphomePhoneFlag" autocomplete="off" id="flexCheckDefault_1" class="form-check " ng-reflect-name="sphomePhoneFlag" value="1">
+                                                                    <label  for="flexCheckDefault_1" class="required text-dark fw-semibold ms-2"> Use in case of emergency </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div  class="col-lg-6 fv-row">
+                                                        <div  class="row mb-6">
+                                                            <label  class="col-lg-4 col-form-label fw-semibold fs-6 required" ng-reflect-ng-class="required">Mobile Phone</label>
+                                                            <div  class="col-lg-8 fv-row">
+                                                                <input  type="text" id="phoneNumber" formcontrolname="phoneNumber" maxlength="14" minlength="14" name="phonenumber" required="" autocomplete="off" placeholder="Mobile Phone" value="" class="form-control form-control-md p-2" ng-reflect-required="" ng-reflect-minlength="14" ng-reflect-maxlength="14" ng-reflect-name="phoneNumber">
+                                                                <div  class="form-check d-flex mt-2 ps-0">
+                                                                    <input  type="checkbox" value="1" id="flexCheckDefault1" formcontrolname="mobileFlag" autocomplete="off" class="form-check " ng-reflect-name="mobileFlag">
+                                                                    <label  for="flexCheckDefault1" class="form-check-label text-dark fw-semibold ms-2 required" ng-reflect-ng-class="required"> Use in case of emergency </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="col-lg-4"></div>
+                                    </div>
+
+                                    <div  id="ChilParentdDiv1" class="col-lg-12 mt-3 CHILD border border-active active p-5" style="border-radius: 5px !important; border: 1px solid #ddd !important;">
+                                        <div  class="row">
+                                            <div  class="panel panel-white">
+                                                <div  class="panel-heading">
+                                                    <h5  class="fw-bold m-0">Parent Relationship (for Child Record)</h5>
+                                                </div>
+                                                <div  class="panel-body">
+                                                    <div  class="row mb-1">
+                                                        <div  class="col-lg-6">
+                                                            <div  class="form-group row mb-3">
+                                                                <label  class="col-form-label fw-semibold col-lg-6">Relationship 1
+                                                                    <span  class="text-danger"> *</span>
+                                                                </label>
+                                                                <div  class="col-lg-6 fv-row">
+                                                                    <select  name="Person[relationCode1]" formcontrolname="relationCode" class="form-select form-select-md p-2 fw-semibold" >
+                                                                        <option  value="">Select</option>
+                                                                        <option  value="F">Father</option>
+                                                                        <option  value="M">Mother</option>
+                                                                        <option  value="GF">Grand Father</option>
+                                                                        <option  value="GM">Grand Mother</option>
+                                                                        <option  value="A">Aunt</option>
+                                                                        <option  value="U">Uncle</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div  class="col-lg-6">
+                                                            <div  class="col-lg-6 fv-row" style="padding: 0;">
+                                                                <select  name="Person[relation1]" formcontrolname="relatedPersonId" class="form-select form-select-md p-2 fw-semibold">
+                                                                    <option  value="">Select</option>
+                                                                    <option  value="14131">Mohan Mk</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div  class="form-group row no-margin-bottom">
+                                                        <label  class="col-form-label fw-semibold col-lg-6">Does this child have any legal custody agreement?</label>
+                                                        <div  class="col-lg-6">
+                                                            <div  class="col-lg-6 no-padding-left no-padding-right">
+                                                                <select  name="Person[CustodyIssue]" formcontrolname="CustodyIssue" class="form-select form-select-md p-2 fw-semibold">
+                                                                    <option  value="">select</option>
+                                                                    <option  value="1">Yes</option>
+                                                                    <option  value="0">No</option>
+                                                                </select>
+                                                                <div  class="help-block with-errors text-danger"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                
+                                <div  class="text-center mb-1 mt-5">
+                                    <a  routerlink="/familyview" class="btn btn-sm btn-light border border-primary border-active active text-primary mt-2" ng-reflect-router-link="/familyview" href="/familyview">Cancel</a>
+                                    <button  type="button" id="kt_ecommerce_add_category_submit" class="btn btn-primary ms-2 btn-sm mt-2">
+                                        <span  class="indicator-label">Save</span>
+                                        <span  class="indicator-progress">Please wait... 
+                                            <span  class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                        </span>
+                                    </button>
+                                    <button  type="button" id="kt_ecommerce_add_category_submit" class="btn btn-primary btn-sm mr-2 mt-2 ms-2">
+                                        <span  class="indicator-label text-nowrap">Save &amp; Add Another Member</span>
+                                        <span  class="indicator-progress">Please wait... 
+                                            <span  class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                        </span>
+                                    </button>
+                                </div>
+                            
+                            </form>
+                        </div>
+                    
+
+
