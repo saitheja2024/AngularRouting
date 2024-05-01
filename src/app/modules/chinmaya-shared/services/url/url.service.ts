@@ -71,5 +71,9 @@ export class UrlService {
   sendEmailInfo={
     sendEmail:'registrationProcessing/sendEmail'
   }
+
+  classRegistration = {
+    registration: 'registration/fetchPersonsListByFamilyId'
+  }
   
 }

@@ -5,19 +5,20 @@
 <div  data-kt-buttons="true" data-kt-buttons-target="[data-kt-button]" data-kt-initialized="1" class="g-9 d-flex dflexs">
     <div  class="col-lg-12">
         <div  class="row">
-            <div  class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12 chk-dv" style="overflow: hidden;">
+            <div *ngFor="let person of personList"  class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12 chk-dv" style="overflow: hidden;">
                 <label  data-kt-button="true" class="btn active d-flex text-start p-2">
                     <span  class="form-check form-check-custom form-check-solid form-check-sm align-items-start">
-                        <input  type="radio" name="usage" class="styled ng-valid ng-dirty ng-touched" ng-reflect-name="usage" ng-reflect-model="SononeKk" ng-reflect-value="SononeKk"></span>
+                        <input class="styled" [(ngModel)]="selectedMember" type="radio" name="usage"  [value]="person.firstName+person.lastName" (ngModelChange)="onMemberChange($event, person)">   
+                    </span>
                         <span  class="ms-5">
-                            <span  class="fs-6 mb-1 d-block" style="color: #7d7d7d;">Sonone Kk</span>
-                        </span></label></div>
-                        <div  class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12 chk-dv" style="overflow: hidden;">
-                            <label  data-kt-button="true" class="btn active d-flex text-start p-2">
-                                <span  class="form-check form-check-custom form-check-solid form-check-sm align-items-start">
-                                    <input  type="radio" name="usage" class="styled ng-untouched ng-pristine ng-valid" ng-reflect-name="usage" ng-reflect-model="SononeKk" ng-reflect-value="Son2Kk"></span>
-                                    <span  class="ms-5">
-   <span  class="fs-6 mb-1 d-block" style="color: #7d7d7d;">Son2 Kk</span></span></label></div></div></div></div></div>
+                            <span class="fs-6 mb-1 d-block" style="color:#7d7d7d;">{{person.firstName + ' ' +person.lastName}}</span>
+                        </span></label>
+                    </div>
+                        
+</div>
+</div>
+</div>
+</div>
 
 
 

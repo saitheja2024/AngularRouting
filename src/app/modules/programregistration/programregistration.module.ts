@@ -10,7 +10,7 @@ import { ReviewComponent } from './components/review/review/review.component';
 import { ConstantComponent } from './components/constant/constant/constant.component';
 import { PaymentComponent } from './components/payment/payment/payment.component';
 import { PaymentcompleteComponent } from './components/payment-complete/paymentcomplete/paymentcomplete.component';
-
+import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
 const routes: Routes = [
   {
     path: '',
@@ -68,9 +68,10 @@ const routes: Routes = [
     ReviewComponent,
     ConstantComponent,
     PaymentComponent,
-    PaymentcompleteComponent
+    PaymentcompleteComponent,
   ],
   imports: [
+    ChinmayaSharedModule,
     RouterModule.forChild(routes)
   ],
   
