@@ -10,8 +10,7 @@ import { KEYS, StoreService } from '../store/store.service';
     providedIn: 'root'
   })
   export class ClassRegistrationService {
-  
-
+    
     constructor(
         private httpService:HttpService,
         private urlService:UrlService,
@@ -26,7 +25,9 @@ import { KEYS, StoreService } from '../store/store.service';
             body: param
         }
     
-        let response: any = await this.httpService.post(options);
+        let response: any = await await this.httpService.post(options);
+         return response.personProgramList;
+
         }
          
     

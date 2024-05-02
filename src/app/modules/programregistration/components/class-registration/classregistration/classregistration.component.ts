@@ -25,10 +25,14 @@ export class ClassregistrationComponent {
     this.selectedProgram = this.store.getValue(KEYS.program);
     this.selectedFamily = this.store.getValue(KEYS.selectedFamily);
    // this.loggedInUser = this.emailproService.getLoggedInUser();
-   await this.fetchPersonList();
+   this.populateOnInitData();
+  
 }
 
-  
+  async populateOnInitData(){
+    await this.fetchPersonList();
+  }
+
   async fetchPersonList(){
    
     let param:PersonList = {
@@ -40,7 +44,7 @@ export class ClassregistrationComponent {
     }
 
      let personData:any = await this.classRgiSrvice.getPersonList(param);
-     this.personList = personData?.personProgramList;
+     this.personList = personData;
   }
 
 
