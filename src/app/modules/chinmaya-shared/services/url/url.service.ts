@@ -73,7 +73,15 @@ export class UrlService {
   }
 
   classRegistration = {
-    registration: 'registration/fetchPersonsListByFamilyId'
+    registration: 'registration/fetchPersonsListByFamilyId',
+    categoryList:'programSelection/fetchListOfSignupCode',
+    personProgramRegi:'programSelection/fetchPersonProgramRegistrationByFamilyIdAndProgramCode',
+    deleteSession:'programSelection/deleteFamilySessionPreference',
+    saveSessionPreference:"program/saveSessionPreference",
+    deletePersonProgramRegistration:'programSelection/deletePersonProgramRegistration',
+    ProgramConfigurationFields:'registration/fetchProgramConfigurationFields',
+    reviewPrerequisites:'programSelection/reviewPrerequisites',
+    fetchAmount:'programSelection/fetchAmount'
   }
   
 }

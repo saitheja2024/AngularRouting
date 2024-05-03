@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProgramregistrationComponent } from '../programregistration/programregistration/programregistration.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -11,6 +11,7 @@ import { ConstantComponent } from './components/constant/constant/constant.compo
 import { PaymentComponent } from './components/payment/payment/payment.component';
 import { PaymentcompleteComponent } from './components/payment-complete/paymentcomplete/paymentcomplete.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
+import { TrimPipe } from 'src/app/pipes/trim.pipe';
 const routes: Routes = [
   {
     path: '',
@@ -69,11 +70,13 @@ const routes: Routes = [
     ConstantComponent,
     PaymentComponent,
     PaymentcompleteComponent,
+    TrimPipe
   ],
   imports: [
     ChinmayaSharedModule,
     RouterModule.forChild(routes)
   ],
-  
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  providers:[TrimPipe]
 })
 export class ProgramregistrationModule { }

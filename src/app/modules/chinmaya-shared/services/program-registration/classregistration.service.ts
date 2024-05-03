@@ -5,6 +5,7 @@ import { ReportsService } from '../reports/reports.service';
 import { MasterService } from '../master/master.service';
 import { AuthService } from 'src/app/modules/auth';
 import { KEYS, StoreService } from '../store/store.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -26,9 +27,92 @@ import { KEYS, StoreService } from '../store/store.service';
         }
     
         let response: any = await await this.httpService.post(options);
-         return response.personProgramList;
+         return response;
 
         }
+
+      async  fetchCategoriesList(param: any) {
+            let options: Options = {
+                url: this.urlService.classRegistration.categoryList,
+                body: param
+            }
+        
+            let response: any = await await this.httpService.post(options);
+             return response.selectDropdownList;
+          }
+
+          async  fetchPersonProgramRegistrationList(param: any) {
+            let options: Options = {
+                url: this.urlService.classRegistration.personProgramRegi,
+                body: param
+            }
+        
+            let response: any = await await this.httpService.post(options);
+             return response.selectDropdownList;
+          }
+
+          async  deleteFamilySessionPreference(param: any) {
+            let options: Options = {
+                url: this.urlService.classRegistration.deleteSession,
+                body: param
+            }
+        
+            let response: any = await await this.httpService.post(options);
+             return response.selectDropdownList;
+          }
          
-    
+          async  saveSessionPreferrence(param: any) {
+            let options: Options = {
+                url: this.urlService.classRegistration.saveSessionPreference,
+                body: param
+            }
+        
+            let response: any = await await this.httpService.post(options);
+             return response.selectDropdownList;
+          }
+
+          async  deleteProgramRegistration(param: any) {
+            var options:Options = {
+                headers: new HttpHeaders({
+                  'Content-Type': 'application/json'
+                }),
+                url: this.urlService.classRegistration.deletePersonProgramRegistration,
+                body: param
+              }
+           
+            let response: any = await await this.httpService.post(options);
+             return response.selectDropdownList;
+          }
+
+          async  fetchSaveProgramConfigurationFields(param: any) {
+            var options:Options = {
+                url: this.urlService.classRegistration.ProgramConfigurationFields,
+                body: param
+              }
+           
+            let response: any = await await this.httpService.post(options);
+             return response;
+          }
+
+         async FetchreviewPrerequisites(param: any) {
+            var options:Options = {
+                url: this.urlService.classRegistration.reviewPrerequisites,
+                body: param
+              }
+              let response: any = await await this.httpService.post(options);
+              return response;
+          }
+
+          async getClassAmount(param: any) {
+            var options:Options = {
+                url: this.urlService.classRegistration.fetchAmount,
+                body: param
+              }
+              let response: any = await await this.httpService.post(options);
+              return response;
+          }
+
+          getLoggedInUser(){
+            return this.authServie.getLoggedInUser();
+          }
   }
