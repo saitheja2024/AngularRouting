@@ -1,0 +1,73 @@
+.form-control, .form-select {
+    border-radius:5px !important;
+  }
+  
+  .form-label-text {   
+    font-size: 16px !important;
+    color: #2196f3 !important;
+  }
+  
+  .form-label1 {
+      font-size: 14px !important;
+  }
+  
+  @media(max-width:767px) {
+    .backbtn1 {
+        float:left !important;
+    }
+  }
+  
+  
+  .form-select.form-select-solid {
+      background-color: #fff !important;
+      border-color: #ccc !important;
+      color: var(--bs-gray-700);
+      transition: color 0.2s ease;
+    }
+  
+    .col-lg-6 {
+      margin-bottom: 15px !important;
+    }
+  
+    .form-control.form-control-solid {
+      background-color: #fff !important;
+      border-color: #ccc !important;
+      color: var(--bs-gray-700);
+      transition: color 0.2s ease;
+    }
+  
+    .btn.btn-light {
+      margin-right: 10px;
+    }
+  
+    @media (max-width: 992px) {
+      .stepper.stepper-pills .stepper-nav {
+        display: flex !important;
+      }
+    }
+  
+    .form-select:disabled, .form-control:read-only{
+      background-color: #f1f1f1 !important;
+    }
+  
+  .grade_txt_clr{
+   color:#9EB72C;
+  }
+   
+  .tl-tp .tl-txt {
+    position: absolute;
+    padding: 1px 10px;
+    background: #fff;
+    color: #000;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px 0px #999;
+    border: 1px solid #777;
+    width: auto;
+    text-align: left;
+    font-size: 14px;
+    z-index: 9999;
+  }
+  
+  .toolTip-Width .tl-txt.tstext{
+    width:355px !important;
+  }

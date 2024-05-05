@@ -1,93 +1,620 @@
-<div class="card shadow-sm mt-5 border border-gray-300 mb-5">
-    <div class="card-header">
-        <h3 class="card-title">Additional Details</h3>
+<form [formGroup]="profileFormGroup"  autocomplete="off">  
+		
+	<!--begin::Step 1-->
+	<div *ngIf="profileFormGroup"> 
+        <div *ngIf="profileFormGroup?.get('adults')?.controls.length>0">
+            <div formArrayName="adults"> 
+				<!--begin::Input group-->
+				<div class="fv-row mb-1" *ngFor="let adultGroup of profileFormGroup?.get('adults')?.controls">
+					<!--begin::Label-->
+					<label class="form-label form-label-text" style="font-size:14px !important;"> Adult : {{adultGroup?.get('firstName').value}} {{adultGroup?.get('lastName').value}} </label>
+					<!--end::Label--> 
+					<div class="row" [formGroup]="adultGroup">
+						<div class="col-lg-8 fv-row">
+							<!--begin::Row-->
+							<div class="row">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row" *ngIf="canShowField('workPhoneAdultFlag')">
+									<label for="exampleFormControlInput1" class="form-label" [ngClass]="canShowMandatorySign('workPhoneAdultMandatoryFlag')?'required':''">Work Phone
+									</label>
+									<input type="text" name="lname" class="form-control form-control-sm form-control-solid" placeholder="Work Phone" autocomplete="off" id="PhoneNumber"  formControlName="workPhone"  appPhoneNumberFormat maxlength="14" minlength="14"/>
+									<!-- <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-lg fw-semibold">
+										<option data-kt-flag="flags/afghanistan.svg" value="AF">1st Grade</option>
+										<option data-kt-flag="flags/aland-islands.svg" value="AX">2nd Grade</option>
+										<option data-kt-flag="flags/albania.svg" value="AL">3rd Grade</option>                                
+									</select> -->
+									<div  class="help-block with-errors text-danger" >{{showError(adultGroup,'workPhone')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row" *ngIf="canShowField('dateOfBirthAdultFlag')">
+									<label for="exampleFormControlInput1" class="form-label" [ngClass]="canShowMandatorySign('dateOfBirthAdultMandatoryFlag')?'required':''">Date of Birth
+									</label>
+									<input type="date" formControlName="dateOfBirth" autocomplete="off" name="lname" class="form-control form-control-sm form-control-solid" placeholder="MM/DD/YYYY"/>
+									<div  class="help-block with-errors text-danger" >{{showError(adultGroup,'dateOfBirth')}}</div>
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+							<!--begin::Row-->
+							<div class="row" *ngIf="canShowField('emergencyContactPrimaryFlag')">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1" class=" form-label" [ngClass]="canShowMandatorySign('emergencyContact',adultGroup)?'required':''">Emergency Contact 1
+									</label>
+									<input type="text" placeholder="emergencyContact1" formControlName="emergencyContact1"   class="form-control form-control-sm form-control-solid" placeholder=""/>
+									<div  class="help-block with-errors text-danger" >{{showError(adultGroup,'emergencyContact1')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1"  id="family-emergencyphone1" class=" form-label" [ngClass]="canShowMandatorySign('emergencyContact',adultGroup)?'required':''">Phone1 </label>
+									<input type="text" placeholder="Phone1"
+									formControlName="phone1"  appPhoneNumberFormat maxlength="14" class="form-control form-control-sm form-control-solid" />
+									<div  class="help-block with-errors text-danger" >{{showError(adultGroup,'phone1')}}</div>
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+
+							<!--begin::Row-->
+							<div class="row" *ngIf="canShowField('emergencyContactPrimaryFlag')">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1" class="form-label" [ngClass]="canShowMandatorySign('emergencyContact',adultGroup)?'required':''">Emergency Contact 2
+									</label>
+									<input type="text" placeholder="Contact Name2" formControlName="emergencyContact2"  autocomplete="off" id="family-emergencycontact2"   class="form-control form-control-sm form-control-solid" />
+									<div  class="help-block with-errors text-danger" >{{showError(adultGroup,'emergencyContact1')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1"  id="family-emergencyphone1" class=" form-label" [ngClass]="canShowMandatorySign('emergencyContact',adultGroup)?'required':''">Phone2 </label>
+									<input type="text" autocomplete="off" class="form-control" placeholder="Phone2" formControlName="phone2" appPhoneNumberFormat maxlength="14" class="form-control form-control-sm form-control-solid" placeholder=""/>
+									<div  class="help-block with-errors text-danger" >{{showError(adultGroup,'phone2')}}</div>
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+
+							<!--begin::Row-->
+							<div class="row" *ngIf="canShowField('vaccinatedAdultFlag')">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1" class=" form-label" [ngClass]="canShowMandatorySign('vaccinatedAdultMandatoryFlag')?'required':''">Are you fully vaccinated against
+										COVID-19? </label>
+									<select name="vaccinate" formControlName="vaccination" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="" >Select</option>
+										<option [value]="v.code" *ngFor="let v of vaccinationList">{{v.description}}</option>                              
+									</select>
+									<div  class="help-block with-errors text-danger" >{{showError(adultGroup,'vaccination')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+								   
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+
+							<!--begin::Row-->
+							<div class="row" *ngIf="canShowField('gccSessionAdultFlag')">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1" class=" form-label" [ngClass]="canShowMandatorySign('vaccinatedAdultMandatoryFlag')?'required':''">Geeta Chanting Award Group</label>
+									<select name="GCCSession" formControlName="gccSession" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="" >Select</option>
+										<option [value]="v.code" *ngFor="let v of gccSessionData">{{v.description}}</option>                           
+									</select>
+									<div  class="help-block with-errors text-danger" >{{showError(adultGroup,'gccSession')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+								   
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+						</div>  
+
+						<div class="col-lg-4 fv-row" *ngIf="canShowField('imgRequiredFlag')">
+							<!--begin::Label-->
+							<label class="col-form-label fw-semibold fs-6 text-center pt-0" [ngClass]="profiles.imgMandatoryFlag==1 && profiles.adultFlag==1?'required':''">Individual Picture</label>
+							<!--end::Label-->
+
+							<div class="d-flex flex-wrap flex-sm-nowrap justify-content-center">
+								<!--begin: Pic-->
+								<div class="me-7 mb-4">                    
+									<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+										<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
+											<!--begin::Preview existing avatar-->
+											<div class="image-input-wrapper w-125px h-125px">
+												<img alt="Image Display Here" 
+												src="assets/images/jellyfish.png"
+												style="width: 100%; height: 100%"  *ngIf="adultGroup.get('image').value==''"/>
+
+												<img alt="Image Display Here" 
+												[src]="adultGroup.get('image').value"
+												style="width: 100%; height: 100%;"  *ngIf="adultGroup.get('image').value!=''"/>
+											</div>
+											<!--end::Preview existing avatar-->
+											<!--begin::Label-->
+											<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+												<i class="ki-duotone ki-pencil fs-7">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+												<!--begin::Inputs-->
+												<input type="file" name="avatar" accept=".png, .jpg, .jpeg" autocomplete="off" (change)="onImageFileSelection($event,adultGroup);"/>
+												<input type="hidden" name="avatar_remove" />
+												<!--end::Inputs-->
+											</label>
+											<!--end::Label-->
+											<!--begin::Cancel-->
+											<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+												<i class="ki-duotone ki-cross fs-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<!--end::Cancel-->
+											<!--begin::Remove-->
+											<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+												<i class="ki-duotone ki-cross fs-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<!--end::Remove-->
+										</div>
+										<div  class="help-block with-errors text-danger" >{{showError(adultGroup,'image')}}</div>
+									</div>
+								</div>
+								<!--end::Pic-->
+								<!--begin::Info-->
+								<div class="flex-grow-1">
+									<!--begin::Title-->
+									<div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+										<!--begin::User-->
+										<div class="d-flex flex-column">
+											<!--begin::Name-->
+											<div class="d-flex align-items-center mb-2">
+												<a href="#" class="text-dark text-hover-primary fs-5 fw-bold me-1">Note :</a>                                 
+											</div>
+											<!--end::Name-->
+											<!--begin::Info-->
+											<div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+												<span class="d-flex align-items-center text-dark me-5 mb-2">
+												Image size not to exceed 10MB. with format-jpg, jpeg, png, etc.</span>
+											</div>
+											<!--end::Info-->
+										</div>
+										<!--end::User-->
+									</div>
+									<!--end::Title-->
+								</div>
+								<!--end::Info-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end::Input group-->
+			</div>  
+		</div>
+
+		<div *ngIf="profileFormGroup?.get('youth')?.controls.length>0">
+			<div formArrayName="youth"> 
+				<!--begin::Input group-->
+				<div class="fv-row mb-1" *ngFor="let youthGroup  of profileFormGroup.get('youth')?.controls; let i = index">
+					<!--begin::Label-->
+					<label class="form-label text-primary"> YOUTH : {{youthGroup.get('firstName').value}} {{youthGroup.get('lastName').value}} </label>
+					<!--end::Label--> 
+					<div class="row" [formGroup]="youthGroup">
+						<div class="col-lg-8 fv-row">
+							<!--begin::Row-->
+							<div class="row">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row" *ngIf="canShowField('workPhoneAdultFlag')">
+									<label for="exampleFormControlInput1" class="form-label" [ngClass]="canShowMandatorySign('workPhoneYouthMandatoryFlag')?'required':''">Work Phone
+									</label>
+									<input type="text"  class="form-control form-control-sm form-control-solid" placeholder="Work Phone"
+									aria-required="true" formControlName="workPhone" appPhoneNumberFormat maxlength="14">
+									<!-- <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-lg fw-semibold">
+										<option data-kt-flag="flags/afghanistan.svg" value="AF">1st Grade</option>
+										<option data-kt-flag="flags/aland-islands.svg" value="AX">2nd Grade</option>
+										<option data-kt-flag="flags/albania.svg" value="AL">3rd Grade</option>                                
+									</select> -->
+									<div  class="help-block with-errors text-danger" >{{showError(youthGroup,'workPhone')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row" *ngIf="canShowField('tshirtYouthFlag')">
+									<label for="exampleFormControlInput1" class="form-label" [ngClass]="canShowMandatorySign('tshirtMandatoryYouthFlag')?'required':''">T-Shirt Size
+										<span class="tl-tp toolTip-Width ms-1" (mouseenter)="showTooltip(youthGroup)" (mouseleave)="hideTooltip(youthGroup)" *ngIf="tshirtTextYouth" data-bs-toggle="tooltip" aria-label=" " data-bs-original-title=" " data-kt-initialized="1">
+											<i class="ki-duotone ki-information-5 text-gray-500 fs-3 text-dark"> 
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>
+											<span class="tl-txt tstext" *ngIf="youthGroup.controls.showTooltip">
+												<span [innerHTML]="tshirtTextYouth"></span>
+											  </span>
+										</span>
+									</label>
+									<select formControlName="tshirtSize" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="">Select</option>
+										<option [value]="t.code" *ngFor="let t of tshirtList">{{t.description}}</option>                             
+									</select>
+									<div  class="help-block with-errors text-danger" >{{showError(youthGroup,'tshirtSize')}}</div>
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+							<!--begin::Row-->
+							<div class="row" *ngIf="canShowField('dateOfBirthYouthFlag')">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1" class=" form-label" [ngClass]="canShowMandatorySign('dateOfBirthYouthMandatoryFlag')?'required':''">Date of Birth
+									</label>
+									<input type="date" autocomplete="off"   class="form-control form-control-sm form-control-solid" placeholder="MM/DD/YYYY" formControlName="dateOfBirth"/>
+									<div  class="help-block with-errors text-danger" >{{showError(youthGroup,'dateOfBirth')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row" *ngIf="canShowField('vaccinatedYouthFlag')">
+									<label for="exampleFormControlInput1"  id="family-emergencyphone1" class=" form-label" [ngClass]="canShowMandatorySign('vaccinatedYouthMandatoryFlag')?'required':''">Are you fully vaccinated against
+										COVID-19? </label>
+									<select formControlName="vaccination" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="" >Select</option>
+										<option [value]="v.code" *ngFor="let v of vaccinationList">{{v.description}}</option>                            
+									</select>
+									<div  class="help-block with-errors text-danger" >{{showError(youthGroup,'vaccination')}}</div> 
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+							
+							<!--begin::Row-->
+							<div class="row" *ngIf="canShowField('gccSessionYouthFlag')">
+								<!--begin::Col-->
+								<div class="col-lg-4 fv-row">
+									<label for="exampleFormControlInput1" class=" form-label" [ngClass]="canShowMandatorySign('gccSessionYouthMandatoryFlag')?'required':''">Geeta Chanting Award Group</label>
+									<select name="GCCSession" formControlName="gccSession" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="" >Select</option>
+										<option [value]="v.code" *ngFor="let v of gccSessionData">{{v.description}}</option>                         
+									</select>
+									<div  class="help-block with-errors text-danger" >{{showError(youthGroup,'gccSession')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-4 fv-row">
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+						</div>  
+
+						<div class="col-lg-4 fv-row" *ngIf="canShowField('imgRequiredFlag')">
+							<!--begin::Label-->
+							<label class="col-form-label pt-0 fw-semibold fs-6 text-center" [ngClass]="profiles.imgMandatoryFlag==1 && profiles.youthFlag==1?'required':''">Individual Picture</label>
+							<!--end::Label-->	
+
+							<div class="d-flex flex-wrap flex-sm-nowrap justify-content-center">
+								<!--begin: Pic-->
+								<div class="me-7 mb-4">                    
+									<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+										<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
+											<!--begin::Preview existing avatar-->
+											<div class="image-input-wrapper w-125px h-125px">
+												<img alt="Image Display Here" 
+												src="assets/images/jellyfish.png"
+												style="width: 100%; height: 100%;"  *ngIf="youthGroup.get('image').value==''"/>
+
+												<img alt="Image Display Here" 
+												[src]="youthGroup.get('image').value"
+												style="width: 100%; height: 100%;"  *ngIf="youthGroup.get('image').value!=''"/>
+											</div>
+											<!--end::Preview existing avatar-->
+											<!--begin::Label-->
+											<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+												<i class="ki-duotone ki-pencil fs-7">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+												<!--begin::Inputs-->
+												<input type="file" name="avatar" accept=".png, .jpg, .jpeg" autocomplete="off" (change)="onImageFileSelection($event,youthGroup);"/>
+												<input type="hidden" name="avatar_remove" />
+												<!--end::Inputs-->
+											</label>
+											<!--end::Label-->
+											<!--begin::Cancel-->
+											<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+												<i class="ki-duotone ki-cross fs-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<!--end::Cancel-->
+											<!--begin::Remove-->
+											<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+												<i class="ki-duotone ki-cross fs-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<!--end::Remove-->
+										</div>
+										<div  class="help-block with-errors text-danger" >{{showError(youthGroup,'image')}}</div>
+
+									</div>
+								</div>
+								<!--end::Pic-->
+								<!--begin::Info-->
+								<div class="flex-grow-1">
+									<!--begin::Title-->
+									<div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+										<!--begin::User-->
+										<div class="d-flex flex-column">
+											<!--begin::Name-->
+											<div class="d-flex align-items-center mb-2">
+												<a href="#" class="text-dark text-hover-primary fs-5 fw-bold me-1">Note :</a>                                 
+											</div>
+											<!--end::Name-->
+											<!--begin::Info-->
+											<div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+												<span class="d-flex align-items-center text-dark me-5 mb-2">
+												Image size not to exceed 2MB. with format-jpg, jpeg, png, etc.</span>
+											</div>
+											<!--end::Info-->
+										</div>
+										<!--end::User-->
+									</div>
+									<!--end::Title-->
+								</div>
+								<!--end::Info-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--end::Input group-->
+			</div>  
+		</div>	
+
+		<div formArrayName="children"> 
+			<!--begin::Input group-->
+			<div class="fv-row mb-1" *ngFor="let childGroup of profileFormGroup.get('children')?.controls; let i = index">
+				<!--begin::Label-->
+				<label class="form-label form-label-text" style="font-size:14px !important;"> CHILD {{i+1}} : {{childGroup.get('firstName').value}} {{childGroup.get('lastName').value}} </label>
+				<!--end::Label--> 
+			
+				<div class="row mt-2" [formGroup]="childGroup">
+					<div class="col-lg-8">
+						<div class="col-lg-12 fv-row">
+							<!--begin::Row-->
+							<div class="row">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row mb-4" *ngIf="canShowField('workPhoneChildFlag')">
+									<label for="exampleFormControlInput1" class="form-label" [ngClass]="canShowMandatorySign('workPhoneChildMandatoryFlag')?'required':''">Work Phone
+									</label>
+									<input type="text"  class="form-control form-control-sm form-control-solid" placeholder="Work Phone"
+									aria-required="true" formControlName="workPhone" appPhoneNumberFormat maxlength="14">
+								  
+									<div  class="help-block with-errors text-danger" >{{showError(childGroup,'workPhone')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row mb-4" *ngIf="canShowField('emailIdChildFlag')">
+									<label for="exampleFormControlInput1" class="form-label" [ngClass]="canShowMandatorySign('emailIdChildMandatoryFlag')?'required':''">Email ID
+									</label>
+									<input type="email" autocomplete="off" id="EmailId"  class="form-control form-control-lg form-control-solid" placeholder="Email ID" formControlName="emailAddress">
+									<div  class="help-block with-errors text-danger" >{{showError(childGroup,'emailAddress')}}</div>
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+							<!--begin::Row-->
+							<div class="row">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1" class="required form-label form-label1" style="font-size:12px !important;">School Grade ({{profiles?.yearBasedFlag}})
+									</label>
+									<select formControlName="schoolGradeCode" (change)="onSchoolGradeChange(childGroup,$event)" aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="">Select</option>
+										<option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}</option>                            
+									</select>
+									<div  class="help-block with-errors text-danger" >{{showError(childGroup,'schoolGradeCode')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row" *ngIf="childGroup.get('risingSchoolGradeDescription').value!='' && childGroup.get('risingSchoolGradeDescription').value!=null">
+									<label for="exampleFormControlInput1"  id="family-emergencyphone1" class="required form-label form-label1" style="font-size:12px !important;">School Grade ({{profiles?.risingYearBasedFlag}})</label>
+									<select formControlName="risingSchoolGradeCode" style="display:none" aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="">Select</option>
+										<option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}</option>      
+									</select><br/>
+									<label class="grade_txt_clr">{{childGroup.get('risingSchoolGradeDescription').value}}</label>
+									
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
         
-    </div>
-    <div class="card-body">
-     
-<div  class="fv-row mb-4">
-    <label  class="form-label form-label-text " style="font-size: 14px !important;"> Adult : Mk  </label>
-    <div  class="row">
-        <div  class="col-lg-8 fv-row">
-            <div  class="row">
-            <div  class="col-lg-6 fv-row">
-                <label  for="exampleFormControlInput1" class="form-label">Work Phone </label>
-                <input  type="text" name="lname" placeholder="Work Phone" autocomplete="off" id="PhoneNumber" formcontrolname="workPhone" appphonenumberformat="" maxlength="14" minlength="14" class="form-control form-control-sm" ng-reflect-minlength="14" ng-reflect-maxlength="14" ng-reflect-name="workPhone">
-                <div  class="help-block with-errors text-danger"></div></div> </div> </div>
-                </div></div>
-
-
-                <div  class="fv-row mb-4">
-                    <label  class="form-label form-label-text" style="font-size: 14px !important;"> CHILD 1 : Son  </label>
-                    <div  class="row mt-2 ng-untouched ng-pristine ng-valid" ng-reflect-form="[object Object]">
-                        <div  class="col-lg-8">
-                            <div  class="col-lg-12 fv-row">
-                            
-                  <div  class="row mb-3">
-                    <div  class="col-lg-6 fv-row">
-                        <label  for="exampleFormControlInput1" class="required form-label form-label1" style="font-size: 12px !important;">School Grade (As of September 2023) </label>
-                        <select  formcontrolname="schoolGradeCode" aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-sm fw-semibold">
-                            <option  value="" ng-reflect-value="">Select</option>
-                            <option  value="17" ng-reflect-value="17">Amrita Vihar</option>
-                            <option  value="18" ng-reflect-value="18">Shishu Vihar</option>
-                            <option  value="19" ng-reflect-value="19">PRE-KG</option>
-                            <option  value="20" ng-reflect-value="20">KG</option>
-                            <option  value="21" ng-reflect-value="21">1st Grade</option>
-                            <option  value="22" ng-reflect-value="22">2nd Grade</option>
-                            <option  value="23" ng-reflect-value="23">3rd Grade</option>
-                            </select><div  class="help-block with-errors text-danger"></div>
-                        </div>
-                        <div  class="col-lg-6 fv-row">
-                            <label  for="exampleFormControlInput1" id="family-emergencyphone1" class="required form-label form-label1" style="font-size: 12px !important;">School Grade (As of September 2024)</label>
-                            <br>
-                                <label  class="grade_txt_clr">5th Grade</label></div>
-                            </div><div  class="row">
-                                <div  class="col-lg-6 fv-row">
-                                    <label  for="exampleFormControlInput1" class="form-label form-label1 required" style="font-size: 12px !important;">Date of Birth</label>
-                                    <input  type="date" autocomplete="off" placeholder="MM/DD/YYYY" formcontrolname="dateOfBirth" class="form-control form-control-sm" style="text-transform: uppercase;">
-                                    <div  class="help-block with-errors text-danger"></div></div></div></div></div>
-                                </div></div>
-
-                                <div  class="fv-row mb-1">
-                                    <label  class="form-label form-label-text" style="font-size: 14px !important;"> CHILD 2 : Son 2 </label>
-                                    <div  class="row mt-2 ng-untouched ng-pristine ng-valid" ng-reflect-form="[object Object]">
-                                        <div  class="col-lg-8">
-                                            <div  class="col-lg-12 fv-row">
-                                            
-                                  <div  class="row mb-3">
-                                    <div  class="col-lg-6 fv-row">
-                                        <label  for="exampleFormControlInput1" class="required form-label form-label1" style="font-size: 12px !important;">School Grade (As of September 2023) </label>
-                                        <select  formcontrolname="schoolGradeCode" aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-sm fw-semibold">
-                                            <option  value="" ng-reflect-value="">Select</option>
-                                            <option  value="17" ng-reflect-value="17">Amrita Vihar</option>
-                                            <option  value="18" ng-reflect-value="18">Shishu Vihar</option>
-                                            <option  value="19" ng-reflect-value="19">PRE-KG</option>
-                                            <option  value="20" ng-reflect-value="20">KG</option>
-                                            <option  value="21" ng-reflect-value="21">1st Grade</option>
-                                            <option  value="22" ng-reflect-value="22">2nd Grade</option>
-                                            <option  value="23" ng-reflect-value="23">3rd Grade</option>
-                                            </select><div  class="help-block with-errors text-danger"></div>
-                                        </div>
-                                        <div  class="col-lg-6 fv-row">
-                                            <label  for="exampleFormControlInput1" id="family-emergencyphone1" class="required form-label form-label1" style="font-size: 12px !important;">School Grade (As of September 2024)</label>
-                                            <br>
-                                                <label  class="grade_txt_clr">5th Grade</label></div>
-                                            </div><div  class="row">
-                                                <div  class="col-lg-6 fv-row">
-                                                    <label  for="exampleFormControlInput1" class="form-label form-label1 required" style="font-size: 12px !important;">Date of Birth</label>
-                                                    <input  type="date" autocomplete="off" placeholder="MM/DD/YYYY" formcontrolname="dateOfBirth" class="form-control form-control-sm" style="text-transform: uppercase;">
-                                                    <div  class="help-block with-errors text-danger"></div></div></div></div></div>
-                                                </div></div>
-
-
-                                               
-                                <div  align="right" class="col-md-12 mt-10">
-                                    <a  routerlink="/program-registration" type="button" data-kt-stepper-action="back" class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10" ng-reflect-router-link="/program-registration" href="/program-registration"> Back </a>
-                                    <button  type="button" data-kt-stepper-action="next" class="btn btn-primary btn-sm" disabled=""> Save &amp; Next </button></div>
-
- 
-
-
-    </div>
+							<!--begin::Row-->
+							<div class="row" >
+								<!--begin::Col-->
+								<div *ngIf="canShowField('dateOfBirthChildFlag')" class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1" class="form-label form-label1" [ngClass]="canShowMandatorySign('dateOfBirthChildMandatoryFlag')?'required':''" style="font-size:12px !important;">Date of Birth</label>
+									<input type="date" autocomplete="off"
+									class="form-control form-control-sm form-control-solid" placeholder="MM/DD/YYYY" formControlName="dateOfBirth" style="text-transform:uppercase;">
+									<div  class="help-block with-errors text-danger" >{{showError(childGroup,'dateOfBirth')}}</div>
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row" *ngIf="canShowField('tshirtChildFlag')">
+									<label for="exampleFormControlInput1" class="form-label" [ngClass]="canShowMandatorySign('tshirtMandatoryFlag')?'required':''">T-Shirt Size
+										<span class="tl-tp toolTip-Width ms-1" (mouseenter)="showTooltip(childGroup)" (mouseleave)="hideTooltip(childGroup)" *ngIf="tshirtText" data-bs-toggle="tooltip" aria-label=" " data-bs-original-title=" " data-kt-initialized="1">
+											<i class="ki-duotone ki-information-5 text-gray-500 fs-3 text-dark"> 
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>
+											<span class="tl-txt tstext" *ngIf="childGroup.controls.showTooltip">
+												<span [innerHTML]="tshirtText"></span>
+											  </span>
+										</span>
+									</label>
+									<select formControlName="tshirtSize" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="">Select</option>
+										<option [value]="t.code" *ngFor="let t of tshirtList">{{t.description}}</option>                            
+									</select>
+									<div  class="help-block with-errors text-danger" >{{showError(childGroup,'tshirtSize')}}</div>
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
     
+							<!--begin::Row-->
+							<div class="row" *ngIf="canShowField('vaccinatedChildFlag')">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row" >
+									<label for="exampleFormControlInput1"  id="family-emergencyphone1" class=" form-label" [ngClass]="canShowMandatorySign('vaccinatedChildMandatoryFlag')?'required':''">Are you fully vaccinated against
+										COVID-19? </label>
+									<select formControlName="vaccination" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="">Select</option>
+										<option [value]="v.code" *ngFor="let v of vaccinationList">{{v.description}}</option>                         
+									</select>
+									<div  class="help-block with-errors text-danger" >{{showError(childGroup,'vaccination')}}</div> 
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row" >
+								   
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+    
+							<!--begin::Row-->
+							<div class="row" *ngIf="canShowField('gccSessionChildFlag')">
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+									<label for="exampleFormControlInput1" class=" form-label" [ngClass]="canShowMandatorySign('gccSessionYouthMandatoryFlag')?'required':''">Geeta Chanting Award Group</label>
+									<select name="GCCSession" formControlName="gccSession" aria-label="Select a Country" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-solid form-select-sm fw-semibold">
+										<option value="">Select</option>
+										<option [value]="v.code" *ngFor="let v of gccSessionData">{{v.description}}</option>                      
+									</select>
+									<div  class="help-block with-errors text-danger" >{{showError(childGroup,'gccSession')}}</div> 
+								</div>
+								<!--end::Col-->
+								<!--begin::Col-->
+								<div class="col-lg-6 fv-row">
+								   
+								</div>
+								<!--end::Col-->
+							</div>
+							<!--end::Row-->
+						</div>  
+					</div>
+					
+					<div class="col-lg-4 fv-row" *ngIf="canShowField('imgRequiredFlag')">
+						<!--begin::Label-->
+						<label class="col-form-label fw-semibold fs-6 text-center pt-0" [ngClass]="profiles.imgMandatoryFlag==1 && profiles.childFlag==1?'required':''">Individual Picture</label>
+						<!--end::Label-->
+    
+						<div class="d-flex flex-wrap flex-sm-nowrap justify-content-center">
+							<!--begin: Pic-->
+							<div class="me-7 mb-4">                    
+								<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+									<div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/media/svg/avatars/blank.svg')">
+									<!--begin::Preview existing avatar-->
+										<div class="image-input-wrapper w-125px h-125px">
+											<img alt="Image Display Here" 
+											src="assets/images/jellyfish.png"
+											style="width: 100%; height: 100%;"  *ngIf="childGroup.get('image').value==''"/>
+					
+											<img alt="Image Display Here" 
+											[src]="childGroup.get('image').value"
+											style="width: 100%; height: 100%;"  *ngIf="childGroup.get('image').value!=''"/>
+										</div>
+										<!--end::Preview existing avatar-->
+										<!--begin::Label-->
+										<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+											<i class="ki-duotone ki-pencil fs-7">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i>
+											<!--begin::Inputs-->
+											<input type="file" name="avatar" accept=".png, .jpg, .jpeg" autocomplete="off" (change)="onImageFileSelection($event,childGroup);"/>
+											<input type="hidden" name="avatar_remove" />
+											<!--end::Inputs-->
+										</label>
+										<!--end::Label-->
+										<!--begin::Cancel-->
+										<!-- <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+											<i class="ki-duotone ki-cross fs-2">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i>
+										</span> -->
+										<!--end::Cancel-->
+										<!--begin::Remove-->
+										<!-- <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+											<i class="ki-duotone ki-cross fs-2">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i>
+										</span> -->
+										<!--end::Remove-->
+									</div>
+									<div  class="help-block with-errors text-danger" >{{showError(childGroup,'image')}}</div>
+								</div>
+							</div>
+							<!--end::Pic-->
+							<!--begin::Info-->
+							<div class="flex-grow-1">
+								<!--begin::Title-->
+								<div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+									<!--begin::User-->
+									<div class="d-flex flex-column">
+										<!--begin::Name-->
+										<div class="d-flex align-items-center mb-2">
+											<a href="#" class="text-dark text-hover-primary fs-5 fw-bold me-1">Note :</a>                                 
+										</div>
+										<!--end::Name-->
+										<!--begin::Info-->
+										<div class="d-flex flex-wrap fw-semibold fs-6 mb-4 pe-2">
+											<span class="d-flex align-items-center text-gray-800 me-5 mb-2 fs-7" style="font-weight: 500;"> 
+												Image size not to exceed 10MB. with format-jpg, jpeg, png, etc.
+											</span>
+										</div>
+										<!--end::Info-->
+									</div>
+									<!--end::User-->
+								</div>
+								<!--end::Title-->
+							</div>
+							<!--end::Info-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end::Input group-->
+		</div>              
+	</div>
+	<!--begin::Step 1-->
+</form>
+
+<!-- *ngIf="profiles['nonFamilyMemberEmergencyContactChildFlag']==1" -->
+<app-third-party-emergencty-contact-list [familyList]="profiles" *ngIf="profiles?.nonFamilyMemberEmergencyContactChildFlag==1"></app-third-party-emergencty-contact-list>
+
+<div class="clearfix"></div>
+<div class="col-md-12 pad-20" align="right">
+    <button (click)="goBackToPreviousTab()" type="button" class="btn btn-light border border-primary border-active active text-primary backbtn1 btn-sm mr-10" data-kt-stepper-action="back">
+        Back
+    </button>
+    <button (click)="saveProgramFields()" type="button" class="btn btn-primary btn-sm" data-kt-stepper-action="next">
+        Save & Next
+    </button>
 </div>

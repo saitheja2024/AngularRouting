@@ -18,6 +18,8 @@ export class MasterService {
   private schoolGradeList: any;
   private acadamicYear: any=null;
   private chapterList: any=null;
+  private vaccinationList: any;
+  private gccSessionData: any;
 
   constructor(
     private httpService: HttpService,
@@ -245,6 +247,36 @@ export class MasterService {
       
     }
     return this.chapterList;
+
+  }
+
+  async fetchVaccinationList() {
+
+    if (this.vaccinationList) {
+      return this.vaccinationList
+    }
+
+    let options: Options = { body: null, url: "/master/fetchVaccinationList" };
+    this.vaccinationList = await this.httpService.get(options);
+    return this.vaccinationList;
+
+  }
+
+  fetchTShirtSizeList(): any {
+    let options: Options = { body: null, url: "/master/fetchTShirtSizeList" };
+    return this.httpService.get(options);
+
+  }
+
+  async fetchgccSessionData() {
+
+    if (this.gccSessionData) {
+      return this.gccSessionData
+    }
+
+    let options: Options = { body: null, url: "/master/fetchGCCSession" };
+    this.gccSessionData = await this.httpService.get(options);
+    return this.gccSessionData;
 
   }
 

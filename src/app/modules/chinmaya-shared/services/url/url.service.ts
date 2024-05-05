@@ -52,7 +52,10 @@ export class UrlService {
     fetchGenderList: "master/fetchGenderList",
     fetchRegistrationStatusList:"/master/fetchRegistrationStatusList",
     fetchPaymentStatusList:"/master/fetchPaymentStatusList",
-    fetchSchoolGradeList:"/master/fetchSchoolGradeList"
+    fetchSchoolGradeList:"/master/fetchSchoolGradeList",
+    fetchVaccinationList:'master/fetchVaccinationList',
+    fetchTShirtSizeList:'master/fetchTShirtSizeList',
+    fetchGCCSession:'master/fetchGCCSession'
   }
 
   unLockAccountURL={
@@ -84,6 +87,10 @@ export class UrlService {
     fetchAmount:'programSelection/fetchAmount',
     saveProgramRegistration:'programSelection/saveProgramRegistration',
     saveAnnualPledgeRegistration:'programSelection/saveAnnualPledgeRegistration'
+  }
+
+  additionalDetails = {
+    reviewAndUpdateWaitListedStatus:'programSelection/reviewAndUpdateWaitListedStatus'
   }
   
 }

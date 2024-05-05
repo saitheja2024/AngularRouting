@@ -31,9 +31,9 @@ export class StoreService{
           "description": "CMWRC Family Membership 2024-25"
       },
       "selectedFamily": {
-        "personID": 15104,
-        "familyId": 5226,
-        "primaryPersonId": 15104,
+        "personID": 15477,
+        "familyId": 5320,
+        "primaryPersonId": 15477,
         "personType": "ADULT",
         "chapterCode": "CSVA",
         "programCode": "CS_BALAVIHAR_2024-25",
@@ -49,8 +49,8 @@ export class StoreService{
         "dateSent": "2024-03-28T12:32:41.344321-04:00"
     },
       "loggedInUser":{
-        familyID: "5226",
-        personID: "13318",
+        familyID: "5320",
+        personID: "15477",
         firstName: "nmohammefirst",
         username: "nmohamme12345",
         password: "MTIzNDU2"
