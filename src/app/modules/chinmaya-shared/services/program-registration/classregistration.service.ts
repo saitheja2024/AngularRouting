@@ -48,7 +48,7 @@ import { HttpHeaders } from '@angular/common/http';
             }
         
             let response: any = await await this.httpService.post(options);
-             return response.selectDropdownList;
+             return response;
           }
 
           async  deleteFamilySessionPreference(param: any) {
@@ -58,7 +58,7 @@ import { HttpHeaders } from '@angular/common/http';
             }
         
             let response: any = await await this.httpService.post(options);
-             return response.selectDropdownList;
+             return response;
           }
          
           async  saveSessionPreferrence(param: any) {
@@ -68,7 +68,7 @@ import { HttpHeaders } from '@angular/common/http';
             }
         
             let response: any = await await this.httpService.post(options);
-             return response.selectDropdownList;
+             return response;
           }
 
           async  deleteProgramRegistration(param: any) {
@@ -81,7 +81,7 @@ import { HttpHeaders } from '@angular/common/http';
               }
            
             let response: any = await await this.httpService.post(options);
-             return response.selectDropdownList;
+             return response;
           }
 
           async  fetchSaveProgramConfigurationFields(param: any) {
@@ -106,6 +106,24 @@ import { HttpHeaders } from '@angular/common/http';
           async getClassAmount(param: any) {
             var options:Options = {
                 url: this.urlService.classRegistration.fetchAmount,
+                body: param
+              }
+              let response: any = await await this.httpService.post(options);
+              return response;
+          }
+
+          async saveProgramRegistration(param: any) {
+            var options:Options = {
+                url: this.urlService.classRegistration.saveProgramRegistration,
+                body: param
+              }
+              let response: any = await await this.httpService.post(options);
+              return response;
+          }
+
+          async saveAnnualPledgeRegistration(param: any) {
+            var options:Options = {
+                url: this.urlService.classRegistration.saveAnnualPledgeRegistration,
                 body: param
               }
               let response: any = await await this.httpService.post(options);

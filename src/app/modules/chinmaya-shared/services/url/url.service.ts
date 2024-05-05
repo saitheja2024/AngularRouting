@@ -81,7 +81,9 @@ export class UrlService {
     deletePersonProgramRegistration:'programSelection/deletePersonProgramRegistration',
     ProgramConfigurationFields:'registration/fetchProgramConfigurationFields',
     reviewPrerequisites:'programSelection/reviewPrerequisites',
-    fetchAmount:'programSelection/fetchAmount'
+    fetchAmount:'programSelection/fetchAmount',
+    saveProgramRegistration:'programSelection/saveProgramRegistration',
+    saveAnnualPledgeRegistration:'programSelection/saveAnnualPledgeRegistration'
   }
   
 }

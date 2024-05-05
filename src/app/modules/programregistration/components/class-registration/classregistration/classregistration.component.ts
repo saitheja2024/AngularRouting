@@ -4,7 +4,8 @@ import { StoreService, KEYS } from 'src/app/modules/chinmaya-shared/services/sto
 import { ClassRegistrationService } from 'src/app/modules/chinmaya-shared/services/program-registration/classregistration.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
-
+import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 declare function scrollTop():any;
 
 
@@ -36,25 +37,77 @@ export class ClassregistrationComponent {
   programConfigurationFields: any;
   programRegistrationList:any[]=[]
  currentTab: string="";
- constructor( public fb: FormBuilder, private store:StoreService, private classRgiSrvice:ClassRegistrationService, private sanitizer: DomSanitizer){}
+ signupURL:any;
+ familyId:any;
+ personID:any;
+ tabClassRegistration:boolean=true;
 
- async ngOnInit(){
+ constructor( public fb: FormBuilder, private store:StoreService,
+   private classRgiSrvice:ClassRegistrationService, 
+   private sanitizer: DomSanitizer, private route:Router){}
+
+ async ngOnInit() {
   this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     this.selectedProgram = this.store.getValue(KEYS.program);
     this.selectedFamily = this.store.getValue(KEYS.selectedFamily);
     this.currentUserData = this.classRgiSrvice.getLoggedInUser();
-   this.populateOnInitData();
+
+
+    this.signupURL = 'https://cmwrc.chinmayadc.org/support/arpanam/';
   
+     //
+    this.familyId= this.selectedFamily.familyId;
+    this.personID = this.selectedProgram.personID;
+    localStorage.setItem("personID", JSON.stringify(this.personID));
+   
+    
+    this.formGroup = this.fb.group({
+      user: this.fb.group({
+        familyID: [parseInt(this.familyId), Validators.required],
+        personID: [null, Validators.required],
+        chapter: [this.selectedChapterCode, Validators.required],
+      }),
+      userProgramList: this.fb.array([]),
+      programCode: [this.selectedProgram.code, Validators.required],
+      adult: [[]],
+      //selectedMember: [this.selectedMember, Validators.required],
+      categoryClasses: this.fb.array([]),
+      
+    });
+
+
+    sessionStorage.removeItem('fetchupdateResponse');
+    this.populateOnInitData();
+
+
+
 }
 
-  async populateOnInitData(){
+async saveClassRegist(){
+ 
+  let body ={
+    familyId: this.selectedFamily.familyId,
+    programCode:  this.selectedProgram.code,
+    chapterCode: this.selectedChapterCode
+  }
+   let dataPledge = await this.classRgiSrvice.saveAnnualPledgeRegistration(body)
+  this.getPersonProgramRegistration('');
+}
+
+  async populateOnInitData() {
     await this.fetchPersonList();
     await this.getCategoriesList();
+    await this.getPersonProgramRegistration('');
+    await this.fetchPersonList();
+    await this.fetchFamilyFlag();
+    
+    await this.saveClassRegist();
+    await this.prepareTabs();
   }
 
   async fetchPersonList(){
-   
+    
     let param:PersonList = {
       familyId: this.selectedFamily.familyId,
       programCode: this.selectedProgram.code,
@@ -122,8 +175,8 @@ export class ClassregistrationComponent {
     //this.blurLayer=true;
     this.SelectedMemData = e;
     localStorage.setItem('selectMember', JSON.stringify(user));
-    //this.getCategoriesList();
-   // this.selectCheckBox();
+    this.getCategoriesList();
+    this.selectCheckBox();
    // console.log(this.formGroup.value);
   }
 
@@ -186,7 +239,7 @@ export class ClassregistrationComponent {
     this.choiceClass=ngmodel;
 
     if (e.target.checked) {
-     // this.getClassAmount(e.target.value, ngmodelcheck, categoryName);
+     this.getClassAmount(e.target.value, ngmodelcheck, categoryName);
      
     }else{
       this.uncheckDelete(ngmodelcheck);
@@ -212,7 +265,7 @@ export class ClassregistrationComponent {
   async getPersonProgramRegistration(ind_change:any) {
 
     const body = {
-      programCode: this.selectedProgram.code,
+      programCode: this.selectedProgram.code, 
       chapterCode: this.selectedUserData.chapterCode,
       familyId: this.selectedUserData.familyId,
       paymentFlag: false,
@@ -220,10 +273,9 @@ export class ClassregistrationComponent {
     }
     let data:any = await this.classRgiSrvice.fetchPersonProgramRegistrationList(body);
 
-   
         this.personProgramRegData = data;
-        this.pendingAmtList = this.filterPaymentByStatusAmount(data.personProgramRegistrationList, "PENDING");
-        this.pendingPaymentData = this.filterPaymentByStatus(data.personProgramRegistrationList, "PENDING");
+        this.pendingAmtList = await this.filterPaymentByStatusAmount(data.personProgramRegistrationList, "PENDING");
+        this.pendingPaymentData = await this.filterPaymentByStatus(data.personProgramRegistrationList, "PENDING");
         this.selectCheckBox();
         this.callFilterData();
         //this.fetchFamilySessionPreference();
@@ -339,7 +391,7 @@ rightPanel:any;
    }
  }
 
- filterPaymentByStatusAmount(data: Array<any>, status: string) {
+ async filterPaymentByStatusAmount(data: Array<any>, status: string) {
   data.forEach((item: any, index:any) => {
       let person = this.getPersonByID(item.personID);
       if(person!=null){
@@ -351,7 +403,7 @@ rightPanel:any;
   return data;
 }
 
-filterPaymentByStatus(data: Array<any>, status: string) {
+async filterPaymentByStatus(data: Array<any>, status: string) {
   data.forEach((item: any, index:any) => {
       let person = this.getPersonByID(item.personID);
       if(person!=null){
@@ -536,12 +588,11 @@ familySessionData:any={};
        let res = await this.classRgiSrvice.fetchSaveProgramConfigurationFields(body) 
        this.familyFlag=res;
        this.programConfigurationFields = res;
-       this.prepareTabs();
-      
+       await this.prepareTabs();
       
      }
 
-     prepareTabs(){
+     async prepareTabs(){
       this.programRegistrationList=[];
       //this.currentTabIndexVal=0;
       this.currentTab = "Registration";
@@ -619,7 +670,7 @@ familySessionData:any={};
    pledgeMsg_1:boolean=false;
    pledgeAmt:any=0;
    prerqusitevalidMsg:string='';
-  getClassAmount(signupCode: string, ngmodelName:any, categoryName:any) {
+  async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any) {
     this.pledgeMsg=false;
     this.pledgeMsg_1=false;
     this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
@@ -632,11 +683,11 @@ familySessionData:any={};
       personId: this.selectedUserData.personID
     }
     
-    let data:any = this.classRgiSrvice.getClassAmount(body);
+    let data:any = await this.classRgiSrvice.getClassAmount(body);
         this.pledgeAmt = data;
         this.prerqusitevalidMsg='';
         if(data.prerequsite==true && data.validation==true){
-          //this.onSubmit(ngmodelName, categoryName, data);
+          this.onSubmit(ngmodelName, categoryName, data);
           return;
         }else if(data.prerequsite==false && data.validation==true){
          this.prerqusitevalidMsg = data.prerequsiteMessage;
@@ -655,5 +706,93 @@ familySessionData:any={};
      
   }
 
+  async onSubmit(clsName:any, categoryName:any, amtData:any) {
+    
+    this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
+    var body:any ={
+      user: {
+        password: this.personUserData.password,
+        familyID: this.personUserData.familyID,
+        personID: this.personUserData.personID,
+        gender: this.personUserData.gender,
+        phoneNumber: this.personUserData.phoneNumber,
+        chapter: this.selectedUserData.chapterCode,//this.personUserData.chapter,
+        personType: this.personUserData.personType,
+        dateOfBirth: this.personUserData.dateOfBirth,
+      },
+      userProgramList: [{
+      adjustedAmount: amtData.adjustedAmount,
+      displayamount: amtData.displayAmount,
+      classes: clsName.signUpCode,
+      firstName: (this.selectedUserData.firstName==null)?'': this.selectedUserData.firstName,
+      middleName: (this.selectedUserData.middleName==null)?'': this.selectedUserData.middleName,
+      lastName: (this.selectedUserData.lastName==null)?'': this.selectedUserData.lastName,
+      gender: (this.selectedUserData.gender==null)?'': this.selectedUserData.gender,
+      studentCategory: (this.selectedUserData.studentCategory==null)?'': this.selectedUserData.studentCategory,
+      grade: (this.selectedUserData.grade==null)?'': this.selectedUserData.grade,
+      dateOfBirth: (this.selectedUserData.dateOfBirth==null)?'': this.selectedUserData.dateOfBirth,
+      pledgeStructureCode: (amtData.duesStructureCode==null)?'': amtData.duesStructureCode,
+      personID: this.selectedUserData.personID,
+      familyId: this.currentUserData.familyID,
+      primaryPersonId: this.currentUserData.personID,
+      registrationId: 0,
+      registrationStatus:'PENDING',
+      }],
+      programCode:this.selectedProgram.code
+    }
+
+   
+    
+
+      let submitData = await this.classRgiSrvice.saveProgramRegistration(body);
+       if(submitData){
+        this.getPersonProgramRegistration('');
+        this.fetchFamilyFlag();
+       this.scrollToViewSession('');   
+       }
+              
+  }
+
+  scrollToViewSession (name:any){
+    let selectedUserDataSess = JSON.parse(localStorage.getItem('selectMember') || '');
+    this.accordOpenFlag = (name!='')?name :(selectedUserDataSess.firstName+selectedUserDataSess.lastName);
+    let elem:any =  document.getElementById('head_'+this.accordOpenFlag);
+    elem.scrollIntoView();
+  }
+
+  async moveNextTab(){
+   
+    this.validateSession();   
+} 
+
+validateSession(){
+let Adult_Flag= true;
+ let takeName='';
+  for(let item in this.formGroup.controls){
+     if(item.includes('_')){
+      if(this.formGroup.controls[item].value==''){
+        takeName=item;
+        Adult_Flag=false;
+      }
+     }
+  }
+
+if(Adult_Flag){
+  //this.FetchreviewPrerequisites();
+  this.route.navigate(['/programregistration/additionaldetails']);
+}else{
+  Swal.fire({
+    // position: 'top-end',
+     icon: 'error',
+     title: 'Please Select Sessions.',
+     showConfirmButton: true,
+     //timer: 1500
+   }).then((result) => {
+    if (result.isConfirmed) {
+      this.scrollToViewSession(takeName.split('_')[0]);
+    } 
+  });
+}
+}
 
 }

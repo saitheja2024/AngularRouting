@@ -615,7 +615,20 @@
 											<!-----Submitted End-->
                                 </div>
 
+                                <div class="clearfix"></div>
+                                <div class="col-md-12 mt-10" align="right">
+                                    <!--<button [routerLink]="['/registration']" type="button" class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10" data-kt-stepper-action="back">
+                                        Back
+                                    </button>-->
 
+                                    <a type="button" class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10" data-kt-stepper-action="back">
+                                        Back
+                                    </a>
+
+                                    <button (click)="moveNextTab();" [disabled]="pendingPaymentData.length==0" type="button" class="btn btn-primary btn-sm" data-kt-stepper-action="next">
+                                        Save & Next
+                                    </button>
+                                </div>
 
  
 
