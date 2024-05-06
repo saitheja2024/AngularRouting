@@ -9,7 +9,7 @@ import { formatPhoneNumber } from 'src/app/utils/util';
 import * as moment from 'moment';
 import { StoreService, KEYS } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { Router } from '@angular/router';
-
+import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
 declare function scrollTop():any;
 
 @Component({
@@ -72,7 +72,7 @@ export class AdditionaldetailsComponent implements OnInit {
 
   constructor(private programService:ProgramService,private masterService:MasterService,
     private cdr:ChangeDetectorRef, private sanitizer: DomSanitizer, private authService: AuthService, 
-    private store:StoreService, private router:Router){
+    private store:StoreService, private router:Router, private routePass:RouteChangeCall){
     }
 
 
@@ -188,7 +188,7 @@ export class AdditionaldetailsComponent implements OnInit {
 
   goBackToPreviousTab(){
     //this.back.emit("tabIndividualProfileTab");
-    this.router.navigate(['/programregistration/registration']) 
+    this.routePass.sendData({'currenttab':'Additional Details','Event':'back'}); 
   }
 
   getNextSchoolGrade(code:any){

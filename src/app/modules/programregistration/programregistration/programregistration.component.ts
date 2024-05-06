@@ -35,7 +35,7 @@ export class ProgramregistrationComponent {
   constructor(private store:StoreService, private classRegiService:ClassRegistrationService, 
     private UrlCall:RouteChangeCall, private route:Router){
     this.subscription = this.UrlCall.getData().subscribe(item => {
-      this.onSaveAndNext(item)
+      this.RedirectionCall(item)
     });
   }
 
@@ -113,17 +113,29 @@ export class ProgramregistrationComponent {
     return 'btn-secondary';
   }
 
-  onSaveAndNext(ev:any){
+  RedirectionCall(ev:any){
     sessionStorage.removeItem('fetchupdateResponse');
     if(ev!=''){
-     let index=this.programRegistrationList.indexOf(ev)+1;
-     this.currentTabIndexVal = index;
-     if(index>this.programRegistrationList.length){
-       index=this.programRegistrationList.length;
-     }
-     
-     this.currentTab=this.programRegistrationList[index];
-     let URL:any = this.routeURL[this.currentTab];
+      let URL:any='';
+      if(ev.Event=='SaveNext'){
+        let index=this.programRegistrationList.indexOf(ev.currenttab)+1;
+        this.currentTabIndexVal = index;
+        if(index>this.programRegistrationList.length){
+          index=this.programRegistrationList.length;
+        }
+        
+        this.currentTab=this.programRegistrationList[index];
+         URL = this.routeURL[this.currentTab];
+      }else{
+        let index=this.programRegistrationList.indexOf(this.currentTab)-1;
+        this.currentTabIndexVal = index;
+        if(index==-1){
+        index=0
+        }
+        this.currentTab=this.programRegistrationList[index];
+        URL = this.routeURL[this.currentTab];
+      }
+    
      this.getProgramClass(this.currentTab);
      this.route.navigate(['/programregistration/'+URL]);
     }

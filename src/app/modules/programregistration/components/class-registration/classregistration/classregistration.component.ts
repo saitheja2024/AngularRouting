@@ -780,7 +780,7 @@ let Adult_Flag= true;
 
 if(Adult_Flag){
   //this.FetchreviewPrerequisites();
-  this.routePass.sendData('Registration');
+  this.routePass.sendData({'currenttab':'Registration','Event':'SaveNext'});
 
 }else{
   Swal.fire({

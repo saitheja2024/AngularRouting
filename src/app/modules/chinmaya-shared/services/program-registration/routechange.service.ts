@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 export class RouteChangeCall {
     private subject = new Subject<any>();
  
-    sendData(message: string) {
+    sendData(message: object) {
         this.subject.next(message);
     }
  
