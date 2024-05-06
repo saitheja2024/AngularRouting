@@ -23,38 +23,30 @@
 
   
 
-		 
-        <div class="row1 mb-3">
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
-                <div  class="d-grid">
-                    <button  class="btn hover-scale btndiv btncolor">Registration</button>
-                </div>
-            </div><!--ng-container-->
-                    <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
-                        <div  class="d-grid">
-                            <button  class="btn hover-scale btndiv btn-secondary" disabled>Additional Details</button>
+        <div class="desktopView"> 
+            <div class="row1">
+                <ng-container  *ngFor="let program of programRegistrationList;let id=index">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
+                        <div class="d-grid">
+                            <button class="btn hover-scale btndiv" [ngClass]="getProgramClass(program)" style="cursor: default; pointer-events: none;">{{program}}</button>
                         </div>
-                        </div><!--ng-container-->
-                        <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
-                            <div  class="d-grid">
-                                <button  class="btn hover-scale btndiv btn-secondary">Health Information</button>
-                            </div>
-                            </div>
-                            <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
-                                <div  class="d-grid">
-                                    <button  class="btn hover-scale btndiv btn-secondary">Time Slots SignUp</button>
-                                </div>
-                                </div>
-                            <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
-                                <div  class="d-grid">
-                                    <button  class="btn hover-scale btndiv btn-secondary">Review</button></div></div><!--ng-container-->
-                                    <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
-                                        <div  class="d-grid">
-                                            <button  class="btn hover-scale btndiv btn-secondary">Consent</button></div></div><!--ng-container-->
-                                            <div  class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
-                                                <div  class="d-grid">
-                                                    <button  class="btn hover-scale btndiv btn-secondary">Payment</button></div></div>
-          </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        
+        <div class="mobileMenu">
+            <div class="row1">
+            <ng-container  *ngFor="let program of programGroupMenu[(currentTabIndexVal==0||currentTabIndexVal==1||currentTabIndexVal==2)?0:(currentTabIndexVal==3 || currentTabIndexVal==4 || currentTabIndexVal==5 )?1:(currentTabIndexVal==6 || currentTabIndexVal==7 || currentTabIndexVal==8)?2:3];let ids=index">
+                <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 steppers">
+                    <div class="d-grid">
+                        <button class="btn hover-scale btndiv" [ngClass]="getProgramClass(program)" style="cursor: default; pointer-events: none;">{{program}}</button>
+                    </div>
+                </div>
+                </ng-container>
+            </div>
+        </div>
+        
 
           <router-outlet></router-outlet>
  

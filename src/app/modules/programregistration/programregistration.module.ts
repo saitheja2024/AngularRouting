@@ -12,6 +12,7 @@ import { PaymentComponent } from './components/payment/payment/payment.component
 import { PaymentcompleteComponent } from './components/payment-complete/paymentcomplete/paymentcomplete.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
 import { TrimPipe } from 'src/app/pipes/trim.pipe';
+import { RouteChangeCall } from '../chinmaya-shared/services/program-registration/routechange.service';
 const routes: Routes = [
   {
     path: '',
@@ -77,6 +78,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  providers:[TrimPipe]
+  providers:[TrimPipe, RouteChangeCall]
 })
 export class ProgramregistrationModule { }

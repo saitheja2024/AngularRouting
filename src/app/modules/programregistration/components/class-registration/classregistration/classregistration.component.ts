@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PersonList } from 'src/app/modules/chinmaya-shared/services/program-registration/programregistration.interface';
 import { StoreService, KEYS } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { ClassRegistrationService } from 'src/app/modules/chinmaya-shared/services/program-registration/classregistration.service';
@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { FormArray, FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
 declare function scrollTop():any;
 
 
@@ -44,7 +45,7 @@ export class ClassregistrationComponent {
 
  constructor( public fb: FormBuilder, private store:StoreService,
    private classRgiSrvice:ClassRegistrationService, 
-   private sanitizer: DomSanitizer, private route:Router){}
+   private sanitizer: DomSanitizer, private route:Router, private routePass:RouteChangeCall){}
 
  async ngOnInit() {
   this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
@@ -580,9 +581,9 @@ familySessionData:any={};
     async fetchFamilyFlag(){
      
         let body ={
-          familyId: this.selectedUserData.familyId,
+          familyId: this.selectedFamily.familyId,
           programCode: this.selectedProgram.code,
-          chapterCode: this.selectedUserData.chapterCode,
+          chapterCode: this.selectedChapterCode,
           paymentFlag:false
         };
        let res = await this.classRgiSrvice.fetchSaveProgramConfigurationFields(body) 
@@ -779,7 +780,8 @@ let Adult_Flag= true;
 
 if(Adult_Flag){
   //this.FetchreviewPrerequisites();
-  this.route.navigate(['/programregistration/additionaldetails']);
+  this.routePass.sendData('Registration');
+
 }else{
   Swal.fire({
     // position: 'top-end',
@@ -793,6 +795,11 @@ if(Adult_Flag){
     } 
   });
 }
+}
+
+ngOnDestroy(){
+  // clear message
+  this.routePass.clearData();
 }
 
 }
