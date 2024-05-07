@@ -48,6 +48,8 @@ export class ClassregistrationComponent {
    private sanitizer: DomSanitizer, private route:Router, private routePass:RouteChangeCall){}
 
  async ngOnInit() {
+  this.routePass.sendData({'currenttab':'Registration','Event':'current'}); 
+
   this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     this.selectedProgram = this.store.getValue(KEYS.program);
@@ -217,7 +219,7 @@ async saveClassRegist(){
         if(memberRadio.personID==this.pendingPaymentData[i].personID  && (this.pendingPaymentData[i].paymentStatus=="BALANCE_DUE" || this.pendingPaymentData[i].paymentStatus=="NO_DUES")
         && (this.pendingPaymentData[i].registrationStatus=="PENDING" || this.pendingPaymentData[i].registrationStatus=="ACCEPTED") && (this.pendingPaymentData[i].paymentSubmittedDate==null || this.pendingPaymentData[i].paymentSubmittedDate=='')) {
           this.checkboxModel[this.pendingPaymentData[i].signUpCode] =true;
-          this.disableCheckBoxItem[this.pendingPaymentData[i].signUpCode] =false;
+          this.disableCheckBoxItem[this.pendingPaymentData[i].signUpCode] = (this.pendingPaymentData[i].category==1)?true : false;
           
         } else if(memberRadio.personID==this.pendingPaymentData[i].personID  
         && (this.pendingPaymentData[i].paymentStatus=="PRE-AUTH_SUCCESS" || this.pendingPaymentData[i].paymentStatus=="PARTIAL_PAYMENT" || this.pendingPaymentData[i].paymentStatus=="NO_DUES" || this.pendingPaymentData[i].paymentStatus=="PAID")

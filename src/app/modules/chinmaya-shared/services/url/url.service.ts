@@ -92,5 +92,12 @@ export class UrlService {
   additionalDetails = {
     reviewAndUpdateWaitListedStatus:'programSelection/reviewAndUpdateWaitListedStatus'
   }
+
+  healthInfo ={
+    saveHealthInformation:'health/saveHealthInformation',
+    deleteAllergyInformation:'health/deleteAllergyInformation',
+    fetchPersonHealthInformation:'health/fetchPersonHealthInformation',
+    fetchHealthInformation:'health/fetchHealthInformation'
+  }
   
 }

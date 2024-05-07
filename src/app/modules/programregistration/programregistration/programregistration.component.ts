@@ -126,6 +126,8 @@ export class ProgramregistrationComponent {
         
         this.currentTab=this.programRegistrationList[index];
          URL = this.routeURL[this.currentTab];
+      }else if(ev.Event=='current'){
+        this.currentTab = ev.currenttab;
       }else{
         let index=this.programRegistrationList.indexOf(this.currentTab)-1;
         this.currentTabIndexVal = index;

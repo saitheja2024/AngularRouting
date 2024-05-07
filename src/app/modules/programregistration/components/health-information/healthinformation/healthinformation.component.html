@@ -1,344 +1,1298 @@
-<div class="card shadow-sm mb-5">
-    <div class="card-header">
-        <h3 class="card-title">Health Information</h3>
-    </div>
-    <div class="card-body">
-       
-        
-<div  class="card card1">
-    <div  class="card-body p-0">
-        <form  novalidate="novalidate" id="kt_stepper_example_basic_form" class="form mx-auto">
-            <div  class="mb-2">
-                <div  data-kt-stepper-element="content" class="flex-column current">
-                    <div  class="row">
-                        <div  class="col-lg-12 float-end mb-5">
-                            <div  class="float-end">
-                                <button  type="button" class="btn btn-primary btn-sm" disabled="">Next</button>
+<!--begin::Card-->
+<div class="card card1">
+    <!--begin::Card body-->
+    <div class="card-body p-0">
+        <!--begin::Form-->
+        <form class="form mx-auto" novalidate="novalidate" id="kt_stepper_example_basic_form">
+            <div class="mb-2">
+                <!--begin::Step 1-->
+                <div class="flex-column current" data-kt-stepper-element="content">
+                    <div class="row">
+                        <div class="col-lg-12 float-end mb-5">
+                            <div class="float-end">
+                                <button type="button" class="btn btn-primary btn-sm" (click)="certify('next'); " (click)="certify('next');"  [disabled]="!healthInfoForm.valid || !childHealthInfoPending">Next</button>
                             </div>
-                            <div  class="float-end" style="margin-right: 5px;">
-                                <button  type="button" class="btn btn-primary btn-sm" disabled="">Save</button>
+                            <div class="float-end" style="margin-right:5px;">
+                                <button type="button" class="btn btn-primary btn-sm" [disabled]="!healthInfoForm.valid" (click)="certify('save')" >Save</button>
                             </div>
-                            <div  class="float-end" style="margin-right: 5px;">
-                                <button  type="button" class="btn btn-light border border-primary border-active active text-primary backbtn1 btn-sm">Back</button>
+                            <div class="float-end" style="margin-right:5px;">
+                                <button type="button" class="btn btn-light border border-primary border-active active text-primary backbtn1 btn-sm" (click)="goBackToPreviousTab()">Back</button>
                             </div>
                         </div>
+                        <!--end::Col-->
                     </div>
                 </div>
             </div>
-            <div  class="mb-0">
-                <div  data-kt-stepper-element="content" class="flex-column current">
-                    <div  class="row">
-                        <div  class="col-lg-6 mb-5">
-                            <div  class="card shadow-sm border border-gray-300">
-                                <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
-                                    <div  class="card-title">
-                                        <h4 >Health Information</h4>
+            <!--begin::Group-->
+            <div class="mb-0">
+                <!--begin::Step 1-->
+                <div class="flex-column current" data-kt-stepper-element="content">
+                    <div class="row">
+                        <div class="col-lg-6 mb-5">
+                            <div class="card shadow-sm border border-gray-300">
+                                <!--begin::Card header-->
+                                <div class="card-header" style="padding:5px 15px;min-height:50px !important;">
+                                    <!--begin::Card title-->
+                                    <div class="card-title">
+                                        <h4>Health Information</h4>
                                     </div>
+                                    <!--end::Card title-->
                                 </div>
-                                <div  class="card-body" style="padding: 0px 10px;">
-                                    <div  class="table-responsive">
-                                        <table  class="table mb-0">
-                                            <tbody >
-                                                <tr  class="trpad">
-                                                    <td  style="padding: 5px 15px;">
-                                                        <div  class="form-check form-check-custom form-check-solid">
-                                                            <label  data-kt-button="true" class="btn active d-flex text-start p-2">
-                                                                <span  class="form-check form-check-custom form-check-solid form-check-sm align-items-start">
-                                                                    <input  type="radio" autocomplete="off" id="flexRadioChecked" class="styled" value="14133">
+                                <!--end::Card header-->
+                                <!--begin::Card body-->
+                                <div class="card-body" style="padding:0px 10px;">
+                                    <!--begin::Table-->
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <tbody>
+                                                <tr class="trpad" *ngFor="let item of healthInformation?.childPersonList">
+                                                    <td style="width:10%;" style="padding:5px 15px;">
+                                                        <div class="form-check form-check-custom form-check-solid">
+                                                            <label class="btn active d-flex text-start p-2" data-kt-button="true">
+                                                                <!--begin::Radio button-->
+                                                                <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start">
+                                                                    <input class="styled" type="radio"
+                                                                           [checked]="isChildSelected(item)"
+                                                                           (change)="onChildChange(item)" autocomplete="off"
+                                                                           id="flexRadioChecked" [value]="item.personID" />
                                                                 </span>
+                                                                <!--end::Radio button-->
                                                             </label>
                                                         </div>
                                                     </td>
-                                                    <td  class="fw-bold" style="width: 55%; padding: 10px 15px; color: red;"> Sont Mk </td>
-                                                    <td  class="fw-bold" style="width: 45%; padding: 10px 15px; color: rgb(252, 154, 39);"> Pending </td>
+                                                    <td class="fw-bold" style="width:55%;padding:10px 15px;"
+                                                        [ngStyle]="{'color':item.status=='Completed' ?'green':'red' }">
+                                                        {{item.firstName +' '+ item.lastName}}
+                                                    </td>
+                                                    <td class="fw-bold" style="width:45%;padding:10px 15px;"
+                                                        [ngStyle]="{'color':item.status=='Completed' ?'green':'#FC9A27' }">
+                                                        {{item.status}}
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
+                                    <!--begin::Table-->
+                                </div>
+                                <!--end::Card body-->
+                            </div>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="canShowChildList() && selectedChild.status=='Pending'">
+                <div class="row text-semibold mb-4">
+                    <div class="col-lg-6" >
+                        <span class="fs-6" style="color:red">Note:&nbsp;</span><span class="fs-6">If the information is different for this child, please update it below.</span>
+                        <br>
+                        <label class="mt-4"> 
+                            <input type="checkbox"  #sameInfo (change)="onDoctorInformationSelection($event)" autocomplete="off"  [checked]="sameInformationChecked">
+                            <span style="margin-left:8px; font-size: 14px; color:#000 !important"
+                                  class="text1">Doctor and Insurance Information is same ?
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mb-4" *ngIf="sameInfo.checked && moreThanOneChildWithStatusCompleted()">
+                    <div class="col-md-4 form-group">
+                        <label class="text-semibold mt-2 mb-2 fs-6">
+                            Select the child whose doctor information is as same as you?
+                        </label>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-control"  (change)="showDetailOfChild($event)" >
+                            <option value="">Select</option>
+                            <ng-container *ngFor="let child of healthInformation?.childPersonList" >
+                                <option [value]="child.personID" *ngIf="child.status === 'Completed'" >
+                                    {{child.firstName}}&nbsp;{{child.lastName}}
+                                </option>
+                            </ng-container>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <form [formGroup]="healthInfoForm" autocomplete="off">
+                <div class="mb-2">
+                    <!--begin::Step 1-->
+                    <div class="flex-column current" data-kt-stepper-element="content">
+                        <div class="row" formGroupName="doctorInformation">
+                            <div class="col-lg-6 mb-5" [ngClass]="{'disabled':childIsSelectedFromDropDown}">
+                                <div class="card shadow-sm border border-gray-300"  >
+                                    <!--begin::Card header-->
+                                    <div class="card-header" style="padding:5px 15px;min-height:50px !important;">
+                                        <!--begin::Card title-->
+                                        <div class="card-title">
+                                            <h6>Add Doctor Information Details</h6>
+                                        </div>
+                                        <!--end::Card title-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-3">
+                                        <div class="row">
+                                            <div class="col-lg-6 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">Office Name</label>
+                                                <input type="text" 
+                                                       formControlName="officeName"
+                                                       placeholder="Office name"
+                                                       class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0 text_transform_cap">
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('officeName','doctorInformation')}}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 fv-row">
+                                                <label class="col-form-label required fw-semibold fs-6">Office Phone</label>
+                                                <input type="text" name="" 
+                                                       placeholder="Office Phone"
+                                                       class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0"
+                                                       formControlName="officePhone" 
+                                                       appPhoneNumberFormat maxlength="14"
+                                                       title="Office Phone" 
+                                                       placeholder="Office Phone">
+                                                <div *ngIf="phoneFlagCheck" class="text-danger">Phone number is invalid.
+                                                </div>
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('officePhone','doctorInformation')}}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">First
+                                                    Name
+                                                </label>
+                                                <input type="text" autocomplete="off" 
+                                                       id="doctorinformation-firstname"
+                                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                                       name="Doctorinformation[FirstName]" required
+                                                       formControlName="firstName" title="First Name"
+                                                       placeholder="First Name" aria-required="true">
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('firstName','doctorInformation')}}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 fv-row mb-1">
+                                                <label class="col-form-label fw-semibold fs-6">Middle Name</label>
+                                                <input type="text" autocomplete="off" 
+                                                       id="doctorinformation-middlename"
+                                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                                       name="Doctorinformation[MiddleName]" 
+                                                       formControlName="middleName"
+                                                       title="Middle Name" placeholder="Middle Name">
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('middleName','doctorInformation')}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">Last
+                                                    Name</label>
+                                                <input type="text" autocomplete="off" id="doctorinformation-lastname"
+                                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                                       name="Doctorinformation[LastName]" required
+                                                       formControlName="lastName" title="Last Name" 
+                                                       placeholder="Last Name"
+                                                       aria-required="true">
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('lastName','doctorInformation')}}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">Address1</label>
+                                                <input type="text" autocomplete="off" 
+                                                       id="doctorinformation-address1"
+                                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                                       name="Doctorinformation[Address1]" 
+                                                       formControlName="address1"
+                                                       title="Address1" placeholder="Address1">
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('address1','doctorInformation')}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6 fv-row mb-1">
+                                                <label class="col-form-label fw-semibold fs-6">Address2</label>
+                                                <input type="text" autocomplete="off" id="doctorinformation-address2"
+                                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                                       name="Doctorinformation[Address2]" 
+                                                       formControlName="address2"
+                                                       title="Address2" placeholder="Address2">
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('address2','doctorInformation')}}
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">City</label>
+                                                <input type="text" autocomplete="off" id="doctorinformation-city"
+                                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                                       name="Doctorinformation[City]" required 
+                                                       formControlName="city"
+                                                       title="City" placeholder="City">
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('city','doctorInformation')}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">State</label>
+                                                <select id="doctorinformation-state" required formControlName="state"
+                                                    class="form-control py-sm-2 px-sm-4" name="Doctorinformation[State]">
+                                                    <option value="">Select</option>
+                                                    <option
+                                                        *ngFor="let item of healthInformation?.stateList?.selectDropdownList"
+                                                        [value]="item.code">{{item.description}}</option>
+                                                </select>
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('state','doctorInformation')}}</div>
+                                            </div>
+                                            <div class="col-lg-6 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">Zip Code</label>
+                                                <input type="number" autocomplete="off" required
+                                                       id="doctorinformation-zipcode"
+                                                       onKeyPress="if(this.value.length==5) return false;"
+                                                       formControlName="zipcode" 
+                                                       class="form-control py-sm-2 px-sm-4"
+                                                       title="Zipcode" placeholder="Zipcode">
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('zipcode','doctorInformation')}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 mb-5">
+                                <div class="card shadow-sm border border-gray-300">
+                                    <!--begin::Card header-->
+                                    <div class="card-header" style="padding:5px 15px;min-height:50px !important;">
+                                        <!--begin::Card title-->
+                                        <div class="card-title">
+                                            <h6>Add Insurance Information Details</h6>
+                                        </div>
+                                        <!--end::Card title-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-3">
+                                        <div class="row">
+                                            <div class="col-lg-12 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">Insurance Company  Name</label>
+                                                <input type="text" autocomplete="off"
+                                                       formControlName="insuranceCompanyName"
+                                                       id="doctorinformation-insurancecompanyname"
+                                                       class="form-control py-sm-2 px-sm-4"
+                                                       name="Doctorinformation[InsuranceCompanyName]"
+                                                       title="Insurance Company Name" placeholder="Insurance Company Name"
+                                                        >
+                                                <div class="help-block with-errors text-danger">
+                                                    {{showError('insuranceCompanyName','doctorInformation')}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-12 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">Policy #</label>
+                                                <input type="text" name="name" placeholder="Policy #"
+                                                    class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0" formControlName="policy">
+                                                <div class="help-block with-errors text-danger">{{showError('policy','doctorInformation')}}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-12 fv-row mb-1">
+                                                <label class="col-form-label required fw-semibold fs-6">Group #</label>
+                                                <input type="text" name="name" placeholder="Group #" formControlName="group"
+                                                    class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0" >
+                                                <div class="help-block with-errors text-danger">{{showError('group','doctorInformation')}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+                            <!--end::Col-->
+                            <div class="row mb-5">
+                                <div class="col-lg-12">
+                                    <div class="form-check form-check-custom form-check-solid">
+                                        <input class="styled" type="radio" formControlName="allergyConsent"
+                                            name="allergyConsent" style="margin-right: 6px;" [value]="1"
+                                            (change)="selectedRadioOpt(1);" />
+                                        <label class="form-check-label text-black fs-6">
+                                            {{personHealthInfoData?.selectDropdownsList[0]?.description}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-5">
+                                <div class="col-lg-12">
+                                    <div class="form-check form-check-custom form-check-solid">
+                                        <input class="styled" type="radio" formControlName="allergyConsent"
+                                            name="allergyConsent" style="margin-right: 6px;" [value]="0"
+                                            (change)="selectedRadioOpt(0);" />
+                                        <label class="form-check-label text-black fs-6">
+                                            {{personHealthInfoData?.selectDropdownsList[1]?.description}}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     
+                        <div class="row mb-5" formArrayName="healthInformationList" *ngIf="allergicFlag=='1'">
+                            <div class="col-lg-12">
+                                <div class="card shadow-sm border border-gray-300">
+                                    <!--begin::Card header-->
+                                    <div class="card-header" style="padding:5px 15px;min-height:50px !important;">
+                                        <!--begin::Card title-->
+                                        <div class="card-title">
+                                            <h3>Allergy Information (One allergy per line ) </h3>
+                                        </div>
+                                        <!--end::Card title-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-3">
+                                        <!--begin::Table-->
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-striped mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="fw-semibold fs-6 text-nowrap required">Allergy Name and Information</th>
+                                                        <th class="fw-semibold fs-6 text-nowrap">Medication Name</th>
+                                                        <th class="fw-semibold fs-6 text-nowrap">Medication Required</th>
+                                                        <th class="fw-semibold fs-6 text-nowrap">Additional Details</th>
+                                                        <th class="fw-semibold fs-6 text-nowrap">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="row1"
+                                                        *ngFor="let alergyInfo of healthInfoForm?.get('healthInformationList')?.controls; let i = index"
+                                                        [formGroupName]="i">
+                                                        <td>
+                                                            <input type="text"  autocomplete="off"
+                                                                   formControlName="allergyName" 
+                                                                   class="form-control py-sm-2 px-sm-4 AllergyName"
+                                                                   placeholder="Allergy name and information">
+                                                            <div class="help-block with-errors text-danger">{{showError('allergyName',null,alergyInfo)}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" autocomplete="off"
+                                                                   class="form-control py-sm-2 px-sm-4 MedicationName"
+                                                                   formControlName="medicationName"
+                                                                   placeholder="Medication Name" >
+                                                                   <div class="help-block with-errors text-danger">{{showError('medicationName',null,alergyInfo)}}</div>
+                                                        </td> 
+                                                        <td>
+                                                            <select class="form-control py-sm-2 px-sm-4 MedicationRequired"
+                                                                formControlName="medicationRequired">
+                                                                <option value="">Select</option>
+                                                                <option
+                                                                    *ngFor="let item of healthInformation?.medicationRequiredList?.selectDropdownList"
+                                                                    [value]="item.code">{{item.description}}</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <textarea autocomplete="off" class="form-control AdditionalDetails"
+                                                                formControlName="additionalDetails" rows="1"
+                                                                placeholder="AdditonalDetails" >
+                                                            </textarea>
+                                                            <div class="help-block with-errors text-danger">{{showError('additionalDetails',null,alergyInfo)}}</div>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <img src="./assets/media/image (2).png" alt="remove"   (click)="removeAllergyInfo(i,alergyInfo)" style="cursor:pointer;"> 
+                                                            <div name="deleteGallery" 
+                                                                title="Delete">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--begin::Table-->
+                                        <div class="row mt-2">
+                                            <div class="col-lg-12 fv-row mb-1">
+                                                <div class="text-danger fs-6">Please enter N/A if no Allergy(ies) to
+                                                    report
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-center mt-5 mb-2">
+                                            <button type="button" class="btn btn-primary btn-sm" style="margin-right:5px;" (click)="addAllergyInfo();">
+                                                Add allergy & Medication
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--end::Card body-->
+                                </div>
+                            </div>
+                        </div>
+                        <div formGroupName="otherHealthProblem">
+                            <div class="row"  >
+                                <div class="col-lg-6 mb-5">
+                                    <div class="card shadow-sm border border-gray-300">
+                                        <!--begin::Card header-->
+                                        <div class="card-header" style="padding:5px 15px;min-height:50px !important;">
+                                            <!--begin::Card title-->
+                                            <div class="card-title">
+                                                <h6 class="required">Other Health Information Details.</h6>
+                                            </div>
+                                            <!--end::Card title-->
+                                        </div>
+                                        <!--end::Card header-->
+                                        <!--begin::Card body-->
+                                        <div class="card-body p-4">
+                                            <div class="row">
+                                                <div class="col-lg-12 fv-row mb-1">
+                                                    <div class="input-group input-group-solid">
+                                                        <textarea autocomplete="off" id="otherhealthproblems-description" 
+                                                                formControlName="description"
+                                                                class="form-control input-xxs" 
+                                                                size="60" 
+                                                                style="margin-left:3px;width:98%;height:100px;"
+                                                                aria-required="true">
+                                                        </textarea>
+                                                        <div class="help-block with-errors text-danger">{{showError('description','otherHealthProblem')}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-lg-12 fv-row mb-1">
+                                                    <div class="fs-6">
+                                                        <span class="text-danger">Note:</span> Herbal medicines, vitamins and over the counter medicines like
+                                                        Benadryl come under this category. If not applicable, please enter
+                                                        N/A.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Card body-->
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 mb-5">
+                                    <div class="card shadow-sm border border-gray-300">
+                                        <!--begin::Card header-->
+                                        <div class="card-header" style="padding:5px 15px;min-height:50px !important;">
+                                            <!--begin::Card title-->
+                                            <div class="card-title">
+                                                <h6 class="required">Additional Health Information.</h6>
+                                            </div>
+                                            <!--end::Card title-->
+                                        </div>
+                                        <!--end::Card header-->
+                                        <!--begin::Card body-->
+                                        <div class="card-body p-4">
+                                            <div class="row">
+                                                <div class="col-lg-12 fv-row mb-1">
+                                                    <div class="input-group input-group-solid">
+                                                        <textarea autocomplete="off" class="form-control input-xxs" 
+                                                                formControlName="additionalDesc"
+                                                                size="60" 
+                                                                style="margin-left:3px;width:98%;height:100px;">
+                                                        </textarea>
+                                                        <div class="help-block with-errors text-danger">{{showError('additionalDesc','otherHealthProblem')}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="col-lg-12 fv-row mb-1">
+                                                    <div class="fs-6">
+                                                        <span class="text-danger">Note:</span> Dental implants, vision or hearing aids come under this
+                                                        category.
+                                                        If not applicable, please enter N/A.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Card body-->
+                                    </div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 mb-5">
+                                    <div class="card shadow-sm border border-gray-300">
+                                        <!--begin::Card header-->
+                                        <div class="card-header" style="padding:5px 15px;min-height:50px !important;">
+                                            <!--begin::Card title-->
+                                            <div class="card-title">
+                                                <h6 class="required">Confidential Health/Behavioral Information</h6>
+                                            </div>
+                                            <!--end::Card title-->
+                                        </div>
+                                        <!--end::Card header-->
+                                        <!--begin::Card body-->
+                                        <div class="card-body p-4">
+                                            <div class="row">
+                                                <div class="col-lg-8 fv-row mrgbtm">
+                                                    <div class="fs-6">
+                                                        Is there any confidential health/behavioral information you would
+                                                        like to discuss with the Camp Director/Coordinator?
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 mrgbtm1">
+                                                    <!--begin::Row-->
+                                                    <div class="row mw-500px mb-5" data-kt-buttons="true"
+                                                        data-kt-buttons-target=".form-check-image, .form-check-input">
+                                                        <!--begin::Col-->
+                                                        <div class="col-lg-6">
+                                                            <div class="form-check form-check-custom form-check-solid mb-2">
+                                                                <input type="radio" autocomplete="off" class="styled" 
+                                                                    formControlName="confidential"
+                                                                    name="confidential" value='1'>
+                                                                <label class="form-check-label text-gray-800 fs-6" for="flexRadioChecked">
+                                                                    Yes
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Col-->
+
+                                                        <!--begin::Col-->
+                                                        <div class="col-lg-6">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input type="radio" autocomplete="off" class="styed" 
+                                                                    formControlName="confidential"
+                                                                    name="confidential" value='0'>
+                                                                <label class="form-check-label text-gray-800 fs-6"
+                                                                    for="flexRadioChecked">
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    </div>
+                                                    <!--end::Row-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Card body-->
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 mb-5">
+                                    <div class="card shadow-sm border border-gray-300">
+                                        <!--begin::Card body-->
+                                        <div class="card-body p-4">
+                                            <div class="row">
+                                                <div class="col-lg-12 fv-row mb-1">
+                                                    <div class="fs-6">
+                                                        Please note:
+                                                    </div>
+                                                    <div class="fs-6 mt-2">
+                                                        1. For any medication stored on campus during the camp, a Medication
+                                                        Authorization Form must be submitted.
+                                                    </div>
+                                                    <div class="fs-6 mt-2">
+                                                        2. The registration will be placed on hold if the required documents
+                                                        are
+                                                        not submitted.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Card body-->
+                                    </div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 mb-5">
+                                    <div class="card shadow-sm border border-gray-300">
+                                        <!--begin::Card header-->
+                                        <div class="card-header" style="padding:5px 15px;min-height:50px !important;">
+                                            <!--begin::Card title-->
+                                            <div class="card-title">
+                                                <h6 class="required">Immunization Details</h6>
+                                            </div>
+                                            <!--end::Card title-->
+                                        </div>
+                                        <!--end::Card header-->
+                                        <!--begin::Card body-->
+                                        <div class="card-body p-4">
+                                            <div class="row">
+                                                <div class="col-lg-8 fv-row mrgbtm">
+                                                    <div class="fs-6">
+                                                        Is your child's Immunization up to date ?
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 mrgbtm1">
+                                                    <!--begin::Row-->
+                                                    <div class="row mw-500px" data-kt-buttons="true"
+                                                        data-kt-buttons-target=".form-check-image, .form-check-input">
+                                                        <!--begin::Col-->
+                                                        <div class="col-lg-6">
+                                                            <div class="form-check form-check-custom form-check-solid mb-2">
+                                                                <input type="radio" autocomplete="off" 
+                                                                    class="styled" 
+                                                                    formControlName="immunization"
+                                                                    name="immunization" 
+                                                                    value="Y">
+                                                                <label class="form-check-label text-gray-800 fs-6">
+                                                                    Yes
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Col-->
+
+                                                        <!--begin::Col-->
+                                                        <div class="col-lg-6">
+                                                            <div class="form-check form-check-custom form-check-solid">
+                                                                <input type="radio" autocomplete="off" 
+                                                                    class="styled" 
+                                                                    formControlName="immunization"
+                                                                    name="immunization" value="N">
+                                                                <label class="form-check-label text-gray-800 fs-6">
+                                                                    No
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    </div>
+                                                    <!--end::Row-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Card body-->
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </form>
+            <!--end::Group-->
+            <!--begin::Actions-->
+            <div class="d-flex justify-content-end mt-5">
+                <button type="button" class="btn btn-light border border-primary border-active active text-primary backbtn1 btn-sm" style="margin-right:5px;" (click)="goBackToPreviousTab()">
+                    Back
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" style="margin-right:5px;" [disabled]="!healthInfoForm.valid" (click)="certify('save')">
+                    Save
+                </button>
+                <button type="button" class="btn btn-primary btn-sm" (click)="certify('next');"  [disabled]="!healthInfoForm.valid || !childHealthInfoPending">
+                    Next
+                </button>
             </div>
-            <form  novalidate="" autocomplete="off">
-                <div  class="mb-2">
-                    <div class="flex-column current">
-                        <div class="row">
-                            <div  class="col-lg-6 mb-5">
-                                <div  class="card shadow-sm border border-gray-300">
-                                    <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
-                                        <div  class="card-title">
-                                            <h6 >Add Doctor Information Details</h6>
-                                        </div>
-                                    </div>
-                                    <div  class="card-body p-3">
-                                        <div  class="row">
-                                            <div  class="col-lg-6 fv-row mb-1">
-                                                <label  class="col-form-label required fw-semibold fs-6">Office Name</label>
-                                                <input  type="text" formcontrolname="officeName" placeholder="Office name" class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0">
-                                                <div  class="help-block with-errors text-danger">  </div>
-                                            </div>
-                                            <div  class="col-lg-6 fv-row">
-                                                <label  class="col-form-label required fw-semibold fs-6">Office Phone</label>
-                                                <input  type="text" name="" placeholder="Office Phone" formcontrolname="officePhone" appphonenumberformat="" maxlength="14" title="Office Phone" class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0">
-                                                <div  class="help-block with-errors text-danger"> </div>
-                                            </div>
-                                        </div>
-                                        <div  class="row">
-                                            <div  class="col-lg-6 fv-row mb-1">
-                                                <label  class="col-form-label required fw-semibold fs-6">First Name </label>
-                                                <input  type="text" autocomplete="off" id="doctorinformation-firstname" name="Doctorinformation[FirstName]" required="" formcontrolname="firstName" title="First Name" placeholder="First Name" aria-required="true" class="form-control py-sm-2 px-sm-4 captilize_txt " >
-                                                <div  class="help-block with-errors text-danger"> 
-                                                     </div></div>
-                                                     <div  class="col-lg-6 fv-row mb-1">
-                                                        <label  class="col-form-label fw-semibold fs-6">Middle Name</label>
-                                                        <input  type="text" autocomplete="off" id="doctorinformation-middlename" name="Doctorinformation[MiddleName]" formcontrolname="middleName" title="Middle Name" placeholder="Middle Name" class="form-control py-sm-2 px-sm-4 captilize_txt">
-                                                        <div  class="help-block with-errors text-danger">  </div>
-                                                    </div></div>
-                                                    <div  class="row">
-                                                        <div  class="col-lg-6 fv-row mb-1">
-                                                            <label  class="col-form-label required fw-semibold fs-6">Last Name</label>
-                                                            <input  type="text" autocomplete="off" id="doctorinformation-lastname" name="Doctorinformation[LastName]" required="" formcontrolname="lastName" title="Last Name" placeholder="Last Name" aria-required="true" class="form-control py-sm-2 px-sm-4 captilize_txt">
-                                                            <div  class="help-block with-errors text-danger">  </div>
-                                                        </div>
-                                                        <div  class="col-lg-6 fv-row mb-1">
-                                                            <label  class="col-form-label required fw-semibold fs-6">Address1</label>
-                                                            <input  type="text" autocomplete="off" id="doctorinformation-address1" name="Doctorinformation[Address1]" formcontrolname="address1" title="Address1" placeholder="Address1" class="form-control py-sm-2 px-sm-4 captilize_txt">
-                                                            <div  class="help-block with-errors text-danger">  </div>
-                                                        </div>
+            <!--end::Actions-->
+        </form>
+        <!--end::Form-->
+    </div>
+    <!--end::Card body-->
+</div>
+<!--end::Card-->
+
+<!-----------Start::Mobile version---------->
+<div class="card card2 mt-4" style="border:1px solid #ddd;">
+    <div class="card-body p-4">
+        <div class="mb-0">
+            <!--begin::Step 1-->
+            <div class="flex-column current" data-kt-stepper-element="content">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card-title mb-4">
+                            <h4>Health Information</h4>
+                        </div>
+                        <div class="card shadow-sm border border-gray-300">
+                            <!--begin::Card body-->
+                            <div class="card-body" style="padding:0px 10px;">
+                                <!--begin::Table-->
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                            <tr class="trpad" *ngFor="let item of healthInformation?.childPersonList">
+                                                <td style="width:10%;" style="padding:5px 15px;">
+                                                    <div class="form-check form-check-custom form-check-solid">
+                                                        <label class="btn active d-flex text-start p-2" data-kt-button="true">
+                                                            <!--begin::Radio button-->
+                                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-2">
+                                                                <input class="styled" type="radio"
+                                                                       [checked]="isChildSelected(item)"
+                                                                       (change)="onChildChange(item)" autocomplete="off"
+                                                                       id="flexRadioChecked" [value]="item.personID" />
+                                                            </span>
+                                                            <!--end::Radio button-->
+                                                        </label>
                                                     </div>
-                                                    <div  class="row">
-                                                        <div  class="col-lg-6 fv-row mb-1">
-                                                            <label  class="col-form-label fw-semibold fs-6">Address2</label>
-                                                            <input  type="text" autocomplete="off" id="doctorinformation-address2" name="Doctorinformation[Address2]" formcontrolname="address2" title="Address2" placeholder="Address2" class="form-control py-sm-2 px-sm-4 captilize_txt">
-                                                            <div  class="help-block with-errors text-danger">  </div>
-                                                        </div>
-                                                        <div  class="col-lg-6 fv-row mb-1">
-                                                            <label  class="col-form-label required fw-semibold fs-6">City</label>
-                                                            <input  type="text" autocomplete="off" id="doctorinformation-city" name="Doctorinformation[City]" required="" formcontrolname="city" title="City" placeholder="City" class="form-control py-sm-2 px-sm-4 captilize_txt">
-                                                            <div  class="help-block with-errors text-danger">  </div>
-                                                        </div>
-                                                    </div>
-                                                    <div  class="row">
-                                                        <div  class="col-lg-6 fv-row mb-1">
-                                                            <label  class="col-form-label required fw-semibold fs-6">State</label>
-                                                            <select  id="doctorinformation-state" required="" formcontrolname="state" name="Doctorinformation[State]" class="form-control py-sm-2 px-sm-4">
-                                                                <option  value="">Select</option>
-                                                                <option  value="Al">Alabama</option>
-                                                                <option  value="AK">Alaska</option>
-                                                                <option  value="AZ">Arizona</option>
-                                                                <option  value="AR">Arkansas</option>
-                                                                <option  value="CA">California</option>
-                                                                <option  value="CO">Colorado</option>
-                                                                <option  value="CT">Connecticut</option>
-                                                                <option  value="DE">Delaware</option>
-                                                                <option  value="DC">District Of Columbia</option>
-                                                                <option  value="FL">Florida</option>
-                                                                <option  value="GA">Georgia</option>
-                                                                <option  value="HI">Hawaii</option>
-                                                </select><div  class="help-block with-errors text-danger"> </div>
-                                            </div>
-                                            <div  class="col-lg-6 fv-row mb-1">
-                                                <label  class="col-form-label required fw-semibold fs-6">Zip Code</label>
-                                                <input  type="number" autocomplete="off" required="" id="doctorinformation-zipcode" formcontrolname="zipcode" title="Zipcode" placeholder="Zipcode" class="form-control py-sm-2 px-sm-4">
-                                                <div  class="help-block with-errors text-danger">  </div>
-                                            </div>
-                                        </div>
+                                                </td>
+                                                <td class="fw-bold" style="width:55%;padding:15px 15px;"
+                                                    [ngStyle]="{'color':item.status=='Completed' ?'green':'red' }">
+                                                    {{item.firstName +' '+ item.lastName}}
+                                                </td>
+                                                <td class="fw-bold" style="width:45%;padding:15px 15px;"
+                                                    [ngStyle]="{'color':item.status=='Completed' ?'green':'#FC9A27' }">
+                                                    {{item.status}}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--begin::Table-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                        <div class="mt-4">
+                            <div *ngIf="canShowChildList() && selectedChild.status=='Pending'">
+                                <div class="row text-semibold mb-4">
+                                    <div class="col-lg-6" >
+                                        <span class="fs-6" style="color:red">Note:&nbsp;</span><span class="fs-6">If the information is different for this child, please update it below.</span>
+                                        <br>
+                                        <label class="mt-4"> 
+                                            <input type="checkbox"  #sameInfo (change)="onDoctorInformationSelection($event)" autocomplete="off"  [checked]="sameInformationChecked">
+                                            <span style="margin-left:8px; font-size: 14px; color:#000 !important"
+                                                  class="text1">Doctor and Insurance Information is same ?
+                                            </span>
+                                        </label>
                                     </div>
                                 </div>
-                            </div>
-                            <div  class="col-lg-6 mb-5">
-                                <div  class="card shadow-sm border border-gray-300">
-                                    <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
-                                        <div  class="card-title">
-                                            <h6 >Add Insurance Information Details</h6>
-                                        </div>
+                                <div class="row mb-4" *ngIf="sameInfo.checked && moreThanOneChildWithStatusCompleted()">
+                                    <div class="col-md-4 form-group">
+                                        <label class="text-semibold mt-2 mb-2 fs-6">
+                                            Select the child whose doctor information is as same as you?
+                                        </label>
                                     </div>
-                                    <div  class="card-body p-3">
-                                        <div  class="row">
-                                            <div  class="col-lg-12 fv-row mb-1">
-                                                <label  class="col-form-label required fw-semibold fs-6">Insurance Company Name</label>
-                                                <input  type="text" autocomplete="off" formcontrolname="insuranceCompanyName" id="doctorinformation-insurancecompanyname" name="Doctorinformation[InsuranceCompanyName]" title="Insurance Company Name" placeholder="Insurance Company Name" maxlength="100" class="form-control py-sm-2 px-sm-4">
-                                                <div  class="help-block with-errors text-danger">  </div>
-                                            </div>
-                                        </div>
-                                        <div  class="row">
-                                            <div  class="col-lg-12 fv-row mb-1">
-                                                <label  class="col-form-label required fw-semibold fs-6">Policy #</label>
-                                                <input  type="text" name="name" placeholder="Policy #" formcontrolname="policy" class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0">
-                                                <div  class="help-block with-errors text-danger"></div>
-                                            </div>
-                                        </div>
-                                        <div  class="row">
-                                            <div  class="col-lg-12 fv-row mb-1">
-                                                <label  class="col-form-label required fw-semibold fs-6">Group #</label>
-                                                <input  type="text" name="name" placeholder="Group #" formcontrolname="group" class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0">
-                                                <div  class="help-block with-errors text-danger"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div  class="row mb-5">
-                                <div  class="col-lg-12">
-                                    <div  class="form-check form-check-custom form-check-solid">
-                                        <input  type="radio" formcontrolname="allergyConsent" name="allergyConsent" class="styled" style="margin-right: 6px;">
-                                        <label  class="form-check-label text-black fs-6"> Yes, I want to update allergy information. </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div  class="row mb-5">
-                                <div  class="col-lg-12">
-                                    <div  class="form-check form-check-custom form-check-solid">
-                                        <input  type="radio" formcontrolname="allergyConsent" name="allergyConsent" class="styled" style="margin-right: 6px;">
-                                        <label  class="form-check-label text-black fs-6"> No, Allergy information is not applicable </label>
+                                    <div class="col-md-2">
+                                        <select class="form-control"  (change)="showDetailOfChild($event)" >
+                                            <option value="">Select</option>
+                                            <ng-container *ngFor="let child of healthInformation?.childPersonList" >
+                                                <option [value]="child.personID" *ngIf="child.status === 'Completed'" >
+                                                    {{child.firstName}}&nbsp;{{child.lastName}}
+                                                </option>
+                                            </ng-container>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div  formgroupname="otherHealthProblem" class="">
-                            <div  class="row">
-                                <div  class="col-lg-6 mb-5">
-                                    <div  class="card shadow-sm border border-gray-300">
-                                        <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
-                                            <div  class="card-title">
-                                                <h6  class="required">Other Health Information Details.</h6>
-                                            </div>
-                                        </div>
-                                        <div  class="card-body p-4">
-                                            <div  class="row">
-                                                <div  class="col-lg-12 fv-row mb-1">
-                                                    <div  class="input-group input-group-solid">
-                                                        <textarea  autocomplete="off" id="otherhealthproblems-description" formcontrolname="description" size="60" maxlength="1000" aria-required="true" class="form-control input-xxs" style="margin-left: 3px; width: 98%; height: 100px;"></textarea>
-                                                        <div  class="help-block with-errors text-danger"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div  class="row mt-2">
-                                                <div  class="col-lg-12 fv-row mb-1">
-                                                    <div  class="fs-6">
-                                                        <span  class="text-danger">Note:</span> Herbal medicines, vitamins and over the counter medicines like Benadryl come under this category. If not applicable, please enter N/A. </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div  class="col-lg-6 mb-5">
-                                        <div  class="card shadow-sm border border-gray-300">
-                                            <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
-                                                <div  class="card-title">
-                                                    <h6  class="required">Additional Health Information.</h6>
-                                                </div>
-                                            </div>
-                                            <div  class="card-body p-4">
-                                                <div  class="row">
-                                                    <div  class="col-lg-12 fv-row mb-1">
-                                                        <div  class="input-group input-group-solid">
-                                                            <textarea  autocomplete="off" formcontrolname="additionalDesc" size="60" maxlength="1000" class="form-control input-xxs ng-untouched ng-pristine ng-invalid" style="margin-left: 3px; width: 98%; height: 100px;"></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div  class="row mt-2">
-                                                    <div  class="col-lg-12 fv-row mb-1">
-                                                        <div  class="fs-6">
-                                                            <span  class="text-danger">Note:</span> Dental implants, vision or hearing aids come under this category. If not applicable, please enter N/A. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div  class="row">
-                                        <div  class="col-lg-6 mb-5">
-                                            <div  class="card shadow-sm border border-gray-300">
-                                                <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
-                                                    <div  class="card-title">
-                                                        <h6  class="required">Confidential Health/Behavioral Information</h6>
-                                                    </div>
-                                                </div>
-                                                <div  class="card-body p-4">
-                                                    <div  class="row">
-                                                        <div  class="col-lg-8 fv-row mrgbtm">
-                                                            <div  class="fs-6"> Is there any confidential health/behavioral information you would like to discuss with the Camp Director/Coordinator? </div>
-                                                        </div>
-                                                        <div  class="col-lg-4 mrgbtm1">
-                                                            <div class="row mw-500px mb-5">
-                                                                <div  class="col-lg-6">
-                                                                    <div  class="form-check form-check-custom form-check-solid mb-2">
-                                                                        <input  type="radio" autocomplete="off" formcontrolname="confidential" name="confidential" value="1" class="styled">
-                                                                        <label  for="flexRadioChecked" class="form-check-label text-gray-800 fs-6"> Yes </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div  class="col-lg-6">
-                                                                    <div  class="form-check form-check-custom form-check-solid">
-                                                                        <input  type="radio" autocomplete="off" formcontrolname="confidential" name="confidential" value="0" class="styed">
-                                                                        <label  for="flexRadioChecked" class="form-check-label text-gray-800 fs-6"> No </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div  class="col-lg-6 mb-5">
-                                            <div  class="card shadow-sm border border-gray-300">
-                                                <div  class="card-body p-4">
-                                                    <div  class="row">
-                                                        <div  class="col-lg-12 fv-row mb-1">
-                                                            <div  class="fs-6"> Please note: </div>
-                                                            <div  class="fs-6 mt-2"> 1. For any medication stored on campus during the camp, a Medication Authorization Form must be submitted. </div>
-                                                            <div  class="fs-6 mt-2"> 2. The registration will be placed on hold if the required documents are not submitted. </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div  class="row">
-                                        <div  class="col-lg-6 mb-5">
-                                            <div  class="card shadow-sm border border-gray-300">
-                                                <div  class="card-header" style="padding: 5px 15px; min-height: 50px !important;">
-                                                    <div  class="card-title"><h6  class="required">Immunization Details</h6></div>
-                                                </div>
-                                                <div  class="card-body p-4">
-                                                    <div  class="row">
-                                                        <div  class="col-lg-8 fv-row mrgbtm">
-                                                            <div  class="fs-6"> Is your child's Immunization up to date ? </div>
-                                                        </div>
-                                                        <div  class="col-lg-4 mrgbtm1">
-                                                            <div class="row mw-500px">
-                                                                <div  class="col-lg-6">
-                                                                    <div  class="form-check form-check-custom form-check-solid mb-2">
-                                                                        <input  type="radio" autocomplete="off" formcontrolname="immunization" name="immunization" value="Y" class="styled">
-                                                                        <label  class="form-check-label text-gray-800 fs-6"> Yes </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div  class="col-lg-6">
-                                                                    <div  class="form-check form-check-custom form-check-solid">
-                                                                        <input  type="radio" autocomplete="off" formcontrolname="immunization" name="immunization" value="N" class="styled">
-                                                                        <label  class="form-check-label text-gray-800 fs-6"> No </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div  class="d-flex justify-content-end mt-5">
-                        <button  type="button" class="btn btn-light border border-primary border-active active text-primary backbtn1 btn-sm" style="margin-right: 5px;"> Back </button>
-                        <button  type="button" class="btn btn-primary btn-sm" style="margin-right: 5px;" disabled=""> Save </button>
-                        <button  type="button" class="btn btn-primary btn-sm" disabled=""> Next </button>
                     </div>
-                </form>
+                    <!--end::Col-->
+                </div>
             </div>
         </div>
+        <ul class="nav nav-pills nav-pills-custom mb-3 justify-content-center mt-4" style="max-width:255px;margin: auto;margin-bottom: auto;background: #efefef;border-radius: 30px;">
+            <!--begin::Item-->
+            <li class="nav-item me-0">
+                <!--begin::Link-->
+                <a class="nav-link btn btn-outline btn-flex flex-column overflow-hidden p-3 fw-semibold" [ngClass]="(tabOne)?'active':''" id="kt_stats_widget_16_tab_link_1" data-bs-toggle="pill"  style="border-radius:30px;min-width: 85px;">
+                    Step 1
+                </a>
+                <!--end::Link-->
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="nav-item me-0">
+                <!--begin::Link--> 
+                <a class="nav-link btn btn-outline btn-flex flex-column overflow-hidden fw-semibold p-3" [ngClass]="(tabTwo)?'active':''" id="kt_stats_widget_16_tab_link_2" data-bs-toggle="pill" style="border-radius:30px;min-width: 85px;">
+                    Step 2
+                </a>
+                <!--end::Link-->
+            </li>
+            <!--end::Item-->
+            <!--begin::Item-->
+            <li class="nav-item me-0">
+                <!--begin::Link--> 
+                <a class="nav-link btn btn-outline btn-flex flex-column overflow-hidden fw-semibold p-3" [ngClass]="(tabThree)?'active':''" id="kt_stats_widget_16_tab_link_3" data-bs-toggle="pill" style="border-radius:30px;min-width: 85px;">
+                    Step 3
+                </a>
+                <!--end::Link-->
+            </li>
+            <!--end::Item-->
+        </ul>
+        <form id="kt_account_profile_details_form" class="form" [formGroup]="healthInfoForm" autocomplete="off">
+            <!--begin::Tab Content-->
+            <div class="tab-content" >
+                <div formGroupName="doctorInformation">
+                <!--begin::Tap pane-->
+                <div class="tab-pane fade show active mt-8" *ngIf="tabOne" id="kt_stats_widget_16_tab_1">
+                    <span class="fw-bold fs-3">Add Doctor's Information</span>
+                    <div class="p-3 mt-4" style="border:1px solid #ddd;border-radius:5px;">
+                        <div class="row">
+                            <div class="col-lg-6 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">Office Name</label>
+                                <input type="text" formControlName="officeName"
+                                       placeholder="Office name"
+                                       class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0 text_transform_cap">
+                                       <div *ngIf="HIF['officeName'].invalid && HIF['officeName'].value=='' && (healthInfoForm.dirty || healthInfoForm.touched)" class="error_clr mrg_btm">
+                                        Please enter Office Name.
+                                    </div>
+                            </div>
+                            <div class="col-lg-6 fv-row">
+                                <label class="col-form-label required fw-semibold fs-6">Office Phone</label>
+                                <input type="text" name="" placeholder="Office Phone"
+                                       class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0"
+                                       formControlName="officePhone" 
+                                       appPhoneNumberFormat maxlength="14"
+                                       title="Office Phone" placeholder="Office Phone" (blur)="hidePhoneNum();" (keyup)="hidePhoneNum();" (keypress)="hidePhoneNum();">
+                                <div *ngIf="phoneFlagCheck && HIF['officePhone'].value!=''" class="text-danger">Phone number is invalid.</div>
+                                <div *ngIf="HIF['officePhone'].invalid && HIF['officePhone'].value=='' && (healthInfoForm.dirty || healthInfoForm.touched)" class="error_clr mrg_btm">
+                                    Please enter Office Phone.
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">First Name</label>
+                                <input type="text" autocomplete="off" id="doctorinformation-firstname"
+                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                       name="Doctorinformation[FirstName]" required
+                                       formControlName="firstName" 
+                                       title="First Name"
+                                       placeholder="First Name" 
+                                       aria-required="true">
+                                       <div *ngIf="HIF['firstName'].invalid && HIF['firstName'].value=='' && (healthInfoForm.dirty || healthInfoForm.touched)" class="error_clr mrg_btm">
+                                        Please enter First Name.
+                                    </div>
+                            </div>
+                            <div class="col-lg-6 fv-row mb-1">
+                                <label class="col-form-label fw-semibold fs-6">Middle Name</label>
+                                <input type="text" autocomplete="off" id="doctorinformation-middlename"
+                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                       name="Doctorinformation[MiddleName]" 
+                                       formControlName="middleName"
+                                       title="Middle Name" placeholder="Middle Name">
+                                
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">Last Name</label>
+                                <input type="text" autocomplete="off" id="doctorinformation-lastname"
+                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                       name="Doctorinformation[LastName]" required
+                                       formControlName="lastName" 
+                                       title="Last Name" 
+                                       placeholder="Last Name"
+                                       aria-required="true">
+                                       <div *ngIf="HIF['lastName'].invalid && HIF['lastName'].value=='' && (healthInfoForm.dirty || healthInfoForm.touched)" class="error_clr mrg_btm">
+                                        Please enter Last Name.
+                                    </div>
+                            </div>
+                            <div class="col-lg-6 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">Address1</label>
+                                <input type="text" autocomplete="off" id="doctorinformation-address1"
+                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                       name="Doctorinformation[Address1]" 
+                                       formControlName="address1"
+                                       title="Address1" placeholder="Address1">
+                                       <div *ngIf="HIF['address1'].invalid && HIF['address1'].value=='' && (healthInfoForm.dirty || healthInfoForm.touched)" class="error_clr mrg_btm">
+                                        Please enter Address1.
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 fv-row mb-1">
+                                <label class="col-form-label fw-semibold fs-6">Address2</label>
+                                <input type="text" autocomplete="off" id="doctorinformation-address2"
+                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                       name="Doctorinformation[Address2]" 
+                                       formControlName="address2"
+                                       title="Address2" placeholder="Address2">
+                                <div class="help-block with-errors text-danger">
+                                    {{showError('address2','doctorInformation')}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">City</label>
+                                <input type="text" autocomplete="off" id="doctorinformation-city"
+                                       class="form-control py-sm-2 px-sm-4 captilize_txt"
+                                       name="Doctorinformation[City]" required 
+                                       formControlName="city"
+                                       title="City" placeholder="City">
+                                       <div *ngIf="HIF['city'].invalid && HIF['city'].value=='' && (healthInfoForm.dirty || healthInfoForm.touched)" class="error_clr mrg_btm">
+                                        Please enter city.
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">State</label>
+                                <select id="doctorinformation-state" required 
+                                        formControlName="state"
+                                        class="form-control py-sm-2 px-sm-4" 
+                                        name="Doctorinformation[State]">
+                                    <option value="">Select</option>
+                                    <option
+                                        *ngFor="let item of healthInformation?.stateList?.selectDropdownList"
+                                        [value]="item.code">{{item.description}}</option>
+                                </select>
+                                <div *ngIf="HIF['state'].invalid && HIF['state'].value=='' && (healthInfoForm.dirty || healthInfoForm.touched)" class="error_clr mrg_btm">
+                                    Please select state.
+                                </div>
+                            </div>
+                            <div class="col-lg-6 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">Zip Code</label>
+                                <input type="number" autocomplete="off" required
+                                       id="doctorinformation-zipcode" 
+                                       formControlName="zipcode"
+                                       class="form-control py-sm-2 px-sm-4"
+                                       title="Zipcode" placeholder="Zipcode" maxlength="5">
+                                       <div *ngIf="HIF['zipcode'].invalid && HIF['zipcode'].value=='' && (healthInfoForm.dirty || healthInfoForm.touched)" class="error_clr mrg_btm">
+                                        Please enter zipcode.
+                                    </div>
+                                    <div class="help-block with-errors text-danger">
+                                        {{showError('zipcode','doctorInformation')}}
+                                    </div>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-1 mt-5" style="display: flow-root;">
+                        <a href="javascript:void(0);" class="btn btn-sm btn-primary float-start" (click)="goBackToPreviousTab();">Back</a>
+                        <button type="button" class="btn btn-sm btn-primary float-end" (click)="proceedToNext('tabTwo');">Save & Next</button>
+                    </div>
+                </div>
+                <!--begin::Tap pane-->
+                <!--begin::Tap pane-->
+                <div class="tab-pane fade show active mt-8" *ngIf="tabTwo" id="kt_stats_widget_16_tab_2">
+                    <span class="fw-bold fs-3">Add Insurance Information</span>
+                    <div class="p-3 mt-4" style="border:1px solid #ddd;border-radius:5px;">
+                        <div class="row">
+                            <div class="col-lg-12 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">Insurance Company  Name</label>
+                                <input type="text" autocomplete="off"
+                                       formControlName="insuranceCompanyName"
+                                       id="doctorinformation-insurancecompanyname"
+                                       class="form-control py-sm-2 px-sm-4"
+                                       name="Doctorinformation[InsuranceCompanyName]"
+                                       title="Insurance Company Name" 
+                                       placeholder="Insurance Company Name"
+                                       >
+                                      
+                                    <div class="help-block with-errors text-danger">
+                                         {{showError('insuranceCompanyName','doctorInformation')}}
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">Policy #</label>
+                                <input type="text" name="name" 
+                                       placeholder="Policy #"
+                                       class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0" 
+                                       formControlName="policy">
+                                       <div class="help-block with-errors text-danger">
+                                        {{showError('policy','doctorInformation')}}
+                                   </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 fv-row mb-1">
+                                <label class="col-form-label required fw-semibold fs-6">Group #</label>
+                                <input type="text" name="name" placeholder="Group #" formControlName="group"
+                                       class="form-control py-sm-2 px-sm-4 mb-3 mb-lg-0">
+                                       <div class="help-block with-errors text-danger">
+                                        {{showError('group','doctorInformation')}}
+                                   </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="mb-1 mt-5" style="display: flow-root;">
+                        <a href="javascript:void(0);" class="btn btn-sm btn-primary float-start" (click)="backtoPrevious('tabOne');">Back</a>
+                        <a href="javascript:void(0);" class="btn btn-sm btn-primary float-end" (click)="proceedToNext('tabThree')">Save & Next</a>
+                    </div>
+                </div>
+                <!--end::Tap pane-->
+            </div>
+            
+                <!--begin::Tap pane-->
+                <div class="tab-pane fade show active mt-8" *ngIf="tabThree" id="kt_stats_widget_16_tab_3">
+                    
+                    <div formGroupName="doctorInformation">
+                    <div class="col-lg-12 mt-4">
+                        <div class="row mb-4">
+                            <div class="col-lg-12">
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <input class="styled" type="radio" 
+                                           formControlName="allergyConsent"
+                                           name="allergyConsent" 
+                                           style="margin-right: 6px;" [value]="1"
+                                           (change)="selectedRadioOpt(1);" />
+                                    <label class="form-check-label text-black fs-6">
+                                        {{personHealthInfoData?.selectDropdownsList[0]?.description}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-lg-12">
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <input class="styled" type="radio" formControlName="allergyConsent"
+                                           name="allergyConsent" 
+                                           style="margin-right: 6px;" [value]="0"
+                                           (change)="selectedRadioOpt(0);" />
+                                    <label class="form-check-label text-black fs-6">
+                                        {{personHealthInfoData?.selectDropdownsList[1]?.description}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-5" formArrayName="healthInformationList" *ngIf="allergicFlag=='1'">
+                    <div class="col-lg-12">
+                        <div class="card shadow-sm border border-gray-300">
+                            <!--begin::Card header-->
+                            <div class="card-header" style="padding:5px 15px;min-height:50px !important;">
+                                <!--begin::Card title-->
+                                <div class="card-title">
+                                    <h3>Allergy Information (One allergy per line ) </h3>
+                                </div>
+                                <!--end::Card title-->
+                            </div>
+                            <!--end::Card header-->
+                            <!--begin::Card body-->
+                            <div class="card-body p-3">
+                                <!--begin::Table-->
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="fw-semibold fs-6 text-nowrap required">Allergy Name and Information</th>
+                                                <th class="fw-semibold fs-6 text-nowrap">Medication Name</th>
+                                                <th class="fw-semibold fs-6 text-nowrap">Medication Required</th>
+                                                <th class="fw-semibold fs-6 text-nowrap">Additional Details</th>
+                                                <th class="fw-semibold fs-6 text-nowrap">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr id="row1"
+                                                *ngFor="let alergyInfo of healthInfoForm?.get('healthInformationList')?.controls; let i = index"
+                                                [formGroupName]="i">
+                                                <td>
+                                                    <input type="text"  autocomplete="off"
+                                                           formControlName="allergyName"
+                                                           class="form-control py-sm-2 px-sm-4 AllergyName"
+                                                           placeholder="Allergy name and information">
+                                                    <div class="help-block with-errors text-danger">{{showError('allergyName',null,alergyInfo)}}</div>
+                                                </td>
+                                                <td>
+                                                    <input type="text" autocomplete="off"
+                                                           class="form-control py-sm-2 px-sm-4 MedicationName"
+                                                           formControlName="medicationName"
+                                                           placeholder="Medication Name">
+                                                           <div class="help-block with-errors text-danger">{{showError('medicationName',null,alergyInfo)}}</div>
+                                                </td> 
+                                                <td>
+                                                    <select class="form-control py-sm-2 px-sm-4 MedicationRequired"
+                                                        formControlName="medicationRequired">
+                                                        <option value="">Select</option>
+                                                        <option
+                                                            *ngFor="let item of healthInformation?.medicationRequiredList?.selectDropdownList"
+                                                            [value]="item.code">{{item.description}}</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <textarea autocomplete="off" class="form-control AdditionalDetails"
+                                                        formControlName="additionalDetails" rows="1"
+                                                        placeholder="AdditonalDetails">
+                                                    </textarea>
+                                                    <div class="help-block with-errors text-danger">{{showError('additionalDetails',null,alergyInfo)}}</div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <img src="./assets/media/image (2).png" alt="remove"   (click)="removeAllergyInfo(i,alergyInfo)" style="cursor:pointer;"> 
+                                                    <div name="deleteGallery" 
+                                                        title="Delete">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--begin::Table-->
+                                <div class="row mt-2">
+                                    <div class="col-lg-12 fv-row mb-1">
+                                        <div class="text-danger fs-6">Please enter N/A if no Allergy(ies) to
+                                            report
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center mt-5 mb-2">
+                                    <button type="button" class="btn btn-primary btn-sm" style="margin-right:5px;" (click)="addAllergyInfo();">
+                                        Add allergy & Medication
+                                    </button>
+                                </div>
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                    </div>
+                </div>
+
+                <div  formGroupName="otherHealthProblem">
+                    <div class="mt-4">
+                        <span class="fw-bold fs-3">Confidential Health/Behavioral Information</span>
+                    </div>
+                    <div class="p-3 mt-4" style="border:1px solid #ddd;border-radius:5px;">
+                        <div class="row">
+                            <div class="col-lg-8 fv-row mrgbtm">
+                                <div class="fs-6">
+                                    Is there any confidential health/behavioral information you would
+                                    like to discuss with the Camp Director/Coordinator?
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mrgbtm1">
+                                <!--begin::Row-->
+                                <div class="row mw-500px" data-kt-buttons="true"
+                                    data-kt-buttons-target=".form-check-image, .form-check-input">
+                                    <!--begin::Col-->
+                                    <div class="col-lg-6">
+                                        <div class="form-check form-check-custom form-check-solid mb-2">
+                                            <input type="radio" autocomplete="off" class="styled" formControlName="confidential"
+                                                    name="confidential" value='1'>
+                                            <label class="form-check-label text-gray-800 fs-6" for="flexRadioChecked">
+                                                Yes
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!--end::Col-->
+
+                                    <!--begin::Col-->
+                                    <div class="col-lg-6">
+                                        <div class="form-check form-check-custom form-check-solid">
+                                            <input type="radio" autocomplete="off" class="styed" formControlName="confidential"
+                                                    name="confidential" value='0'>
+                                            <label class="form-check-label text-gray-800 fs-6"
+                                                for="flexRadioChecked">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Row-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="fw-bold fs-3">Immunization Details</span>
+                    </div>
+                    <div class="p-3 mt-4" style="border:1px solid #ddd;border-radius:5px;">
+                        <div class="row">
+                            <div class="col-lg-8 fv-row mrgbtm">
+                                <div class="fs-6">
+                                    Is your child's Immunization up to date ?
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mrgbtm1">
+                                <!--begin::Row-->
+                                <div class="row mw-500px" data-kt-buttons="true"
+                                    data-kt-buttons-target=".form-check-image, .form-check-input">
+                                    <!--begin::Col-->
+                                    <div class="col-lg-6">
+                                        <div class="form-check form-check-custom form-check-solid mb-2">
+                                            <input type="radio" autocomplete="off" class="styled" formControlName="immunization"
+                                                    name="immunization" value="Y">
+                                            <label class="form-check-label text-gray-800 fs-6">
+                                                Yes
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!--end::Col-->
+
+                                    <!--begin::Col-->
+                                    <div class="col-lg-6">
+                                        <div class="form-check form-check-custom form-check-solid">
+                                            <input type="radio" autocomplete="off" class="styled" formControlName="immunization"
+                                                    name="immunization" value="N">
+                                            <label class="form-check-label text-gray-800 fs-6">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Row-->
+                            </div>
+                        </div>
+                    </div>
+               
+                    <div class="mt-4">
+                        <span class="fw-bold fs-3 required">Other Health Information Details</span>
+                    </div>
+                    <div class="p-3 mt-4" style="border:1px solid #ddd;border-radius:5px;">
+                        <div class="row">
+                            <div class="col-lg-12 fv-row mb-1">
+                                <div class="input-group input-group-solid">
+                                    <textarea autocomplete="off" id="otherhealthproblems-description" 
+                                              formControlName="description"
+                                              class="form-control input-xxs" 
+                                              size="60" 
+                                              style="margin-left:3px;width:98%;height:100px;"
+                                              aria-required="true"></textarea>
+                                    <div class="help-block with-errors text-danger">
+                                        {{showError('description','otherHealthProblem')}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-lg-12 fv-row mb-1">
+                                <div class="fs-6">
+                                    <span class="text-danger">Note:</span> Herbal medicines, vitamins and over the counter medicines like
+                                    Benadryl come under this category. If not applicable, please enter
+                                    N/A.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <span class="fw-bold fs-3 required">Additional Health Information</span>
+                    </div>
+                    <div class="p-3 mt-4" style="border:1px solid #ddd;border-radius:5px;">
+                        <div class="row">
+                            <div class="col-lg-12 fv-row mb-1">
+                                <div class="input-group input-group-solid">
+                                    <textarea autocomplete="off" class="form-control input-xxs" 
+                                              formControlName="additionalDesc"
+                                              size="60" 
+                                              style="margin-left:3px;width:98%;height:100px;">
+                                    </textarea>
+                                    <div class="help-block with-errors text-danger">
+                                        {{showError('additionalDesc','otherHealthProblem')}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-lg-12 fv-row mb-1">
+                                <div class="fs-6">
+                                    <span class="text-danger">Note:</span> Dental implants, vision or hearing aids come under this
+                                    category.
+                                    If not applicable, please enter N/A.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="mb-1 mt-5" style="display: flow-root;">
+                        <a href="javascript:void(0);" class="btn btn-sm btn-primary float-start" (click)="backtoPrevious('tabTwo')">Back</a>
+                        <button class="btn btn-sm btn-primary float-end" (click)="certify('next');" [disabled]="!healthInfoForm.valid || !childHealthInfoPending">Next</button>
+                        <button type="button" class="btn btn-primary btn-sm float-end" style="margin-right:5px;" [disabled]="!healthInfoForm.valid" (click)="certify('save')">Save </button>
+                    </div>
+                </div>
+                <!--end::Tap pane-->
+            </div>
+            <!--end::Tab Content-->
+        </form>
     </div>
 </div>
+<!-----------end::Mobile version---------->
+
+

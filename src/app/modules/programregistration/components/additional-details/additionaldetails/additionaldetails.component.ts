@@ -516,13 +516,12 @@ export class AdditionaldetailsComponent implements OnInit {
 
 
   async reviewandupdateWaitList(){
-       
-    let memberId = JSON.parse(localStorage.getItem('CurrentUser') || '');
+    
     let body:any={
-      familyId: this.familyId,
-      programCode: this.programCode,
-      chapterCode: this.chapterCode,
-      personId: memberId.personID
+      familyId: this.selectedFamily.familyId,
+      programCode: this.selectedProgram.code,
+      chapterCode:  this.selectedChapterCode,
+      personId: this.selectedProgram.personID
     };
    
     let data = await this.programService.reviewAndUpdateWaitListedStatus(body);
@@ -551,9 +550,9 @@ export class AdditionaldetailsComponent implements OnInit {
    */
   async fetchProgramConfigurationFields(){
     const body = {
-      "familyId": this.familyId,
-      "programCode": this.programCode,
-      "chapterCode": this.chapterCode,
+      "familyId": this.selectedFamily.familyId,
+      "programCode": this.selectedProgram.code,
+      "chapterCode": this.selectedChapterCode,
       "paymentFlag": false,
     }
 

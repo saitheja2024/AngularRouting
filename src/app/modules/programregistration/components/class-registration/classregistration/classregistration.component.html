@@ -64,7 +64,7 @@
                                 <ng-container *ngIf="(disableCheckBoxItem[class.signUpCode])" >
                                 <input class="form-check-input form-check-input" type="checkbox" [(ngModel)]="checkboxModel[class.signUpCode]"
                                 [value]="class.signUpCode"
-                                [disabled]="!class.enable"/>
+                                [disabled]="!class.enable || class.category==1"/>
                                 <label  class="form-check-label text-gray-700 text-hover-primary" for="flexCheckDefaults">
                                     {{class.description}} <a target="_blank" *ngIf="class.infoURL!=''" [href]="questionURL(class.infoURL)"><i class="ki-solid ki-question-2 quest_cs" aria-hidden="true"></i> </a>
                                 </label>
