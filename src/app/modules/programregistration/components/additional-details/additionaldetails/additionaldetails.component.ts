@@ -510,8 +510,9 @@ export class AdditionaldetailsComponent implements OnInit {
     this.saveAndNextButtonClicked=false;
 
     await this.reviewandupdateWaitList();
-    
-    this.saveAndNext.emit("tabIndividualProfileTab")  
+    this.routePass.sendData({'currenttab':'Additional Details','Event':'SaveNext'}); 
+
+    //this.saveAndNext.emit("tabIndividualProfileTab")  
   }
 
 
