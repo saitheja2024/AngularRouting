@@ -7,6 +7,8 @@ import { formatPhoneNumber } from 'src/app/utils/util';
 import Swal from 'sweetalert2';
 import { HealthInfoService } from 'src/app/modules/chinmaya-shared/services/program-registration/healthinfo.service';
 import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
+import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
+import { AuthService } from 'src/app/modules/chinmaya-shared/services/auth/auth.service';
 @Component({
   selector: 'app-healthinformation',
   templateUrl: './healthinformation.component.html',
@@ -40,13 +42,20 @@ export class HealthinformationComponent {
   // get healthInformationList(){
   //   return this.healthInfoForm.get('healthInformationList') as FormArray;
   // }
+  selectedAcademicYear: any;
+  selectedChapterCode: any;
+  selectedProgram: any;
+  loggedInUser: any;
+  selectedFamily:any;
+
   get HIF(): { [key: string]: AbstractControl } {
     return this.healthInfoForm.controls.doctorInformation.controls;
   }
 
   constructor(private masterService: MasterService,private programService: ProgramService, 
     public fb: FormBuilder, private renderer:Renderer2,private cdr:ChangeDetectorRef, 
-    private healthInfoService:HealthInfoService, private routePass:RouteChangeCall) { 
+    private healthInfoService:HealthInfoService, private routePass:RouteChangeCall,  
+    private store:StoreService,  private authService: AuthService) { 
     
   }
   currentDate:any='';
@@ -55,16 +64,7 @@ export class HealthinformationComponent {
   tabTwo:boolean=false;
   tabThree:boolean=false;
   async ngOnInit() {
-    localStorage.setItem('payOpts',JSON.stringify("fullAmt"));
-    this.currentUserData=  JSON.parse(localStorage.getItem('CurrentUser') || '');
-    this.programCode = JSON.parse(localStorage.getItem('programcode') || '');
-    this.chapterCode = this.currentUserData.chapter;
-    this.familyId= this.currentUserData.familyID;
-    this.personID = this.currentUserData.personID;
-    this.cardNameDisplay = JSON.parse(localStorage.getItem('cardName') || '');
-
-    
-
+   
     //this.arrayTime = this.healthInfoForm.get('healthInformationList');
     
 
@@ -100,6 +100,19 @@ export class HealthinformationComponent {
         immunization: ['Y']
       })
     });
+
+    this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
+    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    this.selectedProgram = this.store.getValue(KEYS.program);
+    this.selectedFamily = this.store.getValue(KEYS.selectedFamily);
+    this.currentUserData = this.authService.getLoggedInUser();
+
+    this.programCode = 'CSSC2024';
+    this.chapterCode =  'CSVA';
+    this.familyId= '3753';
+    this.personID =  '11734';
+    this.cardNameDisplay = '';//JSON.parse(localStorage.getItem('cardName') || '');
+
 
     await this.fetchHealthInformation();
     if(this.selectedChild){

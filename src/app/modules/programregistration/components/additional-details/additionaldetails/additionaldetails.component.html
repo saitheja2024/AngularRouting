@@ -1,7 +1,6 @@
 <form [formGroup]="profileFormGroup"  autocomplete="off">  
-		
 	<!--begin::Step 1-->
-	<div *ngIf="profileFormGroup"> 
+	<div > 
         <div *ngIf="profileFormGroup?.get('adults')?.controls.length>0">
             <div formArrayName="adults"> 
 				<!--begin::Input group-->

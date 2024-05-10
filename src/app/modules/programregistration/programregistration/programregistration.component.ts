@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { ClassRegistrationService } from '../../chinmaya-shared/services/program-registration/classregistration.service';
 import { RouteChangeCall } from '../../chinmaya-shared/services/program-registration/routechange.service';
-import { Router } from '@angular/router';
+import { Router, Event, NavigationStart, NavigationEnd, NavigationError} from '@angular/router';
 
 @Component({
   selector: 'app-programregistration',
@@ -32,15 +32,28 @@ export class ProgramregistrationComponent {
     'Consent':'constant',
     'Payment':'payment',
   }
+  urlCheck:string="/programregistration/registration";
   constructor(private store:StoreService, private classRegiService:ClassRegistrationService, 
     private UrlCall:RouteChangeCall, private route:Router){
     this.subscription = this.UrlCall.getData().subscribe(item => {
       this.RedirectionCall(item)
     });
+
+    this.route.events.subscribe((event: Event) => {
+      if (event instanceof NavigationStart) {
+      }
+
+      if (event instanceof NavigationEnd) {
+          if( event.url==this.urlCheck) { this.fetchFamilyFlag(); }
+      }
+
+      if (event instanceof NavigationError) {
+          
+      }
+  });
   }
 
   ngOnInit(){
-    
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     this.selectedProgram = this.store.getValue(KEYS.program);

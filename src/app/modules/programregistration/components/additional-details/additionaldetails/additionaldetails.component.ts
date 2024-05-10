@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable, of } from 'rxjs';
 import { AuthService } from 'src/app/modules/auth';
@@ -20,7 +20,7 @@ declare function scrollTop():any;
 export class AdditionaldetailsComponent implements OnInit {
   @Input() tabIndividualProfile: boolean=false;
   profiles: any;
-  profileFormGroup: any
+  profileFormGroup:any;
   // tabClassRegistration: boolean;
   // tabHealthInfo: boolean;
   // tabIndividualProfile: boolean;
@@ -72,7 +72,8 @@ export class AdditionaldetailsComponent implements OnInit {
 
   constructor(private programService:ProgramService,private masterService:MasterService,
     private cdr:ChangeDetectorRef, private sanitizer: DomSanitizer, private authService: AuthService, 
-    private store:StoreService, private router:Router, private routePass:RouteChangeCall){
+    private store:StoreService, private router:Router, private routePass:RouteChangeCall, private fb:FormBuilder){
+     
     }
 
 
@@ -108,8 +109,8 @@ export class AdditionaldetailsComponent implements OnInit {
 
       this.chapterCode = this.selectedChapterCode;
       //
-      let globalChaterCod = this.currentUserData.chapter;
-     localStorage.setItem("GlobalchapterCode", JSON.stringify(globalChaterCod));
+     // let globalChaterCod = this.currentUserData.chapter;
+   //  localStorage.setItem("GlobalchapterCode", JSON.stringify(globalChaterCod));
 
       //this.chapterCode = this.currentUserData.chapter;
       this.familyId= this.selectedFamily.familyId;
@@ -305,6 +306,7 @@ export class AdditionaldetailsComponent implements OnInit {
        
         if(atleastOneFiledToShow){
         childrenArray.push(group);
+        console.log(childrenArray);
         }
       }
       else if(personData.personTypeCode=== 'YOUTH'){
