@@ -27,7 +27,10 @@ export const environment = {
    baseURL: 'https://nonregqa.cmwrcregistration.org/MR/',
    loginID:'6pUQ10eF2r',
    AUTH_TOKEN_STORAGE_KEY: 'token',
-   AUTH_TOKEN_HEADER_NAME: 'X-Auth-Token'
+   AUTH_TOKEN_HEADER_NAME: 'X-Auth-Token',
+   API_Access_ID:'d2e81e0ee4f0423ebc3559d694c34a20',
+   API_Secure_Key:'f0fed3faa449ef5b4db7b80957d53734',
+   LOCATION_ID:'221096',
  
 
 
