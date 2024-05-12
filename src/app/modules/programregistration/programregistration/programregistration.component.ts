@@ -36,34 +36,24 @@ export class ProgramregistrationComponent {
   constructor(private store:StoreService, private classRegiService:ClassRegistrationService, 
     private UrlCall:RouteChangeCall, private route:Router){
     this.subscription = this.UrlCall.getData().subscribe(item => {
-      this.RedirectionCall(item)
+        this.RedirectionCall(item);     
     });
 
-    this.route.events.subscribe((event: Event) => {
-      if (event instanceof NavigationStart) {
-      }
-
-      if (event instanceof NavigationEnd) {
-          if( event.url==this.urlCheck) { this.fetchFamilyFlag(); }
-      }
-
-      if (event instanceof NavigationError) {
-          
-      }
-  });
+   
   }
 
-  ngOnInit(){
+  getStroeData(){
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     this.selectedProgram = this.store.getValue(KEYS.program);
     this.selectedFamily = this.store.getValue(KEYS.selectedFamily);
     this.currentUserData = this.classRegiService.getLoggedInUser();
+    this.fetchFamilyFlag(); 
+  }
 
-   // this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
-    //this.selectedChapterCode = this.store.getValue(KEYS.chapter);
-    this.selectedProgram = this.store.getValue(KEYS.program);  
-    this.fetchFamilyFlag();
+  ngOnInit(){
+   
+    this.getStroeData();
   }
 
   async fetchFamilyFlag(){
@@ -141,6 +131,7 @@ export class ProgramregistrationComponent {
          URL = this.routeURL[this.currentTab];
       }else if(ev.Event=='current'){
         this.currentTab = ev.currenttab;
+        this.getStroeData();
       }else{
         let index=this.programRegistrationList.indexOf(this.currentTab)-1;
         this.currentTabIndexVal = index;

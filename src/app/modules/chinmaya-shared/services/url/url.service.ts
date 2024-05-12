@@ -99,5 +99,11 @@ export class UrlService {
     fetchPersonHealthInformation:'health/fetchPersonHealthInformation',
     fetchHealthInformation:'health/fetchHealthInformation'
   }
+
+  review ={
+    fetchPersonProgramRegistrationsByWaitListed:'programSelection/fetchPersonProgramRegistrationsByWaitListed',
+    fetchProgramPledgeReview:'review/fetchProgramPledgeReview',
+    fetchPrimaryContactByFamilyId:'registration/fetchPrimaryContactByFamilyId'
+  }
   
 }

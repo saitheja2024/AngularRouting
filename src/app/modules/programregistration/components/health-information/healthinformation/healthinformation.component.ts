@@ -107,10 +107,10 @@ export class HealthinformationComponent {
     this.selectedFamily = this.store.getValue(KEYS.selectedFamily);
     this.currentUserData = this.authService.getLoggedInUser();
 
-    this.programCode = 'CSSC2024';
-    this.chapterCode =  'CSVA';
-    this.familyId= '3753';
-    this.personID =  '11734';
+    this.programCode = this.selectedProgram.code;
+    this.chapterCode =  this.selectedChapterCode;
+    this.familyId= this.selectedFamily.familyId;
+    this.personID =  this.selectedProgram.personID;;
     this.cardNameDisplay = '';//JSON.parse(localStorage.getItem('cardName') || '');
 
 

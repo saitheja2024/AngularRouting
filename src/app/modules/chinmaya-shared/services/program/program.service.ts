@@ -5,6 +5,7 @@ import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
 import { MasterService } from '../master/master.service';
 import { AuthService } from 'src/app/modules/auth';
+import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ export class ProgramService {
   
   chapterList: any;
   loggedInUser: any;
+  primaryContactDetails$: Subject<any> = new Subject()
 
   constructor(private httpService:HttpService,private urlService:UrlService,
     private masterService:MasterService,
@@ -91,5 +93,29 @@ export class ProgramService {
 
   })
   }
-  
+
+  fetchPersonProgramRegistrationsByWaitListed(body: any) {
+    let options: Options = { body: body, url: this.urlService.review.fetchPersonProgramRegistrationsByWaitListed };
+    return this.http.post(environment.baseURL + options.url, options.body)
+  }
+
+  fetchProgramPledgeReview(body: any) {
+    let options: Options = { body: body, url: this.urlService.review.fetchProgramPledgeReview };
+    return this.http.post(environment.baseURL + options.url, options.body)
+  }
+
+  onPrimaryContactDetailsChange(): Observable<any> {
+    return this.primaryContactDetails$.asObservable();
+  }
+
+  getPrimaryContact(body: any) {
+
+    let options: Options = { body: body, url: this.urlService.review.fetchPrimaryContactByFamilyId };
+    return new Promise(async (resolve, reject) => {
+      let response = await this.httpService.post(options);
+      this.primaryContactDetails$.next(response);
+      resolve(response);
+    })
+
+  }
 }

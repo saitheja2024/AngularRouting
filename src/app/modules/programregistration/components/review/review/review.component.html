@@ -1,102 +1,409 @@
-<div class="card shadow-sm mb-5">
-    <div class="card-header">
-        <h3 class="card-title">Review</h3>         
-    </div>
-    <div class="card-body">
-         
-        <div class="panel panel-flat">           
-            <div class="panel-body" style="border: 1px solid #eee; border-radius: 4px; padding: 10px;">
-                
-
-        <div  class="col-lg-12">
-            <fieldset  class="no-margin-bottom">
-                <legend  class="fw-semibold" style="font-size: 12px; line-height: 21px;">Selected Session Preference:</legend>
-                <hr  class="hr_mrg_0">
-                <ul  style="padding-left: 5px !important;">
-                    <label  class="mb-4 mrg_top_10">
-                        <b  style="font-weight: 600 !important; font-size: 12px; color: #161616;">Adult Class &amp; Bala Vihar Session Preference for Mk Kk</b></label>
-                        <li  style="list-style-type: none; color: #7d7d7d;">Session Choice 1: Sunday 1 (9:15-10:50 AM)</li>
-                        <li  style="list-style-type: none; color: #7d7d7d;">Session Choice 2: Friday (06:45-08:20 PM)</li>
-                        <li  style="list-style-type: none; color: #7d7d7d;">Session Choice 3: Sunday 2 (12:15-1:50 PM)</li>
-                    </ul></fieldset>
+<!--begin::Step 1-->
+<div class="flex-column" data-kt-stepper-element="content">
+    <!-- <app-review [tabReview]="currentTab=='review'" (back)="onBackTab($event)" (saveAndNext)="onSaveAndNext($event)"></app-review> -->
+    <div class="setup-content" id="step-5" >
+        <div class="panel panel-flat" *ngIf="selectedList.length>0"> 
+            <div class="panel-body" style="border:1px solid #eee;border-radius:4px;padding:10px;">
+                <div class="col-lg-12">
+                    <fieldset class="no-margin-bottom">
+                        <legend class="fw-semibold" style="font-size:12px;line-height:21px;">Selected Session Preference:</legend>
+                        <hr class="hr_mrg_0">
+                        <ul style="padding-left: 5px !important;">
+                            <ng-container *ngFor="let list of selectedList; index as l">
+                            <label class="mb-4 mrg_top_10" >
+                                <b style="font-weight: 600 !important;font-size: 12px;color: #161616;">{{list.signupCode}} for {{list.personName}}</b>
+                            </label>
+                            <li *ngFor="let item of list.Session; index as j" style="list-style-type: none;color: #7d7d7d;">{{item.choiceLabel +' '+ item.description}}</li>
+                            </ng-container>  
+                        </ul>   
+                    </fieldset>   
                 </div>
-            </div>           
-        </div> 
-
-
-
-<div  class="panel panel-white mb-8 mt-4">
-    <div  class="review_desktop_view">
-        <div  class="panel-heading"><h5  class="panel-title">Sign-Up Code Details</h5> </div>
-         <div  class="panel-body" style="border: 1px solid #eee; border-radius: 5px;">
-            <div  class="table-responsive">
-                <table  class="table table-striped table-bordered table-xxs table-hover mb-0">
-                    <thead  class="bg-gray-200">
-                        <tr >
-                            <th  style="white-space: nowrap; font-weight: 600;">Person Name</th>
-                            <th  style="white-space: nowrap; font-weight: 600;"> Sign-Up Code </th>
-                            <th  style="white-space: nowrap; font-weight: 600;">School Grade</th>
-                            <th  style="white-space: nowrap; font-weight: 600;">Class</th>
-                            <th  style="white-space: nowrap; font-weight: 600;">Registration Status</th>
-                            <th  style="text-align: right; white-space: nowrap; font-weight: 600;">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody >
-                        <tr >
-                            <td ><span  data-popup="tooltip" title="" class="text_cap">Mk Kk</span></td>
-                            <td ><div  data-popup="tooltip" class="txtover" title="2024-25 Family Annual Pledge"> 2024-25 Family Annual Pledge </div></td>
-                            <td ><span  data-popup="tooltip" title="null">NA</span></td>
-                            <td ><span  data-popup="tooltip" title="ANNUALPLEDGE">NA</span></td>
-                            <td >PENDING</td><td ><span  data-popup="tooltip" class="pull-right text-semibold" title="1000">$1,000.00</span></td>
-                        </tr>
-                        <tr >
-                            <td ><span  data-popup="tooltip" title="" class="text_cap">Son Kk</span></td>
-                            <td ><div  data-popup="tooltip" class="txtover" title="Bala Vihar Class"> Bala Vihar Class </div></td>
-                            <td ><span  data-popup="tooltip" title="25">5th Grade</span></td>
-                            <td ><span  data-popup="tooltip" title="2024-25_BALA_VIHAR_CLASS">SUNDARAM</span></td>
-                            <td >PENDING</td><td ><span  data-popup="tooltip" class="pull-right text-semibold" title="0">INCLUDED</span></td>
-                        </tr>
-                        <tr >
-                            <td ><span  data-popup="tooltip" title="" class="text_cap">Son2 Kk</span></td>
-                            <td ><div  data-popup="tooltip" class="txtover" title="Bala Vihar Class"> Bala Vihar Class </div></td>
-                            <td ><span  data-popup="tooltip" title="25">5th Grade</span></td>
-                            <td ><span  data-popup="tooltip" title="2024-25_BALA_VIHAR_CLASS">SUNDARAM</span></td>
-                            <td >PENDING</td><td ><span  data-popup="tooltip" class="pull-right text-semibold" title="0">INCLUDED</span></td>
-                        </tr>
-                        <tr >
-                            <td ><span  data-popup="tooltip" title="" class="text_cap">Son3 Kk</span></td>
-                            <td ><div  data-popup="tooltip" class="txtover" title="Bala Vihar Class"> Bala Vihar Class </div></td>
-                            <td ><span  data-popup="tooltip" title="26">6th Grade</span></td>
-                            <td ><span  data-popup="tooltip" title="2024-25_BALA_VIHAR_CLASS">SUNDARAM</span></td>
-                            <td >PENDING</td><td ><span  data-popup="tooltip" class="pull-right text-semibold" title="0">INCLUDED</span></td>
-                        </tr>
-                        <tr >
-                            <td ><span  data-popup="tooltip" title="" class="text_cap">Son4 Kk</span></td>
-                            <td ><div  data-popup="tooltip" class="txtover" title="Bala Vihar Class"> Bala Vihar Class </div></td>
-                            <td ><span  data-popup="tooltip" title="25">5th Grade</span></td>
-                            <td ><span  data-popup="tooltip" title="2024-25_BALA_VIHAR_CLASS">SUNDARAM</span></td>
-                            <td >PENDING</td>
-                            <td ><span  data-popup="tooltip" class="pull-right text-semibold" title="0">INCLUDED</span></td>
-                        </tr>
-                        <tr >
-                            <td  colspan="5" align="right" style="padding-right: 65px;"><label  class="text-semibold" style="font-weight: 500;">Total Amount</label></td>
-                            <td  colspan="2"><span  class="pull-right text-semibold" style="font-weight: 500;">$1,000.00</span></td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
+        <div class="panel panel-flat" *ngIf="timeSlotDetailsList?.volunteerSignupEventsReservedList!=null && timeSlotDetailsList?.volunteerSignupEventsReservedList.length>0" style="border:1px solid #ccc;border-radius:5px;padding:10px;"> 
+            <div class="panel-body">
+                <div class="col-lg-12">
+                    <fieldset class="no-margin-bottom">
+                        <legend class="fw-semibold" style="font-size:12px;color:#161616;">Selected Time Slots:</legend>
+                        <hr style="color:#ccc;">
+                        <ul class="padd_ul_lft_0">
+                              <ng-container *ngFor="let info of timeSlotDetailsList?.volunteerSignupEventsReservedList ;let idx=index">
+                                 <p class="fw-semibold" *ngIf="info.eventsReservedList.length!=0" style="font-size: 12px;color: #161616;">
+                                    <label><b>{{info?.firstName}} {{info?.lastName}}</b></label>
+                                 </p>
+                                <li style="list-style-type: none;"  *ngFor="let slot of info?.eventsReservedList">
+                                    <label
+                                    style="font-size:12px;color:back; margin-bottom:10px;">Time Slot For {{slot.titleOfSlots}} is {{slot.eventDate
+                                    | date:'MM/dd/yyyy'}} at {{getDate(slot.startTime) | date:'hh:mm
+                                    a'}} - {{ getDate(slot.endTime) | date:'hh:mm a'}} </label>
+                                </li>
+                              </ng-container>  
+                        </ul>  
+                    </fieldset>   
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-12" >
+            <div class="panel panel-white review_desktop_view" *ngIf="reviewTabWaitListData?.personProgramRegistrationList.length>0">
+                <div class="panel-heading">
+                    <h5 class="panel-title" style="margin-top: 15px;">Wait List Details</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-xxs table-hover mb-0">
+                        <thead class="bg-gray-200">
+                            <tr>
+                                <th width="25%">Person Name</th>
+                                <th width="27%">Sign-Up Code</th>
+                                <th width="13%">School Grade</th>
+                                <th width="10%">Class</th>
+                                <th width="15%">Registration Status</th>
+                                <th width="10%" style="text-align: right;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of reviewTabWaitListData?.personProgramRegistrationList; index as i;">
+                                <td><span data-popup="tooltip" title="">{{(item.personName==null || item.personName=='') ?'': item.personName}}</span></td>
+                                <td>
+                                    <div class="txtover">
+                                        {{item.signUpCodeDescription}}
+                                    </div>
+                                </td>
+                                <td  style="padding-left: 20px;"><span >{{(item.schoolGradeCodeDescription=='' || item.schoolGradeCodeDescription==null || item.schoolGradeCodeDescription=='-1')?'NA':item.schoolGradeCodeDescription }}</span></td> 
+                                <td><span >{{(item.classAssignment=='' || item.classAssignment==null)?'NA': item.classAssignment}}</span></td>
+                                <td>{{item.registrationStatus}}</td>
+                                <td><span class="pull-right text-semibold">NA</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="review_mobile_view" style="margin-top: 20px;" *ngIf="reviewTabWaitListData?.personProgramRegistrationList.length>0">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Wait List Details</h5>
+                    <div class="heading-elements form-group">
+                        <div class="heading-btn">
+                            <div class="form-group">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-container *ngFor="let item of Object.keys(reviewgrpWaitlistPerson); index as i;">
+                    <div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3">
+                        <div class="mb-5 mrg_btm_0" style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
+                            <a href="#kt_accordion_items_{{i}}"  class="accordion-header py-3 d-flex collapsed" data-toggle="collapse" >
+                                <h3 class="fs-4 fw-semibold mb-0 ms-4 mb-2">{{item}}</h3>
+                                <span class="text-gray-800 size_12 d-flex justify-content-end bold_txt">Amount&nbsp;:&nbsp;${{ totalAmtWaitlistAccordion[item][0]}}.00</span>
+                            </a>
+
+                            <div id="kt_accordion_items_{{i}}"  class="panel-collapse collapse">
+                                <div class="card border border-gray-500 border-active">
+                                    <div class="card-body p-5">
+                                        <div *ngFor="let item of reviewgrpWaitlistPerson[item]; index as k;">
+                                            <div class="row mb-2">
+                                                <div class="row mb-7">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-semibold text-dark">Sign-Up Code : </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                        <span class="fw-bold fs-6 text-gray-800 d-flex justify-content-end text-end">{{item.signUpCodeDescription}}</span>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+
+                                                <div class="row mb-2">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-semibold text-dark">School Grade : </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                        <span class="fw-bold fs-6 text-gray-800 d-flex justify-content-end text-end">{{(item.schoolGradeCodeDescription=='' || item.schoolGradeCodeDescription==null || item.schoolGradeCodeDescription=='-1')?'NA':item.schoolGradeCodeDescription }}</span>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+
+                                                <div class="row mb-2">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-semibold text-dark">Class : </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                        <span class="fw-bold fs-6 text-gray-800 d-flex justify-content-end text-end">{{(item.classAssignment=='' || item.classAssignment==null)?'NA': item.classAssignment}}</span>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+
+                                                <div class="row mb-2">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-semibold text-dark">Registration Status	 : </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                        <span class="fw-bold fs-6 text-gray-800 d-flex justify-content-end text-end">{{item.registrationStatus}}</span>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+
+                                                <div class="row mb-2">
+                                                    <!--begin::Label-->
+                                                    <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-semibold text-dark">Amount : </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Col-->
+                                                    <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                        <span class="fw-bold fs-6 text-gray-800 d-flex justify-content-end text-end">NA</span>
+                                                    </div>
+                                                    <!--end::Col-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <div style="clear:both; height: 10px;"></div>
+            <div class="panel panel-white mb-8 mt-4">
+                <div class="review_desktop_view">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">Sign-Up Code Details</h5>
+                        <div class="heading-elements form-group">
+                            <div class="heading-btn">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" style="border: 1px solid #eee;border-radius:5px;">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-xxs table-hover mb-0">
+                                <thead class="bg-gray-200">
+                                    <tr>
+                                        <th style="white-space:nowrap;font-weight:600;">Person Name</th>
+                                        <th style="white-space:nowrap;font-weight:600;">
+                                            Sign-Up Code
+                                        </th>
+                                        <th style="white-space:nowrap;font-weight:600;">School Grade</th>
+                                        <th style="white-space:nowrap;font-weight:600;">Class</th>
+                                        <th style="white-space:nowrap;font-weight:600;">Registration Status</th>
+                                        <th style="text-align: right;white-space:nowrap;font-weight:600;">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of reviewTabData?.userProgramList; index as i;">
+                                        <td><span data-popup="tooltip" title="" class="text_cap">{{item.firstName + ' ' + item.lastName}}</span></td>
+                                        <td>
+                                            <div data-popup="tooltip" [title]="item.signUpCodeDescription" class="txtover">
+                                                {{item.signUpCodeDescription}}
+                                            </div>
+                                        </td>
+                                        <td><span data-popup="tooltip" [title]="item.grade">{{(item.grade=='' || item.grade==null || item.grade=='-1')?'NA':item.schoolGradeCodeDescription }}</span>
+                                            <!-- <span *ngFor="let grade of schoolGradesList" [title]="grade.code">{{(grade.code==item.grade)? grade.description : ''}}</span> -->
+                                        </td> 
+                                        <td><span data-popup="tooltip" [title]="item.classes">{{(item.gradeclass=='' || item.gradeclass==null)?'NA': item.gradeclass}}</span></td>
+                                        <td>{{item.registrationStatus}}</td>
+                                        <td><span data-popup="tooltip" [title]="item.displayamount" class="pull-right text-semibold">{{(item.category==2 && item.displayamount==0)?'INCLUDED': '$'+ (item.displayamount | number:'1.2-2')}}</span>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5" align="right" style="padding-right:65px;">
+                                            <label class="text-semibold" style="font-weight:500;">Total Amount</label>
+                                            </td>
+                                        <td colspan="2">
+                                            <span class="pull-right text-semibold" style="font-weight:500;">${{reviewTabData?.pledgeTotal | number:'1.2-2'}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="reviewTabData?.arpanamPledgeAdjustment!='0' && reviewTabData?.arpanamPledgeAdjustment!=null">
+                                        <td colspan="5" align="right" style="padding-right:65px;"><label class="text-semibold">Total Amount covered under Arpanam level&nbsp;:&nbsp;</label>
+                                          <div style="display: inline-block;">
+                                            <div class="d-flex mb-1" *ngIf="primaryContatDetails?.pledgeLevel">
+                                                <!--begin::Label-->
+                                                <div class="text-nowrap" style="font-size:13px; color:#071437;"> {{primaryContatDetails?.currentYear}}&nbsp;:&nbsp; </div>
+                                                <!--end::Label-->
+                                                <!--begin::Stats-->
+                                                <div class="fw-bolder text-gray-400 text-xxl-end text-nowrap text-size-mini"><span class="clr_patram me-1">{{(primaryContatDetails?.pledgeLevel!=null)?primaryContatDetails?.pledgeLevel:''}}</span><img src="assets/images/{{primaryContatDetails?.pledgeLevel}}.png" style="width:15px"></div>
+                                                <!--end::Stats-->
+                                              </div>
+                                            
+                                              <div class="d-flex align-items-center mb-1" *ngIf="!primaryContatDetails?.pledgeLevel">
+                                                <!--begin::Label-->
+                                                <div class="" style="font-size:12px; color:#071437;line-height: 18px;">Arpanam Level {{primaryContatDetails?.currentYear}}&nbsp;:&nbsp;</div>
+                                                <div class="fw-semibold text-gray-400 text-xxl-end text-nowrap text-size-mini"><a style="float:right" href="javascript:void(0);" (click)="newwindow();">Sign-up</a></div>
+                                                <!--end::Label-->
+                                              </div>
+                                          </div>
+                                        </td>
+                                        <td colspan="2"><span
+                                                class="pull-right text-semibold">-${{reviewTabData?.arpanamPledgeAdjustment | number:'1.2-2'}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="reviewTabData?.arpanamPledgeAdjustment!=null && reviewTabData?.arpanamPledgeAdjustment!='0'">
+                                        <td colspan="5" align="right" style="padding-right:65px;"><label class="text-semibold">
+                                            Total Amount Due</label></td>
+                                        <td colspan="2"><span
+                                                class="pull-right text-semibold">${{reviewTabData?.totalpledgeAmount | number:'1.2-2'}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review_mobile_view" *ngIf="Object.keys(reviewwgrpPerson).length!=0">
+                <div class="panel-heading">
+                    <h5 class="panel-title size_12" style="color:#161616;">Sign-Up Code Details</h5>
+                    <div class="heading-elements form-group">
+                        <div class="heading-btn">
+                            <div class="form-group">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-container *ngFor="let item of Object.keys(reviewwgrpPerson); index as i;">
+                    <div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3" >
+                        <div class="mb-5 mrg_btm_0"  style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
+                            <a href="#kt_accordion_item_{{i}}"  class="accordion-header py-3 d-flex collapsed" data-toggle="collapse" >
+                                <h3 class="mb-0 ms-4 size_12" style="line-height: 21px;">{{item}}</h3>
+                                <span class="text-gray-800 size_12 d-flex justify-content-end bold_txt">Amount&nbsp;:&nbsp;${{ totalAmtAccordion[item][0]}}.00</span>
+                            </a>
+
+                            <div id="kt_accordion_item_{{i}}"  class="panel-collapse collapse">
+                                <div class="card border border-gray-500 border-active">
+                                    <div class="card-body p-5">
+                                        <div *ngFor="let item of reviewwgrpPerson[item]; index as k;" class="borde_remove">
+                                            <div class="row mb-2">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Sign-Up Code : </label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                    <span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.signUpCodeDescription}}</span>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">School Grade : </label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                    <span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{(item.grade=='' || item.grade==null || item.grade=='-1')?'NA':item.schoolGradeCodeDescription }}</span>
+                                                    <!-- <span *ngFor="let grade of schoolGradesList" [title]="grade.code">{{(grade.code==item.grade)? grade.description : ''}}</span> -->
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Class : </label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                    <span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{(item.gradeclass=='' || item.gradeclass==null)?'NA': item.gradeclass}}</span>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Registration Status	 : </label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                    <span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.registrationStatus}}</span>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+
+                                            <div class="row mb-2">
+                                                <!--begin::Label-->
+                                                <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Amount : </label>
+                                                <!--end::Label-->
+                                                <!--begin::Col-->
+                                                <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                                    <span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{(item.category==2 && item.displayamount==0)?'INCLUDED': '$'+ (item.displayamount | number:'1.2-2')}}</span>
+                                                </div>
+                                                <!--end::Col-->
+                                            </div>
+                                            <div class="divider_line mt-2 mb-2" *ngIf="k>0"></div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div *ngIf="Object.keys(reviewwgrpPerson).length == i+1">
+                        <div class="row mb-2">
+                            <!--begin::Label-->
+                            <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 text-dark bold_txt">Total Amount	 : </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 pad_right_38">
+                                <span class="fw-bold fs-6 text-gray-800 d-flex justify-content-end bold_txt">${{reviewTabData?.pledgeTotal | number:'1.2-2'}}</span>
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row mb-2" *ngIf="reviewTabData?.arpanamPledgeAdjustment!='0' && reviewTabData?.arpanamPledgeAdjustment!=null">
+                            <!--begin::Label-->
+                            <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 text-dark bold_txt">
+                                <span>Total Amount covered under Arpanam level : </span>
+                                <div style="display: inline-block;">
+                                    <div class="d-flex mb-1" *ngIf="primaryContatDetails?.pledgeLevel">
+                                        <!--begin::Label-->
+                                        <div class="text-nowrap" style="font-size:13px; color:#071437;">  {{primaryContatDetails?.currentYear}}&nbsp;:&nbsp; </div>
+                                        <!--end::Label-->
+                                        <!--begin::Stats-->
+                                        <div class="fw-bolder text-gray-400 text-xxl-end text-nowrap text-size-mini"><span class="clr_patram me-1">{{(primaryContatDetails?.pledgeLevel!=null)?primaryContatDetails?.pledgeLevel:''}}</span><img src="assets/images/{{primaryContatDetails?.pledgeLevel}}.png" style="width:15px"></div>
+                                        <!--end::Stats-->
+                                      </div>
+                                    
+                                      <div class="d-flex align-items-center mb-1" *ngIf="!primaryContatDetails?.pledgeLevel">
+                                        <!--begin::Label-->
+                                        <div class="" style="font-size:12px; color:#071437;line-height: 18px;">Arpanam Level {{primaryContatDetails?.currentYear}}&nbsp;:&nbsp;</div>
+                                        <div class="fw-semibold text-gray-400 text-xxl-end text-nowrap text-size-mini"><a style="float:right" href="javascript:void(0);" (click)="newwindow();">Sign-up</a></div>
+                                        <!--end::Label-->
+                                      </div>
+                                  </div>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                <span class="fw-bold fs-6 text-gray-800 d-flex justify-content-end bold_txt">-${{reviewTabData?.arpanamPledgeAdjustment | number:'1.2-2'}}</span>
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row mb-2" *ngIf="reviewTabData?.arpanamPledgeAdjustment!=null && reviewTabData?.arpanamPledgeAdjustment!='0'">
+                            <!--begin::Label-->
+                            <label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 text-dark bold_txt">Total Amount Due : </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+                                <span class="fw-bold fs-6 text-gray-800 d-flex justify-content-end bold_txt">${{reviewTabData?.totalpledgeAmount | number:'1.2-2'}}</span>
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+            <a *ngIf="reviewTabData?.completeFlag==true" href="javascript:void(0);" style="margin-right: 10px;" (click)="backtoClassRegistration();">
+                <button *ngIf="reviewTabData?.completeFlag==true" type="button" class="btn btn-primary nextBtn pull-right btn-sm">
+                <i class="icon-arrow-left52"></i> Back to Program Registration</button>
+            </a>
+            <button *ngIf="reviewTabData?.completeFlag==false" class="btn btn-sm btn-primary pull-right" type="button" (click)="paymentTab();">Confirm & Proceed to Payment</button>
+            <button class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10" type="button" (click)="backToReviewTab();" style="float:right;">Back</button>
+        </div>
     </div>
-</div> 
-
-
-<div  align="right" class="col-md-12 mt-10">
-    <a  routerlink="/program-registration" type="button" data-kt-stepper-action="back" class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10" ng-reflect-router-link="/program-registration" href="/program-registration"> Back </a>
-    <button  type="button" data-kt-stepper-action="next" class="btn btn-primary btn-sm" disabled=""> Save &amp; Next </button></div>
-
-
-
-
-    </div>
-    
 </div>
+<!--begin::Step 1-->
