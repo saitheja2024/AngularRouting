@@ -105,5 +105,20 @@ export class UrlService {
     fetchProgramPledgeReview:'review/fetchProgramPledgeReview',
     fetchPrimaryContactByFamilyId:'registration/fetchPrimaryContactByFamilyId'
   }
+
+  constant ={
+    fetchPaymentValidatedSignature:'programSelection/fetchPaymentValidatedSignature',
+    updatePaymentValidatedSignature:'programSelection/updatePaymentValidatedSignature',
+  }
+
+  paymentcompleted ={
+    fetchPaymentInformationByFamilyIdAndProgramCode:'programSelection/fetchPaymentInformationByFamilyIdAndProgramCode',
+    updatePaymentInformationForProgramRegistration:'programSelection/updatePaymentInformationForProgramRegistration'
+  }
+
+  payment ={
+    fetchPaymentInformationByFamilyIdAndProgramCode:'programSelection/fetchPaymentInformationByFamilyIdAndProgramCode',
+    getConvenienceFee:'organization/getConvenienceFee'
+  }
   
 }

@@ -29,7 +29,7 @@ export class ProgramregistrationComponent {
     'Health Information':'healthinformation',
     'Time Slots signup':'timeslot-signup',
     'Review':'review',
-    'Consent':'constant',
+    'Consent':'consent',
     'Payment':'payment',
   }
   urlCheck:string="/programregistration/registration";

@@ -110,7 +110,7 @@ export class HealthinformationComponent {
     this.programCode = this.selectedProgram.code;
     this.chapterCode =  this.selectedChapterCode;
     this.familyId= this.selectedFamily.familyId;
-    this.personID =  this.selectedProgram.personID;;
+    this.personID =  this.selectedProgram.personID;
     this.cardNameDisplay = '';//JSON.parse(localStorage.getItem('cardName') || '');
 
 

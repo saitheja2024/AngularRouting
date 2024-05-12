@@ -1,54 +1,55 @@
-<div class="card shadow-sm mb-5">
-    <div class="card-header">
-        <h3 class="card-title">Consent</h3>       
+<div class="setup-content" id="step-6"  >
+    <div class="col-lg-12 consentcode mb-4">                           
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-8 divpad">
+            <div class="panel-body">
+                <p class="fs-2 coc" style=" font-weight: 600;">Code Of Conduct:</p>
+                <iframe [src]="sanitizedURL" class="pdfframe" style="height: 260px;width:100%;" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 divpad">
+            <div class="col-lg-12 pb-1" style="border: 0px solid #ccc !important;border-radius: 2px !important;">
+                <div class="mt-0">
+                    <h3 class="no-margin-top no-margin-bottom">
+                        <p class="fs-2" style="font-size: 18px; font-weight: 600;">Terms and Conditions:</p>
+                        <p class="" style="font-size:14px; margin-left:4px;">(Please scroll the text and provide signature)</p>
+                    </h3>
+                </div> 
+                <div class="divscroll">
+                <span class="text-justify fs-6" style="display: block;font-size:14px;">
+                    Participants as well as their agents or invitee shall hold harmless and indemnify Chinmaya Mission Washington Regional Center (here after referred to as the Mission), including its officers, employees, volunteers, contractors, agents, members or invitees from and against any claim, loss, injury, damage, liability or any expenses including but not limited to attorney fees, court costs etc, arising out of or in any way resulting from acts or omissions of the Mission's officers, employees, volunteers, agents, contractors, members, invitees for the duration of the program. This paragraph includes, but is not limited to defense and indemnity for any claim, suit, compliant or cross-compliant which may be brought against the Mission by any person or organization in conjunction with this agreement, regardless whether the Mission is negligent actively, passively, or in any way at all. Portions of this agreement that may be rendered unenforceable under the existing law at the time will not render other legally enforceable parts null or void.
+My family and I affirm that I/we will adhere to the CMWRC Code of Conduct while attending Chinmaya Mission (CMWRC) classes and programs. I also understand the risk of violating the CMWRC policies and I recognize and accept my responsibilities.
+
+                </span>
+             
+            </div>
+            
+            <div align="center" class="col-lg-12 mt-3 mb-2">
+                <div class="col-lg-2"></div>   
+                <div class="col-lg-8 d-flex">
+                    <input appCapitalize type="text" class="sig2 form-control" autocomplete="off" [(ngModel)]="Signature" name="Signature" style="font-family: magneto; font-size: 15px;" placeholder="Electronic Signature - Print your name">                                        
+                    <span class="red_clr pos_top_star text-danger" style="margin-left: 5px;"> * </span> 
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+            <div align="center" class="col-lg-12 mb-2">
+                <div class="col-lg-3"></div>  
+                <div class="col-lg-6">
+                    <p *ngIf="errorMsgConstent" class="text-danger">Please Enter Signature.</p> 
+                </div>  
+                <div class="col-lg-3"></div>  
+            </div>
+            <div style="clear:both; height: 1px;"></div>
+            <div align="center" class="col-lg-12">
+                <span class="mb-5 me-4 fs-7 fw-semibold">Signature,  Date &amp; time: <span>{{currentDate}} - {{timeDisplay}}</span> </span>
+                <div style="clear:both; height: 1px;"></div>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-      <div  class="row col-lg-12 consentcode mb-4">
-        <div  class="col-lg-6 col-md-12 col-sm-12 col-xs-12 mb-8 divpad">
-            <div  class="panel-body">
-                <p  class="fs-2 coc" style="font-weight: 600;">Code Of Conduct:</p>
-                <iframe  frameborder="0" class="pdfframe" style="height: 260px; width: 100%;" src="assets/documents/CSVA/CS_BALAVIHAR_2024-25.pdf"></iframe>
-            </div>
-        </div>
-        <div  class="col-lg-6 col-md-12 col-sm-12 col-xs-12 divpad">
-            <div  class="col-lg-12 pb-1" style="border: 0px solid #ccc !important; border-radius: 2px !important;">
-                <div  class="mt-0"><h3  class="no-margin-top no-margin-bottom">
-                    <p  class="fs-2" style="font-size: 18px; font-weight: 600;">Liability Text</p>
-                </h3>
-            </div>
-            <div  class="divscroll">
-                <span  class="text-justify fs-6" style="display: block; font-size: 14px;"> Participants as well as their agents or invitee shall hold harmless and indemnify Chinmaya Mission Washington Regional Center (here after referred to as the Mission), including its officers, employees, volunteers, contractors, agents or members from and against any claim, loss, injury, damage, liability or any expenses including but not limited to attorney fees, court costs etc, arising out of or in any way resulting from acts or omissions of the Mission's officers, employees, volunteers, agents, contractors, members, invitees for the duration of the program. This paragraph includes, but is not limited to defense and indemnity for any claim, suit, compliant or cross-compliant which may be brought against the Mission by any person or organization in conjunction with this agreement, regardless whether the Mission is negligent actively, passively, or in any way at all. Portions of this agreement that may be rendered unenforceable under the existing law at the time will not render other legally enforceable parts null or void.&nbsp; </span>
-                <div  class="col-lg-12 mt-3">
-                    <span  class="text-justify fs-6" style="display: block; font-size: 14px;"> My family and I affirm that I/we will adhere to the CMWRC Code of Conduct while attending Chinmaya Mission (CMWRC) classes and programs. I also understand the risk of violating the CMWRC policies and I recognize and accept my responsibilities. </span>
-                </div>
-            </div>
-            <div  align="center" class="col-lg-12 mt-3 mb-2">
-                <div  class="col-lg-3"></div>
-                <div  class="col-lg-6 d-flex">
-                    <input  appcapitalize="" type="text" autocomplete="off" name="Signature" placeholder="Electronic Signature" class="sig2 form-control ng-untouched ng-pristine ng-valid" style="font-family: magneto; font-size: 15px;" ng-reflect-name="Signature" ng-reflect-model=""><span  class="red_clr pos_top_star text-danger" style="margin-left: 5px;"> * </span>
-                </div>
-                <div  class="col-lg-3"></div>
-            </div>
-            <div  align="center" class="col-lg-12 mb-2">
-                <div  class="col-lg-3"></div>
-                <div  class="col-lg-6"><!--bindings={
-  "ng-reflect-ng-if": "false"
-}--></div><div  class="col-lg-3"></div></div>
-<div  style="clear: both; height: 1px;"></div>
-<div  align="center" class="col-lg-12">
-    <span  class="mb-5 me-4 fs-7 fw-semibold">Signature, Date &amp; time: <span >04/10/2024 - 04:29</span></span>
-    <div  style="clear: both; height: 1px;"></div>
 </div>
-</div>
-</div>
-</div> 
 
-
-    </div>  
-    <div  class="card-footer p-0">
-        <div  align="right" class="col-md-12 pad-20 mt-3">
-            <button  class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10">Back</button>
-            <button  type="button" class="btn btn-sm btn-primary nextBtn text-semibold btn-xs" style="margin-left: 5px;">Confirm &amp; Proceed to Payment</button>
-        </div>
-    </div> 
+<div class="card-footer p-0">
+    <div class="col-md-12 pad-20 mt-3" align="right">
+        <button class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10" (click)="goBackToPreviousTab()" >Back</button>
+        <button class="btn btn-sm btn-primary nextBtn text-semibold btn-xs" type="button" (click)="acceptGoPayment()" style="margin-left:5px;">Confirm &amp; Proceed to Payment</button>
+    </div>
 </div>

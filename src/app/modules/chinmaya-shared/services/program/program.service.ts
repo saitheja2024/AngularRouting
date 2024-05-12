@@ -116,6 +116,35 @@ export class ProgramService {
       this.primaryContactDetails$.next(response);
       resolve(response);
     })
+  }
 
+  fetchPaymentValidatedSignature(body: any) {
+    let options: Options = { body: body, url: this.urlService.constant.fetchPaymentValidatedSignature};
+    return this.http.post(environment.baseURL + options.url, options.body)
+  }
+
+  updatePaymentValidatedSignature(body: any) {
+    let options: Options = { body: body, url: this.urlService.constant.updatePaymentValidatedSignature };
+    return this.http.post(environment.baseURL + options.url, options.body)
+  }
+
+  fetchpaymentInfoFamilyandproCode(body: any) {
+    let options: Options = { body: body, url: this.urlService.paymentcompleted.fetchPaymentInformationByFamilyIdAndProgramCode };
+    return this.http.post(environment.baseURL + options.url, options.body)
+  }
+  
+  completePaymentInfo(body: any): any {
+    let options: Options = { body: body, url: this.urlService.paymentcompleted.updatePaymentInformationForProgramRegistration };
+    return this.httpService.post(options);
+  }
+
+  fetchpaymentInfoFamilyandproCodeFlagTrue(body: any) {
+    let options: Options = { body: body, url: this.urlService.payment.fetchPaymentInformationByFamilyIdAndProgramCode };
+    return this.httpService.post(options);
+  }
+  
+  fetchConvienceFee(body: any) {
+    let options: Options = { body: body, url: this.urlService.payment.getConvenienceFee };
+    return this.http.post(environment.baseURL + options.url, options.body)
   }
 }

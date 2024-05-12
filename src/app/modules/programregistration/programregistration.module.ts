@@ -44,7 +44,7 @@ const routes: Routes = [
         component: ReviewComponent,
       },
       {
-        path: 'constant',
+        path: 'consent',
         component: ConstantComponent,
       },
       {
