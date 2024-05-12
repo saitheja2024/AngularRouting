@@ -133,7 +133,27 @@
       </div>
     </div>
 
+    <div class="menu-item menu-accordion" data-kt-menu-trigger="click">
+      <span class="menu-link">
+        <span class="menu-icon">
+          <img class="img_cls" src="assets/chinmaya_media/images/SVG/unlock account-icon.svg" style="width:20px;">
+        </span>
+        <span class="menu-title fs-6 fw-semibold">Program Registration</span>
+        <span class="menu-arrow"></span>
+      </span>
 
+      <div class="menu-sub menu-sub-accordion">
+        <div class="menu-item" *ngFor="let program of programs">
+          <a class="menu-link without-sub" (click)="onProgramSelection(program,'/programregistration/registration')">
+            <span class="menu-bullet">
+              <img class="img_cls" src="assets/chinmaya_media/images/SVG/14-create program-icon.svg">
+            </span>
+            <span class="menu-title fs-6 fw-semibold">{{program.description}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    
     <div class="menu-item menu-accordion" data-kt-menu-trigger="click" routerLinkActive="here show">
       <span class="menu-link">
         <span class="menu-icon">
@@ -165,15 +185,8 @@
       </a>
     </div>
 
-    <div class="menu-item" routerLinkActive="here show">
-      <a class="menu-link without-sub" routerLink="/programregistration" >
-        <span class="menu-icon">
-          <img class="img_cls" src="assets/chinmaya_media/images/SVG/unlock account-icon.svg" style="width:20px;">
-        </span>
-        <span class="menu-title fs-6 fw-semibold">Program Registration</span>
-      </a>
-    </div>
-
+   
+<div style="height: 50px;"></div>
   </div>
   <!--end::Menu-->
 </div>

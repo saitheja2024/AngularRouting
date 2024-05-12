@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/modules/auth';
 import { ProgramRequestInterface } from 'src/app/modules/chinmaya-shared/services/master/master-interface';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
-
 @Component({
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
@@ -17,7 +16,6 @@ export class SidebarMenuComponent implements OnInit {
   selectedChapterCode: any;
   selectedYear: any;
   loggedInUser: any;
-
   constructor(private masterService:MasterService,
     private store:StoreService,
     private router:Router,
@@ -65,6 +63,7 @@ export class SidebarMenuComponent implements OnInit {
   async onProgramSelection(program:any,url:any){
     this.store.setValue(KEYS.program,program);
     this.router.navigateByUrl(url);
+   
   }
 
 

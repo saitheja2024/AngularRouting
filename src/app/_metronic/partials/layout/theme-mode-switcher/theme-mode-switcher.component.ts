@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ThemeModeService, ThemeModeType } from './theme-mode.service';
 import { environment } from 'src/environments/environment';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-theme-mode-switcher',
   templateUrl: './theme-mode-switcher.component.html',
@@ -15,7 +15,7 @@ export class ThemeModeSwitcherComponent implements OnInit {
   mode$: Observable<ThemeModeType>;
   menuMode$: Observable<ThemeModeType>;
 
-  constructor(private modeService: ThemeModeService) {}
+  constructor(private modeService: ThemeModeService, private route:Router) {}
 
   ngOnInit(): void {
     this.mode$ = this.modeService.mode.asObservable();
@@ -28,6 +28,7 @@ export class ThemeModeSwitcherComponent implements OnInit {
 
 
   onLogOutButtonClick(){
-    window.location.href = environment.memberRegPortalURL
+    //window.location.href = environment.memberRegPortalURL
+    this.route.navigate(['/auth/login'])
   }
 }
