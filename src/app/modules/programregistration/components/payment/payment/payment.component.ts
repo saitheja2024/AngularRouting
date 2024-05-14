@@ -52,6 +52,7 @@ constructor(private masterService: MasterService,private programService: Program
 }
 
 ngOnInit(){
+  localStorage.setItem('payOpts',JSON.stringify("fullAmt"));
   this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
   this.selectedChapterCode = this.store.getValue(KEYS.chapter);
   this.selectedProgram = this.store.getValue(KEYS.program);
@@ -62,10 +63,12 @@ ngOnInit(){
   this.chapterCode =  this.selectedChapterCode;
   this.familyId= this.selectedFamily.familyId;
   this.personID =  this.selectedProgram.personID;
+
+  this.paymentInfoListDetails();
 }
 
-  paymentInfoListDetails(){
-    scrollTop();
+ async paymentInfoListDetails(){
+    //scrollTop();
     let body ={
       familyId: this.familyId,
       programCode: this.programCode,
@@ -74,8 +77,7 @@ ngOnInit(){
     }
     
     //var totalAmt=0;
-    this.programService.fetchpaymentInfoFamilyandproCode(body).subscribe({
-      next: (data: any) => {
+    let data:any = await this.programService.fetchpaymentInfoFamilyandproCode(body);
          this.paymentListDetailsList=data;
         //  for(var i=0; i< this.paymentListDetailsList.userProgramList.length; i++){
         //   totalAmt += this.paymentListDetailsList.userProgramList[i].amount;
@@ -111,11 +113,7 @@ ngOnInit(){
           && data.pledgeTotal==data.arpanamPledgeAdjustment)
          || (data.totalpledgeAmount==0 && data.arpanamPledgeAdjustment==0 && data.pledgeTotal==0)
          ? true : false;
-      },
-      error: (e:any) => {
-        console.error(e);
-      }
-    })
+      
   }
 
   
@@ -364,6 +362,11 @@ if(arr!=null){
     this.routePass.sendData({'currenttab':'Payment','Event':'back'}); 
 
   }
+
+  onBackTab(ev:any){
+    this.routePass.sendData({'currenttab':'Registration','Event':'current'}); 
+  }
+
 
 }
 

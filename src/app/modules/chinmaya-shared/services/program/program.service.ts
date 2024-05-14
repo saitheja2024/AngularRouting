@@ -130,7 +130,7 @@ export class ProgramService {
 
   fetchpaymentInfoFamilyandproCode(body: any) {
     let options: Options = { body: body, url: this.urlService.paymentcompleted.fetchPaymentInformationByFamilyIdAndProgramCode };
-    return this.http.post(environment.baseURL + options.url, options.body)
+    return this.httpService.post(options)
   }
   
   completePaymentInfo(body: any): any {

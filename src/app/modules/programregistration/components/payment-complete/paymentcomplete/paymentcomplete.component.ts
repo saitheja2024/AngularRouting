@@ -2,7 +2,10 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program/program.service';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { StoreService, KEYS } from 'src/app/modules/chinmaya-shared/services/store/store.service';
+import { AuthService } from 'src/app/modules/auth';
+import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
 @Component({
   selector: 'app-paymentcomplete',
   templateUrl: './paymentcomplete.component.html',
@@ -12,26 +15,40 @@ export class PaymentcompleteComponent {
   @Input() paymentResponse:any;
   @Output() back=new EventEmitter<string>();
   @Output() saveAndNext=new EventEmitter<string>();
-  loggedInUser:any;
   currentDate:any;
   Signature:any='';
-  currentUserData=  JSON.parse(localStorage.getItem('CurrentUser') || '');
-  programCode = JSON.parse(localStorage.getItem('programcode') || '');
+  // currentUserData=  JSON.parse(localStorage.getItem('CurrentUser') || '');
+  // programCode = JSON.parse(localStorage.getItem('programcode') || '');
   timeDisplay:any;
+
+  selectedAcademicYear: any;
+  selectedChapterCode: any;
+  selectedProgram: any;
+  loggedInUser: any;
+  selectedFamily:any;
+  currentUserData:any;
+
+  programCode:any;
   chapterCode:any;
   familyId:any;
   personID:any;
- constructor(private programService: ProgramService, private router: Router){
+ constructor(private programService: ProgramService, private router: Router, 
+  private store:StoreService, private authService:AuthService, private routePass: RouteChangeCall){
  
  }
 
  async ngOnInit() {
   sessionStorage.removeItem('fetchupdateResponse');
-  this.currentUserData=  JSON.parse(localStorage.getItem('CurrentUser') || '');
-  this.chapterCode = this.currentUserData.chapter;
-  this.familyId= this.currentUserData.familyID;
-  this.personID = this.currentUserData.personID;
+  this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
+  this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+  this.selectedProgram = this.store.getValue(KEYS.program);
+  this.selectedFamily = this.store.getValue(KEYS.selectedFamily);
+  this.currentUserData = this.authService.getLoggedInUser();
 
+  this.programCode = this.selectedProgram.code;
+  this.chapterCode =  this.selectedChapterCode;
+  this.familyId= this.selectedFamily.familyId;
+  this.personID =  this.selectedProgram.personID;
    this.paymentInfoListDetails();
 }
 
@@ -39,7 +56,7 @@ paymentListDetailsList:any;
 TotalAmtData:any;
 paymentCompleteTab:boolean=false;
 annualPledgeFlag:any;
- paymentInfoListDetails(){
+async paymentInfoListDetails(){
   let body ={
     familyId: this.familyId,
     programCode: this.programCode,
@@ -48,10 +65,8 @@ annualPledgeFlag:any;
   }
   
   //var totalAmt=0;
-  let data:any = this.programService.fetchpaymentInfoFamilyandproCode(body);
+  let data:any = await this.programService.fetchpaymentInfoFamilyandproCode(body);
   this.paymentListDetailsList=data;
-  this.programService.fetchpaymentInfoFamilyandproCode(body).subscribe({
-    next: (data: any) => {
   this.annualPledgeFlag = (data.totalpledgeAmount!=0 && data.totalpledgeAmount!=null 
     && data.arpanamPledgeAdjustment!=null && data.arpanamPledgeAdjustment!=0 && data.pledgeTotal > data.arpanamPledgeAdjustment) || 
     (data.totalpledgeAmount==0 && data.arpanamPledgeAdjustment!=null && data.arpanamPledgeAdjustment!=0 
@@ -64,13 +79,6 @@ annualPledgeFlag:any;
        data.pledgeTotal==data.arpanamPledgeAdjustment)?data.totalpledgeAmount:
        ((data.totalpledgeAmount!=0 && data.totalpledgeAmount!=null) && data.totalpledgeAmount==data.pledgeTotal
        &&data.arpanamPledgeAdjustment==0)?data.pledgeTotal:data.totalpledgeAmount);
-
-      },
-      error: (e:any) => {
-        console.error(e);
-      }
-    });
-
 }
 
 disctingRec(arr:any, key:any){
@@ -136,24 +144,19 @@ disctingTotal(rec:any){
   //  this.acceptAggreFlag = eve.target.value;
   // } 
 
-  callupdatepayAPI(){
+  async callupdatepayAPI(){
     
     let body ={
-      familyId: this.currentUserData.familyID,
+      familyId: this.familyId,
     programCode:  this.programCode,
     chapterCode: this.chapterCode,
     paymentFlag:true
 
     }
     
-    this.programService.fetchpaymentInfoFamilyandproCode(body).subscribe({
-      next: (data: any) => {
-        this.getCallUpdateAPI(data);
-      },
-      error: (e:any) => {
-        console.error(e);
-      }
-    })
+   let famData = await this.programService.fetchpaymentInfoFamilyandproCode(body)
+        this.getCallUpdateAPI(famData);
+      
   }
 
 
@@ -161,13 +164,13 @@ disctingTotal(rec:any){
     var payopts:any = JSON.parse(localStorage.getItem('payOpts') || '');
       // var total = JSON.parse(localStorage.getItem('totalAMt') || '{}');
       // var totalwithcon = JSON.parse(localStorage.getItem('totalAMtwithconv') || '{}');
-      this.loggedInUser= JSON.parse(localStorage.getItem('CurrentUser') || '{}');
+      this.loggedInUser= this.currentUserData;
 
-      var programCodeVal = JSON.parse(localStorage.getItem('programcode') || '{}');
+      var programCodeVal = this.programCode;
       
-      var personCode = JSON.parse(localStorage.getItem('personID') || '{}');
+      var personCode =this.personID;
 
-      var chapterCode = JSON.parse(localStorage.getItem('chapterCode') || '{}');
+      var chapterCode = this.chapterCode;
       
       var datares:any ={
           "user": {
@@ -277,7 +280,7 @@ disctingTotal(rec:any){
            showConfirmButton: false,
            timer: 2000
          });
-        this.router.navigate(['/program-registration']);
+         this.routePass.sendData({'currenttab':'Registration','Event':'back'});
        }
   }
 }

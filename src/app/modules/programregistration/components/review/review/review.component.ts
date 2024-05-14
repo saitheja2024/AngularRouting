@@ -3,6 +3,7 @@ import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { AuthService } from 'src/app/modules/auth';
 import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
+import { DatapasstoComponent } from 'src/app/modules/chinmaya-shared/services/program-registration/datapassing.service';
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -26,8 +27,11 @@ export class ReviewComponent {
   primaryContatDetails:any;
   Object = Object;
   signupURL:string;
+
+  Datamessage:any;
+
   constructor(private programService:ProgramService, private store:StoreService,
-     private authService:AuthService, private routePass:RouteChangeCall){
+     private authService:AuthService, private routePass:RouteChangeCall, private Dataservice:DatapasstoComponent){
 
   }
   ngOnInit(){
@@ -44,9 +48,16 @@ export class ReviewComponent {
     this.personID =  this.selectedProgram.personID;
 
     this.ReviewTabInit();
+    this.subscribeCompData();
   }
 
-  selectedChoice(){
+  subscribeCompData(){
+    this.pendingPaymentData = this.Dataservice.getStoreValue();
+    console.log(this.pendingPaymentData)
+    this.selectedChoice();
+  }
+
+    selectedChoice(){
     this.selectedList=[];
       for(var k=0; k<this.pendingPaymentData.length; k++){
         if(this.pendingPaymentData[k].familySessionPreference.length>0){
@@ -171,7 +182,7 @@ async fetchPrimaryContactDetails() {
 }
 
 backtoClassRegistration(){
-  this.routePass.sendData({'currenttab':'Review','Event':'back'}); 
+  this.routePass.sendData({'currenttab':'Additional Details','Event':'back'}); 
 }
 
 newwindow(){

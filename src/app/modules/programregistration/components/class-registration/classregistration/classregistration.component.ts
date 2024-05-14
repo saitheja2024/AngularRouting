@@ -7,6 +7,7 @@ import { FormArray, FormBuilder, FormGroup, Validators, FormControl, AbstractCon
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
+ import { DatapasstoComponent } from 'src/app/modules/chinmaya-shared/services/program-registration/datapassing.service';
 declare function scrollTop():any;
 
 
@@ -45,7 +46,8 @@ export class ClassregistrationComponent {
 
  constructor( public fb: FormBuilder, private store:StoreService,
    private classRgiSrvice:ClassRegistrationService, 
-   private sanitizer: DomSanitizer, private route:Router, private routePass:RouteChangeCall){}
+   private sanitizer: DomSanitizer, private route:Router, 
+   private routePass:RouteChangeCall, private DataService:DatapasstoComponent){}
 
  async ngOnInit() {
   this.routePass.sendData({'currenttab':'Registration','Event':'current'}); 
@@ -782,6 +784,7 @@ let Adult_Flag= true;
 
 if(Adult_Flag){
   //this.FetchreviewPrerequisites();
+  this.DataService.invokeMessage(this.pendingPaymentData);
   this.routePass.sendData({'currenttab':'Registration','Event':'SaveNext'});
 
 }else{

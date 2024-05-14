@@ -1,4 +1,4 @@
-<div class="flex-column col-lg-12" data-kt-stepper-element="content">
+<div *ngIf="!paymentCompleteTab" class="flex-column col-lg-12" data-kt-stepper-element="content">
     <div class="col-lg-12 d-flex dflex">
         <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 p-2 mb-4">
             <span class="fw-semibold" style="font-size:16px;">
@@ -368,3 +368,5 @@
         </div>
     </div>
 </div>
+
+<app-paymentcomplete [paymentResponse]="paymentListDetailsList" (back)="onBackTab($event)"></app-paymentcomplete>

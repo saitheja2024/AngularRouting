@@ -13,6 +13,9 @@ import { PaymentcompleteComponent } from './components/payment-complete/paymentc
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
 import { TrimPipe } from 'src/app/pipes/trim.pipe';
 import { RouteChangeCall } from '../chinmaya-shared/services/program-registration/routechange.service';
+import { DatapasstoComponent } from '../chinmaya-shared/services/program-registration/datapassing.service';
+import * as $ from 'jquery';
+
 const routes: Routes = [
   {
     path: '',
@@ -51,10 +54,10 @@ const routes: Routes = [
         path: 'payment',
         component: PaymentComponent,
       },
-      {
-        path: 'paymentcomplete',
-        component: PaymentcompleteComponent,
-      },
+      // {
+      //   path: 'paymentcomplete',
+      //   component: PaymentcompleteComponent,
+      // },
       { path: '', redirectTo: 'registration', pathMatch: 'full' },
     ]
   },
@@ -78,6 +81,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  providers:[TrimPipe, RouteChangeCall]
+  providers:[TrimPipe, RouteChangeCall, DatapasstoComponent],
 })
 export class ProgramregistrationModule { }

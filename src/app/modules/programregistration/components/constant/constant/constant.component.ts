@@ -14,9 +14,7 @@ declare function scrollTop():any;
   styleUrls: ['./constant.component.scss']
 })
 export class ConstantComponent {
-  @Input() consentTabProfile: boolean=false;
-  @Output() back=new EventEmitter<string>();
-  @Output() saveAndNext=new EventEmitter<string>();
+
   selectedAcademicYear: any;
   selectedChapterCode: any;
   selectedProgram: any;
@@ -37,7 +35,7 @@ export class ConstantComponent {
  }
 
  async ngOnInit() {
-  scrollTop();
+ // scrollTop();
   this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
   this.selectedChapterCode = this.store.getValue(KEYS.chapter);
   this.selectedProgram = this.store.getValue(KEYS.program);
@@ -59,6 +57,7 @@ export class ConstantComponent {
 
    this.currentDate =  moment(new Date()).format('MM/DD/YYYY');
    this.timeDisplay =  moment(d).format('HH:mm');
+   this.Signature='';
    this.fetchPaymentValidatedSignature();
 }
   goBackToPreviousTab(){
@@ -72,13 +71,6 @@ errorMsgConstent:boolean=false;
       
     }else{
       this.errorMsgConstent=true;
-      // Swal.fire({
-      //   // position: 'top-end',
-      //    icon: 'error',
-      //    title: 'Please Enter Signature.',
-      //    showConfirmButton: true,
-      //    //timer: 1500
-      //  });
     }
   }
  
