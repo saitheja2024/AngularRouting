@@ -39,7 +39,12 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-1.11.0.min.js",             
+              "src/assets/js/utccallback.js",
+              "src/assets/js/utccallback_1.js",
+              "src/assets/js/utccallback_rejected_payment.js"
+            ]
           },
           "configurations": {
             "production": {

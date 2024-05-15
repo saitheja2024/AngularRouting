@@ -79,11 +79,11 @@ export class AdditionaldetailsComponent implements OnInit {
 
   async ngOnInit(){
     this.schoolGradesList=[];
+    this.currentUserData = this.authService.getLoggedInUser();
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     this.selectedProgram = this.store.getValue(KEYS.program);
-    this.selectedFamily = this.store.getValue(KEYS.selectedFamily);
-    this.currentUserData = this.authService.getLoggedInUser();
+    this.selectedFamily = this.currentUserData.familyID;
 
     //scrollTop();
     let tempVaccinationList = await this.masterService.fetchVaccinationList();
@@ -113,8 +113,8 @@ export class AdditionaldetailsComponent implements OnInit {
    //  localStorage.setItem("GlobalchapterCode", JSON.stringify(globalChaterCod));
 
       //this.chapterCode = this.currentUserData.chapter;
-      this.familyId= this.selectedFamily.familyId;
-      this.personID = this.selectedProgram.personID;
+      this.familyId= this.currentUserData.familyID;
+      this.personID = this.currentUserData.personID;
       this.prepareIndividualConfigFieldTab();
   }
 
@@ -521,10 +521,10 @@ export class AdditionaldetailsComponent implements OnInit {
   async reviewandupdateWaitList(){
     
     let body:any={
-      familyId: this.selectedFamily.familyId,
+      familyId: this.familyId,
       programCode: this.selectedProgram.code,
       chapterCode:  this.selectedChapterCode,
-      personId: this.selectedProgram.personID
+      personId: this.currentUserData.personID
     };
    
     let data = await this.programService.reviewAndUpdateWaitListedStatus(body);
@@ -553,7 +553,7 @@ export class AdditionaldetailsComponent implements OnInit {
    */
   async fetchProgramConfigurationFields(){
     const body = {
-      "familyId": this.selectedFamily.familyId,
+      "familyId": this.familyId,
       "programCode": this.selectedProgram.code,
       "chapterCode": this.selectedChapterCode,
       "paymentFlag": false,
