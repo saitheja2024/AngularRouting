@@ -3,12 +3,12 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Valida
 import moment from 'moment';
 import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program/program.service';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
-import { formatPhoneNumber } from 'src/app/utils/util';
 import Swal from 'sweetalert2';
 import { HealthInfoService } from 'src/app/modules/chinmaya-shared/services/program-registration/healthinfo.service';
 import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { AuthService } from 'src/app/modules/chinmaya-shared/services/auth/auth.service';
+import { formatPhoneNumber } from 'src/app/utils/util';
 @Component({
   selector: 'app-healthinformation',
   templateUrl: './healthinformation.component.html',

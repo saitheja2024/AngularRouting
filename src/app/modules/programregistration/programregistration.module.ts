@@ -14,6 +14,7 @@ import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module'
 import { TrimPipe } from 'src/app/pipes/trim.pipe';
 import { RouteChangeCall } from '../chinmaya-shared/services/program-registration/routechange.service';
 import { DatapasstoComponent } from '../chinmaya-shared/services/program-registration/datapassing.service';
+import { PhoneNumberFormatDirective } from 'src/app/utils/directives/phone-number-format.directive';
 import * as $ from 'jquery';
 
 const routes: Routes = [
@@ -62,6 +63,7 @@ const routes: Routes = [
     ]
   },
 ];
+const DIRECTIVES : any[] = [PhoneNumberFormatDirective]
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ const routes: Routes = [
     ConstantComponent,
     PaymentComponent,
     PaymentcompleteComponent,
-    TrimPipe
+    TrimPipe,
+    DIRECTIVES
   ],
   imports: [
     ChinmayaSharedModule,

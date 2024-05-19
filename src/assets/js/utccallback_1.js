@@ -10,8 +10,9 @@ var forte_API_CallbackURL = 'https://sandbox.forte.net/checkout/getUTC?callback=
 var JQ_library_fixed_URL="./assets/js/jquery-1.11.0.min.js";
 var secure_Trans_Key = "f0fed3faa449ef5b4db7b80957d53734";
 
-
-if(window.location.origin=="http://localhost:4200"){
+let hostSplit = (window.location.origin).split(':');
+let localhost = hostSplit[0]+hostSplit[1];
+if(localhost=="http://localhost"){
   var  redirect_URL= window.location.origin+"/program-registration";
   var  redirect_URL1= window.location.origin+"/sevasignup";
 }else{
