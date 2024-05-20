@@ -111,13 +111,14 @@
                                 <th class="text-start min-w-100px text-nowrap">First Name</th>
                                 <th class="text-start min-w-100px text-nowrap">Last Name</th>
                                 <th class="text-start min-w-100px text-nowrap">Email</th>
+                                <th class="text-start min-w-100px text-nowrap">User Name</th>
                                 <th class="text-start min-w-100px text-nowrap">Account</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of unlockResponseList">
                                 <td class="text-start text-nowrap fw-semibold">
-                                    {{item?.familyId}}
+                                    {{item?.familyID}}
                                 </td>
                                 <td class="text-start text-nowrap">
                                     {{item?.firstName}}
@@ -127,6 +128,9 @@
                                 </td>
                                 <td class="text-start text-nowrap">
                                     {{item?.emailAddress}}
+                                </td>
+                                <td class="text-start text-nowrap">
+                                    {{item?.userName}}
                                 </td>
                                 <td class="text-start text-nowrap">
                                     <a  class="btn btn-primary btn-sm" style="font-size:13px;padding:5px 15px !important;" (click)="unlockAccount(item.personId);">
