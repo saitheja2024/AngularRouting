@@ -1,3 +1,14 @@
+.border {
+  border: 1px solid #ddd !important;
+  border-radius: 5px;
+}
+
+legend {
+  color: #7d5800;
+}
+
+/*---------------------------------*/
+
 @media (max-width: 992px) {
     .app-container, .container-fluid, #kt_app_content_container {
       padding-left: 0px !important;
