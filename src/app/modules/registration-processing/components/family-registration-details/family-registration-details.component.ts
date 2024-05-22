@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import { RegistrationService } from 'src/app/modules/chinmaya-shared/services/registration-processing/registration.service';
 import { Router } from '@angular/router';
-
+import { AuthService } from 'src/app/modules/auth';
 @Component({
   selector: 'app-family-registration-details',
   templateUrl: './family-registration-details.component.html',
@@ -23,12 +23,13 @@ export class FamilyRegistrationDetailsComponent {
   assignedSession: any;
   address: any;
   assignedSessionList: any={};
+  currentUserData:any;
 
  constructor(
   private alertService:AlertService,
   private registrationService:RegistrationService,
   private fb:FormBuilder,
-  private router:Router){}
+  private router:Router, private authService:AuthService){}
 
 
 
@@ -36,6 +37,8 @@ export class FamilyRegistrationDetailsComponent {
   await this.populateData();
  
   this.initRegistrationDetailsForm();
+  this.currentUserData = this.authService.getLoggedInUser();
+console.log(this.currentUserData);
  }
 
 
@@ -227,7 +230,8 @@ getPersonSummary(detailsGroup: any) {
     let param = {
     "familyID": this.selectedFamily.familyId,
     "chapterID": this.selectedChapterID,
-    "programCode": this.selectedProgram.code
+    "programCode": this.selectedProgram.code,
+    modifiedBy: parseInt(this.currentUserData.personID)
     }
 
     await this.registrationService.acceptFamily(param);
@@ -242,9 +246,10 @@ getPersonSummary(detailsGroup: any) {
     let param = {
       "familyID": this.selectedFamily.familyId,
       "chapterID": this.selectedChapterID,
-      "programCode": this.selectedProgram.code
+      "programCode": this.selectedProgram.code,
+      modifiedBy: parseInt(this.currentUserData.personID)
       }
-  
+  console.log(this.selectedProgram);
       await this.registrationService.assignChoice(param);
   
   
@@ -273,9 +278,10 @@ getPersonSummary(detailsGroup: any) {
     }
     await this.registrationService.saveFamilyRegistrationDetails(list);
     let param={
-      familyID: this.selectedFamily.familyId,
+          familyID: this.selectedFamily.familyId,
           chapterID: this.selectedChapterID,
-          programCode: this.selectedProgram.code
+          programCode: this.selectedProgram.code,
+          modifiedBy: parseInt(this.currentUserData.personID)
     }
      this.registrationDetails = await this.registrationService.getSelectedFamilyRegistrationDetails(param);
 
