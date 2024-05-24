@@ -31,11 +31,13 @@ export class ProgramregistrationComponent {
     'Review':'review',
     'Consent':'consent',
     'Payment':'payment',
-  }
+  };
+  urlIsEmpty:any;
   urlCheck:string="/programregistration/registration";
   constructor(private store:StoreService, private classRegiService:ClassRegistrationService, 
     private UrlCall:RouteChangeCall, private route:Router){
     this.subscription = this.UrlCall.getData().subscribe(item => {
+        this.urlIsEmpty = item;
         this.RedirectionCall(item);     
     });
 
@@ -48,6 +50,7 @@ export class ProgramregistrationComponent {
     this.selectedProgram = this.store.getValue(KEYS.program);
     this.selectedFamily = this.store.getValue(KEYS.selectedFamily);
     this.currentUserData = this.classRegiService.getLoggedInUser();
+    console.log(this.urlIsEmpty);
     this.fetchFamilyFlag(); 
   }
 
@@ -148,5 +151,4 @@ export class ProgramregistrationComponent {
    }
 
 }
-
 

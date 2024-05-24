@@ -16,6 +16,8 @@ import { RouteChangeCall } from '../chinmaya-shared/services/program-registratio
 import { DatapasstoComponent } from '../chinmaya-shared/services/program-registration/datapassing.service';
 import { PhoneNumberFormatDirective } from 'src/app/utils/directives/phone-number-format.directive';
 import * as $ from 'jquery';
+import { FamilyRegWorkflowComponent } from './family-reg-workflow/family-reg-workflow.component';
+import { SearchFamilyComponent } from './search-family/search-family.component';
 
 const routes: Routes = [
   {
@@ -55,6 +57,14 @@ const routes: Routes = [
         path: 'payment',
         component: PaymentComponent,
       },
+      {
+        path: 'family-reg-workflow',
+        component: FamilyRegWorkflowComponent,
+      },
+      {
+        path: 'search-family',
+        component: SearchFamilyComponent,
+      },
       // {
       //   path: 'paymentcomplete',
       //   component: PaymentcompleteComponent,
@@ -77,7 +87,9 @@ const DIRECTIVES : any[] = [PhoneNumberFormatDirective]
     PaymentComponent,
     PaymentcompleteComponent,
     TrimPipe,
-    DIRECTIVES
+    DIRECTIVES,
+    FamilyRegWorkflowComponent,
+    SearchFamilyComponent
   ],
   imports: [
     ChinmayaSharedModule,
