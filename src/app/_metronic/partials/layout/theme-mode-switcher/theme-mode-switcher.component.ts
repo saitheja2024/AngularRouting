@@ -28,7 +28,7 @@ export class ThemeModeSwitcherComponent implements OnInit {
 
 
   onLogOutButtonClick(){
-    //window.location.href = environment.memberRegPortalURL
-    this.route.navigate(['/auth/login'])
+    window.location.href = environment.memberRegPortalURL
+   // this.route.navigate(['/auth/login'])
   }
 }
