@@ -37,7 +37,8 @@ export class RegistrationSearchResultsComponent {
   ];
   dataSource:any = new MatTableDataSource<any>(); 
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator:MatPaginator
+  @ViewChild(MatPaginator) paginator:MatPaginator;
+  totalRecCount:any;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -55,8 +56,9 @@ export class RegistrationSearchResultsComponent {
   }
 
   async performSearch(){
-    let results  = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria)
-     //this.searchResults.push(...results.projectSummaryList);
+    let results  = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria);
+    this.totalRecCount =results;
+    //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     this.paginator.length=results.totalProjectSummary
     this.dataSource._updateChangeSubscription();

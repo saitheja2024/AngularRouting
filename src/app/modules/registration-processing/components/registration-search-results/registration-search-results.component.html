@@ -2,23 +2,33 @@
     <!--begin::Card header-->
     <div class="card-header d-flex p-2 ps-4">
         <div class="justify-content-start" style="margin-top:8px">
-            <button type="button" class="chip-button" *ngFor="let filter of searchCriteria.
+            <button type="button" class="btn btn-sm btn-default" style="background-color:#00B0F0; color: #fff; margin-bottom: 10px; margin-left: 10px; margin-right: 10px;" *ngFor="let filter of searchCriteria.
                 requestRegistrationProcessingSearch.registrationStatusList" (click)="onFilterClick('registrationStatusList',filter)">
-                {{filter}} <i class="bi bi-x"></i>
+                {{filter}} <i class="bi bi-x cls_clr_close"></i>
             </button>
-            <button type="button" class="chip-button" *ngFor="let filter of searchCriteria.
+            <button type="button" class="btn btn-sm btn-default" style="background-color:#00B0F0;  color: #fff; margin-bottom: 10px; margin-left: 10px; margin-right: 10px;" *ngFor="let filter of searchCriteria.
                 requestRegistrationProcessingSearch.paymentStatusList" (click)="onFilterClick('paymentStatusList',filter)">
-                {{filter}} <i class="bi bi-x"></i>
+                {{filter}} <i class="bi bi-x cls_clr_close"></i>
             </button>
         </div>
-
-        <div class="justify-content-end">
+        <div class="d-flex justify-content-end mb-2">
+            <button type="button" class="btn btn-sm btn-link text-uppercase text-success fw-bold me-3 mb-2 mt-2">
+                Records Selected: {{totalRecCount?.totalProjectSummary}}
+            </button>
+            <button class="btn btn-link btn-sm">     
+                <i class="ki-duotone ki-arrows-circle fs-1 text-dark">
+                <span class="path1"></span>
+                <span class="path2"></span>
+                </i>      
+            </button>
+        </div>
+        <div class="d-flex justify-content-end mb-2">
             <div class="d-flex align-items-center position-relative m-2">
                 <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
                     <span class="path1"></span>
                     <span class="path2"></span>
                 </i>
-                <input matInput (keyup)="applyFilter($event)" type="text" id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
+                <input matInput (keyup)="applyFilter($event)" type="text" id="kt_filter_search" class="form-control form-select-sm w-400px ps-9" placeholder="Search">
             </div>
         </div>
     </div>

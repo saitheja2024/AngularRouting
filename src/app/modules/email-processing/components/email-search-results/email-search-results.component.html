@@ -13,7 +13,7 @@
             </button>
         </div>
 
-        <div class="justify-content-end">
+        <div class="d-flex justify-content-end mb-2">
             <button type="button" class="btn btn-sm btn-link text-uppercase text-success fw-bold me-3 mb-2 mt-2">
                 Records Selected: {{totalRecCount?.totalProjectSummary}}
             </button>
@@ -24,6 +24,16 @@
                 </i>      
             </button>
         </div>
+
+        <div class="d-flex justify-content-end mb-2">
+          <div class="d-flex align-items-center position-relative my-1">
+              <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
+                  <span class="path1"></span>
+                  <span class="path2"></span>
+              </i>
+              <input type="text"  matInput (keyup)="applyFilter($event)"  id="kt_filter_search" class="form-control form-select-sm w-400px ps-9" placeholder="Search">
+          </div>
+      </div>
     </div>
     <!--begin::Card header-->
     <!--begin::Content-->
@@ -32,15 +42,7 @@
         <form id="kt_account_profile_details_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
             <!--begin::Card body-->
             <div class="card-body border-top p-2">
-                <div class="d-flex justify-content-end mb-2">
-                    <div class="d-flex align-items-center position-relative my-1">
-                        <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-3">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <input type="text"  matInput (keyup)="applyFilter($event)"  id="kt_filter_search" class="form-control form-select-sm w-200px ps-9" placeholder="Search">
-                    </div>
-                </div>
+                
                 <div class="table-container table-responsive">
                     <table class="table table-striped table-hover table-row-bordered" mat-table [dataSource]="dataSource">
 
