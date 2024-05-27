@@ -14,7 +14,7 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
-        //data: { returnUrl: window.location.pathname },
+        data: { returnUrl: window.location.pathname },
       },
       {
         path: 'registration',
