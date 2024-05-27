@@ -50,18 +50,20 @@ export class AppComponent implements OnInit {
       const url = new URL(currentURL);
 
       // Get the value of the 'key' parameter
-      const key = url.searchParams.get('key');
+     // const key = url.searchParams.get('key');
 
       // Get the value of the 'value' parameter
-      const value = url.searchParams.get('value');
-      const user = await this.authService.login({ username: key, password: value });
-      this.router.navigateByUrl("");
-      return;
+      // const value = url.searchParams.get('value');
+      // const user = await this.authService.login({ username: key, password: value });
+      // this.router.navigateByUrl("");
+      // return;
     }
-    let  route= "/registration-processing"
-    if(!this.authService.getLoggedInUser()){
-      route="/auth";
-    }
+    let route="/auth";
+
+    // let  route= "/registration-processing"
+    // if(!this.authService.getLoggedInUser()){
+    //   route="/auth";
+    // }
     this.router.navigateByUrl(route);
   }
 }

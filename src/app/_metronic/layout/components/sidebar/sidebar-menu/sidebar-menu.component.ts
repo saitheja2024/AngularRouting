@@ -27,7 +27,7 @@ export class SidebarMenuComponent implements OnInit {
     this.loggedInUser = this.authService.getLoggedInUser();
     this.academicYear = await  this.masterService.fetchAcademicYear(true);
     this.chapterList = await this.masterService.fetchChaptherList({username:this.loggedInUser.username},true);
-   
+   console.log( this.loggedInUser);
   }
 
   async onAcademicYerChange(ev:any){
@@ -65,10 +65,14 @@ export class SidebarMenuComponent implements OnInit {
   async onProgramSelection(program:any,url:any, index:any){
 
     this.subMenuActiveFlag = {[index]:true};
-
-    this.store.setValue(KEYS.program,program);
+    let proGram:any = KEYS.program
+    this.store.setValue(proGram,program);
     this.router.navigateByUrl(url);
    
+  }
+
+  resetActiveMenu(){
+    this.subMenuActiveFlag ={};
   }
 
 

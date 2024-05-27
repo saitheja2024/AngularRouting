@@ -14,8 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit, OnDestroy {
   // KeenThemes mock, change it to:
   defaultAuth: any = {
-    username: 'qa0',
-    password: '123456',
+    username: '',
+    password: '',
   };
   loginForm: FormGroup;
   hasError: boolean;
@@ -48,9 +48,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     // }
     this.initForm();
 
-    if(this.loggedInUser){
-      this.onLogin(false);
-    }
+    // if(this.loggedInUser){
+    //   this.onLogin(false);
+    // }
     
   
 
@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       loginParam.password=  window.btoa(loginParam.password);
     }
     const user = await this.authService.login(loginParam);
-    this.router.navigateByUrl("")
+    this.router.navigateByUrl("");
   }
 
   ngOnDestroy() {

@@ -15,6 +15,10 @@ export class EmailHomeComponent {
   }
 
   ngOnInit(){
+    this.infoInit();
+  } 
+
+  infoInit(){
     this.store.onProgramUpdate().subscribe((program:any)=>{
       this.selectedProgram=program;
     });
@@ -22,5 +26,5 @@ export class EmailHomeComponent {
     this.store.onChapterUpdate().subscribe((chapter:any)=>{
       this.selectedChapter=chapter;
     });
-  } 
+  }
 }
