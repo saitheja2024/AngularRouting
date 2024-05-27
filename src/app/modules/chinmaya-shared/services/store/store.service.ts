@@ -60,6 +60,7 @@ export class StoreService{
   }
 
   setValue(key: string, obj: any) {
+    if(obj!=null){
     this.store[key] = obj;
     console.log("###########   Current Store values ##################");
     console.log(JSON.stringify(this.store,null,4));
@@ -78,6 +79,7 @@ export class StoreService{
     
     this.storeSubject$.next(this.store);
   }
+  }
 
 
 
@@ -91,7 +93,7 @@ export class StoreService{
 
 
   getStore(){
-    return this.store;;
+    return this.store;
   }
 
   public onStoreUpdate(): Observable<any> {

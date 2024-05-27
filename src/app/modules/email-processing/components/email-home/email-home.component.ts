@@ -15,16 +15,15 @@ export class EmailHomeComponent {
   }
 
   ngOnInit(){
-    this.infoInit();
+    this.selectedProgram= this.store.getValue('program');
+    this.selectedChapter = this.store.getValue('chapter');
+    // this.store.getValue('program').subscribe((program:any)=>{
+    //   this.selectedProgram=program;
+    // });
+
+    // this.store.onChapterUpdate().subscribe((chapter:any)=>{
+    //   this.selectedChapter=chapter;
+    // });
   } 
 
-  infoInit(){
-    this.store.onProgramUpdate().subscribe((program:any)=>{
-      this.selectedProgram=program;
-    });
-
-    this.store.onChapterUpdate().subscribe((chapter:any)=>{
-      this.selectedChapter=chapter;
-    });
-  }
 }

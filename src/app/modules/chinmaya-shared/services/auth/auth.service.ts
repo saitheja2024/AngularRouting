@@ -53,7 +53,8 @@ export class AuthService implements OnDestroy {
 
 
   getLoggedInUser() {
-    return this.store.getValue(KEYS.loggedInUser);
+    let logUser = KEYS.loggedInUser;
+    return this.store.getValue(logUser);
   }
 
   

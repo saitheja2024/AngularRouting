@@ -56,7 +56,8 @@ export class RegistrationService {
   }
 
   getLoggedInUser(){
-    return this.authServie.getLoggedInUser();
+    let logUser = KEYS.loggedInUser;
+    return this.store.getValue(logUser);
   }
 
 
