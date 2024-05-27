@@ -65,7 +65,7 @@ export class SidebarMenuComponent implements OnInit {
   async onProgramSelection(program:any,url:any, index:any){
 
     this.subMenuActiveFlag = {[index]:true};
-    let proGram:any = KEYS.program
+    let proGram:any = KEYS.program;
     this.store.setValue(proGram,program);
     this.router.navigateByUrl(url);
    

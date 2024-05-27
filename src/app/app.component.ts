@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    let  route= "/registration-processing"
+    let  route= "/registration-processing";
     if(!this.authService.getLoggedInUser()){
       route="/auth";
     }
