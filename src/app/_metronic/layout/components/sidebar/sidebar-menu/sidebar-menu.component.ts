@@ -50,6 +50,7 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   async fetchProgramsByAcademicYearAndChapterCode(){
+    this.loggedInUser = this.authService.getLoggedInUser();
     this.programs=[];
     if(!this.selectedYear || !this.selectedChapterCode){
       return ;
