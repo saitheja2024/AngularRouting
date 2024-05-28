@@ -74,9 +74,7 @@ export class StoreService{
     else if(key==KEYS.chapter){
       this.chapterSubject$.next(obj);
     }
-
-
-    
+   
     this.storeSubject$.next(this.store);
   }
   }

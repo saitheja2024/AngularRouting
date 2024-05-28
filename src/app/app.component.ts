@@ -54,6 +54,8 @@ export class AppComponent implements OnInit {
 
       // Get the value of the 'value' parameter
       const value = url.searchParams.get('value');
+      let userAuth:any = { username: key, password: value };
+      sessionStorage.setItem('userCred',JSON.stringify(userAuth));
       const user = await this.authService.login({ username: key, password: value });
       this.router.navigateByUrl("");
       return;

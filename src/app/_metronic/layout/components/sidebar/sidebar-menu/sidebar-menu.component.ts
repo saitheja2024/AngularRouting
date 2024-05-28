@@ -39,7 +39,12 @@ export class SidebarMenuComponent implements OnInit {
 
   async onChapterChange(ev:any){
     this.selectedChapterCode = ev.target.value;
-    this.store.setValue(KEYS.chapter,this.selectedChapterCode);
+    let chapter = KEYS.chapter;
+    this.store.setValue(chapter,this.selectedChapterCode);
+    if(sessionStorage.getItem('userCred')!=null){
+    let cred = JSON.parse(sessionStorage.getItem('userCred') || '');
+    const user = await this.authService.login(cred);
+    }
     this.router.navigateByUrl("/registration-processing");
     await this.fetchProgramsByAcademicYearAndChapterCode();
   }
