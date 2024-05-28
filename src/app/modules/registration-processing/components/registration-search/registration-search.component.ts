@@ -155,7 +155,7 @@ export class RegistrationSearchComponent implements OnInit {
     //   this.signupCodes=[];
     //   return;
     // }
-
+    this.loggedInUser = this.regiStrationService.getLoggedInUser();
     let param:signupCodeRequestInteface = {
     organizationCode:this.selectedChapterCode,
     programCode:this.selectedProgram.code,

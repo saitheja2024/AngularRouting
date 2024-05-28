@@ -149,13 +149,15 @@ export class EmailSearchComponent{
 
   async fetchSignupCodes(){
    
+    this.loggedInUser = this.emailproService.getLoggedInUser();
+    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+
     let param:signupCodeRequestInteface = {
     organizationCode:this.selectedChapterCode,
     programCode:this.selectedProgram.code,
     userName:this.loggedInUser.username
     }
 
-    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     this.signupCodes = await this.regiStrationService.fetchSignupCodes(param);
   }
 
