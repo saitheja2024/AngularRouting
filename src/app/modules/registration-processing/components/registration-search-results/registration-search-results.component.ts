@@ -27,13 +27,13 @@ export class RegistrationSearchResultsComponent {
 
   displayColumns: string[] = [
   "familyId",
-  "primaryFirstName",
-  "primaryLastName",
+  "primaryName",
   "paymentStatus",
   "registrationStatus",
   "paymentSubmittedDate",
   "choiceCode",
-  "choicePreference"
+  "choicePreference",
+  'email'
   ];
   dataSource:any = new MatTableDataSource<any>(); 
   @ViewChild(MatSort) sort: MatSort;

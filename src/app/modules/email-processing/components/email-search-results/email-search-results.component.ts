@@ -22,7 +22,7 @@ export class EmailSearchResultsComponent {
     showFirstLastButtons : true,
     length:10
     }
-    displayedColumns: string[] = ['select', 'familyId', 'primaryFirstName', 'registrationStatus', 'paymentStatus','choiceLabel', 'TemplateID'];
+    displayedColumns: string[] = ['select', 'familyId', 'primaryName', 'registrationStatus', 'paymentStatus','choiceLabel', 'TemplateID','email'];
 
     dataSource:any = new MatTableDataSource<any>(); 
     @ViewChild(MatSort) sort: MatSort;
