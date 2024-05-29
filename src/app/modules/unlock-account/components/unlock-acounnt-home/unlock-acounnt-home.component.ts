@@ -27,6 +27,7 @@ export class UnlockAcounntHomeComponent {
 
  async searchFilter(){
     let srcParam:any = this.unlockAccForm.value;
+    srcParam.familyId = (srcParam.familyId=='')?0:srcParam.familyId;
     this.unlockResponseList = await this.unlockService.fetchUnlockAccount(srcParam);
   }
 

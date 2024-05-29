@@ -233,28 +233,21 @@ export class EmailSearchComponent{
    const assignedSession = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.assignedSessionList,this.sessionChoice,"choicecode");
    searchFormValues.requestRegistrationProcessingSearch.assignedSessionList = assignedSession;
    
-   if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length>0 && searchFormValues.requestRegistrationProcessingSearch.registrationStatusList.length>0){
+   //if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length>0 && searchFormValues.requestRegistrationProcessingSearch.registrationStatusList.length>0){
     this.emailproService.setEmailSearchCriteria(searchFormValues);
    this.router.navigateByUrl("/email-processing/email-search-results");
-   }else{
-     if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length==0){
-      this.errorpaymentStatusListFlag=true;
-      this.MessageofpayError='Payment Status field is required.'
-     }
-     if(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList.length==0){
-      this.errorregistrationStatusListFlag=true;
-      this.MessageofRegiError='Registration Status field is required.'
-     }
+   //}
+  //  else{
+  //    if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length==0){
+  //     this.errorpaymentStatusListFlag=true;
+  //     this.MessageofpayError='Payment Status field is required.'
+  //    }
+  //    if(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList.length==0){
+  //     this.errorregistrationStatusListFlag=true;
+  //     this.MessageofRegiError='Registration Status field is required.'
+  //    }
 
-    //  Swal.fire({
-    //   // position: 'top-end',
-    //    icon: 'success',
-    //    title:this.unlockResponseList.message,
-    //    showConfirmButton: true,
-    //    //timer: 1500
-    //  })
-     
-   }
+  //  }
    
 
   }
