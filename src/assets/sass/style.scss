@@ -13,6 +13,10 @@
 @import "./core/layout/base/layout";
 @import "layout/layout";
 
+.table > :not(caption) > * > * {
+  vertical-align: middle !important;
+}
+
 .mat-sort-header-content { 
   text-align: left !important;
 }
