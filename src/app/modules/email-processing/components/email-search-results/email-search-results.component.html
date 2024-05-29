@@ -64,40 +64,40 @@
                       
                         <!-- Position Column -->
                         <ng-container matColumnDef="familyId">
-                          <th mat-header-cell *matHeaderCellDef>Family Id</th>
+                          <th class="bold_txt" mat-header-cell *matHeaderCellDef>Family Id</th>
                           <td mat-cell *matCellDef="let element"> {{element.familyId}}</td>
                         </ng-container>
                       
                         <!-- Name Column -->
                         <ng-container matColumnDef="primaryName">
-                          <th mat-header-cell *matHeaderCellDef>Primary Name</th>
+                          <th class="bold_txt"  mat-header-cell *matHeaderCellDef>Primary Name</th>
                           <td mat-cell *matCellDef="let element"> {{element.primaryName}} </td>
                         </ng-container>
                       
                         <!-- Weight Column -->
                         <ng-container matColumnDef="registrationStatus">
-                          <th mat-header-cell *matHeaderCellDef> Registration Status </th>
+                          <th class="bold_txt"  mat-header-cell *matHeaderCellDef> Registration Status </th>
                           <td mat-cell *matCellDef="let element"> {{element.registrationStatus}} </td>
                         </ng-container>
                       
                         <!-- Symbol Column -->
                         <ng-container matColumnDef="paymentStatus">
-                          <th mat-header-cell *matHeaderCellDef> Payment Status </th>
+                          <th class="bold_txt"  mat-header-cell *matHeaderCellDef> Payment Status </th>
                           <td mat-cell *matCellDef="let element"> {{element.paymentStatus}} </td>
                         </ng-container>
                       
                         <ng-container matColumnDef="choiceLabel">
-                            <th mat-header-cell *matHeaderCellDef>Session Choice1 /Assigned Session</th>
-                            <td mat-cell *matCellDef="let element"> {{element.choiceLabel}} </td>
+                            <th class="bold_txt"  mat-header-cell *matHeaderCellDef>Session Choice1 /Assigned Session</th>
+                            <td mat-cell *matCellDef="let element"> {{element.choiceCode}} </td>
                           </ng-container>
 
                           <ng-container matColumnDef="TemplateID">
-                            <th mat-header-cell *matHeaderCellDef>Template ID & Preview</th>
+                            <th class="bold_txt"  mat-header-cell *matHeaderCellDef>Template ID & Preview</th>
                             <td mat-cell *matCellDef="let element"><a href="javascript:void(0);" (click)="previewTemplate(element);">Template</a></td>
                           </ng-container>
 
                           <ng-container matColumnDef="email">
-                            <th mat-header-cell *matHeaderCellDef>Email</th>
+                            <th class="bold_txt"  mat-header-cell *matHeaderCellDef>Email</th>
                             <td mat-cell *matCellDef="let element">{{element.email}}</td>
                           </ng-container>
 
