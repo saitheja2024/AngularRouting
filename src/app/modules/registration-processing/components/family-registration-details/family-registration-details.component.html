@@ -77,7 +77,7 @@
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container">
 																			<select formControlName="paymentStatus" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
 																				<option value="">Select an Option</option>   
-																				<option [value]="paymentStatus.code" *ngFor = " let paymentStatus of paymentStatusList">{{paymentStatus.description}}</option>                               
+																				<option [value]="paymentStatus.code" *ngFor="let paymentStatus of paymentStatusList">{{paymentStatus.description}}</option>                               
 																			</select> 
 																		</div>
 																		<!--end::Col-->
@@ -91,9 +91,9 @@
 														<!--end::Col-->
 													</div>
 													<!--end::Input group-->
-		
+													
 													<!--begin::Input group-->
-													<div class="row mb-2">
+													<div class="row mb-2" [hidden]="programGroup.get('sessionAssignment')?.disabled &&  programGroup.get('subClassAssignment')?.disabled">
 														<!--begin::Label-->
 														<label class="col-lg-3 col-form-label fw-semibold fs-6 text-success divlable" style="display: block;"></label>
 														<!--end::Label-->
