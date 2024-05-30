@@ -6,7 +6,8 @@ export const KEYS={
   program:"program",
   academicYear:"academicYear",
   loggedInUser:"loggedInUser",
-  selectedFamily:"selectedFamily"
+  selectedFamily:"selectedFamily",
+  chapterDesc:'chapterDescription'
 }
 
 @Injectable({
@@ -18,7 +19,8 @@ export class StoreService{
   private storeSubject$: Subject<any> = new Subject();
   private programSubject$: Subject<any> = new Subject();
   private loggedInUserSubject$ : Subject<any> = new Subject();
-  chapterSubject$: Subject<any> = new Subject();
+  private chapterSubject$: Subject<any> = new Subject();
+  private chapterSubjectDesc$: Subject<any> = new Subject();
 
 
   constructor() { 
@@ -74,6 +76,9 @@ export class StoreService{
     else if(key==KEYS.chapter){
       this.chapterSubject$.next(obj);
     }
+    else if(key==KEYS.chapterDesc){
+      this.chapterSubjectDesc$.next(obj);
+    }
    
     this.storeSubject$.next(this.store);
   }
@@ -81,9 +86,7 @@ export class StoreService{
 
 
 
-  getValue(key: string): any {
-
-   
+  getValue(key: string): any {   
     return this.store[key];
   }
 
@@ -108,6 +111,10 @@ export class StoreService{
 
   public onloggedInUser(): Observable<any> {
     return this.loggedInUserSubject$.asObservable();
+  }
+
+  public onChapterDescUpdate(): Observable<any> {
+    return this.chapterSubjectDesc$.asObservable();
   }
 
 
