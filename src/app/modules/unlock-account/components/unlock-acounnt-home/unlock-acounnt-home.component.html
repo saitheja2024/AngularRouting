@@ -116,6 +116,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <ng-container *ngIf="unlockResponseList.length>0">
                             <tr *ngFor="let item of unlockResponseList">
                                 <td class="text-start text-nowrap fw-semibold">
                                     {{item?.familyID}}
@@ -138,6 +139,8 @@
                                     </a>
                                 </td>                          
                             </tr>
+                        </ng-container>
+                            <tr *ngIf="unlockResponseList.length==0"><td colspan="10" align="center">No Result Found.</td></tr>
                         </tbody>
                     </table>
                     <!--end::Table-->

@@ -13,7 +13,7 @@ import { UnlockaccountService } from 'src/app/modules/chinmaya-shared/services/u
 export class UnlockAcounntHomeComponent {
 
   unlockAccForm:FormGroup;
-  unlockResponseList:any;
+  unlockResponseList:any='';
 
   constructor(private authService:AuthenticationService, private fb:FormBuilder, private unlockService:UnlockaccountService){
     this.unlockAccForm = this.fb.group({
@@ -27,8 +27,19 @@ export class UnlockAcounntHomeComponent {
 
  async searchFilter(){
     let srcParam:any = this.unlockAccForm.value;
-    srcParam.familyId = (srcParam.familyId=='')?0:srcParam.familyId;
-    this.unlockResponseList = await this.unlockService.fetchUnlockAccount(srcParam);
+    if(srcParam.familyId!='' || srcParam.homePhone!='' || srcParam.firstName!='' || srcParam.lastName!='' || srcParam.emailAddress!=''){
+      srcParam.familyId = (srcParam.familyId=='')?0:srcParam.familyId;
+      this.unlockResponseList = await this.unlockService.fetchUnlockAccount(srcParam);
+    }else{
+      Swal.fire({
+        // position: 'top-end',
+         icon: 'error',
+         title:'Required any one of the search criteria.',
+         showConfirmButton: true,
+         //timer: 1500
+       });
+    }
+   
   }
 
   async unlockAccount(personId:any){

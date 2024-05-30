@@ -31,7 +31,7 @@ export class RegistrationSearchResultsComponent {
   "paymentStatus",
   "registrationStatus",
   "paymentSubmittedDate",
-  "choiceCode",
+  "choiceDescription",
   "choicePreference",
   'email'
   ];
