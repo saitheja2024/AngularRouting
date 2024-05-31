@@ -276,12 +276,15 @@ getPersonSummary(detailsGroup: any) {
     let list = {
       personProgramList:personProgramList
     }
+
+    list.personProgramList.filter((item:any) => { return (item.modifiedBy = parseInt(this.currentUserData.personID)) });
+    
     await this.registrationService.saveFamilyRegistrationDetails(list);
     let param={
           familyID: this.selectedFamily.familyId,
           chapterID: this.selectedChapterID,
           programCode: this.selectedProgram.code,
-          modifiedBy: parseInt(this.currentUserData.personID)
+          
     }
      this.registrationDetails = await this.registrationService.getSelectedFamilyRegistrationDetails(param);
 
