@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
+import {KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 
 @Component({
   selector: 'app-email-home',
@@ -11,10 +11,7 @@ export class EmailHomeComponent {
   selectedChapter: any;
 
   constructor(private store:StoreService){
-    // this.store.onChapterDescUpdate().subscribe((chapter:any)=>{
-    //   this.selectedChapter=chapter[0].description;
-    // });
-
+    
     this.store.onProgramUpdate().subscribe((program:any)=>{
       this.selectedProgram=program;
     });
@@ -22,7 +19,9 @@ export class EmailHomeComponent {
   }
 
   ngOnInit(){
-    this.selectedProgram= this.store.getValue(KEYS.chapterDesc);
+    
+     let chapter = this.store.getValue(KEYS.chapterDesc);
+     this.selectedChapter=chapter[0].description
   } 
 
 }

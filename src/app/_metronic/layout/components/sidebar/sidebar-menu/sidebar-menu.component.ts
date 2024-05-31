@@ -35,7 +35,8 @@ export class SidebarMenuComponent implements OnInit {
        return item;
       }
     });
-    this.store.setValue(KEYS.chapterDesc,chapDesc);
+    let chapterKey = KEYS.chapterDesc;
+    this.store.setValue(chapterKey,chapDesc);
   }
 
   async onAcademicYerChange(ev:any){
