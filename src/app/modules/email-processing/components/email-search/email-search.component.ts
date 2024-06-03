@@ -102,7 +102,8 @@ export class EmailSearchComponent{
         familyID: [""],
         firstName: [''],
         lastName: [''],
-        homePhone: ['']
+        homePhone: [''],
+        email: ['']
       })
     });
 
