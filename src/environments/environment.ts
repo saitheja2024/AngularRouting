@@ -27,8 +27,8 @@ export const environment = {
       thumbnail: './assets/media/demos/demo1.png',
     }},
 
-  baseURL: 'https://nonregqa.cmwrcregistration.org/MR/',
- // baseURL:"https://nonregcore.cmwrcregistration.org/MR/",
+    baseURL: 'https://nonregqa.cmwrcregistration.org/MR/',
+    //baseURL:"https://nonregcore.cmwrcregistration.org/MR/",
   loginID:'6pUQ10eF2r',
   AUTH_TOKEN_STORAGE_KEY: 'token',
   AUTH_TOKEN_HEADER_NAME: 'X-Auth-Token',
