@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -64,6 +64,9 @@ export class EmailSearchResultsComponent {
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     this.paginator.length=results.totalProjectSummary
     this.dataSource._updateChangeSubscription();
+    this.dataSource.sort = this.sort;
+    this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
+
   }
 
   onFilterClick(filterName:any,filter:any){

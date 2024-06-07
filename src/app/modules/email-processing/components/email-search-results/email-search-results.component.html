@@ -44,7 +44,7 @@
             <div class="card-body border-top p-2">
                 
                 <div class="table-container table-responsive">
-                    <table class="table table-striped table-hover table-row-bordered" mat-table [dataSource]="dataSource">
+                    <table class="table table-striped table-hover table-row-bordered" mat-table [dataSource]="dataSource" matSort>
 
                         <!-- Checkbox Column -->
                         <ng-container matColumnDef="select">
@@ -64,40 +64,40 @@
                       
                         <!-- Position Column -->
                         <ng-container matColumnDef="familyId">
-                          <th valign="middle" class="bold_txt" mat-header-cell *matHeaderCellDef>Family Id</th>
+                          <th valign="middle" class="bold_txt" mat-header-cell *matHeaderCellDef mat-sort-header >Family Id</th>
                           <td valign="middle" mat-cell *matCellDef="let element"> {{element.familyId}}</td>
                         </ng-container>
                       
                         <!-- Name Column -->
                         <ng-container matColumnDef="primaryName">
-                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef>Primary Name</th>
+                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Primary Name</th>
                           <td valign="middle" mat-cell *matCellDef="let element"> {{element.primaryName}} </td>
                         </ng-container>
                       
                         <!-- Weight Column -->
                         <ng-container matColumnDef="registrationStatus">
-                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef> Registration Status </th>
+                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header> Registration Status </th>
                           <td valign="middle" mat-cell *matCellDef="let element"> {{element.registrationStatus}} </td>
                         </ng-container>
                       
                         <!-- Symbol Column -->
                         <ng-container matColumnDef="paymentStatus">
-                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef> Payment Status </th>
+                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header> Payment Status </th>
                           <td valign="middle" mat-cell *matCellDef="let element"> {{element.paymentStatus}} </td>
                         </ng-container>
                       
                         <ng-container matColumnDef="choiceDescription">
-                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef>Session Choice1 /Assigned Session</th>
+                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Session Choice1 /Assigned Session</th>
                             <td valign="middle" mat-cell *matCellDef="let element"> {{element.choiceDescription}} </td>
                           </ng-container>
 
                           <ng-container matColumnDef="TemplateID">
-                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef>Template ID & Preview</th>
+                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef mat-sort-header>Template ID & Preview</th>
                             <td valign="middle" mat-cell *matCellDef="let element"><a href="javascript:void(0);" (click)="previewTemplate(element);">Template</a></td>
                           </ng-container>
 
                           <ng-container matColumnDef="email">
-                            <th valign="middle"  class="bold_txt"  mat-header-cell *matHeaderCellDef>Email</th>
+                            <th valign="middle"  class="bold_txt"  mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
                             <td valign="middle" mat-cell *matCellDef="let element">{{element.email}}</td>
                           </ng-container>
 

@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { RegistrationService } from 'src/app/modules/chinmaya-shared/services/registration-processing/registration.service';
@@ -60,8 +60,11 @@ export class RegistrationSearchResultsComponent {
     this.totalRecCount =results;
     //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
-    this.paginator.length=results.totalProjectSummary
+    this.paginator.length=results.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
+    this.dataSource.sort = this.sort;
+    this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
+
   
  
 
