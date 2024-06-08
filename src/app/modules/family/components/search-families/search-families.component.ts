@@ -32,7 +32,7 @@ export class SearchFamiliesComponent {
 
   async ngOnInit() {
     this.prepareSearchForm();
-    this.onSearchSubmit();
+   // this.onSearchSubmit();
     this.chapterList = await this.programService.fetchChapterList();
     this.personType = await this.masterService.getPersonType();
   }
