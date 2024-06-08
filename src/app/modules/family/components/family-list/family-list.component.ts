@@ -16,12 +16,7 @@ export class FamilyListomponent {
   constructor(
     private familyService: FamilyService,
     private router: Router
-  ) {
-
-  }
-
-
-  
+  ) {}
 
   displayColumns: string[] = ["familyId", "personID", "firstName", "middleName", "lastName", "gender", "dateOfBirth", "personType", "homePhone", "emailAddress"]
   dataSource:any = new MatTableDataSource<any>(); 
@@ -39,7 +34,6 @@ export class FamilyListomponent {
     //this.dataToDisplay = [...this.dataToDisplay, ELEMENT_DATA[randomElementIndex]];
     //this.dataSource.setData(this.dataToDisplay);
     this.dataSource.data=[];
-    console.log(this.dataSource)
   }
 
   showFamilyList(familyList: any) {
