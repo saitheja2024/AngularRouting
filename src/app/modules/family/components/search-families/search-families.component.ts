@@ -33,21 +33,7 @@ export class SearchFamiliesComponent {
 
   async ngOnInit() {
     this.prepareSearchForm();
-    this.onSearchSubmit();
-    this.fetchMasterData()
-   //this.personTypeList = await this.masterService.getPersonType();
-  //  this.masterService.getdataPersontype().subcrible({
-  //   next:(data:any)=>{
-  //     this.personType.selectDropdownList=data;
-  //     console.log(data,"datat")
-  //   }
-  //  });
-
-
-  }
-
-  
-  async fetchMasterData() {
+   // this.onSearchSubmit();
     this.chapterList = await this.programService.fetchChapterList();
 
     this.personTypeList = await this.masterService.getPersonType();

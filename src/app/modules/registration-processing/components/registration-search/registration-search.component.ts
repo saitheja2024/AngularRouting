@@ -103,7 +103,8 @@ export class RegistrationSearchComponent implements OnInit {
         familyID: [""],
         firstName: [''],
         lastName: [''],
-        homePhone: ['']
+        homePhone: [''],
+        email: ['']
       })
     });
 

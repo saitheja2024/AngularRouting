@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/family.service';
@@ -16,12 +16,7 @@ export class FamilyListomponent {
   constructor(
     private familyService: FamilyService,
     private router: Router
-  ) {
-
-  }
-
-
-  
+  ) {}
 
   displayColumns: string[] = ["familyId", "personID", "firstName", "middleName", "lastName", "gender", "dateOfBirth", "personType", "homePhone", "emailAddress"]
   dataSource:any = new MatTableDataSource<any>(); 
@@ -33,18 +28,19 @@ export class FamilyListomponent {
   }
 
   async ngOnInit() {
-    this.familyList = await this.familyService.getFamilyList();
+   // this.familyList = await this.familyService.getFamilyList();
+   this.familyList = '';
     //const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
     //this.dataToDisplay = [...this.dataToDisplay, ELEMENT_DATA[randomElementIndex]];
     //this.dataSource.setData(this.dataToDisplay);
-    console.log(this.familyList);
-    this.dataSource.data=this.familyList.slice(); 
-    console.log(this.dataSource)
+    this.dataSource.data=[];
   }
 
   showFamilyList(familyList: any) {
     this.familyList = familyList;
     this.dataSource.data=this.familyList.slice(); 
+    this.dataSource.sort = this.sort;
+    this.sort.sort(({ id: 'firstName', start: 'desc'}) as MatSortable);
   }
 
   showFamilyMemberList(family: any) {
