@@ -11,6 +11,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class ProgramService {
   
+  
   chapterList: any;
   loggedInUser: any;
   primaryContactDetails$: Subject<any> = new Subject()
@@ -146,5 +147,11 @@ export class ProgramService {
   fetchConvienceFee(body: any) {
     let options: Options = { body: body, url: this.urlService.payment.getConvenienceFee };
     return this.http.post(environment.baseURL + options.url, options.body)
+  }
+
+  
+  
+  fetchSchoolGradeList() {
+    return this.http.get<any>(`${environment.baseURL}/master/fetchSchoolGradeList`);
   }
 }

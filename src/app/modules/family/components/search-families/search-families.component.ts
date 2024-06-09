@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { data } from 'jquery';
 import { FamilySearchInterface } from 'src/app/modules/chinmaya-shared/interfaces/family-interfaces/family-search';
 import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/family.service';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
@@ -16,7 +17,7 @@ export class SearchFamiliesComponent {
   @Output() familyList = new EventEmitter<any>();
   searchForm: any;
   chapterList: any;
-  personType: any;
+  personTypeList: any;
 
 
 
@@ -33,8 +34,23 @@ export class SearchFamiliesComponent {
   async ngOnInit() {
     this.prepareSearchForm();
     this.onSearchSubmit();
+    this.fetchMasterData()
+   //this.personTypeList = await this.masterService.getPersonType();
+  //  this.masterService.getdataPersontype().subcrible({
+  //   next:(data:any)=>{
+  //     this.personType.selectDropdownList=data;
+  //     console.log(data,"datat")
+  //   }
+  //  });
+
+
+  }
+
+  
+  async fetchMasterData() {
     this.chapterList = await this.programService.fetchChapterList();
-    this.personType = await this.masterService.getPersonType();
+
+    this.personTypeList = await this.masterService.getPersonType();
   }
 
 
@@ -58,7 +74,6 @@ export class SearchFamiliesComponent {
   async onSearchSubmit() {
     let searchParams: FamilySearchInterface = this.searchForm.value;
     let familyList = await this.familyService.searchFamilies(searchParams);
-
     this.familyList.emit(familyList);
 
   }

@@ -18,6 +18,7 @@ export class FamilyMemberDetailsComponent {
   maritialStatusList: any;
   chapterCodes: any;
   stateList: any;
+  personTypeVal: any;
 
 
   constructor(
@@ -48,7 +49,9 @@ export class FamilyMemberDetailsComponent {
     this.chapterCodes = await this.programService.fetchChapterList();
     this.stateList = await this.masterService.getStateList();
   }
-
+  fieldInterChange(event:any){
+    this.personTypeVal = event.target.value;
+  }
 
 
   loadDataIntoForm(data: any) {

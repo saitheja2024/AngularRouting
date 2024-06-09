@@ -46,6 +46,7 @@ export class MasterService {
 
     if (personType && personType.selectDropdownList) {
       this.personType = personType.selectDropdownList;
+
     }
 
     return this.personType;
@@ -267,6 +268,16 @@ export class MasterService {
     return this.httpService.get(options);
 
   }
+
+  
+  // getdataPersontype(): any {
+  //   let options: Options = { body: null, url:"master/fetchPersonTypeList" };
+  //   return this.httpService.get(options);
+
+  // }
+  // fetchData(): any {
+  //   return this.httpService.get('https://nonregqa.cmwrcregistration.org/MR/master/fetchPersonTypeList');
+  // }
 
   async fetchgccSessionData() {
 

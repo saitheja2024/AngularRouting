@@ -12,7 +12,7 @@
             </button>
             <h3 class="panel-title">
                 <img src="assets/chinmaya_media/images/SVG-color/Add Family Registration Details-icon.svg"
-                    style="width: 25px;"> Add Family Registration Details
+                    style="width: 25px;">Add Family Registration Details
             </h3>
         </div>
         <!--end::Search-->
@@ -44,13 +44,14 @@
                                             <option [value]="status.code" *ngFor="let status of statusList">{{status.code}}</option>
                                         </select>
                                     </div>
+
+                                    
                                     <div  class="col-lg-3 fv-row">
                                         <label  class="col-form-label required fw-semibold fs-6">Type of Person</label>
-                                        <select  formcontrolname="personType" name="country" id="country" aria-label="Type of Person" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                        <select  formcontrolname="personType" name="country" id="country" aria-label="Type of Person" (change)="fieldInterChange($event);" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
                                             <option  value="">Select</option>
-                                            <option  value="ADULT"> Adult (&gt; 26 year old)</option>
-                                            <option  value="CHILD"> Child (12th grade and lower)</option>
-                                            <option  value="YOUTH"> Youth ( Above 12th grade and below 27th year old) </option>
+                                            <option *ngFor="let type of personTypeList" [value]="type.code">{{type.description}}</option>
+                                            
                                         </select>
                                     </div>
                                     <div  class="col-lg-3 fv-row">
@@ -61,14 +62,22 @@
                                             <option  value="F"> Female</option>
                                         </select>
                                     </div>
-                                    <div  class="col-lg-3 fv-row">
+                                    <div  class="col-lg-3 fv-row" *ngIf="personTypeVal!=='CHILD'">
                                         <label  class="col-form-label required fw-semibold fs-6">Marital Status</label>
                                         <select  formcontrolname="maritalStatus" name="MaritalStatus" aria-label="Select a Marital Status" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold ">
                                             <option  value="" ng-reflect-value="">Select</option>
                                             <option  value="Married" ng-reflect-value="Married"> Married</option>
                                             <option  value="Single" ng-reflect-value="Single"> Single</option>
                                         </select>
-                                    </div>
+                                     </div>
+                                    <div  class="col-lg-3 fv-row"*ngIf="personTypeVal=='CHILD'">
+                                        <label  class="col-form-label required fw-semibold fs-6">School Grade (As of Sep 2023)</label>
+                                        <select  formcontrolname="maritalStatus" name="MaritalStatus" aria-label="Select a Marital Status" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold ">
+                                            <option  value="" ng-reflect-value="">Select</option>
+                                            <option  value="Married" ng-reflect-value="Married"> Married</option>
+                                            <option  value="Single" ng-reflect-value="Single"> Single</option>
+                                        </select>
+                                     </div>
                                     </div>
                                 </div>
                                 <div  class="row">
@@ -248,7 +257,7 @@
                                         <div  class="col-lg-4"></div>
                                     </div>
 
-                                    <div  id="ChilParentdDiv1" class="col-lg-12 mt-3 CHILD border border-active active p-5" style="border-radius: 5px !important; border: 1px solid #ddd !important;">
+                                    <div id="ChilParentdDiv1" class="col-lg-12 mt-3 CHILD border border-active active p-5" style="border-radius: 5px !important; border: 1px solid #ddd !important;">
                                         <div  class="row">
                                             <div  class="panel panel-white">
                                                 <div  class="panel-heading">
