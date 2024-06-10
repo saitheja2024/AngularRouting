@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
-import { ChapterCodeRequestInterface, ProgramRequestInterface } from './master-interface';
-
+import { ChapterCodeRequestInterface, ProgramRequestInterface, adultpersonListInterface } from './master-interface';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,10 +22,16 @@ export class MasterService {
   private chapterList: any=null;
   private vaccinationList: any;
   private gccSessionData: any;
-
+  private getstateLists: any = null;
+  private getGenderList: any = null;
+  private relationshipPrimaryConList: any =null;
+  private custodyList:any=null;
+  private fetchYesorNo:any=null;
+  private RelationshipListForChild:any=null;
   constructor(
     private httpService: HttpService,
-    private urlService: UrlService
+    private urlService: UrlService,
+    private http:HttpClient
   ) { }
 
 
@@ -76,8 +84,28 @@ export class MasterService {
 
   }
 
+  async fetchGenderList() {
 
 
+    if (this.getGenderList != null) {
+      return this.getGenderList;
+    }
+
+    this.getGenderList = []
+    let options: Options = {
+      url: this.urlService.masterURL.fetchGenderList,
+      body: null
+    }
+
+    let getGenderList: any = await this.httpService.get(options);
+
+    if (getGenderList && getGenderList.selectDropdownList) {
+      this.getGenderList = getGenderList.selectDropdownList;
+    }
+
+    return this.getGenderList;
+
+  }
 
   async getMaritialStatusList() {
     if (this.maritialStatusList != null) {
@@ -99,12 +127,6 @@ export class MasterService {
     return this.maritialStatusList;
   }
 
-
-
-
-
-
-
   async getStateList() {
     if (this.stateList != null) {
       return this.stateList;
@@ -124,6 +146,27 @@ export class MasterService {
 
     return this.stateList;
   }
+
+  async fetchstateList(){
+
+    if (this.getstateLists != null) {
+      return this.getstateLists;
+    }
+
+    this.getstateLists = []
+    let options: Options = {
+      url: this.urlService.masterURL.fetchRegistrationStatesList,
+      body: null
+    }
+
+    let stateList: any = await this.httpService.get(options);
+
+    if (stateList && stateList.selectDropdownList) {
+      this.getstateLists = stateList.selectDropdownList;
+    }
+
+    return this.getstateLists;
+   }
 
 
 
@@ -280,4 +323,109 @@ export class MasterService {
 
   }
 
+  async fetchRelationshipPrimaryContactList() {
+
+    if (this.relationshipPrimaryConList) {
+      return this.relationshipPrimaryConList
+    }
+
+    let options: Options = { body: null, url: this.urlService.masterURL.fetchRelationshipPrimaryContactList };
+    this.relationshipPrimaryConList = await this.httpService.get(options);
+    return this.relationshipPrimaryConList;
+
+  }
+
+  async fetchCustodyList() {
+
+    if (this.custodyList) {
+      return this.custodyList
+    }
+
+    let options: Options = { body: null, url: this.urlService.masterURL.fetchCustodyList };
+    this.custodyList = await this.httpService.get(options);
+    return this.custodyList;
+
+  }
+
+  async fetchfetchYesorNo() {
+
+    if (this.fetchYesorNo) {
+      return this.fetchYesorNo
+    }
+
+    let options: Options = { body: null, url: this.urlService.masterURL.fetchYesorNo };
+    this.fetchYesorNo = await this.httpService.get(options);
+    return this.fetchYesorNo;
+
+  }
+
+  async fetchRelationshipListForChild() {
+
+    if (this.RelationshipListForChild) {
+      return this.RelationshipListForChild
+    }
+
+    let options: Options = { body: null, url: this.urlService.masterURL.fetchRelationshipPrimaryContactList };
+    this.RelationshipListForChild = await this.httpService.get(options);
+    return this.RelationshipListForChild;
+
+  }
+
+  async fetchAdultPersonList(param:adultpersonListInterface){
+
+    let options:Options={
+      url: this.urlService.masterURL.fetchAdultPersonsByFamilyId,
+      body:param
+    }
+
+    let AdultPersonList:any = await this.httpService.post(options);
+    return AdultPersonList;
+
+  }
+
+  FetchUpdatePersonData(param:any){
+    return this.httpService.post({
+      body: param,
+      url: this.urlService.masterURL.fetchPersonByPersonId
+    })
+  }
+
+  upload(URL:any, file:any, queryparam:any): Observable<any> {
+    // Create form data
+    const formData = new FormData();
+
+    // Store form name as "file" with file data
+    formData.append('file', file, file?.name);
+
+    // Make http post request over api
+    // with formData as req
+    return this.http.post(`${environment.baseURL}`+URL+queryparam, formData);
+  }
+
+  downloadUploadFile(param:any){
+    const headers = new HttpHeaders().set('Accept', '*/*');
+    return this.http.get<Blob>(`${environment.baseURL}/file/downloadFile`+param,{
+      headers: headers,
+      responseType: 'blob' as 'json'
+    });
+  }
+
+  savePersonFamily(param:any, URL:any){
+    let APIName= URL;
+    return this.http.post<any>(`${environment.baseURL}`+APIName, param);
+  }
+
+  async fetchSchoolGradeLabel(body: any) {
+    let options: Options = { body: body, url: "/organization/fetchSchoolGradeLabel" };
+    let data =  await this.httpService.post(options);
+    return data;
+  }
+
+
+  async fetchRisingGradeLabel(body: any) {
+    let options: Options = { body: body, url: "/organization/fetchRisingGradeLabel" };
+    let data =  await this.httpService.post(options);
+    return data;
+  }
+  
 } 

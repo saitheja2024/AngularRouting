@@ -55,7 +55,14 @@ export class UrlService {
     fetchSchoolGradeList:"/master/fetchSchoolGradeList",
     fetchVaccinationList:'master/fetchVaccinationList',
     fetchTShirtSizeList:'master/fetchTShirtSizeList',
-    fetchGCCSession:'master/fetchGCCSession'
+    fetchGCCSession:'master/fetchGCCSession',
+    fetchRegistrationStatesList:'master/fetchRegistrationStatesList',
+    fetchRelationshipPrimaryContactList:'master/fetchRelationshipPrimaryContactList',
+    fetchCustodyList:'fetchCustodyList',
+    fetchYesorNo:'fetchYesorNo',
+    fetchRelationshipListForChild:'master/fetchRelationshipListForChild',
+    fetchAdultPersonsByFamilyId:'registration/fetchAdultPersonsByFamilyId',
+    fetchPersonByPersonId:"registration/fetchPersonByPersonId"
   }
 
   unLockAccountURL={

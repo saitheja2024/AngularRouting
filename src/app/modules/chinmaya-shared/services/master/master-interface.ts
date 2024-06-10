@@ -15,6 +15,12 @@
         programCode: string,
         userName: string
     }
-
+export interface adultpersonListInterface{
+    familyId: number,
+    programCode: number,
+    chapterCode: number,
+    paymentFlag: boolean,
+    personId: number
+}
 
 
