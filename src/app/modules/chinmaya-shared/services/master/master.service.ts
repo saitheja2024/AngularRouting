@@ -377,7 +377,8 @@ export class MasterService {
     }
 
     let options: Options = { body: null, url: this.urlService.masterURL.fetchRelationshipPrimaryContactList };
-    this.RelationshipListForChild = await this.httpService.get(options);
+    let RelationshipListForChild:any = await this.httpService.get(options);
+    this.RelationshipListForChild = RelationshipListForChild.selectDropdownList
     return this.RelationshipListForChild;
 
   }

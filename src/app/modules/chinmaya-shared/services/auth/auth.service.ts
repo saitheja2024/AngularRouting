@@ -50,6 +50,8 @@ export class AuthService implements OnDestroy {
     console.log(loggedInUser);
     console.log('---test---');
     this.store.setValue(loggedInUser,response);
+    sessionStorage.setItem('profileData', JSON.stringify(response));
+    
     return response;
     
   }

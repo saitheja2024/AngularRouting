@@ -402,7 +402,7 @@
                                                                 <select class="form-select form-select-md p-2 fw-semibold" name="Person[relation1]"
                                                                 [(ngModel)]="relatedPersonId" formControlName="relatedPersonId" (change)="onRelationChange($event,'relatedPersonIdError')">
                                                                     <option value="">Select</option>
-                                                                    <option *ngFor="let item of fetchAdultPersons"
+                                                                    <option *ngFor="let item of fetchAdultPersons?.selectDropdownList"
                                                                     [value]="item.code">{{item.description}}</option>
                                                                 </select>
                                                                 <div class="help-block with-errors text-danger" *ngIf="relatedPersonIdError">Field is required</div>
@@ -467,7 +467,7 @@
                                         <a class="btn btn-sm btn-light border border-primary border-active active text-primary mt-2" routerLink="/family/familyMemberList/false">Cancel</a>
                                         <!--end::Link-->
                                         <!--begin::Button-->
-                                        <button type="button" [disabled]="isFormValid() || zipCode.value.length<5" (click)="saveFamilyPerson('save');" id="kt_ecommerce_add_category_submit" class="btn btn-primary ms-2 btn-sm mt-2">
+                                        <button type="button" [disabled]="isFormValid() || zipCode?.value?.length<5" (click)="saveFamilyPerson('save');" id="kt_ecommerce_add_category_submit" class="btn btn-primary ms-2 btn-sm mt-2">
                                             <span class="indicator-label">Save</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -475,7 +475,7 @@
                                         <!--end::Button-->       
         
                                         <!--begin::Button-->
-                                        <button type="button" [disabled]="isFormValid() || zipCode.value.length<5" (click)="saveFamilyPerson('saveandAdd');" id="kt_ecommerce_add_category_submit" class="btn btn-primary btn-sm mr-2 mt-2 ms-2">
+                                        <button type="button" [disabled]="isFormValid() || zipCode?.value?.length<5" (click)="saveFamilyPerson('saveandAdd');" id="kt_ecommerce_add_category_submit" class="btn btn-primary btn-sm mr-2 mt-2 ms-2">
                                             <span class="indicator-label text-nowrap">Save & Add Another Member</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>

@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/modules/auth';
 import Swal from 'sweetalert2'
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/family.service';
-
+import { StoreService, KEYS } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 declare function scrollTop():any;
 
 @Component({
@@ -42,6 +42,7 @@ export class FamilyMemberDetailsComponent {
   personID:any;
   currentUserData:any;
   selectedFamilyMember:any;
+  selectedChapterCode:any;
   get zipCode() {
     return this.CreateAccountForm.get('zipCode')!;
   }
@@ -56,7 +57,8 @@ export class FamilyMemberDetailsComponent {
 
   constructor(private router:Router, private route: ActivatedRoute, private http:HttpClient, 
     private authService:AuthService, private fb:FormBuilder, private renderer:Renderer2,
-    private programService:ProgramService, private MasterService:MasterService,  private familyService: FamilyService) {
+    private programService:ProgramService, private MasterService:MasterService,  
+    private familyService: FamilyService, private store:StoreService) {
     this.CreateAccountForm = this.fb.group({
       personID: new FormControl(0),
       firstName: new FormControl('',[Validators.required]),
@@ -122,11 +124,13 @@ export class FamilyMemberDetailsComponent {
     }else{
       this.personUpdateData=undefined;
     }
-              
-      this.currentUserData= this.authService.getLoggedInUser();
+      let logedInUserData = JSON.parse(sessionStorage.getItem('profileData') || '');
+      this.currentUserData= logedInUserData;
+      this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+
       this.familyId= this.currentUserData?.familyID;
       this.personID = this.currentUserData?.personID;
-      this.chapterCode = this.currentUserData?.chapter;
+      this.chapterCode = this.selectedChapterCode;
     //scrollTop();
     
     console.log(this.currentUserData);
@@ -142,8 +146,8 @@ export class FamilyMemberDetailsComponent {
     await  this.fetchRelationshipPrimaryContactList();
     await  this.fetchParentDataList();
     await  this.fetchAdultPersonData();
-    await  this.fetchCustodyListData();
-    await  this.fetchYesorNoList();
+    //await  this.fetchCustodyListData();
+   // await  this.fetchYesorNoList();
     
     this.CreateAccountForm.controls['state'].disable();
     if(this.action=='Edit'){ this.fetchUpdatePerson(); }else { this.AddFamliyMemberDatapopulate(); }
@@ -317,8 +321,8 @@ export class FamilyMemberDetailsComponent {
   }
 
   fetchCustodyData:any;
-  fetchCustodyListData(){
-    this.fetchCustodyData = this.MasterService.fetchCustodyList();
+ async fetchCustodyListData(){
+    this.fetchCustodyData = await this.MasterService.fetchCustodyList();
   }
 
   fetchYesorNO:any;
@@ -327,8 +331,8 @@ export class FamilyMemberDetailsComponent {
   }
 
   fetchParentList:any;
-  fetchParentDataList(){
-    this.fetchParentList =  this.MasterService.fetchRelationshipListForChild();
+  async fetchParentDataList(){
+    this.fetchParentList =  await this.MasterService.fetchRelationshipListForChild();
   }
 
   fetchAdultPersons:any;
@@ -416,7 +420,7 @@ export class FamilyMemberDetailsComponent {
     }
 
     let Stateflag= false;
-    this.stateList.selectDropdownList.filter((item:any) => {
+    this.stateList.filter((item:any) => {
       if(item.code==stateVal){
         Stateflag=true;
       }
@@ -823,7 +827,7 @@ export class FamilyMemberDetailsComponent {
  saveFamilyPerson(type:any){
   this.CreateAccountForm.markAsTouched();
   this.validateFlag=false;
-  let userData = JSON.parse(localStorage.getItem('CurrentUser') || '');
+  let userData = JSON.parse(sessionStorage.getItem('profileData') || '');;
     
   if(this.validateRquired()){
     if((this.CreateAccountForm.controls['sphomePhoneFlag'].value !='' && this.CreateAccountForm.controls['sphomePhoneFlag'].value !=null && this.CreateAccountForm.controls['sphomePhoneFlag'].value !=0) || (this.CreateAccountForm.controls['mobileFlag'].value !='' && this.CreateAccountForm.controls['mobileFlag'].value !=null && this.CreateAccountForm.controls['mobileFlag'].value !=0)){

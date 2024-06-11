@@ -47,7 +47,7 @@ export class SearchFamiliesComponent {
     this.searchForm = this.fb.group({
       familyID: [''],
       lastName: [''],
-      firstName: ['moh'],
+      firstName: [''],
       homePhone: [''],
       email: ['', [Validators.email]],
       registrantType: [''],

@@ -22,7 +22,6 @@ export class StoreService{
   private chapterSubject$: Subject<any> = new Subject();
   private chapterSubjectDesc$: Subject<any> = new Subject();
 
-
   constructor() { 
   
     this.store={
@@ -66,7 +65,7 @@ export class StoreService{
     this.store[key] = obj;
     console.log("###########   Current Store values ##################");
     console.log(JSON.stringify(this.store,null,4));
-    // If Program's value is updated then
+    // If Program's ;value is updated then
     if(key==KEYS.program){
       this.programSubject$.next(obj);
     }
@@ -85,12 +84,9 @@ export class StoreService{
   }
 
 
-
   getValue(key: string): any {   
     return this.store[key];
   }
-
-
 
 
   getStore(){
@@ -116,8 +112,6 @@ export class StoreService{
   public onChapterDescUpdate(): Observable<any> {
     return this.chapterSubjectDesc$.asObservable();
   }
-
-
 
 
 }
