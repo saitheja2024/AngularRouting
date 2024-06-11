@@ -25,8 +25,9 @@ export class ProgramService {
       this.loggedInUser = this.autService.getLoggedInUser()
     }
 
-  async fetchChapterList(reload?:any){
-     let chapterList=await this.masterService.fetchChaptherList({username:this.loggedInUser.username});
+  async fetchChapterList(params?:any){
+    let param = {username: params.username};
+     let chapterList=await this.masterService.fetchChaptherList(param);
      return chapterList;
   }
 

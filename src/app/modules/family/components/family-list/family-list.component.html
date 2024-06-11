@@ -26,18 +26,56 @@
 	<div class="card-body p-0">
 		<div class="table-container">
 			<table mat-table [dataSource]="dataSource"  matSort class="mat-table" >
-				<ng-container *ngFor="let columnName of displayColumns; let i = index" matColumnDef="{{columnName}}" >
-					<th mat-header-cell *matHeaderCellDef  mat-sort-header > {{ columnName }} </th>
-					<td mat-cell *matCellDef="let element">
-						<!-- Check if the current column is 'familyID' -->
-						<ng-container *ngIf="columnName === 'familyId'; else regularCell">
-						  <!-- Provide hyperlink for the 'familyID' column -->
-						  <a (click)="showFamilyMemberList(element)" style="cursor: pointer;">{{ element[columnName] }}</a>
-						</ng-container>
-						<!-- Regular cell content -->
-						<ng-template #regularCell>{{ element[columnName] }}</ng-template>
-					  </td>
-				</ng-container>
+				
+				  <ng-container matColumnDef="familyId">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Family ID</th>
+					<td valign="middle" mat-cell *matCellDef="let element"><a (click)="showFamilyMemberList(element)" style="cursor: pointer; color:rgb(28, 147, 245)">{{element.familyId}}</a></td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="personID">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Person ID</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.familyId}}</td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="firstName">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>First Name</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.firstName}}</td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="middleName">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Middle Name</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.middleName}}</td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="lastName">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.lastName}}</td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="gender">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Gender</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.gender}}</td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="dateOfBirth">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Date Of Birth</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.dateOfBirth}}</td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="personType">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Person Type</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.personType}}</td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="homePhone">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Home Phone</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.homePhone}}</td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="emailAddress">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Email</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.emailAddress}}</td>
+				  </ng-container>
 					<tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true;background:lightgray"></tr>
 					<tr mat-row *matRowDef="let row; columns: displayColumns;" ></tr>
 			</table>  

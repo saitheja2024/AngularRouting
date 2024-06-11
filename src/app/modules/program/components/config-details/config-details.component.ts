@@ -4,7 +4,7 @@ import { PageInfoService, PageLink } from 'src/app/_metronic/layout/core/page-in
 import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program/program.service';
 import { ReportsService } from 'src/app/modules/chinmaya-shared/services/reports/reports.service';
 // import { PageInfoService, PageLink } from '../../../core/page-info.service';
-
+import { AuthService } from 'src/app/modules/auth';
 @Component({
   selector: 'app-config-details',
   templateUrl: './config-details.component.html',
@@ -21,7 +21,8 @@ export class ConfigDetailsComponent {
   (
     private fb:FormBuilder,
     private programService:ProgramService,
-    private reportService:ReportsService
+    private reportService:ReportsService,
+    private authService:AuthService
   )
   {
 
@@ -30,7 +31,8 @@ export class ConfigDetailsComponent {
 
   async ngOnInit(){
     this.initConfigDetailsForm();
-    this.chapterList = await this.programService.fetchChapterList();
+    let loggedInUser = this.authService.getLoggedInUser()
+    this.chapterList = await this.programService.fetchChapterList(loggedInUser);
     
   }
 

@@ -5,7 +5,7 @@ import { FamilySearchInterface } from 'src/app/modules/chinmaya-shared/interface
 import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/family.service';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program/program.service';
-
+import { AuthService } from 'src/app/modules/auth';
 @Component({
   selector: 'app-search-families',
   templateUrl: './search-families.component.html',
@@ -18,23 +18,25 @@ export class SearchFamiliesComponent {
   searchForm: any;
   chapterList: any;
   personTypeList: any;
-
+  loggedInUser:any;
 
 
   constructor( 
     private familyService: FamilyService,
     private fb: FormBuilder,
     private programService: ProgramService,
-    private masterService: MasterService
+    private masterService: MasterService,
+    private authService:AuthService
   ) { }
 
 
 
 
   async ngOnInit() {
+    this.loggedInUser = this.authService.getLoggedInUser()
     this.prepareSearchForm();
    // this.onSearchSubmit();
-    this.chapterList = await this.programService.fetchChapterList();
+    this.chapterList = await this.programService.fetchChapterList(this.loggedInUser);
 
     this.personTypeList = await this.masterService.getPersonType();
   }
