@@ -58,8 +58,8 @@ export class UrlService {
     fetchGCCSession:'master/fetchGCCSession',
     fetchRegistrationStatesList:'master/fetchRegistrationStatesList',
     fetchRelationshipPrimaryContactList:'master/fetchRelationshipPrimaryContactList',
-    fetchCustodyList:'fetchCustodyList',
-    fetchYesorNo:'fetchYesorNo',
+    fetchCustodyList:'master/fetchChildCustodyList',
+    fetchYesorNo:'master/fetchYesNoList',
     fetchRelationshipListForChild:'master/fetchRelationshipListForChild',
     fetchAdultPersonsByFamilyId:'registration/fetchAdultPersonsByFamilyId',
     fetchPersonByPersonId:"registration/fetchPersonByPersonId"

@@ -146,8 +146,8 @@ export class FamilyMemberDetailsComponent {
     await  this.fetchRelationshipPrimaryContactList();
     await  this.fetchParentDataList();
     await  this.fetchAdultPersonData();
-    //await  this.fetchCustodyListData();
-   // await  this.fetchYesorNoList();
+    await  this.fetchCustodyListData();
+    await  this.fetchYesorNoList();
     
     this.CreateAccountForm.controls['state'].disable();
     if(this.action=='Edit'){ this.fetchUpdatePerson(); }else { this.AddFamliyMemberDatapopulate(); }
@@ -980,10 +980,10 @@ export class FamilyMemberDetailsComponent {
       
 
        if(type!='saveandAdd'){ 
-        this.router.navigate(['familyview']);
+        this.router.navigate(['family/familyMemberList/false']);
          
       }else{
-        this.router.navigate(['familyview/add']);
+        this.router.navigate(['family/familyMemberList/false']);
         this.downloadPhoto='';
         this.loadingImage=false;
         this.tabOne = true;

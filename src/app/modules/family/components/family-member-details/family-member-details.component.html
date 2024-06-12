@@ -430,7 +430,7 @@
                                                                 <select aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold"
                                                                 [(ngModel)]="relatedPersonId1" formControlName="relatedPersonId1" (change)="onRelationChange($event,'relatedPersonId1Error')">
                                                                     <option value="">Select</option>
-                                                                    <option *ngFor="let item of fetchAdultPersons"
+                                                                    <option *ngFor="let item of fetchAdultPersons?.selectDropdownList"
                                                                     [value]="item.code">{{item.description}}</option>
                                                                 </select>
                                                                 <div class="help-block with-errors text-danger" *ngIf="relatedPersonId1Error">Field is required</div>
@@ -448,7 +448,7 @@
                                                                 <select class="form-select form-select-md p-2 fw-semibold" name="Person[CustodyIssue]"
                                                                 [(ngModel)]="CustodyIssue" formControlName="CustodyIssue">
                                                                     <option value="">select</option>
-                                                                    <option *ngFor="let item of fetchCustodyData"
+                                                                    <option *ngFor="let item of fetchCustodyData?.selectDropdownList"
                                                                     [value]="item.code">{{item.description}}</option>
                                                                 </select>
                                                                 <div class="help-block with-errors text-danger"></div>
