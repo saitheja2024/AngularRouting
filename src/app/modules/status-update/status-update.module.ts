@@ -1,25 +1,66 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Route, RouterModule, Routes } from '@angular/router';
-import { STATUS_UPDATE_COMPONENTS } from './components/status-update.index';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
-import { StatusUpdateRoutingModule } from './status-update-routing.module';
 import { StatusSearchHomeComponent } from './components/status-search-home/status-search-home.component';
+import { StatusSearchComponent } from './components/status-search/status-search.component';
+import { StatusSearchResultsComponent } from './components/status-search-results/status-search-results.component';
 import { SelectionComponent } from './components/selection/selection.component';
 import { ReviewComponent } from './components/review/review.component';
 import { CompleteComponent } from './components/complete/complete.component';
 
+const routes: Routes = [
+  {
+    path: '',
+    component: StatusSearchHomeComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'status-search',
+        pathMatch: 'full',
+      },
+      {
+        path: 'status-search',
+        component: StatusSearchComponent,
+      },
+      {
+        path: 'status-search-results',
+        component: StatusSearchResultsComponent,
+          children: [
+            {
+              path: '',
+              redirectTo: 'selection',
+              pathMatch: 'full',
+            },
+            {
+              path:'reveiw',
+              component:ReviewComponent
+            },
+            {
+              path:'complete',
+              component:CompleteComponent
+            }
+          ]
+      },
+
+      { path: '', redirectTo: 'status-search', pathMatch: 'full' },
+    ]
+  },
+];
 
 @NgModule({
   declarations: [
-    STATUS_UPDATE_COMPONENTS,
+    StatusSearchHomeComponent,
+    StatusSearchComponent,
+    StatusSearchResultsComponent,
     SelectionComponent,
     ReviewComponent,
     CompleteComponent
   ],
   imports: [
+    RouterModule.forChild(routes),
     ChinmayaSharedModule,
-    StatusUpdateRoutingModule
-  ]
+  ],
+  exports: [RouterModule],
 })
 export class StatusUpdateModule { }
