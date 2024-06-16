@@ -63,8 +63,8 @@
 				</thead>
 				<tbody>
 					<tr *ngFor="let member of allFamilyMembers">
-						<td class="text-start text-nowrap" (click)="showFamilyMemberDetails(member)">
-							{{member.personID}}
+						<td class="text-start text-nowrap" >
+							<a href="javascript:void(0);" (click)="showFamilyMemberDetails(member)">{{member.personID}}</a>
 						</td>
 						<td class="text-start text-nowrap" (click)="showFamilyMemberDetails(member)">
 							{{member.familyId}}

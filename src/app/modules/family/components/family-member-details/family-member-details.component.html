@@ -1,4 +1,673 @@
 
+<div class="MblShowHide" style="display:none;">
+    <div class="d-flex justify-content-center mb-5">
+        <button [ngClass]="(tabOne)?'btn-dark':'btn-secondary'" class="btn btn-sm" style="border-radius: 30px !important;">Step 1</button>   
+        <button *ngIf="personTypeVal=='CHILD'" [ngClass]="(tabTwo)?'btn-dark':'btn-secondary'" class="btn btn-sm" style="border-radius: 30px !important;">Step 2</button>
+        <button  [ngClass]="(tabThree)?'btn-dark':'btn-secondary'" class="btn btn-sm" style="border-radius: 30px !important;">{{(personTypeVal!='CHILD')?'Step 2':'Step 3'}}</button> 
+    </div>
+
+<!--begin::Form-->
+<form [formGroup]="CreateAccountForm" autocomplete="off" id="kt_account_profile_details_form" class="form">
+    
+    <div *ngIf="tabOne" class="card mb-5" style="border:1px solid #ddd;">
+        <div class="card-header pe-4 ps-4">
+            <!--begin::Title-->
+<h3 class="card-title align-items-start flex-column">
+              <span class="card-label fw-bold text-gray-800">{{(personUpdateData!=undefined)?'Edit Family Registration Details' : 'Add Family Member Details'}}</span>
+</h3>
+<!--end::Title-->
+<!--begin::Toolbar-->
+<div class="card-toolbar">
+                <a routerLink="/familyview" class="btn btn-sm fw-bold btn-primary">
+                    <i class="ki-duotone ki-black-left fs-2"></i>
+                    Back to Program Registration
+  </a>
+</div>
+<!--end::Toolbar-->
+</div>
+<!--begin::Content-->
+<div id="kt_account_settings_profile_details" class="collapse show">
+            <!--begin::Card body-->
+<div class="card-body p-4">
+
+
+                
+                    <div class="border border-active active p-4 mb-4" style="border-radius:5px !important;border:1px solid #ddd !important;">
+                        <!--begin::Row-->
+      <div class="row">
+                            <!--begin::Col-->
+        <div class="col-lg-4 fv-row">
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">First Name</label>
+          <input appCapitalize formControlName="firstName" autocomplete="off" type="text" name="fname" class="form-control form-control-md mb-3 mb-lg-0 p-2" placeholder="First name"/>
+          <div *ngIf="CAF['firstName'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+            Please Enter First Name.
+          </div>
+        </div>
+        <!--end::Col-->
+                                
+        <!--begin::Col-->
+        <div class="col-lg-4 fv-row">
+                                <label class="col-lg-4 col-form-label fw-semibold fs-6">Middle Name</label>
+          <input appCapitalize type="text" name="lname" formControlName="middleName" autocomplete="off" class="form-control form-control-md p-2" placeholder="Middle name"/>
+        </div>
+        <!--end::Col-->
+                                
+        <!--begin::Col-->
+        <div class="col-lg-4 fv-row">
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Last Name</label>
+          <input appCapitalize formControlName="lastName" autocomplete="off" type="text" name="lname" class="form-control form-control-md p-2" placeholder="Last name"/>
+          <div *ngIf="CAF['lastName'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    Please Enter Last Name.
+                                </div>
+                            </div>
+                            <!--end::Col-->
+      </div>
+      <!--end::Row--> 
+                            
+      <!--begin::Row-->
+      <div class="row mb-6">
+                            <!--begin::Col-->
+        <div class="col-lg-3 fv-row">
+                                <label class="col-form-label required fw-semibold fs-6">Status</label>
+          <select formControlName="status" name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                    <option value="">Select Status</option>
+            <option *ngFor="let item of statusList" [value]="item.code">
+                                        {{item.description}}</option>                                                                    
+          </select>
+          <div *ngIf="CAF['status'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    Please Select Status.
+                                </div>
+        </div>
+        <!--end::Col-->
+        <!--begin::Col-->
+        <div class="col-lg-3 fv-row" *ngIf="personTypeVal!='CHILD' && personTypeVal!='YOUTH'&& dataReceived?.primaryContact==fetchPersonUpdateResponse?.primaryContact && personUpdateData==dataReceived?.personID">
+                                <label class="col-form-label fw-semibold fs-6">Member Since</label>
+          <input type="date" formControlName="memberSince" format="YYYY/MM/DD"  autocomplete="off" name="MemberSince" class="form-control form-control-md p-2" placeholder="Member Since"/>
+        </div>
+        <!--end::Col-->
+        <!--begin::Col-->
+        <div class="col-lg-3 fv-row">
+                                <label class="col-form-label required fw-semibold fs-6">Type of Person</label>
+          <select formControlName="personType" name="country" id="country" aria-label="Type of Person" (change)="fieldInterChange($event);"  data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                    <option value="">Select</option>
+            <option *ngFor="let item of personTypeList" [value]="item.code">
+                                        {{item.description}}</option>    
+          </select>
+          <div *ngIf="CAF['personType'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+            Please Select Type Of Person.
+                                </div>
+                            </div>
+        <!--end::Col-->
+        <!--begin::Col-->
+        <div class="col-lg-3 fv-row">
+                                <label class="col-form-label required fw-semibold fs-6">Gender</label>
+          <select formControlName="gender" aria-label="Select a Gender" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                    <option value="">Select Gender</option>
+            <option *ngFor="let item of fetchGenderList" [value]="item.code">
+                                        {{item.description}}</option>                                                                    
+          </select>
+                                <div *ngIf="CAF['gender'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+           Please Select Gender.
+          </div>
+        </div>
+        <!--end::Col-->
+        <!--begin::Col-->
+        <div class="col-lg-3 fv-row" *ngIf="personTypeVal=='CHILD'">
+                                <label class="col-form-label required fw-semibold fs-6">School Grade ({{schGradeLabel}})</label>
+                                <select  formControlName="schoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                    <option value="">Select School Grade</option>
+            <option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}</option>
+                                </select>
+          <div *ngIf="CAF['schoolGrade'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    Please Select School Grade.
+          </div>
+        </div>
+        <div class="col-lg-3 fv-row" *ngIf="personTypeVal=='CHILD' && CAF['schoolGrade'].value=='18'">
+            <label class="col-form-label fw-semibold required fs-6">Date Of Birth</label>
+            <input type="date" formControlName="dateOfBirth" format="MM/DD/YYYY"  autocomplete="off" name="dateofbirth" class="form-control form-control-md p-2" placeholder="Date Of Birth"/>
+            <div *ngIf="CAF['dateOfBirth'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                Please Select Date Of Birth.
+            </div> 	
+        </div>
+        <!--end::Col-->
+        <!--begin::Col-->
+        <div class="col-lg-3 fv-row" *ngIf="personTypeVal!='CHILD'">
+                                <label class="col-form-label required fw-semibold fs-6">Marital Status</label>
+          <select formControlName="maritalStatus" name="MaritalStatus" aria-label="Select a Marital Status" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                    <option value="">Select</option>
+            <option *ngFor="let item of maritalStatusList" [value]="item.code">
+                                        {{item.description}}</option>                                                                     
+          </select>
+          <div *ngIf="CAF['maritalStatus'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    Please Select  Marital Status.
+          </div>
+        </div>
+        <!--end::Col-->
+      </div>
+      <!--end::Row-->
+    </div>  
+ 
+                
+             
+
+                <div class="text-center mb-1 mt-5">
+                    <!--begin::Link-->
+                    <a class="btn btn-sm btn-light border border-primary border-active active text-primary mt-2" routerLink="/familyview">Back</a>
+                    <!--end::Link-->
+                    <!--begin::Button-->
+                    <button type="submit"  (click)="proceedtonext('tabTwo');" id="kt_ecommerce_add_category_submit" class="btn btn-primary ms-2 btn-sm mt-2">
+                        <span class="indicator-label">Proceed to next</span>
+                        <span class="indicator-progress">Please wait...
+                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                    </button>
+                    <!--end::Button-->       
+
+                </div>       
+</div>
+<!--end::Card body-->
+</div>
+<!--end::Content-->
+</div> 
+
+
+
+<div *ngIf="tabTwo && personTypeVal=='CHILD'" class="card mb-5" style="border:1px solid #ddd;">
+<div class="card-header pe-4 ps-4">
+    <!--begin::Title-->
+<h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bold text-gray-800">{{(personUpdateData!=undefined)?'Edit Family Registration Details' : 'Add Family Member Details'}}</span>
+</h3>
+<!--end::Title-->
+<!--begin::Toolbar-->
+<div class="card-toolbar">
+        <a routerLink="/familyview" class="btn btn-sm fw-bold btn-primary">
+            <i class="ki-duotone ki-black-left fs-2"></i>
+            Back to Program Registration
+</a>
+</div>
+<!--end::Toolbar-->
+</div>
+<!--begin::Content-->
+<div id="kt_account_settings_profile_details" class="collapse show">
+    <!--begin::Card body-->
+<div class="card-body p-4">
+
+
+     
+        <div id="ChilParentdDiv" class="col-lg-12 mt-3 CHILD border border-active active p-5" style="border-radius:5px !important;border:1px solid #ddd !important;" *ngIf="personTypeVal=='CHILD'">
+            <div class="row">
+                <div class="panel panel-white">
+                    <div class="panel-heading">
+                        <h5 class="fw-bold m-0">Parent Relationship (for Child Record)</h5>
+                        <!-- <div class="heading-elements form-group">
+                        <div class="heading-btn">
+                        <div class="form-group">
+                        </div>
+                        </div>
+                        </div> -->
+                    </div>
+                    <div class="panel-body">
+                        <div class="row mb-1">
+                            <div class="col-lg-6">
+                                <div class="form-group row mb-3">
+                                    <label class="col-form-label fw-semibold col-lg-6">Relationship 1<span class="text-danger" *ngIf="isParentRelationshipRequiredFlag() "> *</span></label>
+                                    <div class="col-lg-6 fv-row">
+                                        <select class="form-select form-select-md p-2 fw-semibold" name="Person[relationCode1]"
+                                        [(ngModel)]="relationCode" formControlName="relationCode" (change)="onRelationChange($event,'relationCodeError')">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let item of fetchParentList"
+                                            [value]="item.code">{{item.description}}</option>
+                                        </select>
+                                        <div class="help-block with-errors text-danger" *ngIf="relationCodeError">Field is requried</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="col-lg-6 fv-row" style="padding:0;">
+                                    <select class="form-select form-select-md p-2 fw-semibold" name="Person[relation1]"
+                                    [(ngModel)]="relatedPersonId" formControlName="relatedPersonId" (change)="onRelationChange($event,'relatedPersonIdError')">
+                                        <option value="">Select</option>
+                                        <option *ngFor="let item of fetchAdultPersons?.selectDropdownList"
+                                        [value]="item.code">{{item.description}}</option>
+                                    </select>
+                                    <div class="help-block with-errors text-danger" *ngIf="relatedPersonIdError">Field is required</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-1" *ngIf="isParentRelationshipRequired()">
+                            <div class="col-lg-6">
+                                <div class="form-group row mb-3">
+                                    <label class="col-form-label fw-semibold col-lg-6">Relationship 2<span class="text-danger" *ngIf="isParentRelationshipRequired()"> *</span></label>
+                                    <div class="col-lg-6" >
+                                        <select aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold"
+                                        [(ngModel)]="relationCode1" formControlName="relationCode1"  (change)="onRelationChange($event,'relationCode1Error')">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let item of fetchParentList"
+                                            [value]="item.code">{{item.description}}</option>
+                                        </select>
+                                        <div class="help-block with-errors text-danger" *ngIf="relationCode1Error">Field is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="col-lg-6" style="padding:0;">
+                                    <select aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold"
+                                    [(ngModel)]="relatedPersonId1" formControlName="relatedPersonId1" (change)="onRelationChange($event,'relatedPersonId1Error')">
+                                        <option value="">Select</option>
+                                        <option *ngFor="let item of fetchAdultPersons?.selectDropdownList"
+                                        [value]="item.code">{{item.description}}</option>
+                                    </select>
+                                    <div class="help-block with-errors text-danger" *ngIf="relatedPersonId1Error">Field is required</div>
+                                    <div class="help-block with-errors text-danger" *ngIf="showRelationshipError">Both
+                                        Parent cannot be same.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row no-margin-bottom">
+                            <label class="col-form-label fw-semibold col-lg-6">Does this child have any legal custody agreement?</label>
+                            <div class="col-lg-6">
+                                <div class="col-lg-6 no-padding-left no-padding-right">
+                                    <select class="form-select form-select-md p-2 fw-semibold" name="Person[CustodyIssue]"
+                                    [(ngModel)]="CustodyIssue" formControlName="CustodyIssue">
+                                        <option value="">select</option>
+                                        <option *ngFor="let item of fetchCustodyData?.selectDropdownList"
+                                        [value]="item.code">{{item.description}}</option>
+                                    </select>
+                                    <div class="help-block with-errors text-danger"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-1 mt-5">
+            <!--begin::Link-->
+            <a class="btn btn-sm btn-light border border-primary border-active active text-primary mt-2" (click)="backToPrev('tabOne');">Back</a>
+            <!--end::Link-->
+            <!--begin::Button-->
+            <button type="button" (click)="proceedtonext('tabThree');"  id="kt_ecommerce_add_category_submit" class="btn btn-primary ms-2 btn-sm mt-2">
+                <span class="indicator-label">Proceed to next</span>
+                <span class="indicator-progress">Please wait...
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+            <!--end::Button-->       
+
+        </div>       
+</div>
+<!--end::Card body-->
+</div>
+<!--end::Content-->
+</div> 
+
+
+
+<div class="card mb-5" style="border:1px solid #ddd;" *ngIf="tabThree">
+<div class="card-header pe-4 ps-4">
+    <!--begin::Title-->
+<h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bold text-gray-800">{{(personUpdateData!=undefined)?'Edit Family Registration Details' : 'Add Family Member Details'}}</span>
+</h3>
+<!--end::Title-->
+<!--begin::Toolbar-->
+<div class="card-toolbar">
+        <a routerLink="/family/familyMemberList/false" class="btn btn-sm fw-bold btn-primary">
+            <i class="ki-duotone ki-black-left fs-2"></i>
+            Back to Program Registration
+</a>
+</div>
+<!--end::Toolbar-->
+</div>
+<!--begin::Content-->
+<div id="kt_account_settings_profile_details" class="collapse show">
+    <!--begin::Card body-->
+<div class="card-body p-4">
+
+
+                 
+<div class="row">
+<div class="col-lg-8">
+                    <div *ngIf="personTypeVal!='CHILD'" class="border border-active active p-4 mb-4" style="border-radius:5px !important;border:1px solid #ddd !important;">
+                        <!--begin::Row-->
+                        <div class="row mb-2">
+                            <!--begin::Col-->
+    <div class="col-lg-6 fv-row" >
+                                <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
+      <input type="email"formControlName="emailAddress"  name="email" class="form-control form-control-md p-2 mb-3 mb-lg-0" placeholder="Email Address" autocomplete="off"/>
+      <div *ngIf="CAF['emailAddress'].invalid && CAF['emailAddress'].value=='' && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    Please Enter Email.
+      </div>
+      <div *ngIf="CAF['emailAddress'].errors?.['pattern']" class=" with-errors text-danger">
+        Invalid E-mail
+    </div>
+    </div>
+    <!--end::Col-->
+    <!--begin::Col-->
+    <div class="col-lg-6 fv-row" *ngIf="((personUpdateData==undefined || personUpdateData=='') && primaryContact!='1' && personTypeVal=='ADULT') || (personTypeVal=='ADULT'&& personUpdateData!=undefined && primaryContact!='1')">
+                                <label class="col-form-label required fw-semibold fs-6">Primary contact is my?</label>
+      <select formControlName="relationShipPrimaryContact" name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                    <option value="">Select Primary contact is my?</option>
+                                    <option *ngFor="let item of fetchPrimaryContactList?.selectDropdownList"
+                                    [value]="item.code">{{item.description}}</option>
+                                </select>
+                                <div *ngIf="CAF['relationShipPrimaryContact'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    Please Select Primary contact is my?.
+                                </div>
+    </div>
+    <!--end::Col-->      
+                                
+    <!--begin::Col-->
+    <div class="col-lg-6 fv-row" *ngIf="personTypeVal=='YOUTH'">
+                                <label class="col-form-label fw-semibold fs-6 mb-2">Does this individual currently live at the given family address?</label>
+      <select formControlName="livingAtHomeAddress" name="youth" aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                    <option *ngFor="let item of fetchYesorNO?.selectDropdownList" [value]="item.code">
+                                        {{item.description}}</option>
+                                </select>
+    </div>
+    <!--end::Col-->  
+  </div>
+  <!--end::Row-->                                                    
+                                                 
+        <!--begin::Input group-->
+        <div class="row mb-2 mt-4" *ngIf="!readOnlyFlag">
+            <!--begin::Label-->
+            <label class="col-lg-4 col-form-label required fw-semibold fs-6">Address 1 </label>
+            <!--end::Label-->
+            <!--begin::Col-->
+            <div class="col-lg-8 fv-row">
+                <input [readonly]="readOnlyFlag" appCapitalize  formControlName="address" autocomplete="off" type="text" name="company" class="form-control form-control-md p-2 text_transform_cap" placeholder="Address" value="" />
+                <div *ngIf="CAF['address'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                    Please Enter Address.
+                </div>
+            </div>
+            <!--end::Col-->
+        </div>
+        <!--end::Input group-->
+    
+        <!--begin::Input group-->
+        <div class="row mb-2" *ngIf="!readOnlyFlag">
+            <!--begin::Label-->
+            <label class="col-lg-4 col-form-label fw-semibold fs-6">Address 2 </label>
+            <!--end::Label-->
+            <!--begin::Col-->
+            <div class="col-lg-8 fv-row">
+                <input appCapitalize [readonly]="readOnlyFlag" formControlName="address2" autocomplete="off" type="text" name="company" class="form-control form-control-md p-2 text_transform_cap" placeholder="Address" value="" />
+            </div>
+            <!--end::Col-->
+        </div>
+        <!--end::Input group-->
+    
+        <!--begin::Input group-->
+        <div class="row mb-2" *ngIf="!readOnlyFlag">
+            <!--begin::Label-->
+            <label class="col-lg-4 col-form-label fw-semibold fs-6">Address 3 </label>
+            <!--end::Label-->
+            <!--begin::Col-->
+            <div class="col-lg-8 fv-row">
+                <input appCapitalize [readonly]="readOnlyFlag" formControlName="address3" autocomplete="off" type="text" name="company" class="form-control form-control-md p-2 text_transform_cap" placeholder="Address" value="" />
+            </div>
+            <!--end::Col-->
+        </div>
+        <!--end::Input group-->
+    
+        <div class="row mb-6" *ngIf="!readOnlyFlag">
+<!--begin::Col-->
+<div class="col-lg-4 fv-row">
+                <label class="col-lg-4 col-form-label required fw-semibold fs-6">City </label>
+<input appCapitalize [readonly]="readOnlyFlag" formControlName="city" autocomplete="off" type="text" name="phone" class="form-control form-control-md p-2 text_transform_cap" placeholder="City"/>
+<div *ngIf="CAF['city'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                    Please Enter city.
+</div>
+</div>
+<!--end::Col-->
+<!--begin::Col-->
+<div class="col-lg-4 fv-row">
+                <label class="col-form-label required fw-semibold fs-6">State </label>
+<select formControlName="state" name="state" aria-label="Select a state" data-control="select2" data-placeholder="Select a State..." class="form-select form-select-md p-2 fw-semibold">
+                    <option value="">Select State</option>
+                    <option *ngFor="let item of stateList" [value]="item.code">
+{{item.description}}</option>
+                </select>
+                <div *ngIf="CAF['state'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                    Please Select State.
+                </div>
+</div>
+<!--end::Col-->  
+<!--begin::Col-->
+<div class="col-lg-4 fv-row">
+<label class="col-form-label required fw-semibold fs-6">Zip Code</label>
+<input type="text" onKeyPress="if(this.value.length==5) return false;"
+[readonly]="readOnlyFlag" maxlength="5" name="ZipCode" class="form-control form-control-md p-2" placeholder="Zip Code" formControlName="zipCode" required
+[class.is-invalid]="zipCode.invalid && (zipCode.dirty || zipCode.touched)" autocomplete="off"/>
+<div *ngIf="zipCode.invalid && (zipCode.dirty || zipCode.touched)  && validateFlag" class="invalid-feedback">
+<div *ngIf="zipCode.errors?.['required']" class="with-errors text-danger">
+        Please Enter Zip Code.
+</div>
+<div *ngIf="zipCode.errors?.['pattern']" class=" with-errors text-danger">
+Please Enter numeric value.
+</div>
+</div>
+</div>
+<!--end::Col-->  			
+        </div>
+                        
+  </div> 
+                </div>
+                
+            </div>
+                    
+<div class="row">
+                <div class="col-lg-8">
+                    <div class="border border-active active p-4" style="border-radius:5px !important;border:1px solid #ddd !important;">
+                        <!--begin::Row-->
+                        <div class="row">
+                            <!--begin::Col-->
+    <div class="col-lg-6 fv-row">
+                                <!--begin::Input group-->
+                                <div class="row">
+                                    <!--begin::Label-->
+                                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Home Phone</label>
+                                    <!--end::Label-->
+                                    <!--begin::Col-->
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" id="homePhone" [readonly]="readOnlyFlag"
+                                        (focus)="phoneValidate('homePhone');"  maxlength="14" minlength="14" formControlName="homePhone" name="homephone" autocomplete="off" class="form-control form-control-md p-2" placeholder="Home Phone" value="" />
+                                        <div *ngIf="CAF['homePhone'].invalid && CAF['homePhone'].value=='' && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                            Please Enter Home Phone.
+                                        </div>
+                                        <div *ngIf="CAF['homePhone'].invalid && CAF['homePhone'].value!='' && CAF['homePhone'].value.length<14 && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                            Home number invalid.
+                                        </div>
+
+                                      <div class="form-check d-flex mt-2 ps-0">
+                                          <input class="form-check" type="checkbox" [value]="1" formControlName="sphomePhoneFlag" autocomplete="off" (change)="useremCheck_0($event);" id="flexCheckDefault" />
+                                          <label class="required text-dark fw-semibold ms-2" for="flexCheckDefault">
+                                               Use in case of emergency
+                                          </label>
+                                      </div>
+
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Input group-->																
+                            </div>
+    <!--end::Col-->
+    <!--begin::Col-->
+    <div class="col-lg-6 fv-row">
+                                <!--begin::Input group-->
+                                <div class="row mb-6">
+                                    <!--begin::Label-->
+                                    <label class="col-lg-4 col-form-label  fw-semibold fs-6" [ngClass]="!useChildEmrgencyFlag?'required':''">Mobile Phone</label>
+                                    <!--end::Label-->
+                                    <!--begin::Col-->
+                                    <div class="col-lg-8 fv-row">
+                                        <input type="text" id="phoneNumber" (focus)="phoneValidate('phoneNumber');"
+                                        formControlName="phoneNumber" maxlength="14" minlength="14" name="phonenumber" required autocomplete="off" (blur)="phoneNum();" class="form-control form-control-md p-2" placeholder="Mobile Phone" value="" />
+                                        <div *ngIf="CAF['phoneNumber'].invalid && CAF['phoneNumber'].value=='' && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag && !useChildEmrgencyFlag" class="error_clr mrg_btm">
+                                            Please Enter Phone Number.
+                                        </div>
+                                        <div *ngIf="CAF['phoneNumber'].invalid && CAF['phoneNumber'].value!='' && CAF['phoneNumber'].value.length<14 && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag && !useChildEmrgencyFlag" class="error_clr mrg_btm">
+                                            Phone number invalid.
+                                        </div>
+
+                                        <div class="form-check d-flex mt-2 ps-0">
+                                            <input class="form-check" type="checkbox" value="" id="flexCheckDefault1" (change)="useremCheck_1($event);" formControlName="mobileFlag"
+                                            [value]="1" autocomplete="off"/>
+                                            <label class="form-check-label text-dark fw-semibold ms-2" [ngClass]="!useChildEmrgencyFlag?'required':''" for="flexCheckDefault">
+                                               Use in case of emergency
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Input group-->  
+    </div>
+    <!--end::Col--> 
+    <div *ngIf="mobileCheckFlag" class="error_clr mrg_btm" align="center">
+                                Please Select one number for Use in case of emergency.
+    </div>                                                              
+  </div>
+                        <!--end::Row-->
+                    </div>
+                </div>
+                <div class="col-lg-4">
+          
+                </div>
+                <div class="col-lg-4 ps-0">
+                    <div class="border border-active active p-4 mb-4 divsize" style="border-radius:5px !important;border:1px solid #ddd !important; margin-top: 15px;">
+                        <!--begin::Input group-->
+                        <div class="row mb-6">
+                            <div class="col-lg-2"></div>  
+                            <div class="col-lg-8 text-center">
+                                <!--begin::Label-->
+                                <label class="col-form-label fw-semibold fs-6 text-center">Individual Passport Size Photo</label>
+                                <!--end::Label--> 
+                                <!--begin::Image input-->
+                                <div class="text-center">
+                                    <div class="image-input image-input-outline" data-kt-image-input="true" >
+                                        <!--begin::Preview existing avatar-->
+                                        <div class="image-input-wrapper w-90px h-90px">
+                                            <img loading="lazy" role="presentation" *ngIf="loadingImage" alt="Image Display Here" id="test111"
+                                            [src]="downloadPhoto" style="width: 80px; height: 80px;" />
+                                            <img loading="lazy" role="presentation" *ngIf="!loadingImage" alt="Image Display Here"
+                                            src="assets/images/jellyfish.png" style="width: 80px; height: 80px;" />
+                                        </div>
+                                        <!--end::Preview existing avatar-->
+                                        <!--begin::Label-->
+                                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                                            <i class="ki-duotone ki-pencil fs-7">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                            <!--begin::Inputs-->
+                                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg" (change)="selectFile($event);"/>
+                                            <input type="hidden" name="avatar_remove" />
+                                            <!--end::Inputs-->
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Cancel-->
+                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                                            <i class="ki-duotone ki-cross fs-2">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </span>
+                                        <!--end::Cancel-->
+                                        <!--begin::Remove-->
+                                        <!-- <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                        <i class="ki-duotone ki-cross fs-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                        </i>
+                                        </span> -->
+                                        <!--end::Remove-->
+                                    </div>
+                                    <!--end::Image input-->
+                                </div>
+                                <!--begin::Hint-->
+                                <div class="form-text text-dark text-nowrap">Image size not be exceed 10 MB<br>
+                                Format : JPG/JPEG/PNG</div>
+                            <!--end::Hint--> 
+                            </div>              
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <!--end::Input group-->
+                    </div>
+
+<div *ngIf="personTypeVal!='CHILD'" class="border border-active active p-4 mb-4 divsize" style="border-radius:5px !important;border:1px solid #ddd !important;">                  
+                        <div class="row"  *ngIf="dependentUsername=='' || dependentUsername==null">  
+                            <label class="col-form-label required fw-semibold fs-6"> Would you like to create login credentials for this individual ?  </label>
+                            <div class="col-lg-5 text-nowrap"> 
+                                <div class="d-flex flex-wrap align-items-center text-gray-600 gap-5 mb-2">
+                                <!--begin::Radio-->
+                                    <div class="form-check form-check-custom form-check-solid">
+                                        <input class="styled" type="radio" autocomplete="off" value="Yes" formControlName="credentialCheck" (change)="onCredentialCheckChange($event)" id="all_conditions">
+                                        <label class="form-check-label" for="all_conditions">Yes</label>
+                                    </div>
+                                    <!--end::Radio-->
+                                    <!--begin::Radio-->
+                                    <div class="form-check form-check-custom form-check-solid">
+                                        <input class="styled" formControlName="credentialCheck"  (change)="onCredentialCheckChange($event)" type="radio"  value="No" checked id="any_conditions">
+                                        <label class="form-check-label" for="any_conditions">No</label>
+                                    </div>
+                                    <!--end::Radio-->
+                                </div>
+                            </div>
+                            <div class="col-lg-7"  *ngIf="canShowUserNameField()"> <label class="col-form-label required fw-semibold fs-6">User Name  </label>
+                                <input type="text" maxlength="100" name="phone" class="form-control form-control-md p-2" placeholder="User Name"  autocomplete="off" formControlName="dependentUsername" />  
+                                <div *ngIf="CAF['dependentUsername'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    Please Enter Dependent User Name.
+                                </div>
+                            </div>  
+                        </div>  
+
+                        <div class="row" *ngIf="dependentUsername!='' && dependentUsername!=null">
+                            <div class="col-lg-12"> <label class="col-form-label required fw-semibold fs-6">User Name  </label>
+                                <input type="text" maxlength="100" name="phone" class="form-control form-control-md p-2" placeholder="User Name"  autocomplete="off" formControlName="dependentUsername" />  
+                                <div *ngIf="CAF['dependentUsername'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    Please Enter Dependent User Name.
+                                </div>
+                            </div> 
+                        </div>
+                    </div> 
+                </div>
+            </div>  
+        
+     
+        <div class="text-center mb-1 mt-5">
+            <!--begin::Link-->
+            <a class="btn btn-sm btn-light border border-primary border-active active text-primary mt-2" (click)="backToPrev((this.personTypeVal !== 'CHILD') ?'tabOne':'tabTwo');">Back</a>
+            <!--end::Link-->
+            <!--begin::Button-->
+            <button type="button" [disabled]="isFormValid() || zipCode.value.length<5" (click)="saveFamilyPerson('save');" id="kt_ecommerce_add_category_submit" class="btn btn-primary ms-2 btn-sm mt-2">
+                <span class="indicator-label">Save</span>
+                <span class="indicator-progress">Please wait...
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+            <!--end::Button-->       
+
+            <!--begin::Button-->
+            <button type="button" [disabled]="isFormValid() || zipCode.value.length<5" (click)="saveFamilyPerson('saveandAdd');" id="kt_ecommerce_add_category_submit" class="btn btn-primary btn-sm mr-2 mt-2 ms-2">
+                <span class="indicator-label text-nowrap">Save & Add Another Member</span>
+                <span class="indicator-progress">Please wait...
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+            <!--end::Button-->
+        </div>       
+</div>
+<!--end::Card body-->
+</div>
+<!--end::Content-->
+</div>
+
+</form>
+<!--end::Form-->
+
+</div>
 
 <div  class="card DivDesk" style="border: 1px solid #ddd; display: block;">
     <div class="card-header align-items-center  px-4 bg-white"
@@ -127,7 +796,7 @@
                                                     <label  class="col-form-label required fw-semibold fs-6">Primary contact is my?</label>
                                                     <select  formcontrolname="relationShipPrimaryContact" name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
                                                         <option value="">Select Primary contact is my?</option>
-														<option *ngFor="let item of fetchPrimaryContactList"
+														<option *ngFor="let item of fetchPrimaryContactList?.selectDropdownList"
 														[value]="item.code">{{item.description}}</option>
                                                     </select>
                                                     <div *ngIf="CAF['relationShipPrimaryContact'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
@@ -484,6 +1153,6 @@
                                     </div> 
                             
                         </div>
-                    
+ </div>                   
 
 

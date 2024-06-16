@@ -43,6 +43,7 @@ export class FamilyMemberDetailsComponent {
   currentUserData:any;
   selectedFamilyMember:any;
   selectedChapterCode:any;
+  selectedFamily:any;
   get zipCode() {
     return this.CreateAccountForm.get('zipCode')!;
   }
@@ -112,7 +113,9 @@ export class FamilyMemberDetailsComponent {
    arrayTime1:any;
    readOnlyFlag:boolean=false;
   async ngOnInit(): Promise<void> {
-    this.selectedFamilyMember = this.familyService.getSelectedFamilyMember();
+    this.selectedFamily = this.familyService.getSelectedFamily();
+    this.selectedFamilyMember =  this.familyService.getSelectedFamilyMember()
+    console.log(this.selectedFamily);
     let editFamily = 0;
     if(this.selectedFamilyMember!==undefined && this.selectedFamilyMember!=null){
       editFamily = Object.keys(this.selectedFamilyMember).length;
@@ -124,11 +127,11 @@ export class FamilyMemberDetailsComponent {
     }else{
       this.personUpdateData=undefined;
     }
-      let logedInUserData = JSON.parse(sessionStorage.getItem('profileData') || '');
+      let logedInUserData = this.selectedFamily;
       this.currentUserData= logedInUserData;
       this.selectedChapterCode = this.store.getValue(KEYS.chapter);
 
-      this.familyId= this.currentUserData?.familyID;
+      this.familyId= this.currentUserData?.familyId;
       this.personID = this.currentUserData?.personID;
       this.chapterCode = this.selectedChapterCode;
     //scrollTop();
@@ -358,7 +361,7 @@ export class FamilyMemberDetailsComponent {
 
    personTypeVal:any;
    useChildEmrgencyFlag:boolean=false;
-  fieldInterChange(event:any){
+  async fieldInterChange(event:any){
     this.personTypeVal = event.target.value;
     this.useChildEmrgencyFlag = false;
     if(this.personUpdateData==undefined){
@@ -375,7 +378,7 @@ export class FamilyMemberDetailsComponent {
      this.CreateAccountForm.controls['mobileFlag'].disable();
      this.CreateAccountForm.controls['mobileFlag'].setValue('');
      this.useChildEmrgencyFlag = true;
-     this.fetchAdultPersonData();
+     await this.fetchAdultPersonData();
     }else{
       this.CreateAccountForm.controls['mobileFlag'].enable();
     }
@@ -521,6 +524,10 @@ export class FamilyMemberDetailsComponent {
    
     }
 
+    isNullUndefined(val:any){
+    return (val!=undefined && val!=null && val!='')?val:'';
+    }
+
     AddFamliyMemberDatapopulate(){
       if(this.personUpdateData==undefined){
         this.readOnlyFlag = true;
@@ -531,19 +538,19 @@ export class FamilyMemberDetailsComponent {
       this.fetchPersonUpdateResponse = response;
       this.primaryContact='';
       this.personTypeVal=response.personType;
-      this.CreateAccountForm.controls['lastName'].setValue(response.lastName);
-      this.CreateAccountForm.controls['gender'].setValue(response.gender);
+      this.CreateAccountForm.controls['lastName'].setValue(this.isNullUndefined(response.lastName));
+      this.CreateAccountForm.controls['gender'].setValue(this.isNullUndefined(response.gender));
       this.CreateAccountForm.controls['emailAddress'].setValue(''),
      this.CreateAccountForm.controls['homePhone'].setValue((response.homePhone==null)?'':response.homePhone.replace(/\D/g, '').replace(/^(\d{0,3})(\d{0,3})(\d{0,4})/, '($1) $2-$3'));
-     this.CreateAccountForm.controls['address'].setValue(response.address);
-     this.CreateAccountForm.controls['address2'].setValue(response.address2);
-     this.CreateAccountForm.controls['address3'].setValue(response.address3);
-     this.CreateAccountForm.controls['city'].setValue(response.city);
-     this.CreateAccountForm.controls['state'].setValue(response.state);
-     this.CreateAccountForm.controls['zipCode'].setValue(response.zipCode);
+     this.CreateAccountForm.controls['address'].setValue(this.isNullUndefined(response.address));
+     this.CreateAccountForm.controls['address2'].setValue(this.isNullUndefined(response.address2));
+     this.CreateAccountForm.controls['address3'].setValue(this.isNullUndefined(response.address3));
+     this.CreateAccountForm.controls['city'].setValue(this.isNullUndefined(response.city));
+     this.CreateAccountForm.controls['state'].setValue(this.isNullUndefined(response.state));
+     this.CreateAccountForm.controls['zipCode'].setValue(this.isNullUndefined(response.zipCode));
      this.CreateAccountForm.controls['relationShipPrimaryContact'].setValue(response.relationShipPrimaryContact?response.relationShipPrimaryContact:(response.relationShipPrimaryContact==null)?"":"");
      this.CreateAccountForm.controls['personType'].setValue('');
-     this.CreateAccountForm.controls['schoolGrade'].setValue(response.schoolGradeCode);
+     this.CreateAccountForm.controls['schoolGrade'].setValue(this.isNullUndefined(response.schoolGradeCode));
      if(response.dependentUsername){
       this.CreateAccountForm.get('dependentUsername')?.disable();
      }
@@ -554,6 +561,7 @@ export class FamilyMemberDetailsComponent {
       this.downloadPhoto='';
      this.loadingImage=false;
      },500);
+     console.log('Name---'+this.CreateAccountForm.controls['lastName'].value)
     }
 
     isFormValid(){

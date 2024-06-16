@@ -76,7 +76,7 @@
 					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Email</th>
 					<td valign="middle" mat-cell *matCellDef="let element">{{element.emailAddress}}</td>
 				  </ng-container>
-					<tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true;background:lightgray"></tr>
+					<tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true;"></tr>
 					<tr mat-row *matRowDef="let row; columns: displayColumns;" ></tr>
 			</table>  
 		</div>
