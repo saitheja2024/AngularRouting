@@ -33,6 +33,11 @@ const Routing: Routes = [
       import('../modules/registration-processing/registration-processing.module').then((m) => m.RegistrationProcessingModule),
   },
   {
+    path: 'status-update',
+    loadChildren: () =>
+      import('../modules/status-update/status-update.module').then((m) => m.StatusUpdateModule),
+  },
+  {
     path: 'email-processing',
     loadChildren: () =>
       import('../modules/email-processing/email-processing.module').then((m) => m.EmailProcessingModule),
