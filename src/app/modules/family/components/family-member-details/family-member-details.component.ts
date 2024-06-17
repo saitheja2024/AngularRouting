@@ -112,20 +112,20 @@ export class FamilyMemberDetailsComponent {
    }
    arrayTime1:any;
    readOnlyFlag:boolean=false;
+   editFamilyFlag:number=0;
   async ngOnInit(): Promise<void> {
     this.selectedFamily = this.familyService.getSelectedFamily();
     this.selectedFamilyMember =  this.familyService.getSelectedFamilyMember()
     console.log(this.selectedFamily);
-    let editFamily = 0;
     if(this.selectedFamilyMember!==undefined && this.selectedFamilyMember!=null){
-      editFamily = Object.keys(this.selectedFamilyMember).length;
+      this.editFamilyFlag = Object.keys(this.selectedFamilyMember).length;
     }
     this.action='Add';
-    if(editFamily>0){
+    if(this.editFamilyFlag>0){
       this.personUpdateData  =  this.selectedFamilyMember.personID;
       this.action='Edit';
     }else{
-      this.personUpdateData=undefined;
+      this.personUpdateData=this.selectedFamily?.personID;
     }
       let logedInUserData = this.selectedFamily;
       this.currentUserData= logedInUserData;
@@ -137,7 +137,7 @@ export class FamilyMemberDetailsComponent {
     //scrollTop();
     
     console.log(this.currentUserData);
-    this.dataReceived=this.currentUserData.personID;
+    this.dataReceived=this.currentUserData;
    
     // this.arrayTime1 = this.CreateAccountForm.get('relationList');
     await  this.fetchpersonTypeList();
@@ -153,9 +153,9 @@ export class FamilyMemberDetailsComponent {
     await  this.fetchYesorNoList();
     
     this.CreateAccountForm.controls['state'].disable();
-    if(this.action=='Edit'){ this.fetchUpdatePerson(); }else { this.AddFamliyMemberDatapopulate(); }
+    if(this.action=='Edit'){ this.fetchUpdatePerson(); }else { this.fetchUpdatePerson(); }
 
-    if(this.personUpdateData!=undefined){
+    if(this.editFamilyFlag>0){
       
       this.credentialCheck = 'Yes';
     }else{
@@ -364,10 +364,10 @@ export class FamilyMemberDetailsComponent {
   async fieldInterChange(event:any){
     this.personTypeVal = event.target.value;
     this.useChildEmrgencyFlag = false;
-    if(this.personUpdateData==undefined){
+    if(this.editFamilyFlag==0){
       this.readOnlyFlag = true;
       this.CreateAccountForm.controls['state'].disable();
-     }else if(this.personUpdateData!=undefined){
+     }else if(this.editFamilyFlag>0){
       this.readOnlyFlag = (this.personTypeVal=='ADULT' && this.fetchPersonUpdateResponse.personID==this.dataReceived.personID && this.fetchPersonUpdateResponse.primaryContact=='1')?false:true;
      }
 
@@ -435,34 +435,34 @@ export class FamilyMemberDetailsComponent {
 
   async fetchUpdatePerson(){
     let param={
-      personID: (this.personUpdateData !=undefined) ? this.personUpdateData: this.dataReceived.personID
+      personID: (this.editFamilyFlag>0) ? this.personUpdateData: this.dataReceived.personID
     }
     
     
     let response:any = await this.MasterService.FetchUpdatePersonData(param);
       this.fetchPersonUpdateResponse = response;
-      this.primaryContact=response.primaryContact;
+      this.primaryContact=(this.editFamilyFlag>0)?response.primaryContact:0;
       this.personTypeVal=response.personType;
       let statePop = this.retainSavedData(response.state);
+      sessionStorage.setItem('profileData', JSON.stringify(response));
       if(this.action == 'Edit'){
         this.CreateAccountForm.controls['personID'].setValue(param.personID)
         this.downloadFile({personId:response.personID,documentID:response.documentID});
       }
-       if(this.personUpdateData!=undefined){
+       if(this.editFamilyFlag>0){
         this.readOnlyFlag = (this.personTypeVal=='ADULT' && this.fetchPersonUpdateResponse.personID==this.dataReceived.personID && this.fetchPersonUpdateResponse.primaryContact=='1')?false:true;
         if(!this.readOnlyFlag){
-          localStorage.setItem('profileData', JSON.stringify(response));
           this.CreateAccountForm.controls['state'].enable();
         }
  
       }
 
 
-      if(this.personUpdateData !=undefined){
+      if(this.editFamilyFlag>0){
         if(this.primaryContact!='1'){
           this.CreateAccountForm.controls['personType'].enable();
         }else{
-          this.CreateAccountForm.controls['personType'].disable();
+         // this.CreateAccountForm.controls['personType'].disable();
         }
         this.CreateAccountForm.controls['firstName'].setValue(response.firstName);
      this.CreateAccountForm.controls['middleName'].setValue(response.middleName);
@@ -507,10 +507,12 @@ export class FamilyMemberDetailsComponent {
      this.CreateAccountForm.controls['mobileFlag'].setValue('');
      }
      
+      }else{
+        this.AddFamliyMemberDatapopulate()
       }
 
       // If personId is present then we are in edit mode otherwise in add mode.
-      if(!this.personUpdateData){
+      if(this.editFamilyFlag>0){
         this.CreateAccountForm.controls['sphomePhoneFlag'].setValue("1");
       }
 
@@ -529,12 +531,12 @@ export class FamilyMemberDetailsComponent {
     }
 
     AddFamliyMemberDatapopulate(){
-      if(this.personUpdateData==undefined){
+      if(this.editFamilyFlag==0){
         this.readOnlyFlag = true;
         this.CreateAccountForm.controls['state'].disable();
        }
 
-      let  response = this.currentUserData;
+      let  response = this.fetchPersonUpdateResponse;
       this.fetchPersonUpdateResponse = response;
       this.primaryContact='';
       this.personTypeVal=response.personType;
@@ -561,7 +563,6 @@ export class FamilyMemberDetailsComponent {
       this.downloadPhoto='';
      this.loadingImage=false;
      },500);
-     console.log('Name---'+this.CreateAccountForm.controls['lastName'].value)
     }
 
     isFormValid(){
@@ -769,11 +770,11 @@ export class FamilyMemberDetailsComponent {
  uploadFile(file:any,personId:any){
   return new Promise((resolve,reject)=>{
     let queryParam = '?documentID=0&personID='+personId+'&documentTypeCode=Person&tabName=Person';
-    this.MasterService.upload('/file/uploadFile',file, queryParam).subscribe((event: any) => {
+    this.MasterService.upload('file/uploadFile',file, queryParam).subscribe((event: any) => {
     // if (typeof event === 'object') {
        // Short link via api response
-       var shortLink = event.link;
-       console.log(shortLink);
+       //var shortLink = event.link;
+      // console.log(shortLink);
       // this.loading = false; // Flag variable
       this.downloadFile(event);
       resolve("");
@@ -794,8 +795,8 @@ export class FamilyMemberDetailsComponent {
     //this.downloadPhoto=URL.createObjectURL(response);;
     const reader = new FileReader();
     reader.onloadend = () => {
-      this.downloadPhoto = reader.result;
       this.loadingImage=true;
+      this.downloadPhoto = reader.result;
     };
     reader.readAsDataURL(response);
   
@@ -812,7 +813,7 @@ export class FamilyMemberDetailsComponent {
 
     let formVal = this.CreateAccountForm.getRawValue();
     let dateOfBirth = (formVal.schoolGrade!='18') ? true : (formVal.dateOfBirth!='' ) ? true :false; 
-    let  checkprimaryContacct = ((formVal.relationShipPrimaryContact=='' && this.personUpdateData !=undefined && this.primaryContact=='1')? true : (formVal.relationShipPrimaryContact=='' && this.personUpdateData ==undefined) ? false : true);
+    let  checkprimaryContacct = ((formVal.relationShipPrimaryContact=='' && this.editFamilyFlag>0 && this.primaryContact=='1')? true : (formVal.relationShipPrimaryContact=='' && this.editFamilyFlag==0) ? false : true);
   if(this.personTypeVal=='ADULT' && (formVal.firstName!='' && formVal.lastName!='' && formVal.status!='' && formVal.personType!='' && formVal.gender!='' && formVal.maritalStatus!='' && formVal.address!='' &&  checkprimaryContacct  && formVal.emailAddress!='' && formVal.city!='' && formVal.state!='' && formVal.zipCode!='') && (formVal.phoneNumber!='' && formVal.homePhone!='' && formVal.phoneNumber.length==14 && formVal.homePhone.length==14) && this.CAF['emailAddress'].status=='VALID'){
     return true;
   }else if(this.personTypeVal=='YOUTH' && (formVal.firstName!='' && formVal.lastName!='' && formVal.status!='' && formVal.personType!='' && formVal.gender!='' && formVal.maritalStatus!='' && formVal.address!='' && formVal.emailAddress!='' && formVal.city!='' && formVal.state!='' && formVal.zipCode!='') && (formVal.phoneNumber!='' && formVal.homePhone!='' && formVal.phoneNumber.length==14 && formVal.homePhone.length==14 && this.CAF['emailAddress'].status=='VALID')){
@@ -845,11 +846,15 @@ export class FamilyMemberDetailsComponent {
       //alert('Please Enter Username');
       this.validateFlag=true;
     }else{
-      let param:any = {
+      let primaryFlag:any =0;
+       if(this.editFamilyFlag>0){
+         primaryFlag = (this.dataReceived.primaryContact==this.fetchPersonUpdateResponse.primaryContact && this.personUpdateData==this.dataReceived.personID)?"1":"0"
+        }
+        let param:any = {
         user: {
           familyID: this.familyId,
-          personID: (this.personUpdateData!=undefined)?this.personUpdateData:0,
-          primaryContact:(this.dataReceived.primaryContact==this.fetchPersonUpdateResponse.primaryContact && this.personUpdateData==this.dataReceived.personID)?"1":"0",
+          personID: (this.editFamilyFlag>0)?this.personUpdateData:0,
+          primaryContact:primaryFlag,
           chapter:userData.chapter
         },
         relationList: [
@@ -857,7 +862,7 @@ export class FamilyMemberDetailsComponent {
         ]
       }  
 
-      let APIName= (this.dataReceived.primaryContact==this.fetchPersonUpdateResponse.primaryContact && this.personUpdateData==this.dataReceived.personID)?'/registration/saveFamilyAndPerson':'/registration/savePerson'
+      let APIName= (this.dataReceived.primaryContact==this.fetchPersonUpdateResponse.primaryContact && this.personUpdateData==this.dataReceived.personID && this.editFamilyFlag>0)?'/registration/saveFamilyAndPerson':'/registration/savePerson'
 
       
     Object.assign(param.user, this.CreateAccountForm.getRawValue());
@@ -892,7 +897,7 @@ export class FamilyMemberDetailsComponent {
           this.showRelationshipError=true;
           return;
         }
-        if(this.relatedPersonId!='' && this.relationCode!=''&&this.personUpdateData!=undefined && this.fetchPersonUpdateResponse.relationList[0]!=undefined){
+        if(this.relatedPersonId!='' && this.relationCode!=''&& this.editFamilyFlag>0 && this.fetchPersonUpdateResponse.relationList[0]!=undefined){
           relation1={
             id: this.fetchPersonUpdateResponse.relationList[0].id,
             relationCode: this.relationCode,
@@ -912,7 +917,7 @@ export class FamilyMemberDetailsComponent {
 
         let relation2:any;
       
-        if(this.relatedPersonId1!='' && this.relationCode1!='' && this.personUpdateData!=undefined && this.fetchPersonUpdateResponse.relationList[1]!=undefined){
+        if(this.relatedPersonId1!='' && this.relationCode1!='' && this.editFamilyFlag>0 && this.fetchPersonUpdateResponse.relationList[1]!=undefined){
           relation2={
             id: this.fetchPersonUpdateResponse.relationList[1].id,
             relationCode: this.relationCode1,
@@ -956,7 +961,7 @@ export class FamilyMemberDetailsComponent {
         //this.CreateAccountForm.controls["personID"].setValue(response.personID);
         await this.uploadFile(this.file,response?.user?.personID);
        } 
-       if((this.personTypeVal=='YOUTH' || this.personTypeVal=='ADULT')&& this.CreateAccountForm.controls['credentialCheck'].value  =='Yes' && (this.CreateAccountForm.controls['dependentUsername'].value !='' || this.CreateAccountForm.controls['dependentUsername'].value!=null) && this.personUpdateData==undefined){
+       if((this.personTypeVal=='YOUTH' || this.personTypeVal=='ADULT')&& this.CreateAccountForm.controls['credentialCheck'].value  =='Yes' && (this.CreateAccountForm.controls['dependentUsername'].value !='' || this.CreateAccountForm.controls['dependentUsername'].value!=null) && this.editFamilyFlag==0){
         this.loadingImage=false;
         Swal.fire({
          // position: 'top-end',
@@ -1073,10 +1078,11 @@ export class FamilyMemberDetailsComponent {
       CustodyIssue:new FormControl('No'),
       dateOfBirth:new FormControl("",[Validators.required])
     });
-    this.personUpdateData=undefined;
+    this.selectedFamily = this.familyService.getSelectedFamily();
+    this.personUpdateData=this.selectedFamily.personId;
     this.loadingImage=false;
     this.dependentUsername ='';
-    this.AddFamliyMemberDatapopulate(); 
+    this.fetchUpdatePerson(); 
 
     this.relationCode='';
     this.relatedPersonId='';

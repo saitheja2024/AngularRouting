@@ -153,6 +153,6 @@ export class ProgramService {
   
   
   fetchSchoolGradeList() {
-    return this.http.get<any>(`${environment.baseURL}/master/fetchSchoolGradeList`);
+    return this.http.get<any>(`${environment.baseURL}master/fetchSchoolGradeList`);
   }
 }

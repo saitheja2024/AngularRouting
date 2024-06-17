@@ -416,7 +416,7 @@ export class MasterService {
 
   downloadUploadFile(param:any){
     const headers = new HttpHeaders().set('Accept', '*/*');
-    return this.http.get<Blob>(`${environment.baseURL}/file/downloadFile`+param,{
+    return this.http.get<Blob>(`${environment.baseURL}file/downloadFile`+param,{
       headers: headers,
       responseType: 'blob' as 'json'
     });
@@ -428,14 +428,14 @@ export class MasterService {
   }
 
   async fetchSchoolGradeLabel(body: any) {
-    let options: Options = { body: body, url: "/organization/fetchSchoolGradeLabel" };
+    let options: Options = { body: body, url: "organization/fetchSchoolGradeLabel" };
     let data =  await this.httpService.post(options);
     return data;
   }
 
 
   async fetchRisingGradeLabel(body: any) {
-    let options: Options = { body: body, url: "/organization/fetchRisingGradeLabel" };
+    let options: Options = { body: body, url: "organization/fetchRisingGradeLabel" };
     let data =  await this.httpService.post(options);
     return data;
   }
