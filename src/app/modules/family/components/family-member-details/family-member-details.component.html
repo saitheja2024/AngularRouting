@@ -114,13 +114,24 @@
         <!--begin::Col-->
         <div class="col-lg-3 fv-row" *ngIf="personTypeVal=='CHILD'">
                                 <label class="col-form-label required fw-semibold fs-6">School Grade ({{schGradeLabel}})</label>
-                                <select  formControlName="schoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                <select  formControlName="schoolGrade" aria-label="Select a School Grade" data-control="select2" (change)="changeOfSchoolGrade();" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
                                     <option value="">Select School Grade</option>
             <option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}</option>
                                 </select>
           <div *ngIf="CAF['schoolGrade'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
                                     Please Select School Grade.
           </div>
+        </div>
+        <div class="col-lg-3 fv-row" *ngIf="personTypeVal=='CHILD' && CAF['schoolGrade'].value=='19'">
+            <label class="col-form-label required fw-semibold fs-6">Raising Grade ({{raisingSchGradeLabel.gradeLabel}})</label>
+            <select formControlName="raisingSchoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                <option value="">Select Raising School Grade</option>
+                <option [value]="t.code" *ngFor="let t of raisingGradeData">{{t.description}}</option>
+            </select>
+            <!-- <input *ngIf="CAF['schoolGrade'].value!='19'" type="text" value="" class="form-control form-control-md p-2" formControlName="risingSchoolGradeDescription" readonly /> -->
+        <div *ngIf="CAF['raisingSchoolGrade'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+                Please Select Raising School Grade.
+        </div>
         </div>
         <div class="col-lg-3 fv-row" *ngIf="personTypeVal=='CHILD' && CAF['schoolGrade'].value=='18'">
             <label class="col-form-label fw-semibold required fs-6">Date Of Birth</label>
@@ -749,7 +760,7 @@ Please Enter numeric value.
                                       <!--begin::Col-->
                     <div class="col-lg-3 fv-row" *ngIf="personTypeVal=='CHILD'">
                         <label class="col-form-label required fw-semibold fs-6">School Grade ({{schGradeLabel}})</label>
-                        <select  formControlName="schoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                        <select  formControlName="schoolGrade" aria-label="Select a School Grade" data-control="select2" (change)="changeOfSchoolGrade();" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
                             <option value="">Select School Grade</option>
     <option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}</option>
                         </select>
@@ -757,6 +768,19 @@ Please Enter numeric value.
                             Please Select School Grade.
   </div>
 </div>
+
+<div class="col-lg-3 fv-row" *ngIf="personTypeVal=='CHILD' && CAF['schoolGrade'].value=='19'">
+    <label class="col-form-label required fw-semibold fs-6">Raising Grade ({{raisingSchGradeLabel.gradeLabel}})</label>
+    <select formControlName="raisingSchoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+        <option value="">Select Raising School Grade</option>
+        <option [value]="t.code" *ngFor="let t of raisingGradeData">{{t.description}}</option>
+    </select>
+    <!-- <input *ngIf="CAF['schoolGrade'].value!='19'" type="text" value="" class="form-control form-control-md p-2" formControlName="risingSchoolGradeDescription" readonly /> -->
+<div *ngIf="CAF['raisingSchoolGrade'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+        Please Select Raising School Grade.
+</div>
+</div>
+
     <div class="col-lg-2 fv-row" *ngIf="personTypeVal=='CHILD' && CAF['schoolGrade'].value=='18'">
     <label class="col-form-label fw-semibold required fs-6">Date Of Birth</label>
     <input type="date" formControlName="dateOfBirth" format="YYYY/MM/DD"  autocomplete="off" name="MemberSince" class="form-control form-control-md p-2" placeholder="Date Of Birth"/>

@@ -91,7 +91,8 @@ export class FamilyMemberDetailsComponent {
       relationCode1: new FormControl(''),
       relatedPersonId1: new FormControl(''),
       CustodyIssue:new FormControl('No'),
-      dateOfBirth:new FormControl("",[Validators.required])
+      dateOfBirth:new FormControl("",[Validators.required]),
+      raisingSchoolGrade:new FormControl("",[Validators.required])
       // relationList:this.fb.array([
       //   this.fb.group({
       //     id:0,
@@ -487,7 +488,8 @@ export class FamilyMemberDetailsComponent {
      this.CreateAccountForm.controls['dependentUsername'].setValue(response.dependentUsername);
      this.CreateAccountForm.controls['schoolGrade'].setValue(response.schoolGradeCode);
      this.CreateAccountForm.controls['dateOfBirth'].setValue(response.dateOfBirth);
-     
+     this.CreateAccountForm.controls['raisingSchoolGrade'].setValue((response.raisingSchoolGrade!=undefined && response.raisingSchoolGrade!=null)?response.raisingSchoolGrade:'');
+
 
     // this.CreateAccountForm.controls['CustodyIssue'].setValue(response.dependentUsername);
     this.credentialCheck =(response.dependentUsername==null)?'No':'Yes';
@@ -506,7 +508,9 @@ export class FamilyMemberDetailsComponent {
       this.CreateAccountForm.controls['mobileFlag'].disable();
      this.CreateAccountForm.controls['mobileFlag'].setValue('');
      }
-     
+     if( this.CreateAccountForm.value.schoolGrade !=''){
+      this.changeOfSchoolGrade();
+      }
       }else{
         this.AddFamliyMemberDatapopulate()
       }
@@ -553,12 +557,18 @@ export class FamilyMemberDetailsComponent {
      this.CreateAccountForm.controls['relationShipPrimaryContact'].setValue(response.relationShipPrimaryContact?response.relationShipPrimaryContact:(response.relationShipPrimaryContact==null)?"":"");
      this.CreateAccountForm.controls['personType'].setValue('');
      this.CreateAccountForm.controls['schoolGrade'].setValue(this.isNullUndefined(response.schoolGradeCode));
+     this.CreateAccountForm.controls['raisingSchoolGrade'].setValue((response.raisingSchoolGrade!=undefined && response.raisingSchoolGrade!=null)?response.raisingSchoolGrade:'');
+
      if(response.dependentUsername){
       this.CreateAccountForm.get('dependentUsername')?.disable();
      }
      else{
       this.CreateAccountForm.get('dependentUsername')?.enable();
      }
+
+     if( this.CreateAccountForm.value.schoolGrade !=''){
+      this.changeOfSchoolGrade();
+      }
      setTimeout( ()=>{
       this.downloadPhoto='';
      this.loadingImage=false;
@@ -744,7 +754,6 @@ export class FamilyMemberDetailsComponent {
       this.downloadPhoto = reader.result;
       this.loadingImage=true;
       resolve(reader.result);
-    
    };
    reader.readAsDataURL(image);
   })
@@ -818,7 +827,7 @@ export class FamilyMemberDetailsComponent {
     return true;
   }else if(this.personTypeVal=='YOUTH' && (formVal.firstName!='' && formVal.lastName!='' && formVal.status!='' && formVal.personType!='' && formVal.gender!='' && formVal.maritalStatus!='' && formVal.address!='' && formVal.emailAddress!='' && formVal.city!='' && formVal.state!='' && formVal.zipCode!='') && (formVal.phoneNumber!='' && formVal.homePhone!='' && formVal.phoneNumber.length==14 && formVal.homePhone.length==14 && this.CAF['emailAddress'].status=='VALID')){
   return true;
-  }else if(this.personTypeVal=='CHILD' && (formVal.firstName!='' && formVal.lastName!='' && formVal.status!='' && formVal.personType!='' && formVal.address!='' && formVal.city!='' && formVal.state!='' && formVal.zipCode!='') && (formVal.homePhone!=''  && formVal.homePhone.length==14) && formVal.schoolGrade!='' && dateOfBirth ){
+  }else if(this.personTypeVal=='CHILD' && (formVal.firstName!='' && formVal.lastName!='' && formVal.status!='' && formVal.personType!='' && formVal.address!='' && formVal.city!='' && formVal.state!='' && formVal.zipCode!='') && (formVal.homePhone!=''  && formVal.homePhone.length==14) && formVal.schoolGrade!='' && formVal.raisingSchoolGrade!='' && dateOfBirth ){
     this.useChildEmrgencyFlag=true;
     if(this.CreateAccountForm.controls['phoneNumber'].value.length!='' && this.CreateAccountForm.controls['phoneNumber'].value.length<14){
       this.useChildEmrgencyFlag=false;
@@ -1076,7 +1085,8 @@ export class FamilyMemberDetailsComponent {
       relationCode1: new FormControl(''),
       relatedPersonId1: new FormControl(''),
       CustodyIssue:new FormControl('No'),
-      dateOfBirth:new FormControl("",[Validators.required])
+      dateOfBirth:new FormControl("",[Validators.required]),
+      raisingSchoolGrade:new FormControl("",[Validators.required])
     });
     this.selectedFamily = this.familyService.getSelectedFamily();
     this.personUpdateData=this.selectedFamily.personId;
@@ -1098,6 +1108,7 @@ export class FamilyMemberDetailsComponent {
 
     this.CreateAccountForm.controls['schoolGrade'].setValue("");
       this.schoolGradesList = data;
+      this.raisingSchooldGradeLabel();
 }
 
 schGradeLabel:any;
@@ -1121,6 +1132,18 @@ async raisingSchooldGradeLabel(){
     this.raisingSchGradeLabel= data;
 }
 
+raisingGradeData:any;
+changeOfSchoolGrade(){
+  let filterGradeData:any =[];
+  if(this.CreateAccountForm.controls['schoolGrade'].value == '19'){
+   this.schoolGradesList.filter( (item:any)=>{
+      if(item.code == '19' || item.code == '20'){
+        return filterGradeData.push(item);
+      }
+    });
+    this.raisingGradeData = filterGradeData;
+  }
 
+}
 
 }
