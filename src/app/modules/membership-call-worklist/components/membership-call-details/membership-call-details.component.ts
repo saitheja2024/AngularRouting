@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-membership-call-details',
@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./membership-call-details.component.scss']
 })
 export class MembershipCallDetailsComponent {
+
+
+  @Input() callWorkDetails:any
+
   menuAccordionFlag:any={
     Category_1:false,
     Category_2:false,

@@ -50,9 +50,9 @@ export class UrlService {
     fetchStateList: "master/fetchStatesList",
     fetchMaritialList: "master/fetchMaritalStatusList",
     fetchGenderList: "master/fetchGenderList",
-    fetchRegistrationStatusList:"master/fetchRegistrationStatusList",
-    fetchPaymentStatusList:"master/fetchPaymentStatusList",
-    fetchSchoolGradeList:"master/fetchSchoolGradeList",
+    fetchRegistrationStatusList:"/master/fetchRegistrationStatusList",
+    fetchPaymentStatusList:"/master/fetchPaymentStatusList",
+    fetchSchoolGradeList:"/master/fetchSchoolGradeList",
     fetchVaccinationList:'master/fetchVaccinationList',
     fetchTShirtSizeList:'master/fetchTShirtSizeList',
     fetchGCCSession:'master/fetchGCCSession',
@@ -127,5 +127,11 @@ export class UrlService {
     fetchPaymentInformationByFamilyIdAndProgramCode:'programSelection/fetchPaymentInformationByFamilyIdAndProgramCode',
     getConvenienceFee:'organization/getConvenienceFee'
   }
+
+  memberShip = {
+    fetchMemberShipCallWork : "membership/fetchMemberShipCallWork",
+    fetchMemberShipCallWorkDetailsByFamilyId : "membership/fetchMemberShipCallWorkDetailsByFamilyId"
+  }
+ 
   
 }

@@ -3,19 +3,19 @@
         <div class="row">
             <div class="col-lg-6 mb-4">
                 <div class="fs-6 text-dark fw-semibold">
-                    Member Family: Ram Laxman
+                    Member Family: {{callWorkDetails?.memberFamily}}
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Mobile: </span>
-                    <span class="jsutify-content-end" style="color:#00B0F0;"><u>(789)-123-4567</u></span>
+                    <span class="jsutify-content-end" style="color:#00B0F0;"><u>{{callWorkDetails?.mobile}}</u></span>
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Home: </span>
-                    <span class="jsutify-content-end ms-1" style="color:#00B0F0;"><u>(789)-123-4567</u></span>
+                    <span class="jsutify-content-end ms-1" style="color:#00B0F0;"><u>{{callWorkDetails?.home}}</u></span>
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Email: </span>
-                    <span class="jsutify-content-end ms-2" style="color:#00B0F0;"><u>ram@mymail.com</u></span>
+                    <span class="jsutify-content-end ms-2" style="color:#00B0F0;"><u>r{{callWorkDetails?.email}}</u></span>
                 </div>
             </div>
 
@@ -45,39 +45,23 @@
         <div class="row">
             <div class="col-lg-7 mb-4">
                 <div class="p-2 card" style="border:1px solid #ddd;border-radius:5px;max-height: 250px;overflow-y: scroll;">
-                    <div class="ms-4 mb-1">
-                        <span class="jsutify-content-start">Session Choice 1: Sunday 9:15 am - 10:45 am</span>
+                    <div class="ms-4 mb-1" *ngFor="let session of callWorkDetails?.sessionChoiceList">
+                        <span class="jsutify-content-start">{{session.sessionChoice}}</span>
                     </div>
-                    <div class="ms-4 mb-1">
-                        <span class="jsutify-content-start">Session Choice 2: Sunday 12:15 pm - 1:50 pm</span>
-                    </div>
-                    <div class="ms-4">
-                        <span class="jsutify-content-start">Session Choice 3: Friday 6:45 pm - 8:20 pm</span>
-                    </div>
-
-                    <div class="fs-6 ms-4 mt-4 text-dark fw-semibold">
-                        Child 1
-                    </div>
-                    <div class="ms-4 mt-2">
-                        <div class="jsutify-content-start">School Grade As of Sept 2024: 5th Grade</div>
-                        <div class="jsutify-content-start">Class : Shivanandam</div>
+                   
+                    <div *ngFor="let child of callWorkDetails?.childList;">
+                        <div class="fs-6 ms-4 mt-4 text-dark fw-semibold">
+                           {{child.name}}
+                        </div>
+                        <div class="ms-4 mt-2">
+                            <div class="jsutify-content-start">{{child.gradeLabel}}</div>
+                            <div class="jsutify-content-start">Class : {{child.classCode}}</div>
+                        </div>
                     </div>
 
-                    <div class="fs-6 ms-4 mt-4 text-dark fw-semibold">
-                        Child 2
-                    </div>
-                    <div class="ms-4 mt-2">
-                        <div class="jsutify-content-start">School Grade As of Sept 2024: 2nd Grade</div>
-                        <div class="jsutify-content-start">Class : Satyam</div>
-                    </div>
+                   
 
-                    <div class="fs-6 ms-4 mt-4 text-dark fw-semibold">
-                        Child 1
-                    </div>
-                    <div class="ms-4 mt-2">
-                        <div class="jsutify-content-start">Class: Shloka</div>
-                        <div class="jsutify-content-start">Session Choice: Shloka AM</div>
-                    </div>
+                   
                 </div>
             </div>
 
