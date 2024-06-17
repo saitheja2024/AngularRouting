@@ -21,15 +21,11 @@ export class MembershipCallWorklistHomeComponent {
   async ngOnInit(){
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
-    this.selectedProgram = this.store.getValue(KEYS.program);
     var params = {
-      "personId": 0,
-      "academicYear": "2024-2025",
-      "chapterCode": "CSVA",
-      "programCode": "",
+      "academicYear": this.selectedAcademicYear,
+      "chapterCode": this.selectedChapterCode,
       "registrationStatus": "PENDING",
       "paymentStatus": "NO_DUES",
-      "assignToMe": ""
     }
     this.list = await this.membeshipService.fetchMemberShipCallWork(params);
   }
@@ -37,6 +33,7 @@ export class MembershipCallWorklistHomeComponent {
 
   async showCallDetails(callWork:any){
     callWork.familyID = callWork.familyId;
+    callWork.programCode= "CS_BALAVIHAR_2024-25";
     this.callWorkDetails = await this.membeshipService.fetchMemberShipCallWorkDetailsByFamilyId(callWork);
   }
 

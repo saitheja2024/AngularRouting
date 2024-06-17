@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/modules/auth';
   providedIn: 'root'
 })
 export class MemberShipCallWorkListServices {
-
+  
 
   EmailSearchCriteria: any;
 
@@ -57,6 +57,16 @@ export class MemberShipCallWorkListServices {
     let response: any = await this.httpService.post(options);
     return response;
   }
+
+ async saveMembershipCallHistory(formValues: any) {
+  let options: Options = {
+    url: this.urlService.memberShip.saveMembershipCallHistory,
+    body: formValues
+  }
+  let response: any = await this.httpService.post(options);
+  return response;
+  }
+
 
 
 
