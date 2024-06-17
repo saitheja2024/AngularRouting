@@ -21,6 +21,10 @@ export class MembershipCallWorklistHomeComponent {
   async ngOnInit(){
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    this.fetchMemberShipCallWork();
+  }
+
+  async fetchMemberShipCallWork(){
     var params = {
       "academicYear": this.selectedAcademicYear,
       "chapterCode": this.selectedChapterCode,
@@ -33,8 +37,12 @@ export class MembershipCallWorklistHomeComponent {
 
   async showCallDetails(callWork:any){
     callWork.familyID = callWork.familyId;
-    callWork.programCode= "CS_BALAVIHAR_2024-25";
+    
     this.callWorkDetails = await this.membeshipService.fetchMemberShipCallWorkDetailsByFamilyId(callWork);
+  }
+
+  oncallWorkDetailsSavedNotification(ev:any){
+    this.fetchMemberShipCallWork();
   }
 
 }
