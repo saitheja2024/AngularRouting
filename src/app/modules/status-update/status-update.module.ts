@@ -15,11 +15,6 @@ const routes: Routes = [
     component: StatusSearchHomeComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'status-search',
-        pathMatch: 'full',
-      },
-      {
         path: 'status-search',
         component: StatusSearchComponent,
       },
@@ -28,22 +23,26 @@ const routes: Routes = [
         component: StatusSearchResultsComponent,
           children: [
             {
-              path: '',
-              redirectTo: 'selection',
-              pathMatch: 'full',
+              path:'selection',
+              component:SelectionComponent
             },
             {
-              path:'reveiw',
+              path:'review',
               component:ReviewComponent
             },
             {
               path:'complete',
               component:CompleteComponent
-            }
+            },
+            {
+              path: '',
+              redirectTo: 'selection',
+              pathMatch: 'full',
+            },
           ]
       },
 
-      { path: '', redirectTo: 'status-search', pathMatch: 'full' },
+      { path: '', redirectTo: 'status-search', pathMatch: 'full' }
     ]
   },
 ];
