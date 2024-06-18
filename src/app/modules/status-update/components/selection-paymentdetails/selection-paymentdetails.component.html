@@ -1,0 +1,78 @@
+<div class="modal-header p-4" id="kt_activities_header" style="background-color: #f8f8f8;">
+	<h3 class="card-title fw-semibold text-dark" style="width:100%;">Payment Details</h3>
+	<div class="card-toolbar">
+	    <button type="button" class="btn btn-sm btn-icon btn-active-light-primary" (click)="closeModal()"> 
+		    <i class="ki-duotone ki-cross fs-1 text-dark">
+			    <span class="path1"></span>
+			    <span class="path2"></span>
+			</i>
+	    </button>
+	</div>
+</div>
+  
+<div class="modal-body p-4 pb-2">
+    <div class="card" style="border:1px solid #ccc;border-radius:5px;">
+        <div class="card-header" style="padding:0px 10px;">
+            <div class="card-title">
+                <h4 class="fw-semibold">
+                    Payment History Details
+                </h4>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSourcePaymentDetails" matSort>
+        
+                        <!-- Family ID Column-->
+                        <ng-container matColumnDef="familyid">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyid}} </td>
+                        </ng-container>
+        
+                        <!-- Invoiced Amount Column-->
+                        <ng-container matColumnDef="invoicedamount">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Invoiced Amount </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.invoicedamount}} </td>
+                        </ng-container>
+        
+                        <!-- Amount Paid Column-->
+                        <ng-container matColumnDef="amountpaid">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Amount Paid </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.amountpaid}} </td>
+                        </ng-container>
+        
+                        <!-- Invoice Number Column-->
+                        <ng-container matColumnDef="invoicenumber">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Number </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.invoicenumber}} </td>
+                        </ng-container>
+        
+                        <!-- Payment Status Column-->
+                        <ng-container matColumnDef="paymentstatus">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Status </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentstatus}} </td>
+                        </ng-container>
+        
+                        <!-- Payment Mode Column-->
+                        <ng-container matColumnDef="paymentmode">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Mode </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentmode}} </td>
+                        </ng-container>
+        
+                        <!-- Payment Auth Code Column-->
+                        <ng-container matColumnDef="paymentauthcode">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Auth Code </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentauthcode}} </td>
+                        </ng-container>
+                      
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsPaymentDetails; sticky: true;" style="background-color: #CDDDFF;"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsPaymentDetails;"></tr>
+        
+                    </table>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

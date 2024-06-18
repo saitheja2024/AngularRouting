@@ -68,6 +68,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #f5f8fa !important;
 }
 
+.mat-elevation-z8 {
+  box-shadow: none !important;
+}
+
 div.mat-mdc-select-panel {
 	border: 1px solid #ccc;
 	background: #fff !important;
@@ -170,7 +174,7 @@ div.mat-mdc-select-panel {
 }
 
 .mat-mdc-text-field-wrapper {
-  padding: 5px 10px !important;
+  padding: 0px 10px !important;
 }
 
 .mdc-notched-outline__leading, .mdc-notched-outline__trailing { 

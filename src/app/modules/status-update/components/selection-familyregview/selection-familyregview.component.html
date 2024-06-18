@@ -1,0 +1,108 @@
+<div class="modal-header p-4" id="kt_activities_header" style="background-color: #f8f8f8;">
+	<h3 class="card-title fw-semibold text-dark" style="width:100%;">Family Details</h3>
+	<div class="card-toolbar">
+	    <button type="button" class="btn btn-sm btn-icon btn-active-light-primary" (click)="closeModal()"> 
+		    <i class="ki-duotone ki-cross fs-1 text-dark">
+			    <span class="path1"></span>
+			    <span class="path2"></span>
+			</i>
+	    </button>
+	</div>
+</div>
+  
+<div class="modal-body p-4 pb-2">
+    <div class="card" style="border:1px solid #ccc;border-radius:5px;">
+        <div class="card-header" style="padding:0px 10px;">
+            <div class="card-title">
+                <h4 class="fw-semibold">
+                    Family Member Details
+                </h4>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <div class="mat-elevation-z8">
+                    <table mat-table [dataSource]="dataSourceFamilyDetails" matSort>
+        
+                        <!-- Family ID Column-->
+                        <ng-container matColumnDef="familyid">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyid}} </td>
+                        </ng-container>
+        
+                        <!-- Person ID Column-->
+                        <ng-container matColumnDef="personid">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Person ID </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.personid}} </td>
+                        </ng-container>
+        
+                        <!-- First Name Column-->
+                        <ng-container matColumnDef="firstname">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+                        </ng-container>
+        
+                        <!-- Middle Name Column-->
+                        <ng-container matColumnDef="middlename">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Middle Name </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.middlename}} </td>
+                        </ng-container>
+        
+                        <!-- Last Name Column-->
+                        <ng-container matColumnDef="lastname">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+                        </ng-container>
+        
+                        <!-- Gender Column-->
+                        <ng-container matColumnDef="gender">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Gender </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                        </ng-container>
+        
+                        <!-- DOB Column-->
+                        <ng-container matColumnDef="dob">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.dob}} </td>
+                        </ng-container>
+        
+                        <!-- Registration Type Column-->
+                        <ng-container matColumnDef="registrationtype">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Registration Type </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.registrationtype}} </td>
+                        </ng-container>
+        
+                        <!-- Home Phone Column-->
+                        <ng-container matColumnDef="homephone">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Home Phone </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.homephone}} </td>
+                        </ng-container>
+        
+                        <!-- E-mail Column-->
+                        <ng-container matColumnDef="email">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        </ng-container>
+        
+                        <!-- Mobile Phone Column-->
+                        <ng-container matColumnDef="mobilephone">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Phone </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.mobilephone}} </td>
+                        </ng-container>
+        
+                        <!-- Primary Contact Column-->
+                        <ng-container matColumnDef="primarycontact">
+                            <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Primary Contact </th>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.primarycontact}} </td>
+                        </ng-container>
+                      
+                        <tr mat-header-row *matHeaderRowDef="displayedColumnsFamilyDetails; sticky: true;" style="background-color: #CDDDFF;"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumnsFamilyDetails;"></tr>
+        
+                    </table>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

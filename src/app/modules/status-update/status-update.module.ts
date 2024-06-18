@@ -8,6 +8,10 @@ import { StatusSearchResultsComponent } from './components/status-search-results
 import { SelectionComponent } from './components/selection/selection.component';
 import { ReviewComponent } from './components/review/review.component';
 import { CompleteComponent } from './components/complete/complete.component';
+import { SelectionFamilyregviewComponent } from './components/selection-familyregview/selection-familyregview.component';
+import { SelectionFamilyDetailsComponent } from './components/selection-family-details/selection-family-details.component';
+import { SelectionFamilysessiondetailsComponent } from './components/selection-familysessiondetails/selection-familysessiondetails.component';
+import { SelectionPaymentdetailsComponent } from './components/selection-paymentdetails/selection-paymentdetails.component';
 
 const routes: Routes = [
   {
@@ -54,7 +58,11 @@ const routes: Routes = [
     StatusSearchResultsComponent,
     SelectionComponent,
     ReviewComponent,
-    CompleteComponent
+    CompleteComponent,
+    SelectionFamilyregviewComponent,
+    SelectionFamilyDetailsComponent,
+    SelectionFamilysessiondetailsComponent,
+    SelectionPaymentdetailsComponent
   ],
   imports: [
     RouterModule.forChild(routes),
