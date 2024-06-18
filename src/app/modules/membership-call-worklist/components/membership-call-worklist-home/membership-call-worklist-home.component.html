@@ -118,6 +118,6 @@
         </div>
     </div>
     <div class="col-lg-6">
-            <app-membership-call-details [callWorkDetails]="callWorkDetails"></app-membership-call-details>
+            <app-membership-call-details [callWorkDetails]="callWorkDetails" (callWorkDetailsSavedNotification)="oncallWorkDetailsSavedNotification($event)"></app-membership-call-details>
     </div>
 </div>

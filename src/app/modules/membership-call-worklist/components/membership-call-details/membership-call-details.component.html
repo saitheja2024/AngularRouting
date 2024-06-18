@@ -15,7 +15,7 @@
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Email: </span>
-                    <span class="jsutify-content-end ms-2" style="color:#00B0F0;"><u>r{{callWorkDetails?.email}}</u></span>
+                    <span class="jsutify-content-end ms-2" style="color:#00B0F0;"><u>{{callWorkDetails?.email}}</u></span>
                 </div>
             </div>
 
@@ -43,8 +43,8 @@
     <hr>
     <div class="col-lg-12">
         <div class="row">
-            <div class="col-lg-7 mb-4">
-                <div class="p-2 card" style="border:1px solid #ddd;border-radius:5px;max-height: 250px;overflow-y: scroll;">
+            <div class="col-lg-7 mb-4" >
+                <div class="p-2 card" style="border:1px solid #ddd;border-radius:5px;max-height: 250px;overflow-y: scroll;" *ngIf="callWorkDetails">
                     <div class="ms-4 mb-1" *ngFor="let session of callWorkDetails?.sessionChoiceList">
                         <span class="jsutify-content-start">{{session.sessionChoice}}</span>
                     </div>
@@ -186,19 +186,20 @@
     </div>
 
     <div class="col-lg-12">
+        <!-- {{callWorkHistoryForm?.value | json}} -->
         <div class="justify-content-center d-flex">
-            <button type="button" class="btn btn-sm btn-primary me-3 mb-2 mt-2">
+            <!-- <button type="button" class="btn btn-sm btn-primary me-3 mb-2 mt-2">
                 Certify Contact Info
             </button>
             <button type="button" class="btn btn-sm btn-primary me-3 mb-2 mt-2">
                 Save & Pay Now
-            </button>
+            </button> -->
             <button type="button" class="btn btn-sm btn-primary me-3 mb-2 mt-2" (click)="onSaveButtonClick()">
                 Save
             </button>
-            <button type="button" class="btn btn-sm btn-primary me-3 mb-2 mt-2">
+            <!-- <button type="button" class="btn btn-sm btn-primary me-3 mb-2 mt-2">
                 Email Reg Team
-            </button>
+            </button> -->
         </div>
     </div>
 </div>
