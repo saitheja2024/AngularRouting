@@ -66,7 +66,7 @@ export class EmailSearchResultsComponent {
     this.dataSource._updateChangeSubscription();
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
-
+    
   }
 
   onFilterClick(filterName:any,filter:any){
@@ -144,6 +144,12 @@ sendEmail(){
   
   this.popupTemplateData= this.emailProcService.sendEmailTemplate(param);
 
+}
+activeOrder:any={};
+sortItems(letter: string, index:any) {
+  this.activeOrder={[index]:true};
+  this.dataSource.data = this.totalRecCount.projectSummaryList.filter((item:any) => item.primaryName.startsWith(letter));
+  this.dataSource.sort = this.sort;
 }
 
 
