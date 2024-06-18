@@ -119,7 +119,7 @@
             <!--<a routerLink="/email-processing/email-search" href="/email-processing/email-search" class="btn btn-danger btn-sm me-2">
                 <i class="icon-cancel-circle2 fs-4"></i> Cancel
             </a>-->
-            <div class="alpha_order">
+            <div class="alpha_order" *ngIf="totalRecCount.totalProjectSummary>0">
               <button *ngFor="let letter of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); let i =index;" [ngClass]="activeOrder[i]?'order_active':''" (click)="sortItems(letter, i)">
                 {{letter}}
               </button>

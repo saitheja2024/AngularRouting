@@ -17,7 +17,7 @@ export class RegistrationSearchResultsComponent {
   paginationConfig={
   pageSize : 10,
   pageIndex : 0,
-  pageSizeOptions :[10, 20,30],
+  pageSizeOptions :[10,30, 50,150,200,300,350,450],
   showFirstLastButtons : true,
   length:10
   }
@@ -60,7 +60,7 @@ export class RegistrationSearchResultsComponent {
     this.totalRecCount =results;
     //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
-    this.paginator.length=results.totalProjectSummary;
+    this.paginator=results.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
