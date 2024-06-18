@@ -115,5 +115,17 @@ export class RegistrationSearchResultsComponent {
    this.performSearch();
   }
 
+  activeOrder:any={};
+sortItems(letter: string, index:any) {
+  this.activeOrder={[index]:true};
+  this.dataSource.data = this.totalRecCount.projectSummaryList.filter((item:any) => item.primaryName.startsWith(letter));
+  this.dataSource.sort = this.sort;
+}
+
+refreshRec(){
+  this.activeOrder={};
+  this.dataSource.data = this.totalRecCount.projectSummaryList;
+  this.dataSource.sort = this.sort;
+}
 
 }

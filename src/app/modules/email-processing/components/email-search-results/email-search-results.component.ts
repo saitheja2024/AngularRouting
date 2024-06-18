@@ -152,5 +152,11 @@ sortItems(letter: string, index:any) {
   this.dataSource.sort = this.sort;
 }
 
+refreshRec(){
+  this.activeOrder={};
+  this.dataSource.data = this.totalRecCount.projectSummaryList;
+  this.dataSource.sort = this.sort;
+}
+
 
 }
