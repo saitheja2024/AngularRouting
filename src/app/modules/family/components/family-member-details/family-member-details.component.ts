@@ -823,12 +823,13 @@ export class FamilyMemberDetailsComponent {
 
     let formVal = this.CreateAccountForm.getRawValue();
     let dateOfBirth = (formVal.schoolGrade!='18') ? true : (formVal.dateOfBirth!='' ) ? true :false; 
+    let raisingGradeFlag = (formVal.schoolGrade=='19' && formVal.risingSchoolGrade=='') ?false:true;
     let  checkprimaryContacct = ((formVal.relationShipPrimaryContact=='' && this.editFamilyFlag>0 && this.primaryContact=='1')? true : (formVal.relationShipPrimaryContact=='' && this.editFamilyFlag==0) ? false : true);
   if(this.personTypeVal=='ADULT' && (formVal.firstName!='' && formVal.lastName!='' && formVal.status!='' && formVal.personType!='' && formVal.gender!='' && formVal.maritalStatus!='' && formVal.address!='' &&  checkprimaryContacct  && formVal.emailAddress!='' && formVal.city!='' && formVal.state!='' && formVal.zipCode!='') && (formVal.phoneNumber!='' && formVal.homePhone!='' && formVal.phoneNumber.length==14 && formVal.homePhone.length==14) && this.CAF['emailAddress'].status=='VALID'){
     return true;
   }else if(this.personTypeVal=='YOUTH' && (formVal.firstName!='' && formVal.lastName!='' && formVal.status!='' && formVal.personType!='' && formVal.gender!='' && formVal.maritalStatus!='' && formVal.address!='' && formVal.emailAddress!='' && formVal.city!='' && formVal.state!='' && formVal.zipCode!='') && (formVal.phoneNumber!='' && formVal.homePhone!='' && formVal.phoneNumber.length==14 && formVal.homePhone.length==14 && this.CAF['emailAddress'].status=='VALID')){
   return true;
-  }else if(this.personTypeVal=='CHILD' && (formVal.firstName!='' && formVal.lastName!='' && formVal.status!='' && formVal.personType!='' && formVal.address!='' && formVal.city!='' && formVal.state!='' && formVal.zipCode!='') && (formVal.homePhone!=''  && formVal.homePhone.length==14) && formVal.schoolGrade!='' && formVal.risingSchoolGrade!='' && dateOfBirth ){
+  }else if(this.personTypeVal=='CHILD' && (formVal.firstName!='' && formVal.lastName!='' && formVal.status!='' && formVal.personType!='' && formVal.address!='' && formVal.city!='' && formVal.state!='' && formVal.zipCode!='') && (formVal.homePhone!=''  && formVal.homePhone.length==14) && formVal.schoolGrade!='' && raisingGradeFlag && dateOfBirth ){
     this.useChildEmrgencyFlag=true;
     if(this.CreateAccountForm.controls['phoneNumber'].value.length!='' && this.CreateAccountForm.controls['phoneNumber'].value.length<14){
       this.useChildEmrgencyFlag=false;
