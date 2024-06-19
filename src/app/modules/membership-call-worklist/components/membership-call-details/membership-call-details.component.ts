@@ -44,6 +44,7 @@ export class MembershipCallDetailsComponent {
        
         this.callWorkDetails.academicYear=this.selectedAcademicYear;
         this.callWorkDetails.personId=this.membeshipService.getLoggedInUser().personID
+
         this.callWorkHistoryForm.patchValue(this.callWorkDetails);
       } 
     }
@@ -71,7 +72,7 @@ export class MembershipCallDetailsComponent {
 
     async onSaveButtonClick(){
         let formValues = this.callWorkHistoryForm.value;
-        formValues.programCode="CS_BALAVAHAR_2024-25";
+        //formValues.programCode="CS_BALAVAHAR_2024-25";
         
         // formValues=
         //   {
