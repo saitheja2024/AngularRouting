@@ -28,6 +28,7 @@ export class EmailSearchResultsComponent {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator:MatPaginator
     selection = new SelectionModel<any>(true, []);
+    totalRecFooter:any;
 
     ngAfterViewInit() {
       this.dataSource.sort = this.sort;
@@ -60,7 +61,8 @@ export class EmailSearchResultsComponent {
   async performSearch(){
     let results:any  = await this.emailProcService.RegistrationDetailsBasedOnSearch(this.searchCriteria);
     this.totalRecCount = results;
-    this.paginationConfig.length = results.totalProjectSummary;
+    this.totalRecFooter = results;
+    // this.paginationConfig.length = results.totalProjectSummary;
      //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     this.dataSource.paginator= this.paginator;
@@ -150,12 +152,14 @@ activeOrder:any={};
 sortItems(letter: string, index:any) {
   this.activeOrder={[index]:true};
   this.dataSource.data = this.totalRecCount.projectSummaryList.filter((item:any) => item.primaryName.startsWith(letter));
+  this.totalRecFooter = {totalProjectSummary:this.dataSource.data.length};
   this.dataSource.sort = this.sort;
 }
 
 refreshRec(){
   this.activeOrder={};
   this.dataSource.data = this.totalRecCount.projectSummaryList;
+  this.totalRecFooter = {totalProjectSummary:this.totalRecCount.totalProjectSummary};
   this.dataSource.sort = this.sort;
 }
 

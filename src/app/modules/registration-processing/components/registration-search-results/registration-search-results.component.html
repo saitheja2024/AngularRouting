@@ -66,7 +66,7 @@
                     (page)="handlePageEvent($event)"
                                      
                     [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
-                    [pageSizeOptions]="paginationConfig.pageSizeOptions" [length]="totalRecCount.totalProjectSummary" 
+                    [pageSizeOptions]="paginationConfig.pageSizeOptions" [length]="totalRecFooter?.totalProjectSummary" 
                    
                     aria-label="Select page">
                 </mat-paginator>
@@ -77,7 +77,7 @@
         <!--end::Form-->
         <!--begin::Actions-->
         <div class="card-footer d-flex justify-content-end py-6 px-9">
-            <div class="alpha_order" *ngIf="totalRecCount.totalProjectSummary>0">
+            <div class="alpha_order" *ngIf="totalRecCount?.totalProjectSummary>0">
                 <button *ngFor="let letter of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); let i =index;" [ngClass]="activeOrder[i]?'order_active':''" (click)="sortItems(letter, i)">
                   {{letter}}
                 </button>

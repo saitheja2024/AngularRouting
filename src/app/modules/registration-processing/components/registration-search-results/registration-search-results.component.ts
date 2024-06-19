@@ -39,7 +39,7 @@ export class RegistrationSearchResultsComponent {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator:MatPaginator;
   totalRecCount:any;
-
+  totalRecFooter:any;
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
    
@@ -58,9 +58,9 @@ export class RegistrationSearchResultsComponent {
   async performSearch(){
     let results  = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria);
     this.totalRecCount =results;
+    this.totalRecFooter = results;
     //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
-    this.paginator=results.totalProjectSummary;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
@@ -120,12 +120,14 @@ export class RegistrationSearchResultsComponent {
 sortItems(letter: string, index:any) {
   this.activeOrder={[index]:true};
   this.dataSource.data = this.totalRecCount.projectSummaryList.filter((item:any) => item.primaryName.startsWith(letter));
+  this.totalRecFooter = {totalProjectSummary:this.dataSource.data.length};
   this.dataSource.sort = this.sort;
 }
 
 refreshRec(){
   this.activeOrder={};
   this.dataSource.data = this.totalRecCount.projectSummaryList;
+  this.totalRecFooter = {totalProjectSummary:this.totalRecCount.totalProjectSummary};
   this.dataSource.sort = this.sort;
 }
 
