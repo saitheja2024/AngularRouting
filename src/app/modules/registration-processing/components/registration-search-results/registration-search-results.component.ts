@@ -61,9 +61,10 @@ export class RegistrationSearchResultsComponent {
     //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     this.paginator=results.totalProjectSummary;
-    this.dataSource._updateChangeSubscription();
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
+    this.dataSource._updateChangeSubscription();
 
   
  

@@ -66,7 +66,7 @@
                     (page)="handlePageEvent($event)"
                                      
                     [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
-                    [pageSizeOptions]="paginationConfig.pageSizeOptions"
+                    [pageSizeOptions]="paginationConfig.pageSizeOptions" [length]="totalRecCount.totalProjectSummary" 
                    
                     aria-label="Select page">
                 </mat-paginator>
