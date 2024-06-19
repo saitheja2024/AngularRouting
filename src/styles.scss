@@ -63,3 +63,194 @@ $demo1-theme: mat.define-light-theme((
 // }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+#kt_app_main {
+  background-color: #f5f8fa !important;
+}
+
+.mat-elevation-z8 {
+  box-shadow: none !important;
+}
+
+div.mat-mdc-select-panel {
+	border: 1px solid #ccc;
+	background: #fff !important;
+  padding:0px !important;
+}
+
+.mat-mdc-focus-indicator:hover {
+  background-color: none !important;
+}
+
+.mat-mdc-option { 
+  min-height: 40px !important;
+}
+
+.mat-mdc-option:hover {
+  background-color: none !important;
+} 
+
+  .mat-mdc-tab-header {
+    border-bottom: 1px solid #eee;
+    }
+
+    .mat-mdc-table thead {
+      position: sticky !important;
+    }
+  
+    .form-check.form-check-sm .form-check-input:checked {
+      border: 2px solid #f46c00 !important;
+      background-color: #f46c00 !important;
+    }
+  
+  .form-check-input:hover {
+    cursor: pointer;
+  }
+
+  @supports (top: max(0%)) {
+    .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+        display: none;
+    }
+}
+
+.mat-header-cell {
+  cursor: pointer;
+}
+
+.mat-sort-header-container {
+  width:100% !important;
+}
+
+.mdc-tab-indicator {
+  display: block !important;
+}
+
+.mat-mdc-tab-label-container {
+  flex-grow: 0 !important;
+  overflow: hidden;
+}
+
+.mat-mdc-tab-header {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.mat-mdc-header-row {
+  background-color: #CDDDFF;
+}
+
+.mdc-tab {
+  padding: 15px 5px !important;
+}
+
+.mat-mdc-tab-label-container { 
+  border-bottom-style: none !important;
+}
+
+.mdc-tab--active {
+  border-bottom: 2px solid #000 !important;
+}
+
+.mdc-tab--active .mdc-tab__text-label {
+  color: #000 !important;
+}
+
+.mdc-tab__text-label {
+  color: #818691 !important;
+  font-weight: 500 !important;
+}
+
+.mat-tab-link:not(.mat-tab-label-active):focus {
+  background: none !important;
+  transition: none !important;
+  transform: none !important; 
+  animation-duration: 0ms !important; 
+}
+
+.mat-mdc-row {
+  font-family: Inter, Helvetica, "sans-serif" !important;
+}
+
+.mat-mdc-text-field-wrapper {
+  padding: 0px 10px !important;
+}
+
+.mdc-notched-outline__leading, .mdc-notched-outline__trailing { 
+  border: 1px solid #ccc !important;
+  border-radius: 5px !important;
+}
+
+.mat-mdc-paginator { 
+  border-top: 1px solid #ddd;
+  padding:5px;
+}
+
+.mat-mdc-tab .mdc-tab__text-label {
+  font-size: 14px !important;
+}
+
+.mdc-tab {
+  min-width: 125px !important;
+}
+
+.mat-mdc-tab-ripple:hover 
+.mat-ripple:hover 
+.mdc-tab:hover 
+.mat-mdc-tab:hover 
+.mat-mdc-focus-indicator:hover 
+.ng-star-inserted:hover {
+  background-color: none !important;
+}
+
+#mat-tab-label-0-2:hover {
+  background-color: none !important;
+}
+
+.mdc-tab-indicator--active {
+  background-color: transparent !important;
+  animation: 0ms !important;
+}
+
+.mat-mdc-tab .mdc-tab__ripple::before { 
+  background-color: transparent !important;
+  transition: none !important;
+  transform: none !important; 
+  animation-duration: 0ms !important; 
+}
+
+.mat-mdc-tab .mdc-tab__ripple::after { 
+  background-color: transparent !important;
+  transition: none !important;
+  transform: none !important; 
+  animation-duration: 0ms !important; 
+}
+
+.mat-mdc-tab .mdc-tab__ripple:hover { 
+  background-color: none !important;
+}
+
+.mat-mdc-tab:not(.mdc-tab--stacked) {
+  height: auto !important;
+}
+
+.form-check.form-check-sm .form-check-input {
+  height: 1.3rem !important; 
+  width: 1.3rem !important;
+  border-radius: 3px;
+  border: 2px solid #4f4f4f !important;
+}
+
+.form-check.form-check-solid .form-check-input:not(:checked) {
+  background-color: transparent !important;
+}
+
+.form-check.form-check-sm .form-check-input:checked {
+  border: 2px solid #f46c00 !important;
+  background-color: #f46c00 !important;
+}
+
+.form-check-input:hover {
+cursor: pointer;
+}

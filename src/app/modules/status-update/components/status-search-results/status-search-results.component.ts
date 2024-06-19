@@ -5,11 +5,16 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-status-search-results',
   templateUrl: './status-search-results.component.html',
-  styleUrls: ['./status-search-results.component.scss']
+  styleUrls: ['./status-search-results.component.scss'],
 })
 
 export class StatusSearchResultsComponent {
   tabs: { label: string; link: string; index: number; }[];
+  StatusSearchResultaTabs:any = [
+    { label: 'Selection', path: 'selection' },
+    { label: 'Review', path: 'review' },
+    { label: 'Complete', path: 'complete' },
+  ];
 
   constructor(private router:Router){}
 
