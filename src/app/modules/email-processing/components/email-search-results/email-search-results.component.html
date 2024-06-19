@@ -106,7 +106,7 @@
                         </tr>
                       </table>
                         <mat-paginator #paginator 
-                        (page)="handlePageEvent($event)"  [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+                        (page)="handlePageEvent($event)" [length]="totalRecCount.totalProjectSummary"  [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
                         [pageSizeOptions]="paginationConfig.pageSizeOptions"></mat-paginator>
                 </div>
                 
