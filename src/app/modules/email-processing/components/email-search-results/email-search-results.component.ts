@@ -18,7 +18,7 @@ export class EmailSearchResultsComponent {
   paginationConfig={
     pageSize : 10,
     pageIndex : 0,
-    pageSizeOptions :[10, 20,30,50,100],
+    pageSizeOptions :[10,30, 50,150,200,300,350,450],
     showFirstLastButtons : true,
     length:10
     }
@@ -62,11 +62,11 @@ export class EmailSearchResultsComponent {
     this.totalRecCount = results;
      //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
-    this.paginator.length=results.totalProjectSummary
+    this.paginator=results.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
-
+    
   }
 
   onFilterClick(filterName:any,filter:any){
@@ -144,6 +144,18 @@ sendEmail(){
   
   this.popupTemplateData= this.emailProcService.sendEmailTemplate(param);
 
+}
+activeOrder:any={};
+sortItems(letter: string, index:any) {
+  this.activeOrder={[index]:true};
+  this.dataSource.data = this.totalRecCount.projectSummaryList.filter((item:any) => item.primaryName.startsWith(letter));
+  this.dataSource.sort = this.sort;
+}
+
+refreshRec(){
+  this.activeOrder={};
+  this.dataSource.data = this.totalRecCount.projectSummaryList;
+  this.dataSource.sort = this.sort;
 }
 
 

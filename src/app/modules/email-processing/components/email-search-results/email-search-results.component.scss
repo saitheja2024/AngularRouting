@@ -62,3 +62,20 @@
 ::ng-deep .bold_txt{
   font-weight: bold !important;
 }
+
+.alpha_order{
+  margin-right: 25px;
+  margin-top: 7px;
+}
+
+.alpha_order button{
+  margin-right: 5px;
+  border: 1px solid #e4614b;
+  background: #ff6950;
+  color: #fff;
+}
+
+.order_active{
+  background: #009ef7 !important;
+  border: 1px solid #4aa8de !important;
+}

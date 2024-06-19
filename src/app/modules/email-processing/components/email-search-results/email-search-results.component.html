@@ -17,7 +17,7 @@
             <button type="button" class="btn btn-sm btn-link text-uppercase text-success fw-bold me-3 mb-2 mt-2">
                 Records Selected: {{totalRecCount?.totalProjectSummary}}
             </button>
-            <button class="btn btn-link btn-sm">     
+            <button class="btn btn-link btn-sm" (click)="refreshRec()">     
                 <i class="ki-duotone ki-arrows-circle fs-1 text-dark">
                 <span class="path1"></span>
                 <span class="path2"></span>
@@ -119,8 +119,13 @@
             <!--<a routerLink="/email-processing/email-search" href="/email-processing/email-search" class="btn btn-danger btn-sm me-2">
                 <i class="icon-cancel-circle2 fs-4"></i> Cancel
             </a>-->
-
-            <button type="button" class="btn btn-danger btn-sm m-1" routerLink="/email-processing/email-search" style="font-size: 13px;">
+            <div class="alpha_order" *ngIf="totalRecCount.totalProjectSummary>0">
+              <button *ngFor="let letter of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); let i =index;" [ngClass]="activeOrder[i]?'order_active':''" (click)="sortItems(letter, i)">
+                {{letter}}
+              </button>
+           
+            </div>
+            <button type="button" class="btn btn-primary btn-sm m-1" routerLink="/email-processing/email-search" style="font-size: 13px;">
                 <i class="icon-cancel-circle2 fs-6"></i> Cancel
             </button>
 
@@ -129,6 +134,8 @@
             </button>
         </div>
         <!--end::Actions-->
+
+       
     </div>
     <!--end::Content-->
 </div>

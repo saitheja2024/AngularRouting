@@ -124,12 +124,12 @@
         </div>
         <div class="col-lg-3 fv-row" *ngIf="personTypeVal=='CHILD' && CAF['schoolGrade'].value=='19'">
             <label class="col-form-label required fw-semibold fs-6">Raising Grade ({{raisingSchGradeLabel.gradeLabel}})</label>
-            <select formControlName="raisingSchoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+            <select formControlName="risingSchoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
                 <option value="">Select Raising School Grade</option>
                 <option [value]="t.code" *ngFor="let t of raisingGradeData">{{t.description}}</option>
             </select>
             <!-- <input *ngIf="CAF['schoolGrade'].value!='19'" type="text" value="" class="form-control form-control-md p-2" formControlName="risingSchoolGradeDescription" readonly /> -->
-        <div *ngIf="CAF['raisingSchoolGrade'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+        <div *ngIf="CAF['risingSchoolGrade'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
                 Please Select Raising School Grade.
         </div>
         </div>
@@ -748,7 +748,7 @@ Please Enter numeric value.
                                     </div>
                                     <div  class="fv-row" [ngClass]="(CAF['schoolGrade'].value=='18')?'col-lg-2' : 'col-lg-3'">
                                         <label  class="col-form-label required fw-semibold fs-6">Gender</label>
-                                        <select  formcontrolname="gender" aria-label="Select a Gender" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold ">
+                                        <select  formControlName="gender" aria-label="Select a Gender" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold ">
                                             <option value="">Select Gender</option>
                         <option *ngFor="let item of fetchGenderList" [value]="item.code">
 													{{item.description}}</option>
@@ -771,12 +771,12 @@ Please Enter numeric value.
 
 <div class="col-lg-3 fv-row" *ngIf="personTypeVal=='CHILD' && CAF['schoolGrade'].value=='19'">
     <label class="col-form-label required fw-semibold fs-6">Raising Grade ({{raisingSchGradeLabel.gradeLabel}})</label>
-    <select formControlName="raisingSchoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+    <select formControlName="risingSchoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
         <option value="">Select Raising School Grade</option>
         <option [value]="t.code" *ngFor="let t of raisingGradeData">{{t.description}}</option>
     </select>
     <!-- <input *ngIf="CAF['schoolGrade'].value!='19'" type="text" value="" class="form-control form-control-md p-2" formControlName="risingSchoolGradeDescription" readonly /> -->
-<div *ngIf="CAF['raisingSchoolGrade'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
+<div *ngIf="CAF['risingSchoolGrade'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
         Please Select Raising School Grade.
 </div>
 </div>
@@ -791,7 +791,7 @@ Please Enter numeric value.
 <!--end::Col-->
                                     <div  class="col-lg-3 fv-row" *ngIf="personTypeVal!='CHILD'">
                                         <label  class="col-form-label required fw-semibold fs-6">Marital Status</label>
-                                        <select  formcontrolname="maritalStatus" name="MaritalStatus" aria-label="Select a Marital Status" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold ">
+                                        <select  formControlName="maritalStatus" name="MaritalStatus" aria-label="Select a Marital Status" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold ">
                                             <option value="">Select</option>
                         <option *ngFor="let item of maritalStatusList" [value]="item.code">
 													{{item.description}}</option>
@@ -818,7 +818,7 @@ Please Enter numeric value.
                                                 </div>
                                                 <div  class="col-lg-6 fv-row" *ngIf="((personUpdateData==undefined || personUpdateData=='') && primaryContact!='1' && personTypeVal=='ADULT') || (personTypeVal=='ADULT'&& personUpdateData!=undefined && primaryContact!='1')">
                                                     <label  class="col-form-label required fw-semibold fs-6">Primary contact is my?</label>
-                                                    <select  formcontrolname="relationShipPrimaryContact" name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                                    <select  formControlName="relationShipPrimaryContact" name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
                                                         <option value="">Select Primary contact is my?</option>
 														<option *ngFor="let item of fetchPrimaryContactList?.selectDropdownList"
 														[value]="item.code">{{item.description}}</option>
