@@ -68,6 +68,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #f5f8fa !important;
 }
 
+@media (min-width: 992px) {
+  .modal-lg, .modal-xl {
+    --bs-modal-width: 1200px !important;
+  }
+}
+
 .mat-elevation-z8 {
   box-shadow: none !important;
 }
