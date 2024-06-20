@@ -189,7 +189,11 @@ div.mat-mdc-select-panel {
 }
 
 .mat-mdc-paginator { 
-  border-top: 1px solid #ddd;
+  padding:5px;
+}
+
+.mat-mdc-table tbody { 
+  border-bottom: 1px solid #ddd;
   padding:5px;
 }
 

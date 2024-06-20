@@ -121,6 +121,30 @@
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.schoolgrade}} </td>
                     </ng-container>
 
+                    <!-- Primary Person ID Column-->
+                    <ng-container matColumnDef="primarypersonid">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Primary Person ID </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.primarypersonid}} </td>
+                    </ng-container>
+
+                    <!-- Primary First Name Column-->
+                    <ng-container matColumnDef="primaryfirstname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Primary First Name </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.primaryfirstname}} </td>
+                    </ng-container>
+
+                    <!-- Primary Last Name Column-->
+                    <ng-container matColumnDef="primarylastname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Primary Last Name </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.primarylastname}} </td>
+                    </ng-container>
+
+                    <!-- E-mail Column-->
+                    <ng-container matColumnDef="email">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsSelection; sticky: true;" style="background-color: #CDDDFF;"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumnsSelection;"></tr>
 

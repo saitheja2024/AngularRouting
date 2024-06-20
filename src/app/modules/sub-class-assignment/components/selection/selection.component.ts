@@ -16,6 +16,10 @@ export interface SubclassSelection {
   gender: string;
   age: string;
   schoolgrade: string;
+  primarypersonid: number;
+  primaryfirstname: string;
+  primarylastname: string;
+  email: string;
 }
 
 @Component({
@@ -26,10 +30,10 @@ export interface SubclassSelection {
 
 export class SelectionComponent {
   SubclassSelection: SubclassSelection[] = [
-    {checkbox:'', paymentdate: '2024-05-15 04:29:35', familyid: 4367, personid: 13292, firstname: 'Sonu', familyname:'Sa', gender: 'Male', age: '14 Y 6 Months', schoolgrade: '3rd'}
+    {checkbox:'', paymentdate: '2024-05-15 04:29:35', familyid: 4367, personid: 13292, firstname: 'Sonu', familyname:'Sa', gender: 'Male', age: '14 Y 6 Months', schoolgrade: '3rd', primarypersonid: 13290, primaryfirstname: 'Mohan', primarylastname: 'G', email: 'mohan@ss.in'}
   ];
 
-  displayedColumnsSelection: string[] = ['checkbox','paymentdate','familyid','personid','firstname','familyname','gender','age','schoolgrade']
+  displayedColumnsSelection: string[] = ['checkbox','paymentdate','familyid','personid','firstname','familyname','gender','age','schoolgrade','primarypersonid','primaryfirstname','primarylastname','email']
   dataSourceSubclassSelection = new MatTableDataSource<SubclassSelection>(this.SubclassSelection);
 
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
