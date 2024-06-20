@@ -12,6 +12,13 @@
             </button>
         </div>
         <div class="d-flex justify-content-end mb-2">
+            <div class="alpha_order" *ngIf="totalRecCount?.totalProjectSummary>0">
+                <button *ngFor="let letter of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); let i =index;" [ngClass]="activeOrder[i]?'order_active':''" (click)="sortItems(letter, i)">
+                  {{letter}}
+                </button>
+             
+              </div>
+              <div class="reset_wrap">
             <button type="button" class="btn btn-sm btn-link text-uppercase text-success fw-bold me-3 mb-2 mt-2">
                 Records Selected: {{totalRecCount?.totalProjectSummary}}
             </button>
@@ -21,6 +28,7 @@
                 <span class="path2"></span>
                 </i>      
             </button>
+           </div>
         </div>
         <div class="d-flex justify-content-end mb-2">
             <div class="d-flex align-items-center position-relative m-2">
@@ -77,12 +85,7 @@
         <!--end::Form-->
         <!--begin::Actions-->
         <div class="card-footer d-flex justify-content-end py-6 px-9">
-            <div class="alpha_order" *ngIf="totalRecCount?.totalProjectSummary>0">
-                <button *ngFor="let letter of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); let i =index;" [ngClass]="activeOrder[i]?'order_active':''" (click)="sortItems(letter, i)">
-                  {{letter}}
-                </button>
-             
-              </div>
+            
 
             <a routerLink="/registration-processing/registration-search" class="btn btn-danger btn-sm me-2">
                 <i class="icon-cancel-circle2 fs-4"></i> Cancel
