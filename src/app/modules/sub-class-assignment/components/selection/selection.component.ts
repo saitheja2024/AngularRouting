@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -20,6 +20,9 @@ export interface SubclassSelection {
   primaryfirstname: string;
   primarylastname: string;
   email: string;
+  reconcile: string;
+  payment: string;
+  datecreated: string;
 }
 
 @Component({
@@ -30,10 +33,10 @@ export interface SubclassSelection {
 
 export class SelectionComponent {
   SubclassSelection: SubclassSelection[] = [
-    {checkbox:'', paymentdate: '2024-05-15 04:29:35', familyid: 4367, personid: 13292, firstname: 'Sonu', familyname:'Sa', gender: 'Male', age: '14 Y 6 Months', schoolgrade: '3rd', primarypersonid: 13290, primaryfirstname: 'Mohan', primarylastname: 'G', email: 'mohan@ss.in'}
+    {checkbox:'', paymentdate: '2024-05-15 04:29:35', familyid: 4367, personid: 13292, firstname: 'Sonu', familyname:'Sa', gender: 'Male', age: '14 Y 6 Months', schoolgrade: '3rd', primarypersonid: 13290, primaryfirstname: 'Mohan', primarylastname: 'G', email: 'mohan@ss.in', reconcile: 'NA', payment: '', datecreated: '2024-03-21 08:52:23'}
   ];
 
-  displayedColumnsSelection: string[] = ['checkbox','paymentdate','familyid','personid','firstname','familyname','gender','age','schoolgrade','primarypersonid','primaryfirstname','primarylastname','email']
+  displayedColumnsSelection: string[] = ['checkbox','paymentdate','familyid','personid','firstname','familyname','gender','age','schoolgrade','primarypersonid','primaryfirstname','primarylastname','email','reconcile','payment','datecreated']
   dataSourceSubclassSelection = new MatTableDataSource<SubclassSelection>(this.SubclassSelection);
 
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
