@@ -5,6 +5,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SelectionFamilyDetailsComponent } from '../selection-family-details/selection-family-details.component';
+import { SelectionPaymentdetailsComponent } from '../selection-paymentdetails/selection-paymentdetails.component';
 
 export interface StatusReview {
   checkbox:string;
@@ -53,10 +55,10 @@ export class ReviewComponent {
   }
 
   async familyid(){
-   //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
+   const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
   }
 
   async paymentdetails(){
-    //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+    const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
 }
