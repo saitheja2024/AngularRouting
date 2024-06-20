@@ -38,9 +38,9 @@ export class FamilyMemberListComponent {
   }
 
 
-  // showFamilyMemberDetails(selectedFamilyMember: any) {
-  //   this.familyService.setSelectedFamilyMember(selectedFamilyMember)
-  //   this.router.navigateByUrl("/family/familyMemberDetails");
-  // }
+  showFamilyMemberDetails(selectedFamilyMember: any) {
+    this.familyService.setSelectedFamilyMember(selectedFamilyMember)
+    this.router.navigateByUrl("/family/familyMemberDetails");
+  }
 
 }
