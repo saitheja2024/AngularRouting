@@ -38,6 +38,11 @@ const Routing: Routes = [
       import('../modules/status-update/status-update.module').then((m) => m.StatusUpdateModule),
   },
   {
+    path: 'sub-class-assignment',
+    loadChildren: () =>
+      import('../modules/sub-class-assignment/sub-class-assignment.module').then((m) => m.SubClassAssignmentModule),
+  },
+  {
     path: 'email-processing',
     loadChildren: () =>
       import('../modules/email-processing/email-processing.module').then((m) => m.EmailProcessingModule),
