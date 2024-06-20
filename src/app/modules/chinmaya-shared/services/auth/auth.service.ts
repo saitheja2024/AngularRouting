@@ -72,7 +72,7 @@ export class AuthService implements OnDestroy {
     this.router.navigate(['/auth/login'], {
       queryParams: {},
     });
-    sessionStorage.removeItemItem('profileData');
+    sessionStorage.removeItem('profileData');
   }
 
   
