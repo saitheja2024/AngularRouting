@@ -11,7 +11,7 @@ import { ThemeModeService } from './_metronic/partials/layout/theme-mode-switche
 import { SpinnerService } from './modules/chinmaya-shared/services/spinner/spinner.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './modules/auth';
-
+import { StoreService, KEYS } from './modules/chinmaya-shared/services/store/store.service';
 @Component({
   // tslint:disable-next-line:component-selector
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -27,7 +27,8 @@ export class AppComponent implements OnInit {
     public spinnerService: SpinnerService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store:StoreService
   ) {
     // register translations
     this.translationService.loadTranslations(
@@ -62,7 +63,14 @@ export class AppComponent implements OnInit {
     }
 
     let  route= "/registration-processing";
-    if(!this.authService.getLoggedInUser()){
+    let loggedInUser = this.authService.getLoggedInUser();
+    if(loggedInUser==undefined){
+      loggedInUser = JSON.parse(sessionStorage.getItem('profileData') || '');
+      let logKey = KEYS.loggedInUser;
+      this.store.setValue(KEYS.chapter,loggedInUser.chapter);
+      this.store.setValue(logKey,loggedInUser);
+    }
+    if(!loggedInUser){
       route="/auth";
     }
     this.router.navigateByUrl(route);
