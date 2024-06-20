@@ -53,12 +53,19 @@
 
 .alpha_order button{
   margin-right: 5px;
-  border: 1px solid #e4614b;
-  background: #ff6950;
-  color: #fff;
+  border: 0px solid #e4614b;
+  background: transparent;
+  color: #0b96e5;
+  font-size: 16px;
+  text-decoration: underline;
 }
 
 .order_active{
-  background: #009ef7 !important;
-  border: 1px solid #4aa8de !important;
+  background: transparent !important;
+  border: 1px solid #ff6950 !important;
+  color: #ff6950 !important;
+}
+
+.reset_wrap{
+  float:right;
 }
