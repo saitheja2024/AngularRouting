@@ -19,7 +19,6 @@ export class RegistrationSearchResultsComponent {
   pageIndex : 0,
   pageSizeOptions :[10,30, 50,150,200,300,350,450],
   showFirstLastButtons : true,
-  length:10
   }
 
   
@@ -59,11 +58,13 @@ export class RegistrationSearchResultsComponent {
     let results  = await this.registrationService.fetchRegistrationDetailsBasedOnSearch(this.searchCriteria);
     this.totalRecCount =results;
     this.totalRecFooter = results;
+    this.totalRecFooter.totalPages = this.totalRecCount.totalProjectSummary;
     //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
-    this.dataSource.paginator = this.paginator;
+   // this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
+    this.dataSource.paginator.length = this.totalRecCount.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
 
   
@@ -113,14 +114,16 @@ export class RegistrationSearchResultsComponent {
    let previousSize = pageSize * pageIndex;
    this.searchCriteria.requestPageModel.page=pageIndex;
    this.searchCriteria.requestPageModel.size=pageSize;
+   
+   console.log(previousSize);
    this.performSearch();
   }
 
   activeOrder:any={};
 sortItems(letter: string, index:any) {
   this.activeOrder={[index]:true};
-  this.dataSource.data = this.totalRecCount.projectSummaryList.filter((item:any) => item.primaryName.startsWith(letter));
-  this.totalRecFooter = {totalProjectSummary:this.dataSource.data.length};
+  this.dataSource.data = this.totalRecCount.projectSummaryList.filter((item:any) => (item.primaryLastName).toLowerCase().startsWith((letter).toLowerCase()));
+  this.totalRecFooter = {totalProjectSummary:this.totalRecCount.totalProjectSummary};
   this.dataSource.sort = this.sort;
 }
 

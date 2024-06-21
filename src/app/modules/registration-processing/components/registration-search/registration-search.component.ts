@@ -84,7 +84,7 @@ export class RegistrationSearchComponent implements OnInit {
     this.searchCriteriaForm = this.fb.group({
       requestPageModel: this.fb.group({
         page: [0],
-        size: [0],
+        size: [100],
         sortFieldName: [''],
         sortOrder: ['']
       }),
