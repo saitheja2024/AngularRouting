@@ -1,1 +1,245 @@
-<p>complete works!</p>
+<div class="card mt-2" style="background:none;border-radius: 0px;">
+    <div class="card-header border-0 cursor-pointer ps-0 pe-0 pt-2 pb-2" style="background: #f2f6ff;border-radius: 0px;">
+        <div class="card-title">
+            <h4 class="fw-semibold">
+                Review Family Registration Details
+            </h4>
+        </div>
+    </div>
+    <div class="card-toolbar">
+        <div class="d-flex justify-content-end">
+            <ul class="nav nav-pills nav-pills-custom pull-right" style="width:100%;">
+                <!--begin::Item-->
+                <li class="nav-item mb-1">
+                    <!--begin::Link-->
+                    <div class="nav-link">
+                        <span class="nav-text text-gray-800 fw-semibold fs-6">SignUpCode Max Capacity : </span>
+                        <span class="nav-text text-primary-800 fw-semibold fs-6">1800</span>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Link-->
+                </li>
+                <!--end::Item-->
+                
+                <!--begin::Item-->
+                <li class="nav-item mb-1">
+                    <!--begin::Link-->
+                    <div class="nav-link">
+                        <span class="nav-text text-gray-800 fw-semibold fs-6">Accepted : </span>
+                        <span class="nav-text text-primary-800 fw-semibold fs-6">7</span>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Link-->
+                </li>
+                <!--end::Item-->
+
+                <!--begin::Item-->
+                <li class="nav-item mb-1">
+                    <!--begin::Link-->
+                    <div class="nav-link d-flex">
+                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Status : </span>
+                        <span class="nav-text">
+                            <select class="form-select form-select-sm cursor-pointer">
+                                <option>Select Registration Status</option>
+                                <option>PENDING</option>
+                                <option>PROCESSING</option>
+                                <option>ACCEPTED</option>
+                                <option>WITHDRAWN</option>
+                                <option>CANCELLED</option>
+                                <option>NOSHOW</option>
+                                <option>ATTENDED</option>
+                                <option>WAITLISTED</option>
+                            </select>
+                        </span>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Link-->
+                </li>
+                <!--end::Item-->
+
+                <!--begin::Item-->
+                <li class="nav-item mb-1">
+                    <!--begin::Link-->
+                    <div class="nav-link d-flex">
+                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Session : </span>
+                        <select class="form-select form-select-sm cursor-pointer">
+                            <option>Select Session</option>
+                            <option>Friday (6:45 - 8:20PM)</option>
+                            <option>Sunday 1 (9:15 - 10:50AM)</option>
+                            <option>Sunday 2 (12:15 - 01:50PM)</option>
+                        </select>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Link-->
+                </li>
+                <!--end::Item-->
+
+                <!--begin::Item-->
+                <li class="nav-item mb-1">
+                    <!--begin::Link-->
+                    <div class="nav-link">
+                        <span class="nav-text text-gray-800 fw-semibold fs-6">Total Records : </span>
+                        <span class="nav-text text-primary-800 fw-semibold fs-6">1</span>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Link-->
+                </li>
+                <!--end::Item-->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-2" style="border-radius:5px;">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourceStatusComplete" matSort>
+
+                    <!-- Checkbox Column-->
+                    <ng-container matColumnDef="checkbox">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>
+                            <div class="form-check form-check-sm form-check-custom form-check-solid me-6">
+                                <label class="pt-0 pb-0">
+                                    <input type="checkbox" value="1" class="form-check-input me-2">
+                                </label>
+                            </div>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> 
+                            <div class="form-check form-check-sm form-check-custom form-check-solid me-6">
+                                <label class="pt-0 pb-0">
+                                    <input type="checkbox" value="1" class="form-check-input me-2">
+                                </label>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <!-- Payment Date Column-->
+                    <ng-container matColumnDef="paymentdate">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentdate}} </td>
+                    </ng-container>
+
+                    <!-- Family ID Column-->
+                    <ng-container matColumnDef="familyid">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" mat-raised-button (click)="familyid()" 
+                            style="color:blue;cursor:pointer;text-decoration:underline;"> 
+                            {{element.familyid}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Person ID Column-->
+                    <ng-container matColumnDef="personid">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Person ID </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.personid}} </td>
+                    </ng-container>
+
+                    <!-- First Name Column-->
+                    <ng-container matColumnDef="firstname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+                    </ng-container>
+
+                    <!-- Family Name Column-->
+                    <ng-container matColumnDef="familyname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family Name </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyname}} </td>
+                    </ng-container>
+
+                    <!-- Gender Column-->
+                    <ng-container matColumnDef="gender">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Gender <th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                    </ng-container>
+
+                    <!-- Age Column-->
+                    <ng-container matColumnDef="age">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.age}} </td>
+                    </ng-container>
+
+                    <!-- School Grade Column-->
+                    <ng-container matColumnDef="schoolgrade">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> School Grade </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.schoolgrade}} </td>
+                    </ng-container>
+
+                    <!-- Primary Person ID Column-->
+                    <ng-container matColumnDef="primarypersonid">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Primary Person ID </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.primarypersonid}} </td>
+                    </ng-container>
+
+                    <!-- Primary First Name Column-->
+                    <ng-container matColumnDef="primaryfirstname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Primary First Name </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.primaryfirstname}} </td>
+                    </ng-container>
+
+                    <!-- Primary Last Name Column-->
+                    <ng-container matColumnDef="primarylastname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Primary Last Name </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.primarylastname}} </td>
+                    </ng-container>
+
+                    <!-- E-mail Column-->
+                    <ng-container matColumnDef="email">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
+
+                    <!-- Reconcile Column-->
+                    <ng-container matColumnDef="reconcile">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Reconcile </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.reconcile}} </td>
+                    </ng-container>
+
+                    <!-- Payment Column-->
+                    <ng-container matColumnDef="payment">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails()"> 
+                            <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
+                        </td>
+                    </ng-container>
+
+                    <!-- Date Created Column-->
+                    <ng-container matColumnDef="datecreated">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.datecreated}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsComplete; sticky: true;" style="background-color: #CDDDFF;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsComplete;"></tr>
+
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                showFirstLastButtons>
+                </mat-paginator>
+
+            </div>
+        </div>
+    </div>
+
+    <!--begin::Actions-->
+    <div class="card-footer d-flex justify-content-center p-4">
+        <div class="row">
+            <div class="d-flex">
+                <!--begin::Filter menu-->
+                <div class="m-0">
+                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                        <i class="icon-backward fs-6"></i> Back
+                    </a>
+                            
+                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                        <i class="icon-rotate-ccw2 fs-6"></i> Update Complete   
+                    </a>
+                </div>
+            </div>
+            <!--end::Actions-->
+        </div>
+        <!--end::Content-->
+    </div>
+
+</div>

@@ -8,6 +8,10 @@ import { CompleteComponent } from './components/complete/complete.component';
 import { SubclasAssignHomeComponent } from './components/subclas-assign-home/subclas-assign-home.component';
 import { SubclassAssignSearchComponent } from './components/subclass-assign-search/subclass-assign-search.component';
 import { SubclassAssignSearchResultsComponent } from './components/subclass-assign-search-results/subclass-assign-search-results.component';
+import { SelectionFamilyDetailsComponent } from './components/selection-family-details/selection-family-details.component';
+import { SelectionFamilyregviewComponent } from './components/selection-familyregview/selection-familyregview.component';
+import { SelectionFamilysessiondetailsComponent } from './components/selection-familysessiondetails/selection-familysessiondetails.component';
+import { SelectionPaymentdetailsComponent } from './components/selection-paymentdetails/selection-paymentdetails.component';
 
 const routes: Routes = [
   {
@@ -54,7 +58,11 @@ const routes: Routes = [
     CompleteComponent,
     SubclasAssignHomeComponent,
     SubclassAssignSearchComponent,
-    SubclassAssignSearchResultsComponent
+    SubclassAssignSearchResultsComponent,
+    SelectionFamilyDetailsComponent,
+    SelectionFamilyregviewComponent,
+    SelectionFamilysessiondetailsComponent,
+    SelectionPaymentdetailsComponent
   ],
 
   imports: [

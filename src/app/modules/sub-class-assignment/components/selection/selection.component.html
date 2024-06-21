@@ -82,7 +82,10 @@
                     <!-- Family ID Column-->
                     <ng-container matColumnDef="familyid">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyid}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" mat-raised-button (click)="familyid()" 
+                            style="color:blue;cursor:pointer;text-decoration:underline;"> 
+                            {{element.familyid}} 
+                        </td>
                     </ng-container>
 
                     <!-- Person ID Column-->
