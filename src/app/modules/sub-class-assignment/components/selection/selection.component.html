@@ -145,6 +145,26 @@
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
                     </ng-container>
 
+                    <!-- Reconcile Column-->
+                    <ng-container matColumnDef="reconcile">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Reconcile </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.reconcile}} </td>
+                    </ng-container>
+
+                    <!-- Payment Column-->
+                    <ng-container matColumnDef="payment">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails()"> 
+                            <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
+                        </td>
+                    </ng-container>
+
+                    <!-- Date Created Column-->
+                    <ng-container matColumnDef="datecreated">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.datecreated}} </td>
+                    </ng-container>
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsSelection; sticky: true;" style="background-color: #CDDDFF;"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumnsSelection;"></tr>
 
