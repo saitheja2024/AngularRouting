@@ -131,12 +131,6 @@
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.datecreated}} </td>
                     </ng-container>
-
-                    <!-- Date Created Column-->
-                    <ng-container matColumnDef="datecreated">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.datecreated}} </td>
-                    </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsSelection; sticky: true;" style="background-color: #CDDDFF;"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumnsSelection;"></tr>
