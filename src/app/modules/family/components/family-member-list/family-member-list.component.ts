@@ -33,8 +33,6 @@ export class FamilyMemberListComponent {
       familyId: familyID
     }
     this.allFamilyMembers = await this.familyService.fetchFamilyDetailsByFamilyID(searchParams, forceFetch);
-
-
   }
 
 

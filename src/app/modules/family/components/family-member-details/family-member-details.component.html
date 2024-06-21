@@ -731,7 +731,7 @@ Please Enter numeric value.
 													{{item.description}}</option>  
                                         </select>
                                     </div>
-                                    <div class="col-lg-3 fv-row" *ngIf="personTypeVal!='CHILD' && personTypeVal!='YOUTH'&& dataReceived?.primaryContact==fetchPersonUpdateResponse?.primaryContact && personUpdateData==dataReceived?.personID">
+                                    <div class="col-lg-3 fv-row" *ngIf="personTypeVal!='CHILD' && personTypeVal!='YOUTH'&& dataReceived?.primaryContact==fetchPersonUpdateResponse?.primaryContact && personUpdateData==dataReceived?.personID && editFamilyFlag>0">
                                                     <label class="col-form-label fw-semibold fs-6">Member Since</label>
                                 <input type="date" formControlName="memberSince" format="YYYY/MM/DD"  autocomplete="off" name="MemberSince" class="form-control form-control-md p-2" placeholder="Member Since"/>
                                 </div>

@@ -1004,10 +1004,10 @@ export class FamilyMemberDetailsComponent {
       
 
        if(type!='saveandAdd'){ 
-        this.router.navigate(['family/familyMemberList/false']);
+        this.router.navigate(['family/familyMemberList/true']);
          
       }else{
-        this.router.navigate(['family/familyMemberList/false']);
+        this.router.navigate(['family/familyMemberList/true']);
         this.downloadPhoto='';
         this.loadingImage=false;
         this.tabOne = true;
