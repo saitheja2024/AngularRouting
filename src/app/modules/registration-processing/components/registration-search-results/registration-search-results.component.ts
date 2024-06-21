@@ -61,10 +61,10 @@ export class RegistrationSearchResultsComponent {
     this.totalRecFooter.totalPages = this.totalRecCount.totalProjectSummary;
     //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
-   // this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
-    this.dataSource.paginator.length = this.totalRecCount.totalProjectSummary;
+    //this.dataSource.paginator.length = this.totalRecCount.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
 
   
@@ -113,10 +113,16 @@ export class RegistrationSearchResultsComponent {
 
    let previousSize = pageSize * pageIndex;
    this.searchCriteria.requestPageModel.page=pageIndex;
-   this.searchCriteria.requestPageModel.size=pageSize;
-   
-   console.log(previousSize);
-   this.performSearch();
+   //this.searchCriteria.requestPageModel.size=pageSize;
+   let pageCount = (event.length/pageSize);
+   let lastPage = Math.trunc(pageCount);
+   if(lastPage==pageIndex){
+    this.searchCriteria.requestPageModel.size= this.searchCriteria.requestPageModel.size+100;
+    if(this.searchCriteria.requestPageModel.size<this.totalRecCount.totalProjectSummary){
+      this.performSearch();
+    }
+   }
+  
   }
 
   activeOrder:any={};

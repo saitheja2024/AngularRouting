@@ -65,10 +65,10 @@ export class EmailSearchResultsComponent {
     // this.paginationConfig.length = results.totalProjectSummary;
      //this.searchResults.push(...results.projectSummaryList);
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
-    // this.dataSource.paginator= this.paginator;
+    this.dataSource.paginator= this.paginator;
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
-    this.dataSource.paginator.length = this.totalRecCount.totalProjectSummary;
+   // this.dataSource.paginator.length = this.totalRecCount.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
 
   }
@@ -95,8 +95,14 @@ handlePageEvent(event:any){
 
   let previousSize = pageSize * pageIndex;
   this.searchCriteria.requestPageModel.page=pageIndex;
-  this.searchCriteria.requestPageModel.size=pageSize;
-  this.performSearch();
+  let pageCount = (event.length/pageSize);
+   let lastPage = Math.trunc(pageCount);
+   if(lastPage==pageIndex){
+    this.searchCriteria.requestPageModel.size= this.searchCriteria.requestPageModel.size+100;
+    if(this.searchCriteria.requestPageModel.size<this.totalRecCount.totalProjectSummary){
+      this.performSearch();
+    }
+   }
  }
  
  popupTemplateData:any;
