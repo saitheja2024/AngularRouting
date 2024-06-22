@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/modules/auth';
 import { ProgramRequestInterface } from 'src/app/modules/chinmaya-shared/services/master/master-interface';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
@@ -13,8 +15,8 @@ export class SidebarMenuComponent implements OnInit {
   academicYear: any;
   chapterList: any;
   programs: any;
-  selectedChapterCode: any;
-  selectedYear: any;
+  selectedChapterCode: any='';
+  selectedYear: any='';
   loggedInUser: any;
   constructor(private masterService:MasterService,
     private store:StoreService,
@@ -87,8 +89,19 @@ export class SidebarMenuComponent implements OnInit {
    
   }
 
-  resetActiveMenu(){
+  resetActiveMenu(eve:any){
     this.subMenuActiveFlag ={};
+    if(this.selectedYear =='' && this.selectedChapterCode==''){
+      Swal.fire({
+        // position: 'top-end',
+         icon: 'warning',
+         title: 'Please Select Academic Year and Chapter.',
+         showConfirmButton: true,
+         //timer: 1500
+       });
+    }else{
+      this.router.navigateByUrl("/"+eve);
+    }
   }
 
 
