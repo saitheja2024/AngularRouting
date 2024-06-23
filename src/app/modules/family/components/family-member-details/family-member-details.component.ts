@@ -44,6 +44,7 @@ export class FamilyMemberDetailsComponent {
   selectedFamilyMember:any;
   selectedChapterCode:any;
   selectedFamily:any;
+  selectedProgram:any;
   get zipCode() {
     return this.CreateAccountForm.get('zipCode')!;
   }
@@ -116,7 +117,9 @@ export class FamilyMemberDetailsComponent {
    editFamilyFlag:number=0;
   async ngOnInit(): Promise<void> {
     this.selectedFamily = this.familyService.getSelectedFamily();
-    this.selectedFamilyMember =  this.familyService.getSelectedFamilyMember()
+    this.selectedFamilyMember =  this.familyService.getSelectedFamilyMember();
+    this.selectedProgram = this.store.getValue(KEYS.program);
+
     console.log(this.selectedFamily);
     if(this.selectedFamilyMember!==undefined && this.selectedFamilyMember!=null){
       this.editFamilyFlag = Object.keys(this.selectedFamilyMember).length;
@@ -131,13 +134,13 @@ export class FamilyMemberDetailsComponent {
       let logedInUserData = this.selectedFamily;
       this.currentUserData= logedInUserData;
       this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+      console.log(this.selectedChapterCode);
 
       this.familyId= this.currentUserData?.familyId;
       this.personID = this.currentUserData?.personID;
       this.chapterCode = this.selectedChapterCode;
     //scrollTop();
     
-    console.log(this.currentUserData);
     this.dataReceived=this.currentUserData;
    
     // this.arrayTime1 = this.CreateAccountForm.get('relationList');
@@ -1145,6 +1148,18 @@ changeOfSchoolGrade(){
     });
     this.raisingGradeData = filterGradeData;
   }
+
+}
+
+async refreshGrade(){
+  let param:any ={
+    "personId": this.personUpdateData,
+    "familyId": this.familyId,
+    "chapterCode": this.chapterCode,
+    "programCode":"CS_BALAVIHAR_2024-25",
+    "signupCode": "2024-25_BALA_VIHAR_CLASS"
+  }
+  let data = await this.MasterService.callRefreshGrade(param);
 
 }
 

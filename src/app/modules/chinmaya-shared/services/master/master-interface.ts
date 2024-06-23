@@ -23,4 +23,12 @@ export interface adultpersonListInterface{
     personId: number
 }
 
+export interface refreshGradeCode{
+    "personId": number,
+    "familyId": number,
+    "chapterCode": string,
+    "programCode": string,
+    "signupCode": string
+}
+
 

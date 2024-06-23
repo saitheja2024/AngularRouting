@@ -62,7 +62,8 @@ export class UrlService {
     fetchYesorNo:'master/fetchYesNoList',
     fetchRelationshipListForChild:'master/fetchRelationshipListForChild',
     fetchAdultPersonsByFamilyId:'registration/fetchAdultPersonsByFamilyId',
-    fetchPersonByPersonId:"registration/fetchPersonByPersonId"
+    fetchPersonByPersonId:"registration/fetchPersonByPersonId",
+    refreshGrade:"manageFamily/refreshGrade"
   }
 
   unLockAccountURL={

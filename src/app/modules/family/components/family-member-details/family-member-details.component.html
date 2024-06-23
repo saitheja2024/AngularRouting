@@ -13,7 +13,7 @@
         <div class="card-header pe-4 ps-4">
             <!--begin::Title-->
 <h3 class="card-title align-items-start flex-column">
-              <span class="card-label fw-bold text-gray-800">{{(personUpdateData!=undefined)?'Edit Family Registration Details' : 'Add Family Member Details'}}</span>
+              <span class="card-label fw-bold text-gray-800">{{(personUpdateData!=undefined && editFamilyFlag>0)?'Edit Family Registration Details' : 'Add Family Member Details'}}</span>
 </h3>
 <!--end::Title-->
 <!--begin::Toolbar-->
@@ -22,6 +22,7 @@
                     <i class="ki-duotone ki-black-left fs-2"></i>
                     Back to Program Registration
   </a>
+  <button *ngIf="editFamilyFlag>0 && selectedFamilyMember?.personType=='CHILD' && personTypeVal=='CHILD'" type="button" class="refresh_btn btn btn-primary" (click)="refreshGrade();">Refresh</button>
 </div>
 <!--end::Toolbar-->
 </div>
@@ -694,6 +695,7 @@ Please Enter numeric value.
                 <img src="assets/chinmaya_media/images/SVG-color/Add Family Registration Details-icon.svg"
                     style="width: 25px;"> {{action}} Family Registration Details
             </h3>
+            <button *ngIf="editFamilyFlag>0 && selectedFamilyMember?.personType=='CHILD' && personTypeVal=='CHILD'" type="button" class="refresh_btn btn btn-primary" (click)="refreshGrade();">Refresh</button>
         </div>
         <!--end::Search-->
     </div>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
-import { ChapterCodeRequestInterface, ProgramRequestInterface, adultpersonListInterface } from './master-interface';
+import { ChapterCodeRequestInterface, ProgramRequestInterface, adultpersonListInterface, refreshGradeCode } from './master-interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -438,6 +438,19 @@ export class MasterService {
     let options: Options = { body: body, url: "organization/fetchRisingGradeLabel" };
     let data =  await this.httpService.post(options);
     return data;
+  }
+
+  async callRefreshGrade(param:refreshGradeCode){
+
+    let options:Options={
+      url: this.urlService.masterURL.refreshGrade,
+      body:param
+    };
+
+    let refreshCode:any = await this.httpService.post(options);
+    
+    return refreshCode;
+
   }
   
 } 
