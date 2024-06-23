@@ -6,3 +6,7 @@
 :host{
   background-color: lightgray !important;
 }
+
+::ng-deep div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  background-color:#2196F3 !important;
+}

@@ -1010,12 +1010,16 @@ export class FamilyMemberDetailsComponent {
         this.router.navigate(['family/familyMemberList/true']);
          
       }else{
-        this.router.navigate(['family/familyMemberList/true']);
+        this.router.navigate(['family/familyMemberDetails']);
         this.downloadPhoto='';
         this.loadingImage=false;
         this.tabOne = true;
         this.tabTwo = false;
         this.tabThree = false;
+        this.selectedFamily = this.familyService.getSelectedFamily();
+        this.selectedFamilyMember = undefined;
+        this.editFamilyFlag=0;
+        this.action="Add";
         this.resetForm('');
       }
       },(err : HttpErrorResponse)=>{
@@ -1057,8 +1061,8 @@ export class FamilyMemberDetailsComponent {
 
  resetForm(cancel:any){
   this.CreateAccountForm.reset();
-  if(cancel=='cancel'){ this.router.navigate(['familyview']);}
-  let  responseData = JSON.parse(localStorage.getItem('CurrentUser') || '');
+  if(cancel=='cancel'){ this.router.navigate(['family/familyMemberList/true']);}
+//  let  responseData = JSON.parse(localStorage.getItem('CurrentUser') || '');
 
   this.CreateAccountForm = this.fb.group({
     

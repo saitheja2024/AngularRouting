@@ -829,9 +829,6 @@ Please Enter numeric value.
 														Please Select Primary contact is my?.
 													</div>
                                                 </div>
-                                            </div>
-
-                                            <div  class="row mb-2">
                                                 <div  class="col-lg-6 fv-row" *ngIf="personTypeVal=='YOUTH'">
                                                     <label  class="col-form-label fw-semibold fs-6 mb-2">Does this individual currently live at the given family address?</label>
                                                     <select formControlName="livingAtHomeAddress" name="youth" aria-label="Select" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
@@ -839,8 +836,12 @@ Please Enter numeric value.
 															{{item.description}}</option>
 													</select>
                                                 </div> 
-                                            <div class="col-lg-6"></div>
                                             </div>
+
+                                            <!-- <div  class="row mb-2">
+                                               
+                                            <div class="col-lg-6"></div>
+                                            </div> -->
 
                                             <div  class="row mb-2 mt-4">
                                                 <label  class="col-lg-4 col-form-label required fw-semibold fs-6">Address 1 </label>
@@ -980,7 +981,7 @@ Please Enter numeric value.
                                                             <!--end::Radio-->
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-7"  *ngIf="canShowUserNameField()"> <label class="col-form-label required fw-semibold fs-6">User Name  </label>
+                                                    <div class="col-lg-9"  *ngIf="canShowUserNameField()"> <label class="col-form-label required fw-semibold fs-6">User Name  </label>
                                                         <input type="text" maxlength="100" name="phone" class="form-control form-control-md p-2" placeholder="User Name"  autocomplete="off" formControlName="dependentUsername" />  
                                                         <div *ngIf="CAF['dependentUsername'].invalid && (CreateAccountForm.dirty || CreateAccountForm.touched) && validateFlag" class="error_clr mrg_btm">
                                                             Please Enter Dependent User Name.

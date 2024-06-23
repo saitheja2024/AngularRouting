@@ -361,12 +361,12 @@ export class MasterService {
   async fetchfetchYesorNo() {
 
     if (this.fetchYesorNo) {
-      return this.fetchYesorNo
+      return this.fetchYesorNo?.selectDropdownList
     }
 
     let options: Options = { body: null, url: this.urlService.masterURL.fetchYesorNo };
     this.fetchYesorNo = await this.httpService.get(options);
-    return this.fetchYesorNo;
+    return this.fetchYesorNo?.selectDropdownList;
 
   }
 

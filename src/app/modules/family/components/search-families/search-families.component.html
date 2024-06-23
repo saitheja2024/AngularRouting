@@ -9,7 +9,7 @@
                 <div class="fs-5 text-dark fs-7 text-uppercase fw-semibold">Filter Options</div>
             </div>
             <div class="separator border-gray-200"></div>
-            <div class="p-4" [formGroup]="searchForm" style="max-height:500px;overflow:scroll;">
+            <div class="p-4" [formGroup]="searchForm" style="max-height:500px;overflow:scroll;" (keyup.enter)="onSearchSubmit();">
 
                 <div class="col-lg-12">
                     <div class="row">
