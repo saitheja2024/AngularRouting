@@ -16,13 +16,17 @@ export class RegistrationProcessingHomeComponent {
       this.selectedProgram=program;
     });
 
+    this.store.onChapterDescUpdate().subscribe((chapter:any)=>{
+      this.selectedChapter=chapter[0].description;
+    });
+
   }
 
   ngOnInit(){
    
-    this.store.onChapterDescUpdate().subscribe((chapter:any)=>{
-      this.selectedChapter=chapter[0].description;
-    });
+    // this.store.onChapterDescUpdate().subscribe((chapter:any)=>{
+    //   this.selectedChapter=chapter[0].description;
+    // });
 
     // let chapter = this.store.getValue(KEYS.chapterDesc);
     // this.selectedChapter=chapter[0].description;

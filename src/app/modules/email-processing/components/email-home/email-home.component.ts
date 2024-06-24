@@ -21,7 +21,7 @@ export class EmailHomeComponent {
   ngOnInit(){
     
      let chapter = this.store.getValue(KEYS.chapterDesc);
-     this.selectedChapter=chapter[0].description
+     this.selectedChapter=chapter[0].description;
   } 
 
 }
