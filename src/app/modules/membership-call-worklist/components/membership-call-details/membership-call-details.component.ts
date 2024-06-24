@@ -42,10 +42,19 @@ export class MembershipCallDetailsComponent {
       if(changes && changes["callWorkDetails"].currentValue){
         this.callWorkDetails=changes["callWorkDetails"].currentValue
        
-        this.callWorkDetails.academicYear=this.selectedAcademicYear;
-        this.callWorkDetails.personId=this.membeshipService.getLoggedInUser().personID
-
-        this.callWorkHistoryForm.patchValue(this.callWorkDetails);
+         let callHistory:any = {
+          assignedTo:"",
+          callId:0
+         };
+         if(this.callWorkDetails && this.callWorkDetails.callHistoryList){
+            callHistory = this.callWorkDetails.callHistoryList[0];
+         }
+        callHistory.academicYear=this.selectedAcademicYear;
+        callHistory.personId=this.membeshipService.getLoggedInUser().personID
+        callHistory.familyId = this.callWorkDetails.familyId;
+        callHistory.programCode=this.callWorkDetails.programCode;
+        callHistory.callNotes="";
+        this.callWorkHistoryForm.patchValue(callHistory); 
       } 
     }
 
@@ -62,7 +71,8 @@ export class MembershipCallDetailsComponent {
         academicYear: ['']
       })
 
-      //this.callWorkHistoryForm.patchValue(this.callWorkDetails);
+      // let callHistory = this.callWorkDetails.callHistoryList[0];
+      // this.callWorkHistoryForm.patchValue(callHistory);
     }
 
 
@@ -89,5 +99,13 @@ export class MembershipCallDetailsComponent {
         await this.membeshipService.saveMembershipCallHistory(formValues);
         this.callWorkDetailsSavedNotification.emit();
       
+     }
+
+     onViewPreviouCallNotesClick(){
+      if(this.callWorkDetails && this.callWorkDetails.callHistoryList){
+        let  callNotesList = this.callWorkDetails.callHistoryList[0].responseCallNotesList.map((note:any) => note.callNotes);
+        callNotesList=callNotesList.join('\n');
+        this.callWorkHistoryForm.get("callNotes").setValue(callNotesList);
+       }
      }
 }
