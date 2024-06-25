@@ -869,7 +869,8 @@ export class FamilyMemberDetailsComponent {
           familyID: this.familyId,
           personID: (this.editFamilyFlag>0)?this.personUpdateData:0,
           primaryContact:primaryFlag,
-          chapter:userData.chapter
+          chapter:userData.chapter,
+          modifiedBy: (this.editFamilyFlag>0)?this.personUpdateData:this.personUpdateData
         },
         relationList: [
        
@@ -1155,16 +1156,16 @@ changeOfSchoolGrade(){
 
 }
 
-async refreshGrade(){
-  let param:any ={
-    "personId": this.personUpdateData,
-    "familyId": this.familyId,
-    "chapterCode": this.chapterCode,
-    "programCode":"CS_BALAVIHAR_2024-25",
-    "signupCode": "2024-25_BALA_VIHAR_CLASS"
-  }
-  let data = await this.MasterService.callRefreshGrade(param);
+// async refreshGrade(){
+//   let param:any ={
+//     "personId": this.personUpdateData,
+//     "familyId": this.familyId,
+//     "chapterCode": this.chapterCode,
+//     "programCode":"CS_BALAVIHAR_2024-25",
+//     "signupCode": "2024-25_BALA_VIHAR_CLASS"
+//   }
+//   let data = await this.MasterService.callRefreshGrade(param);
 
-}
+// }
 
 }
