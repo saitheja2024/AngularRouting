@@ -54,8 +54,8 @@
                            {{child.name}}
                         </div>
                         <div class="ms-4 mt-2">
-                            <div class="jsutify-content-start">{{child.gradeLabel}}</div>
-                            <div class="jsutify-content-start">Class : {{child.classCode}}</div>
+                            <div class="jsutify-content-start">{{child.gradeLabel}} {{child.schoolGradeDescription ? child.schoolGradeDescription:""}}</div>
+                            <div class="jsutify-content-start">Class : {{child.classCode ? child.classCode:'NA' }}</div>
                         </div>
                     </div>
 
@@ -179,7 +179,7 @@
         <p class="text-dark fw-semibold mb-1" style="text-align:left;">
             Call Notes:
             <span style="float:right;">
-                <a href="#"><u>View Previous Call Notes</u></a>
+                <a [routerLink]="" class="primary" (click)="onViewPreviouCallNotesClick()" style="cursor: pointer;"><u>View Previous Call Notes</u></a>
             </span>
         </p>
         <textarea class="form-control" row="2" cols="2" formControlName="callNotes"></textarea>
