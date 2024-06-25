@@ -68,7 +68,9 @@ export class MembershipCallDetailsComponent {
         callNotes: [''],
         doNotCallAgainFlag: [''],
         programCode: [''],
-        academicYear: ['']
+        academicYear: [''],
+        callCount:[''],
+        lastCallDate:['']
       })
 
       // let callHistory = this.callWorkDetails.callHistoryList[0];
