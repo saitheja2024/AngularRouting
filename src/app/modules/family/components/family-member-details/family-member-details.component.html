@@ -22,7 +22,7 @@
                     <i class="ki-duotone ki-black-left fs-2"></i>
                     Back to Program Registration
   </a>
-  <button *ngIf="editFamilyFlag>0 && selectedFamilyMember?.personType=='CHILD' && personTypeVal=='CHILD'" type="button" class="refresh_btn btn btn-primary" (click)="refreshGrade();">Refresh</button>
+  <!-- <button *ngIf="editFamilyFlag>0 && selectedFamilyMember?.personType=='CHILD' && personTypeVal=='CHILD'" type="button" class="refresh_btn btn btn-primary" (click)="refreshGrade();">Refresh</button> -->
 </div>
 <!--end::Toolbar-->
 </div>
@@ -692,10 +692,11 @@ Please Enter numeric value.
                 <i class="bi bi-arrow-left" style="font-size:16px"></i>
             </button>
             <h3 class="panel-title">
-                <img src="assets/chinmaya_media/images/SVG-color/Add Family Registration Details-icon.svg"
-                    style="width: 25px;"> {{action}} Family Registration Details
+                <!-- <img src="assets/chinmaya_media/images/SVG-color/Add Family Registration Details-icon.svg"
+                style="width: 25px;"> -->
+                 {{action}} Family Registration Details
             </h3>
-            <button *ngIf="editFamilyFlag>0 && selectedFamilyMember?.personType=='CHILD' && personTypeVal=='CHILD'" type="button" class="refresh_btn btn btn-primary" (click)="refreshGrade();">Refresh</button>
+            <!-- <button *ngIf="editFamilyFlag>0 && selectedFamilyMember?.personType=='CHILD' && personTypeVal=='CHILD'" type="button" class="refresh_btn btn btn-primary" (click)="refreshGrade();">Refresh</button> -->
         </div>
         <!--end::Search-->
     </div>

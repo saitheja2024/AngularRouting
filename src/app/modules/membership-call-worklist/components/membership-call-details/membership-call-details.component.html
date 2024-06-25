@@ -24,18 +24,21 @@
                     <span class="number">
                         <span class="jsutify-content-start me-4">Call Count: </span>
                         <span class="minus me-2">-</span>
-                        <input type="number" value="1" style="width:50px;">
+                        <input type="number"  style="width:50px;" formControlName="callCount">
                         <span class="plus ms-2">+</span>
                     </span>
                 </div>
                 <div class="fs-6 text-dark fw-semibold mt-2">
-                    <span style="color:#C00000;">Last Call Date: 8/14/2024</span>
+                    <span style="color:#C00000;">Last Call Date: {{callWorkHistoryForm.value.lastCallDate | date:'MM/dd/yyyy'}}</span>
                 </div>
                 <div class="fs-6 mt-2 text-dark fw-semibold">
                     <span class="text" style="display:block ruby;">
                         <span class="jsutify-content-start me-4">Assigned To: </span>
                         <input type="text" formControlName="assignedTo" class="form-control form-control-sm" style="width: 50%;padding: 5px;min-height: 20px !important;">
                     </span>
+                </div>
+                <div>
+                    <input type="checkbox" formControlName="doNotCallAgainFlag">
                 </div>
             </div>
         </div>
@@ -54,8 +57,8 @@
                            {{child.name}}
                         </div>
                         <div class="ms-4 mt-2">
-                            <div class="jsutify-content-start">{{child.gradeLabel}}</div>
-                            <div class="jsutify-content-start">Class : {{child.classCode}}</div>
+                            <div class="jsutify-content-start">{{child.gradeLabel}} {{child.schoolGradeDescription ? child.schoolGradeDescription:""}}</div>
+                            <div class="jsutify-content-start">Class : {{child.classCode ? child.classCode:'NA' }}</div>
                         </div>
                     </div>
 
@@ -179,7 +182,7 @@
         <p class="text-dark fw-semibold mb-1" style="text-align:left;">
             Call Notes:
             <span style="float:right;">
-                <a href="#"><u>View Previous Call Notes</u></a>
+                <a [routerLink]="" class="primary" (click)="onViewPreviouCallNotesClick()" style="cursor: pointer;"><u>View Previous Call Notes</u></a>
             </span>
         </p>
         <textarea class="form-control" row="2" cols="2" formControlName="callNotes"></textarea>

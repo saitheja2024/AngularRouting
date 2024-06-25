@@ -134,6 +134,10 @@ export class UrlService {
     fetchMemberShipCallWorkDetailsByFamilyId : "membership/fetchMemberShipCallWorkDetailsByFamilyId",
     saveMembershipCallHistory: "membership/saveMemberShipCallHistory"
   }
+
+  registration = {
+    saveFamilyAndPerson :"registration/saveFamilyAndPerson"
+  }
  
   
 }

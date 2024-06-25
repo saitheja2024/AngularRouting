@@ -106,6 +106,18 @@ export class FamilyService {
     return this.familyMembersList;
   }
 
+  async saveFamilyAndPerson(params:any){
+    let options: Options = {
+      url: this.urlService.registration.saveFamilyAndPerson,
+      body: params
+    }
+
+    let personDetails: any = await this.httpService.post(options);
+
+
+
+  }
+
 
 
 }

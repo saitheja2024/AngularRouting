@@ -18,7 +18,7 @@ export class FamilyListomponent {
     private router: Router
   ) {}
 
-  displayColumns: string[] = ["familyId", "personID", "firstName", "middleName", "lastName", "gender", "dateOfBirth", "personType", "homePhone", "emailAddress"]
+  displayColumns: string[] = ["familyId", "personID", "firstName", "middleName", "lastName", "gender", "personType", "homePhone", "emailAddress"]
   dataSource:any = new MatTableDataSource<any>(); 
   
   @ViewChild(MatSort) sort: MatSort;
