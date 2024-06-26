@@ -31,10 +31,14 @@
 										<div formArrayName="responsePersonProgramList" >
 											<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j=index">
 											  <div [formGroupName]="j" class="card" style="border:1px solid lightgray !important;margin-bottom:8px">
-												<div class="card-title" style="padding:8px;">
+												<a href="javascript:void(0);" class="pos_top_right" (click)="refreshGrade(j, programGroup.get('personID').value, programGroup.get('signupCode').value);" *ngIf="getPersonTypeCheck(programGroup)">
+													<i class="ki-solid ki-arrows-circle text-dark refresh_icon"></i>&nbsp;Refresh
+												</a>
+												<div class="card-title" style="padding:10px;">
 											</div>
 
 												<div class="px-7">
+
 													<h6 class="fw-semibold mb-3">{{programGroup.get('sessions')?.value}}</h6>
 													<!--begin::Input group-->
 													<div class="row mb-2">	

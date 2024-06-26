@@ -42,8 +42,19 @@ margin-left: 2.5rem !important;
     }
 }
 
+.pos_top_right{
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    /* bottom: 20px; */
+    font-size: 14px;
+    text-decoration: underline;
+}
 
-
+.refresh_icon{
+    color:#009ef7 !important;
+    font-size:16px;
+}
 
 
 

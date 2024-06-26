@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/ale
 import { RegistrationService } from 'src/app/modules/chinmaya-shared/services/registration-processing/registration.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth';
+import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 @Component({
   selector: 'app-family-registration-details',
   templateUrl: './family-registration-details.component.html',
@@ -29,7 +30,7 @@ export class FamilyRegistrationDetailsComponent {
   private alertService:AlertService,
   private registrationService:RegistrationService,
   private fb:FormBuilder,
-  private router:Router, private authService:AuthService){}
+  private router:Router, private authService:AuthService, private MasterService:MasterService){}
 
 
 
@@ -220,7 +221,15 @@ getPersonSummary(detailsGroup: any) {
   return summary;
 }
 
-
+getPersonTypeCheck(detailsGroup: any) {
+  let summary = detailsGroup.get('personType').value;
+  let personTypeFlag=false;
+  // Check if gender is not empty or null
+  if (summary =="CHILD") {
+    personTypeFlag=true;
+  }
+  return personTypeFlag;
+}
 
  
 
@@ -294,5 +303,17 @@ getPersonSummary(detailsGroup: any) {
   onCancelButtonClick(){
     this.router.navigateByUrl("/registration-processing/registration-search-results");
   }
+
+  async refreshGrade(index:any, personId:any, SignupCode:any){
+  let param:any ={
+    "personId":personId,
+    "familyId": this.selectedFamily.familyId,
+    "chapterCode": this.selectedChapterID,
+    "programCode":this.selectedProgram.code,
+    "signupCode": SignupCode
+  }
+  let data = await this.MasterService.callRefreshGrade(param);
+
+}
 
 }
