@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FamilyService } from '../../chinmaya-shared/services/family/family.service';
 import { KEYS, StoreService } from '../../chinmaya-shared/services/store/store.service';
@@ -14,7 +14,7 @@ import { MasterService } from '../../chinmaya-shared/services/master/master.serv
 export class SearchFamilyComponent {
   
   
-  contactsForm: any;
+  contactsForm:FormGroup;
   selectedAcademicYear: any;
   selectedChapterCode: any;
   stateList: any;
@@ -29,8 +29,8 @@ export class SearchFamilyComponent {
   async ngOnInit(){
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    await this.initForm();
     await  this.fetchstateList();
-    this.initForm();
     
   }
 
@@ -38,12 +38,13 @@ export class SearchFamilyComponent {
     this.stateList = await this.masterService.fetchstateList();
   }
 
-  initForm(){
+ async initForm(){
+    let password = window.btoa('123456');
     this.contactsForm = this.fb.group({
       familyID: new FormControl(0),
       personID: new FormControl(0),
       username: new FormControl(''),
-      password: new FormControl('1234567890'),
+      password: new FormControl(password),
       emailAddress: new FormControl(''),
       chapter: new FormControl(this.selectedChapterCode),
       firstName: new FormControl(''),
@@ -58,11 +59,12 @@ export class SearchFamilyComponent {
       city: new FormControl(''),
       state: new FormControl(''),
       zipCode: new FormControl(''),
-      status: new FormControl(''),
+      status: new FormControl('Active'),
       memberSince: new FormControl(this.getCurrentDate()),
       maritalStatus: new FormControl(''),
       sphomePhoneFlag: new FormControl(''),
       mobileFlag: new FormControl(''),
+      personType: new FormControl('ADULT')
       });
 
   }
@@ -70,7 +72,7 @@ export class SearchFamilyComponent {
 
   async onRegisterButtonClick(){
     let formValues = this.contactsForm.value;
-    formValues.userName=formValues.emailAddress;
+    formValues.username=formValues.emailAddress;
     let user = {
       user:formValues
     }
@@ -84,6 +86,6 @@ export class SearchFamilyComponent {
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
-}
+  }
 
 }
