@@ -313,7 +313,7 @@ getPersonTypeCheck(detailsGroup: any) {
     "signupCode": SignupCode
   }
   let data = await this.MasterService.callRefreshGrade(param);
-
+  this.populateData();
 }
 
 }

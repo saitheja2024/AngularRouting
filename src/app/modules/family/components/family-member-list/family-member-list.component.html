@@ -76,6 +76,7 @@
 						<th class="text-start min-w-100px text-nowrap">Registration Type</th>
 						<th class="text-start min-w-100px text-nowrap">Home Phone</th>
 						<th class="text-start min-w-100px text-nowrap">Email Address</th>
+						<th class="text-start min-w-100px text-nowrap">Primary</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -110,6 +111,9 @@
 						</td>
 						<td class="text-start text-nowrap">
 							{{member.emailAddress}}
+						</td>
+						<td class="text-start text-nowrap">
+							{{(member.primaryContact=='1')? 'Yes':''}}
 						</td>
 					</tr>
 
