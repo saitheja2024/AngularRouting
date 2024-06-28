@@ -46,7 +46,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr *ngFor="let l of list">
+                                <tr *ngFor="let l of list?.projectSummaryList">
                                     <td class="text-start text-nowrap fw-semibold " style="cursor: pointer;color:blue" (click)="showCallDetails(l)">
                                       {{l.familyId}}
                                     </td>

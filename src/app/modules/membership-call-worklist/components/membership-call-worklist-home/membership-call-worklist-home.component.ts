@@ -26,11 +26,22 @@ export class MembershipCallWorklistHomeComponent {
 
   async fetchMemberShipCallWork(){
     var params = {
-      "academicYear": this.selectedAcademicYear,
-      "chapterCode": this.selectedChapterCode,
-      "registrationStatus": "PENDING",
-      "paymentStatus": "NO_DUES",
-    }
+      "requestPageModel": {
+        "page": 0,
+        "size": 0,
+        "sortFieldName": "",
+        "sortOrder": ""
+      },
+      "requestMemberShipCallWork": {
+        "personId": 0,
+        "academicYear": this.selectedAcademicYear,
+        "chapterCode": this.selectedChapterCode,
+        "programCode": "",
+        "registrationStatus": "PENDING",
+        "paymentStatus": "NO_DUES",
+        "assignToMe": ""
+      }
+    };
     this.list = await this.membeshipService.fetchMemberShipCallWork(params);
   }
 
