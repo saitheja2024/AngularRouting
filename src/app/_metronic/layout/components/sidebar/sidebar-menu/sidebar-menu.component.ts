@@ -31,10 +31,12 @@ export class SidebarMenuComponent implements OnInit {
     let featureYear:any = moment(new Date()).format('YYYY');
     featureYear = parseInt(featureYear)+1;
      this.academicYearCode = currentYear+'-'+ featureYear;
-    this.loggedInUser = this.authService.getLoggedInUser();
+    this.loggedInUser = JSON.parse(sessionStorage.getItem('profileData') || '');
     this.academicYear = await  this.masterService.fetchAcademicYear(true);
     this.chapterList = await this.masterService.fetchChaptherList({username:this.loggedInUser.username},true);
-    this.chapterCode = this.loggedInUser.chapter;
+    this.chapterCode = (this.loggedInUser.chapterCode!=undefined)? this.loggedInUser.chapterCode:this.loggedInUser.chapter;
+    this.store.setValue(KEYS.chapter,this.chapterCode);
+    console.log(this.chapterCode);
     await this.fetchProgramsByAcademicYearAndChapterCode();
   }
 
