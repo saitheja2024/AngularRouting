@@ -45,6 +45,7 @@ export class FamilyMemberDetailsComponent {
   selectedChapterCode:any;
   selectedFamily:any;
   selectedProgram:any;
+  loggedInUser:any;
   get zipCode() {
     return this.CreateAccountForm.get('zipCode')!;
   }
@@ -119,6 +120,7 @@ export class FamilyMemberDetailsComponent {
     this.selectedFamily = this.familyService.getSelectedFamily();
     this.selectedFamilyMember =  this.familyService.getSelectedFamilyMember();
     this.selectedProgram = this.store.getValue(KEYS.program);
+    this.loggedInUser = this.authService.getLoggedInUser();
 
     console.log(this.selectedFamily);
     if(this.selectedFamilyMember!==undefined && this.selectedFamilyMember!=null){
@@ -870,7 +872,7 @@ export class FamilyMemberDetailsComponent {
           personID: (this.editFamilyFlag>0)?this.personUpdateData:0,
           primaryContact:primaryFlag,
           chapter:userData.chapter,
-          modifiedBy: (this.editFamilyFlag>0)?this.personUpdateData:this.personUpdateData
+          modifiedBy: this.loggedInUser.personID
         },
         relationList: [
        

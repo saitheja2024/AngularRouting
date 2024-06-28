@@ -10,7 +10,6 @@
       <!--end::sidebar toggle-->
     </div>
   </ng-container>
-
   <ng-container *ngIf="appSidebarDisplay">
     <!--begin::sidebar mobile toggle-->
     <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show sidebar menu">
@@ -21,6 +20,8 @@
     <!--end::sidebar mobile toggle-->
     <!--begin::Mobile logo-->
     <div class="d-flex align-items-center flex-lg-grow-0">
+      <div class="align-items-center fs_st_cust">Welcome to, {{loginUserData.chapterDescription}}</div>
+
       <a routerLink="/dashboard" class="d-lg-none">
         <img alt="Logo" src="./assets/media/logos/header.png" class="h-50px" />
       </a>
@@ -81,6 +82,7 @@
     </ng-container> -->
     <app-navbar class="app-navbar flex-shrink-0" [appHeaderDefaulMenuDisplay]="appHeaderDefaulMenuDisplay"
       [isRtl]="false"></app-navbar>
+
   </div>
   <!--end::Header wrapper-->
 </div>

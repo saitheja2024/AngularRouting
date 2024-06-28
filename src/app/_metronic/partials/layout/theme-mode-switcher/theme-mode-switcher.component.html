@@ -1,5 +1,5 @@
 <!-- begin::Menu toggle -->
-<div class="btn btn-icon" [ngClass]="toggleBtnClass" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
+<div class="btn btn-icon" style="margin-left: 18px;" [ngClass]="toggleBtnClass" data-kt-menu-trigger="{default: 'click', lg: 'hover'}"
   data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
   <ng-container *ngIf="mode$ | async as mode">
     <ng-container *ngIf="mode === 'dark'">
@@ -10,6 +10,7 @@
     </ng-container>
   </ng-container>
 </div>
+<p>Hari Om, {{loginUserData.firstName}}</p>
 <!-- end::Menu toggle -->
 
 

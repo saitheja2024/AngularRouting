@@ -14,12 +14,13 @@ export class ThemeModeSwitcherComponent implements OnInit {
   @Input() menuTrigger: string = "{default: 'click', lg: 'hover'}";
   mode$: Observable<ThemeModeType>;
   menuMode$: Observable<ThemeModeType>;
-
+  loginUserData:any;
   constructor(private modeService: ThemeModeService, private route:Router) {}
 
   ngOnInit(): void {
     this.mode$ = this.modeService.mode.asObservable();
     this.menuMode$ = this.modeService.menuMode.asObservable();
+    this.loginUserData = JSON.parse(sessionStorage.getItem('profileData') || '');
   }
 
   switchMode(_mode: ThemeModeType): void {

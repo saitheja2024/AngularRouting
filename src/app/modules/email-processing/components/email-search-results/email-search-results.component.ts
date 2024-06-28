@@ -158,7 +158,7 @@ sendEmail(){
 activeOrder:any={};
 sortItems(letter: string, index:any) {
   this.activeOrder={[index]:true};
-  this.dataSource.data = this.totalRecCount.projectSummaryList.filter((item:any) => item.primaryName.startsWith(letter));
+  this.dataSource.data = this.totalRecCount.projectSummaryList.filter((item:any) => (item.primaryLastName).toLowerCase().startsWith((letter).toLowerCase()));
   this.totalRecFooter = {totalProjectSummary:this.dataSource.data.length};
   this.dataSource.sort = this.sort;
 }

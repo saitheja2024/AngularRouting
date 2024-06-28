@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   appHeaderDefaultContent: string = '';
   appHeaderDefaulMenuDisplay: boolean;
   appPageTitleDisplay: boolean;
+  loginUserData:any;
 
   constructor(private layout: LayoutService, private router: Router) {
     this.routingChanges();
@@ -122,6 +123,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.currentLayoutType = layout;
       });
     this.unsubscribe.push(layoutSubscr);
+    this.loginUserData = JSON.parse(sessionStorage.getItem('profileData') || '');
   }
 
   routingChanges() {

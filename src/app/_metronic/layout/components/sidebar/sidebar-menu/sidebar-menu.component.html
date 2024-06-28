@@ -9,14 +9,14 @@
 
     <!-- Dashboard -->
     <div class="menu-item" routerLinkActive="here show">
-      <select class="form-select form-select-sm ms-4" style="width:90%;" (change)="onAcademicYerChange($event)">
+      <select class="form-select form-select-sm ms-4" style="width:90%;" [(ngModel)]="academicYearCode" (change)="onAcademicYerChange($event)">
         <option>Select Acadamic Year</option>
-        <option *ngFor = "let year of academicYear">{{year.description}}</option>
+        <option *ngFor = "let year of academicYear" [value]="year.description">{{year.description}}</option>
     </select>
     </div>
 
     <div class="menu-item mt-1" routerLinkActive="here show">
-      <select class="form-select form-select-sm ms-4" style="width:90%;" (change)="onChapterChange($event)">
+      <select class="form-select form-select-sm ms-4" style="width:90%;" [(ngModel)]="chapterCode" (change)="onChapterChange($event)">
         <option>Select Chapter</option>
         <option *ngFor="let chapter of chapterList" [value]="chapter.code">{{chapter.description}}</option>
        

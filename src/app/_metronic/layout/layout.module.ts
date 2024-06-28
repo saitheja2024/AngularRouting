@@ -41,7 +41,7 @@ import { ExtendedComponent } from './components/toolbar/extended/extended.compon
 import { ReportsComponent } from './components/toolbar/reports/reports.component';
 import { SaasComponent } from './components/toolbar/saas/saas.component';
 import {SharedModule} from "../shared/shared.module";
-
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: '',
@@ -90,7 +90,8 @@ const routes: Routes = [
     NgbTooltipModule,
     TranslateModule,
     ThemeModeModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   exports: [RouterModule],
 })

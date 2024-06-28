@@ -5,6 +5,7 @@ import { ProgramRequestInterface } from 'src/app/modules/chinmaya-shared/service
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import Swal from 'sweetalert2'
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -18,17 +19,23 @@ export class SidebarMenuComponent implements OnInit {
   selectedChapterCode: any='';
   selectedYear: any='';
   loggedInUser: any;
+  chapterCode:any;
+  academicYearCode:any;
   constructor(private masterService:MasterService,
     private store:StoreService,
     private router:Router,
     private authService:AuthService) { }
 
   async ngOnInit() {
-
-
+    let currentYear = moment(new Date()).format('YYYY');
+    let featureYear:any = moment(new Date()).format('YYYY');
+    featureYear = parseInt(featureYear)+1;
+     this.academicYearCode = currentYear+'-'+ featureYear;
     this.loggedInUser = this.authService.getLoggedInUser();
     this.academicYear = await  this.masterService.fetchAcademicYear(true);
     this.chapterList = await this.masterService.fetchChaptherList({username:this.loggedInUser.username},true);
+    this.chapterCode = this.loggedInUser.chapter;
+    await this.fetchProgramsByAcademicYearAndChapterCode();
   }
 
   async chapterDesc(code:any){
@@ -38,11 +45,13 @@ export class SidebarMenuComponent implements OnInit {
       }
     });
     let chapterKey = KEYS.chapterDesc;
+    this.chapterCode = chapDesc.code;
     this.store.setValue(chapterKey,chapDesc);
   }
 
   async onAcademicYerChange(ev:any){
       this.selectedYear=ev.target.value;
+      this.academicYearCode = ev.target.value;
       this.store.setValue(KEYS.academicYear,this.selectedYear);
       this.router.navigateByUrl("/registration-processing");
       await this.fetchProgramsByAcademicYearAndChapterCode();
@@ -64,13 +73,13 @@ export class SidebarMenuComponent implements OnInit {
   async fetchProgramsByAcademicYearAndChapterCode(){
     this.loggedInUser = this.authService.getLoggedInUser();
     this.programs=[];
-    if(!this.selectedYear || !this.selectedChapterCode){
+    if(!this.chapterCode || !this.academicYearCode){
       return ;
     }
 
     let params:ProgramRequestInterface={
-      chapterCode:this.selectedChapterCode,
-      academicYear:this.selectedYear,
+      chapterCode:this.chapterCode,
+      academicYear:this.academicYearCode,
       userName:this.loggedInUser.username
     }
 
@@ -91,7 +100,7 @@ export class SidebarMenuComponent implements OnInit {
 
   resetActiveMenu(eve:any){
     this.subMenuActiveFlag ={};
-    if(this.selectedYear =='' && this.selectedChapterCode==''){
+    if(this.chapterCode =='' && this.academicYearCode==''){
       Swal.fire({
         // position: 'top-end',
          icon: 'warning',
