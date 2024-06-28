@@ -122,14 +122,26 @@
                         <div class="mb-3">
                             <label class="form-label fw-semibold">First Name:</label>
                             <input type="text" class="form-control form-control-sm" placeholder="First Name" formControlName="firstName">
+                            <div *ngIf="CF['firstName'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Please Enter First Name.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Last Name:</label>
                             <input type="text" class="form-control form-control-sm" placeholder="Last Name" formControlName="lastName">
+                            <div *ngIf="CF['lastName'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Please Enter Last Name.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Email ID</label>
                             <input type="text" class="form-control form-control-sm" placeholder="Email ID" formControlName="emailAddress">
+                            <div *ngIf="!CF['emailAddress'].errors?.['emailValidation'] && CF['emailAddress'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+								Please Enter Email Address.
+							</div>
+							<div class="help-block with-errors text-danger" *ngIf="CF['emailAddress'].errors?.['emailValidation'] && CF['emailAddress'].dirty">
+								Invalid Email
+							</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Gender</label>
@@ -138,14 +150,30 @@
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
+                            <div *ngIf="CF['gender'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Please Select Gender.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Home Phone:</label>
-                            <input type="text" class="form-control form-control-sm" placeholder="Home Phone" formControlName="homePhone">
+                            <input type="text" class="form-control form-control-sm" placeholder="Home Phone" formControlName="homePhone" maxlength="14" appPhoneNumberFormat>
+                            <div *ngIf="CF['homePhone'].invalid && CF['homePhone'].value=='' && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Please Enter Home Phone.
+                            </div>
+                            
+                            <div *ngIf="CF['homePhone'].invalid && CF['homePhone'].value!='' && CF['homePhone'].value.length<14 && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Home Number invalid.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Mobile Phone</label>
-                            <input type="text" class="form-control form-control-sm" placeholder="Mobile Phone" formControlName="phoneNumber">
+                            <input type="text" class="form-control form-control-sm" placeholder="Mobile Phone" formControlName="phoneNumber" maxlength="14" appPhoneNumberFormat>
+                            <div *ngIf="CF['phoneNumber'].invalid && CF['phoneNumber'].value=='' && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Please Enter Phone Number.
+                            </div>
+                            <div *ngIf="CF['phoneNumber'].invalid && CF['phoneNumber'].value!='' && CF['phoneNumber'].value.length<14 && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Phone Number invalid.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Marital Status</label>
@@ -154,10 +182,16 @@
                                 <option value="Married">Married</option>
                                 <option value="Unmarried">Unmarried</option>
                             </select>
+                            <div *ngIf="CF['maritalStatus'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Please Select Marital Status.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Home Address</label>
                             <textarea class="form-control form-control-sm" rows="2" cols="2" placeholder="Home Address" formControlName="address"></textarea>
+                            <div *ngIf="CF['address'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Please Enter Address.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <input type="text" class="form-control form-control-sm" placeholder="Address2" formControlName="address2">
@@ -167,6 +201,9 @@
                         </div>
                         <div class="mb-3">
                             <input type="text" class="form-control form-control-sm" placeholder="City" formControlName="city">
+                            <div *ngIf="CF['city'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                Please Enter City.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <div class="row">
@@ -175,16 +212,25 @@
                                         <option value="">Select State</option>
                                         <option *ngFor="let item of stateList" [value]="item.code">{{item.description}} </option>
                                     </select>
+                                    <div *ngIf="CF['state'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                        Please Select State.
+                                    </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" class="form-control form-control-sm" placeholder="Zip Code" formControlName="zipCode">
+                                    <input  onKeyPress="if(this.value.length==5) return false;"  type="text" class="form-control form-control-sm" placeholder="Zip Code" formControlName="zipCode" maxlength="5" required [class.is-invalid]="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
+                                    <div *ngIf="this.contactsForm.controls['zipCode'].value=='' && CF['zipCode'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                        Please Enter Zip Code.
+                                    </div>
+                                    <div *ngIf="this.contactsForm.controls['zipCode'].value!=''&& this.contactsForm.controls['zipCode'].value.length<5" class="error_clr mrg_btm">
+                                        Zip Code Length should be 5.
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </fieldset>
 
                     <div class="d-flex justify-content-center mt-4">
-                        <a routerLink="" class="btn btn-sm btn-primary" style="font-size: 13px;" (click)="onRegisterButtonClick()">
+                        <a  class="btn btn-sm btn-primary" style="font-size: 13px;" (click)="onRegisterButtonClick()">
                             <i class="icon-pencil7 fs-6"></i> Register
                         </a>
                     </div>
