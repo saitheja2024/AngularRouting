@@ -101,6 +101,7 @@ export class SearchFamilyComponent {
         showCancelButton: false,
         confirmButtonText: 'OK',
       });
+      this.contactsForm.reset();
     }else{
     this.validateFlag=true;
     if(this.contactsForm.controls['sphomePhoneFlag'].value =='' && this.contactsForm.controls['mobileFlag'].value ==''){
