@@ -36,7 +36,7 @@ export class SidebarMenuComponent implements OnInit {
     this.chapterList = await this.masterService.fetchChaptherList({username:this.loggedInUser.username},true);
     this.chapterCode = (this.loggedInUser.chapterCode!=undefined)? this.loggedInUser.chapterCode:this.loggedInUser.chapter;
     this.store.setValue(KEYS.chapter,this.chapterCode);
-    console.log(this.chapterCode);
+    this.chapterDesc(this.chapterCode);
     await this.fetchProgramsByAcademicYearAndChapterCode();
   }
 
@@ -47,7 +47,7 @@ export class SidebarMenuComponent implements OnInit {
       }
     });
     let chapterKey = KEYS.chapterDesc;
-    this.chapterCode = chapDesc.code;
+    this.chapterCode = chapDesc[0].code;
     this.store.setValue(chapterKey,chapDesc);
   }
 
