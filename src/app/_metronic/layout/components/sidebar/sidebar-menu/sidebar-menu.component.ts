@@ -35,8 +35,9 @@ export class SidebarMenuComponent implements OnInit {
     this.academicYear = await  this.masterService.fetchAcademicYear(true);
     this.chapterList = await this.masterService.fetchChaptherList({username:this.loggedInUser.username},true);
     this.chapterCode = (this.loggedInUser.chapterCode!=undefined)? this.loggedInUser.chapterCode:this.loggedInUser.chapter;
-    this.store.setValue(KEYS.chapter,this.chapterCode);
+    console.log(this.academicYearCode);
     this.chapterDesc(this.chapterCode);
+    this.onAcademicYerChange(this.academicYearCode);
     await this.fetchProgramsByAcademicYearAndChapterCode();
   }
 
@@ -52,8 +53,8 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   async onAcademicYerChange(ev:any){
-      this.selectedYear=ev.target.value;
-      this.academicYearCode = ev.target.value;
+      this.selectedYear= (ev.target!=undefined && ev.target!=null && ev.target!='')?ev.target.value:ev;
+      this.academicYearCode = (ev.target!=undefined && ev.target!=null && ev.target!='')?ev.target.value:ev;
       this.store.setValue(KEYS.academicYear,this.selectedYear);
       this.router.navigateByUrl("/registration-processing");
       await this.fetchProgramsByAcademicYearAndChapterCode();

@@ -26,7 +26,7 @@ export class EmailSearchResultsComponent {
 
     dataSource:any = new MatTableDataSource<any>(); 
     @ViewChild(MatSort) sort: MatSort;
-    @ViewChild(MatPaginator) paginator:MatPaginator
+    @ViewChild(MatPaginator) paginator:MatPaginator;
     selection = new SelectionModel<any>(true, []);
     totalRecFooter:any;
 

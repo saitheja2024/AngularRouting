@@ -45,7 +45,7 @@ export class MemberShipCallWorkListServices {
       body: params
     }
     let response: any = await this.httpService.post(options);
-    return response.memberShipCallWorkList;
+    return response;
   }
 
 
