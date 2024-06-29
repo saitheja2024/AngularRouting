@@ -1,3 +1,15 @@
+<div class="card mt-4" style="margin:8px 0px 4px 0px !important">
+
+    <div class="row" style="margin:8px;">
+        <div class="col-lg-6">
+            <h5>Program:&nbsp; {{selectedProgram?.description}}</h5>
+        </div>
+        <div class="col-lg-6" style="text-align: right;">
+            <h5>Chapter: &nbsp;{{selectedChapter}}</h5></div>
+    </div>
+
+</div>
+
 <div class="row">
     <div class="col-lg-6"> 
         <div class="card mb-5 mb-xl-10">
@@ -27,10 +39,10 @@
                             <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#7030A0;">
                                 Assigned to me
                             </button>
-                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#9BBB59;">
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" (click)="fetchMemberShipCallWork('yes');" style="background-color:#9BBB59;">
                                 Assigned All
                             </button>
-                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#984807;">
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" (click)="fetchMemberShipCallWork('no');" style="background-color:#984807;">
                                 Unassigned All
                             </button>
                         </div>

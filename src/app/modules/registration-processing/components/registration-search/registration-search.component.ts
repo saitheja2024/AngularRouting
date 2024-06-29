@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
@@ -12,7 +12,8 @@ import { signupCodeRequestInteface } from 'src/app/modules/chinmaya-shared/servi
 @Component({
   selector: 'app-registration-search',
   templateUrl: './registration-search.component.html',
-  styleUrls: ['./registration-search.component.scss']
+  styleUrls: ['./registration-search.component.scss'],
+//  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationSearchComponent implements OnInit {
   

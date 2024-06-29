@@ -13,7 +13,7 @@ export class MembershipCallWorklistHomeComponent {
   selectedChapterCode: any;
   selectedProgram: any;
   callWorkDetails: any;
-
+  selectedChapter: any;
   constructor(private membeshipService: MemberShipCallWorkListServices,
     private store:StoreService
   ){}
@@ -21,10 +21,13 @@ export class MembershipCallWorklistHomeComponent {
   async ngOnInit(){
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
-    this.fetchMemberShipCallWork();
+    let chapter = this.store.getValue(KEYS.chapterDesc);
+    this.selectedChapter=chapter[0].description;
+
+    this.fetchMemberShipCallWork('');
   }
 
-  async fetchMemberShipCallWork(){
+  async fetchMemberShipCallWork(eve:any){
     var params = {
       "requestPageModel": {
         "page": 0,
@@ -39,7 +42,7 @@ export class MembershipCallWorklistHomeComponent {
         "programCode": "",
         "registrationStatus": "PENDING",
         "paymentStatus": "NO_DUES",
-        "assignToMe": ""
+        "assignToMe":eve
       }
     };
     this.list = await this.membeshipService.fetchMemberShipCallWork(params);
@@ -53,7 +56,7 @@ export class MembershipCallWorklistHomeComponent {
   }
 
   oncallWorkDetailsSavedNotification(ev:any){
-    this.fetchMemberShipCallWork();
+    this.fetchMemberShipCallWork('');
   }
 
 }
