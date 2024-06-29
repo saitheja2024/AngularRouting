@@ -14,6 +14,7 @@ export class MembershipCallWorklistHomeComponent {
   selectedProgram: any;
   callWorkDetails: any;
   selectedChapter: any;
+  totalRecList:any;
   constructor(private membeshipService: MemberShipCallWorkListServices,
     private store:StoreService
   ){}
@@ -45,7 +46,9 @@ export class MembershipCallWorklistHomeComponent {
         "assignToMe":eve
       }
     };
-    this.list = await this.membeshipService.fetchMemberShipCallWork(params);
+     let dataList= await this.membeshipService.fetchMemberShipCallWork(params);
+     this.list = dataList;
+    this.totalRecList =dataList;
   }
 
 
@@ -58,5 +61,15 @@ export class MembershipCallWorklistHomeComponent {
   oncallWorkDetailsSavedNotification(ev:any){
     this.fetchMemberShipCallWork('');
   }
+
+  activeOrder:any={};
+  totalRecFooter:any;
+sortItems(letter: string, index:any) {
+  this.activeOrder={[index]:true};
+  let dataFilter =  this.list.projectSummaryList;
+  let filteredData = dataFilter.filter((item:any) => (item.primaryLastName).toLowerCase().startsWith((letter).toLowerCase()));
+  this.totalRecFooter = {totalProjectSummary:filteredData.length};
+  this.list.projectSummaryList = filteredData;
+}
 
 }
