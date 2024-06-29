@@ -72,4 +72,8 @@ sortItems(letter: string, index:any) {
   this.list.projectSummaryList = filteredData;
 }
 
+refreshList(){
+  this.list =this.totalRecList;
+}
+
 }
