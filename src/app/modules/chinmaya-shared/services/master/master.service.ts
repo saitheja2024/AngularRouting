@@ -172,7 +172,7 @@ export class MasterService {
 
 
   async fetchRegistrationStatusList() {
-    if (this.registrationStatusList != null) {
+    if (this.registrationStatusList != null && this.registrationStatusList != undefined && this.registrationStatusList != '') {
       return this.registrationStatusList;
     }
 
@@ -182,7 +182,7 @@ export class MasterService {
       body: null
     }
 
-    let registrationStatusList: any = await this.httpService.get(options);
+    let registrationStatusList: any =  await this.httpService.get(options);
 
     if (registrationStatusList && registrationStatusList.selectDropdownList) {
       this.registrationStatusList = registrationStatusList.selectDropdownList;
@@ -192,7 +192,7 @@ export class MasterService {
   } 
 
   async fetchPaymentStatusList() {
-    if (this.paymentStatusList != null) {
+    if (this.paymentStatusList != null  && this.paymentStatusList != undefined && this.paymentStatusList != '') {
       return this.paymentStatusList;
     }
 
@@ -213,7 +213,7 @@ export class MasterService {
 
 
   async fetchSchoolGradeList() {
-    if (this.schoolGradeList != null) {
+    if (this.schoolGradeList != null && this.schoolGradeList != undefined && this.schoolGradeList != '') {
       return this.schoolGradeList;
     }
 

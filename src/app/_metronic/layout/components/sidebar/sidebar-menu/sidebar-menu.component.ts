@@ -30,13 +30,13 @@ export class SidebarMenuComponent implements OnInit {
     let currentYear = moment(new Date()).format('YYYY');
     let featureYear:any = moment(new Date()).format('YYYY');
     featureYear = parseInt(featureYear)+1;
-     this.academicYearCode = currentYear+'-'+ featureYear;
+    this.academicYearCode = currentYear+'-'+ featureYear;
     this.loggedInUser = JSON.parse(sessionStorage.getItem('profileData') || '');
     this.academicYear = await  this.masterService.fetchAcademicYear(true);
     this.chapterList = await this.masterService.fetchChaptherList({username:this.loggedInUser.username},true);
     this.chapterCode = (this.loggedInUser.chapterCode!=undefined)? this.loggedInUser.chapterCode:this.loggedInUser.chapter;
-    console.log(this.academicYearCode);
-    this.chapterDesc(this.chapterCode);
+
+    this.onChapterChange(this.chapterCode);
     this.onAcademicYerChange(this.academicYearCode);
     await this.fetchProgramsByAcademicYearAndChapterCode();
   }
@@ -56,20 +56,18 @@ export class SidebarMenuComponent implements OnInit {
       this.selectedYear= (ev.target!=undefined && ev.target!=null && ev.target!='')?ev.target.value:ev;
       this.academicYearCode = (ev.target!=undefined && ev.target!=null && ev.target!='')?ev.target.value:ev;
       this.store.setValue(KEYS.academicYear,this.selectedYear);
-      this.router.navigateByUrl("/registration-processing");
-      await this.fetchProgramsByAcademicYearAndChapterCode();
   }
 
   async onChapterChange(ev:any){
-    this.selectedChapterCode = ev.target.value;
+    this.selectedChapterCode = (ev.target!=undefined && ev.target!=null && ev.target!='')?ev.target.value:ev;;
     let chapter = KEYS.chapter;
     this.store.setValue(chapter,this.selectedChapterCode);
     if(sessionStorage.getItem('userCred')!=null){
     let cred = JSON.parse(sessionStorage.getItem('userCred') || '');
     const user = await this.authService.login(cred);
     }
-    this.chapterDesc(ev.target.value);
-    this.router.navigateByUrl("/registration-processing");
+    this.chapterDesc(this.selectedChapterCode);
+    this.router.navigate(["registration-processing/registration-search"]);
     await this.fetchProgramsByAcademicYearAndChapterCode();
   }
 
