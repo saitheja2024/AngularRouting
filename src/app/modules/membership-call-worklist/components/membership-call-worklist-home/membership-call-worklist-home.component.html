@@ -63,7 +63,7 @@
                         <!-- Position Column -->
                         <ng-container matColumnDef="familyId">
                           <th valign="middle" class="bold_txt" mat-header-cell *matHeaderCellDef mat-sort-header >Family ID</th>
-                          <td valign="middle" mat-cell *matCellDef="let element"> {{element.familyId}}</td>
+                          <td valign="middle" mat-cell *matCellDef="let element"><a href="javascript:void(0);" (click)="showCallDetails(element)">{{element.familyId}}</a></td>
                         </ng-container>
                       
                         <!-- Name Column -->
