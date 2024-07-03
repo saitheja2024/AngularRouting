@@ -1,7 +1,7 @@
 <mat-tab-group animationDuration="0ms" 
                (selectedTabChange)="onTabChanged($event)"
                mat-stretch-tabs="false"
-               mat-align-tabs="start">
+               mat-align-tabs="start" [selectedIndex]="selectedIndex">
     <mat-tab label="Selection"  >
     </mat-tab>
     <mat-tab label="Review" >
