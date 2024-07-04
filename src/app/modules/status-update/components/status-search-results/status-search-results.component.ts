@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-status-search-results',
@@ -15,8 +15,31 @@ export class StatusSearchResultsComponent {
     { label: 'Review', path: 'review' },
     { label: 'Complete', path: 'complete' },
   ];
+  selectedIndex: any=0;
 
-  constructor(private router:Router){}
+  constructor(private router:Router,private activatedRoute: ActivatedRoute){}
+
+  ngOnInit(){
+    this.activatedRoute.url.subscribe(() => {
+      let path:any = this.router.url.split('/');
+      path = path[path.length-1];
+      this.selectedIndex = this.getTabIndex(path);
+    });
+  }
+
+
+  getTabIndex(path: string): number {
+    switch (path) {
+      case 'selection':
+        return 0;
+      case 'review':
+        return 1;
+      case 'complete':
+        return 2;
+      default:
+        return 0;
+    }
+  }
 
   onTabChanged(event: MatTabChangeEvent): void {
     let link=""

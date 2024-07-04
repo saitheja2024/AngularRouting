@@ -94,75 +94,67 @@
     <div class="card-body p-0">
         <div class="table-responsive">
             <div class="mat-elevation-z8">
-                <table mat-table [dataSource]="dataSourceStatusReview" matSort>
+                <table mat-table [dataSource]="dataSource" matSort>
 
                     <!-- Checkbox Column-->
                     <ng-container matColumnDef="checkbox">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>
                             <div class="form-check form-check-sm form-check-custom form-check-solid me-6">
                                 <label class="pt-0 pb-0">
-                                    <input type="checkbox" value="1" class="form-check-input me-2">
+                                    <input type="checkbox" value="1" class="form-check-input me-2" (change)="$event ? toggleAllRows() : null"
+                                    [checked]="selection.hasValue() && isAllSelected()"
+                                    [indeterminate]="selection.hasValue() && !isAllSelected()">
                                 </label>
                             </div>
                         </th>
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid me-6">
                                 <label class="pt-0 pb-0">
-                                    <input type="checkbox" value="1" class="form-check-input me-2">
+                                    <input type="checkbox" value="1" class="form-check-input me-2" (click)="$event.stopPropagation()"
+                                    (change)="$event ? selection.toggle(element) : null"
+                                    [checked]="selection.isSelected(element)">
                                 </label>
                             </div>
                         </td>
                     </ng-container>
 
                     <!-- Payment Date Column-->
-                    <ng-container matColumnDef="paymentdate">
+                    <ng-container matColumnDef="paymentSubmittedDate">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentdate}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate}} </td>
                     </ng-container>
 
                     <!-- Family ID Column-->
-                    <ng-container matColumnDef="familyid">
+                    <ng-container matColumnDef="familyId">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element" mat-raised-button (click)="familyid()" 
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" mat-raised-button 
                             style="color:blue;cursor:pointer;text-decoration:underline;"> 
-                            {{element.familyid}} 
+                            {{element.familyId}} 
                         </td>
                     </ng-container>
 
                     <!-- Person ID Column-->
-                    <ng-container matColumnDef="personid">
+                    <ng-container matColumnDef="personID">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Person ID </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.personid}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.personID}} </td>
                     </ng-container>
 
                     <!-- First Name Column-->
-                    <ng-container matColumnDef="firstname">
+                    <ng-container matColumnDef="firstName">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.firstName}} </td>
                     </ng-container>
 
-                    <!-- Last Name Column-->
-                    <ng-container matColumnDef="lastname">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+                    <!-- Family Name Column-->
+                    <ng-container matColumnDef="familyname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family Name </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyname}} </td>
                     </ng-container>
 
-                    <!-- E-mail Column-->
-                    <ng-container matColumnDef="email">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
-                    </ng-container>
-
-                    <!-- Session Assignment Column-->
-                    <ng-container matColumnDef="sessionassignment">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Session Assignment </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.sessionassignment}} </td>
-                    </ng-container>
-
-                    <!-- Date Created Column-->
-                    <ng-container matColumnDef="datecreated">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.datecreated}} </td>
+                    <!-- Email Column-->
+                    <ng-container matColumnDef="emailAddress">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
                     </ng-container>
 
                     <!-- Reconcile Column-->
@@ -179,25 +171,20 @@
                         </td>
                     </ng-container>
 
-                    <!-- Action Column -->
-                    <ng-container matColumnDef="actions">
-                        <th class="text-nowrap text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
-                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element"> 
-                            <button class="btn btn-sm button-default ms-2" style="border: 1px solid #FFCDDB;padding: 5px 5px 5px 9px !important;width:30px;">
-                                <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;">
-                                </i>
-                            </button>
-                        </td>
+                    <!-- Date Created Column-->
+                    <ng-container matColumnDef="createdDate">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
                     </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsReview; sticky: true;" style="background-color: #CDDDFF;"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumnsReview;"></tr>
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;" style="background-color: #CDDDFF;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
                   </table>
 
-                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                                 showFirstLastButtons>
-                </mat-paginator>
+                </mat-paginator> -->
 
             </div>
         </div>
