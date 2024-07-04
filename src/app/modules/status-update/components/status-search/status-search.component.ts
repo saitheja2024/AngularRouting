@@ -34,21 +34,22 @@ export class StatusSearchComponent {
     private regiStrationReviewService:RegistratioReviewService,
     private store:StoreService
     ){
-    
+     
   }
 
 
   async ngOnInit(){
-
+    
     this.loggedInUser = this.regiStrationReviewService.getLoggedInUser();
 
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     await this.fetchProgramsByAcademicYearAndChapterCode();
-    if(this.programs && this.programs.length>0){
-      this.selectedProgram=this.programs[0]
-    }
-    await this.populateData();
+   
+    // if(this.programs && this.programs.length>0){
+    //   this.selectedProgram=this.programs[0]
+    // }
+    // await this.populateData();
     this.prepareSearchCriteriaForm();
 
   }
@@ -61,12 +62,14 @@ export class StatusSearchComponent {
     await this.fetchSignupCodes();
     await this.fetchSessionChoice();
     await this.fetchSchoolGradeList();
-    
+    this.prepareSearchCriteriaForm();
     
 
   }
 
   async onProgramSelection(ev:any){
+    this.selectedProgram={
+      code:ev.target.value}
     await this.populateData();
   }
 
@@ -148,7 +151,7 @@ export class StatusSearchComponent {
       }),
       requestRegistrationProcessingSearch: this.fb.group({
         chapterID: [this.selectedChapterCode],
-        programCode: [this.selectedProgram.code],
+        programCode: [this.selectedProgram?.code],
         registrationStatusList: this.fb.array([]),
         paymentStatusList: this.fb.array([]),
         choiceLabel: [''],
@@ -168,16 +171,16 @@ export class StatusSearchComponent {
       })
     });
 
-    for(let i=0;i<this.registrationStatus.length;i++){
+    for(let i=0;i<this.registrationStatus?.length;i++){
       this.registrationStatusArray.push(new FormControl(false));
     }
 
 
-    for(let i=0;i<this.paymentStatus.length;i++){
+    for(let i=0;i<this.paymentStatus?.length;i++){
       this.paymentStatusArray.push(new FormControl(false));
     }
 
-    for(let i=0;i<this.sessionChoice.length;i++){
+    for(let i=0;i<this.sessionChoice?.length;i++){
       this.assignedSessionArray.push(new FormControl(false));
     }
 
@@ -247,7 +250,7 @@ export class StatusSearchComponent {
  
     const assignedSession = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.assignedSessionList,this.sessionChoice,"choicecode");
     searchFormValues.requestRegistrationProcessingSearch.assignedSessionList = assignedSession;
- 
+     searchFormValues.programCode=this.selectedProgram.code; 
     this.regiStrationReviewService.setSearchCriteria(searchFormValues);
     
    

@@ -21,6 +21,8 @@
                 </div>
             </div>
 
+           
+
             <div [formGroup]="searchCriteriaForm" *ngIf="searchCriteriaForm">
                 <div formGroupName="requestRegistrationProcessingSearch">
                    
@@ -33,9 +35,9 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <select (change)="onProgramSelection($event)" formControlName="programCode" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <select (change)="onProgramSelection($event)"  data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                         <option value="">Select Program</option>    
-                                        <option value="" *ngFor="let program of programs" [value]="program.code">{{program.code}}</option>                    
+                                        <option *ngFor="let program of programs" [value]="program.code">{{program.description}}</option>                    
                                     </select> 
                                 </div>
                             </div>
@@ -95,7 +97,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <select formControlName="choiceLabel" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                         <option value="">Select Session</option>    
-                                        <option value="" *ngFor="let choice of sessionChoice" [value]="choice.code">{{choice.code}}</option>                    
+                                        <option value="" *ngFor="let choice of sessionChoice" [value]="choice.code">{{choice.description}}</option>                    
                                     </select> 
                                 </div>
                             </div>
