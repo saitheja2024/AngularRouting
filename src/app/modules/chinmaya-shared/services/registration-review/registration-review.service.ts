@@ -12,14 +12,10 @@ import { KEYS, StoreService } from '../store/store.service';
 })
 export class RegistratioReviewService {
   
-  
-  
-  
-  
-  
   searchCriteria: any;
   selectedFamily: any;
   selectedFamilyRecords: any[];
+  updatedReviewRecords:any
   
 
   constructor(
@@ -55,6 +51,13 @@ export class RegistratioReviewService {
     return this.store.getValue(KEYS.selectedFamily);
   }
 
+  async fetchRegistrationStatusList() {
+    let list = await this.masterService.fetchRegistrationStatusList();
+    return list;
+  }
+  
+  
+
   getLoggedInUser(){
     let logUser = KEYS.loggedInUser;
     return this.store.getValue(logUser);
@@ -66,6 +69,14 @@ export class RegistratioReviewService {
 
   getSelectedFamilyRecords(){
     return this.selectedFamilyRecords;
+  }
+
+  setUpdatedReviewedRecords(response:any) {
+    this.updatedReviewRecords = response;
+  }
+
+  getUpdatedReviewedRecords() {
+    return  this.updatedReviewRecords.personprogramregistrationList;
   }
   
 
@@ -132,6 +143,7 @@ export class RegistratioReviewService {
     let response = await this.masterService.fetchSchoolGradeList();
     return response;
   }
+  
 
   async getSelectedFamilyRegistrationReviewDetails(params:any)
   {
@@ -169,6 +181,16 @@ export class RegistratioReviewService {
     }
 
     let response: any = await this.httpService.post(options);
+  }
+
+  async saveRegistrationReview(param: any) {
+    let options: Options = {
+      url: this.urlService.registrationReviewURL.saveRegistrationReview,
+      body: param
+    }
+
+    let response: any = await this.httpService.post(options);
+    return response;
   }
   
     

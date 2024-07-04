@@ -39,16 +39,9 @@
                     <div class="nav-link d-flex">
                         <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Status : </span>
                         <span class="nav-text">
-                            <select class="form-select form-select-sm cursor-pointer">
+                            <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="registrationStatus">
                                 <option>Select Registration Status</option>
-                                <option>PENDING</option>
-                                <option>PROCESSING</option>
-                                <option>ACCEPTED</option>
-                                <option>WITHDRAWN</option>
-                                <option>CANCELLED</option>
-                                <option>NOSHOW</option>
-                                <option>ATTENDED</option>
-                                <option>WAITLISTED</option>
+                                <option *ngFor="let rg of registrationStatusList" [value]="rg.code"> {{rg.description}}</option>
                             </select>
                         </span>
                         <!--end::Title-->
@@ -62,11 +55,9 @@
                     <!--begin::Link-->
                     <div class="nav-link d-flex">
                         <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Session : </span>
-                        <select class="form-select form-select-sm cursor-pointer">
+                        <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="sessionChoice">
                             <option>Select Session</option>
-                            <option>Friday (6:45 - 8:20PM)</option>
-                            <option>Sunday 1 (9:15 - 10:50AM)</option>
-                            <option>Sunday 2 (12:15 - 01:50PM)</option>
+                            <option *ngFor="let session of sessionChoiceList" [value]="session.code">{{session.description}}</option>
                         </select>
                         <!--end::Title-->
                     </div>
@@ -200,7 +191,7 @@
                         <i class="icon-backward fs-6"></i> Back
                     </a>
                             
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;" (click)="onUpdateButtonClick()">
                         <i class="icon-rotate-ccw2 fs-6"></i> Update
                     </a>
 

@@ -44,10 +44,15 @@ export class ReviewComponent {
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  registrationStatusList: any;
+  registrationStatus:any
+  sessionChoice: any;
+  sessionChoiceList: any[];
 
   constructor(private modalService: NgbModal,
     private regiStrationReviewService:RegistratioReviewService,
-    private router:Router
+    private router:Router,
+
   ){
     
   }
@@ -57,23 +62,30 @@ export class ReviewComponent {
   }
 
   async ngOnInit(){
+    this.fetchRegistrationStatusList();
+    await this.fetchSessionChoice();
     let results  =  this.regiStrationReviewService.getSelectedFamilyRecords();
    
     this.dataSource = new MatTableDataSource<any>(results);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
     this.dataSource._updateChangeSubscription();
-
-  
- 
-
-    //this.paginationConfig.length=100
-    //this.paginationConfig.pageSize=this.searchResults.size;
-    //this.paginationConfig.pageIndex=this.searchResults.page;
-    
-    
   }
+
+  async fetchRegistrationStatusList() {
+    this.registrationStatusList=await this.regiStrationReviewService.fetchRegistrationStatusList()
+  }
+
+
+  async fetchSessionChoice(){
+    let params = {
+      "programCode":this.regiStrationReviewService.getSelectedFamilyRecords()[0].programCode
+    }
+    this.sessionChoiceList = await this.regiStrationReviewService.fetchSessionChoice(params);
+  }
+
+
+
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -95,4 +107,20 @@ export class ReviewComponent {
   async paymentdetails(){
     const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
+
+   async onUpdateButtonClick(){
+    let param ={
+      saveReviewRequestList:this.selection.selected,
+      registrationStatus: this.registrationStatus,
+      sessionAssignment:this.sessionChoice
+    }
+
+    let response = await this.regiStrationReviewService.saveRegistrationReview(param);
+    this.regiStrationReviewService.setUpdatedReviewedRecords(response);
+    this.router.navigateByUrl("/status-update/status-search-results/complete");
+
+   }
+
+
+
 }
