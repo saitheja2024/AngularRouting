@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 
 @Component({
   selector: 'app-status-search-results',
@@ -16,10 +17,17 @@ export class StatusSearchResultsComponent {
     { label: 'Complete', path: 'complete' },
   ];
   selectedIndex: any=0;
+  searchCriteria: any;
 
-  constructor(private router:Router,private activatedRoute: ActivatedRoute){}
+  constructor(private router:Router,
+    private activatedRoute: ActivatedRoute,
+    private regiStrationReviewService:RegistratioReviewService){}
+
+
+
 
   ngOnInit(){
+    this.searchCriteria = this.regiStrationReviewService.getSearchCriteria();
     this.activatedRoute.url.subscribe(() => {
       let path:any = this.router.url.split('/');
       path = path[path.length-1];

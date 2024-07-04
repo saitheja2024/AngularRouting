@@ -15,9 +15,9 @@
         <!--begin::Item-->
         <li class="nav-item mb-1">
             <!--begin::Link-->
-            <div class="nav-link">
+            <div class="nav-link" >
                 <span class="nav-text text-gray-800 fw-semibold fs-6">SignUp Code : </span>
-                <span class="nav-text text-gray-800 fw-normal fs-6">Adult Class & Bala Vihar Session Preference</span>
+                <span class="nav-text text-gray-800 fw-normal fs-6">{{searchCriteria.requestRegistrationProcessingSearch.signupCode}}</span>
                 <!--end::Title-->
             </div>
             <!--end::Link-->
@@ -29,7 +29,7 @@
             <!--begin::Link-->
             <div class="nav-link">
                 <span class="nav-text text-gray-800 fw-semibold fs-6">Registration Status : </span>
-                <span class="nav-text text-gray-800 fw-normal fs-6">ACCEPTED</span>
+                <span class="nav-text text-gray-800 fw-normal fs-6" *ngFor="let item of searchCriteria.requestRegistrationProcessingSearch.registrationStatusList">{{item}} </span>
                 <!--end::Title-->
             </div>
             <!--end::Link-->
@@ -41,7 +41,7 @@
             <!--begin::Link-->
             <div class="nav-link">
                 <span class="nav-text text-gray-800 fw-semibold fs-6">Payment Status : </span>
-                <span class="nav-text text-gray-800 fw-normal fs-6">NO DUES</span>
+                <span class="nav-text text-gray-800 fw-normal fs-6" *ngFor="let item of searchCriteria.requestRegistrationProcessingSearch.paymentStatusList">{{item}} </span>
                 <!--end::Title-->
             </div>
             <!--end::Link-->
@@ -53,7 +53,7 @@
             <!--begin::Link-->
             <div class="nav-link">
                 <span class="nav-text text-gray-800 fw-semibold fs-6">Choice Preference : </span>
-                <span class="nav-text text-gray-800 fw-normal fs-6">Session Choice 1</span>
+                <span class="nav-text text-gray-800 fw-normal fs-6">{{searchCriteria.requestRegistrationProcessingSearch.choiceLabel}}</span>
                 <!--end::Title-->
             </div>
             <!--end::Link-->
@@ -65,7 +65,7 @@
             <!--begin::Link-->
             <div class="nav-link">
                 <span class="nav-text text-gray-800 fw-semibold fs-6">Session : </span>
-                <span class="nav-text text-gray-800 fw-normal fs-6">Friday (06:45-08:20 PM)</span>
+                <span class="nav-text text-gray-800 fw-normal fs-6">{{searchCriteria.requestRegistrationProcessingSearch.choiceCode}}</span>
                 <!--end::Title-->
             </div>
             <!--end::Link-->

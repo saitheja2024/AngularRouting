@@ -207,40 +207,6 @@ export class StatusSearchComponent {
 
   async onSearchButtonClick(){
 
-    // let param = {
-    //   "requestPageModel": {
-    //     "page": 0,
-    //     "size": 0,
-    //     "sortFieldName": "",
-    //     "sortOrder": ""
-    //   },
-    //   "requestRegistrationProcessingSearch": {
-    //     "chapterID": "CSVA",
-    //     "programCode": "CS_BALAVIHAR_2024-25",
-    //     "registrationStatusList": [""],
-    //     "paymentStatusList": [
-    //       ""
-    //     ],
-    //     "choiceLabel": "",
-    //     "choiceCode": "",
-    //     "assignedSessionList": [
-    //       ""
-    //     ],
-    //     "signupCode": "",
-    //     "className": "",
-    //     "currentSchoolGrade": "",
-    //     "risingSchoolGrade": "",
-    //     "familyID": 0,
-    //     "firstName": "",
-    //     "lastName": "",
-    //     "homePhone": "",
-    //     "email": "",
-    //     "paymentStartDate": "",
-    //     "paymentEndDate": ""
-    //   }
-    // }
-
-
     let searchFormValues = this.searchCriteriaForm.value;
     const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus,"code");
     searchFormValues.requestRegistrationProcessingSearch.registrationStatusList = selectedCodes;
