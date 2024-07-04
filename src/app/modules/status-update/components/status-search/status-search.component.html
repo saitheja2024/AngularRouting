@@ -35,7 +35,7 @@
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <select (change)="onProgramSelection($event)"  data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
+                                    <select (change)="onProgramSelection($event)" formControlName="programCode" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
                                         <option value="">Select Program</option>    
                                         <option *ngFor="let program of programs" [value]="program.code">{{program.description}}</option>                    
                                     </select> 
@@ -307,9 +307,8 @@
                             <i class="icon-cancel-circle2 fs-6"></i> Cancel
                         </a>
                                 
-                        <a (click)="onSearchButtonClick()" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
-                            <i class="icon-search4 fs-6"></i> Search
-                        </a>
+                        <button (click)="onSearchButtonClick()" class="btn btn-primary btn-sm m-1" style="font-size:13px;" >
+                            <i class="icon-search4 fs-6"></i> Search                      </button>
                     </div>
                 </div>
                 <!--end::Actions-->

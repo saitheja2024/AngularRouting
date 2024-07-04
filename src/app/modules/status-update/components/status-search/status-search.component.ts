@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProgramRequestInterface } from 'src/app/modules/chinmaya-shared/services/master/master-interface';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
@@ -151,9 +151,9 @@ export class StatusSearchComponent {
       }),
       requestRegistrationProcessingSearch: this.fb.group({
         chapterID: [this.selectedChapterCode],
-        programCode: [this.selectedProgram?.code],
-        registrationStatusList: this.fb.array([]),
-        paymentStatusList: this.fb.array([]),
+        programCode: ['',[Validators.required]],
+        registrationStatusList: this.fb.array([],[Validators.required]),
+        paymentStatusList: this.fb.array([],[Validators.required]),
         choiceLabel: [''],
         choiceCode: [''],
         assignedSessionList: this.fb.array([]),
@@ -184,6 +184,10 @@ export class StatusSearchComponent {
       this.assignedSessionArray.push(new FormControl(false));
     }
 
+    if(this.selectedProgram.code){
+      this.searchCriteriaForm.get("requestRegistrationProcessingSearch");
+    }
+
   }
 
   get registrationStatusArray(): FormArray {
@@ -203,9 +207,24 @@ export class StatusSearchComponent {
   }
 
 
-  
+  getInvalidControls(form: FormGroup | FormArray): string[] {
+    let invalidControls: string[] = [];
+    Object.keys(form.controls).forEach(key => {
+      const control:any = form.get(key);
+      if (control instanceof FormGroup || control instanceof FormArray) {
+        invalidControls = invalidControls.concat(this.getInvalidControls(control));
+      } else if (control.invalid) {
+        invalidControls.push(key);
+      }
+    });
+    return invalidControls;
+  }
 
   async onSearchButtonClick(){
+
+    // const invalidControls = this.getInvalidControls(this.searchCriteriaForm);
+    // console.log('Invalid controls:', invalidControls);
+    //   return
 
     let searchFormValues = this.searchCriteriaForm.value;
     const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus,"code");

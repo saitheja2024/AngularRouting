@@ -80,7 +80,7 @@
                     <!-- Payment Date Column-->
                     <ng-container matColumnDef="paymentSubmittedDate">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate | date:'MM/dd/yyyy'}} </td>
                     </ng-container>
 
                     <!-- Family ID Column-->
@@ -133,7 +133,7 @@
                     <!-- Date Created Column-->
                     <ng-container matColumnDef="createdDate">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.createdDate | date:'MM/dd/yyyy'}} </td>
                     </ng-container>
                   
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;" style="background-color: #CDDDFF;"></tr>
