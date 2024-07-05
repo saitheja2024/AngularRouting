@@ -56,7 +56,10 @@ export class MembershipCallDetailsComponent {
         callHistory.programCode=this.callWorkDetails.programCode;
         callHistory.callNotes="";
         if(this.callWorkDetails.callHistoryList==null){
-          this.prepareForm();
+          this.callWorkHistoryForm.controls['assignedTo'].setValue('');
+          this.callWorkHistoryForm.controls['doNotCallAgainFlag'].setValue('');
+          this.callWorkHistoryForm.controls['callCount'].setValue('');
+          this.callWorkHistoryForm.controls['callNotes'].setValue('');
         }else{
           this.callWorkHistoryForm.patchValue(callHistory); 
         }
