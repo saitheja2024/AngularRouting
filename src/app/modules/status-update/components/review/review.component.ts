@@ -45,8 +45,8 @@ export class ReviewComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   registrationStatusList: any;
-  registrationStatus:any
-  sessionChoice: any;
+  registrationStatus:any="";
+  sessionChoice: any="";
   sessionChoiceList: any[];
 
   constructor(private modalService: NgbModal,

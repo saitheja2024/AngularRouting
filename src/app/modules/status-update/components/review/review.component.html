@@ -40,7 +40,7 @@
                         <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Registration Status : </span>
                         <span class="nav-text">
                             <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="registrationStatus">
-                                <option selected>Select Registration Status</option>
+                                <option value="">Select Registration Status</option>
                                 <option *ngFor="let rg of registrationStatusList" [value]="rg.code"> {{rg.description}}</option>
                             </select>
                         </span>
@@ -56,8 +56,8 @@
                     <div class="nav-link d-flex">
                         <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Session : </span>
                         <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="sessionChoice">
-                            <option selected>Select Session</option>
-                            <option *ngFor="let session of sessionChoiceList" [value]="session.code">{{session.description}}</option>
+                            <option value="">Select Session</option>
+                            <option *ngFor="let session of sessionChoiceList" [value]="session.choicecode">{{session.description}}</option>
                         </select>
                         <!--end::Title-->
                     </div>
