@@ -54,11 +54,13 @@ export class MembershipCallDetailsComponent {
         callHistory.familyId = this.callWorkDetails.familyId;
         callHistory.programCode=this.callWorkDetails.programCode;
         callHistory.callNotes="";
-        this.callWorkHistoryForm.patchValue(callHistory); 
+        if(this.callWorkDetails.callHistoryList==null){
+          this.prepareForm();
+        }else{
+          this.callWorkHistoryForm.patchValue(callHistory); 
+        }
       } 
     }
-
-   
     prepareForm(){
       this.callWorkHistoryForm = this.fb.group({
         callId: [0],
