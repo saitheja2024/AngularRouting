@@ -135,11 +135,11 @@
             <div class="d-flex">
                 <!--begin::Filter menu-->
                 <div class="m-0">
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                    <a (click)="onBackButtonClick()" href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
                         <i class="icon-backward fs-6"></i> Back
                     </a>
                             
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;" (click)="onUpdateCompleteButtonClick()">
                         <i class="icon-rotate-ccw2 fs-6"></i> Update Complete   
                     </a>
                 </div>

@@ -76,6 +76,10 @@ export class ReviewComponent {
     this.registrationStatusList=await this.regiStrationReviewService.fetchRegistrationStatusList()
   }
 
+  onBackButtonClick(){
+    this.router.navigateByUrl("/status-update/status-search-results/selection");
+  }
+
 
   async fetchSessionChoice(){
     let params = {

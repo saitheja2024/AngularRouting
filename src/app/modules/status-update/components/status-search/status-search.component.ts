@@ -184,14 +184,28 @@ export class StatusSearchComponent {
       this.assignedSessionArray.push(new FormControl(false));
     }
 
-    if(this.selectedProgram.code){
-      this.searchCriteriaForm.get("requestRegistrationProcessingSearch");
+    if(this.selectedProgram?.code){
+      this.searchCriteriaForm.get("requestRegistrationProcessingSearch").get("programCode").setValue(this.selectedProgram.code);
     }
 
   }
 
-  get registrationStatusArray(): FormArray {
-    let retValue = this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.registrationStatusList as FormArray;
+  // registrationStatusSelected(){
+
+  //   let retValue=true;
+  //   for(let i=0;i<this.searchCriteriaForm.requestRegistrationProcessingSearch?.registrationStatusList?.length;i++){
+  //     let val= this.searchCriteriaForm.requestRegistrationProcessingSearch.registrationStatusList[i]
+  //     if(val){
+  //       retValue=false;
+  //     }
+  //   }
+  //   return retValue;
+  // }
+  
+
+  get registrationStatusArray(): any {
+    let retValue = this.searchCriteriaForm?.controls?.requestRegistrationProcessingSearch?.controls?.registrationStatusList ;
+    console.log(retValue);
     return retValue;
   }
  
@@ -222,7 +236,7 @@ export class StatusSearchComponent {
 
   async onSearchButtonClick(){
 
-    // const invalidControls = this.getInvalidControls(this.searchCriteriaForm);
+    const invalidControls = this.getInvalidControls(this.searchCriteriaForm);
     // console.log('Invalid controls:', invalidControls);
     //   return
 

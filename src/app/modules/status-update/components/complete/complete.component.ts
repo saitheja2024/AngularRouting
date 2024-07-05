@@ -60,4 +60,13 @@ export class CompleteComponent {
   async paymentdetails(){
     const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
+   
+
+   onBackButtonClick(){
+    this.router.navigateByUrl("/status-update/status-search-results/review");
+  }
+
+  onUpdateCompleteButtonClick(){
+    this.router.navigateByUrl("/status-update/status-search");
+  }
 }
