@@ -72,6 +72,22 @@ async fetchClassList(params:any, reload?: any) {
   return this.classList;
 }
 
+async fetchSessionChoicesDropdown(params:any){
+  let options: Options = {
+    url: this.urlService.reportsURL.fetchSessionChoicesDropdown,
+    body: params
+}
+
+
+let classList:any
+let classListResp: any = await this.httpService.post(options);
+if (classListResp && classListResp.selectDropdownList) {
+  classList = classListResp.selectDropdownList;
+}
+
+return classList;
+}
+
 
 
 async fetchSessionChoice(params:any, reload?: any) {
