@@ -37,10 +37,10 @@
                 <li class="nav-item mb-1">
                     <!--begin::Link-->
                     <div class="nav-link d-flex">
-                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Status : </span>
+                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Registration Status : </span>
                         <span class="nav-text">
                             <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="registrationStatus">
-                                <option>Select Registration Status</option>
+                                <option selected>Select Registration Status</option>
                                 <option *ngFor="let rg of registrationStatusList" [value]="rg.code"> {{rg.description}}</option>
                             </select>
                         </span>
@@ -56,7 +56,7 @@
                     <div class="nav-link d-flex">
                         <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Session : </span>
                         <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="sessionChoice">
-                            <option>Select Session</option>
+                            <option selected>Select Session</option>
                             <option *ngFor="let session of sessionChoiceList" [value]="session.code">{{session.description}}</option>
                         </select>
                         <!--end::Title-->
@@ -146,12 +146,6 @@
                     <ng-container matColumnDef="emailAddress">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
-                    </ng-container>
-
-                    <!-- Reconcile Column-->
-                    <ng-container matColumnDef="reconcile">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Reconcile </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.reconcile}} </td>
                     </ng-container>
 
                     <!-- Payment Column-->

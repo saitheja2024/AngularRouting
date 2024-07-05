@@ -33,7 +33,7 @@ export interface StatusReview {
 })
 
 export class ReviewComponent {
-  displayedColumns: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','payment','emailAddress','reconcile','createdDate'];
+  displayedColumns: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','payment','emailAddress','createdDate'];
 
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;

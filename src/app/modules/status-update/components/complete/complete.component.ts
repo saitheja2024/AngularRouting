@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 
 export class CompleteComponent {
   
-  displayedColumnsComplete: string[] = ['paymentSubmittedDate','familyId', 'personID', 'firstname', 'lastname', 'email', 'sessionAssignment', 'createdDate', 'reconcile', 'payment', 'actions'];
+  displayedColumnsComplete: string[] = ['paymentSubmittedDate','familyId', 'personID', 'firstname', 'lastname', 'email', 'sessionAssignment', 'createdDate', 'payment'];
 
   dataSource = new MatTableDataSource<any>();
 

@@ -22,7 +22,6 @@ export interface StatusComplete {
   primaryfirstname: string;
   primarylastname: string;
   email: string;
-  reconcile: string;
   payment: string;
   datecreated: string;
 }
@@ -34,10 +33,10 @@ export interface StatusComplete {
 })
 export class CompleteComponent {
   StatusComplete: StatusComplete[] = [
-    {checkbox:'', paymentdate: '2024-05-15 04:29:35', familyid: 4367, personid: 13292, firstname: 'Sonu', familyname:'Sa', gender: 'Male', age: '14 Y 6 Months', schoolgrade: '3rd', primarypersonid: 13290, primaryfirstname: 'Mohan', primarylastname: 'G', email: 'mohan@ss.in', reconcile: 'NA', payment: '', datecreated: '2024-03-21 08:52:23'}
+    {checkbox:'', paymentdate: '2024-05-15 04:29:35', familyid: 4367, personid: 13292, firstname: 'Sonu', familyname:'Sa', gender: 'Male', age: '14 Y 6 Months', schoolgrade: '3rd', primarypersonid: 13290, primaryfirstname: 'Mohan', primarylastname: 'G', email: 'mohan@ss.in', payment: '', datecreated: '2024-03-21 08:52:23'}
   ];
 
-  displayedColumnsComplete: string[] = ['checkbox','paymentdate','familyid','personid','firstname','familyname','gender','age','schoolgrade','primarypersonid','primaryfirstname','primarylastname','email','reconcile','payment','datecreated'];
+  displayedColumnsComplete: string[] = ['checkbox','paymentdate','familyid','personid','firstname','familyname','gender','age','schoolgrade','primarypersonid','primaryfirstname','primarylastname','email','payment','datecreated'];
 
   dataSourceStatusComplete = new MatTableDataSource<StatusComplete>(this.StatusComplete);
 
