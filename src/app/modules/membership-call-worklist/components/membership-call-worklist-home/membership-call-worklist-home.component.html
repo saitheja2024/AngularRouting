@@ -63,7 +63,7 @@
                         <!-- Position Column -->
                         <ng-container matColumnDef="familyId">
                           <th valign="middle" class="bold_txt" mat-header-cell *matHeaderCellDef mat-sort-header >Family ID</th>
-                          <td valign="middle" mat-cell *matCellDef="let element"><a href="javascript:void(0);" (click)="showCallDetails(element)">{{element.familyId}}</a></td>
+                          <td valign="middle" mat-cell *matCellDef="let element; let j=index;"><a href="javascript:void(0);" (click)="showCallDetails(element,j)">{{element.familyId}}</a></td>
                         </ng-container>
                       
                         <!-- Name Column -->
@@ -90,7 +90,7 @@
                           </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+                        <tr mat-row *matRowDef="let row;  columns: displayedColumns; let j=index"  [ngClass]="{'active_row': row_active[j] == true}" >
                         </tr>
                       </table>
                         <mat-paginator #paginator 
@@ -119,7 +119,7 @@
             <!--end::Content-->
         </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6" style="position:relative;">
             <app-membership-call-details [callWorkDetails]="callWorkDetails" (callWorkDetailsSavedNotification)="oncallWorkDetailsSavedNotification($event)"></app-membership-call-details>
     </div>
 </div>

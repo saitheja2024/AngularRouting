@@ -100,8 +100,12 @@ export class MembershipCallWorklistHomeComponent {
       }
      }
    }
-
-  async showCallDetails(callWork:any){
+ 
+   row_active:any={};
+  async showCallDetails(callWork:any, ind:any){
+    this.row_active={
+      [ind]:true
+    }
     callWork.familyID = callWork.familyId;
     
     this.callWorkDetails = await this.membeshipService.fetchMemberShipCallWorkDetailsByFamilyId(callWork);

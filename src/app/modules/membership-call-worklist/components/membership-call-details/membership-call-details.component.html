@@ -216,3 +216,13 @@
         </div>
     </div>
 </div>
+
+<div class="overlay_bg" *ngIf="popupWindowFlag"></div>
+<div class="popupwraper" *ngIf="popupWindowFlag">
+    <h5 style="padding-bottom: 15px; padding-top: 15px;">Previous Call Note <a href="javascript:void(0)" (click)="closePopup();" style="float:right;">X</a></h5>
+  <div class="popup_window">
+    <span *ngFor="let item of callWorkDetails?.callHistoryList[0]?.responseCallNotesList">
+     {{item.callNotes}} - {{item.createdDate | date:'MM/dd/yyyy' }}
+    </span>
+  </div>
+</div>

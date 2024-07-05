@@ -14,7 +14,7 @@ export class MembershipCallDetailsComponent {
   @Input() callWorkDetails:any
   @Output() callWorkDetailsSavedNotification:EventEmitter<string> = new EventEmitter<string>();
   callWorkHistoryForm:any
-
+  popupWindowFlag:boolean=false;
 
   menuAccordionFlag:any={
     Category_1:false,
@@ -35,6 +35,7 @@ export class MembershipCallDetailsComponent {
     ngOnInit(){
       this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
       this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+      this.popupWindowFlag=false;
       this.prepareForm()
     }
 
@@ -106,10 +107,15 @@ export class MembershipCallDetailsComponent {
      }
 
      onViewPreviouCallNotesClick(){
+      this.popupWindowFlag=true;
       if(this.callWorkDetails && this.callWorkDetails.callHistoryList){
         let  callNotesList = this.callWorkDetails.callHistoryList[0].responseCallNotesList.map((note:any) => note.callNotes);
         callNotesList=callNotesList.join('\n');
         this.callWorkHistoryForm.get("callNotes").setValue(callNotesList);
        }
+     }
+
+     closePopup(){
+      this.popupWindowFlag=false;
      }
 }
