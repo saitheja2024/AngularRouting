@@ -37,10 +37,10 @@
                 <li class="nav-item mb-1">
                     <!--begin::Link-->
                     <div class="nav-link d-flex">
-                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Status : </span>
+                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Registration Status : </span>
                         <span class="nav-text">
                             <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="registrationStatus">
-                                <option>Select Registration Status</option>
+                                <option value="">Select Registration Status</option>
                                 <option *ngFor="let rg of registrationStatusList" [value]="rg.code"> {{rg.description}}</option>
                             </select>
                         </span>
@@ -56,8 +56,8 @@
                     <div class="nav-link d-flex">
                         <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Session : </span>
                         <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="sessionChoice">
-                            <option>Select Session</option>
-                            <option *ngFor="let session of sessionChoiceList" [value]="session.code">{{session.description}}</option>
+                            <option value="">Select Session</option>
+                            <option *ngFor="let session of sessionChoiceList" [value]="session.choicecode">{{session.description}}</option>
                         </select>
                         <!--end::Title-->
                     </div>
@@ -148,12 +148,6 @@
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
                     </ng-container>
 
-                    <!-- Reconcile Column-->
-                    <ng-container matColumnDef="reconcile">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Reconcile </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.reconcile}} </td>
-                    </ng-container>
-
                     <!-- Payment Column-->
                     <ng-container matColumnDef="payment">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
@@ -187,7 +181,7 @@
             <div class="d-flex">
                 <!--begin::Filter menu-->
                 <div class="m-0">
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                    <a (click)="onBackButtonClick()" href="javascript:void(0);"  class="btn btn-primary btn-sm m-1" style="font-size:13px;">
                         <i class="icon-backward fs-6"></i> Back
                     </a>
                             

@@ -25,13 +25,12 @@
 
             <div [formGroup]="searchCriteriaForm" *ngIf="searchCriteriaForm">
                 <div formGroupName="requestRegistrationProcessingSearch">
-                   
 
                     <!-------- Begin Session Choice -------->
                     <div class="col-lg-12 mb-2">
                         <div class="row">
                             <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                                <label class="fw-semibold fs-6 mt-2 mb-2">Program:</label>
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Program Code: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -49,7 +48,7 @@
                     <div class="col-lg-12 mb-2">
                         <div class="row">
                             <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                                <label class="fw-semibold fs-6 mt-2 mb-2">Registration Status:</label>
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Registration Status: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-lg-10 d-flex" formArrayName="registrationStatusList" *ngIf="registrationStatusArray">
                                 <div class="row d-flex2" style="width:100%;">
@@ -70,7 +69,7 @@
                     <div class="col-lg-12 mb-2">
                         <div class="row">
                             <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                                <label class="fw-semibold fs-6 mt-2 mb-2">Payment Status:</label>
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Payment Status: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-lg-10 d-flex" formArrayName="paymentStatusList" *ngIf="paymentStatusArray">
                                 <div class="row d-flex2" style="width:100%;">
@@ -149,7 +148,7 @@
                     <div class="col-lg-12 mb-2">
                         <div class="row">
                             <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                                <label class="fw-semibold fs-6 mt-2 mb-2">Sign-Up Code:</label>
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Sign-Up Code: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -303,8 +302,8 @@
                 <div class="d-flex">
                     <!--begin::Filter menu-->
                     <div class="m-0">
-                        <a href="javascript:void(0);" class="btn btn-danger btn-sm m-1" style="font-size:13px;">
-                            <i class="icon-cancel-circle2 fs-6"></i> Cancel
+                        <a  class="btn btn-danger btn-sm m-1" style="font-size:13px;" >
+                            <i class="icon-cancel-circle2 fs-6" ></i> Cancel
                         </a>
                                 
                         <button (click)="onSearchButtonClick()" class="btn btn-primary btn-sm m-1" style="font-size:13px;" >

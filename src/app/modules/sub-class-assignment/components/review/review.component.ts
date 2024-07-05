@@ -22,7 +22,6 @@ export interface StatusReview {
   primaryfirstname: string;
   primarylastname: string;
   email: string;
-  reconcile: string;
   payment: string;
   datecreated: string;
 }
@@ -35,10 +34,10 @@ export interface StatusReview {
 
 export class ReviewComponent {
   StatusReview: StatusReview[] = [
-    {checkbox:'', paymentdate: '2024-05-15 04:29:35', familyid: 4367, personid: 13292, firstname: 'Sonu', familyname:'Sa', gender: 'Male', age: '14 Y 6 Months', schoolgrade: '3rd', primarypersonid: 13290, primaryfirstname: 'Mohan', primarylastname: 'G', email: 'mohan@ss.in', reconcile: 'NA', payment: '', datecreated: '2024-03-21 08:52:23'}
+    {checkbox:'', paymentdate: '2024-05-15 04:29:35', familyid: 4367, personid: 13292, firstname: 'Sonu', familyname:'Sa', gender: 'Male', age: '14 Y 6 Months', schoolgrade: '3rd', primarypersonid: 13290, primaryfirstname: 'Mohan', primarylastname: 'G', email: 'mohan@ss.in', payment: '', datecreated: '2024-03-21 08:52:23'}
   ];
 
-  displayedColumnsReview: string[] = ['checkbox','paymentdate','familyid','personid','firstname','familyname','gender','age','schoolgrade','primarypersonid','primaryfirstname','primarylastname','email','reconcile','payment','datecreated'];
+  displayedColumnsReview: string[] = ['checkbox','paymentdate','familyid','personid','firstname','familyname','gender','age','schoolgrade','primarypersonid','primaryfirstname','primarylastname','email','payment','datecreated'];
 
   dataSourceStatusReview = new MatTableDataSource<StatusReview>(this.StatusReview);
 

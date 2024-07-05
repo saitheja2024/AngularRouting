@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 
 export class CompleteComponent {
   
-  displayedColumnsComplete: string[] = ['paymentSubmittedDate','familyId', 'personID', 'firstname', 'lastname', 'email', 'sessionAssignment', 'createdDate', 'reconcile', 'payment', 'actions'];
+  displayedColumnsComplete: string[] = ['paymentSubmittedDate','familyId', 'personID', 'firstname', 'lastname', 'email', 'sessionAssignment', 'createdDate', 'payment'];
 
   dataSource = new MatTableDataSource<any>();
 
@@ -60,4 +60,13 @@ export class CompleteComponent {
   async paymentdetails(){
     const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
+   
+
+   onBackButtonClick(){
+    this.router.navigateByUrl("/status-update/status-search-results/review");
+  }
+
+  onUpdateCompleteButtonClick(){
+    this.router.navigateByUrl("/status-update/status-search");
+  }
 }

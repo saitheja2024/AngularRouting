@@ -36,47 +36,6 @@
                 <!--begin::Item-->
                 <li class="nav-item mb-1">
                     <!--begin::Link-->
-                    <div class="nav-link d-flex">
-                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Status : </span>
-                        <span class="nav-text">
-                            <select class="form-select form-select-sm cursor-pointer">
-                                <option>Select Registration Status</option>
-                                <option>PENDING</option>
-                                <option>PROCESSING</option>
-                                <option>ACCEPTED</option>
-                                <option>WITHDRAWN</option>
-                                <option>CANCELLED</option>
-                                <option>NOSHOW</option>
-                                <option>ATTENDED</option>
-                                <option>WAITLISTED</option>
-                            </select>
-                        </span>
-                        <!--end::Title-->
-                    </div>
-                    <!--end::Link-->
-                </li>
-                <!--end::Item-->
-
-                <!--begin::Item-->
-                <li class="nav-item mb-1">
-                    <!--begin::Link-->
-                    <div class="nav-link d-flex">
-                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Session : </span>
-                        <select class="form-select form-select-sm cursor-pointer">
-                            <option>Select Session</option>
-                            <option>Friday (6:45 - 8:20PM)</option>
-                            <option>Sunday 1 (9:15 - 10:50AM)</option>
-                            <option>Sunday 2 (12:15 - 01:50PM)</option>
-                        </select>
-                        <!--end::Title-->
-                    </div>
-                    <!--end::Link-->
-                </li>
-                <!--end::Item-->
-
-                <!--begin::Item-->
-                <li class="nav-item mb-1">
-                    <!--begin::Link-->
                     <div class="nav-link">
                         <span class="nav-text text-gray-800 fw-semibold fs-6">Total Records : </span>
                         <span class="nav-text text-primary-800 fw-semibold fs-6">1</span>
@@ -149,28 +108,11 @@
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.createdDate | date:'MM/dd/yyyy'}} </td>
                     </ng-container>
 
-                    <!-- Reconcile Column-->
-                    <ng-container matColumnDef="reconcile">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Reconcile </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.reconcile}} </td>
-                    </ng-container>
-
                     <!-- Payment Column-->
                     <ng-container matColumnDef="payment">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
                         <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails()"> 
                             <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
-                        </td>
-                    </ng-container>
-
-                    <!-- Action Column -->
-                    <ng-container matColumnDef="actions">
-                        <th class="text-nowrap text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
-                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element"> 
-                            <button class="btn btn-sm button-default ms-2" style="border: 1px solid #FFCDDB;padding: 5px 5px 5px 9px !important;width:30px;">
-                                <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;">
-                                </i>
-                            </button>
                         </td>
                     </ng-container>
 
@@ -193,11 +135,11 @@
             <div class="d-flex">
                 <!--begin::Filter menu-->
                 <div class="m-0">
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                    <a (click)="onBackButtonClick()" href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
                         <i class="icon-backward fs-6"></i> Back
                     </a>
                             
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;" (click)="onUpdateCompleteButtonClick()">
                         <i class="icon-rotate-ccw2 fs-6"></i> Update Complete   
                     </a>
                 </div>

@@ -33,7 +33,7 @@ export interface StatusReview {
 })
 
 export class ReviewComponent {
-  displayedColumns: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','payment','emailAddress','reconcile','createdDate'];
+  displayedColumns: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','payment','emailAddress','createdDate'];
 
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;
@@ -45,8 +45,8 @@ export class ReviewComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   registrationStatusList: any;
-  registrationStatus:any
-  sessionChoice: any;
+  registrationStatus:any="";
+  sessionChoice: any="";
   sessionChoiceList: any[];
 
   constructor(private modalService: NgbModal,
@@ -74,6 +74,10 @@ export class ReviewComponent {
 
   async fetchRegistrationStatusList() {
     this.registrationStatusList=await this.regiStrationReviewService.fetchRegistrationStatusList()
+  }
+
+  onBackButtonClick(){
+    this.router.navigateByUrl("/status-update/status-search-results/selection");
   }
 
 
