@@ -126,6 +126,11 @@ export class RegistratioReviewService {
     return response;
   }
 
+  async fetchSessionChoicesDropdown(params: any) {
+    let response = await this.reportService.fetchSessionChoicesDropdown(params);
+    return response;
+  }
+
 
   async fetchSessionChoice(params: any) {
     let response = await this.reportService.fetchSessionChoice(params);

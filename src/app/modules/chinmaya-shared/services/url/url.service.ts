@@ -34,6 +34,7 @@ export class UrlService {
     fetchSessionChoicesList:"reports/fetchSessionChoicesList",
     fetchSignupcodes:"reports/fetchSignupcodes",
     fetchClassList:"reports/fetchClassDropdown",
+    fetchSessionChoicesDropdown:"reports/fetchSessionChoicesDropdown",
     fetchAssignedSubClass:"reports/fetchSubClassDropdown",
     fetchSessionChoiceDropDown: "reports/fetchSessionChoicesDropdown"
   }

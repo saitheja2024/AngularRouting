@@ -60,7 +60,7 @@ export class StatusSearchComponent {
     await this.fetchRegistrationStatusList();
     await this.fetchPaymentStatusList();
     await this.fetchSignupCodes();
-    await this.fetchSessionChoice();
+    //await this.fetchSessionChoice();
     await this.fetchSchoolGradeList();
     this.prepareSearchCriteriaForm();
     
@@ -125,20 +125,21 @@ export class StatusSearchComponent {
     this.schoolGrade = await this.regiStrationReviewService.fetchSchoolGradeList() 
   }
 
-  async fetchSessionChoice(){
-    let params = {
-      "programCode":this.selectedProgram.code
+  async fetchSessionChoice(params:any){
+    this.sessionChoice = await this.regiStrationReviewService.fetchSessionChoicesDropdown(params);
+    for(let i=0;i<this.sessionChoice?.length;i++){
+      this.assignedSessionArray.push(new FormControl(false));
     }
-    this.sessionChoice = await this.regiStrationReviewService.fetchSessionChoice(params);
   }
 
-  onSignupCodeChange(ev:any){
+  async onSignupCodeChange(ev:any){
     let params={
       "programCode": this.selectedProgram.code,
       "chapterCode": this.selectedChapterCode,
       "signupCode": ev.target.value,
     }
-    this.fecthClassList(params);
+    await this.fecthClassList(params);
+    await this.fetchSessionChoice(params);
   }
 
   prepareSearchCriteriaForm(){
@@ -190,17 +191,17 @@ export class StatusSearchComponent {
 
   }
 
-  // registrationStatusSelected(){
+  registrationStatusSelected(){
 
-  //   let retValue=true;
-  //   for(let i=0;i<this.searchCriteriaForm.requestRegistrationProcessingSearch?.registrationStatusList?.length;i++){
-  //     let val= this.searchCriteriaForm.requestRegistrationProcessingSearch.registrationStatusList[i]
-  //     if(val){
-  //       retValue=false;
-  //     }
-  //   }
-  //   return retValue;
-  // }
+    let retValue=true;
+    for(let i=0;i<this.searchCriteriaForm.requestRegistrationProcessingSearch?.registrationStatusList?.length;i++){
+      let val= this.searchCriteriaForm.requestRegistrationProcessingSearch.registrationStatusList[i]
+      if(val){
+        retValue=false;
+      }
+    }
+    return retValue;
+  }
   
 
   get registrationStatusArray(): any {
