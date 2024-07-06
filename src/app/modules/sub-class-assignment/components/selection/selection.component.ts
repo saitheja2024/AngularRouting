@@ -10,6 +10,7 @@ import { SelectionPaymentdetailsComponent } from '../selection-paymentdetails/se
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
+import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 
 export interface SubclassSelection {
   checkbox:string;
@@ -59,7 +60,8 @@ export class SelectionComponent {
 
   constructor(private modalService: NgbModal,
     private regiStrationReviewService:RegistratioReviewService,
-    private router:Router
+    private router:Router,
+    private alertService:AlertService
   ){
     
   }
@@ -123,6 +125,7 @@ export class SelectionComponent {
   
   onProceedToReviewButtonClick(){
     if(this.selection.selected.length==0){
+      this.alertService.showErrorALert("Please select atleast one record to proceed");
       return;
     }
     this.regiStrationReviewService.setSelectedFamilyRecords(this.selection.selected);

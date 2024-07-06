@@ -10,6 +10,7 @@ import { SelectionPaymentdetailsComponent } from '../selection-paymentdetails/se
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
+import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 
 
 
@@ -37,6 +38,7 @@ export class ReviewComponent {
   constructor(private modalService: NgbModal,
     private regiStrationReviewService:RegistratioReviewService,
     private router:Router,
+    private alertService:AlertService
 
   ){
     
@@ -97,6 +99,11 @@ export class ReviewComponent {
    }
 
    async onUpdateButtonClick(){
+
+    if(this.selection.selected.length==0){
+      this.alertService.showErrorALert("Please select atleast one record to proceed");
+      return;
+    }
     let param ={
       saveReviewRequestList:this.selection.selected,
       //registrationStatus: this.registrationStatus,
