@@ -8,12 +8,23 @@
     z-index: 999;
 }
 .popupwraper{
-    width: 85%;
+    width:75%;
     background: #fff;
     border-radius: 4px;
     z-index: 99999;
     position: absolute;
-    left: 10%;
+    left: 15%;
     top: 20%;
     padding:10px;
+    box-shadow: 0px 1px 8px 1px #8d8a8a;
+    border: 1px solid #8d8282;
+}
+
+.close_btn_icon{
+    float: right;
+    position: relative;
+    right: 3px;
+    bottom: 11px;
+    font-size: 12px;
+    color: #000;
 }

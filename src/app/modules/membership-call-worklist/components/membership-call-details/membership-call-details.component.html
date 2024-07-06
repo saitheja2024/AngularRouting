@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="fs-6 ms-4 text-dark fw-semibold mt-2">
-                    <span style="color:#C00000;">Last Call Date: {{callWorkHistoryForm.value.lastCallDate | date:'MM/dd/yyyy'}}</span>
+                    <span style="color:#C00000;">Last Call Date: {{callWorkHistoryForm.value.lastCallDate}}</span>
                     <!-- <input type="date" formControlName="lastCallDate" format="MM/DD/YYYY"  autocomplete="off" name="lastCallDate" class="form-control form-control-sm" style="width: 35%;padding: 5px; display: inline-block;min-height: 20px !important;margin-left: 5px;"/> -->
                 </div>
             </div>
@@ -58,21 +58,22 @@
                     <div class="ms-4 mb-1" *ngFor="let session of callWorkDetails?.sessionChoiceList">
                         <span class="jsutify-content-start">{{session.sessionChoice}}</span>
                     </div>
-                   
-                    <div *ngFor="let child of callWorkDetails?.childList;">
-                        <div >
-                            <div class="fs-6 ms-4 mt-4 text-dark fw-semibold">
-                            {{child.name}}
-                            </div>
+                   <ng-container *ngFor="let item of Object?.keys(groupbyNameSignupDetails); index as i;">
+                    <div class="fs-6 ms-4 mt-4 text-dark fw-semibold">
+                        {{item}}
+                        </div>
+                    <div *ngFor="let child of groupbyNameSignupDetails[item];">
+                        <div>
+                            
                             <div class="ms-4 mt-2">
-                                <div class="jsutify-content-start">{{child.gradeLabel}}&nbsp;:&nbsp;{{child.schoolGradeDescription ? child.schoolGradeDescription:""}}</div>
-                                <div class="jsutify-content-start">Class : {{child.classCode ? child.classCode:'NA' }}</div>
+                                <div class="jsutify-content-start" *ngIf="child.personType!='ADULT' && child.personType!='YOUTH'">{{child.gradeLabel}}&nbsp;:&nbsp;{{child.schoolGradeDescription ? child.schoolGradeDescription:""}}</div>
+                                <div class="jsutify-content-start" *ngIf="child.personType!='ADULT' && child.personType!='YOUTH'">Class : {{child.classCode ? child.classCode:'NA' }}</div>
                                 <div class="jsutify-content-start">Signup Code : {{child.signupCodeDescription }}</div>
                                 
                             </div>
                     </div>
                     </div>
-
+                </ng-container>
                    
 
                    
@@ -218,12 +219,15 @@
     </div>
 </div>
 
-<div class="overlay_bg" *ngIf="popupWindowFlag"></div>
+<!-- <div class="overlay_bg" *ngIf="popupWindowFlag"></div> -->
 <div class="popupwraper" *ngIf="popupWindowFlag">
-    <h5 style="padding-bottom: 15px; padding-top: 15px;">Previous Call Note <a href="javascript:void(0)" (click)="closePopup();" style="float:right;">X</a></h5>
-  <div class="popup_window">
+    <h5 style="padding-bottom: 15px; padding-top: 15px;">Previous Call Note <a href="javascript:void(0)" (click)="closePopup();" class="close_btn_icon">X</a></h5>
+  <div class="popup_window" *ngIf="callWorkDetails?.callHistoryList!=null">
     <span *ngFor="let item of callWorkDetails?.callHistoryList[0]?.responseCallNotesList">
      {{item.callNotes}} - {{item.createdDate | date:'MM/dd/yyyy' }}
     </span>
+  </div>
+  <div  *ngIf="callWorkDetails?.callHistoryList==null">
+     No Previous Call Notes.
   </div>
 </div>

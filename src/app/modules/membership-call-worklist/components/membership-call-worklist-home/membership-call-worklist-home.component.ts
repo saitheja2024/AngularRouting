@@ -48,7 +48,11 @@ export class MembershipCallWorklistHomeComponent {
   @ViewChild(MatPaginator) paginator:MatPaginator;
   constructor(private membeshipService: MemberShipCallWorkListServices,
     private store:StoreService
-  ){}
+  ){
+    this.store.onProgramUpdate().subscribe((program:any)=>{
+      this.selectedProgram=program;
+    });
+  }
 
   async ngOnInit(){
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
