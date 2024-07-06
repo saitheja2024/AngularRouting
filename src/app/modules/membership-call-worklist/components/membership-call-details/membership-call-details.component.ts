@@ -76,7 +76,7 @@ export class MembershipCallDetailsComponent {
         callHistory.programCode=this.callWorkDetails.programCode;
         callHistory.callNotes="";
         this.callWorkHistoryForm.patchValue(callHistory); 
-        this.getCurrentDateTime(checkcallHistory);
+      //  this.getCurrentDateTime(checkcallHistory);
         if(this.callWorkDetails.callHistoryList==null){
           this.callWorkHistoryForm.controls['assignedTo'].setValue('');
           this.callWorkHistoryForm.controls['doNotCallAgainFlag'].setValue('');
@@ -144,18 +144,18 @@ export class MembershipCallDetailsComponent {
       this.popupWindowFlag=false;
      }
 
-     getCurrentDateTime(data:any){
-      var d = new Date(); // for now
-      d.getHours(); // => 9
-      d.getMinutes(); // =>  30
-      d.getSeconds(); // => 51
+    //  getCurrentDateTime(data:any){
+    //   var d = new Date(); 
+    //   d.getHours(); 
+    //   d.getMinutes(); 
+    //   d.getSeconds();
     
-      let val = (data.lastCallDate!=null && data.lastCallDate!='' && !data.lastCallDate.includes('-') )? new Date(data.lastCallDate): new Date();
-     this.currentDate =  moment(val).format('MM/DD/YYYY');
-     this.timeDisplay =  moment(d).format('HH:mm');
-     this.currentDateTime = this.currentDate+' - '+this.timeDisplay;
-     if(this.callWorkHistoryForm.get("lastCallDate").value =='' || data.lastCallDate==null ){
-      this.callWorkHistoryForm.get("lastCallDate").setValue(this.currentDateTime);
-     }
-     }
+    //   let val = (data.lastCallDate!=null && data.lastCallDate!='' && !data.lastCallDate.includes('-') )? new Date(data.lastCallDate): new Date();
+    //  this.currentDate =  moment(val).format('MM/DD/YYYY');
+    //  this.timeDisplay =  moment(d).format('HH:mm');
+    //  this.currentDateTime = this.currentDate+' - '+this.timeDisplay;
+    //  if(this.callWorkHistoryForm.get("lastCallDate").value =='' || data.lastCallDate==null ){
+    //   this.callWorkHistoryForm.get("lastCallDate").setValue(this.currentDateTime);
+    //  }
+    //  }
 }
