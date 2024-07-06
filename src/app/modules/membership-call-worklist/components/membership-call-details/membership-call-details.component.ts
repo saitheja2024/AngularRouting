@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MemberShipCallWorkListServices } from 'src/app/modules/chinmaya-shared/services/membershp-call-worklist/membershp-call-worklist.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-membership-call-details',
@@ -15,6 +16,7 @@ export class MembershipCallDetailsComponent {
   @Output() callWorkDetailsSavedNotification:EventEmitter<string> = new EventEmitter<string>();
   callWorkHistoryForm:any
   popupWindowFlag:boolean=false;
+  Object = Object;
 
   menuAccordionFlag:any={
     Category_1:false,
@@ -24,8 +26,9 @@ export class MembershipCallDetailsComponent {
     }
   selectedAcademicYear: any;
   selectedChapterCode: any;
-
-
+  currentDateTime:any;
+  timeDisplay:any;
+  currentDate:any;
     constructor(private fb:FormBuilder,
       private store:StoreService,
       private membeshipService: MemberShipCallWorkListServices,
@@ -36,7 +39,23 @@ export class MembershipCallDetailsComponent {
       this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
       this.selectedChapterCode = this.store.getValue(KEYS.chapter);
       this.popupWindowFlag=false;
-      this.prepareForm()
+      this.prepareForm();
+      //this.groupbyNameforSession();
+    }
+   groupbyNameSignupDetails:any;
+    groupbyNameforSession(){
+      this.groupbyNameSignupDetails='';
+      const groupedByName = this.callWorkDetails?.childList.reduce((acc:any, item:any) => {
+        // If the name doesn't exist in the accumulator, initialize it with an empty array
+        if (!acc[item.name]) {
+          acc[item.name] = [];
+        }
+        // Push the current item into the array for this name
+        acc[item.name].push(item);
+        return acc;
+      }, {});
+      this.groupbyNameSignupDetails=groupedByName;
+      console.log(groupedByName);
     }
 
     ngOnChanges(changes:any){
@@ -47,6 +66,7 @@ export class MembershipCallDetailsComponent {
           assignedTo:"",
           callId:0
          };
+         let checkcallHistory = (this.callWorkDetails.callHistoryList==null)?'':this.callWorkDetails.callHistoryList[0];
          if(this.callWorkDetails && this.callWorkDetails.callHistoryList){
             callHistory = this.callWorkDetails.callHistoryList[0];
          }
@@ -55,15 +75,17 @@ export class MembershipCallDetailsComponent {
         callHistory.familyId = this.callWorkDetails.familyId;
         callHistory.programCode=this.callWorkDetails.programCode;
         callHistory.callNotes="";
+        this.callWorkHistoryForm.patchValue(callHistory); 
+      //  this.getCurrentDateTime(checkcallHistory);
         if(this.callWorkDetails.callHistoryList==null){
           this.callWorkHistoryForm.controls['assignedTo'].setValue('');
           this.callWorkHistoryForm.controls['doNotCallAgainFlag'].setValue('');
           this.callWorkHistoryForm.controls['callCount'].setValue('');
           this.callWorkHistoryForm.controls['callNotes'].setValue('');
-        }else{
-          this.callWorkHistoryForm.patchValue(callHistory); 
         }
       } 
+
+      this.groupbyNameforSession();
     }
     prepareForm(){
       this.callWorkHistoryForm = this.fb.group({
@@ -121,4 +143,19 @@ export class MembershipCallDetailsComponent {
      closePopup(){
       this.popupWindowFlag=false;
      }
+
+    //  getCurrentDateTime(data:any){
+    //   var d = new Date(); 
+    //   d.getHours(); 
+    //   d.getMinutes(); 
+    //   d.getSeconds();
+    
+    //   let val = (data.lastCallDate!=null && data.lastCallDate!='' && !data.lastCallDate.includes('-') )? new Date(data.lastCallDate): new Date();
+    //  this.currentDate =  moment(val).format('MM/DD/YYYY');
+    //  this.timeDisplay =  moment(d).format('HH:mm');
+    //  this.currentDateTime = this.currentDate+' - '+this.timeDisplay;
+    //  if(this.callWorkHistoryForm.get("lastCallDate").value =='' || data.lastCallDate==null ){
+    //   this.callWorkHistoryForm.get("lastCallDate").setValue(this.currentDateTime);
+    //  }
+    //  }
 }

@@ -4,6 +4,7 @@ import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/sto
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { TableUtil } from 'src/app/utils/excelexport';
 
 @Component({
   selector: 'app-membership-call-worklist-home',
@@ -48,7 +49,11 @@ export class MembershipCallWorklistHomeComponent {
   @ViewChild(MatPaginator) paginator:MatPaginator;
   constructor(private membeshipService: MemberShipCallWorkListServices,
     private store:StoreService
-  ){}
+  ){
+    this.store.onProgramUpdate().subscribe((program:any)=>{
+      this.selectedProgram=program;
+    });
+  }
 
   async ngOnInit(){
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
@@ -62,6 +67,10 @@ export class MembershipCallWorklistHomeComponent {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
    
+  }
+
+  exportTable() {
+    TableUtil.exportArrayToExcel(this.totalRecList?.projectSummaryList,"workflow-call-list");
   }
 
   async fetchMemberShipCallWork(eve:any){
