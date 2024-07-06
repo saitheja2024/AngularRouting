@@ -127,6 +127,7 @@ export class StatusSearchComponent {
 
   async fetchSessionChoice(params:any){
     this.sessionChoice = await this.regiStrationReviewService.fetchSessionChoicesDropdown(params);
+    this.assignedSessionArray.clear();
     for(let i=0;i<this.sessionChoice?.length;i++){
       this.assignedSessionArray.push(new FormControl(false));
     }
