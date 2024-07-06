@@ -49,13 +49,17 @@
                             <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" (click)="fetchMemberShipCallWork('no');" style="background-color:#984807;">
                                 Unassigned All
                             </button>
+
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" (click)="exportTable();" style="background-color:#ff6950; float:right;">
+                                Excel Export
+                            </button>
+
                         </div>
                         <div class="table-responsive">
                              <!--begin::Card body-->
             <div class="card-body border-top p-2">
-                
                 <div class="table-container table-responsive">
-                    <table class="table table-striped table-hover table-row-bordered" mat-table [dataSource]="dataSource" matSort>
+                    <table id="ExampleMaterialTable" class="table table-striped table-hover table-row-bordered" mat-table [dataSource]="dataSource" matSort>
 
                         <!-- Position Column -->
                         <ng-container matColumnDef="familyId">
