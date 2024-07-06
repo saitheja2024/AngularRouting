@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 
 @Component({
   selector: 'app-subclass-assign-search-results',
@@ -15,9 +16,40 @@ export class SubclassAssignSearchResultsComponent {
     { label: 'Review', path: 'review' },
     { label: 'Complete', path: 'complete' },
   ];
+  selectedIndex: any=0;
+  searchCriteria: any;
 
-  constructor(private router:Router){}
+  constructor(private router:Router,
+    private activatedRoute: ActivatedRoute,
+    private regiStrationReviewService:RegistratioReviewService){}
 
+
+
+
+  ngOnInit(){
+    this.searchCriteria = this.regiStrationReviewService.getSearchCriteria();
+    this.activatedRoute.url.subscribe(() => {
+      let path:any = this.router.url.split('/');
+      path = path[path.length-1];
+      this.selectedIndex = this.getTabIndex(path);
+    });
+  }
+
+
+  getTabIndex(path: string): number {
+    switch (path) {
+      case 'selection':
+        return 0;
+      case 'review':
+        return 1;
+      case 'complete':
+        return 2;
+      default:
+        return 0;
+    }
+  }
+
+ 
   onTabChanged(event: MatTabChangeEvent): void {
     let link=""
     switch (event.index) {

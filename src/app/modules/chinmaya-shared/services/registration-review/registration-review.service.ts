@@ -12,6 +12,7 @@ import { KEYS, StoreService } from '../store/store.service';
 })
 export class RegistratioReviewService {
   
+  
   searchCriteria: any;
   selectedFamily: any;
   selectedFamilyRecords: any[];
@@ -141,6 +142,8 @@ export class RegistratioReviewService {
     let response = await this.reportService.fetchSessionChoiceForFamily(params);
     return response;
   }
+
+ 
   
 
 
@@ -176,6 +179,20 @@ export class RegistratioReviewService {
     }
 
     return [];
+  }
+
+  async fetchSubClassDetails(params:any){
+      let options: Options = {
+        url: this.urlService.registrationReviewURL.fetchSubClassDetails,
+        body: params
+      }
+      let response: any = await this.httpService.post(options);
+
+      if(response && response.selectDropdownList){
+        return response.selectDropdownList;
+      }
+      
+      return [];
   }
 
 

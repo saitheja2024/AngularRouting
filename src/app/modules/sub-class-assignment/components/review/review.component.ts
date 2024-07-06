@@ -7,24 +7,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SelectionFamilyDetailsComponent } from '../selection-family-details/selection-family-details.component';
 import { SelectionPaymentdetailsComponent } from '../selection-paymentdetails/selection-paymentdetails.component';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Router } from '@angular/router';
+import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 
-export interface StatusReview {
-  checkbox:string;
-  paymentdate: string;
-  familyid: number;
-  personid: number;
-  firstname: string;
-  familyname: string;
-  gender: string;
-  age: string;
-  schoolgrade: string;
-  primarypersonid: number;
-  primaryfirstname: string;
-  primarylastname: string;
-  email: string;
-  payment: string;
-  datecreated: string;
-}
+
 
 @Component({
   selector: 'app-review',
@@ -33,35 +20,93 @@ export interface StatusReview {
 })
 
 export class ReviewComponent {
-  StatusReview: StatusReview[] = [
-    {checkbox:'', paymentdate: '2024-05-15 04:29:35', familyid: 4367, personid: 13292, firstname: 'Sonu', familyname:'Sa', gender: 'Male', age: '14 Y 6 Months', schoolgrade: '3rd', primarypersonid: 13290, primaryfirstname: 'Mohan', primarylastname: 'G', email: 'mohan@ss.in', payment: '', datecreated: '2024-03-21 08:52:23'}
-  ];
+  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','email','payment','createdDate']
 
-  displayedColumnsReview: string[] = ['checkbox','paymentdate','familyid','personid','firstname','familyname','gender','age','schoolgrade','primarypersonid','primaryfirstname','primarylastname','email','payment','datecreated'];
-
-  dataSourceStatusReview = new MatTableDataSource<StatusReview>(this.StatusReview);
+  dataSource = new MatTableDataSource<any>();
+  searchCriteria: any;
+  initialSelection = [];
+  allowMultiSelect = true;
+  selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
 
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  SubClassAssignList: any;
+  subClass:any=""
 
-  ngAfterViewInit() {
-    this.dataSourceStatusReview=new MatTableDataSource(this.StatusReview);
+  constructor(private modalService: NgbModal,
+    private regiStrationReviewService:RegistratioReviewService,
+    private router:Router,
 
-    this.dataSourceStatusReview.paginator = this.paginator;
-
-    this.dataSourceStatusReview.sort = this.sort;
-  }
-
-  constructor(private modalService: NgbModal){
+  ){
     
   }
 
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
+  async ngOnInit(){
+    this.searchCriteria = this.regiStrationReviewService.getSearchCriteria();
+
+    await this.fetchSubClassAssignList();
+    let results  =  this.regiStrationReviewService.getSelectedFamilyRecords();
+   
+    this.dataSource = new MatTableDataSource<any>(results);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource._updateChangeSubscription();
+  }
+
+  
+  onBackButtonClick(){
+    this.router.navigateByUrl("/status-update/status-search-results/selection");
+  }
+
+
+  async fetchSubClassAssignList(){
+    let params = {
+      "programCode":this.regiStrationReviewService.getSelectedFamilyRecords()[0].programCode,
+      signupCode:this.searchCriteria.requestRegistrationProcessingSearch.signupCode
+    }
+    this.SubClassAssignList = await this.regiStrationReviewService.fetchSubClassDetails(params);
+  }
+
+
+
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected == numRows;
+  }
+  
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+  
   async familyid(){
    const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
   }
 
   async paymentdetails(){
     const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+   }
+
+   async onUpdateButtonClick(){
+    let param ={
+      saveReviewRequestList:this.selection.selected,
+      //registrationStatus: this.registrationStatus,
+      //sessionAssignment:this.sessionChoice
+      subClassAssignment:this.subClass
+    }
+
+    let response = await this.regiStrationReviewService.saveRegistrationReview(param);
+    this.regiStrationReviewService.setUpdatedReviewedRecords(response);
+    this.router.navigateByUrl("/sub-class-assignment/subclass-assign-search-results/complete");
+
    }
 }
