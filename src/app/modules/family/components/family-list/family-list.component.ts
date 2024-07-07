@@ -12,7 +12,8 @@ import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/f
 export class FamilyListomponent {
 
   familyList: any;
-
+  totalRecCount:any;
+  totalRecFooter:any;
   constructor(
     private familyService: FamilyService,
     private router: Router
@@ -38,6 +39,7 @@ export class FamilyListomponent {
 
   showFamilyList(familyList: any) {
     this.familyList = familyList;
+    this.totalRecCount = familyList;
     this.dataSource.data=this.familyList.slice(); 
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'firstName', start: 'desc'}) as MatSortable);
@@ -47,5 +49,13 @@ export class FamilyListomponent {
     this.familyService.setSelectedFamily(family);
     this.router.navigateByUrl("/family/familyMemberList/true");
   }
+
+  activeOrder:any={};
+sortItems(letter: string, index:any) {
+  this.activeOrder={[index]:true};
+  this.dataSource.data = this.totalRecCount.filter((item:any) => (item.lastName).toLowerCase().startsWith((letter).toLowerCase()));
+  this.totalRecFooter = this.dataSource.data.length;
+  this.dataSource.sort = this.sort;
+}
 
 }

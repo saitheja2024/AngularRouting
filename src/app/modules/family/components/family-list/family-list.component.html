@@ -20,6 +20,12 @@
 			<!--end::Search-->
 		</div>
 		<!--end::Card title-->
+		<div class="alpha_order" *ngIf="totalRecCount?.length>0">
+            <button *ngFor="let letter of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); let i =index;" [ngClass]="activeOrder[i]?'order_active':''" (click)="sortItems(letter, i)">
+              {{letter}}
+            </button>
+         
+          </div>
 	</div>
 
 	<!--begin::Card body-->

@@ -21,3 +21,23 @@
     overflow-y: auto;
   }
 
+  .alpha_order{
+    margin-right: 25px;
+    margin-top: 7px;
+    margin-bottom:10px;
+  }
+  
+  .alpha_order button{
+    margin-right: 5px;
+    border: 0px solid #e4614b;
+    background: transparent;
+    color: #0b96e5;
+    font-size: 16px;
+    text-decoration: underline;
+  }
+  
+  .order_active{
+    background: transparent !important;
+    border: 1px solid #ff6950 !important;
+    color: #ff6950 !important;
+  }
