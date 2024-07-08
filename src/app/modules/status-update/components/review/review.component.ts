@@ -84,10 +84,16 @@ export class ReviewComponent {
 
 
   async fetchSessionChoice(){
-    let params = {
-      "programCode":this.regiStrationReviewService.getSelectedFamilyRecords()[0].programCode
+    console.log(this.regiStrationReviewService.getSelectedFamilyRecords()[0]);
+    let params={
+      "programCode": this.regiStrationReviewService.getSelectedFamilyRecords()[0].programCode,
+      "chapterCode": this.regiStrationReviewService.getSelectedFamilyRecords()[0].chapterCode,
+      "signupCode":this.regiStrationReviewService.getSelectedFamilyRecords()[0].signupCode,
     }
-    this.sessionChoiceList = await this.regiStrationReviewService.fetchSessionChoice(params);
+    // let params = {
+    //   "programCode":this.regiStrationReviewService.getSelectedFamilyRecords()[0].programCode
+    // }
+    this.sessionChoiceList = await this.regiStrationReviewService.fetchSessionChoicesDropdown(params);
   }
 
 
