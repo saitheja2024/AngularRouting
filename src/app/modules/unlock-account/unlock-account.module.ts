@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UnlockAcounntHomeComponent } from './components/unlock-acounnt-home/unlock-acounnt-home.component';
+import { UnlockAcounntHomeComponent } from './components/unlock-acounnt-home.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';

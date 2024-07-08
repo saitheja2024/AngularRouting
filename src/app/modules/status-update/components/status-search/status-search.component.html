@@ -1,9 +1,18 @@
-<div class="card mb-5 mb-xl-10">
+<div class="card">
     <!--begin::Card header-->
     <div class="card-header border-0 cursor-pointer ps-6 pe-6" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
         <!--begin::Card title-->
         <div class="card-title m-0">
             <h3 class="fw-bold m-0">Search Family Records</h3>
+        </div>
+        <div class="card-title">
+            <a  class="btn btn-danger btn-sm m-1" style="font-size:13px;" >
+                <i class="icon-cancel-circle2 fs-6" ></i> Cancel
+            </a>
+                    
+            <button (click)="onSearchButtonClick()" class="btn btn-primary btn-sm m-1" style="font-size:13px;" >
+                <i class="icon-search4 fs-6"></i> Search                      
+            </button>
         </div>
         <!--end::Card title-->
     </div>
@@ -20,8 +29,6 @@
                     </div>
                 </div>
             </div>
-
-           
 
             <div [formGroup]="searchCriteriaForm" *ngIf="searchCriteriaForm">
                 <div formGroupName="requestRegistrationProcessingSearch">
@@ -324,28 +331,7 @@
 				
                 </div>
             </div>
-				
         </div>
-
-        <!--begin::Actions-->
-        <div class="card-footer d-flex justify-content-end p-4">
-            <div class="row">
-                <div class="d-flex">
-                    <!--begin::Filter menu-->
-                    <div class="m-0">
-                        <a  class="btn btn-danger btn-sm m-1" style="font-size:13px;" >
-                            <i class="icon-cancel-circle2 fs-6" ></i> Cancel
-                        </a>
-                                
-                        <button (click)="onSearchButtonClick()" class="btn btn-primary btn-sm m-1" style="font-size:13px;" >
-                            <i class="icon-search4 fs-6"></i> Search                      </button>
-                    </div>
-                </div>
-                <!--end::Actions-->
-            </div>
-            <!--end::Content-->
-        </div>
-
     </div>
 </div>
 <!--end::Card body-->
