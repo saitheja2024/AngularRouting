@@ -12,8 +12,6 @@ import { Router } from '@angular/router';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 
-
-
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -60,11 +58,9 @@ export class ReviewComponent {
     this.dataSource._updateChangeSubscription();
   }
 
-  
   onBackButtonClick(){
     this.router.navigateByUrl("/status-update/status-search-results/selection");
   }
-
 
   async fetchSubClassAssignList(){
     let params = {
@@ -73,8 +69,6 @@ export class ReviewComponent {
     }
     this.SubClassAssignList = await this.regiStrationReviewService.fetchSubClassDetails(params);
   }
-
-
 
 
   isAllSelected() {
@@ -91,11 +85,11 @@ export class ReviewComponent {
   }
   
   async familyid(){
-   const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
+   //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
   }
 
   async paymentdetails(){
-    const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+    //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
 
    async onUpdateButtonClick(){

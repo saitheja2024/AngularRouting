@@ -10,8 +10,6 @@ import { SelectionPaymentdetailsComponent } from '../selection-paymentdetails/se
 import { Router } from '@angular/router';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 
-
-
 @Component({
   selector: 'app-complete',
   templateUrl: './complete.component.html',
@@ -35,27 +33,21 @@ export class CompleteComponent {
 
   async ngOnInit(){
     let results  =  this.regiStrationReviewService.getUpdatedReviewedRecords();
-
-   
     this.dataSource = new MatTableDataSource<any>(results);
     this.dataSource._updateChangeSubscription();
   }
-
-
 
   ngAfterViewInit() {
    this.dataSource.paginator = this.paginator;
    this.dataSource.sort = this.sort;
   }
 
-  
-
   async familyid(){
-   const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
+   //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
   }
 
   async paymentdetails(){
-    const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+    //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
    
 

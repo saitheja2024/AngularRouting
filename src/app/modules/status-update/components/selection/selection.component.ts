@@ -103,7 +103,7 @@ export class SelectionComponent {
   }
 
   async paymentdetails(){
-    const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+    //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
 
   

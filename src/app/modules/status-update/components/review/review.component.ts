@@ -111,7 +111,7 @@ export class ReviewComponent {
   }
 
   async paymentdetails(){
-    const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+    //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
 
    async onUpdateButtonClick(){

@@ -38,7 +38,6 @@ export interface SubclassSelection {
 
 export class SelectionComponent {
   
-
   displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','email','payment','createdDate']
   paginationConfig={
     pageSize : 10,
@@ -56,7 +55,6 @@ export class SelectionComponent {
   initialSelection = [];
   allowMultiSelect = true;
   selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
-
 
   constructor(private modalService: NgbModal,
     private regiStrationReviewService:RegistratioReviewService,
@@ -77,11 +75,8 @@ export class SelectionComponent {
     this.dataSource.paginator = this.paginator;
   }
 
-
-
   async performSearch(){
     let results  = await this.regiStrationReviewService.fetchRegistrationReviewDetailsBasedOnSearch(this.searchCriteria);
-   
    
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     
@@ -89,13 +84,9 @@ export class SelectionComponent {
    
     this.dataSource._updateChangeSubscription();
 
-  
- 
-
     // this.paginationConfig.length=100
     // this.paginationConfig.pageSize=this.searchResults.size;
     // this.paginationConfig.pageIndex=this.searchResults.page;
-    
     
   }
 
@@ -113,13 +104,12 @@ export class SelectionComponent {
   }
 
  
-
   async familyid(){
-   const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
+   //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
   }
 
   async paymentdetails(){
-    const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+    //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
 
   
@@ -136,10 +126,8 @@ export class SelectionComponent {
   handlePageEvent(event:any){
     console.log(JSON.stringify(event,null,4));
     let pageIndex = event.pageIndex;
-    let pageSize = event.pageSize;
- 
+    let pageSize = event.pageSize;  
     let previousIndex = event.previousPageIndex;
- 
     let previousSize = pageSize * pageIndex;
     this.searchCriteria.requestPageModel.page=pageIndex;
     this.searchCriteria.requestPageModel.size=pageSize;
