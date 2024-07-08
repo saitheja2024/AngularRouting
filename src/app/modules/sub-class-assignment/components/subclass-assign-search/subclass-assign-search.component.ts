@@ -222,22 +222,73 @@ export class SubclassAssignSearchComponent {
   }
 
 
-  getInvalidControls(form: FormGroup | FormArray): string[] {
-    let invalidControls: string[] = [];
-    Object.keys(form.controls).forEach(key => {
-      const control:any = form.get(key);
-      if (control instanceof FormGroup || control instanceof FormArray) {
-        invalidControls = invalidControls.concat(this.getInvalidControls(control));
-      } else if (control.invalid) {
-        invalidControls.push(key);
+  // getInvalidControls(form: FormGroup | FormArray): string[] {
+  //   let invalidControls: string[] = [];
+  //   Object.keys(form.controls).forEach(key => {
+  //     const control:any = form.get(key);
+  //     if (control instanceof FormGroup || control instanceof FormArray) {
+  //       invalidControls = invalidControls.concat(this.getInvalidControls(control));
+  //     } else if (control.invalid) {
+  //       invalidControls.push(key);
+  //     }
+  //   });
+  //   return invalidControls;
+  // }
+
+  selectPaymentStatus(eve:any){
+    if(eve.target.checked){
+      this.errorpaymentStatusListFlag=false;
+    }
+  }
+
+  selectregistrationCheck(eve:any){
+    if(eve.target.checked){
+      this.errorregistrationStatusListFlag=false;
+    }
+  }
+
+  errorpaymentStatusListFlag:boolean;
+  errorregistrationStatusListFlag:boolean;
+  errorprogramcodeFlag:boolean;
+  errorMessageList:any={};
+  MessageofpayError:any;
+  MessageofRegiError:any;
+  MessageofprogramcodeError:any;
+
+  getValidateFields(){
+    this.errorpaymentStatusListFlag=false;
+    this.errorregistrationStatusListFlag=false;
+    this.errorprogramcodeFlag=false;
+
+    this.errorMessageList={
+      paymentStatus:'',
+      registrationStatus:'',
+      programCode:'',
+    };
+   
+    let searchFormValues = this.searchCriteriaForm.value;
+    if(searchFormValues.requestRegistrationProcessingSearch.programCode==''){
+      this.errorprogramcodeFlag=true;
+      this.errorMessageList.programCode='Program Code  is required.';
+      return false;
+    }
+    if(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList.length==0){
+      this.errorregistrationStatusListFlag=true;
+      this.errorMessageList.registrationStatus='Registration Status is required.';
+      return false;
       }
-    });
-    return invalidControls;
+    if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length==0){
+      this.errorpaymentStatusListFlag=true;
+      this.errorMessageList.paymentStatus='Payment Status is required.';
+      return false;
+      }
+
+      return true;
   }
 
   async onSearchButtonClick(){
 
-    const invalidControls = this.getInvalidControls(this.searchCriteriaForm);
+   // const invalidControls = this.getInvalidControls(this.searchCriteriaForm);
     // console.log('Invalid controls:', invalidControls);
     //   return
 
@@ -250,11 +301,13 @@ export class SubclassAssignSearchComponent {
  
     const assignedSession = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.assignedSessionList,this.sessionChoice,"choicecode");
     searchFormValues.requestRegistrationProcessingSearch.assignedSessionList = assignedSession;
-     searchFormValues.programCode=this.selectedProgram.code; 
+    if(this.getValidateFields()){ 
+    searchFormValues.programCode=this.selectedProgram.code; 
     this.regiStrationReviewService.setSearchCriteria(searchFormValues);
     
    
     this.router.navigateByUrl("/sub-class-assignment/subclass-assign-search-results")
+    }
    }
 
    mapBooleanArrayToCodes(booleanArray: boolean[],codesArray: any[],key:string): string[] {
