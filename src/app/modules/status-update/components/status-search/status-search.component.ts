@@ -68,6 +68,7 @@ export class StatusSearchComponent {
   }
 
   async onProgramSelection(ev:any){
+    this.errorprogramcodeFlag=false;
     this.selectedProgram={
       code:ev.target.value}
     await this.populateData();
@@ -223,24 +224,77 @@ export class StatusSearchComponent {
   }
 
 
-  getInvalidControls(form: FormGroup | FormArray): string[] {
-    let invalidControls: string[] = [];
-    Object.keys(form.controls).forEach(key => {
-      const control:any = form.get(key);
-      if (control instanceof FormGroup || control instanceof FormArray) {
-        invalidControls = invalidControls.concat(this.getInvalidControls(control));
-      } else if (control.invalid) {
-        invalidControls.push(key);
-      }
-    });
-    return invalidControls;
+  // getInvalidControls(form: FormGroup | FormArray): string[] {
+  //   let invalidControls: string[] = [];
+  //   Object.keys(form.controls).forEach(key => {
+  //     const control:any = form.get(key);
+  //     if (control instanceof FormGroup || control instanceof FormArray) {
+  //       invalidControls = invalidControls.concat(this.getInvalidControls(control));
+  //     } else if (control.invalid) {
+  //       invalidControls.push(key);
+  //     }
+  //   });
+  //   return invalidControls;
+  // }
+
+  selectPaymentStatus(eve:any){
+    if(eve.target.checked){
+      this.errorpaymentStatusListFlag=false;
+    }
   }
 
+  selectregistrationCheck(eve:any){
+    if(eve.target.checked){
+      this.errorregistrationStatusListFlag=false;
+    }
+  }
+
+  errorpaymentStatusListFlag:boolean;
+  errorregistrationStatusListFlag:boolean;
+  errorprogramcodeFlag:boolean;
+  errorMessageList:any={};
+  MessageofpayError:any;
+  MessageofRegiError:any;
+  MessageofprogramcodeError:any;
+
+  getValidateFields(){
+    this.errorpaymentStatusListFlag=false;
+    this.errorregistrationStatusListFlag=false;
+    this.errorprogramcodeFlag=false;
+
+    this.errorMessageList={
+      paymentStatus:'',
+      registrationStatus:'',
+      programCode:'',
+    };
+   
+    let searchFormValues = this.searchCriteriaForm.value;
+    if(searchFormValues.requestRegistrationProcessingSearch.programCode==''){
+      this.errorprogramcodeFlag=true;
+      this.errorMessageList.programCode='Program Code  is required.';
+      return false;
+    }
+    if(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList.length==0){
+      this.errorregistrationStatusListFlag=true;
+      this.errorMessageList.registrationStatus='Registration Status is required.';
+      return false;
+      }
+    if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length==0){
+      this.errorpaymentStatusListFlag=true;
+      this.errorMessageList.paymentStatus='Payment Status is required.';
+      return false;
+      }
+
+      return true;
+  }
+
+  
   async onSearchButtonClick(){
 
-    const invalidControls = this.getInvalidControls(this.searchCriteriaForm);
-    // console.log('Invalid controls:', invalidControls);
+    //const invalidControls = this.getInvalidControls(this.searchCriteriaForm);
+    //console.log('Invalid controls:', invalidControls);
     //   return
+    
 
     let searchFormValues = this.searchCriteriaForm.value;
     const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus,"code");
@@ -251,12 +305,13 @@ export class StatusSearchComponent {
  
     const assignedSession = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.assignedSessionList,this.sessionChoice,"choicecode");
     searchFormValues.requestRegistrationProcessingSearch.assignedSessionList = assignedSession;
-     searchFormValues.programCode=this.selectedProgram.code; 
+    if(this.getValidateFields()){
+
+     searchFormValues.requestRegistrationProcessingSearch.programCode=this.selectedProgram.code; 
     this.regiStrationReviewService.setSearchCriteria(searchFormValues);
-    
-   
     this.router.navigateByUrl("/status-update/status-search-results")
-   }
+    }
+  }
 
    mapBooleanArrayToCodes(booleanArray: boolean[],codesArray: any[],key:string): string[] {
     
