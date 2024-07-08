@@ -72,7 +72,11 @@ const Routing: Routes = [
     loadChildren: () =>
       import('../modules/programregistration/programregistration.module').then((m) => m.ProgramregistrationModule),
   },
-  
+  {
+    path: 'program-configuration',
+    loadChildren: () =>
+      import('../modules/program-configuration/program-configuration.module').then((m) => m.ProgramConfigurationModule),
+  },
   {
     path: '',
     redirectTo: 'registration-processing',
