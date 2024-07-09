@@ -28,6 +28,7 @@ export class SubclassAssignSearchResultsComponent {
 
   ngOnInit(){
     this.searchCriteria = this.regiStrationReviewService.getSearchCriteria();
+    console.log(this.searchCriteria);
     this.activatedRoute.url.subscribe(() => {
       let path:any = this.router.url.split('/');
       path = path[path.length-1];

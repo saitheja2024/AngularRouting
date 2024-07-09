@@ -74,7 +74,7 @@
       </span>
       <div class="menu-sub menu-sub-accordion">
         <div class="menu-item" routerLinkActive="here">
-          <a class="menu-link without-sub"  routerLink="/status-update">
+          <a class="menu-link without-sub" [ngClass]="(regiRevActiveFlag.session)?'active':''"  routerLink="/status-update" (click)="menuActive('session');">
             <span class="menu-bullet">
               <img class="img_cls" src="assets/chinmaya_media/images/SVG/14-create program-icon.svg">
             </span>
@@ -84,7 +84,7 @@
       </div>
       <div class="menu-sub menu-sub-accordion">
         <div class="menu-item" routerLinkActive="here">
-          <a class="menu-link without-sub"  routerLink="/sub-class-assignment">
+          <a class="menu-link without-sub" [ngClass]="(regiRevActiveFlag.subclass)?'active':''" routerLink="/sub-class-assignment" (click)="menuActive('subclass');">
             <span class="menu-bullet">
               <img class="img_cls" src="assets/chinmaya_media/images/SVG/14-create program-icon.svg">
             </span>

@@ -71,6 +71,44 @@
             <!--end::Link-->
         </li>
         <!--end::Item-->
+
+         <!--begin::Item-->
+         <li class="nav-item mb-1">
+            <!--begin::Link-->
+            <div class="nav-link">
+                <span class="nav-text text-gray-800 fw-semibold fs-6">Grade : </span>
+                <span class="nav-text text-gray-800 fw-normal fs-6">{{searchCriteria.requestRegistrationProcessingSearch.currentSchoolGrade}}</span>
+                <!--end::Title-->
+            </div>
+            <!--end::Link-->
+        </li>
+        <!--end::Item-->
+
+        <!--begin::Item-->
+        <li class="nav-item mb-1">
+            <!--begin::Link-->
+            <div class="nav-link">
+                <span class="nav-text text-gray-800 fw-semibold fs-6">Class : </span>
+                <span class="nav-text text-gray-800 fw-normal fs-6">{{searchCriteria.requestRegistrationProcessingSearch.className}}</span>
+                <!--end::Title-->
+            </div>
+            <!--end::Link-->
+        </li>
+        <!--end::Item-->
+
+        <!--begin::Item-->
+        <li class="nav-item mb-1">
+            <!--begin::Link-->
+            <div class="nav-link">
+                <span class="nav-text text-gray-800 fw-semibold fs-6">Session Assignment : </span>
+                <span class="nav-text text-gray-800 fw-normal fs-6">
+                    <a  class="nav-text text-gray-800 fw-normal fs-6" *ngFor="let item of searchCriteria.requestRegistrationProcessingSearch.assignedSessionList">{{item}}&nbsp;</a>
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Link-->
+        </li>
+        <!--end::Item-->
     </ul>
 </div>
 <router-outlet></router-outlet>

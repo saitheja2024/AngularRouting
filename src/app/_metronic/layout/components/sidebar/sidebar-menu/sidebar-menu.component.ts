@@ -114,7 +114,24 @@ export class SidebarMenuComponent implements OnInit {
     }
   }
 
+  regiRevActiveFlag:any={
+    session:false,
+    subclass:false
+  }
 
+  menuActive(eve:any){
+    if(eve=='session'){
+      this.regiRevActiveFlag={
+      session:true,
+      subclass:false
+      }
+    }else{
+      this.regiRevActiveFlag={
+        session:false,
+        subclass:true
+        }
+    }
+  }
   
 
 }

@@ -151,7 +151,8 @@ export class HttpService {
   isTokenExpired() {
     let returnValue = false;
     const expiry = (JSON.parse(atob(this.token.accessToken.split('.')[1]))).exp;
-    returnValue = (Math.floor((new Date).getTime() / 1000)) >= expiry;;
+    const expirVal = (Math.floor((new Date).getTime() / 300)) ;
+    returnValue = expirVal >= expiry;;
     return returnValue;
   }
 }  
