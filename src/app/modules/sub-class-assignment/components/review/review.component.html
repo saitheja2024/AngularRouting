@@ -31,8 +31,8 @@
                 <li class="nav-item mb-1">
                     <!--begin::Link-->
                     <div class="nav-link d-flex">
-                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:150px;">Sub Class Assign : </span>
-                        <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="subClass">
+                        <span class="nav-text text-gray-800 fw-semibold fs-6 mt-2" style="width:200px;">Sub Class Assign : </span>
+                        <select class="form-select form-select-sm cursor-pointer ms-1" [(ngModel)]="subClass">
                             <option value="">Select Session</option>
                             <option *ngFor="let class of SubClassAssignList" [value]="class.description">{{class.description}}</option>
                         </select>
@@ -45,7 +45,7 @@
                 <!--begin::Item-->
                 <li class="nav-item mb-1">
                     <!--begin::Link-->
-                    <div class="nav-link">
+                    <div class="nav-link mt-2">
                         <span class="nav-text text-gray-800 fw-semibold fs-6">Total Records : </span>
                         <span class="nav-text text-primary-800 fw-semibold fs-6">1</span>
                         <!--end::Title-->
@@ -66,7 +66,7 @@
 
                     <!-- Checkbox Column-->
                     <ng-container matColumnDef="checkbox">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
                             <div class="form-check form-check-sm form-check-custom form-check-solid me-6">
                                 <label class="pt-0 pb-0">
                                     <input type="checkbox" value="1" class="form-check-input me-2" (change)="$event ? toggleAllRows() : null"

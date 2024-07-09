@@ -68,6 +68,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: #f5f8fa !important;
 }
 
+.card .card-header {
+  min-height: 45px !important;
+}
+
 @media (min-width: 992px) {
   .modal-lg, .modal-xl {
     --bs-modal-width: 1200px !important;
