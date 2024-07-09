@@ -128,7 +128,7 @@
                      <div class="col-lg-12 mb-2">
                         <div class="row">
                             <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
-                                <label class="fw-semibold fs-6 mt-2 mb-2">Sign-Up Code:</label>
+                                <label class="fw-semibold fs-6 mt-2 mb-2">Sign-Up Code: <span class="text-danger">*</span></label>
                             </div>
                             <div class="col-lg-10 d-flex">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -136,6 +136,7 @@
                                         <option value="">Select an Option</option>   
                                         <option *ngFor="let code of signupCodes" [value]="code.code" > {{code.description}}</option>                          
                                     </select> 
+                                    <div *ngIf="errorsignupCodeFlag" class="error_cls">{{errorMessageList.signupCode}}</div>
                                 </div>
                             </div>
                         </div>

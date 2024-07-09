@@ -135,6 +135,7 @@ export class StatusSearchComponent {
   }
 
   async onSignupCodeChange(ev:any){
+    this.errorsignupCodeFlag=false;
     let params={
       "programCode": this.selectedProgram.code,
       "chapterCode": this.selectedChapterCode,
@@ -160,7 +161,7 @@ export class StatusSearchComponent {
         choiceLabel: [''],
         choiceCode: [''],
         assignedSessionList: this.fb.array([]),
-        signupCode: [''],
+        signupCode: ['',[Validators.required]],
         className: [''],
         currentSchoolGrade: [''],
         risingSchoolGrade: [''],
@@ -252,6 +253,7 @@ export class StatusSearchComponent {
   errorpaymentStatusListFlag:boolean;
   errorregistrationStatusListFlag:boolean;
   errorprogramcodeFlag:boolean;
+  errorsignupCodeFlag:boolean;
   errorMessageList:any={};
   MessageofpayError:any;
   MessageofRegiError:any;
@@ -261,11 +263,13 @@ export class StatusSearchComponent {
     this.errorpaymentStatusListFlag=false;
     this.errorregistrationStatusListFlag=false;
     this.errorprogramcodeFlag=false;
+    this.errorsignupCodeFlag=false;
 
     this.errorMessageList={
       paymentStatus:'',
       registrationStatus:'',
       programCode:'',
+      signupCode:''
     };
    
     let searchFormValues = this.searchCriteriaForm.value;
@@ -284,7 +288,12 @@ export class StatusSearchComponent {
       this.errorMessageList.paymentStatus='Payment Status is required.';
       return false;
       }
-
+      if(searchFormValues.requestRegistrationProcessingSearch.signupCode==''){
+        this.errorsignupCodeFlag=true;
+        this.errorMessageList.signupCode='Signup Code is required.';
+        return false;
+        }
+      
       return true;
   }
 
