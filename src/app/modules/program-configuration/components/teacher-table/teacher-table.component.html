@@ -1,0 +1,26 @@
+<div class="table-responsive" style="border-radius:0px !important;">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSourceTT" matSort>
+
+            <!-- Teacher Column -->
+            <ng-container matColumnDef="teacher">
+                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Teacher</th>
+                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> {{element.teacher}}</td>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                <td class="text-nowrap" mat-cell *matCellDef="let element"> 
+                    <button class="btn btn-sm button-default ms-2" style="width:30px;">
+                        <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;">
+                        </i>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsTT; sticky: true;" style="background-color:#CDDDFF;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsTT;"></tr>
+        </table>
+    </div>
+</div>

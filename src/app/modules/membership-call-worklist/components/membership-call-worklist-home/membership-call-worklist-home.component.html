@@ -56,50 +56,50 @@
                         </div>
                         <div class="table-responsive">
                              <!--begin::Card body-->
-            <div class="card-body border-top p-2">
-                <div class="table-container table-responsive">
-                    <table id="ExampleMaterialTable" class="table table-striped table-hover table-row-bordered" mat-table [dataSource]="dataSource" matSort>
+                            <div class="card-body border-top p-2">
+                                <div class="table-container table-responsive">
+                                    <table id="ExampleMaterialTable" class="table table-striped table-hover table-row-bordered" mat-table [dataSource]="dataSource" matSort>
 
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="familyId">
-                          <th valign="middle" class="bold_txt" mat-header-cell *matHeaderCellDef mat-sort-header >Family ID</th>
-                          <td valign="middle" mat-cell *matCellDef="let element; let j=index;"><a href="javascript:void(0);" (click)="showCallDetails(element,j)">{{element.familyId}}</a></td>
-                        </ng-container>
-                      
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="firstName">
-                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>First Name</th>
-                          <td valign="middle" mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-                        </ng-container>
-                      
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="lastName">
-                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
-                          <td valign="middle" mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-                        </ng-container>
-                      
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="years">
-                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header># of Years</th>
-                          <td valign="middle" mat-cell *matCellDef="let element"> {{element.years}} </td>
-                        </ng-container>
-                      
-                        <ng-container matColumnDef="assignedTo">
-                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Assigned to</th>
-                            <td valign="middle" mat-cell *matCellDef="let element"> {{element.assignedTo}} </td>
-                          </ng-container>
+                                        <!-- Position Column -->
+                                        <ng-container matColumnDef="familyId">
+                                            <th valign="middle" class="bold_txt" mat-header-cell *matHeaderCellDef mat-sort-header >Family ID</th>
+                                            <td valign="middle" mat-cell *matCellDef="let element; let j=index;"><a href="javascript:void(0);" (click)="showCallDetails(element,j)">{{element.familyId}}</a></td>
+                                        </ng-container>
+                                    
+                                        <!-- Name Column -->
+                                        <ng-container matColumnDef="firstName">
+                                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>First Name</th>
+                                            <td valign="middle" mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+                                        </ng-container>
+                                    
+                                        <!-- Weight Column -->
+                                        <ng-container matColumnDef="lastName">
+                                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
+                                            <td valign="middle" mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                                        </ng-container>
+                                    
+                                        <!-- Symbol Column -->
+                                        <ng-container matColumnDef="years">
+                                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header># of Years</th>
+                                            <td valign="middle" mat-cell *matCellDef="let element"> {{element.years}} </td>
+                                        </ng-container>
+                                    
+                                        <ng-container matColumnDef="assignedTo">
+                                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Assigned to</th>
+                                            <td valign="middle" mat-cell *matCellDef="let element"> {{element.assignedTo}} </td>
+                                        </ng-container>
 
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row;  columns: displayedColumns; let j=index"  [ngClass]="{'active_row': row_active[j] == true}" >
-                        </tr>
-                      </table>
-                        <mat-paginator #paginator 
-                        (page)="handlePageEvent($event)" [length]="totalRecFooter?.totalProjectSummary"  [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
-                        [pageSizeOptions]="paginationConfig.pageSizeOptions"></mat-paginator>
-                </div>
-                
-            </div>
-            <!--end::Card body-->
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-row *matRowDef="let row;  columns: displayedColumns; let j=index"  [ngClass]="{'active_row': row_active[j] == true}" >
+                                        </tr>
+                                    </table>
+                                    <mat-paginator #paginator 
+                                    (page)="handlePageEvent($event)" [length]="totalRecFooter?.totalProjectSummary"  [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+                                    [pageSizeOptions]="paginationConfig.pageSizeOptions"></mat-paginator>
+                                </div>
+                                
+                            </div>
+                            <!--end::Card body-->
                         
                         </div>
                         
