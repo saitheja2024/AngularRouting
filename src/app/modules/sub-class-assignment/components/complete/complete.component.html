@@ -100,9 +100,9 @@
                     </ng-container>
 
                     <!-- School Grade Column-->
-                    <ng-container matColumnDef="schoolgrade">
+                    <ng-container matColumnDef="grade">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> School Grade </th>
-                        <td mat-cell *matCellDef="let element"> {{element.schoolGrade}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
                     </ng-container>
 
                     <!-- Primary Person ID Column-->
@@ -128,7 +128,15 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
                         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
                     </ng-container>
-
+                    <ng-container matColumnDef="classAssignment">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>CLass </th>
+                        <td mat-cell *matCellDef="let element"> {{element.classAssignment}} </td>
+                    </ng-container>
+                    
+                     <ng-container matColumnDef="sessionAssignment">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Session Assignment</th>
+                        <td mat-cell *matCellDef="let element"> {{element.sessionAssignment }} </td>
+                    </ng-container>
                     <!-- Payment Column-->
                     <ng-container matColumnDef="payment">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
