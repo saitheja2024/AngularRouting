@@ -25,7 +25,7 @@ export class SelectionComponent {
   paginationConfig={
     pageSize : 10,
     pageIndex : 0,
-    pageSizeOptions :[10,30, 50],
+    pageSizeOptions :[10,30, 50,100,250,500,1000],
     showFirstLastButtons : true,
     length:10
   }

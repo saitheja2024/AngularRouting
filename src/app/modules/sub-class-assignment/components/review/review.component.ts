@@ -19,7 +19,7 @@ import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/ale
 })
 
 export class ReviewComponent {
-  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','email','payment','createdDate']
+  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','email','payment','createdDate','subClassAssignment','grade','classAssignment']
 
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;
@@ -51,7 +51,7 @@ export class ReviewComponent {
 
     await this.fetchSubClassAssignList();
     let results  =  this.regiStrationReviewService.getSelectedFamilyRecords();
-   
+    console.log(results);
     this.dataSource = new MatTableDataSource<any>(results);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

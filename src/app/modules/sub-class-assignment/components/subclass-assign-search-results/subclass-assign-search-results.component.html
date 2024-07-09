@@ -1,7 +1,7 @@
 <mat-tab-group animationDuration="0ms" 
                (selectedTabChange)="onTabChanged($event)"
                mat-stretch-tabs="false"
-               mat-align-tabs="start">
+               mat-align-tabs="start"  [selectedIndex]="selectedIndex">
     <mat-tab label="Selection"  >
     </mat-tab>
     <mat-tab label="Review" >
@@ -47,20 +47,6 @@
             <!--end::Link-->
         </li>
         <!--end::Item-->
-
-        <!--begin::Item-->
-        <li class="nav-item mb-1">
-            <!--begin::Link-->
-            <div class="nav-link">
-                <span class="nav-text text-gray-800 fw-semibold fs-6">Choice Preference : </span>
-                <span class="nav-text text-gray-800 fw-normal fs-6">{{searchCriteria.requestRegistrationProcessingSearch.choiceLabel}}</span>
-                <!--end::Title-->
-            </div>
-            <!--end::Link-->
-        </li>
-        <!--end::Item-->
-
-        
     </ul>
 </div>
 <router-outlet></router-outlet>

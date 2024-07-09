@@ -30,7 +30,7 @@
                 <!--begin::Item-->
                 <li class="nav-item mb-1">
                     <!--begin::Link-->
-                    <div class="nav-link d-flex"> {{subClass}}
+                    <div class="nav-link d-flex">
                         <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:150px;">Sub Class Assign : </span>
                         <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="subClass">
                             <option value="">Select Session</option>
@@ -132,9 +132,9 @@
                     </ng-container>
 
                     <!-- School Grade Column-->
-                    <ng-container matColumnDef="schoolgrade">
+                    <ng-container matColumnDef="grade">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> School Grade </th>
-                        <td mat-cell *matCellDef="let element"> {{element.schoolGrade}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
                     </ng-container>
 
                     <!-- Primary Person ID Column-->
@@ -160,7 +160,16 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
                         <td mat-cell *matCellDef="let element"> {{element.email}} </td>
                     </ng-container>
+ <!-- E-mail Column-->
+ <ng-container matColumnDef="classAssignment">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>CLass </th>
+    <td mat-cell *matCellDef="let element"> {{element.classAssignment}} </td>
+</ng-container>
 
+ <ng-container matColumnDef="subClassAssignment">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Session Assignment</th>
+    <td mat-cell *matCellDef="let element"> {{element.subClassAssignment}} </td>
+</ng-container>
                     <!-- Payment Column-->
                     <ng-container matColumnDef="payment">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
@@ -174,6 +183,7 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
                         <td mat-cell *matCellDef="let element"> {{element.createdDate | date:'MM/dd/yyyy'}} </td>
                     </ng-container>
+                    
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsSelection; sticky: true;" style="background-color: #CDDDFF;"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumnsSelection;"></tr>
