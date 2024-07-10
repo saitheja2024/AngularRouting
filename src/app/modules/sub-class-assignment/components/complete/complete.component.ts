@@ -16,7 +16,7 @@ import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/servic
   styleUrls: ['./complete.component.scss']
 })
 export class CompleteComponent {
-  displayedColumns: string[] = ['paymentSubmittedDate','familyId','personID','firstName','subClassAssignment','gender','age','primaryPersonId','primaryFirstName','primaryLastName','email','payment','createdDate','grade','sessionAssignment','classAssignment']
+  displayedColumns: string[] = ['paymentSubmittedDate','familyId','personID','firstName','subClassAssignment','gender','age','primaryPersonId','primaryFirstName','primaryLastName','email','payment','createdDate','schoolGradeDescription','sessionAssignment','classAssignment']
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;

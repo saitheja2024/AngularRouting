@@ -120,12 +120,21 @@ export class ReviewComponent {
     //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
    }
 
+   selectionRecAssignment(arr:any){
+    return arr.filter((item:any)=>{
+      item.sessionAssignment = this.sessionChoice;
+    })
+   }
+
+
    async onUpdateButtonClick(){
 
     if(this.selection.selected.length==0){
       this.alertService.showErrorALert("Please select atleast one record to proceed");
       return;
     }
+    this.selectionRecAssignment(this.selection.selected);
+
     let param ={
       saveReviewRequestList:this.selection.selected,
       registrationStatus: this.registrationStatus,
