@@ -83,21 +83,21 @@
                     </ng-container>
 
                     <!-- E-mail Column-->
-                    <ng-container matColumnDef="emailAddress">
+                    <ng-container matColumnDef="email">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
                     </ng-container>
 
                     <!-- Session Assignment Column-->
-                    <ng-container matColumnDef="sessionAssignment">
+                    <ng-container matColumnDef="sessionDesription">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Session Assignment </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.sessionAssignment}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.sessionDesription}} </td>
                     </ng-container>
 
                     <!-- Date Created Column-->
-                    <ng-container matColumnDef="createdDate">
+                    <ng-container matColumnDef="dateCreated">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.createdDate | date:'MM/dd/yyyy'}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.dateCreated | date:'MM/dd/yyyy'}} </td>
                     </ng-container>
 
                     <!-- Payment Column-->
