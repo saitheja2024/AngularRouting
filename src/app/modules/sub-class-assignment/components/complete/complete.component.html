@@ -106,9 +106,9 @@
                     </ng-container>
 
                     <!-- Primary Person ID Column-->
-                    <ng-container matColumnDef="primaryPersonId">
+                    <ng-container matColumnDef="primarypersonid">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Primary Person ID </th>
-                        <td mat-cell *matCellDef="let element"> {{element.primaryPersonId}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.primarypersonid}} </td>
                     </ng-container>
 
                     <!-- Primary First Name Column-->
@@ -133,9 +133,9 @@
                         <td mat-cell *matCellDef="let element"> {{element.classAssignment}} </td>
                     </ng-container>
                     
-                     <ng-container matColumnDef="sessionAssignment">
+                     <ng-container matColumnDef="sessionDesription">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Session Assignment</th>
-                        <td mat-cell *matCellDef="let element"> {{element.sessionAssignment }} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.sessionDesription }} </td>
                     </ng-container>
                     <!-- Payment Column-->
                     <ng-container matColumnDef="payment">
@@ -146,9 +146,9 @@
                     </ng-container>
 
                     <!-- Date Created Column-->
-                    <ng-container matColumnDef="createdDate">
+                    <ng-container matColumnDef="dateCreated">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-                        <td mat-cell *matCellDef="let element"> {{element.createdDate | date:'MM/dd/yyyy'}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.dateCreated | date:'MM/dd/yyyy'}} </td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;" style="background-color: #CDDDFF;"></tr>
