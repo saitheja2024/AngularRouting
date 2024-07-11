@@ -50,9 +50,9 @@ export class MembershipCallWorklistHomeComponent {
   constructor(private membeshipService: MemberShipCallWorkListServices,
     private store:StoreService
   ){
-    this.store.onProgramUpdate().subscribe((program:any)=>{
-      this.selectedProgram=program;
-    });
+    // this.store.onProgramUpdate().subscribe((program:any)=>{
+    //   this.selectedProgram=program;
+    // });
   }
 
   async ngOnInit(){
@@ -62,6 +62,15 @@ export class MembershipCallWorklistHomeComponent {
     this.selectedChapter=chapter[0].description;
 
     this.fetchMemberShipCallWork('');
+   await  this.programDesc();
+  }
+
+ async programDesc(){
+    let param = {
+      "code": this.selectedChapterCode
+    };
+    let dataList= await this.membeshipService.membercallListProgram(param);
+    this.selectedProgram = dataList.programDescription;
   }
 
   ngAfterViewInit() {
