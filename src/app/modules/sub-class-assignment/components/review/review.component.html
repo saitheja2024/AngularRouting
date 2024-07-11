@@ -47,7 +47,7 @@
                     <!--begin::Link-->
                     <div class="nav-link mt-2">
                         <span class="nav-text text-gray-800 fw-semibold fs-6">Total Records : </span>
-                        <span class="nav-text text-primary-800 fw-semibold fs-6">1</span>
+                        <span class="nav-text text-primary-800 fw-semibold fs-6">{{totalRecCount}}</span>
                         <!--end::Title-->
                     </div>
                     <!--end::Link-->
@@ -132,9 +132,9 @@
                     </ng-container>
 
                     <!-- School Grade Column-->
-                    <ng-container matColumnDef="grade">
+                    <ng-container matColumnDef="schoolGradeDescription">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> School Grade </th>
-                        <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.schoolGradeDescription}} </td>
                     </ng-container>
 
                     <!-- Primary Person ID Column-->
@@ -156,9 +156,9 @@
                     </ng-container>
 
                     <!-- E-mail Column-->
-                    <ng-container matColumnDef="email">
+                    <ng-container matColumnDef="emailAddress">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
                     </ng-container>
  <!-- E-mail Column-->
  <ng-container matColumnDef="classAssignment">
@@ -201,7 +201,7 @@
             <div class="d-flex">
                 <!--begin::Filter menu-->
                 <div class="m-0">
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                    <a (click)="onBackButtonClick()" href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
                         <i class="icon-backward fs-6"></i> Back
                     </a>
                             
@@ -209,7 +209,7 @@
                         <i class="icon-rotate-ccw2 fs-6"></i> Update
                     </a>
 
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                    <a href="javascript:void(0);" (click)="removeRecord();" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
                         <i class="icon-bin fs-6"></i> Remove From The List
                     </a>
                 </div>

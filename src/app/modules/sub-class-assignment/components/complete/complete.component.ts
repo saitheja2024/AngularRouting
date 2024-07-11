@@ -16,9 +16,9 @@ import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/servic
   styleUrls: ['./complete.component.scss']
 })
 export class CompleteComponent {
-  displayedColumns: string[] = ['paymentSubmittedDate','familyId','personID','firstName','subClassAssignment','gender','age','primarypersonid','primaryFirstName','primaryLastName','email','payment','dateCreated','schoolGradeDescription','sessionDesription','classAssignment']
+  displayedColumns: string[] = ['paymentSubmittedDate','familyId','personID','firstName','subClassAssignment','gender','age','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','payment','dateCreated','schoolGradeDescription','sessionDesription','classAssignment']
   dataSource = new MatTableDataSource<any>();
-
+  totalRecCount:any;
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -34,6 +34,7 @@ export class CompleteComponent {
   async ngOnInit(){
     let results  =  this.regiStrationReviewService.getUpdatedReviewedRecords();
     console.log(results);
+    this.totalRecCount = results.totalProjectSummary;
     this.dataSource = new MatTableDataSource<any>(results);
     this.dataSource._updateChangeSubscription();
   }

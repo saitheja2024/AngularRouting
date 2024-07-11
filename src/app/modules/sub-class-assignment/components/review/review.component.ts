@@ -19,14 +19,15 @@ import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/ale
 })
 
 export class ReviewComponent {
-  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','email','payment','createdDate','sessionAssignment','grade','classAssignment']
+  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','payment','createdDate','sessionAssignment','schoolGradeDescription','classAssignment']
 
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;
   initialSelection = [];
   allowMultiSelect = true;
   selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
-
+  totalRecordList:any;
+  totalRecCount:any;
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -52,6 +53,8 @@ export class ReviewComponent {
     await this.fetchSubClassAssignList();
     let results  =  this.regiStrationReviewService.getSelectedFamilyRecords();
     console.log(results);
+    this.totalRecordList=results;
+    this.totalRecCount=results.length;
     this.dataSource = new MatTableDataSource<any>(results);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -59,7 +62,7 @@ export class ReviewComponent {
   }
 
   onBackButtonClick(){
-    this.router.navigateByUrl("/status-update/status-search-results/selection");
+    this.router.navigateByUrl("/sub-class-assignment/subclass-assign-search-results/selection");
   }
 
   async fetchSubClassAssignList(){
@@ -110,4 +113,22 @@ export class ReviewComponent {
     this.router.navigateByUrl("/sub-class-assignment/subclass-assign-search-results/complete");
 
    }
+
+   removeRecord(){
+
+    for(var i=0; i<this.selection.selected.length; i++){
+      this.totalRecordList.filter((item:any, index:any)=>{
+        if(item.personID == this.selection.selected[i].personID){
+          this.totalRecordList.splice(index, 1);
+        }
+       });
+    }
+    
+    this.dataSource = new MatTableDataSource<any>(this.totalRecordList);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource._updateChangeSubscription();
+   }
+
+
 }

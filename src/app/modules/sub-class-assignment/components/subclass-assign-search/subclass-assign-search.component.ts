@@ -67,9 +67,21 @@ export class SubclassAssignSearchComponent {
 
   }
 
+  programDesc(code:any){
+    let programDesc:any='';
+    this.programs.filter((item:any)=>{
+       if(code == item.code){
+        programDesc = item.description;
+       }
+    });
+    this.regiStrationReviewService.setProgramDesc(programDesc);
+  }
+
   async onProgramSelection(ev:any){
     this.selectedProgram={
-      code:ev.target.value}
+      code:ev.target.value};
+      this.programDesc(this.selectedProgram.code);
+
     await this.populateData();
   }
 

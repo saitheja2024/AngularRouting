@@ -38,7 +38,7 @@ export interface SubclassSelection {
 
 export class SelectionComponent {
   
-  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','email','payment','createdDate']
+  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','payment','createdDate']
   paginationConfig={
     pageSize : 10,
     pageIndex : 0,
@@ -55,7 +55,7 @@ export class SelectionComponent {
   initialSelection = [];
   allowMultiSelect = true;
   selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
-
+  totalRecCount:any;
   constructor(private modalService: NgbModal,
     private regiStrationReviewService:RegistratioReviewService,
     private router:Router,
@@ -77,7 +77,7 @@ export class SelectionComponent {
 
   async performSearch(){
     let results  = await this.regiStrationReviewService.fetchRegistrationReviewDetailsBasedOnSearch(this.searchCriteria);
-   
+    this.totalRecCount = results.totalProjectSummary;
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     
     this.paginationConfig.length=results.totalProjectSummary;
