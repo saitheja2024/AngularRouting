@@ -6,6 +6,7 @@ import { MasterService } from '../master/master.service';
 import { AuthService } from 'src/app/modules/auth';
 import { signupCodeRequestInteface } from '../master/master-interface';
 import { KEYS, StoreService } from '../store/store.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,9 @@ export class RegistratioReviewService {
   selectedFamily: any;
   selectedFamilyRecords: any[];
   updatedReviewRecords:any
-  
+  initVal:any='';
+  selectedProgramDesc = new BehaviorSubject<any>(this.initVal);
+  programSel = this.selectedProgramDesc.asObservable();
 
   constructor(
     private httpService:HttpService,
@@ -42,6 +45,12 @@ export class RegistratioReviewService {
 
   getSearchCriteria() {
     return this.searchCriteria;
+  }
+
+  setProgramDesc(program:any) {
+
+    this.initVal = program;
+    this.selectedProgramDesc.next(this.initVal);
   }
 
   setSelectedFamily(selectedFamily: any) {
@@ -77,7 +86,8 @@ export class RegistratioReviewService {
   }
 
   getUpdatedReviewedRecords() {
-    return  this.updatedReviewRecords.personprogramregistrationList;
+    //personprogramregistrationList
+    return  this.updatedReviewRecords.projectSummaryList;
   }
   
 

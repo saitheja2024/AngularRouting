@@ -30,7 +30,7 @@
                 <!--begin::Item--->
                 <li class="nav-item mb-1">
                     <div class="nav-link d-flex">
-                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Registration Status : </span>
+                        <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Registration Status<span class="text-danger"> *</span> : </span>
                         <span class="nav-text">
                             <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="registrationStatus">
                                 <option value="">Select Registration Status</option>
@@ -61,7 +61,7 @@
                     <!--begin::Link-->
                     <div class="nav-link">
                         <span class="nav-text text-gray-800 fw-semibold fs-6">Total Records : </span>
-                        <span class="nav-text text-primary-800 fw-semibold fs-6">1</span>
+                        <span class="nav-text text-primary-800 fw-semibold fs-6">{{totalRecCount}}</span>
                         <!--end::Title-->
                     </div>
                     <!--end::Link-->
@@ -180,7 +180,7 @@
                         <i class="icon-rotate-ccw2 fs-6"></i> Update
                     </a>
 
-                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                    <a href="javascript:void(0);" (click)="removeRecord();" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
                         <i class="icon-bin fs-6"></i> Remove From The List
                     </a>
                 </div>

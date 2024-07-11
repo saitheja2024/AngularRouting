@@ -41,7 +41,8 @@ export class ReviewComponent {
   initialSelection = [];
   allowMultiSelect = true;
   selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
-
+  totalRecCount:any;
+  totalRecordList:any;
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -67,7 +68,8 @@ export class ReviewComponent {
     this.fetchRegistrationStatusList();
     await this.fetchSessionChoice();
     let results  =  this.regiStrationReviewService.getSelectedFamilyRecords();
-   
+    this.totalRecCount = results.length;
+    this.totalRecordList = results;
     this.dataSource = new MatTableDataSource<any>(results);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -141,12 +143,33 @@ export class ReviewComponent {
       sessionAssignment:this.sessionChoice
     }
 
+   if(this.registrationStatus!='' && this.registrationStatus!=null){
     let response = await this.regiStrationReviewService.saveRegistrationReview(param);
     this.regiStrationReviewService.setUpdatedReviewedRecords(response);
     this.router.navigateByUrl("/status-update/status-search-results/complete");
+   }else{
+    this.alertService.showErrorALert("Please select Regstration Status.");
+    return;
 
    }
 
+   }
+
+   removeRecord(){
+
+    for(var i=0; i<this.selection.selected.length; i++){
+      this.totalRecordList.filter((item:any, index:any)=>{
+        if(item.personID == this.selection.selected[i].personID){
+          this.totalRecordList.splice(index, 1);
+        }
+       });
+    }
+    
+    this.dataSource = new MatTableDataSource<any>(this.totalRecordList);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource._updateChangeSubscription();
+   }
 
 
 }

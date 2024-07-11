@@ -39,7 +39,7 @@ export class SelectionComponent {
   initialSelection = [];
   allowMultiSelect = true;
   selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
-
+  totalRecCount:any;
 
   constructor(private modalService: NgbModal,
     private regiStrationReviewService:RegistratioReviewService,
@@ -66,7 +66,8 @@ export class SelectionComponent {
   async performSearch(){
     let results  = await this.regiStrationReviewService.fetchRegistrationReviewDetailsBasedOnSearch(this.searchCriteria);
    
-   
+    this.totalRecCount = results.totalProjectSummary;
+
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     
     this.paginationConfig.length=results.totalProjectSummary;

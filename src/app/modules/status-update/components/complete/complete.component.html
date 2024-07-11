@@ -32,7 +32,7 @@
                     <!--begin::Link-->
                     <div class="nav-link">
                         <span class="nav-text text-gray-800 fw-semibold fs-6">Total Records : </span>
-                        <span class="nav-text text-primary-800 fw-semibold fs-6">1</span>
+                        <span class="nav-text text-primary-800 fw-semibold fs-6">{{totalRecCount}}</span>
                         <!--end::Title-->
                     </div>
                     <!--end::Link-->
@@ -52,7 +52,7 @@
                     <!-- Payment Date Column-->
                     <ng-container matColumnDef="paymentSubmittedDate">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate | date:'MM/dd/yyyy'}} </td>
                     </ng-container>
 
                     <!-- Family ID Column-->
@@ -83,9 +83,9 @@
                     </ng-container>
 
                     <!-- E-mail Column-->
-                    <ng-container matColumnDef="email">
+                    <ng-container matColumnDef="emailAddress">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
                     </ng-container>
 
                     <!-- Session Assignment Column-->
@@ -95,9 +95,9 @@
                     </ng-container>
 
                     <!-- Date Created Column-->
-                    <ng-container matColumnDef="dateCreated">
+                    <ng-container matColumnDef="createdDate">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.dateCreated | date:'MM/dd/yyyy'}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.createdDate | date:'MM/dd/yyyy'}} </td>
                     </ng-container>
 
                     <!-- Payment Column-->
