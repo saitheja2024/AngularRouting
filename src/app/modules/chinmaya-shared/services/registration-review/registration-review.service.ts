@@ -87,7 +87,7 @@ export class RegistratioReviewService {
 
   getUpdatedReviewedRecords() {
     //personprogramregistrationList
-    return  this.updatedReviewRecords.projectSummaryList;
+    return  this.updatedReviewRecords.personprogramregistrationList;
   }
   
 
