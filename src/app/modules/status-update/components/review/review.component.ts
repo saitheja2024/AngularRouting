@@ -34,7 +34,7 @@ export interface StatusReview {
 })
 
 export class ReviewComponent {
-  displayedColumns: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','payment','emailAddress','createdDate'];
+  displayedColumns: string[] = ['checkbox','payment','paymentSubmittedDate','familyId','personID','firstName','emailAddress','createdDate'];
 
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;

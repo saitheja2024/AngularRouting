@@ -30,7 +30,7 @@ export class SelectionComponent {
     length:10
   }
   
-  displayedColumns: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','payment','emailAddress','createdDate'];
+  displayedColumns: string[] = ['checkbox','payment','paymentSubmittedDate','familyId','personID','firstName','emailAddress','createdDate'];
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -69,7 +69,7 @@ export class SelectionComponent {
     this.totalRecCount = results.totalProjectSummary;
 
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
-    
+    this.dataSource.sort = this.sort;
     this.paginationConfig.length=results.totalProjectSummary;
    
     this.dataSource._updateChangeSubscription();

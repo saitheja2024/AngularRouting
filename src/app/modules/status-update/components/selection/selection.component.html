@@ -67,6 +67,14 @@
                             </div>
                         </td>
                     </ng-container>
+                    
+                    <!-- Payment Column-->
+                    <ng-container matColumnDef="payment">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails()"> 
+                            <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
+                        </td>
+                    </ng-container>
 
                     <!-- Payment Date Column-->
                     <ng-container matColumnDef="paymentSubmittedDate">
@@ -107,13 +115,6 @@
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
                     </ng-container>
 
-                    <!-- Payment Column-->
-                    <ng-container matColumnDef="payment">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails()"> 
-                            <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
-                        </td>
-                    </ng-container>
 
                     <!-- Date Created Column-->
                     <ng-container matColumnDef="createdDate">

@@ -19,7 +19,7 @@ import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/ale
 })
 
 export class ReviewComponent {
-  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','payment','createdDate','sessionAssignment','schoolGradeDescription','classAssignment']
+  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','createdDate','sessionAssignment','schoolGradeDescription','classAssignment']
 
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;

@@ -38,7 +38,7 @@ export interface SubclassSelection {
 
 export class SelectionComponent {
   
-  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','payment','createdDate']
+  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','subClassAssignment','createdDate']
   paginationConfig={
     pageSize : 10,
     pageIndex : 0,

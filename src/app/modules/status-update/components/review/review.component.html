@@ -99,6 +99,13 @@
                             </div>
                         </td>
                     </ng-container>
+                    <!-- Payment Column-->
+                    <ng-container matColumnDef="payment">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails()"> 
+                            <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
+                        </td>
+                    </ng-container>
 
                     <!-- Payment Date Column-->
                     <ng-container matColumnDef="paymentSubmittedDate">
@@ -139,14 +146,6 @@
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
                     </ng-container>
 
-                    <!-- Payment Column-->
-                    <ng-container matColumnDef="payment">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails()"> 
-                            <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
-                        </td>
-                    </ng-container>
-
                     <!-- Date Created Column-->
                     <ng-container matColumnDef="createdDate">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
@@ -175,14 +174,13 @@
                     <a (click)="onBackButtonClick()" href="javascript:void(0);"  class="btn btn-primary btn-sm m-1" style="font-size:13px;">
                         <i class="icon-backward fs-6"></i> Back
                     </a>
-                            
+                    <a href="javascript:void(0);" (click)="removeRecord();" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                        <i class="icon-bin fs-6"></i> Remove From The List
+                    </a> 
                     <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;" (click)="onUpdateButtonClick()">
                         <i class="icon-rotate-ccw2 fs-6"></i> Update
                     </a>
 
-                    <a href="javascript:void(0);" (click)="removeRecord();" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
-                        <i class="icon-bin fs-6"></i> Remove From The List
-                    </a>
                 </div>
             </div>
             <!--end::Actions-->
