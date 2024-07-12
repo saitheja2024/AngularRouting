@@ -16,9 +16,28 @@ export class SubclassAssignSearchResultsComponent {
     { label: 'Review', path: 'review' },
     { label: 'Complete', path: 'complete' },
   ];
+  Object = Object;
   selectedIndex: any=0;
   searchCriteria: any;
-
+  criteriaLabel:any={
+        programCode:'Program Code' ,
+        registrationStatusList:'Registration Status',
+        paymentStatusList:'Payment Status',
+        choiceLabel:'Session Choice',
+        choiceCode:'Choice',
+        assignedSessionList:'Assigned Session',
+        signupCode:'Signup Code',
+        className:'Class',
+        currentSchoolGrade:'Current School Grade',
+        risingSchoolGrade:'Rising School Grade',
+        familyID:'Family Id',
+        firstName:'First Name',
+        lastName:'Last Name',
+        homePhone:'Home Phone',
+        email:'Email',
+        paymentStartDate:'Payment Start Date',
+        paymentEndDate:'Payment End Date'
+  };
   constructor(private router:Router,
     private activatedRoute: ActivatedRoute,
     private regiStrationReviewService:RegistratioReviewService){}
