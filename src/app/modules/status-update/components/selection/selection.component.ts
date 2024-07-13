@@ -145,4 +145,9 @@ export class SelectionComponent {
     }
     }
    }
+
+   waitlistFlagRemove(){
+    this.waitListFlagCheck={};
+  }
+  
 }

@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 
 export class CompleteComponent {
   
-  displayedColumnsComplete: string[] = ['paymentSubmittedDate','familyId', 'personID', 'firstName', 'lastName', 'emailAddress', 'sessionDesription', 'createdDate', 'payment'];
+  displayedColumnsComplete: string[] = ['payment','paymentSubmittedDate','familyId', 'personID', 'firstName', 'lastName', 'emailAddress', 'sessionDesription', 'dateCreated'];
 
   dataSource = new MatTableDataSource<any>();
   totalRecCount:any;
@@ -61,4 +61,22 @@ export class CompleteComponent {
   onUpdateCompleteButtonClick(){
     this.router.navigateByUrl("/status-update/status-search");
   }
+
+  waitListFlagCheck:any={};
+  waitlistFlag(eve:any, index:any){
+   if(eve.waitListedFlag==1){
+   this.waitListFlagCheck={
+     [index]:true
+   }
+ }else{
+   this.waitListFlagCheck={
+     [index]:false
+   }
+   }
+  }
+
+  waitlistFlagRemove(){
+    this.waitListFlagCheck={};
+  }
+
 }

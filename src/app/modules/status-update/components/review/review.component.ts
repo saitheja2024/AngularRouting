@@ -154,17 +154,18 @@ export class ReviewComponent {
 
    }
 
-   removeRecord(){
+   // Function to remove selected objects by id
+removeSelectedObjects(original:any, selected:any) {
+  return original.filter((object:any) => selected.personID != object.personID);
+};
 
+   removeRecord(){
+    let newArray='';
     for(var i=0; i<this.selection.selected.length; i++){
-      this.totalRecordList.filter((item:any, index:any)=>{
-        if(this.selection.selected.length>0 && item.personID == this.selection.selected[i].personID){
-          this.selection.selected.splice(index, 1);
-          this.totalRecordList.splice(index, 1);
-          this.selection.clear() 
-        }
-       });
+      newArray = this.removeSelectedObjects(this.totalRecordList, this.selection.selected[i]);
+      this.totalRecordList = newArray;
     }
+    this.selection.clear();
     this.totalRecCount = this.totalRecordList.length;
     this.dataSource = new MatTableDataSource<any>(this.totalRecordList);
     this.dataSource.paginator = this.paginator;
@@ -172,5 +173,21 @@ export class ReviewComponent {
     this.dataSource._updateChangeSubscription();
    }
 
-
+   waitListFlagCheck:any={};
+  waitlistFlag(eve:any, index:any){
+   if(eve.waitListedFlag==1){
+   this.waitListFlagCheck={
+     [index]:true
+   }
+ }else{
+   this.waitListFlagCheck={
+     [index]:false
+   }
+   }
+  }
+  
+  waitlistFlagRemove(){
+    this.waitListFlagCheck={};
+  }
+  
 }

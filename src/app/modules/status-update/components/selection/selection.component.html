@@ -85,7 +85,7 @@
                     <!-- Family ID Column-->
                     <ng-container matColumnDef="familyId">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element; let i = index;" (mouseover)="waitlistFlag(element, i);" mat-raised-button 
+                        <td class="text-nowrap" mat-cell *matCellDef="let element; let i = index;" (mouseover)="waitlistFlag(element, i);" (mouseleave)="waitlistFlagRemove();" mat-raised-button 
                             style="color:blue;cursor:pointer;"> 
                             {{element.familyId}} <span *ngIf="waitListFlagCheck[i]" class="waitlist_icon"><img title="Wait Listed" style="width: 25px; position: relative; bottom: 6px;" src="./assets/images/waiting-list-icon.png" /></span>
                         </td>
