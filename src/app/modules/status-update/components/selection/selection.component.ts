@@ -30,7 +30,7 @@ export class SelectionComponent {
     length:10
   }
   
-  displayedColumns: string[] = ['checkbox','payment','paymentSubmittedDate','familyId','personID','firstName','emailAddress','createdDate'];
+  displayedColumns: string[] = ['checkbox','payment','paymentSubmittedDate','familyId','personID','firstName','lastName','emailAddress','createdDate'];
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;

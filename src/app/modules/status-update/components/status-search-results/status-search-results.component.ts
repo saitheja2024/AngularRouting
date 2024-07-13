@@ -16,6 +16,7 @@ export class StatusSearchResultsComponent {
     { label: 'Review', path: 'review' },
     { label: 'Complete', path: 'complete' },
   ];
+  disableTab:boolean=true;
   Object = Object;
   selectedIndex: any=0;
   searchCriteria: any;

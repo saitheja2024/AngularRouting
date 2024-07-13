@@ -86,7 +86,6 @@ export class ReviewComponent {
 
 
   async fetchSessionChoice(){
-    console.log(this.regiStrationReviewService.getSelectedFamilyRecords()[0]);
     let params={
       "programCode": this.regiStrationReviewService.getSelectedFamilyRecords()[0].programCode,
       "chapterCode": this.regiStrationReviewService.getSelectedFamilyRecords()[0].chapterCode,
@@ -159,12 +158,14 @@ export class ReviewComponent {
 
     for(var i=0; i<this.selection.selected.length; i++){
       this.totalRecordList.filter((item:any, index:any)=>{
-        if(item.personID == this.selection.selected[i].personID){
+        if(this.selection.selected.length>0 && item.personID == this.selection.selected[i].personID){
+          this.selection.selected.splice(index, 1);
           this.totalRecordList.splice(index, 1);
+          this.selection.clear() 
         }
        });
     }
-    
+    this.totalRecCount = this.totalRecordList.length;
     this.dataSource = new MatTableDataSource<any>(this.totalRecordList);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

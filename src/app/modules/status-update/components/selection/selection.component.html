@@ -103,6 +103,12 @@
                         <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.firstName}} </td>
                     </ng-container>
 
+                     <!-- First Name Column-->
+                     <ng-container matColumnDef="lastName">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                    </ng-container>
+
                     <!-- Family Name Column-->
                     <ng-container matColumnDef="familyname">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family Name </th>
