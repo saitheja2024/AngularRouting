@@ -221,15 +221,15 @@ getPersonSummary(detailsGroup: any) {
   return summary;
 }
 
-getPersonTypeCheck(detailsGroup: any) {
-  let summary = detailsGroup.get('personType').value;
-  let personTypeFlag=false;
-  // Check if gender is not empty or null
-  if (summary =="CHILD") {
-    personTypeFlag=true;
-  }
-  return personTypeFlag;
-}
+// getPersonTypeCheck(detailsGroup: any) {
+//   let summary = detailsGroup.get('personType').value;
+//   let personTypeFlag=false;
+//   // Check if gender is not empty or null
+//   if (summary =="CHILD") {
+//     personTypeFlag=true;
+//   }
+//   return personTypeFlag;
+// }
 
  
 

@@ -8,6 +8,8 @@ import { MatSort } from '@angular/material/sort';
 import { ReportsService } from 'src/app/modules/chinmaya-shared/services/reports/reports.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { signupCodeRequestInteface } from 'src/app/modules/chinmaya-shared/services/master/master-interface';
+import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registration-search',
@@ -35,7 +37,7 @@ export class RegistrationSearchComponent implements OnInit {
     private fb:FormBuilder,
     private router:Router,
     private regiStrationService:RegistrationService,
-    private store:StoreService
+    private store:StoreService, private alertService:AlertService
     ){
     
   }
@@ -194,21 +196,51 @@ export class RegistrationSearchComponent implements OnInit {
     this.fecthClassList(params);
   }
 
+  checkPaymentStatus(formVal:any, fieldName:any){
+     let flag=false;
+    formVal.requestRegistrationProcessingSearch[fieldName].filter((item:any)=>{
+      if(item!=false){
+        flag =true;
+      }
+    });
+
+    return (flag ? true : false);
+  }
+
+  validateRequire(formVal:any){
+     if(formVal.requestRegistrationProcessingSearch.choiceLabel!='' || formVal.requestRegistrationProcessingSearch.choiceCode!='' || formVal.requestRegistrationProcessingSearch.signupCode!=''
+     || formVal.requestRegistrationProcessingSearch.className!='' || formVal.requestRegistrationProcessingSearch.currentSchoolGrade!=''  || formVal.requestRegistrationProcessingSearch.risingSchoolGrade!='' 
+     || formVal.requestRegistrationProcessingSearch.familyID!='' || formVal.requestRegistrationProcessingSearch.firstName!='' || formVal.requestRegistrationProcessingSearch.lastName!=''
+     || formVal.requestRegistrationProcessingSearch.homePhone!='' || formVal.requestRegistrationProcessingSearch.email!='' || this.checkPaymentStatus(formVal,'paymentStatusList') 
+     || this.checkPaymentStatus(formVal, 'registrationStatusList') || this.checkPaymentStatus(formVal, 'assignedSessionList')){
+        return true;
+     }
+    return false
+  }
 
   onSearchButtonClick(){
-   let searchFormValues:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value))
-   const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus,"code");
-   searchFormValues.requestRegistrationProcessingSearch.registrationStatusList = selectedCodes;
+   let searchFormValues:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value));
+   if(this.validateRequire(searchFormValues)){
+    const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus,"code");
+    searchFormValues.requestRegistrationProcessingSearch.registrationStatusList = selectedCodes;
 
-   const selectedPaymentStatus = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList,this.paymentStatus,"code");
-   searchFormValues.requestRegistrationProcessingSearch.paymentStatusList = selectedPaymentStatus;
+    const selectedPaymentStatus = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList,this.paymentStatus,"code");
+    searchFormValues.requestRegistrationProcessingSearch.paymentStatusList = selectedPaymentStatus;
 
-   const assignedSession = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.assignedSessionList,this.sessionChoice,"choicecode");
-   searchFormValues.requestRegistrationProcessingSearch.assignedSessionList = assignedSession;
+    const assignedSession = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.assignedSessionList,this.sessionChoice,"choicecode");
+    searchFormValues.requestRegistrationProcessingSearch.assignedSessionList = assignedSession;
 
-   this.regiStrationService.setSearchCriteria(searchFormValues);
-   this.router.navigateByUrl("/registration-processing/registration-search-results")
-
+    this.regiStrationService.setSearchCriteria(searchFormValues);
+    this.router.navigateByUrl("/registration-processing/registration-search-results")
+    }else{
+      Swal.fire({
+        // position: 'top-end',
+         icon: 'error',
+         title:'Required any one of the search criteria.',
+         showConfirmButton: true,
+         //timer: 1500
+       });
+    }
   }
 
 

@@ -31,8 +31,9 @@
 										<div formArrayName="responsePersonProgramList" >
 											<div *ngFor="let programGroup of detailsGroup.get('responsePersonProgramList').controls; let j=index">
 											  <div [formGroupName]="j" class="card" style="border:1px solid lightgray !important;margin-bottom:8px">
-												<a href="javascript:void(0);" class="pos_top_right" (click)="refreshGrade(j, programGroup.get('personID').value, programGroup.get('signupCode').value);" *ngIf="getPersonTypeCheck(programGroup);">
+												<a *ngIf="registrationDetails.registrationDetailsList[i].responsePersonProgramList[j].refreshGradeFlag==1" href="javascript:void(0);" class="pos_top_right" (click)="refreshGrade(j, programGroup.get('personID').value, programGroup.get('signupCode').value);">
 													<i class="ki-solid ki-arrows-circle text-dark refresh_icon"></i>&nbsp;Refresh
+													<span><img style="width: 18px; position: relative; bottom: 5px;" src="./assets/images/warning icon.png" /></span>
 												</a>
 												<div class="card-title" style="padding:10px;">
 											</div>
