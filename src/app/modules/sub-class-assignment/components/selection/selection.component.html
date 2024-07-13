@@ -77,12 +77,12 @@
                         <td mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate | date:'MM/dd/yyyy'}} </td>
                     </ng-container>
 
-                    <!-- Family ID Column-->
-                    <ng-container matColumnDef="familyId">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
-                        <td mat-cell *matCellDef="let element" mat-raised-button (click)="familyid()" 
+                     <!-- Family ID Column-->
+                     <ng-container matColumnDef="familyId">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
+                        <td class="text-nowrap"  (click)="familyid()"  mat-cell *matCellDef="let element; let i = index;" (mouseover)="waitlistFlag(element, i);" (mouseleave)="waitlistFlagRemove();" mat-raised-button 
                             style="color:blue;cursor:pointer;"> 
-                            {{element.familyId}} 
+                            {{element.familyId}} <span *ngIf="waitListFlagCheck[i]" class="waitlist_icon"><img title="Wait Listed" style="width: 25px; position: relative; bottom: 6px;" src="./assets/images/waiting-list-icon.png" /></span>
                         </td>
                     </ng-container>
 
@@ -117,11 +117,27 @@
                     </ng-container> -->
 
                     <!-- School Grade Column-->
-                    <ng-container matColumnDef="schoolgrade">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> School Grade </th>
-                        <td mat-cell *matCellDef="let element"> {{element.schoolGrade}} </td>
+                    <ng-container matColumnDef="schoolGradeDescription">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Grade</th>
+                        <td mat-cell *matCellDef="let element"> {{element.schoolGradeDescription}} </td>
                     </ng-container>
 
+                    <!-- SubClass Assignment Column-->
+                    <ng-container matColumnDef="classAssignment">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Class</th>
+                    <td mat-cell *matCellDef="let element"> {{element.classAssignment}} </td>
+                    </ng-container>
+                    <!-- SubClass Assignment Column-->
+                    <ng-container matColumnDef="subClassAssignment">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Subclass Assignment </th>
+                        <td mat-cell *matCellDef="let element"> {{element.subClassAssignment}} </td>
+                        </ng-container>
+
+                        <!-- SubClass Assignment Column-->
+                    <ng-container matColumnDef="sessionDescription">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Session</th>
+                        <td mat-cell *matCellDef="let element"> {{element.sessionDescription}} </td>
+                        </ng-container>
                     <!-- Primary Person ID Column-->
                     <ng-container matColumnDef="primaryPersonId">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Primary Person ID </th>
@@ -146,11 +162,7 @@
                         <td mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
                     </ng-container>
 
-                     <!-- SubClass Assignment Column-->
-                    <ng-container matColumnDef="subClassAssignment">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Subclass Assignment </th>
-                        <td mat-cell *matCellDef="let element"> {{element.subClassAssignment}} </td>
-                    </ng-container>
+                    
 
                     <!-- Payment Column-->
                     <!-- <ng-container matColumnDef="payment">

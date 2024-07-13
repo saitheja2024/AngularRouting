@@ -16,7 +16,7 @@ import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/servic
   styleUrls: ['./complete.component.scss']
 })
 export class CompleteComponent {
-  displayedColumns: string[] = ['paymentSubmittedDate','familyId','personID','firstName','subClassAssignment','gender','age','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','dateCreated','schoolGradeDescription','sessionDesription','classAssignment']
+  displayedColumns: string[] = ['paymentSubmittedDate','familyId','personID','firstName','gender','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','dateCreated','schoolGradeDescription','classAssignment','subClassAssignment','sessionDesription']
   dataSource = new MatTableDataSource<any>();
   totalRecCount:any;
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
@@ -60,4 +60,22 @@ export class CompleteComponent {
   onUpdateCompleteButtonClick(){
     this.router.navigateByUrl("/sub-class-assignment/subclass-assign-search");
   }
+
+  waitListFlagCheck:any={
+  };
+  waitlistFlag(eve:any, index:any){
+   if(eve.waitListedFlag==1){
+   this.waitListFlagCheck={
+     [index]:true
+   }
+ }else{
+   this.waitListFlagCheck={
+     [index]:false
+   }
+   }
+  }
+
+  waitlistFlagRemove(){
+   this.waitListFlagCheck={};
+ }
 }

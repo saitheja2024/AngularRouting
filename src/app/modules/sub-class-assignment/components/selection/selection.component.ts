@@ -38,11 +38,11 @@ export interface SubclassSelection {
 
 export class SelectionComponent {
   
-  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','subClassAssignment','createdDate']
+  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','createdDate','schoolGradeDescription','classAssignment','subClassAssignment','sessionDescription']
   paginationConfig={
     pageSize : 10,
     pageIndex : 0,
-    pageSizeOptions :[10,30, 50],
+    pageSizeOptions :[10,30, 50, 150, 250, 300],
     showFirstLastButtons : true,
     length:10
   }
@@ -134,4 +134,22 @@ export class SelectionComponent {
     this.performSearch();
    
    }
+
+   waitListFlagCheck:any={
+  };
+  waitlistFlag(eve:any, index:any){
+   if(eve.waitListedFlag==1){
+   this.waitListFlagCheck={
+     [index]:true
+   }
+ }else{
+   this.waitListFlagCheck={
+     [index]:false
+   }
+   }
+  }
+
+  waitlistFlagRemove(){
+   this.waitListFlagCheck={};
+ }
 }

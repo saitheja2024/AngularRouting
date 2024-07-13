@@ -19,6 +19,7 @@ export class SubclassAssignSearchResultsComponent {
   Object = Object;
   selectedIndex: any=0;
   searchCriteria: any;
+  disableTab:boolean=true;
   criteriaLabel:any={
         programCode:'Program Code' ,
         registrationStatusList:'Registration Status',

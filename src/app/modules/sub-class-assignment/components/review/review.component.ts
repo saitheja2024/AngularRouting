@@ -19,7 +19,7 @@ import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/ale
 })
 
 export class ReviewComponent {
-  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','age','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','createdDate','sessionAssignment','schoolGradeDescription','classAssignment']
+  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','createdDate','schoolGradeDescription','classAssignment','subClassAssignment','sessionDescription']
 
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;
@@ -114,21 +114,42 @@ export class ReviewComponent {
 
    }
 
-   removeRecord(){
+      // Function to remove selected objects by id
+removeSelectedObjects(original:any, selected:any) {
+  return original.filter((object:any) => selected.personID != object.personID);
+};
 
+   removeRecord(){
+    let newArray='';
     for(var i=0; i<this.selection.selected.length; i++){
-      this.totalRecordList.filter((item:any, index:any)=>{
-        if(item.personID == this.selection.selected[i].personID){
-          this.totalRecordList.splice(index, 1);
-        }
-       });
+      newArray = this.removeSelectedObjects(this.totalRecordList, this.selection.selected[i]);
+      this.totalRecordList = newArray;
     }
-    
+    this.selection.clear();
+    this.totalRecCount = this.totalRecordList.length;
     this.dataSource = new MatTableDataSource<any>(this.totalRecordList);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.dataSource._updateChangeSubscription();
    }
 
+
+   waitListFlagCheck:any={
+  };
+  waitlistFlag(eve:any, index:any){
+   if(eve.waitListedFlag==1){
+   this.waitListFlagCheck={
+     [index]:true
+   }
+ }else{
+   this.waitListFlagCheck={
+     [index]:false
+   }
+   }
+  }
+
+  waitlistFlagRemove(){
+   this.waitListFlagCheck={};
+ }
 
 }
