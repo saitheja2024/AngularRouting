@@ -135,21 +135,5 @@ export class SelectionComponent {
    
    }
 
-   waitListFlagCheck:any={
-  };
-  waitlistFlag(eve:any, index:any){
-   if(eve.waitListedFlag==1){
-   this.waitListFlagCheck={
-     [index]:true
-   }
- }else{
-   this.waitListFlagCheck={
-     [index]:false
-   }
-   }
-  }
-
-  waitlistFlagRemove(){
-   this.waitListFlagCheck={};
- }
+  
 }
