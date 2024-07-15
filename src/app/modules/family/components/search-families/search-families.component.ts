@@ -6,6 +6,8 @@ import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/f
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program/program.service';
 import { AuthService } from 'src/app/modules/auth';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-search-families',
   templateUrl: './search-families.component.html',
@@ -60,9 +62,20 @@ export class SearchFamiliesComponent {
 
 
   async onSearchSubmit() {
-    let searchParams: FamilySearchInterface = this.searchForm.value;
-    let familyList = await this.familyService.searchFamilies(searchParams);
-    this.familyList.emit(familyList);
+    if(this.searchForm.value.familyID!='' || this.searchForm.value.lastName!='' || this.searchForm.value.homePhone!='' || this.searchForm.value.email!='' || this.searchForm.value.registrantType!='' || this.searchForm.value.chapter!=''){
+      let searchParams: FamilySearchInterface = this.searchForm.value;
+      let familyList = await this.familyService.searchFamilies(searchParams);
+      this.familyList.emit(familyList);
+    }else{
+      Swal.fire({
+        // position: 'top-end',
+         icon: 'error',
+         title:'Required any one of the search criteria.',
+         showConfirmButton: true,
+         //timer: 1500
+       });
+    }
+    
 
   }
 

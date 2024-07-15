@@ -219,12 +219,36 @@ export class EmailSearchComponent{
      }
   }
 
+  checkPaymentStatus(formVal:any, fieldName:any){
+    let flag=false;
+   formVal.requestRegistrationProcessingSearch[fieldName].filter((item:any)=>{
+     if(item!=false){
+       flag =true;
+     }
+   });
+
+   return (flag ? true : false);
+ }
+
+ validateRequire(formVal:any){
+    if(formVal.requestRegistrationProcessingSearch.choiceLabel!='' || formVal.requestRegistrationProcessingSearch.choiceCode!='' || formVal.requestRegistrationProcessingSearch.signupCode!=''
+    || formVal.requestRegistrationProcessingSearch.className!='' || formVal.requestRegistrationProcessingSearch.currentSchoolGrade!=''  || formVal.requestRegistrationProcessingSearch.risingSchoolGrade!='' 
+    || formVal.requestRegistrationProcessingSearch.familyID!='' || formVal.requestRegistrationProcessingSearch.firstName!='' || formVal.requestRegistrationProcessingSearch.lastName!=''
+    || formVal.requestRegistrationProcessingSearch.homePhone!='' || formVal.requestRegistrationProcessingSearch.email!='' || this.checkPaymentStatus(formVal,'paymentStatusList') 
+    || this.checkPaymentStatus(formVal, 'registrationStatusList') || this.checkPaymentStatus(formVal, 'assignedSessionList')){
+       return true;
+    }
+   return false
+ }
+
+
   MessageofpayError:string='';
   MessageofRegiError:string='';
   onSubmitSearch(){
     this.errorpaymentStatusListFlag=false;
     this.errorregistrationStatusListFlag=false;
    let searchFormValues:any = JSON.parse(JSON.stringify(this.searchCriteriaForm.value))
+   if(this.validateRequire(searchFormValues)){
    const selectedCodes = this.mapBooleanArrayToCodes(searchFormValues.requestRegistrationProcessingSearch.registrationStatusList,this.registrationStatus,"code");
    searchFormValues.requestRegistrationProcessingSearch.registrationStatusList = selectedCodes;
 
@@ -237,6 +261,15 @@ export class EmailSearchComponent{
    //if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length>0 && searchFormValues.requestRegistrationProcessingSearch.registrationStatusList.length>0){
     this.emailproService.setEmailSearchCriteria(searchFormValues);
    this.router.navigateByUrl("/email-processing/email-search-results");
+   }else{
+    Swal.fire({
+      // position: 'top-end',
+       icon: 'error',
+       title:'Required any one of the search criteria.',
+       showConfirmButton: true,
+       //timer: 1500
+     });
+  }
    //}
   //  else{
   //    if(searchFormValues.requestRegistrationProcessingSearch.paymentStatusList.length==0){
