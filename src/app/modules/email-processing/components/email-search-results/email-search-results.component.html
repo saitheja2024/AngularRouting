@@ -109,6 +109,11 @@
                             <td valign="middle" mat-cell *matCellDef="let element">{{element.email}}</td>
                           </ng-container>
 
+                          <ng-container matColumnDef="emailSentDate">
+                            <th valign="middle"  class="bold_txt"  mat-header-cell *matHeaderCellDef mat-sort-header>Email Sent Date</th>
+                            <td valign="middle" mat-cell *matCellDef="let element">{{element.emailSentDate | date:'MM/dd/YYYY'}}</td>
+                          </ng-container>
+
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns;">
                         </tr>

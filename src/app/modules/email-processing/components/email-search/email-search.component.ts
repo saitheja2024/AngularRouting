@@ -103,7 +103,8 @@ export class EmailSearchComponent{
         firstName: [''],
         lastName: [''],
         homePhone: [''],
-        email: ['']
+        email: [''],
+        emailSent:[]
       })
     });
 
