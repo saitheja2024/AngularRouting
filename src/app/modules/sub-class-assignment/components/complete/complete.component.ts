@@ -9,6 +9,7 @@ import { SelectionFamilyDetailsComponent } from '../selection-family-details/sel
 import { SelectionPaymentdetailsComponent } from '../selection-paymentdetails/selection-paymentdetails.component';
 import { Router } from '@angular/router';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-complete',
@@ -16,9 +17,10 @@ import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/servic
   styleUrls: ['./complete.component.scss']
 })
 export class CompleteComponent {
-  displayedColumns: string[] = ['paymentSubmittedDate','familyId','personID','firstName','gender','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','dateCreated','schoolGradeDescription','classAssignment','subClassAssignment','sessionDesription']
+  displayedColumns: string[] = ['familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionDesription','classAssignment','subClassAssignment','dateCreated']
   dataSource = new MatTableDataSource<any>();
   totalRecCount:any;
+  notfyFlag:boolean=true;
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -34,7 +36,9 @@ export class CompleteComponent {
   async ngOnInit(){
     let results  =  this.regiStrationReviewService.getUpdatedReviewedRecords();
     console.log(results);
-    this.totalRecCount = results.totalProjectSummary;
+    setTimeout(()=> {this.notfyFlag=false;},800);
+    this.totalRecCount = results.length;
+    if(this.totalRecCount==0){this.notfyFlag=false; }
     this.dataSource = new MatTableDataSource<any>(results);
     this.dataSource._updateChangeSubscription();
   }
@@ -61,5 +65,12 @@ export class CompleteComponent {
     this.router.navigateByUrl("/sub-class-assignment/subclass-assign-search");
   }
 
+  getTimeFormat(timeVal:any){
+    if(timeVal!=null && timeVal!=''){
+      let tmp = new DatePipe('en-Us').transform(timeVal, 'MM/dd/yyyy HH:mm a');
+      let TimeData = timeVal.slice(-5) +' '+ tmp?.slice(-2)
+      return TimeData;
+    }
+  }
  
 }

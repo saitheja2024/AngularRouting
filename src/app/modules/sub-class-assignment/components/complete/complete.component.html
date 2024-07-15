@@ -7,6 +7,7 @@
         </div>
     </div>
     <div class="card-toolbar">
+        <span class="notification_info" *ngIf="notfyFlag">Record Updated Successfully.</span>
         <div class="d-flex justify-content-end">
             <ul class="nav nav-pills nav-pills-custom pull-right" style="width:100%;">
                 <!--begin::Item
@@ -49,12 +50,7 @@
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="dataSource" matSort>
 
-                    <!-- Payment Date Column-->
-                    <ng-container matColumnDef="paymentSubmittedDate">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
-                        <td mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate | date:'MM/dd/yyyy'}} </td>
-                    </ng-container>
-
+                  
                      <!-- Family ID Column-->
                      <ng-container matColumnDef="familyId">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
@@ -87,36 +83,24 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Gender <th>
                         <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
                     </ng-container>
-
-                    <!-- Primary Person ID Column-->
-                    <ng-container matColumnDef="primaryPersonId">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Primary Person ID </th>
-                        <td mat-cell *matCellDef="let element"> {{element.primaryPersonId}} </td>
-                    </ng-container>
-
-                    <!-- Primary First Name Column-->
-                    <ng-container matColumnDef="primaryFirstName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Primary First Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.primaryFirstName}} </td>
-                    </ng-container>
-
-                    <!-- Primary Last Name Column-->
-                    <ng-container matColumnDef="primaryLastName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Primary Last Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.primaryLastName}} </td>
-                    </ng-container>
-
-                    <!-- E-mail Column-->
-                    <ng-container matColumnDef="emailAddress">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-                        <td mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
-                    </ng-container>
                     
                     <!-- School Grade Column-->
                     <ng-container matColumnDef="schoolGradeDescription">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Grade</th>
                         <td mat-cell *matCellDef="let element"> {{element.schoolGradeDescription}} </td>
                     </ng-container>
+  <!-- Payment Date Column-->
+  <ng-container matColumnDef="paymentSubmittedDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate | date:'MM/dd/yyyy'}} 
+        <br/> <span class="position_time">{{getTimeFormat(element.paymentSubmittedDate)}}</span>
+    </td>
+</ng-container>
+ 
+<ng-container matColumnDef="sessionDesription">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Session</th>
+    <td mat-cell *matCellDef="let element"> {{element.sessionDesription }} </td>
+</ng-container>
 
                     <ng-container matColumnDef="classAssignment">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>CLass </th>
@@ -128,11 +112,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Subclass Assignment </th>
     <td mat-cell *matCellDef="let element"> {{element.subClassAssignment}} </td>
     </ng-container>
-                    
-                     <ng-container matColumnDef="sessionDesription">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Session</th>
-                        <td mat-cell *matCellDef="let element"> {{element.sessionDesription }} </td>
-                    </ng-container>
+                   
                     <!-- Payment Column-->
                     <!-- <ng-container matColumnDef="payment">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
@@ -144,7 +124,7 @@
                     <!-- Date Created Column-->
                     <ng-container matColumnDef="dateCreated">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-                        <td mat-cell *matCellDef="let element"> {{element.dateCreated | date:'MM/dd/yyyy'}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.dateCreated | date:'MM/dd/yyyy'}} <br/> {{getTimeFormat(element.dateCreated)}}</td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;" style="background-color: #CDDDFF;"></tr>

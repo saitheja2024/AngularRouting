@@ -11,6 +11,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-review',
@@ -19,7 +20,7 @@ import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/ale
 })
 
 export class ReviewComponent {
-  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','createdDate','schoolGradeDescription','classAssignment','subClassAssignment','sessionDescription']
+  displayedColumnsSelection: string[] = ['checkbox','familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionDescription','classAssignment','subClassAssignment','createdDate']
 
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;
@@ -132,5 +133,13 @@ removeSelectedObjects(original:any, selected:any) {
     this.dataSource.sort = this.sort;
     this.dataSource._updateChangeSubscription();
    }
+
+   getTimeFormat(timeVal:any){
+    if(timeVal!=null && timeVal!=''){
+      let tmp = new DatePipe('en-Us').transform(timeVal, 'MM/dd/yyyy HH:mm a');
+      let TimeData = timeVal.slice(-5) +' '+ tmp?.slice(-2)
+      return TimeData;
+    }
+  }
 
 }

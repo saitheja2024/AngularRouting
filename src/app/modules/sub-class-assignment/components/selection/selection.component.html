@@ -71,11 +71,6 @@
                         </td>
                     </ng-container>
 
-                    <!-- Payment Date Column-->
-                    <ng-container matColumnDef="paymentSubmittedDate">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
-                        <td mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate | date:'MM/dd/yyyy'}} </td>
-                    </ng-container>
 
                      <!-- Family ID Column-->
                      <ng-container matColumnDef="familyId">
@@ -122,6 +117,18 @@
                         <td mat-cell *matCellDef="let element"> {{element.schoolGradeDescription}} </td>
                     </ng-container>
 
+                    <!-- Payment Date Column-->
+                    <ng-container matColumnDef="paymentSubmittedDate">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate | date:'MM/dd/yyyy'}}<br/> <span class="position_time">{{getTimeFormat(element.paymentSubmittedDate)}}</span> </td>
+                    </ng-container>
+                    
+                        <!-- SubClass Assignment Column-->
+                        <ng-container matColumnDef="sessionDescription">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Session</th>
+                            <td mat-cell *matCellDef="let element"> {{element.sessionDescription}} </td>
+                            </ng-container>
+
                     <!-- SubClass Assignment Column-->
                     <ng-container matColumnDef="classAssignment">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Class</th>
@@ -133,49 +140,10 @@
                         <td mat-cell *matCellDef="let element"> {{element.subClassAssignment}} </td>
                         </ng-container>
 
-                        <!-- SubClass Assignment Column-->
-                    <ng-container matColumnDef="sessionDescription">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Session</th>
-                        <td mat-cell *matCellDef="let element"> {{element.sessionDescription}} </td>
-                        </ng-container>
-                    <!-- Primary Person ID Column-->
-                    <ng-container matColumnDef="primaryPersonId">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Primary Person ID </th>
-                        <td mat-cell *matCellDef="let element"> {{element.primaryPersonId}} </td>
-                    </ng-container>
-
-                    <!-- Primary First Name Column-->
-                    <ng-container matColumnDef="primaryFirstName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Primary First Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.primaryFirstName}} </td>
-                    </ng-container>
-
-                    <!-- Primary Last Name Column-->
-                    <ng-container matColumnDef="primaryLastName">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Primary Last Name </th>
-                        <td mat-cell *matCellDef="let element"> {{element.primaryLastName}} </td>
-                    </ng-container>
-
-                    <!-- E-mail Column-->
-                    <ng-container matColumnDef="emailAddress">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-                        <td mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
-                    </ng-container>
-
-                    
-
-                    <!-- Payment Column-->
-                    <!-- <ng-container matColumnDef="payment">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
-                        <td  mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails()"> 
-                            <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
-                        </td>
-                    </ng-container> -->
-
                     <!-- Date Created Column-->
                     <ng-container matColumnDef="createdDate">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-                        <td mat-cell *matCellDef="let element"> {{element.createdDate | date:'MM/dd/yyyy'}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.createdDate | date:'MM/dd/yyyy'}}<br/>{{getTimeFormat(element.createdDate)}} </td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsSelection; sticky: true;" style="background-color: #CDDDFF;"></tr>

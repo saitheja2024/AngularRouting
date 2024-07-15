@@ -11,6 +11,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
+import { DatePipe } from '@angular/common';
 
 export interface SubclassSelection {
   checkbox:string;
@@ -38,7 +39,7 @@ export interface SubclassSelection {
 
 export class SelectionComponent {
   
-  displayedColumnsSelection: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','gender','primaryPersonId','primaryFirstName','primaryLastName','emailAddress','createdDate','schoolGradeDescription','classAssignment','subClassAssignment','sessionDescription']
+  displayedColumnsSelection: string[] = ['checkbox','familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionDescription','classAssignment','subClassAssignment','createdDate']
   paginationConfig={
     pageSize : 10,
     pageIndex : 0,
@@ -135,5 +136,11 @@ export class SelectionComponent {
    
    }
 
-  
+   getTimeFormat(timeVal:any){
+    if(timeVal!=null && timeVal!=''){
+      let tmp = new DatePipe('en-Us').transform(timeVal, 'MM/dd/yyyy HH:mm a');
+      let TimeData = timeVal.slice(-5) +' '+ tmp?.slice(-2)
+      return TimeData;
+    }
+  }
 }
