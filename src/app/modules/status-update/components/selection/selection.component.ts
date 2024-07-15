@@ -1,16 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { SelectionFamilyDetailsComponent } from '../selection-family-details/selection-family-details.component';
 import { SelectionPaymentdetailsComponent } from '../selection-paymentdetails/selection-paymentdetails.component';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -21,7 +22,8 @@ import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/ale
 })
 
 export class SelectionComponent {
-  
+  readonly dialog = inject(MatDialog);
+
   paginationConfig={
     pageSize : 10,
     pageIndex : 0,
@@ -103,8 +105,12 @@ export class SelectionComponent {
    const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
   }
 
-  async paymentdetails(){
-    //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+  async paymentdetails(ele:any){
+    let initialState: NgbModalOptions = ele;
+    // const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,initialState);
+    let dialogRef = this.dialog.open(SelectionPaymentdetailsComponent, {
+      data: ele,
+    });
    }
 
   

@@ -225,7 +225,15 @@ export class RegistratioReviewService {
     return response;
   }
   
-    
+  async fetchPaymentDetails(param: any) {
+    let options: Options = {
+      url: this.urlService.registrationReviewURL.fetchPaymentHistoryDetails,
+      body: param
+    }
+
+    let response: any = await this.httpService.post(options);
+    return response;
+  }
  
 
 }

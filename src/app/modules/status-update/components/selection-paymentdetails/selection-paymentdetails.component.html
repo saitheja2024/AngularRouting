@@ -25,45 +25,45 @@
                     <table mat-table [dataSource]="dataSourcePaymentDetails" matSort>
         
                         <!-- Family ID Column-->
-                        <ng-container matColumnDef="familyid">
+                        <ng-container matColumnDef="familyID">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyid}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyID}} </td>
                         </ng-container>
         
                         <!-- Invoiced Amount Column-->
-                        <ng-container matColumnDef="invoicedamount">
+                        <ng-container matColumnDef="totalAmountWithOutConvenienceFee">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Invoiced Amount </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.invoicedamount}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.totalAmountWithOutConvenienceFee}} </td>
                         </ng-container>
         
                         <!-- Amount Paid Column-->
-                        <ng-container matColumnDef="amountpaid">
+                        <ng-container matColumnDef="amountPaid">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Amount Paid </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.amountpaid}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.amountPaid}} </td>
                         </ng-container>
         
                         <!-- Invoice Number Column-->
-                        <ng-container matColumnDef="invoicenumber">
+                        <ng-container matColumnDef="invoiceNumber">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Invoice Number </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.invoicenumber}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.invoiceNumber}} </td>
                         </ng-container>
         
                         <!-- Payment Status Column-->
-                        <ng-container matColumnDef="paymentstatus">
+                        <ng-container matColumnDef="paymentStatus">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Status </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentstatus}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentStatus}} </td>
                         </ng-container>
         
                         <!-- Payment Mode Column-->
-                        <ng-container matColumnDef="paymentmode">
+                        <ng-container matColumnDef="paymentMode">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Mode </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentmode}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentMode}} </td>
                         </ng-container>
         
                         <!-- Payment Auth Code Column-->
-                        <ng-container matColumnDef="paymentauthcode">
+                        <ng-container matColumnDef="paymentAuthCode">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Auth Code </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentauthcode}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentAuthCode}} </td>
                         </ng-container>
                       
                         <tr mat-header-row *matHeaderRowDef="displayedColumnsPaymentDetails; sticky: true;" style="background-color: #CDDDFF;"></tr>
@@ -71,6 +71,10 @@
         
                     </table>
         
+                </div>
+
+                <div *ngIf="responseData==0">
+                    <p class="no_result_found">No Result Found.</p>
                 </div>
             </div>
         </div>

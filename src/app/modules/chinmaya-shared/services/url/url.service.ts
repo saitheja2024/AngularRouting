@@ -144,7 +144,8 @@ export class UrlService {
   registrationReviewURL={
     fetchRegistrationReviewDetailsBasedOnSearch: "registrationReview/fetchRegistrationReviewDetailsBasedOnSearch",
     saveRegistrationReview: "registrationReview/saveRegistrationReview",
-    fetchSubClassDetails :"registrationReview/fetchSubClassDetails"
+    fetchSubClassDetails :"registrationReview/fetchSubClassDetails",
+    fetchPaymentHistoryDetails:'paymentHistory/fetchPaymentHistoryDetails'
   }
   
  
