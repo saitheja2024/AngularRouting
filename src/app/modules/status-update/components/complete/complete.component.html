@@ -7,6 +7,7 @@
         </div>
     </div>
     <div class="card-toolbar">
+        <span class="notification_info" *ngIf="notfyFlag">Record Updated Successfully.</span>
         <div class="d-flex justify-content-end">
             <ul class="nav nav-pills nav-pills-custom pull-right" style="width:100%;">
                 <!--begin::Item
@@ -48,17 +49,14 @@
         <div class="table-responsive">
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="dataSource" matSort>
-                    <!-- Payment Column-->
-                    <ng-container matColumnDef="payment">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails(element)"> 
-                            <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
-                        </td>
-                    </ng-container>
-                    <!-- Payment Date Column-->
-                    <ng-container matColumnDef="paymentSubmittedDate">
+                   
+                     <!-- Payment Date Column-->
+                     <ng-container matColumnDef="paymentSubmittedDate">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate | date:'MM/dd/yyyy'}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> 
+                            <a href="javascript:void(0);" (click)="paymentdetails(element)"><img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;"/></a>&nbsp;{{element.paymentSubmittedDate | date:'MM/dd/yyyy'}} 
+                            <br/> <span class="position_time">{{getTimeFormat(element.paymentSubmittedDate)}}</span>
+                        </td>
                     </ng-container>
 
                     <!-- Family ID Column-->
@@ -66,7 +64,7 @@
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
                         <td class="text-nowrap" mat-cell *matCellDef="let element; let i = index;" mat-raised-button 
                             style="color:blue;cursor:pointer;"> 
-                            {{element.familyId}} <span *ngIf="element.waitListedFlag==1" class="waitlist_icon"><img title="Wait Listed" style="width: 25px; position: relative; bottom: 6px;" src="./assets/images/waiting-list-icon.png" /></span>
+                            {{element.familyId}} <span *ngIf="element.waitListedFlag==1" class="waitlist_icon"><img title="Wait Listed" style="width: 25px; position: relative; bottom: 6px;" src="./assets/images/warning icon.png" /></span>
                         </td>
                     </ng-container>
 
@@ -103,7 +101,7 @@
                     <!-- Date Created Column-->
                     <ng-container matColumnDef="dateCreated">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.dateCreated | date:'MM/dd/yyyy'}} </td>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.dateCreated | date:'MM/dd/yyyy'}}  <br/> {{getTimeFormat(element.dateCreated)}}</td>
                     </ng-container>
 
                     

@@ -12,6 +12,7 @@ import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/servic
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 
 export interface StatusReview {
   checkbox:string;
@@ -35,7 +36,7 @@ export interface StatusReview {
 })
 
 export class ReviewComponent {
-  displayedColumns: string[] = ['checkbox','payment','paymentSubmittedDate','familyId','personID','firstName','emailAddress','createdDate'];
+  displayedColumns: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','emailAddress','createdDate'];
   readonly dialog = inject(MatDialog);
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;
@@ -192,6 +193,14 @@ removeSelectedObjects(original:any, selected:any) {
   
   waitlistFlagRemove(){
     this.waitListFlagCheck={};
+  }
+
+  getTimeFormat(timeVal:any){
+    if(timeVal!=null && timeVal!=''){
+      let tmp = new DatePipe('en-Us').transform(timeVal, 'MM/dd/yyyy HH:mm a');
+      let TimeData = timeVal.slice(-5) +' '+ tmp?.slice(-2)
+      return TimeData;
+    }
   }
   
 }

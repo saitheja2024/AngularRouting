@@ -32,7 +32,7 @@ export class SelectionPaymentdetailsComponent {
     {familyid:4367, invoicedamount:'100.00', amountpaid: '100.00', invoicenumber: 2024512402, paymentstatus: 'PRE-AUTH_SUCCESS', paymentmode: 'CC', paymentauthcode: '0KH151'}
   ];
 
-  displayedColumnsPaymentDetails: string[] = ['familyID', 'totalAmountWithOutConvenienceFee', 'amountPaid', 'invoiceNumber', 'paymentStatus', 'paymentMode', 'paymentAuthCode'];
+  displayedColumnsPaymentDetails: string[] = ['invoiceNumber', 'paymentType', 'paymentDate', 'convenienceFee', 'amountPaid'];
 
   dataSourcePaymentDetails = new MatTableDataSource<PaymentDetails>(this.PaymentDetails);
 

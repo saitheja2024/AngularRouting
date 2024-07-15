@@ -12,6 +12,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -32,7 +33,7 @@ export class SelectionComponent {
     length:10
   }
   
-  displayedColumns: string[] = ['checkbox','payment','paymentSubmittedDate','familyId','personID','firstName','lastName','emailAddress','createdDate'];
+  displayedColumns: string[] = ['checkbox','paymentSubmittedDate','familyId','personID','firstName','lastName','emailAddress','createdDate'];
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -136,5 +137,13 @@ export class SelectionComponent {
     this.performSearch();
    
    }
+
+   getTimeFormat(timeVal:any){
+    if(timeVal!=null && timeVal!=''){
+      let tmp = new DatePipe('en-Us').transform(timeVal, 'MM/dd/yyyy HH:mm a');
+      let TimeData = timeVal.slice(-5) +' '+ tmp?.slice(-2)
+      return TimeData;
+    }
+  }
   
 }
