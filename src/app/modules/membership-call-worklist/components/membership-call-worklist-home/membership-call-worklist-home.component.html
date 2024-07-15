@@ -63,7 +63,9 @@
                                         <!-- Position Column -->
                                         <ng-container matColumnDef="familyId">
                                             <th valign="middle" class="bold_txt" mat-header-cell *matHeaderCellDef mat-sort-header >Family ID</th>
-                                            <td valign="middle" mat-cell *matCellDef="let element; let j=index;"><a href="javascript:void(0);" (click)="showCallDetails(element,j)">{{element.familyId}}</a></td>
+                                            <td valign="middle" mat-cell *matCellDef="let element; let j=index;"><a href="javascript:void(0);" (click)="showCallDetails(element,j)">{{element.familyId}}</a>
+                                                <img *ngIf="element.pledgeLevel" src="assets/images/{{element.pledgeLevel}}.png" style="width:15px;margin-left:16px">
+                                            </td>
                                         </ng-container>
                                     
                                         <!-- Name Column -->
