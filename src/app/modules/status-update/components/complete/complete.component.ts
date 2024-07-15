@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -9,6 +9,7 @@ import { SelectionFamilyDetailsComponent } from '../selection-family-details/sel
 import { SelectionPaymentdetailsComponent } from '../selection-paymentdetails/selection-paymentdetails.component';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 import { Router } from '@angular/router';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-complete',
@@ -19,7 +20,7 @@ import { Router } from '@angular/router';
 export class CompleteComponent {
   
   displayedColumnsComplete: string[] = ['payment','paymentSubmittedDate','familyId', 'personID', 'firstName', 'lastName', 'emailAddress', 'sessionDesription', 'dateCreated'];
-
+  readonly dialog = inject(MatDialog);
   dataSource = new MatTableDataSource<any>();
   totalRecCount:any;
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
@@ -50,8 +51,11 @@ export class CompleteComponent {
    //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
   }
 
-  async paymentdetails(){
+  async paymentdetails(ele:any){
     //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+    let dialogRef = this.dialog.open(SelectionPaymentdetailsComponent, {
+      data: ele,
+    });
    }
    
    onBackButtonClick(){

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -11,6 +11,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 export interface StatusReview {
   checkbox:string;
@@ -35,7 +36,7 @@ export interface StatusReview {
 
 export class ReviewComponent {
   displayedColumns: string[] = ['checkbox','payment','paymentSubmittedDate','familyId','personID','firstName','emailAddress','createdDate'];
-
+  readonly dialog = inject(MatDialog);
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;
   initialSelection = [];
@@ -117,8 +118,11 @@ export class ReviewComponent {
    const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
   }
 
-  async paymentdetails(){
+  async paymentdetails(ele:any){
     //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });
+    let dialogRef = this.dialog.open(SelectionPaymentdetailsComponent, {
+      data: ele,
+    });
    }
 
    selectionRecAssignment(arr:any){

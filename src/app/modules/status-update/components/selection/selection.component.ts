@@ -106,7 +106,6 @@ export class SelectionComponent {
   }
 
   async paymentdetails(ele:any){
-    let initialState: NgbModalOptions = ele;
     // const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,initialState);
     let dialogRef = this.dialog.open(SelectionPaymentdetailsComponent, {
       data: ele,

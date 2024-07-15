@@ -102,7 +102,7 @@
                     <!-- Payment Column-->
                     <ng-container matColumnDef="payment">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Payment </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails()"> 
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"  mat-raised-button (click)="paymentdetails(element)"> 
                             <img src="./assets/images/payment_history.png" style="width:25px;cursor:pointer;">
                         </td>
                     </ng-container>
