@@ -18,6 +18,7 @@ import { PhoneNumberFormatDirective } from 'src/app/utils/directives/phone-numbe
 import * as $ from 'jquery';
 import { FamilyRegWorkflowComponent } from './family-reg-workflow/family-reg-workflow.component';
 import { SearchFamilyComponent } from './search-family/search-family.component';
+import { NewRegistrationComponent } from './components/new-registration/new-registration.component';
 
 const routes: Routes = [
   {
@@ -89,7 +90,8 @@ const DIRECTIVES : any[] = [PhoneNumberFormatDirective]
     TrimPipe,
     DIRECTIVES,
     FamilyRegWorkflowComponent,
-    SearchFamilyComponent
+    SearchFamilyComponent,
+    NewRegistrationComponent
   ],
   imports: [
     ChinmayaSharedModule,
