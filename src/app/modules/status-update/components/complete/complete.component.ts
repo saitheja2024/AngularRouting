@@ -20,7 +20,7 @@ import { DatePipe } from '@angular/common';
 
 export class CompleteComponent {
   
-  displayedColumnsComplete: string[] = ['paymentSubmittedDate','familyId', 'personID', 'firstName', 'lastName', 'emailAddress', 'sessionDesription', 'dateCreated'];
+  displayedColumnsComplete: string[] = ['paymentSubmittedDate','familyId', 'personID', 'firstName', 'lastName', 'email', 'sessionDesription', 'dateCreated'];
   readonly dialog = inject(MatDialog);
   dataSource = new MatTableDataSource<any>();
   totalRecCount:any;
