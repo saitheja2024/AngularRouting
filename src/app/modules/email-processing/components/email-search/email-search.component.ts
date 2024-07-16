@@ -236,7 +236,7 @@ export class EmailSearchComponent{
     || formVal.requestRegistrationProcessingSearch.className!='' || formVal.requestRegistrationProcessingSearch.currentSchoolGrade!=''  || formVal.requestRegistrationProcessingSearch.risingSchoolGrade!='' 
     || formVal.requestRegistrationProcessingSearch.familyID!='' || formVal.requestRegistrationProcessingSearch.firstName!='' || formVal.requestRegistrationProcessingSearch.lastName!=''
     || formVal.requestRegistrationProcessingSearch.homePhone!='' || formVal.requestRegistrationProcessingSearch.email!='' || this.checkPaymentStatus(formVal,'paymentStatusList') 
-    || this.checkPaymentStatus(formVal, 'registrationStatusList') || this.checkPaymentStatus(formVal, 'assignedSessionList')){
+    || this.checkPaymentStatus(formVal, 'registrationStatusList') || this.checkPaymentStatus(formVal, 'assignedSessionList') || (formVal.requestRegistrationProcessingSearch.emailSent !='' && formVal.requestRegistrationProcessingSearch.emailSent!=null)){
        return true;
     }
    return false

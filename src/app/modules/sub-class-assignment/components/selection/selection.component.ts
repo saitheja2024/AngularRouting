@@ -82,7 +82,8 @@ export class SelectionComponent {
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     
     this.paginationConfig.length=results.totalProjectSummary;
-   
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.dataSource._updateChangeSubscription();
 
     // this.paginationConfig.length=100
@@ -136,11 +137,11 @@ export class SelectionComponent {
    
    }
 
-   getTimeFormat(timeVal:any){
-    if(timeVal!=null && timeVal!=''){
-      let tmp:any = new DatePipe('en-Us').transform(timeVal, 'MM/dd/yyyy HH:mm a');
-      let TimeData = tmp.slice(-8) +' '+ tmp?.slice(-2)
-      return TimeData;
-    }
-  }
+  //  getTimeFormat(timeVal:any){
+  //   if(timeVal!=null && timeVal!=''){
+  //     let tmp:any = new DatePipe('en-Us').transform(timeVal, 'MM/dd/yyyy HH:mm a');
+  //     let TimeData = tmp.slice(-8) +' '+ tmp?.slice(-2)
+  //     return TimeData;
+  //   }
+  // }
 }

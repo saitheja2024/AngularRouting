@@ -195,12 +195,12 @@ removeSelectedObjects(original:any, selected:any) {
     this.waitListFlagCheck={};
   }
 
-  getTimeFormat(timeVal:any){
-    if(timeVal!=null && timeVal!=''){
-      let tmp:any = new DatePipe('en-Us').transform(timeVal, 'MM/dd/yyyy HH:mm a');
-      let TimeData = tmp.slice(-8) +' '+ tmp?.slice(-2)
-      return TimeData;
-    }
-  }
+  // getTimeFormat(timeVal:any){
+  //   if(timeVal!=null && timeVal!=''){
+  //     let tmp:any = new DatePipe('en-Us').transform(timeVal, 'MM/dd/yyyy HH:mm a');
+  //     let TimeData = tmp.slice(-8) +' '+ tmp?.slice(-2)
+  //     return TimeData;
+  //   }
+  // }
   
 }
