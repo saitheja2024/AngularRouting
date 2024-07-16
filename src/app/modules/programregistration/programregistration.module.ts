@@ -19,6 +19,7 @@ import * as $ from 'jquery';
 import { FamilyRegWorkflowComponent } from './family-reg-workflow/family-reg-workflow.component';
 import { SearchFamilyComponent } from './search-family/search-family.component';
 import { NewRegistrationComponent } from './components/new-registration/new-registration.component';
+import { SearchFamilyResultComponent } from './components/search-family-result/search-family-result.component';
 
 const routes: Routes = [
   {
@@ -91,7 +92,8 @@ const DIRECTIVES : any[] = [PhoneNumberFormatDirective]
     DIRECTIVES,
     FamilyRegWorkflowComponent,
     SearchFamilyComponent,
-    NewRegistrationComponent
+    NewRegistrationComponent,
+    SearchFamilyResultComponent
   ],
   imports: [
     ChinmayaSharedModule,

@@ -1,0 +1,48 @@
+<div class="card card-flush cardborder">
+	
+	<!--begin::Card body-->
+	<div class="card-body p-0">
+		<div class="table-container">
+			<table mat-table [dataSource]="dataSource"  matSort class="mat-table" >
+				
+				  <ng-container matColumnDef="familyId">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Family ID</th>
+					<td valign="middle" mat-cell *matCellDef="let element"><a  style="cursor: pointer; color:rgb(28, 147, 245)">{{element.familyId}}</a></td>
+				  </ng-container>
+
+				 
+				  <ng-container matColumnDef="firstName">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>First Name</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.firstName}}</td>
+				  </ng-container>
+
+				 
+				  <ng-container matColumnDef="lastName">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.lastName}}</td>
+				  </ng-container>
+
+				
+
+				  <ng-container matColumnDef="homePhone">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Home Phone</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.homePhone}}</td>
+				  </ng-container>
+
+				  <ng-container matColumnDef="emailAddress">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Email</th>
+					<td valign="middle" mat-cell *matCellDef="let element">{{element.emailAddress}}</td>
+				  </ng-container>
+
+                  <ng-container matColumnDef="register">
+					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header></th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="color:blue;cursor: pointer;" (click)="onRegisterButtonClick(element)">Register</td>
+				  </ng-container>
+
+					<tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true;"></tr>
+					<tr mat-row *matRowDef="let row; columns: displayColumns;" ></tr>
+			</table>  
+		</div>
+	</div>
+	<!--end::Card body-->
+</div>
