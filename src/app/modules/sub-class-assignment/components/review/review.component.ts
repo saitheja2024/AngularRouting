@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import { DatePipe } from '@angular/common';
-
+import { AuthService } from 'src/app/modules/auth';
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -33,13 +33,13 @@ export class ReviewComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   SubClassAssignList: any;
-  subClass:any=""
-
+  subClass:any="";
+  currentLoginUserData:any;
   constructor(private modalService: NgbModal,
     private regiStrationReviewService:RegistratioReviewService,
     private router:Router,
-    private alertService:AlertService
-
+    private alertService:AlertService,
+    private authService:AuthService
   ){
     
   }
@@ -49,6 +49,7 @@ export class ReviewComponent {
   }
 
   async ngOnInit(){
+    this.currentLoginUserData = this.authService.getLoggedInUser();
     this.searchCriteria = this.regiStrationReviewService.getSearchCriteria();
 
     await this.fetchSubClassAssignList();
@@ -106,7 +107,8 @@ export class ReviewComponent {
       saveReviewRequestList:this.selection.selected,
       //registrationStatus: this.registrationStatus,
       //sessionAssignment:this.sessionChoice
-      subClassAssignment:this.subClass
+      subClassAssignment:this.subClass,
+      modifiedBy:parseInt(this.currentLoginUserData.personID)
     }
 
     let response = await this.regiStrationReviewService.saveRegistrationReview(param);

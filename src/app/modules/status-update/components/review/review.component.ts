@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
-
+import { AuthService } from 'src/app/modules/auth';
 export interface StatusReview {
   checkbox:string;
   paymentdate: string;
@@ -45,6 +45,7 @@ export class ReviewComponent {
   selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
   totalRecCount:any;
   totalRecordList:any;
+  currentLoginUserData:any;
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -56,8 +57,8 @@ export class ReviewComponent {
   constructor(private modalService: NgbModal,
     private regiStrationReviewService:RegistratioReviewService,
     private router:Router,
-    private alertService:AlertService
-
+    private alertService:AlertService,
+    private authService:AuthService
   ){
     
   }
@@ -67,6 +68,7 @@ export class ReviewComponent {
   }
 
   async ngOnInit(){
+    this.currentLoginUserData = this.authService.getLoggedInUser();
     this.fetchRegistrationStatusList();
     await this.fetchSessionChoice();
     let results  =  this.regiStrationReviewService.getSelectedFamilyRecords();
@@ -144,7 +146,8 @@ export class ReviewComponent {
     let param ={
       saveReviewRequestList:this.selection.selected,
       registrationStatus: this.registrationStatus,
-      sessionAssignment:this.sessionChoice
+      sessionAssignment:this.sessionChoice,
+      modifiedBy:parseInt(this.currentLoginUserData.personID)
     }
 
    if(this.registrationStatus!='' && this.registrationStatus!=null){
