@@ -3,3 +3,7 @@
     background: #fff !important;
     border-radius: 5px !important;
 }
+
+::ng-deep .mat-mdc-tab-labels .mdc-tab.mat-mdc-tab.mat-mdc-tab-disabled{
+    opacity: 1 !important;
+  }

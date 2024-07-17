@@ -121,7 +121,7 @@
                     <ng-container matColumnDef="paymentSubmittedDate">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Date </th>
                         <td mat-cell *matCellDef="let element"> {{element.paymentSubmittedDate | date:'MM/dd/yyyy'}}
-                            <!-- <br/> <span class="position_time">{{getTimeFormat(element.paymentSubmittedDate)}}</span>  -->
+                            <br/> <span>{{getTimeFormat(element.paymentSubmittedDate)}}</span> 
                         </td>
                     </ng-container>
                     
@@ -146,7 +146,7 @@
                     <ng-container matColumnDef="createdDate">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Created </th>
                         <td mat-cell *matCellDef="let element"> {{element.createdDate | date:'MM/dd/yyyy'}}
-                            <!-- <br/>{{getTimeFormat(element.createdDate)}}  -->
+                            <br/>{{getTimeFormat(element.createdDate)}} 
                         </td>
                     </ng-container>
 
