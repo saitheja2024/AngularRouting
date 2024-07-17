@@ -37,7 +37,7 @@ export class FamilyRegistrationDetailsComponent {
  async  ngOnInit(){
   await this.populateData();
  
-  this.initRegistrationDetailsForm();
+  //this.initRegistrationDetailsForm();
   this.currentUserData = this.authService.getLoggedInUser();
 console.log(this.currentUserData);
  }
@@ -167,6 +167,9 @@ createProgramFormGroup(programData:any): FormGroup {
       
     }
    }
+
+   this.initRegistrationDetailsForm();
+
   
  }
  
