@@ -96,7 +96,8 @@ export class StatusSearchComponent {
     let params:ProgramRequestInterface={
       chapterCode:this.selectedChapterCode,
       academicYear:this.selectedAcademicYear,
-      userName:this.loggedInUser.username
+      userName:this.loggedInUser.username,
+      personID: this.loggedInUser.personID
     }
 
     this.programs = await this.masterService.fetchProgramsByAcademicYearAndChapterCode(params)

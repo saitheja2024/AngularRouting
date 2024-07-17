@@ -12,7 +12,7 @@ export class UrlService {
   }
 
   organzationURL = {
-    fetchAllOrgnaztion: "organization/fetchChaptersList",
+    fetchAllOrgnaztion: "organization/fetchChaptersListByPersonId",
     fetchAcadamicYear: "registrationProcessing/fetchProgramYearDropdown",
     fetchProgramCodesByChapterCodeAndAcacademicyear:"registrationProcessing/fetchProgramCodesByChapterCodeAndAcademicyear"
     

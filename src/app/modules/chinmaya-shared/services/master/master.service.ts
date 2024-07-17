@@ -268,7 +268,7 @@ export class MasterService {
     }
 
     this.chapterList=[];
-    let chapterList:any = await this.httpService.get(options);
+    let chapterList:any = await this.httpService.post(options);
     if(chapterList && chapterList.selectDropdownList){
       this.chapterList=chapterList.selectDropdownList;
       

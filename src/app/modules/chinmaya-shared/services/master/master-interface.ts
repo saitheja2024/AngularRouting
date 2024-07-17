@@ -3,11 +3,13 @@
     export interface ProgramRequestInterface {
         "chapterCode": string;
         "academicYear": string;
-        "userName": string
+        "userName": string,
+        personID: number
     }  
 
     export interface ChapterCodeRequestInterface {
-        username:string
+       // username:string,
+        personID:number
     }
 
     export interface signupCodeRequestInteface {

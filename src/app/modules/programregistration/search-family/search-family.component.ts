@@ -41,7 +41,10 @@ export class SearchFamilyComponent {
     this.loggedInUser = this.authService.getLoggedInUser()
     this.prepareSearchForm();
    // this.onSearchSubmit();
-    this.chapterList = await this.programService.fetchChapterList(this.loggedInUser);
+   let param = {
+    personID: this.loggedInUser.personID
+  }
+    this.chapterList = await this.programService.fetchChapterList(param);
 
     this.personTypeList = await this.masterService.getPersonType();
   }

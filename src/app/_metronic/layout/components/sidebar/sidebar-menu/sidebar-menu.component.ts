@@ -33,7 +33,10 @@ export class SidebarMenuComponent implements OnInit {
     this.academicYearCode = currentYear+'-'+ featureYear;
     this.loggedInUser = JSON.parse(sessionStorage.getItem('profileData') || '');
     this.academicYear = await  this.masterService.fetchAcademicYear(true);
-    this.chapterList = await this.masterService.fetchChaptherList({username:this.loggedInUser.username},true);
+    let param = {
+      personID: this.loggedInUser.personID
+    }
+    this.chapterList = await this.masterService.fetchChaptherList(param, true);
     this.chapterCode = (this.loggedInUser.chapterCode!=undefined)? this.loggedInUser.chapterCode:this.loggedInUser.chapter;
 
     this.onChapterChange(this.chapterCode);
@@ -81,7 +84,8 @@ export class SidebarMenuComponent implements OnInit {
     let params:ProgramRequestInterface={
       chapterCode:this.chapterCode,
       academicYear:this.academicYearCode,
-      userName:this.loggedInUser.username
+      userName:this.loggedInUser.username,
+      personID: this.loggedInUser.personID
     }
 
     this.programs = await this.masterService.fetchProgramsByAcademicYearAndChapterCode(params)
