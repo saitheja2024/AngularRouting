@@ -36,7 +36,10 @@
 
                   <ng-container matColumnDef="register">
 					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header></th>
-					<td valign="middle" mat-cell *matCellDef="let element" style="color:blue;cursor: pointer;" (click)="onRegisterButtonClick(element)">Register</td>
+					<td valign="middle" mat-cell *matCellDef="let element" style="color:blue;cursor: pointer;" (click)="onRegisterButtonClick(element)">
+                        <button class="btn btn-sm btn-primary" style="padding: 2px 10px !important;">REGISTER</button>
+                        
+                        </td>
 				  </ng-container>
 
 					<tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true;"></tr>

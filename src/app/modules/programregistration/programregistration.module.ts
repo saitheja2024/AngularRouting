@@ -20,6 +20,7 @@ import { FamilyRegWorkflowComponent } from './family-reg-workflow/family-reg-wor
 import { SearchFamilyComponent } from './search-family/search-family.component';
 import { NewRegistrationComponent } from './components/new-registration/new-registration.component';
 import { SearchFamilyResultComponent } from './components/search-family-result/search-family-result.component';
+import { ProgramDashboardComponent } from './components/program-dashboard/program-dashboard.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,10 @@ const routes: Routes = [
         path: 'search-family',
         component: SearchFamilyComponent,
       },
+      {
+        path: 'program-dashboard',
+        component: ProgramDashboardComponent,
+      },
       // {
       //   path: 'paymentcomplete',
       //   component: PaymentcompleteComponent,
@@ -93,7 +98,8 @@ const DIRECTIVES : any[] = [PhoneNumberFormatDirective]
     FamilyRegWorkflowComponent,
     SearchFamilyComponent,
     NewRegistrationComponent,
-    SearchFamilyResultComponent
+    SearchFamilyResultComponent,
+    ProgramDashboardComponent
   ],
   imports: [
     ChinmayaSharedModule,

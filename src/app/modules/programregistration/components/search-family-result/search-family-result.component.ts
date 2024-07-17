@@ -2,7 +2,10 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
+import { ErrorHandlerService } from 'src/app/modules/chinmaya-shared/services/errors/error-handler.service';
 import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/family.service';
+import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 
 @Component({
   selector: 'app-search-family-result',
@@ -17,7 +20,10 @@ export class SearchFamilyResultComponent {
   totalRecFooter:any;
   constructor(
     private familyService: FamilyService,
-    private router: Router
+    private router: Router,
+    private alertService:AlertService,
+    private store:StoreService
+   
   ) {}
 
   displayColumns: string[] = ["familyId", "firstName", "lastName", "homePhone", "emailAddress","register"]
@@ -68,7 +74,10 @@ sortItems(letter: string, index:any) {
 
 
 onRegisterButtonClick(familyDetails:any){
-  
+  this.familyService.setSelectedFamily(familyDetails);
+  let selectedChapterCode = this.store.getValue(KEYS.chapter);
+ 
+  this.router.navigateByUrl("programregistration/program-dashboard")
 }
 
 }

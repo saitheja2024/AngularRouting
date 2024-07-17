@@ -147,6 +147,11 @@ export class UrlService {
     fetchSubClassDetails :"registrationReview/fetchSubClassDetails",
     fetchPaymentHistoryDetails:'paymentHistory/fetchPaymentHistoryDetails'
   }
+
+  programSelection = {
+    fetchDashboardProgramCodes : "programSelection/fetchDashboardProgramCodes",
+    validateCertification: "programSelection/validateCertification"
+  }
   
  
   
