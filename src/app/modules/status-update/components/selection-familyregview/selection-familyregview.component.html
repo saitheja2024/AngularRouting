@@ -1,14 +1,3 @@
-<div class="modal-header p-4" id="kt_activities_header" style="background-color: #f8f8f8;">
-	<h3 class="card-title fw-semibold text-dark" style="width:100%;">Family Details</h3>
-	<div class="card-toolbar">
-	    <button type="button" class="btn btn-sm btn-icon btn-active-light-primary" (click)="closeModal()"> 
-		    <i class="ki-duotone ki-cross fs-1 text-dark">
-			    <span class="path1"></span>
-			    <span class="path2"></span>
-			</i>
-	    </button>
-	</div>
-</div>
   
 <div class="modal-body p-4 pb-2">
     <div class="card" style="border:1px solid #ccc;border-radius:5px;">
@@ -25,33 +14,33 @@
                     <table mat-table [dataSource]="dataSourceFamilyDetails" matSort>
         
                         <!-- Family ID Column-->
-                        <ng-container matColumnDef="familyid">
+                        <ng-container matColumnDef="familyId">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyid}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyId}} </td>
                         </ng-container>
         
                         <!-- Person ID Column-->
-                        <ng-container matColumnDef="personid">
+                        <ng-container matColumnDef="personID">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Person ID </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.personid}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.personID}} </td>
                         </ng-container>
         
                         <!-- First Name Column-->
-                        <ng-container matColumnDef="firstname">
+                        <ng-container matColumnDef="firstName">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.firstName}} </td>
                         </ng-container>
         
                         <!-- Middle Name Column-->
-                        <ng-container matColumnDef="middlename">
+                        <ng-container matColumnDef="middleName">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Middle Name </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.middlename}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.middleName}} </td>
                         </ng-container>
         
                         <!-- Last Name Column-->
-                        <ng-container matColumnDef="lastname">
+                        <ng-container matColumnDef="lastName">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.lastName}} </td>
                         </ng-container>
         
                         <!-- Gender Column-->
@@ -61,39 +50,39 @@
                         </ng-container>
         
                         <!-- DOB Column-->
-                        <ng-container matColumnDef="dob">
+                        <ng-container matColumnDef="dateOfBirth">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.dob}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </td>
                         </ng-container>
         
                         <!-- Registration Type Column-->
-                        <ng-container matColumnDef="registrationtype">
+                        <ng-container matColumnDef="registrationId">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Registration Type </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.registrationtype}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.registrationId}} </td>
                         </ng-container>
         
                         <!-- Home Phone Column-->
-                        <ng-container matColumnDef="homephone">
+                        <ng-container matColumnDef="homePhone">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Home Phone </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.homephone}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.homePhone}} </td>
                         </ng-container>
         
                         <!-- E-mail Column-->
-                        <ng-container matColumnDef="email">
+                        <ng-container matColumnDef="emailAddress">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.email}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.emailAddress}} </td>
                         </ng-container>
         
                         <!-- Mobile Phone Column-->
-                        <ng-container matColumnDef="mobilephone">
+                        <ng-container matColumnDef="phoneNumber">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Mobile Phone </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.mobilephone}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
                         </ng-container>
         
                         <!-- Primary Contact Column-->
-                        <ng-container matColumnDef="primarycontact">
+                        <ng-container matColumnDef="primaryContact">
                             <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Primary Contact </th>
-                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.primarycontact}} </td>
+                            <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.primaryContact}} </td>
                         </ng-container>
                       
                         <tr mat-header-row *matHeaderRowDef="displayedColumnsFamilyDetails; sticky: true;" style="background-color: #CDDDFF;"></tr>

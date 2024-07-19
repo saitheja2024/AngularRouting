@@ -117,8 +117,11 @@ export class ReviewComponent {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
   
-  async familyid(){
-   const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
+  async familyid(ele:any){
+   //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
+    let dialogRef = this.dialog.open(SelectionFamilyDetailsComponent, {
+      data: ele,
+    });
   }
 
   async paymentdetails(ele:any){

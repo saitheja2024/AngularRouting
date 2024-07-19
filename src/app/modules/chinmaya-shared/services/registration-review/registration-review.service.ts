@@ -235,6 +235,25 @@ export class RegistratioReviewService {
     return response;
   }
  
+  async fetchfamilyDetails(param: any) {
+    let options: Options = {
+      url: this.urlService.registrationReviewURL.fetchfamilyDetails,
+      body: param
+    }
+
+    let response: any = await this.httpService.post(options);
+    return response;
+  }
+
+  async fetchFamilySessionPreferenceDetais(param: any) {
+    let options: Options = {
+      url: this.urlService.registrationReviewURL.fetchFamilySessionPreferenceDetais,
+      body: param
+    }
+
+    let response: any = await this.httpService.post(options);
+    return response;
+  }
 
 }
 

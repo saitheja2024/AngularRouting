@@ -101,11 +101,6 @@ export class SelectionComponent {
   }
 
  
-
-  async familyid(){
-   const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
-  }
-
   async paymentdetails(ele:any){
     // const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,initialState);
     let dialogRef = this.dialog.open(SelectionPaymentdetailsComponent, {
@@ -145,5 +140,12 @@ export class SelectionComponent {
       return tmp;
     }
   }
+
+  async familyid(ele:any){
+    //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
+     let dialogRef = this.dialog.open(SelectionFamilyDetailsComponent, {
+       data: ele,
+     });
+   }
   
 }

@@ -1,6 +1,19 @@
-<div class="modal-body p-0" style="max-height: 800px !important;">
-    <app-selection-familyregview></app-selection-familyregview>
-    <div class="p-4">
-        <app-selection-familysessiondetails></app-selection-familysessiondetails>
+<div class="modal-body p-0">
+   <div>
+    <div class="modal-header p-4" id="kt_activities_header" style="background-color: #f8f8f8;">
+        <h3 class="card-title fw-semibold text-dark" style="width:100%;">Family Details</h3>
+        <div class="card-toolbar">
+            <button type="button" class="btn btn-sm btn-icon btn-active-light-primary" (click)="closeModal()"> 
+                <i class="ki-duotone ki-cross fs-1 text-dark">
+                    <span class="path1"></span>
+                    <span class="path2"></span>
+                </i>
+            </button>
+        </div>
     </div>
+    <app-selection-familyregview [selectedRowData]="data"></app-selection-familyregview>
+    <div class="p-4">
+        <app-selection-familysessiondetails [selectedRowData]="data"></app-selection-familysessiondetails>
+    </div>
+</div>
 </div>

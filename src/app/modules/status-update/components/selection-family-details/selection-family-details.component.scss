@@ -3,3 +3,8 @@
       --bs-modal-width: 1000px !important;
     }
   }
+
+ ::ng-deep .mdc-dialog__container{
+    overflow-x: auto;
+    height: 600px;
+  }

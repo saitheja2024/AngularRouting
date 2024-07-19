@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/services/registration-review/registration-review.service';
 export interface FamilyDetails {
   familyid: number;
   personid: number;
@@ -28,7 +29,7 @@ export interface FamilyDetails {
 
 export class SelectionFamilyregviewComponent {
   [x: string]: any;
-
+  @Input() selectedRowData: any;
   FamilyDetails: FamilyDetails[] = [
     {familyid:4367, personid:13636, firstname: 'Suri', middlename:'NA', lastname:'NA', gender:'Male', dob:'1995-0908', registrationtype:'ADULT', homephone:1223345656, email:'csva3@ss.in', mobilephone:9834873476, primarycontact:2398456734},
     {familyid:4367, personid:13637, firstname: 'Siri', middlename:'NA', lastname:'NA', gender:'Female', dob:'1995-0908', registrationtype:'ADULT', homephone:1223345656, email:'csva3@ss.in', mobilephone:9284746464, primarycontact:2398456734},
@@ -37,21 +38,31 @@ export class SelectionFamilyregviewComponent {
     {familyid:4367, personid:13640, firstname: 'Suri 4', middlename:'NA', lastname:'NA', gender:'Male', dob:'1995-0908', registrationtype:'CHILD', homephone:1223345656, email:'csva3@ss.in', mobilephone:9940234567, primarycontact:2398456734}
   ];
 
-  displayedColumnsFamilyDetails: string[] = ['familyid', 'personid', 'firstname', 'middlename', 'lastname', 'gender', 'dob', 'registrationtype', 'homephone', 'email', 'mobilephone', 'primarycontact'];
+  displayedColumnsFamilyDetails: string[] = ['familyId', 'personID', 'firstName', 'middleName', 'lastName', 'gender', 'dateOfBirth', 'registrationId', 'homePhone', 'emailAddress', 'phoneNumber', 'primaryContact'];
 
   dataSourceFamilyDetails = new MatTableDataSource<FamilyDetails>(this.FamilyDetails);
 
   ngAfterViewInit() {
-    this.dataSourceFamilyDetails=new MatTableDataSource(this.FamilyDetails);
-
-    this.dataSourceFamilyDetails.sort = this.sort;
+    console.log(this.selectedRowData);
+    
   }
 
-  constructor(private modalService: NgbModal){
+  constructor(private regiStrationReviewService:RegistratioReviewService){
   
   }
-
-  async closeModal(){
-    const modalRef = await this.modalService.dismissAll();
+ 
+  ngOnInit(){
+    this.familyRegViewDetails();
   }
+
+  async familyRegViewDetails(){
+    let param={"familyId":this.selectedRowData.familyId};
+
+      let results  = await this.regiStrationReviewService.fetchfamilyDetails(param);
+      this.responseData = results.personProgramList.length;
+      this.dataSourceFamilyDetails=new MatTableDataSource(results.personProgramList);
+      this.dataSourceFamilyDetails.sort = this.sort;
+
+  }
+  
 }

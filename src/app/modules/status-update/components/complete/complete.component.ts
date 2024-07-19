@@ -51,9 +51,12 @@ export class CompleteComponent {
    this.dataSource.sort = this.sort;
   }
 
-  async familyid(){
-   //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
-  }
+  async familyid(ele:any){
+    //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
+     let dialogRef = this.dialog.open(SelectionFamilyDetailsComponent, {
+       data: ele,
+     });
+   }
 
   async paymentdetails(ele:any){
     //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });

@@ -145,7 +145,9 @@ export class UrlService {
     fetchRegistrationReviewDetailsBasedOnSearch: "registrationReview/fetchRegistrationReviewDetailsBasedOnSearch",
     saveRegistrationReview: "registrationReview/saveRegistrationReview",
     fetchSubClassDetails :"registrationReview/fetchSubClassDetails",
-    fetchPaymentHistoryDetails:'paymentHistory/fetchPaymentHistoryDetails'
+    fetchPaymentHistoryDetails:'paymentHistory/fetchPaymentHistoryDetails',
+    fetchfamilyDetails:'manageFamily/fetchfamilyDetails',
+    fetchFamilySessionPreferenceDetais:'registrationReview/fetchFamilySessionPreferenceDetais'
   }
 
   programSelection = {

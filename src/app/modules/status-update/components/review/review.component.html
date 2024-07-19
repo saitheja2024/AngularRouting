@@ -113,7 +113,7 @@
                     <ng-container matColumnDef="familyId">
                         <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
                         <td class="text-nowrap" mat-cell *matCellDef="let element; let i = index;" mat-raised-button 
-                            style="color:blue;cursor:pointer;"> 
+                            style="color:blue;cursor:pointer;" (click)="familyid(element);"> 
                             {{element.familyId}} <span *ngIf="element.waitListedFlag==1" class="waitlist_icon"><img title="Wait Listed" style="width: 25px; position: relative; bottom: 6px;" src="./assets/images/warning icon.png" /></span>
                         </td>
                     </ng-container>
