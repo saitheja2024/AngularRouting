@@ -313,7 +313,8 @@ getPersonSummary(detailsGroup: any) {
     "familyId": this.selectedFamily.familyId,
     "chapterCode": this.selectedChapterID,
     "programCode":this.selectedProgram.code,
-    "signupCode": SignupCode
+    "signupCode": SignupCode,
+    modifiedBy: parseInt(this.currentUserData.personID)
   }
   let data = await this.MasterService.callRefreshGrade(param);
   this.populateData();
