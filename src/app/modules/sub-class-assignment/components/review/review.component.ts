@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -13,6 +13,8 @@ import { RegistratioReviewService } from 'src/app/modules/chinmaya-shared/servic
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/modules/auth';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -21,6 +23,7 @@ import { AuthService } from 'src/app/modules/auth';
 
 export class ReviewComponent {
   displayedColumnsSelection: string[] = ['checkbox','familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionDescription','classAssignment','subClassAssignment','createdDate']
+  readonly dialog = inject(MatDialog);
 
   dataSource = new MatTableDataSource<any>();
   searchCriteria: any;
@@ -89,9 +92,12 @@ export class ReviewComponent {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
   
-  async familyid(){
-   //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
-  }
+  async familyid(ele:any){
+    //const modalRef = await this.modalService.open(SelectionFamilyDetailsComponent,{ size: 'lg' });
+     let dialogRef = this.dialog.open(SelectionFamilyDetailsComponent, {
+       data: ele,
+     });
+   }
 
   async paymentdetails(){
     //const modalRef = await this.modalService.open(SelectionPaymentdetailsComponent,{ size: 'lg' });

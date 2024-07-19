@@ -1,4 +1,4 @@
-<div class="card" style="border:1px solid #ccc; border-radius:5px;">
+<div class="card" style="border:1px solid #ccc;border-radius:5px;">
     <div class="card-header" style="padding:0px 10px;">
         <div class="card-title">
             <h4 class="fw-semibold">
@@ -9,49 +9,14 @@
     <div class="card-body p-0">
         <div class="table-responsive">
             <div class="mat-elevation-z8">
-                <table mat-table [dataSource]="dataSourceFamilySessionDetails" matSort>
-    
-                    <!-- Family ID Column-->
-                    <ng-container matColumnDef="familyid">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Family ID </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.familyid}} </td>
+                <table mat-table [dataSource]="dataSourceFamilySessionDetails" class="mat-elevation-z8">
+                    <ng-container *ngFor="let columnName of displayedColumnsFamilySessionDetails" [matColumnDef]="columnName">
+                      <th mat-header-cell *matHeaderCellDef>{{ (!columnName.includes('choice'))?ColumnNameList[columnName]:columnName }}</th>
+                      <td mat-cell *matCellDef="let row">{{ row[columnName] }}</td>
                     </ng-container>
-     
-                    <!-- Person ID Column-->
-                    <ng-container matColumnDef="personid">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Person ID </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.personid}} </td>
-                    </ng-container>
-
-                    <!-- signup Code Column-->
-                    <ng-container matColumnDef="signupcode">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> SignUp Code </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.signupcode}} </td>
-                    </ng-container>
-
-                    <!-- Choice 1 Column-->
-                    <ng-container matColumnDef="choice1">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Choice 1 </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.choice1}} </td>
-                    </ng-container>
-
-                    <!-- Choice 2 Column-->
-                    <ng-container matColumnDef="choice2">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Choice 2 </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.choice2}} </td>
-                    </ng-container>
-
-                    <!-- Choice 3 Column-->
-                    <ng-container matColumnDef="choice3">
-                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Choice 3 </th>
-                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.choice3}} </td>
-                    </ng-container>
-                     
-                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFamilySessionDetails; sticky: true;" style="background-color: #CDDDFF;"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFamilySessionDetails;"></tr>
-     
-                </table>
-       
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFamilySessionDetails"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFamilySessionDetails"></tr>
+                  </table>
             </div>
         </div>
     </div>
