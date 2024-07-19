@@ -436,8 +436,11 @@ export class MasterService {
 
   async fetchRisingGradeLabel(body: any) {
     let options: Options = { body: body, url: "organization/fetchRisingGradeLabel" };
-    let data =  await this.httpService.post(options);
-    return data;
+    let data:any =  await this.httpService.post(options);
+    if(data && data["gradeLabel"]){
+      return data["gradeLabel"];
+    }
+    return "";
   }
 
   async callRefreshGrade(param:refreshGradeCode){

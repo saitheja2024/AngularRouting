@@ -21,6 +21,7 @@ import { SearchFamilyComponent } from './search-family/search-family.component';
 import { NewRegistrationComponent } from './components/new-registration/new-registration.component';
 import { SearchFamilyResultComponent } from './components/search-family-result/search-family-result.component';
 import { ProgramDashboardComponent } from './components/program-dashboard/program-dashboard.component';
+import { CertifymemberComponent } from './components/certifymember/certifymember.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
         path: 'program-dashboard',
         component: ProgramDashboardComponent,
       },
+      {
+        path: 'certify-member',
+        component: CertifymemberComponent,
+      },
       // {
       //   path: 'paymentcomplete',
       //   component: PaymentcompleteComponent,
@@ -99,7 +104,8 @@ const DIRECTIVES : any[] = [PhoneNumberFormatDirective]
     SearchFamilyComponent,
     NewRegistrationComponent,
     SearchFamilyResultComponent,
-    ProgramDashboardComponent
+    ProgramDashboardComponent,
+    CertifymemberComponent
   ],
   imports: [
     ChinmayaSharedModule,

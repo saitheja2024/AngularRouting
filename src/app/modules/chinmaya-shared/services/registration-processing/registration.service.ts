@@ -168,6 +168,16 @@ export class RegistrationService {
 
     let response: any = await this.httpService.post(options);
   }
+
+  async fetchPrimaryContactByFamilyId(params:any){
+
+    var options:Options = {
+      url: this.urlService.registration.fetchPrimaryContactByFamilyId,
+      body: params
+    }
+    let response: any = await this.httpService.post(options);
+    return response;
+  }
   
     
  

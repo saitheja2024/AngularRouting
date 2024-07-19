@@ -1,0 +1,72 @@
+ /*show it on devices with max of 767 px and lower*/
+ .form-control, .form-select {
+  border-radius:5px !important;
+}
+
+@media(max-width:1200px) {
+  .card1 {
+    display:none;
+  }
+  .card2 {
+    display:block;
+  }
+}
+
+@media(min-width:1199px) {
+  .card1 {
+    display:block;
+  }
+  .card2 {
+    display:none;
+  }
+}
+ 
+      @media (max-width: 767px) {
+        .hidden-mobile {
+          display: none !important;
+        }
+       
+      }
+      @media (max-width: 992px) {
+        .hidden-mobile {
+          display: none !important;
+        }
+
+        .card {
+          margin-top: 0px !important;
+        }
+      }
+      
+      @media (max-width: 1200px) {
+        .hidden-mobile {
+          display: none !important;
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 991px) {
+        #kt_app_content_container {
+          margin-top: 20px !important;
+        }
+      }
+
+      .nav.nav-pills.nav-pills-custom .nav-link {
+        background-color: transparent;
+        border: transparent;
+        transition-duration: 1ms;
+        position: relative;
+        color:#000 !important;
+      }
+
+      .nav.nav-pills.nav-pills-custom .nav-link.active {
+        background-color:#000 !important;
+        color:#fff !important;
+      }
+
+      .nav-text.active {
+        color:#fff !important;
+      }
+      
+      .grade_txt_clr{
+        color:#9EB72C;
+       }
+
