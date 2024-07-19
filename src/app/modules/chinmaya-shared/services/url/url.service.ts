@@ -138,7 +138,8 @@ export class UrlService {
   }
 
   registration = {
-    saveFamilyAndPerson :"registration/saveFamilyAndPerson"
+    saveFamilyAndPerson :"registration/saveFamilyAndPerson",
+    fetchPrimaryContactByFamilyId : "/registration/fetchPrimaryContactByFamilyId"
   }
 
   registrationReviewURL={
@@ -150,7 +151,9 @@ export class UrlService {
 
   programSelection = {
     fetchDashboardProgramCodes : "programSelection/fetchDashboardProgramCodes",
-    validateCertification: "programSelection/validateCertification"
+    validateCertification: "programSelection/validateCertification",
+    saveFamilyCertification :"programSelection/saveFamilyCertification"
+    
   }
   
  

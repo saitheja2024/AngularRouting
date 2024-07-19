@@ -1,0 +1,525 @@
+<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+    <!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+		<!--begin::Content-->
+        <div id="kt_app_content" class="app-content flex-column-fluid">
+			<!--begin::Content container-->
+			<div id="kt_app_content_container" class="app-container container-xxl">
+				<div class="row">
+					<div class="col-lg-1"></div>
+					<div class="col-lg-10">
+						<div class="card card1 mt-4" style="border:1px solid #ddd;">
+							<!--begin::Form-->
+							<form [formGroup]="primaryContactGroup" id="kt_account_profile_details_form" class="form" *ngIf="primaryContactGroup">
+								<div class="card-body p-4">
+									<div class="" style="border-radius: 5px;">
+										<div class="row fv-row">
+											<div class="col-lg-5">
+												<div class="card mb-5 mb-xl-10">
+													<!--begin::Card header-->
+													<div class="card-header mb-2 p-0 border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details" style="min-height: 20px !important;">
+														<!--begin::Card title-->
+														<div class="card-title mb-2">
+															<h4 class="fw-semibold m-2 fs-5 text-uppercase">Primary Contact Name : {{primaryContactData?.firstName}}&nbsp;{{primaryContactData?.middleName}}&nbsp;{{primaryContactData?.lastName}}</h4>
+														</div>
+														<!--end::Card title-->
+													</div>
+													<!--begin::Card header-->
+													<!--begin::Content-->
+													<div id="kt_account_settings_profile_details" class="collapse show">
+														<!--begin::Card body-->
+														<div class="card-body border-top border-gray-300 p-3">
+															<!--begin::Input group-->
+															<div class="row mb-4">
+																<!--begin::Label-->
+																<label class="col-lg-4 required fw-semibold fs-6 mt-2">Address 1 </label>
+																<!--end::Label-->
+																
+																<!--begin::Col-->
+																<div class="col-lg-8 fv-row">
+																	<input type="text" name="Address1" formControlName="address" autocomplete="off" class="form-control form-control-sm" placeholder="Enter Address"/>
+																	<div *ngIf="CM['address'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+																	   Please Enter Address.
+																	</div>
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Input group-->
+														
+															<!--begin::Input group-->
+															<div class="row mb-4">
+																<!--begin::Label-->
+																<label class="col-lg-4 fw-semibold fs-6 mt-2">Address 2 </label>
+																<!--end::Label-->
+																<!--begin::Col-->
+																<div class="col-lg-8 fv-row">
+																	<input type="text" formControlName="address2" autocomplete="off" name="Address2" class="form-control form-control-sm" placeholder="Enter Address"/>
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Input group-->
+														
+															<!--begin::Input group-->
+															<div class="row mb-4">
+																<!--begin::Label-->
+																<label class="col-lg-4 fw-semibold fs-6 mt-2">Address 3</label>
+																<!--end::Label-->
+																<!--begin::Col-->
+																<div class="col-lg-8 fv-row">
+																	<input type="text" name="Address3" formControlName="address3" autocomplete="off" class="form-control form-control-sm" placeholder="Enter Address"/>
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Input group-->
+
+															<div class="row">
+																<div class="col-lg-12 col-sm-6 col-md-6 col-xs-12 col-6">
+																	<!--begin::Input group-->
+																	<div class="row mb-4">
+																		<!--begin::Label-->
+																		<label class="col-lg-4 required fw-semibold fs-6 text-nowrap mt-2">City </label>
+																		<!--end::Label-->
+																		<!--begin::Col-->
+																		<div class="col-lg-8 fv-row">
+																			<input type="text" name="City" formControlName="city" autocomplete="off" class="form-control form-control-sm" placeholder="Enter City"/>
+																			<div *ngIf="CM['city'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+																				Please Enter city.
+																			</div>	
+																		</div>
+																		<!--end::Col-->									
+																	</div>
+																	<!--end::Input group-->
+																</div>
+																<div class="col-lg-12 col-sm-6 col-md-6 col-xs-12 col-6">
+																	<!--begin::Input group-->
+																	<div class="row mb-4">
+																		<!--begin::Label-->
+																		<label class="col-lg-4 fw-semibold fs-6 text-nowrap mt-2">
+																			<span class="required">State </span>                             
+																		</label>
+																		<!--end::Label-->
+																		<!--begin::Col-->
+																		<div class="col-lg-8 fv-row">
+																			<select formControlName="state" aria-label="Select a state" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-sm fw-semibold">
+																				<option *ngFor="let state of statesList" [value]="state.code">{{state.description}}</option>
+																			</select>
+																			<div *ngIf="CM['state'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+																				Please Select State.
+																			</div>
+																		</div>
+																		<!--end::Col-->
+																	</div>
+																	<!--end::Input group-->
+																</div>
+															</div>
+
+															<!--begin::Input group-->
+															<div class="row mb-4">
+																<!--begin::Label-->
+																<label class="col-lg-4 fw-semibold fs-6 mt-2">
+																	<span class="required">Zip Code</span>                            
+																</label>
+																<!--end::Label-->
+																
+																<!--begin::Col-->
+																<div class="col-lg-8 fv-row">
+																	<input type="text" autocomplete="off"  [class.is-invalid]="CM['zipCode'].invalid  && (CM['zipCode'].dirty || CM['zipCode'].touched)" maxlength="5" required formControlName="zipCode" (keypress)="isNumberKey($event)" class="form-control form-control-sm" placeholder="Zip Code" />
+																	<div *ngIf="CM['zipCode'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="invalid-feedback">
+																		<div *ngIf="CM['zipCode'].errors?.['required']" class="with-errors text-danger">
+																			Please Enter Zip Code.
+																		</div>
+																	</div>
+																	<div *ngIf="CM['zipCode'].value?.length!='' && CM['zipCode'].value?.length<5" class="with-errors text-danger">
+																		Zipcode length should be 5.
+																	</div>
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Input group-->
+															<!--begin::Input group-->
+															<div class="row mb-4">
+																<!--begin::Label-->
+																<label class="col-lg-4 required fw-semibold fs-6 mt-2">Home Phone</label>
+																<!--end::Label-->
+																<!--begin::Col-->
+																<div class="col-lg-8 fv-row">
+																	<input type="text" autocomplete="off" size="6" maxlength="14" formControlName="homePhone" appPhoneNumberFormat name="HomePhone" class="form-control form-control-sm" placeholder="Home Phone"/>
+																	<div *ngIf="CM['homePhone'].invalid && CM['homePhone'].value=='' && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+																	   Please Enter Home Phone.
+																	</div>
+																	<div *ngIf="CM['homePhone'].invalid && CM['homePhone'].value!='' && CM['homePhone'].value?.length<14 && (primaryContactGroup.dirty || primaryContactGroup.touched)" class="text-danger mrg_btm">
+																	   Home number invalid.
+																	</div>
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Input group-->
+															<!--begin::Input group-->
+															<div class="row mb-4">
+																<!--begin::Label-->
+																<label class="col-lg-4 required fw-semibold fs-6 mt-2">Mobile Phone</label>
+																<!--end::Label-->
+																<!--begin::Col-->
+																<div class="col-lg-8 fv-row">
+																	<input type="text" name="mobilephone" autocomplete="off" formControlName="phoneNumber" appPhoneNumberFormat class="form-control form-control-sm" placeholder="Mobile Phone"/>
+																	<div *ngIf="CM['phoneNumber'].invalid && CM['phoneNumber'].value=='' && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+																	   Please Enter Mobile Phone.
+																	</div>
+																	<div *ngIf="CM['phoneNumber'].invalid && CM['phoneNumber'].value!='' && CM['phoneNumber'].value?.length<14 && (primaryContactGroup.dirty || primaryContactGroup.touched)" class="text-danger mrg_btm">
+																	   Mobile number invalid.
+																	</div>
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Input group-->
+															<!--begin::Input group-->
+															<div class="row mb-4">
+																<!--begin::Label-->
+																<label class="col-lg-4 required fw-semibold fs-6 mt-2">Primary Email</label>
+																<!--end::Label-->
+																<!--begin::Col-->
+																<div class="col-lg-8 fv-row">
+																	<input type="email" name="Mail" class="form-control form-control-sm" placeholder="Enter Email" formControlName="emailAddress" autocomplete="off"/>
+																	<div *ngIf="CM['emailAddress'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && CM['emailAddress'].value =='' && validateErrorFlag" class="text-danger mrg_btm">
+																		Please Enter E-mail.
+																	</div>
+																	<div *ngIf="CM['emailAddress'].errors?.['pattern']" class=" with-errors text-danger">
+																		Invalid E-mail
+																	</div>
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Input group--> 
+														</div>
+														<!--end::Card body-->
+													</div>
+													<!--end::Content-->
+												</div>
+											</div>
+											<div class="col-lg-1 justify-content-center hidden-mobile d-flex" style="display:display;">
+												<span data-kt-element="bullet" class="bullet bullet-vertical mt-15 mb-5 d-flex justify-content-center min-h-500px mh-100 bg-secondary mb-2" style="width: 2px !important;"></span>
+											</div>
+											<div class="col-lg-6">
+												<div class="card mb-5 mb-xl-6">
+													<!--begin::Card header-->
+													<div class="card-header mb-2 p-0 border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details" style="min-height: 20px !important;">
+														<!--begin::Card title-->
+														<div class="card-title mb-2">
+															<h4 class="fw-semibold m-2 fs-5 text-uppercase">CHILD(S) SCHOOL GRADE INFORMATION :</h4>
+														</div>
+														<!--end::Card title-->
+													</div>
+													<!--begin::Card header-->
+													<!--begin::Content-->
+													<div id="kt_account_settings_profile_details" class="collapse show">
+														<!--begin::Form-->
+														<!--begin::Card body-->
+														<div *ngFor="let childGroup of primaryContactGroup?.get('children')?.controls; let i = index" class="card-body border-top border-gray-300 p-3">
+															<div   formArrayName="children"  class="mb-10" >
+																<label for="exampleFormControlInput1" class="required form-label fw-bold fs-4">Child {{i+1}} : {{childGroup.get('firstName').value}} {{childGroup.get('lastName').value}}</label>
+																<!--begin::Row-->
+																<div  [formGroup]="childGroup" class="row">
+																	<!--begin::Col-->
+																	<div class="col-lg-6 fv-row mb-3">
+																		<label for="exampleFormControlInput1" class="required form-label">Current School Grade <br>
+																			({{profiles?.yearBasedFlag}})
+																		</label>
+																		<select formControlName="schoolGradeCode" (change)="onSchoolGradeChange(childGroup,$event)" aria-label="Select a grade" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-sm fw-semibold">
+																			<option value="">Select Option</option>
+																			<option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}
+																			</option>
+																		</select>
+																		<div  class="help-block with-errors text-danger" *ngIf="errorMsgList[i]">Please select school grade.</div>
+																	</div>
+																	<!--end::Col-->
+																	<!--begin::Col-->
+																	<div class="col-lg-6 fv-row" *ngIf="childGroup.get('risingSchoolGradeCode').value !='' && childGroup.get('risingSchoolGradeCode').value !=null">
+																		<label for="exampleFormControlInput1" class="required form-label text-nowrap">Rising School Grade <br>
+																			({{raisingSchGradeLabel}})
+																		</label>
+																		<select name="select" class="form-control" formControlName="risingSchoolGradeCode" style="display: none;">
+																			<option value="">Select Option</option>
+																			<option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}
+																			</option>
+																		</select>
+																		<input type="text" readonly autocomplete="off" formControlName="risingSchoolGradeDescription" name="grade" class="form-control form-control-sm" placeholder=""/>
+																	</div>
+																	<!--end::Col-->
+																</div>
+																<!--end::Row-->
+															</div>
+														</div>
+														<!--end::Card body-->
+														<!--begin::Actions-->
+														<div class="card-footer d-flex justify-content-center p-4"> 
+															<button type="button"  class="btn btn-primary btn-sm" (click)="redirectFamilyView();" id="kt_account_profile_details_submit">Family Profle<br/> (To Edit additional details) </button>
+														</div>
+														<!--end::Actions-->
+														<!--end::Form-->
+													</div>
+													<!--end::Content-->
+												</div>
+											</div>
+										</div>
+										<div class="d-flex justify-content-center flex-grow-1">
+											<!--begin::Content-->
+											<div class="fw-semibold">
+												<h4 style="margin-bottom: 0.5rem;font-size: 1.05rem;font-weight: 500;color: var(--bs-gray-800);line-height: 18px;text-align:justify">Chinmaya Mission uses above details to communicate important updates and to mail Tax deductible donation receipt(s). </h4>
+												<h4 class="d-flex flex-column-fluid flex-center" style="margin-bottom: 0.5rem;font-size: 1.05rem;font-weight: 500;color: var(--bs-gray-800);line-height: 18px;text-align:justify;">I certify my contact and grade information is up to date.</h4>
+											</div>
+											<!--end::Content-->
+										</div> 
+									</div>
+								</div>
+								<!--begin::Actions-->
+								<div class="card-footer d-flex flex-wrap justify-content-center p-4"> 
+									<div class="form-check fv-row fv-plugins-icon-container">
+										<button [disabled]="CM['zipCode'].invalid" type="submit" (click)="submitCertify();" class="btn btn-primary btn-sm" id="kt_account_profile_details_submit">I Certify My Contact Details</button>
+									</div>
+								</div>
+								<!--end::Actions-->
+							</form>
+							<!--end::Form-->
+						</div>
+
+						<div class="card card2 mt-4" style="border:1px solid #ddd;">
+							<div class="card-body p-4">
+								<ul class="nav nav-pills nav-pills-custom mb-3 justify-content-center" style="max-width:260px;margin: auto;margin-bottom: auto;background: #efefef;border-radius: 30px;">
+									<!--begin::Item-->
+									<li class="nav-item me-0">
+										<!--begin::Link-->
+										<a class="nav-link btn btn-outline btn-flex flex-column overflow-hidden p-3 fw-semibold" [ngClass]="(tabOne)?'active':''" id="kt_stats_widget_16_tab_link_1" data-bs-toggle="pill"  style="border-radius:30px;min-width: 130px;">
+											Contact Info
+										</a>
+										<!--end::Link-->
+									</li>
+									<!--end::Item-->
+									<!--begin::Item-->
+									<li class="nav-item me-0">
+										<!--begin::Link--> 
+										<a class="nav-link btn btn-outline btn-flex flex-column overflow-hidden fw-semibold p-3" [ngClass]="(tabTwo)?'active':''" id="kt_stats_widget_16_tab_link_2" data-bs-toggle="pill" style="border-radius:30px;min-width: 130px;">
+											Children Details
+										</a>
+										<!--end::Link-->
+									</li>
+									<!--end::Item-->
+								</ul>
+								<form [formGroup]="primaryContactGroup" id="kt_account_profile_details_form" class="form" *ngIf="primaryContactGroup">
+									<!--begin::Tab Content-->
+									<div class="tab-content">
+										<!--begin::Tap pane-->
+										<div class="tab-pane fade show active mt-8" id="kt_stats_widget_16_tab_1" *ngIf="tabOne">
+											<span class="fw-bold fs-3">Contact Information</span>
+											<div class="p-3 mt-4" style="border:1px solid #ddd;border-radius:5px;">
+												<!--begin::Input group-->
+												<div class="row mb-1 mt-0">
+													<!--begin::Label-->
+													<div class="col-lg-12">
+														<label class="form-label required fw-semibold fs-6">Address 1 </label>
+														<input type="text" name="Address1" formControlName="address" autocomplete="off" class="form-control form-control-sm" placeholder="Enter Address"/>
+														<div *ngIf="CM['address'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+															Please Enter Address.
+														</div>
+													</div>
+													<!--end::Label-->
+												</div>
+												<!--end::Input group-->
+										
+												<!--begin::Input group-->
+												<div class="row mb-1 mt-4">
+													<div class="col-lg-12">
+														<label class="form-label fw-semibold fs-6">Address 2</label>
+														<div class="fv-row">
+															<input type="text" formControlName="address2" autocomplete="off" name="Address2" class="form-control form-control-sm" placeholder="Enter Address"/>
+														</div>
+													</div>
+												</div>
+												<!--end::Input group-->
+										
+												<!--begin::Input group-->
+												<div class="row mb-1 mt-4">
+													<div class="col-lg-12">
+														<label class="form-label fw-semibold fs-6">Address 3</label>
+														<div class="fv-row">
+															<input type="text" name="Address3" formControlName="address3" autocomplete="off" class="form-control form-control-sm" placeholder="Enter Address"/>
+														</div>
+													</div>
+												</div>
+												<!--end::Input group-->
+											
+												<!--begin::Input group-->
+												<div class="row mb-1 mt-4">
+													<label class="form-label required fw-semibold fs-6 text-nowrap">City </label>
+													<div class="fv-row">
+														<input type="text" name="City" formControlName="city" autocomplete="off" class="form-control form-control-sm" placeholder="Enter City"/>
+														<div *ngIf="CM['city'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+															Please Enter city.
+														</div>	
+													</div>								
+												</div>
+												<!--end::Input group-->
+
+												<!--begin::Input group-->
+												<div class="row mb-1 mt-4">
+													<label class="form-label fw-semibold fs-6 text-nowrap">
+														<span class="required">State </span>                             
+													</label>
+													<div class="fv-row">
+														<select formControlName="state" aria-label="Select a state" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-sm fw-semibold">
+															<option *ngFor="let state of statesList" [value]="state.code">{{state.description}}</option>
+														</select>
+														<div *ngIf="CM['state'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+															Please Select State.
+														</div>
+													</div>
+												</div>
+												<!--end::Input group-->
+
+												<!--begin::Input group-->
+												<div class="row mb-1 mt-4">
+													<label class="form-label fw-semibold fs-6">
+														<span class="required">Zip Code</span>                            
+													</label>
+													<div class="fv-row">
+														<input type="text" autocomplete="off"  [class.is-invalid]="CM['zipCode'].invalid  && (CM['zipCode'].dirty || CM['zipCode'].touched)" maxlength="5" required formControlName="zipCode" (keypress)="isNumberKey($event)" class="form-control form-control-sm" placeholder="Zip Code" />
+														<div *ngIf="CM['zipCode'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="invalid-feedback">
+															<div *ngIf="CM['zipCode'].errors?.['required']" class="with-errors text-danger">
+																Please Enter Zip Code.
+															</div>
+														</div>
+														<div *ngIf="CM['zipCode'].value?.length!='' && CM['zipCode'].value?.length<5 && zipFlagCheck" class=" with-errors text-danger">
+															Zipcode length should be 5.
+														</div>
+													</div>
+												</div>
+												<!--end::Input group-->
+
+												<!--begin::Input group-->
+												<div class="row mb-1 mt-4">
+													<label class="form-label required fw-semibold fs-6">Home Phone</label>
+													<div class="fv-row">
+														<input type="text" autocomplete="off" size="6" maxlength="14" formControlName="homePhone" appPhoneNumberFormat name="HomePhone" class="form-control form-control-sm" placeholder="Home Phone"/>
+														<div *ngIf="CM['homePhone'].invalid && CM['homePhone'].value=='' && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+															Please Enter Home Phone.
+														</div>
+														<div *ngIf="CM['homePhone'].invalid && CM['homePhone'].value!='' && CM['homePhone'].value?.length<14 && (primaryContactGroup.dirty || primaryContactGroup.touched)" class="text-danger mrg_btm">
+															Home number invalid.
+														</div>
+													</div>
+												</div>
+												<!--end::Input group-->
+
+												<!--begin::Input group-->
+												<div class="row mb-1 mt-4">
+													<label class="form-label required fw-semibold fs-6">Mobile Phone</label>
+													<div class="fv-row">
+														<input type="text" name="mobilephone" autocomplete="off" formControlName="phoneNumber" appPhoneNumberFormat class="form-control form-control-sm" placeholder="Mobile Phone"/>
+														<div *ngIf="CM['phoneNumber'].invalid && CM['phoneNumber'].value=='' && (primaryContactGroup.dirty || primaryContactGroup.touched) && validateErrorFlag" class="text-danger mrg_btm">
+															Please Enter Mobile Phone.
+														</div>
+														<div *ngIf="CM['phoneNumber'].invalid && CM['phoneNumber'].value!='' && CM['phoneNumber'].value?.length<14 && (primaryContactGroup.dirty || primaryContactGroup.touched)" class="text-danger mrg_btm">
+															Mobile number invalid.
+														</div>
+													</div>
+												</div>
+												<!--end::Input group-->
+
+												<!--begin::Input group-->
+												<div class="row mb-1 mt-4">
+													<label class="form-label required fw-semibold fs-6">Primary Email</label>
+													<div class="fv-row">
+														<input type="email" name="Mail" class="form-control form-control-sm" placeholder="Enter Email" formControlName="emailAddress" autocomplete="off"/>
+														<div *ngIf="CM['emailAddress'].invalid && (primaryContactGroup.dirty || primaryContactGroup.touched) && CM['emailAddress'].value =='' && validateErrorFlag" class="text-danger mrg_btm">
+															Please Enter E-mail.
+														</div>
+														<div *ngIf="CM['emailAddress'].errors?.['pattern']" class=" with-errors text-danger">
+															Invalid E-mail
+														</div>
+													</div>
+												</div>
+												<!--end::Input group-->
+											</div>
+											<div class="text-center mb-1 mt-5">
+												<a class="btn btn-sm btn-primary me-2" href="javascript:void(0);" [routerLink]="['/program-registration']">Back</a>
+												<a class="btn btn-sm btn-primary" href="javascript:void(0);" (click)="proceedToNext('tabTwo');">Proceed to next</a>
+											</div>
+										</div>
+
+										<!--begin::Tap pane-->
+										<div class="tab-pane fade show active mt-8" id="kt_stats_widget_16_tab_2" *ngIf="tabTwo">
+											<span class="fw-bold fs-3">Children Information</span>
+											<div class="p-3 mt-4 pb-0">
+												<!--begin::Content-->
+												<div id="kt_account_settings_profile_details" class="collapse show">
+													<!--begin::Form-->
+													<!--begin::Card body-->
+													<div *ngFor="let childGroup of primaryContactGroup?.get('children')?.controls; let i = index" class="card-body border-top border-gray-300 p-3">
+														<div   formArrayName="children"  class="mb-10" >
+															<label for="exampleFormControlInput1" class="required form-label fw-bold fs-4">Child {{i+1}} : {{childGroup.get('firstName').value}} {{childGroup.get('lastName').value}}</label>
+															<!--begin::Row-->
+															<div  [formGroup]="childGroup" class="row">
+																<!--begin::Col-->
+																<div class="col-lg-6 fv-row mb-3">
+																	<label for="exampleFormControlInput1" class="required form-label">Current School Grade <br>
+																		({{profiles?.yearBasedFlag}})
+																	</label>
+																	<select formControlName="schoolGradeCode" (change)="onSchoolGradeChange(childGroup,$event)" aria-label="Select a grade" data-control="select2" data-placeholder="Select a country..." class="form-select form-select-sm fw-semibold">
+																		<option value="">Select Option</option>
+																		<option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}</option>
+																	</select>
+																	<div  class="help-block with-errors text-danger" *ngIf="errorMsgList[i]">Please select school grade.</div>
+																</div>
+																<!--end::Col-->
+																<!--begin::Col-->
+																<div class="col-lg-6 fv-row" *ngIf="childGroup.get('risingSchoolGradeCode').value !='' && childGroup.get('risingSchoolGradeCode').value !=null">
+																	<label for="exampleFormControlInput1" class="required form-label text-nowrap">Rising School Grade <br>
+																		({{profiles?.risingYearBasedFlag}})
+																	</label>
+																	<select name="select" class="form-control" formControlName="risingSchoolGradeCode" style="display: none;">
+																		<option value="">Select Option</option>
+																		<option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}</option>
+																	</select>
+																	<br/>
+																	<label class="grade_txt_clr">{{childGroup.get('risingSchoolGradeDescription').value}}</label>
+																	<!-- <input type="text" readonly autocomplete="off" formControlName="risingSchoolGradeDescription" name="grade" class="form-control form-control-sm" placeholder=""/> -->
+																</div>
+																<!--end::Col-->
+															</div>
+															<!--end::Row-->
+														</div>
+													</div>
+													<!--end::Card body-->
+													<div class="d-flex justify-content-center flex-grow-1">
+														<!--begin::Content-->
+														<div class="fw-semibold">
+															<h4 style="margin-bottom: 0.5rem;font-size: 1.05rem;font-weight: 500;color: var(--bs-gray-800);line-height: 18px;text-align:justify">Chinmaya Mission uses above details to communicate important updates and to mail Tax deductible donation receipt(s). </h4>
+															<h4 class="d-flex flex-column-fluid flex-center" style="margin-bottom: 0.5rem;font-size: 1.05rem;font-weight: 500;color: var(--bs-gray-800);line-height: 18px;text-align:justify;">I certify my contact and grade information is up to date.</h4>
+														</div>
+														<!--end::Content-->
+													</div> 
+													<!--begin::Actions-->
+													<div class="card-footer d-flex justify-content-center p-4"> 
+														<button type="button" class="btn btn-primary btn-sm" (click)="redirectFamilyView();" id="kt_account_profile_details_submit">Family Profle<br/> (To Edit additional details) </button>
+													</div>
+													<!--end::Actions-->
+													<!--begin::Actions-->
+													<div class="card-footer d-flex flex-wrap justify-content-center p-4 pb-0"> 
+														<div class="fv-row fv-plugins-icon-container">
+															<button type="button" class="btn btn-primary btn-sm" (click)="backToPrevious('tabOne');" style="margin-right:10px;">Back</button>
+															<button [disabled]="CM['zipCode'].invalid" type="submit" (click)="submitCertify();" class="btn btn-primary btn-sm" id="kt_account_profile_details_submit">I Certify My Contact Details</button>
+														</div>
+													</div>
+													<!--end::Actions-->
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, catchError, finalize, map, of } from "rxjs";
+import { Observable, catchError, finalize, map, of,throwError } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ErrorHandlerService } from "../errors/error-handler.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -11,7 +11,8 @@ export interface Options {
   body: any,
   headers?: any,
   queryParams?: any,
-  url: any
+  url: any,
+  returnError?:any
 }
 
 @Injectable({
@@ -69,23 +70,24 @@ export class HttpService {
       //headers.set();
       // console.log(JSON.stringify(opt,null,4))
       this.httpClient.post(environment.baseURL + opt.url, opt?.body, { headers })
-        .pipe(
-          catchError((error: any) => {
+         .subscribe({
+          next: (resp: any) => {
+            if (resp["message"]) {
+              this.alertService.showSuccessAlert(resp["message"]);
+            }
+            resolve(resp);
+          },
+          error: (error: any) => {
+            if(opt?.returnError){
+               reject(error);
+              return;
+            }
             if(error?.errorMessage?.toLowerCase().indexOf("jwt")>-1){
               this.token=null;
             }
-            return this.errorHandler.handleError(error)
-          })
-        )
-        .subscribe((resp:any) => {
-          // console.log(JSON.stringify(opt,null,4))
-          // console.log(JSON.stringify(resp,null,4))
-          if(resp["message"]){
-            this.alertService.showSuccessAlert(resp["message"]);
+           this.errorHandler.handleError(error)
           }
-          resolve(resp);
-        }
-        );
+        });
     })
 
   }
