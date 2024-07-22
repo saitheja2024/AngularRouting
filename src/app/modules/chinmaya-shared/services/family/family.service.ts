@@ -113,11 +113,16 @@ export class FamilyService {
     }
 
     let personDetails: any = await this.httpService.post(options);
-
-
-
   }
 
+  async getProgramDesc(formValues: any) {
+    let options: Options = {
+      url: this.urlService.memberShip.MemberShipProgramDescription,
+      body: formValues
+    }
+    let response: any = await this.httpService.post(options);
+    return response;
+    }
 
 
 }
