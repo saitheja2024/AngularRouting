@@ -41,7 +41,7 @@ export interface SubclassSelection {
 export class SelectionComponent {
   readonly dialog = inject(MatDialog);
 
-  displayedColumnsSelection: string[] = ['checkbox','familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionDescription','classAssignment','subClassAssignment','createdDate']
+  displayedColumnsSelection: string[] = ['checkbox','familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionAssignment','classAssignment','subClassAssignment','createdDate']
   paginationConfig={
     pageSize : 10,
     pageIndex : 0,

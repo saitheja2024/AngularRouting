@@ -19,7 +19,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 })
 export class CompleteComponent {
   readonly dialog = inject(MatDialog);
-  displayedColumns: string[] = ['familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionDesription','classAssignment','subClassAssignment','dateCreated']
+  displayedColumns: string[] = ['familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionAssignment','classAssignment','subClassAssignment','dateCreated']
   dataSource = new MatTableDataSource<any>();
   totalRecCount:any;
   notfyFlag:boolean=true;
