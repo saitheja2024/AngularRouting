@@ -65,7 +65,7 @@ export class SearchFamiliesComponent {
 
 
   async onSearchSubmit() {
-    if(this.searchForm.value.familyID!='' || this.searchForm.value.lastName!='' || this.searchForm.value.homePhone!='' || this.searchForm.value.email!='' || this.searchForm.value.registrantType!='' || this.searchForm.value.chapter!=''){
+    if(this.searchForm.value.familyID!='' || this.searchForm.value.firstName!=''  || this.searchForm.value.lastName!='' || this.searchForm.value.homePhone!='' || this.searchForm.value.email!='' || this.searchForm.value.registrantType!='' || this.searchForm.value.chapter!=''){
       let searchParams: FamilySearchInterface = this.searchForm.value;
       let familyList = await this.familyService.searchFamilies(searchParams);
       this.familyList.emit(familyList);
