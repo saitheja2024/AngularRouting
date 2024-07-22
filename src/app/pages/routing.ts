@@ -83,6 +83,11 @@ const Routing: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'student-attendance',
+    loadChildren: () =>
+      import('../modules/student-attendance/student-attendance.module').then((m) => m.StudentAttendanceModule),
+  },
+  {
     path: '**',
     redirectTo: 'error/404',
   },
