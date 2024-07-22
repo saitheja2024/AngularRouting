@@ -22,7 +22,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 })
 
 export class ReviewComponent {
-  displayedColumnsSelection: string[] = ['checkbox','familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionDescription','classAssignment','subClassAssignment','createdDate']
+  displayedColumnsSelection: string[] = ['checkbox','familyId','personID','firstName','lastName','gender','schoolGradeDescription','paymentSubmittedDate','sessionAssignment','classAssignment','subClassAssignment','createdDate']
   readonly dialog = inject(MatDialog);
 
   dataSource = new MatTableDataSource<any>();
