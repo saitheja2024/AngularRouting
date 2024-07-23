@@ -23,6 +23,7 @@ export class SearchFamilyComponent {
   chapterList: any;
   personTypeList: any;
   loggedInUser:any;
+  selectedProgram: any;
   //@Output() familyList = new EventEmitter<any>();
 
 
@@ -31,21 +32,28 @@ export class SearchFamilyComponent {
     private fb: FormBuilder,
     private programService: ProgramService,
     private masterService: MasterService,
-    private authService:AuthService
+    private authService:AuthService,
+    private store : StoreService
   ) { }
 
 
 
 
   async ngOnInit() {
-    this.loggedInUser = this.authService.getLoggedInUser()
+    this.loggedInUser = this.authService.getLoggedInUser();
+    this.selectedProgram  = this.store.getValue(KEYS.program);
+    this.store.onProgramUpdate().subscribe(program=>{
+      this.selectedProgram=program;
+      this.familyList=[];
+      this.prepareSearchForm();
+    })
     this.prepareSearchForm();
    // this.onSearchSubmit();
    let param = {
     personID: this.loggedInUser.personID
   }
     this.chapterList = await this.programService.fetchChapterList(param);
-
+    
     this.personTypeList = await this.masterService.getPersonType();
   }
 
@@ -60,7 +68,7 @@ export class SearchFamilyComponent {
       email: ['', [Validators.email]],
       registrantType: [''],
       chapter: [''],
-      programCode: ['']
+      programCode: [this.selectedProgram.code]
     });
   }
 
