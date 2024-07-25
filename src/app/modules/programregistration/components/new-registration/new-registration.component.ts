@@ -92,13 +92,15 @@ export class NewRegistrationComponent {
     this.zipCodeFlag=false;
     let ziplength:any = (this.contactsForm.controls['zipCode'].value).toString().length;
     if(!this.contactsForm.invalid && ziplength==5){
-     await this.familyService.saveFamilyAndPerson(user);
+    let data:any = await this.familyService.saveFamilyAndPerson(user);
       Swal.fire({
         icon: 'success',
         title: 'New Family Created Successfully.',
         showCancelButton: false,
         confirmButtonText: 'OK',
       });
+      sessionStorage.setItem('newUserData', JSON.stringify(data));
+      this.router.navigateByUrl('/programregistration/family-reg-workflow')
       this.contactsForm.reset();
     }else{
     this.validateFlag=true;

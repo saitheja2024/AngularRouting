@@ -14,6 +14,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 export const MODULES = [
     CommonModule,
@@ -33,5 +34,6 @@ export const MODULES = [
     MatPaginatorModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonToggleModule
 ]

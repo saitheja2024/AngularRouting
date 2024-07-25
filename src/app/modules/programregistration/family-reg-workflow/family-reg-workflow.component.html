@@ -41,89 +41,162 @@
                     <div class="mt-8 col-lg-12">
                         <div class="row">
                             <div class="col-lg-7">
-                                <div class="justify-content-start">
+
+                                <fieldset class="border p-4 mrg_t_2">
+                                    <legend class="float-none fs-5 w-auto p-4 pb-0 mb-0">
+                                        <button class="btn btn-secondary"  [ngStyle]="{'background-color': colorCodeBtn, color:'#fff' }">{{signupcodeList?.description}}</button>
+                                    </legend>
+
+                                    <div *ngIf="toggleMenu">
+                                        <ng-container *ngFor="let class of signupcodeList?.signupCodesList; index as j">
+                                            <button type="button" [value]="class.signUpCode" [(ngModel)]="checkboxModel" class="btn btn-secondary">{{class.description}} </button>                                        
+                                        </ng-container>
+                                    </div>
+
+                                    <div class="tabale-responsive">
+                                        <table class="table table-row-bordered table-striped table-hover fs-6 gy-5 dataTable" 
+                                               id="kt_ecommerce_products_table">
+                                            <thead style="background:#dfdfdf;">
+                                                <th class="fw-semibold text-nowrap">Person ID</th>
+                                                <th class="fw-semibold text-nowrap">Family Member</th>
+                                                <th class="fw-semibold text-nowrap">School Grade</th>
+                                                <th class="fw-semibold text-nowrap">Select</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of familyMemberpersonsList;">
+                                                    <td><a href="javascript:void(0);">{{item.personID}}</a></td>
+                                                    <td>{{item.firstName +' '+ item.lastName}}</td>
+                                                    <td>{{(item.schoolGradeCode==null)?'':item.schoolGradeCode}}</td>
+                                                    <td><input type="checkbox" [value]="item.personID" /></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </fieldset>
+                               
+                                <form [formGroup]="programForm">
+                                <fieldset class="border p-4 mrg_t_2">
+                                    <legend class="float-none fs-5 w-auto p-4 pb-0 mb-0">
+                                       Add Family Member
+                                    </legend>
                                     
-                                    <button type="button" class="btn btn-sm me-2 mb-2" style="font-size: 13px;background-color:#984807;color:#fff;min-width:80px;">
-                                        Bala Vihar 
-                                    </button>
-                                    
-                                    <button type="button" class="btn btn-sm me-2 mb-2" style="font-size: 13px;background-color:#7030A0;color:#fff;min-width:80px;">
-                                        Shloka 
-                                    </button>
-                                    
-                                    <button type="button" class="btn btn-sm me-2 mb-2" style="font-size: 13px;background-color:#92D050;color:#fff;min-width:80px;">
-                                        Languages
-                                    </button>
-                                    
-                                    <button type="button" class="btn btn-sm me-2 mb-2" style="font-size: 13px;background-color:#0070C0;color:#fff;min-width:80px;">
-                                        Art
-                                    </button>
-                                    
-                                    <button type="button" class="btn btn-sm me-2 mb-2" style="font-size: 13px;background-color:#4BACC6;color:#fff;min-width:80px;">
-                                        Youth Leadership
-                                    </button>
-                                    
-                                    <button type="button" class="btn btn-sm me-2 mb-2" style="font-size: 13px;background-color:#C0504D;color:#fff;min-width:80px;">
-                                        Yoga
-                                    </button>
-                                    
-                                    <button type="button" class="btn btn-sm me-2 mb-2" style="font-size: 13px;background-color:#002060;color:#fff;min-width:80px;">
-                                        Performing Art
-                                    </button>
-                                  
-                                </div>
-                                <fieldset class="border p-4">
-                                    <legend class="float-none fs-5 w-auto p-4 pb-0 mb-0">Bala Vihar</legend>
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <label class="fw-semibold fs-6 mt-2 mb-2">Type of Person</label>
+                                            <label class="fw-semibold fs-6 mt-2 mb-2 required">Type of Person</label>
                                         </div>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control form-control-sm mb-2" placeholder="Type of Person">
+                                                <select formControlName="personType" name="country" id="country" aria-label="Type of Person" (change)="fieldInterChange($event);"  data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold mrg_b_5">
+                                                    <option value="">Select</option>
+                                <option *ngFor="let item of personTypeList" [value]="item.code">
+                                                        {{item.description}}</option>    
+                                </select>  
+                                <div *ngIf="PF['personType'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    Please Select Type Of Person.
+                                                        </div>                                      
+                                  </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <label class="fw-semibold fs-6 mt-2 mb-2 required">First Name</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control form-control-sm mb-2" formControlName="firstName" placeholder="First Name">
+                                            <div *ngIf="PF['firstName'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                                Please Enter First Name.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <label class="fw-semibold fs-6 mt-2 mb-2">First Name</label>
+                                            <label class="fw-semibold fs-6 mt-2 mb-2 required">School Grade {{schGradeLabel}}</label>
                                         </div>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control form-control-sm mb-2" placeholder="First Name">
+                                            <select  formControlName="schoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold" (change)="changeOfSchoolGrade($event)">
+                                                <option value="">Select School Grade</option>
+                                                <option [value]="t.code" *ngFor="let t of schoolGradesList">{{t.description}}</option>
+                                            </select>
+                                            <div *ngIf="PF['schoolGrade'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                                Please Select School Grade.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="personTypeVal=='CHILD' && PF['schoolGrade'].value=='18'">
+                                        <div class="col-lg-4">
+                                            <label class="col-form-label fw-semibold required fs-6">Date Of Birth</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <input type="date" formControlName="dateOfBirth" format="MM/DD/YYYY"  autocomplete="off" name="dateofbirth" class="form-control form-control-md p-2" placeholder="Date Of Birth"/>
+                                            <div *ngIf="PF['dateOfBirth'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                                Please Select Date Of Birth.
+                                            </div> 	
+                                    </div>
+                                    </div>
+                                    <div class="row" *ngIf="personTypeVal=='CHILD' && PF['schoolGrade'].value=='19'">
+                                        <div class="col-lg-4">
+                                            <label class="fw-semibold fs-6 mt-2 mb-2 required">Raising School Grade {{raisingSchGradeLabel}}</label>
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <select formControlName="risingSchoolGrade" aria-label="Select a School Grade" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                                <option value="">Select Raising School Grade</option>
+                                                <option [value]="t.code" *ngFor="let t of raisingGradeData">{{t.description}}</option>
+                                            </select>
+                                            <!-- <input *ngIf="CAF['schoolGrade'].value!='19'" type="text" value="" class="form-control form-control-md p-2" formControlName="risingSchoolGradeDescription" readonly /> -->
+                            <div *ngIf="PF['risingSchoolGrade'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                                Please Select Raising School Grade.
+                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <label class="fw-semibold fs-6 mt-2 mb-2">School Grade As of Sept, 2024</label>
+                                            <label class="fw-semibold fs-6 mt-2 mb-2 required">Gender</label>
                                         </div>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control form-control-sm mb-2" placeholder="School Grade">
+                                            <select class="form-select form-select-sm cursor-pointer" formControlName="gender">
+                                                <option value="">Select</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                            <div *ngIf="PF['gender'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                                Please Select Gender.
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <label class="fw-semibold fs-6 mt-2 mb-2">Gender</label>
+                                            <label class="fw-semibold fs-6 mt-2 mb-2 required">Relationship with Primary</label>
                                         </div>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control form-control-sm mb-2" placeholder="Gender">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <label class="fw-semibold fs-6 mt-2 mb-2">Relationship with Primary</label>
-                                        </div>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control form-control-sm mb-2" placeholder="Relationship with Primary">
+                                            <select formControlName="relationShipPrimaryContact" name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold">
+                                                <option value="">Select Primary contact is my?</option>
+                                                <option *ngFor="let item of fetchPrimaryContactList?.selectDropdownList"
+                                                [value]="item.code">{{item.description}}</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </fieldset>
                                 <div class="d-flex justify-content-center mt-4">
-                                    <button type="button" class="btn btn-sm btn-danger backbtn1 me-2" style="font-size: 13px;">
+                                    <button type="button" (click)="resetForm();" class="btn btn-sm btn-danger backbtn1 me-2" style="font-size: 13px;">
                                         <i class="icon-cancel-circle2 fs-6"></i> Cancel 
                                     </button>
                                     
-                                    <button type="button" class="btn btn-sm btn-primary" style="font-size: 13px;">
+                                    <button type="button" (click)="enrollProgram();" class="btn btn-sm btn-primary" style="font-size: 13px;">
                                         <i class="icon-paperplane fs-6"></i> Enroll
                                     </button>
                                 </div>
+                            </form>
+
+                            <div class="justify-content-start mrg_30">
+                                 
+                                <div class="inline-block" >
+                                  <ng-container *ngFor="let category of categoryWiseList; index as i">
+                                    <a class="btn btn-secondary btn_pos_rt" href="javascript:void(0);" role="button" (click)="toggleshow(i, category, signupCodeList[i].color);" [ngStyle]="{'background-color': signupCodeList[i].color, color:'#fff' }" >
+                                        {{category.description}}
+                                    </a>
+                                  </ng-container>                                   
+                                </div>
+                                
+                            </div>
+
                             </div>
                             <div class="col-lg-5">
                                 <fieldset class="border p-4">

@@ -139,7 +139,8 @@ export class UrlService {
 
   registration = {
     saveFamilyAndPerson :"registration/saveFamilyAndPerson",
-    fetchPrimaryContactByFamilyId : "/registration/fetchPrimaryContactByFamilyId"
+    fetchPrimaryContactByFamilyId : "/registration/fetchPrimaryContactByFamilyId",
+    SaveFamilyPerson:'/registration/savePerson'
   }
 
   registrationReviewURL={

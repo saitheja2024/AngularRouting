@@ -72,12 +72,6 @@ export class SearchFamilyComponent {
     });
   }
 
-
-
-
-
-
-
   async onSearchSubmit() {
       let searchParams: FamilySearchInterface = this.searchForm.value;
       this.familyList = await this.familyService.searchFamilies(searchParams);

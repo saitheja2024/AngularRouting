@@ -1,0 +1,69 @@
+.btn_signup_code{
+    font-size: 13px;
+    color:#fff;
+    min-width:80px;
+}
+
+.inline_block{
+    display:inline-block;
+    margin-right: 5px;
+}
+
+.btn.btn-secondary.dropdown-toggle:after{
+    color:#fff;
+}
+
+
+.label_txt_wrap{
+    float: left;
+    width: 80%;
+    padding-left: 5px;
+}
+
+.checkbox_wrap{
+    float: left;
+    width: 20px;
+    margin-left: 5px;
+}
+.w_100{
+    width:100%;
+}
+
+.list_data{
+    margin-top: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+.list_data li{
+    display: inline-block;
+    width: 250px;
+    border: 1px dashed #ccc;
+    padding-top: 7px;
+    background-color: #f9f9f9;
+}
+
+.btn_pos_rt{
+    margin-right: 20px;
+}
+
+.mrg_t_2{
+    margin-top: 20px;
+}
+
+.mrg_30{
+    margin-top:30px;
+}
+
+::ng-deep .mat-button-toggle-checked {
+    color: rgb(255 255 255);
+    background-color: #57bfc9;
+}
+
+.mrg_b_5{
+    margin-bottom:5px;
+}
+
+::ng-deep .table th, .table tr td{
+    padding-left:10px !important;
+} 

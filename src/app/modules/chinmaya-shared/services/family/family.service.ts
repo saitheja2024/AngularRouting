@@ -113,6 +113,17 @@ export class FamilyService {
     }
 
     let personDetails: any = await this.httpService.post(options);
+   return personDetails;  
+  }
+
+  async saveFamilyPerson(params:any){
+    let options: Options = {
+      url: this.urlService.registration.SaveFamilyPerson,
+      body: params
+    }
+
+    let personDetails: any = await this.httpService.post(options);
+   return personDetails;  
   }
 
   async getProgramDesc(formValues: any) {
