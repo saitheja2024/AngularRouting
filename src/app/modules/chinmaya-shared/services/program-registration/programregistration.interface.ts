@@ -3,5 +3,6 @@ export interface PersonList {
     programCode: string;
     chapterCode: string
     paymentFlag:boolean;
-    personTypeCheckRequiredFlag:boolean
+    personTypeCheckRequiredFlag:boolean,
+    persontype?:string
 }  

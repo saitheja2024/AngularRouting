@@ -12,7 +12,7 @@ import { PersonList } from '../../chinmaya-shared/services/program-registration/
 })
 export class FamilyRegWorkflowComponent {
   programForm:FormGroup;
-  signupCodeList:any=[
+  signupCodeCategoryList:any=[
     {color:"#984807"},
     {color:"#7030A0"},
     {color:"#92D050"},
@@ -22,12 +22,22 @@ export class FamilyRegWorkflowComponent {
     {color:"#002060"},
     {color:"#2bcee3"},
     {color:"#edde27"}
-
   ];
+  signupCodeClr:any=[
+    {color:'#19cddd'},
+    {color:'#1974dd'},
+    {color:'#19dd7b'},
+    {color:'#a2dd19'},
+    {color:'#c9dd19'},
+    {color:'#ddaf19'},
+    {color:'#002060'},
+    {color:'#edde27'}
+  ]
   signupCode:any={
     name:'Bala Vihar',
     code:''
   };
+
   selectedProgram:any;
   selectedChapterCode:any;
   categoryWiseList:any;
@@ -235,7 +245,8 @@ async familyPersonList(){
       programCode: this.selectedProgram.code,
       chapterCode: this.selectedChapterCode,
       paymentFlag: false,
-      personTypeCheckRequiredFlag: true
+      personTypeCheckRequiredFlag: true,
+      persontype:"CHILD"
     }
 
      let personData:any = await this.classRgiSrvice.getPersonList(param);
@@ -267,16 +278,28 @@ async familyPersonList(){
   this.selectedUserData = JSON.parse(sessionStorage.getItem('newUserData') || '');
   let userData:any={
    familyId: this.selectedUserData.user.familyID,
-   personId:this.selectedUserData.user.personID,
+   personId:'15921',
    code: this.selectedUserData.user.chapter,
    programCode: this.selectedProgram.code,
-   persontype: this.selectedUserData.user.personType,
+   persontype: 'CHILD',
    code_type: '',
-   grade: (this.selectedUserData.user.grade ==undefined || this.selectedUserData.user.grade ==null)?'':this.selectedUserData.user.grade
+   grade: (this.selectedUserData.user.grade ==undefined || this.selectedUserData.user.grade ==null)?'':this.selectedUserData.user.grade,
+   memberFlag:false
   }
 
   let data:any = await this.classRgiSrvice.fetchCategoriesList(userData);
   this.categoryWiseList = data;
 }
+
+selectedSignupCode:any;
+signupCodeSelect(eve:any){
+  this.selectedSignupCode = eve;
+  console.log(this.selectedSignupCode);
+}
+
+memberselection(eve:any){
+
+}
+
 
 }
