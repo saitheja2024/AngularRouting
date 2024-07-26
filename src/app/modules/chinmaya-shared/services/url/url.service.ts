@@ -155,7 +155,9 @@ export class UrlService {
   programSelection = {
     fetchDashboardProgramCodes : "programSelection/fetchDashboardProgramCodes",
     validateCertification: "programSelection/validateCertification",
-    saveFamilyCertification :"programSelection/saveFamilyCertification"
+    saveFamilyCertification :"programSelection/saveFamilyCertification",
+    saveProgramRegistration: "programSelection/saveProgramRegistration",
+    saveAnnualPledgeRegistration:"programSelection/saveAnnualPledgeRegistration"
     
   }
   

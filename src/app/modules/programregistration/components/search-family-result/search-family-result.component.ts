@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, Input, ViewChild } from '@angular/core';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -5,6 +6,7 @@ import { Router } from '@angular/router';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import { ErrorHandlerService } from 'src/app/modules/chinmaya-shared/services/errors/error-handler.service';
 import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/family.service';
+import { ProgramRegistrationService } from 'src/app/modules/chinmaya-shared/services/program-registration/program-registration.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 
 @Component({
@@ -18,15 +20,19 @@ export class SearchFamilyResultComponent {
   @Input() familyList: any;
   totalRecCount:any;
   totalRecFooter:any;
+  selection = new SelectionModel<any>(false, []);
+
+
   constructor(
     private familyService: FamilyService,
     private router: Router,
     private alertService:AlertService,
-    private store:StoreService
+    private store:StoreService,
+    private programRegistrationService:ProgramRegistrationService
    
   ) {}
 
-  displayColumns: string[] = ["familyId", "firstName", "lastName", "homePhone", "emailAddress","register"]
+  displayColumns: string[] = ["familyId", "firstName", "lastName", "homePhone", "emailAddress","select"]
   dataSource:any = new MatTableDataSource<any>(); 
   
   @ViewChild(MatSort) sort: MatSort;
@@ -73,11 +79,58 @@ sortItems(letter: string, index:any) {
 }
 
 
-onRegisterButtonClick(familyDetails:any){
+async onRegisterButtonClick(registerWithMembership:any){
+  let familyDetails =  this.selection.selected[0];
   this.familyService.setSelectedFamily(familyDetails);
   let selectedChapterCode = this.store.getValue(KEYS.chapter);
- 
-  this.router.navigateByUrl("programregistration/program-dashboard")
+  let selectedProgram  = this.store.getValue(KEYS.program);
+    
+    let params = {
+        familyId: familyDetails.familyId,
+        programCode: selectedProgram.code,
+        chapterCode: selectedChapterCode,
+        paymentFlag: false
+    }
+
+    let certificateIsValid = await this.programRegistrationService.validateCertification(params);
+    await this.saveAnnualPledgeRegistration(registerWithMembership)
+    //this.alertService.showSuccessAlert("certificate is " +certificateIsValid);
+    if(!certificateIsValid){
+      this.router.navigateByUrl("programregistration/certify-member");
+    }
+    else{
+      this.router.navigateByUrl("programregistration/family-reg-workflow");
+      
+    }
+}
+
+async saveAnnualPledgeRegistration(registerWithMembership:any){
+  let familyDetails =  this.selection.selected[0];
+  let selectedChapterCode = this.store.getValue(KEYS.chapter);
+  let selectedProgram  = this.store.getValue(KEYS.program);
+
+  let params={
+    "familyId":familyDetails.familyId,
+    "programCode":selectedProgram.code,
+    "chapterCode":selectedChapterCode,
+    "memberFlag": registerWithMembership
+
+  }
+  await this.programRegistrationService.saveAnnualPledgeRegistration(params);
+}
+
+
+isAllSelected() {
+  const numSelected = this.selection.selected.length;
+  const numRows = this.dataSource.data.length;
+  return numSelected === numRows;
+}
+
+/** Selects all rows if they are not all selected; otherwise clear selection. */
+masterToggle() {
+  this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach((row: any) => this.selection.select(row));
 }
 
 }

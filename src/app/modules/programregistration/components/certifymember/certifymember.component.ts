@@ -5,6 +5,7 @@ import { phoneNumberValidator } from 'src/app/Validators/custom-validators';
 import { formatPhoneNumber } from 'src/app/utils/util';
 import * as moment from 'moment';
 import { ProgramRegistrationService } from 'src/app/modules/chinmaya-shared/services/program-registration/program-registration.service';
+import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 
 @Component({
   selector: 'app-certifymember',
@@ -44,12 +45,15 @@ export class CertifymemberComponent {
   }
 
   constructor(private programRegistrationService: ProgramRegistrationService, 
-    public fb: FormBuilder, private router: Router) { }
+    public fb: FormBuilder, private router: Router,
+  private store:StoreService) { }
 
   async ngOnInit() {
     await this.fetchSchoolGradeList();
 
-    this.programCode = this.programRegistrationService.getSelectedProgram().programCode;
+    
+    let selectedProgram  = this.store.getValue(KEYS.program);
+    this.programCode = selectedProgram.code;
     this.code = this.currentUser.chapter;
 
     await this.getStatesList();

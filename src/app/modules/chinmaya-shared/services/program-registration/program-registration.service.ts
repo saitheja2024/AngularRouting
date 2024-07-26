@@ -11,6 +11,7 @@ import { FamilyService } from '../family/family.service';
 })
 export class ProgramRegistrationService {
   
+  
   selectedProgram: any;
   
   
@@ -107,4 +108,23 @@ export class ProgramRegistrationService {
     let response: any = await this.httpService.post(options);
     return response;
   }
+
+  async saveProgramRegistration(params: any) {
+    var options:Options = {
+      url: this.urlService.programSelection.saveProgramRegistration,
+      body: params
+    }
+    let response: any = await this.httpService.post(options);
+    return response;
+  }
+
+  async saveAnnualPledgeRegistration(params: any) {
+    var options:Options = {
+      url: this.urlService.programSelection.saveAnnualPledgeRegistration,
+      body: params
+    }
+    let response: any = await this.httpService.post(options);
+    return response;
+  }
+  
 }

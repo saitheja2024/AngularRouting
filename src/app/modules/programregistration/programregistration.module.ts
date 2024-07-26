@@ -81,7 +81,7 @@ const routes: Routes = [
       //   path: 'paymentcomplete',
       //   component: PaymentcompleteComponent,
       // },
-      { path: '', redirectTo: 'registration', pathMatch: 'full' },
+      { path: '', redirectTo: 'family-reg-workflow', pathMatch: 'full' },
     ]
   },
 ];
