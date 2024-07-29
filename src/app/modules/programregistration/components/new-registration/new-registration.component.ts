@@ -79,7 +79,7 @@ export class NewRegistrationComponent {
   }
 
 
-  async onRegisterButtonClick(){
+  async onRegisterButtonClick(flag:any){
     let formValues = this.contactsForm.value;
     formValues.username=formValues.emailAddress;
     let user = {
@@ -100,7 +100,7 @@ export class NewRegistrationComponent {
         confirmButtonText: 'OK',
       });
       sessionStorage.setItem('newUserData', JSON.stringify(data));
-      this.router.navigateByUrl('/programregistration/family-reg-workflow')
+      this.router.navigateByUrl('/programregistration/family-reg-workflow/'+flag);
       this.contactsForm.reset();
     }else{
     this.validateFlag=true;

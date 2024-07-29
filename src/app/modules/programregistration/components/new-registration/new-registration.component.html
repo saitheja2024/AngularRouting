@@ -113,10 +113,14 @@
     </fieldset>
 
     <div class="d-flex justify-content-center mt-4">
-        <a  class="btn btn-sm btn-primary" style="font-size: 13px;" (click)="onRegisterButtonClick()">
-            <i class="icon-pencil7 fs-6"></i> Register
+        <a  class="btn btn-sm btn-primary" style="font-size: 13px; margin-right:5px;" (click)="onRegisterButtonClick(true)">
+            <i class="icon-pencil7 fs-6"></i> Register with Member
+        </a>
+
+        <a  class="btn btn-sm btn-primary" style="font-size: 13px;" (click)="onRegisterButtonClick(false)">
+            <i class="icon-pencil7 fs-6"></i> Register without Member
         </a>
     </div>
-
+    <a href="javascript:void(0);" routerLink="/programregistration/family-reg-workflow/false">RegWorkflow</a>
 </form>
 </div>

@@ -5,6 +5,8 @@ import { ClassRegistrationService } from '../../chinmaya-shared/services/program
 import { FamilyService } from '../../chinmaya-shared/services/family/family.service';
 import { MasterService } from '../../chinmaya-shared/services/master/master.service';
 import { PersonList } from '../../chinmaya-shared/services/program-registration/programregistration.interface';
+import { ActivatedRoute } from '@angular/router';
+import { AlertService } from '../../chinmaya-shared/services/alert/alert.service';
 @Component({
   selector: 'app-family-reg-workflow',
   templateUrl: './family-reg-workflow.component.html',
@@ -42,14 +44,23 @@ export class FamilyRegWorkflowComponent {
   selectedChapterCode:any;
   categoryWiseList:any;
   primaryUserData:any;
-  familyMemberpersonsList:any;
+  familyMemberpersonsList:any=[];
   validateFlag:boolean=false;
+  currentUserData:any;
+  personProgramRegData: any;
+  pendingPaymentData: any=[];
+  formGroup!: FormGroup;
+  formDataCheck:any;
+  Object = Object;
+  sessionformGroup:FormGroup;
+  memberFlag:boolean=false;
   get PF(): { [key: string]: AbstractControl } {
     return this.programForm.controls;
   }
 
  constructor(private fb:FormBuilder, private store:StoreService, 
-  private classRgiSrvice:ClassRegistrationService, private familyService:FamilyService, private MasterService:MasterService){
+  private classRgiSrvice:ClassRegistrationService, private familyService:FamilyService, 
+  private MasterService:MasterService, private route: ActivatedRoute, private alertService:AlertService,){
     
     this.programForm = this.fb.group({
       //signupCode:new FormControl('',[Validators.required]),
@@ -93,16 +104,22 @@ export class FamilyRegWorkflowComponent {
  }
 
  async ngOnInit(){
+  this.route.params.subscribe(async params => {
+    this.memberFlag = params['memberFlag']=="true"?true:false;
+  });
   this.primaryUserData = JSON.parse(sessionStorage.getItem('newUserData') || '');
   this.selectedProgram = this.store.getValue(KEYS.program);
   this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+  this.currentUserData = this.classRgiSrvice.getLoggedInUser();
+
   this.setDefaultValue();
   await  this.fetchRelationshipPrimaryContactList();
   await this.fetchSchoolGradeList();
   await this.fetchpersonTypeList();
-  this.getCategoriesList();
+  this.getCategoriesList( this.primaryUserData.user);
   this.familyPersonList();
   await this.fetchSchooldGradeLabel();
+  // this.memberselection(this.primaryUserData.user);
  }
 
  setDefaultValue(){
@@ -198,6 +215,7 @@ async raisingSchooldGradeLabel(){
     this.raisingSchGradeLabel= data;
 }
 
+Regdata:any=[];
  async enrollProgram(){
   this.validateFlag=true;
    let user = this.programForm.value;
@@ -209,6 +227,8 @@ async raisingSchooldGradeLabel(){
 
    if(this.validationFlag()){
     let data:any = await this.familyService.saveFamilyPerson(param);
+    this.Regdata = data;
+    this.getCategoriesList(data)
      this.familyPersonList();
    }
  }
@@ -239,6 +259,10 @@ async raisingSchooldGradeLabel(){
   this.personTypeList = await this.MasterService.getPersonType();
 }
 
+childrenList:any;
+SelectedMemData:any;
+selectedUserData:any;
+selectedMember:any;
 async familyPersonList(){   
     let param:PersonList = {
       familyId:this.primaryUserData.user.familyID,
@@ -246,12 +270,53 @@ async familyPersonList(){
       chapterCode: this.selectedChapterCode,
       paymentFlag: false,
       personTypeCheckRequiredFlag: true,
-      persontype:"CHILD"
+      persontype:(this.Regdata.length==0)?this.primaryUserData.user.personType:this.selectedMember.personType
     }
 
      let personData:any = await this.classRgiSrvice.getPersonList(param);
      this.familyMemberpersonsList = personData.personProgramList;
 
+     this.childrenList = personData.personProgramList.filter((personObj: any) => {
+      return personObj.personType !== 'ADULT' && personObj.personType !== 'YOUTH';
+    })
+
+    if (this.childrenList.length) {
+      // this.patch();
+      let youngerChild = this.getSortedData(this.childrenList, 'dateOfBirth');
+      
+      this.SelectedMemData = youngerChild[youngerChild.length - 1];
+      this.selectedUserData = youngerChild[youngerChild.length - 1];
+      localStorage.setItem('selectMember', JSON.stringify(this.selectedUserData));
+      this.selectedMember= (this.selectedUserData.firstName+this.selectedUserData.lastName);
+    } else {
+      
+      let sortedPersonId = this.getSortedData(personData.personProgramList, 'personID');
+      // this.SelectedMemData = sortedPersonId[sortedPersonId.length - 1];
+      if(personData.personProgramList.length==1){
+        this.selectedMember= (personData.personProgramList[0].firstName+personData.personProgramList[0].lastName);
+        localStorage.setItem('selectMember', JSON.stringify(personData.personProgramList[0]));
+
+      }else{
+        let memberRadio = JSON.parse(localStorage.getItem('selectMember') || '');
+        this.selectedMember= (memberRadio.firstName+memberRadio.lastName);
+      }
+
+}
+
+}
+
+getSortedData(data: any, compareKey: string) {
+  if (data.length === 1) {
+    return data;
+  }
+  return data.sort((a: any, b: any) => {
+    if (a[compareKey] && b[compareKey] && compareKey === 'dateOfBirth') {
+      const d1 = new Date(a[compareKey]);
+      const d2 = new Date(b[compareKey]);
+      return d1.getTime() - d2.getTime();
+    }
+    return a[compareKey] - b[compareKey];
+  })
 }
 
  resetForm(){
@@ -272,34 +337,365 @@ async familyPersonList(){
   //this.checkboxModel[evn]=true;
  }
 
- selectedUserData:any;
- async getCategoriesList() {
+ async getCategoriesList(eve:any) {
 
   this.selectedUserData = JSON.parse(sessionStorage.getItem('newUserData') || '');
   let userData:any={
-   familyId: this.selectedUserData.user.familyID,
-   personId:'15921',
-   code: this.selectedUserData.user.chapter,
+   familyId: eve.familyID,
+   personId: eve.personID,
+   code: eve.chapter,
    programCode: this.selectedProgram.code,
-   persontype: 'CHILD',
+   persontype: eve.persontype,
    code_type: '',
-   grade: (this.selectedUserData.user.grade ==undefined || this.selectedUserData.user.grade ==null)?'':this.selectedUserData.user.grade,
-   memberFlag:false
-  }
+   grade: (eve.grade ==undefined || eve.grade ==null)?'':eve.grade,
+   memberFlag:this.memberFlag
+  };
 
   let data:any = await this.classRgiSrvice.fetchCategoriesList(userData);
   this.categoryWiseList = data;
 }
 
-selectedSignupCode:any;
+selectedSignupCode:any=[];
 signupCodeSelect(eve:any){
   this.selectedSignupCode = eve;
-  console.log(this.selectedSignupCode);
 }
 
-memberselection(eve:any){
+annualPledgeData:any;
+async memberselection(eve:any){
 
+  if(this.selectedSignupCode.length>0){
+  let param={
+    "familyId":eve.familyID,
+    "programCode": this.selectedProgram.code,
+    "chapterCode": eve.chapter,
+    "memberFlag": this.memberFlag 
+  };
+
+  let data:any = await this.classRgiSrvice.fetchSaveAnnualPledgeReg(param);
+  this.annualPledgeData  = data;
+  this.getClassAmount(this.selectedSignupCode.signUpCode,this.selectedSignupCode,this.signupcodeList?.description);
+}else{
+  this.alertService.showErrorALert('Please select the SignupCode.');
+}
 }
 
+pledgeMsg:boolean=false;
+pledgeMsg_1:boolean=false;
+pledgeAmt:any=0;
+prerqusitevalidMsg:string='';
+async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any) {
+ this.pledgeMsg=false;
+ this.pledgeMsg_1=false;
+ this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
+ const body = {
+   signupCode: signupCode,
+   code: this.selectedUserData.chapterCode,
+   duesStructureCode: "",
+   programCode: this.selectedProgram.code,
+   familyId: this.selectedUserData.familyId,
+   personId: this.selectedUserData.personID,
+   memberFlag: this.memberFlag 
+ }
+ 
+ let data:any = await this.classRgiSrvice.getClassAmount(body);
+     this.pledgeAmt = data;
+     this.prerqusitevalidMsg='';
+     if(data.prerequsite==true && data.validation==true){
+      this.onSubmit(ngmodelName, categoryName, data);
+       return;
+     }else if(data.prerequsite==false && data.validation==true){
+      this.prerqusitevalidMsg = data.prerequsiteMessage;
+      this.checkboxModel[ngmodelName.signUpCode] =false;
+     }else if(data.validation==false && data.prerequsite==true){
+       this.prerqusitevalidMsg=data.validationMessage;
+       this.checkboxModel[ngmodelName.signUpCode] =false;
+     }else if(data.validation==false && data.prerequsite==false){
+       this.prerqusitevalidMsg=data.validationMessage;
+       this.checkboxModel[ngmodelName.signUpCode] =false;
+     }
+     else{
+       this.checkboxModel[ngmodelName.signUpCode] =false;
+       this.pledgeMsg=true;
+     }
+  
+}
+
+personUserData:any;
+async onSubmit(clsName:any, categoryName:any, amtData:any) {
+    this.personUserData = this.primaryUserData.user;
+  this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
+  var body:any ={
+    user: {
+      password: this.personUserData.password,
+      familyID: this.personUserData.familyID,
+      personID: this.personUserData.personID,
+      gender: this.personUserData.gender,
+      phoneNumber: this.personUserData.phoneNumber,
+      chapter: this.selectedUserData.chapterCode,//this.personUserData.chapter,
+      personType: this.personUserData.personType,
+      dateOfBirth: this.personUserData.dateOfBirth,
+    },
+    userProgramList: [{
+    adjustedAmount: amtData.adjustedAmount,
+    displayamount: amtData.displayAmount,
+    classes: clsName.signUpCode,
+    firstName: (this.selectedUserData.firstName==null)?'': this.selectedUserData.firstName,
+    middleName: (this.selectedUserData.middleName==null)?'': this.selectedUserData.middleName,
+    lastName: (this.selectedUserData.lastName==null)?'': this.selectedUserData.lastName,
+    gender: (this.selectedUserData.gender==null)?'': this.selectedUserData.gender,
+    studentCategory: (this.selectedUserData.studentCategory==null)?'': this.selectedUserData.studentCategory,
+    grade: (this.selectedUserData.grade==null)?'': this.selectedUserData.grade,
+    dateOfBirth: (this.selectedUserData.dateOfBirth==null)?'': this.selectedUserData.dateOfBirth,
+    pledgeStructureCode: (amtData.duesStructureCode==null)?'': amtData.duesStructureCode,
+    personID: this.selectedUserData.personID,
+    familyId: this.currentUserData.familyID,
+    primaryPersonId: this.currentUserData.personID,
+    registrationId: 0,
+    registrationStatus:'PENDING',
+    }],
+    programCode:this.selectedProgram.code
+  }
+
+ 
+  
+
+    let submitData = await this.classRgiSrvice.saveProgramRegistration(body);
+    console.log(submitData);
+     if(submitData){
+      this.getPersonProgramRegistration('');
+      //this.fetchFamilyFlag();
+     // this.scrollToViewSession('');   
+     }
+            
+}
+
+objectKeys:any;
+rightPanelAccordionNotPaid:any;
+pendingAmtList:any=[];
+async getPersonProgramRegistration(ind_change:any) {
+
+  const body = {
+    programCode: this.selectedProgram.code, 
+    chapterCode: this.selectedUserData.chapterCode,
+    familyId: this.selectedUserData.familyId,
+    paymentFlag: false,
+    sessionFlag: true
+  }
+  let data:any = await this.classRgiSrvice.fetchPersonProgramRegistrationList(body);
+
+      this.personProgramRegData = data;
+      this.pendingAmtList = await this.filterPaymentByStatusAmount(data.personProgramRegistrationList, "PENDING");
+      this.pendingPaymentData = await this.filterPaymentByStatus(data.personProgramRegistrationList, "PENDING");
+     // this.selectCheckBox();
+      this.callFilterData();
+      //this.fetchFamilySessionPreference();
+      this.rightPanelAccordionNotPaid = this.callPaymentPanel(this.pendingPaymentData, 'personName','stagePaid');
+      if(Object.keys(this.rightPanelAccordionNotPaid).length>0){ this.TotalValPendingData(); }
+      this.objectKeys = Object.keys(this.rightPanelAccordionNotPaid);
+      this.sessionCtrl(this.pendingPaymentData, ind_change);
+   
+}
+
+pendingTotalAmt:any=[];
+  TotalValPendingData(){
+    this.pendingTotalAmt =[];
+    let total=0;
+    //let sortData = this.reviewTabData?.userProgramList.sort((a:any, b:any) => a.personID - b.personID);
+    this.pendingAmtList.filter( (item:any, index:any, self:any) =>{
+      if(item.paymentSubmittedDate==null && ((item.registrationStatus=='PENDING' && (item.paymentStatus=='BALANCE_DUE' || item.paymentStatus=='NO_DUES'))
+      ||(item.registrationStatus=='ACCEPTED' && item.paymentStatus=='BALANCE_DUE')
+      || (item.registrationStatus=='PENDING' && item.paymentStatus=='NO_DUES'))){
+        
+        if(self.indexOf(item) ===index){
+        total = ((this.pendingTotalAmt.length==0)?0: this.pendingTotalAmt[0])+item.displayamount;
+        if(this.pendingTotalAmt.length==0){this.pendingTotalAmt.push(total);}else{ this.pendingTotalAmt[0] = total; }
+       }
+
+      }
+       
+    });
+
+  }
+
+async filterPaymentByStatusAmount(data: Array<any>, status: string) {
+  data.forEach((item: any, index:any) => {
+      let person = this.getPersonByID(item.personID);
+      if(person!=null){
+      item['fullName'] = person.firstName + person.lastName;
+      item['personType'] = person.personType;
+      }
+    
+  });
+  return data;
+}
+
+async filterPaymentByStatus(data: Array<any>, status: string) {
+  data.forEach((item: any, index:any) => {
+      let person = this.getPersonByID(item.personID);
+      if(person!=null){
+      item['fullName'] = person.firstName + person.lastName;
+      item['personType'] = person.personType;
+      }
+    
+  });
+
+  let uniqueArray = data.filter((obj, index, self) =>
+index === self.findIndex((t) => (
+  (t.personID === obj.personID && t.signUpCode ===  obj.signUpCode )
+))
+);
+  
+return uniqueArray;
+ 
+}
+
+getPersonByID(personID: number) {
+  for (let i = 0; i < this.familyMemberpersonsList.length; i++) {
+    if (this.familyMemberpersonsList[i].personID === personID) {
+      return this.familyMemberpersonsList[i];
+    }
+  }
+  return null;
+}
+
+rightPanel:any;
+  rightPanelAccordionSubmit:any;
+  rightPanelAccordionAccept:any;
+  rightPanelAccordionWaitList:any;
+  callFilterData(){
+    this.rightPanel={
+      SUBMIT:[],
+      ACCEPTED:[],
+      WAITLISTED:[]
+    }
+
+    for(var i=0; i<this.personProgramRegData.personProgramRegistrationList.length; i++){
+      if(this.personProgramRegData.personProgramRegistrationList[i].registrationStatus=='ACCEPTED' && this.personProgramRegData.personProgramRegistrationList[i].paymentSubmittedDate!=null){
+        this.rightPanel['ACCEPTED'].push(this.personProgramRegData.personProgramRegistrationList[i]);
+        this.rightPanelAccordionAccept = this.callPaymentPanel(this.rightPanel['ACCEPTED'], 'personName','');
+        this.TotalValPendingReviewData('ACCEPTED');
+      }else if(this.personProgramRegData.personProgramRegistrationList[i].registrationStatus=='WAITLISTED'){
+        this.rightPanel['WAITLISTED'].push(this.personProgramRegData.personProgramRegistrationList[i]);
+        this.rightPanelAccordionWaitList = this.callPaymentPanel(this.rightPanel['WAITLISTED'], 'personName','');
+        this.TotalValPendingReviewData('WAITLISTED');
+      }else if( this.personProgramRegData.personProgramRegistrationList[i].paymentSubmittedDate!=null && this.personProgramRegData.personProgramRegistrationList[i].classification!='I'
+        &&  (this.personProgramRegData.personProgramRegistrationList[i].registrationStatus=='PENDING' && 
+      (this.personProgramRegData.personProgramRegistrationList[i].paymentStatus=='PARTIAL_PAYMENT' || this.personProgramRegData.personProgramRegistrationList[i].paymentStatus=='PRE-AUTH_SUCCESS' || this.personProgramRegData.personProgramRegistrationList[i].paymentStatus=='NO_DUES')) ){
+        this.rightPanel['SUBMIT'].push(this.personProgramRegData.personProgramRegistrationList[i]);
+        this.rightPanelAccordionSubmit = this.callPaymentPanel(this.rightPanel['SUBMIT'], 'personName','');
+        this.TotalValPendingReviewData('SUBMIT');
+      }
+    }
+
+    
+
+  }
+
+  pendingReviewTotalAmt:any;
+  TotalValPendingReviewData(type:any){
+    this.pendingReviewTotalAmt ={
+      SUBMIT:[],
+      ACCEPTED:[],
+      WAITLISTED:[]
+    };
+    let total=0;
+    //let sortData = this.reviewTabData?.userProgramList.sort((a:any, b:any) => a.personID - b.personID);
+    this.rightPanel[type].filter( (item:any, index:any, self:any) =>{
+            
+        if(self.indexOf(item) ===index){
+        total = ((this.pendingReviewTotalAmt[type].length==0)?0: this.pendingReviewTotalAmt[type][0])+item.amount;
+        if(this.pendingReviewTotalAmt[type].length==0){this.pendingReviewTotalAmt[type].push(total);}else{ this.pendingReviewTotalAmt[type][0] = total; }
+       }       
+    });
+
+  }
+
+  callPaymentPanel(objectArray:any, property:any, type:any){
+
+    if(type=='stagePaid'){
+     return objectArray.reduce(function (acc:any, obj:any) {
+       if(obj.paymentSubmittedDate==null && ((obj.registrationStatus=='PENDING' && (obj.paymentStatus=='BALANCE_DUE' || obj.paymentStatus=='NO_DUES'))
+     ||(obj.registrationStatus=='ACCEPTED' && obj.paymentStatus=='BALANCE_DUE')
+     || (obj.registrationStatus=='PENDING' && obj.paymentStatus=='NO_DUES'))){
+       var key = obj[property];
+       if (!acc[key]) {
+         acc[key] = [];
+       }
+       acc[key].push(obj);
+       return acc;
+     }else{
+       let arrya:any=[];
+       return arrya;
+     }
+     }, {});
+   }else{
+     return objectArray.reduce(function (acc:any, obj:any) {
+       var key = obj[property];
+       if (!acc[key]) {
+         acc[key] = [];
+       }
+       acc[key].push(obj);
+       return acc;
+     }, {});
+   }
+ }
+
+ familySessionData:any={};
+ //headerofSelectedChoice:any={};
+   sessionCtrl(fetChoiceData:any, index_change:any){
+     this.familySessionData={};
+     const group = this.fb.group({});
+     for(var i=0; i< fetChoiceData.length; i++){
+       if(fetChoiceData[i].sessionPreferences.length>0 && fetChoiceData[i].familySessionPreference.length==0 && (fetChoiceData[i].paymentSubmittedDate==null || fetChoiceData[i].paymentSubmittedDate=='' )){
+ 
+        
+         fetChoiceData[i].sessionPreferences.forEach((item: any, index:any) =>{
+           const ctrl = this.fb.control(' ');
+           this.formGroup.addControl(fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index, ctrl);
+           if(index!=0){
+             this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index].disable();
+           }
+           this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index].setValue('');
+         });
+       }else if(fetChoiceData[i].familySessionPreference.length>0 && (fetChoiceData[i].paymentSubmittedDate==null || fetChoiceData[i].paymentSubmittedDate=='' )){
+         let famData =fetChoiceData[i].familySessionPreference;
+         let sessionData = fetChoiceData[i].sessionPreferences;
+       //  if( this.headerofSelectedChoice[fetChoiceData[i].personName]==undefined){
+       //    Object.assign(this.headerofSelectedChoice , {[fetChoiceData[i].personName]:[]})
+       //    this.headerofSelectedChoice[fetChoiceData[i].personName].push({signup:fetChoiceData[i].signUpCodeDescription, personName: fetChoiceData[i].personName });
+       // }
+         const mergedArray = famData.concat(sessionData.filter((obj2:any) =>
+            famData.findIndex((obj1:any) => obj1.choices === obj2.choices) === -1
+           ));
+         mergedArray.forEach((item: any, index:any) =>{
+           const ctrl = this.fb.control(
+             (index_change=='index_Change' && index==0)? item.choiceCode : (index_change=='index_Change' && index !=0)?'':(item.choiceCode !=undefined)? item.choiceCode : ''
+           );
+           this.formGroup.addControl(fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index, ctrl);
+           if(index!=0 && this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+(index-1)].value==''){
+             this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index].disable();
+           }else if(index!=0 && this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+(index-1)].value!='' ){
+             this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index].enable();
+           }
+         });
+           this.familySessionData[fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode]= [];
+        this.familySessionData[fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode] = mergedArray;
+             }
+       
+     }
+     this.selectedChoice();
+ 
+     this.formDataCheck = this.formGroup.value;
+   }
+
+   selectedList:any=[];
+  selectedChoice(){
+    this.selectedList=[];
+      for(var k=0; k<this.pendingPaymentData.length; k++){
+        if(this.pendingPaymentData[k].familySessionPreference.length>0){
+          this.selectedList.push({'personName': this.pendingPaymentData[k].personName,'signupCode': this.pendingPaymentData[k].signUpCodeDescription, 'Session': this.pendingPaymentData[k].familySessionPreference });
+        }
+       }  
+  }
 
 }

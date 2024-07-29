@@ -15,6 +15,7 @@
                     <fieldset class="border p-4">
                         <legend class="float-none fs-5 w-auto p-4 pb-0 mb-0">Session Selection</legend>
                         <div class="col-lg-12 mb-2">
+                            <form role="form" [formGroup]="sessionformGroup">
                             <div class="row">
                                 <div class="col-lg-2">
                                     <label class="fw-semibold fs-6 mt-2 mb-2">Session Preference 1:</label>
@@ -35,6 +36,7 @@
                                     <input type="text" class="form-control form-control-sm" placeholder="Session Preference 3">
                                 </div>
                             </div>
+                        </form>
                         </div>
                     </fieldset>
 
@@ -42,9 +44,9 @@
                         <div class="row">
                             <div class="col-lg-7">
 
-                                <fieldset class="border p-4 mrg_t_2">
+                                <fieldset class="border p-4 mrg_t_2" *ngIf="familyMemberpersonsList.length>0">
                                     <legend class="float-none fs-5 w-auto p-4 pb-0 mb-0">
-                                        <button *ngIf="toggleMenu" class="btn btn-secondary"  [ngStyle]="{'background-color': colorCodeBtn, color:'#fff' }">{{signupcodeList?.description}}</button>
+                                        <button *ngIf="toggleMenu" class="btn btn-secondary"  [ngStyle]="{'background-color': colorCodeBtn, color:'#fff' }" style="cursor: default;">{{signupcodeList?.description}}</button>
                                     </legend>
 
                                     <div *ngIf="toggleMenu" class="pad_t_10">
@@ -67,7 +69,7 @@
                                                     <td><a href="javascript:void(0);">{{item.personID}}</a></td>
                                                     <td>{{item.firstName +' '+ item.lastName}}</td>
                                                     <td>{{(item.schoolGradeCode==null)?'':item.schoolGradeCode}}</td>
-                                                    <td><input type="checkbox" [value]="item.personID" (change)="memberselection(item)" /></td>
+                                                    <td><span *ngIf="item.personType!='ADULT'"><input type="checkbox" [value]="item.personID" (change)="memberselection(item)" /></span></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -146,7 +148,7 @@
                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row marg_bt_10">
                                         <div class="col-lg-4">
                                             <label class="fw-semibold fs-6 mt-2 mb-2 required">Gender</label>
                                         </div>
@@ -180,7 +182,7 @@
                                     </button>
                                     
                                     <button type="button" (click)="enrollProgram();" class="btn btn-sm btn-primary" style="font-size: 13px;">
-                                        <i class="icon-paperplane fs-6"></i> Enroll
+                                        <i class="icon-paperplane fs-6"></i> Add Family Member
                                     </button>
                                 </div>
                             </form>
@@ -202,7 +204,7 @@
                                 <fieldset class="border p-4">
                                     <legend class="float-none fs-5 w-auto p-4 pb-0 mb-0">Staged, Not Paid</legend>
                                     <div class="row mb-2">
-                                        <span class="text-semibold fs-6" style="text-align:right;">Sub-Total: $1000,00</span>
+                                        <span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top: 8px;"><b>Sub-Total&nbsp;:&nbsp;</b>${{(pendingTotalAmt[0]=='' || pendingTotalAmt[0]==null  || Object.keys(this.rightPanelAccordionNotPaid).length==0)?'0':pendingTotalAmt[0]}}.00</span>
                                     </div>
                                     <div class="row">
                                         <div class="tabale-responsive">
@@ -214,21 +216,22 @@
                                                     <th class="fw-semibold text-nowrap">Class Name</th>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>John Doe</td>
-                                                        <td>Annual Pledge</td>
-                                                        <td>(NA)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>John Doe</td>
-                                                        <td>Vedanta Class & Sesstion</td>
-                                                        <td>(NA)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Child 1</td>
-                                                        <td>Bala Vihar</td>
-                                                        <td>Satyam</td>
-                                                    </tr>
+                                                    <ng-container *ngFor="let pendingData of pendingPaymentData; index as i">
+                                                        <tr [ngClass]="(pendingData?.sessionPreferences.length>0)?'border_btm_rem':''"  *ngIf="pendingData.paymentSubmittedDate==null && ((pendingData.registrationStatus=='PENDING' && (pendingData.paymentStatus=='BALANCE_DUE' || pendingData.paymentStatus=='NO_DUES'))
+                                                            ||(pendingData.registrationStatus=='ACCEPTED' && pendingData.paymentStatus=='BALANCE_DUE')
+                                                            || (pendingData.registrationStatus=='PENDING' && pendingData.paymentStatus=='NO_DUES'))" >
+                                                            <td>
+                                                                <span class="text-dark1 mb-1">{{pendingData.personName}}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="text-dark1 mb-1">{{pendingData.signUpCodeDescription}}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="text-dark1 mb-1">{{pendingData.classAssignment}}&nbsp;({{ (pendingData.subClassAssignment!=null && pendingData.subClassAssignment!='')?pendingData.subClassAssignment:'NA' }})</span>
+                                                            </td>  
+                                                           
+                                                        </tr>
+                                                        </ng-container>
                                                 </tbody>
                                             </table>
                                         </div>

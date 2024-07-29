@@ -142,4 +142,14 @@ import { HttpHeaders } from '@angular/common/http';
             let response: any = await this.httpService.post(options);
             return response;
             }
+
+
+            async fetchSaveAnnualPledgeReg(param: any) {
+              var options:Options = {
+                  url: this.urlService.classRegistration.saveAnnualPledgeRegistration,
+                  body: param
+                }
+                let response: any = await await this.httpService.post(options);
+                return response;
+            }
   }

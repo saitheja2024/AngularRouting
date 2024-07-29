@@ -62,7 +62,7 @@ const routes: Routes = [
         component: PaymentComponent,
       },
       {
-        path: 'family-reg-workflow',
+        path: 'family-reg-workflow/:memberFlag',
         component: FamilyRegWorkflowComponent,
       },
       {
