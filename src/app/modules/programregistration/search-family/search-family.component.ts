@@ -25,7 +25,8 @@ export class SearchFamilyComponent {
   loggedInUser:any;
   selectedProgram: any;
   //@Output() familyList = new EventEmitter<any>();
-
+  selectedChapterCode:any;
+  selectedChapter:any;
 
   constructor( 
     private familyService: FamilyService,
@@ -37,16 +38,20 @@ export class SearchFamilyComponent {
   ) { }
 
 
-
+  
 
   async ngOnInit() {
     this.loggedInUser = this.authService.getLoggedInUser();
     this.selectedProgram  = this.store.getValue(KEYS.program);
+    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    let chapter = this.store.getValue(KEYS.chapterDesc);
+    this.selectedChapter=chapter[0].description;
+
     this.store.onProgramUpdate().subscribe(program=>{
       this.selectedProgram=program;
       this.familyList=[];
       this.prepareSearchForm();
-    })
+    });
     this.prepareSearchForm();
    // this.onSearchSubmit();
    let param = {
@@ -56,8 +61,6 @@ export class SearchFamilyComponent {
     
     this.personTypeList = await this.masterService.getPersonType();
   }
-
-
 
   prepareSearchForm() {
     this.searchForm = this.fb.group({

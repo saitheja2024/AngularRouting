@@ -54,6 +54,7 @@ export class FamilyRegWorkflowComponent {
   Object = Object;
   sessionformGroup:FormGroup;
   memberFlag:boolean=false;
+  selectedChapter:any;
   get PF(): { [key: string]: AbstractControl } {
     return this.programForm.controls;
   }
@@ -111,7 +112,11 @@ export class FamilyRegWorkflowComponent {
   this.selectedProgram = this.store.getValue(KEYS.program);
   this.selectedChapterCode = this.store.getValue(KEYS.chapter);
   this.currentUserData = this.classRgiSrvice.getLoggedInUser();
-
+  let chapter = this.store.getValue(KEYS.chapterDesc);
+  this.selectedChapter=chapter[0].description;
+  this.store.onProgramUpdate().subscribe(program=>{
+    this.selectedProgram=program;
+  });
   this.setDefaultValue();
   await  this.fetchRelationshipPrimaryContactList();
   await this.fetchSchoolGradeList();
