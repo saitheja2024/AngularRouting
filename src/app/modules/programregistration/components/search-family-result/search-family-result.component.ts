@@ -42,6 +42,7 @@ export class SearchFamilyResultComponent {
   }
 
   ngOnChanges(changes:any){
+    console.log(this.familyList)
     if(changes && changes["familyList"].currentValue){
       this.familyList=changes["familyList"].currentValue
       this.showFamilyList(this.familyList);

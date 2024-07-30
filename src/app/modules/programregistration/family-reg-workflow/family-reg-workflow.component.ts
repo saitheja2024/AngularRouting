@@ -358,6 +358,11 @@ getSortedData(data: any, compareKey: string) {
 
   let data:any = await this.classRgiSrvice.fetchCategoriesList(userData);
   this.categoryWiseList = data;
+  this.selectedSignupCode = data[0];
+  let color =this.signupCodeCategoryList[0].color;
+  this.toggleshow('',data[0],color);
+  this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
+  this.memberselection(this.selectedUserData);
 }
 
 selectedSignupCode:any=[];
@@ -367,8 +372,8 @@ signupCodeSelect(eve:any){
 
 annualPledgeData:any;
 async memberselection(eve:any){
-
-  if(this.selectedSignupCode.length>0){
+  console.log(this.selectedSignupCode);
+  if(this.selectedSignupCode.length>0 || Object.keys(this.selectedSignupCode).length>0){
   let param={
     "familyId":eve.familyID,
     "programCode": this.selectedProgram.code,

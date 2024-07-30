@@ -34,9 +34,9 @@ export class FamilyService {
 
     let families: any = await this.httpService.post(options);
 
-    if (families && families.personProgramList) {
-      this.familyList = families.personProgramList;
-      return families.personProgramList;
+    if (families && families.projectSummaryList) {
+      this.familyList = families.projectSummaryList;
+      return families.projectSummaryList;
     }
 
     return [];

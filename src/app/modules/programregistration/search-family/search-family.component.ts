@@ -76,8 +76,20 @@ export class SearchFamilyComponent {
   }
 
   async onSearchSubmit() {
+    let param:any ={
+      requestPageModel: {
+          "page": 0,
+          "size": 0,
+          "sortFieldName": "",
+          "sortOrder": ""
+                },
+      requestFamilySearch:{
+
+      }
+    }
       let searchParams: FamilySearchInterface = this.searchForm.value;
-      this.familyList = await this.familyService.searchFamilies(searchParams);
+      param.requestFamilySearch = searchParams;
+      this.familyList = await this.familyService.searchFamilies(param);
 
   }
 
