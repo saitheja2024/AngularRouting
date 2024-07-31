@@ -100,7 +100,7 @@ async onRegisterButtonClick(registerWithMembership:any){
       this.router.navigateByUrl("programregistration/certify-member");
     }
     else{
-      this.router.navigateByUrl("programregistration/family-reg-workflow");
+      this.router.navigateByUrl("programregistration/family-reg-workflow/"+registerWithMembership);
       
     }
 }

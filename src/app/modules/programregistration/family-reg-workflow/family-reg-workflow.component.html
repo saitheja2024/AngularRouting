@@ -75,11 +75,11 @@
                                                 <th class="fw-semibold text-nowrap">Select</th>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let item of familyMemberpersonsList;">
+                                                <tr *ngFor="let item of familyMemberpersonsList; index as i;">
                                                     <td><a href="javascript:void(0);">{{item.personID}}</a></td>
                                                     <td>{{item.firstName +' '+ item.lastName}}</td>
                                                     <td>{{(item.schoolGradeCode==null)?'':item.schoolGradeCode}}</td>
-                                                    <td><span *ngIf="item.personType!='ADULT'"><input type="checkbox" [value]="item.personID" (change)="memberselection(item)" /></span></td>
+                                                    <td><span *ngIf="item.personType!='ADULT'"><input type="checkbox" [value]="item.personID" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i)" /></span></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -143,7 +143,7 @@
                                             </div> 	
                                     </div>
                                     </div>
-                                    <div class="row" *ngIf="personTypeVal=='CHILD' && PF['schoolGrade'].value=='19'">
+                                    <div class="row mrg_t_10" *ngIf="personTypeVal=='CHILD' && PF['schoolGrade'].value=='19'">
                                         <div class="col-lg-4">
                                             <label class="fw-semibold fs-6 mt-2 mb-2 required">Raising School Grade {{raisingSchGradeLabel}}</label>
                                         </div>
@@ -158,7 +158,7 @@
                             </div>
                                         </div>
                                     </div>
-                                    <div class="row marg_bt_10">
+                                    <div class="row mrg_t_10">
                                         <div class="col-lg-4">
                                             <label class="fw-semibold fs-6 mt-2 mb-2 required">Gender</label>
                                         </div>
@@ -187,10 +187,10 @@
                                     </div>
                                 </fieldset>
                                 <div class="d-flex justify-content-center mt-4">
-                                    <button type="button" (click)="resetForm();" class="btn btn-sm btn-danger backbtn1 me-2" style="font-size: 13px;">
+                                    <!-- <button type="button" (click)="resetForm();" class="btn btn-sm btn-danger backbtn1 me-2" style="font-size: 13px;">
                                         <i class="icon-cancel-circle2 fs-6"></i> Cancel 
                                     </button>
-                                    
+                                     -->
                                     <button type="button" (click)="enrollProgram();" class="btn btn-sm btn-primary" style="font-size: 13px;">
                                         <i class="icon-paperplane fs-6"></i> Add Family Member
                                     </button>
@@ -218,6 +218,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="tabale-responsive">
+                                            <p style="color:red; font-size:13px;;">{{prerqusitevalidMsg}}</p>
                                             <table class="table table-row-bordered table-striped table-hover fs-6 gy-5 dataTable" 
                                                    id="kt_ecommerce_products_table">
                                                 <thead style="background:#dfdfdf;">
@@ -229,7 +230,7 @@
                                                     <ng-container *ngFor="let pendingData of pendingPaymentData; index as i">
                                                         <tr [ngClass]="(pendingData?.sessionPreferences.length>0)?'border_btm_rem':''"  *ngIf="pendingData.paymentSubmittedDate==null && ((pendingData.registrationStatus=='PENDING' && (pendingData.paymentStatus=='BALANCE_DUE' || pendingData.paymentStatus=='NO_DUES'))
                                                             ||(pendingData.registrationStatus=='ACCEPTED' && pendingData.paymentStatus=='BALANCE_DUE')
-                                                            || (pendingData.registrationStatus=='PENDING' && pendingData.paymentStatus=='NO_DUES'))" >
+                                                            || (pendingData.registrationStatus=='PENDING' && pendingData.paymentStatus=='NO_DUES')) && (pendingData.personTypeCode!='ADULT' && pendingData.signUpCodeDescription!='Bala Vihar Class' && !this.memberFlag) " >
                                                             <td>
                                                                 <span class="text-dark1 mb-1">{{pendingData.personName}}</span>
                                                             </td>

@@ -100,6 +100,8 @@ export class NewRegistrationComponent {
         confirmButtonText: 'OK',
       });
       sessionStorage.setItem('newUserData', JSON.stringify(data));
+      this.familyService.setSelectedFamily(data.user);
+
       this.router.navigateByUrl('/programregistration/family-reg-workflow/'+flag);
       this.contactsForm.reset();
     }else{
@@ -113,6 +115,10 @@ export class NewRegistrationComponent {
   }
   }
 
+  regiwrkFlw(){
+   let data = JSON.parse(sessionStorage.getItem('newUserData') || '');
+   this.familyService.setSelectedFamily(data.user);
+  }
 
   getCurrentDate() {
     const today = new Date();

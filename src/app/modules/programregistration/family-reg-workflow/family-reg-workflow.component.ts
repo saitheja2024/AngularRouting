@@ -14,6 +14,7 @@ import { AlertService } from '../../chinmaya-shared/services/alert/alert.service
 })
 export class FamilyRegWorkflowComponent {
   programForm:FormGroup;
+  personSelect:any={};
   signupCodeCategoryList:any=[
     {color:"#984807"},
     {color:"#7030A0"},
@@ -33,7 +34,17 @@ export class FamilyRegWorkflowComponent {
     {color:'#c9dd19'},
     {color:'#ddaf19'},
     {color:'#002060'},
-    {color:'#edde27'}
+    {color:'#edde27'},
+    {color:'#6e4ac4'},
+    {color:'#4e7be6'},
+    {color:'#5738c8'},
+    {color:'#d8c636'},
+    {color:'#edde27'},
+    {color:'#edde27'},
+    {color:'#edde27'},
+    {color:'#edde27'},
+    {color:'#edde27'},
+    {color:'#edde27'} 
   ]
   signupCode:any={
     name:'Bala Vihar',
@@ -105,10 +116,12 @@ export class FamilyRegWorkflowComponent {
  }
 
  async ngOnInit(){
+  this.primaryUserData  = this.familyService.getSelectedFamily();
+console.log(this.primaryUserData);
   this.route.params.subscribe(async params => {
     this.memberFlag = params['memberFlag']=="true"?true:false;
   });
-  this.primaryUserData = JSON.parse(sessionStorage.getItem('newUserData') || '');
+  //this.primaryUserData = JSON.parse(sessionStorage.getItem('newUserData') || '');
   this.selectedProgram = this.store.getValue(KEYS.program);
   this.selectedChapterCode = this.store.getValue(KEYS.chapter);
   this.currentUserData = this.classRgiSrvice.getLoggedInUser();
@@ -121,14 +134,14 @@ export class FamilyRegWorkflowComponent {
   await  this.fetchRelationshipPrimaryContactList();
   await this.fetchSchoolGradeList();
   await this.fetchpersonTypeList();
-  this.getCategoriesList( this.primaryUserData.user);
+  this.getCategoriesList( this.primaryUserData);
   this.familyPersonList();
   await this.fetchSchooldGradeLabel();
   // this.memberselection(this.primaryUserData.user);
  }
 
  setDefaultValue(){
-
+  let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
   this.programForm.patchValue({
     personType:'',
     firstName:'',
@@ -136,19 +149,19 @@ export class FamilyRegWorkflowComponent {
     risingSchoolGrade:'',
     gender:'',
     relationShipPrimaryContact:'',
-    familyID:this.primaryUserData.user.familyID,
+    familyID: familyId,
     personID: 0,
     emailAddress:'',
     chapter: this.selectedChapterCode,
     middleName:'',
-    lastName: this.primaryUserData.user.lastName,
-    phoneNumber:this.primaryUserData.user.phoneNumber,
-    homePhone:this.primaryUserData.user.homePhone,
-    address: this.primaryUserData.user.address,
-    address2: this.primaryUserData.user.address2,
-    address3: this.primaryUserData.user.address3,
-    city: this.primaryUserData.user.city,
-    state: this.primaryUserData.user.state,
+    lastName: this.primaryUserData.lastName,
+    phoneNumber:this.primaryUserData.phoneNumber,
+    homePhone:this.primaryUserData.homePhone,
+    address: this.primaryUserData.address,
+    address2: this.primaryUserData.address2,
+    address3: this.primaryUserData.address3,
+    city: this.primaryUserData.city,
+    state: this.primaryUserData.state,
     zipCode:'',
     status:'Active',
     memberSince:'',
@@ -225,7 +238,7 @@ Regdata:any=[];
   this.validateFlag=true;
    let user = this.programForm.value;
    let param = {
-    relationList:[{"id":0,"relationCode":user.relationShipPrimaryContact,"relatedPersonId":this.primaryUserData.user.personID}],
+    relationList:[{"id":0,"relationCode":user.relationShipPrimaryContact,"relatedPersonId":this.primaryUserData.personID}],
     user:this.programForm.value
    }
    this.programForm.markAsTouched();
@@ -235,6 +248,7 @@ Regdata:any=[];
     this.Regdata = data;
     this.getCategoriesList(data)
      this.familyPersonList();
+     this.programForm.reset();
    }
  }
 
@@ -269,13 +283,14 @@ SelectedMemData:any;
 selectedUserData:any;
 selectedMember:any;
 async familyPersonList(){   
+  let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
     let param:PersonList = {
-      familyId:this.primaryUserData.user.familyID,
+      familyId:familyId,
       programCode: this.selectedProgram.code,
       chapterCode: this.selectedChapterCode,
       paymentFlag: false,
       personTypeCheckRequiredFlag: true,
-      persontype:(this.Regdata.length==0)?this.primaryUserData.user.personType:this.selectedMember.personType
+      persontype:(this.Regdata.length==0)?this.primaryUserData.personType:this.selectedMember.personType
     }
 
      let personData:any = await this.classRgiSrvice.getPersonList(param);
@@ -344,9 +359,10 @@ getSortedData(data: any, compareKey: string) {
 
  async getCategoriesList(eve:any) {
 
-  this.selectedUserData = JSON.parse(sessionStorage.getItem('newUserData') || '');
+  //this.selectedUserData = JSON.parse(sessionStorage.getItem('newUserData') || '');
+  let familyId = (eve.familyId)?eve.familyId : eve.familyID;
   let userData:any={
-   familyId: eve.familyID,
+   familyId: familyId,
    personId: eve.personID,
    code: eve.chapter,
    programCode: this.selectedProgram.code,
@@ -358,32 +374,37 @@ getSortedData(data: any, compareKey: string) {
 
   let data:any = await this.classRgiSrvice.fetchCategoriesList(userData);
   this.categoryWiseList = data;
-  this.selectedSignupCode = data[0];
-  let color =this.signupCodeCategoryList[0].color;
-  this.toggleshow('',data[0],color);
+  let categoryData = (data[0].signupCodesList.length>0)?data[0]:data[1];
+  this.selectedSignupCode = categoryData.signupCodesList[0];
+  let color = (data[0].signupCodesList.length>0)?this.signupCodeCategoryList[0].color:this.signupCodeCategoryList[1].color;
+  this.toggleshow('',categoryData,color);
   this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
-  this.memberselection(this.selectedUserData);
+  this.memberselection(this.selectedUserData,0);
 }
 
 selectedSignupCode:any=[];
 signupCodeSelect(eve:any){
   this.selectedSignupCode = eve;
+  this.personSelect={}
 }
 
 annualPledgeData:any;
-async memberselection(eve:any){
+async memberselection(eve:any, index:any){
   console.log(this.selectedSignupCode);
+  this.personSelect={
+    [index]:true
+  }
   if(this.selectedSignupCode.length>0 || Object.keys(this.selectedSignupCode).length>0){
   let param={
-    "familyId":eve.familyID,
+    "familyId":(eve.familyID)?eve.familyID:eve.familyId,
     "programCode": this.selectedProgram.code,
-    "chapterCode": eve.chapter,
+    "chapterCode": (eve.chapter)?eve.chapter:eve.chapterCode,
     "memberFlag": this.memberFlag 
   };
 
   let data:any = await this.classRgiSrvice.fetchSaveAnnualPledgeReg(param);
   this.annualPledgeData  = data;
-  this.getClassAmount(this.selectedSignupCode.signUpCode,this.selectedSignupCode,this.signupcodeList?.description);
+  this.getClassAmount(this.selectedSignupCode.signUpCode,this.selectedSignupCode,this.signupcodeList?.description,eve, index);
 }else{
   this.alertService.showErrorALert('Please select the SignupCode.');
 }
@@ -393,10 +414,10 @@ pledgeMsg:boolean=false;
 pledgeMsg_1:boolean=false;
 pledgeAmt:any=0;
 prerqusitevalidMsg:string='';
-async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any) {
+async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, selectData:any, index:any) {
  this.pledgeMsg=false;
  this.pledgeMsg_1=false;
- this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
+ this.selectedUserData = (index!=0) ?selectData: JSON.parse(localStorage.getItem('selectMember') || '');
  const body = {
    signupCode: signupCode,
    code: this.selectedUserData.chapterCode,
@@ -415,16 +436,13 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any) {
        return;
      }else if(data.prerequsite==false && data.validation==true){
       this.prerqusitevalidMsg = data.prerequsiteMessage;
-      this.checkboxModel[ngmodelName.signUpCode] =false;
      }else if(data.validation==false && data.prerequsite==true){
        this.prerqusitevalidMsg=data.validationMessage;
-       this.checkboxModel[ngmodelName.signUpCode] =false;
      }else if(data.validation==false && data.prerequsite==false){
        this.prerqusitevalidMsg=data.validationMessage;
-       this.checkboxModel[ngmodelName.signUpCode] =false;
      }
      else{
-       this.checkboxModel[ngmodelName.signUpCode] =false;
+      // this.checkboxModel[ngmodelName.signUpCode] =false;
        this.pledgeMsg=true;
      }
   
@@ -432,12 +450,13 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any) {
 
 personUserData:any;
 async onSubmit(clsName:any, categoryName:any, amtData:any) {
-    this.personUserData = this.primaryUserData.user;
+    this.personUserData = this.primaryUserData;
+    let familyId = (this.personUserData.familyId)?this.personUserData.familyId : this.personUserData.familyID;
   this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
   var body:any ={
     user: {
       password: this.personUserData.password,
-      familyID: this.personUserData.familyID,
+      familyID: familyId,
       personID: this.personUserData.personID,
       gender: this.personUserData.gender,
       phoneNumber: this.personUserData.phoneNumber,
@@ -502,7 +521,7 @@ async getPersonProgramRegistration(ind_change:any) {
       this.rightPanelAccordionNotPaid = this.callPaymentPanel(this.pendingPaymentData, 'personName','stagePaid');
       if(Object.keys(this.rightPanelAccordionNotPaid).length>0){ this.TotalValPendingData(); }
       this.objectKeys = Object.keys(this.rightPanelAccordionNotPaid);
-      this.sessionCtrl(this.pendingPaymentData, ind_change);
+      //this.sessionCtrl(this.pendingPaymentData, ind_change);
    
 }
 

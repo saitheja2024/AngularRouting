@@ -13,7 +13,7 @@ import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/sto
   styleUrls: ['./certifymember.component.scss']
 })
 export class CertifymemberComponent {
-  currentUser:any= JSON.parse(localStorage.getItem('CurrentUser') || '');
+  currentUser:any= JSON.parse(sessionStorage.getItem('profileData') || '');
   firstName: string | null ='';
   lastName: string | null ='';
   middleName: string | null = '';
