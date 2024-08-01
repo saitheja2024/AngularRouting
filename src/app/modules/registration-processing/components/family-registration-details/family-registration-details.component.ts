@@ -25,6 +25,7 @@ export class FamilyRegistrationDetailsComponent {
   address: any;
   assignedSessionList: any={};
   currentUserData:any;
+  fistSignupCode: any;
 
  constructor(
   private alertService:AlertService,
@@ -168,10 +169,25 @@ createProgramFormGroup(programData:any): FormGroup {
     }
    }
 
+  
    this.initRegistrationDetailsForm();
+
+   this.fistSignupCode = this.getFirstSignupCodeWithNonNullSessions(this.registrationDetails)
 
   
  }
+
+ getFirstSignupCodeWithNonNullSessions(data: any) {
+  for (let registration of data.registrationDetailsList) {
+    for (let program of registration.responsePersonProgramList) {
+      if (program.sessions !== null && program.sessions !== "") {
+        return program.signupCode;
+      }
+    }
+  }
+  return null;
+}
+
  
 
  getAssignedSubClassListFun(registrtationId:any){
@@ -259,8 +275,10 @@ getPersonSummary(detailsGroup: any) {
       "familyID": this.selectedFamily.familyId,
       "chapterID": this.selectedChapterID,
       "programCode": this.selectedProgram.code,
-      modifiedBy: parseInt(this.currentUserData.personID)
-      }
+      modifiedBy: parseInt(this.currentUserData.personID),
+      signupCode:this.fistSignupCode
+    }
+    
   console.log(this.selectedProgram);
       await this.registrationService.assignChoice(param);
   
