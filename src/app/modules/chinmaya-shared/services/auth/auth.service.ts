@@ -76,6 +76,26 @@ export class AuthService implements OnDestroy {
     }
   }
 
+  extractDescriptionsGroupedByChapterCode(responseData:any) {
+    const groupedDescriptions: { [key: string]: string[] } = {};
+  
+    for (const module of responseData.responseScreenModuleList) {
+      const chapterCode = module.chapterCode;
+  
+      if (!groupedDescriptions[chapterCode]) {
+        groupedDescriptions[chapterCode] = [];
+      }
+  
+      for (const screen of module.responseScreenList) {
+        for (const response of screen.screenResponseList) {
+          groupedDescriptions[chapterCode].push(response.description);
+        }
+      }
+    }
+  
+    return groupedDescriptions;
+  }
+
   
 
  
