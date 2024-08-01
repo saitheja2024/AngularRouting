@@ -78,8 +78,11 @@
                                                 <tr *ngFor="let item of familyMemberpersonsList; index as i;">
                                                     <td><a href="javascript:void(0);">{{item.personID}}</a></td>
                                                     <td>{{item.firstName +' '+ item.lastName}}</td>
-                                                    <td>{{(item.schoolGradeCode==null)?'':item.schoolGradeCode}}</td>
-                                                    <td><span *ngIf="item.personType!='ADULT'"><input type="checkbox" [value]="item.personID" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i)" /></span></td>
+                                                    <td>{{ getGradeDesc(item.schoolGradeCode)}}</td>
+                                                    <td *ngIf="(item.personType=='ADULT' && item.primaryContact=='1')"></td>
+                                                    <td *ngIf="item.primaryContact==null">
+                                                      <input type="checkbox" [value]="item.personID" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i)" />
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -89,7 +92,7 @@
                                 <form [formGroup]="programForm">
                                 <fieldset class="border p-4 mrg_t_2">
                                     <legend class="float-none fs-5 w-auto p-4 pb-0 mb-0">
-                                       Add Family Member
+                                       <b>Add Family Member</b>
                                     </legend>
                                     
                                     <div class="row">
@@ -107,7 +110,7 @@
                                                         </div>                                      
                                   </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mrg_t_10">
                                         <div class="col-lg-4">
                                             <label class="fw-semibold fs-6 mt-2 mb-2 required">First Name</label>
                                         </div>
@@ -118,7 +121,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row" *ngIf="personTypeVal=='CHILD'">
                                         <div class="col-lg-4">
                                             <label class="fw-semibold fs-6 mt-2 mb-2 required">School Grade {{schGradeLabel}}</label>
                                         </div>
@@ -173,7 +176,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row mrg_t_10">
                                         <div class="col-lg-4">
                                             <label class="fw-semibold fs-6 mt-2 mb-2 required">Relationship with Primary</label>
                                         </div>
@@ -230,7 +233,7 @@
                                                     <ng-container *ngFor="let pendingData of pendingPaymentData; index as i">
                                                         <tr [ngClass]="(pendingData?.sessionPreferences.length>0)?'border_btm_rem':''"  *ngIf="pendingData.paymentSubmittedDate==null && ((pendingData.registrationStatus=='PENDING' && (pendingData.paymentStatus=='BALANCE_DUE' || pendingData.paymentStatus=='NO_DUES'))
                                                             ||(pendingData.registrationStatus=='ACCEPTED' && pendingData.paymentStatus=='BALANCE_DUE')
-                                                            || (pendingData.registrationStatus=='PENDING' && pendingData.paymentStatus=='NO_DUES')) && (pendingData.personTypeCode!='ADULT' && pendingData.signUpCodeDescription!='Bala Vihar Class' && !this.memberFlag) " >
+                                                            || (pendingData.registrationStatus=='PENDING' && pendingData.paymentStatus=='NO_DUES')) " >
                                                             <td>
                                                                 <span class="text-dark1 mb-1">{{pendingData.personName}}</span>
                                                             </td>

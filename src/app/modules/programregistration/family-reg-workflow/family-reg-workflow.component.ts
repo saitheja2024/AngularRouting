@@ -39,12 +39,16 @@ export class FamilyRegWorkflowComponent {
     {color:'#4e7be6'},
     {color:'#5738c8'},
     {color:'#d8c636'},
-    {color:'#edde27'},
-    {color:'#edde27'},
-    {color:'#edde27'},
-    {color:'#edde27'},
-    {color:'#edde27'},
-    {color:'#edde27'} 
+    {color:'#e93890'},
+    {color:'#ae4fea'},
+    {color:'#ea4452'},
+    {color:'#9444ea'},
+    {color:'#893aea'},
+    {color:'#3aea80'},
+    {color:'#61da51'},
+    {color:'#e9863f'},
+    {color:'#ea6d43'},
+    {color:'#db5269'},
   ]
   signupCode:any={
     name:'Bala Vihar',
@@ -170,7 +174,8 @@ console.log(this.primaryUserData);
     mobileFlag: '',
     dateOfBirth:'',
   });
- 
+  this.validateFlag=false;
+
  }
 
  fetchPrimaryContactList:any;
@@ -248,7 +253,7 @@ Regdata:any=[];
     this.Regdata = data;
     this.getCategoriesList(data)
      this.familyPersonList();
-     this.programForm.reset();
+     this.setDefaultValue();
    }
  }
 
@@ -268,6 +273,9 @@ Regdata:any=[];
    (user.relationShipPrimaryContact!='' && user.relationShipPrimaryContact!=null) && (user.gender!='' && user.gender!=null) 
   && (user.schoolGrade!='' && user.schoolGrade!=null) && (user.dateOfBirth!='' && user.dateOfBirth!=null)){
    return true;
+   }else if( fieldFlag=='' && (user.personType!='' && user.personType!=null) && (user.firstName!='' && user.firstName!=null) && 
+   (user.relationShipPrimaryContact!='' && user.relationShipPrimaryContact!=null) && (user.gender!='' && user.gender!=null)){
+     return true;
    }
 
   return false;
@@ -351,6 +359,9 @@ getSortedData(data: any, compareKey: string) {
   this.toggleMenu=true;
   this.signupcodeList=data;
   this.colorCodeBtn= clrCode;
+  if(eve!=''){this.selectedSignupCode = [];}
+  
+  this.personSelect={}
  }
  
  selectCategorySignupCode(evn:any){
@@ -726,5 +737,49 @@ rightPanel:any;
         }
        }  
   }
+
+  getGradeDesc(eve:any){
+    let gradeDesc:any='';
+    this.schoolGradesList.filter((item:any)=>{
+     if(item.code==eve){
+      gradeDesc =item.description;
+     }
+    });
+    return gradeDesc;
+  }
+
+
+  // async sessionChoice(personData:any, i:any, event:any){
+  //   let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
+  //   let body:any={
+  //     familyId: familyId,
+  //     programCode: '',
+  //     familySessionPreference: [
+        
+  //     ],
+  //     signupCode: personData.signUpCode
+  //   }
+  //   let objSession:any ={};
+  //   for(var p=0; p<personData.sessionPreferences.length; p++){
+  //     // let choicepref:any=(personData.sessionPreferences[i].choiceLabel).split(' ');
+  //     // choicepref = choicepref[choicepref.length-1].split(':')[0];
+  //     if(event.target.value == personData.sessionPreferences[p].choices){
+  //       objSession ={
+  //         personId:personData.personID,
+  //         choiceCode:personData.sessionPreferences[p].choices,
+  //         choiceLabel:personData.sessionPreferences[i].choiceLabel,
+  //         modifiedBy: this.currentUserData.personID,
+  //         choicePreference: personData.sessionPreferences[i].choiceOrder,
+  //         createdBy: this.currentUserData.personID
+  //       };
+  //       body.programCode= personData.sessionPreferences[p].programCode;
+  //       break;
+  //     }
+  //   }
+
+  //   body.familySessionPreference.push(objSession);
+  
+  //   let data = await this.classRgiSrvice.saveSessionPreferrence(body);
+  // }
 
 }
