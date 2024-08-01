@@ -1,0 +1,240 @@
+<div class="card mt-4">
+    <div class="card-header align-items-center float-end py-2 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+        <!--begin::Card title-->
+        <div class="card-title float-sm-end">
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+                <h3 class="panel-title fw-semibold">
+                    <img src="assets/chinmaya_media/images/SVG-color/Create Configuration Details-icon.svg" style="width: 25px;"> Create Configuration Details
+                </h3>
+            </div>
+            <!--end::Search-->
+        </div>
+    </div>
+
+    <!--begin::Card body-->
+    <div class="card-body pt-0">
+        <div class="row mt-3">
+            <div class="col-lg-4 mt-1 fv-row fv-plugins-icon-container">
+                
+            </div>
+            <div class="col-lg-4 mt-1 fv-row fv-plugins-icon-container">
+                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                    <label class="col-form-label required fw-semibold">Do you want open a "New Configuration" ?</label>
+                    <select class="form-select form-select-sm" aria-label="Select example">
+                        <option value="">New Coinfiguration</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-4 fv-row fv-plugins-icon-container">
+                
+            </div>
+        </div>
+        <hr>
+                                                                    
+        <div class="row mt-3">
+            <div class="col-lg-4 fv-row fv-plugins-icon-container">
+                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                    <label class="col-form-label fw-semibold"> Do You Want To Clone from previous configuration  </label>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-4 fv-row fv-plugins-icon-container">
+                <div class="d-flex fv-row fv-plugins-icon-container">
+                    <!--begin::Radio-->
+                    <div class="form-check form-check-custom form-check-solid col-lg-3">
+                        <input type="radio" name="options" value="option1" (change)="onSelectionChange('option1')">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                    <!--end::Radio-->
+                    <!--begin::Radio-->
+                    <div class="form-check form-check-custom form-check-solid col-lg-3">
+                        <input type="radio" name="options" value="option2" (change)="onSelectionChange('option2')">
+                        <label class="form-check-label">No</label>
+                    </div>
+                    <!--end::Radio-->
+                </div>
+            </div>
+        </div>
+
+        
+        <div *ngIf="selectedOption === 'option1'">
+            <div class="row mt-3">
+                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                    <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                        <label class="col-form-label fw-semibold required">Organization Code</label>
+                        <select class="form-select form-select-sm cursor-pointer">
+                            <option value="">- Select -</option>
+                            <option value="">Chinmaya Mission</option>
+                            <option value="">Chinmaya Somnath, Chantilly, VA</option>
+                            <option value="">Chinmayam, Silver Spring, MD</option>
+                            <option value="">Fredrick Chapter, Fredrick, MD</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                    <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                        <label class="col-form-label fw-semibold required">Previous Configuration Details</label>
+                        <select class="form-select form-select-sm cursor-pointer" (change)="onSelectionChange1($event)">
+                            <option value="" disabled selected>- Select -</option>
+                            <option value="option">2020-21 CMWRC Family Membership</option>
+                            <option value="option">2020-21 CHYK Membership Registration</option>
+                            <option value="option">2019-20 CMWRC Family Membership</option>
+                            <option value="option">2018-19 CMWRC Family Membership</option>
+                            <option value="option">2017-18 CMWRC Family Membership</option>
+                            <option value="option">Test 2017-18 CMWRC Family Membership</option>
+                            <option value="option">2017-18 CHYK Membership Registration</option>
+                            <option value="option">2016-17 CMWRC Family Membership</option>
+                            <option value="option">2015-16 CMWRC Family Membership</option>
+                            <option value="option">2014-15 CMWRC Family Membership</option>
+                            <option value="option">Annual Fundriser 2014</option>
+                            <option value="option">CMWRC Membership (Historical)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                    <div *ngIf="selectedOption1 === 'option'">
+                        <label class="col-form-label required fw-semibold fs-6">Previous Year Program Code</label>
+                        <input type="text" name="" class="form-control form-control-sm" placeholder="Previous Year Program Code">
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectedOption1 === 'option'">
+                <div class="row">
+                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                            <label class="col-form-label fw-semibold required">Select the Program-Year for New Program</label>
+                            <select class="form-select form-select-sm cursor-pointer">
+                                <option value="">- Select Program Year -</option>
+                                <option value="">2020-2021</option>
+                                <option value="">2021-2022</option>
+                                <option value="">2022-2023</option>
+                                <option value="">2023-2024</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                        <label class="col-form-label required fw-semibold fs-6">Enter the New Program Code</label>
+                        <input type="text" name="fname" class="form-control form-control-sm" placeholder="Program Code">
+                    </div>
+                    
+                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                        <label class="col-form-label required fw-semibold fs-6">Enter the Description for New Program</label>
+                        <input type="text" name="fname" class="form-control form-control-sm" placeholder="Program Description">
+                    </div>
+                </div>
+            </div>
+            
+            <div *ngIf="selectedOption1 === 'option'">
+                <div class="row">
+                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                            <label class="col-form-label fw-semibold required">Enter the Start-Date of New Program </label>
+                            <input type="date" class="form-control form-control-sm" placeholder="Program Start Date">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                            <label class="col-form-label fw-semibold required">Enter the End-Date of New Program </label>
+                            <input type="date" class="form-control form-control-sm" placeholder="Program End Date">
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                            <label class="col-form-label fw-semibold required">Enter the Registration-Start-Date of New Program </label>
+                            <input type="date" class="form-control form-control-sm" placeholder="Registration Start Date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div *ngIf="selectedOption1 === 'option'">
+                <div class="row">
+                    <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                        <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                            <label class="col-form-label fw-semibold required">Enter the Registration-End-Date of New Program </label>
+                            <input type="date" class="form-control form-control-sm" placeholder="Registration End Date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+              
+        <div *ngIf="selectedOption === 'option2'">
+            <div class="row mt-3">
+                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                    <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                        <label class="col-form-label fw-semibold required">Organization Code</label>
+                        <select class="form-select form-select-sm cursor-pointer">
+                            <option value="">- Select -</option>
+                            <option value="">Chinmaya Mission</option>
+                            <option value="">Chinmaya Somnath, Chantilly, VA</option>
+                            <option value="">Chinmayam, Silver Spring, MD</option>
+                            <option value="">Fredrick Chapter, Fredrick, MD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                    <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                        <label class="col-form-label fw-semibold required">Program for the year</label>
+                        <select class="form-select form-select-sm cursor-pointer">
+                            <option value="">- Select Program Year -</option>
+                            <option value="">2024-2025</option>
+                            <option value="">2023-2024</option>
+                            <option value="">2022-2023</option>
+                            <option value="">2021-2022</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                    <label class="col-form-label required fw-semibold fs-6">Program Code</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Program Code">
+                </div>
+            </div>
+
+            <div class="row">													
+                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                    <label class="col-form-label required fw-semibold fs-6">Description</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Description">
+                </div>
+                
+                <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                    <label class="col-form-label fw-semibold fs-6">Info URL</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Info URL">
+                </div>
+            </div>
+        </div>
+        
+        <div id="Note" class="col-lg-12 mt-8" style="display: block;">
+            <span class="text-danger"><span class="fw-semibold">Note:</span> Fields with * are required.</span>
+        </div>
+        
+    </div>
+    <div class="card-footer p-5" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <div class="m-0">
+                    <a href="#" class="btn btn-primary btn-sm mb-2 me-2">
+                        <i class=" icon-spinner9"></i> Clone Program
+                    </a>
+                        
+                    <a href="#" class="btn btn-primary btn-sm mb-2 me-2">
+                        <i class="icon-floppy-disk"></i> Save & Next
+                    </a>
+                    
+                    <a href="#" class="btn btn-danger btn-sm mb-2">
+                        <i class="icon-cancel-circle2"></i> Cancel
+                    </a>                                                                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
