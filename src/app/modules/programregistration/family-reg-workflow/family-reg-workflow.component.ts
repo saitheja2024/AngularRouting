@@ -141,7 +141,7 @@ console.log(this.primaryUserData);
   this.getCategoriesList( this.primaryUserData);
   this.familyPersonList();
   await this.fetchSchooldGradeLabel();
-  // this.memberselection(this.primaryUserData.user);
+  //this.memberselection(this.primaryUserData.user);
  }
 
  setDefaultValue(){
@@ -389,8 +389,8 @@ getSortedData(data: any, compareKey: string) {
   this.selectedSignupCode = categoryData.signupCodesList[0];
   let color = (data[0].signupCodesList.length>0)?this.signupCodeCategoryList[0].color:this.signupCodeCategoryList[1].color;
   this.toggleshow('',categoryData,color);
-  this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
-  this.memberselection(this.selectedUserData,0);
+  //this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
+  this.memberselection(eve,0);
 }
 
 selectedSignupCode:any=[];
@@ -401,7 +401,6 @@ signupCodeSelect(eve:any){
 
 annualPledgeData:any;
 async memberselection(eve:any, index:any){
-  console.log(this.selectedSignupCode);
   this.personSelect={
     [index]:true
   }
