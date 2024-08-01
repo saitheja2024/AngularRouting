@@ -7,7 +7,8 @@ export const KEYS={
   academicYear:"academicYear",
   loggedInUser:"loggedInUser",
   selectedFamily:"selectedFamily",
-  chapterDesc:'chapterDescription'
+  chapterDesc:'chapterDescription',
+  MenutItems:"MenuItems"
 }
 
 @Injectable({

@@ -62,6 +62,20 @@ export class AuthService implements OnDestroy {
     return this.store.getValue(logUser);
   }
 
+  async fetchMenutItems(personId: any) {
+    let options: Options = {
+      url: this.urlService.registrationProcessingURL.fetchModulesByPersonId,
+      body: personId
+    }
+
+    let response: any = await this.httpService.post(options);
+
+  
+    if(response && response.responseScreenModuleList){
+      this.store.setValue(KEYS.MenutItems,this.extractDescriptionsGroupedByChapterCode(response))
+    }
+  }
+
   
 
  
