@@ -70,6 +70,8 @@ export class FamilyRegWorkflowComponent {
   sessionformGroup:FormGroup;
   memberFlag:boolean=false;
   selectedChapter:any;
+  selectedFamilyDetails:any;
+  InitFlag:boolean=false;
   get PF(): { [key: string]: AbstractControl } {
     return this.programForm.controls;
   }
@@ -121,6 +123,8 @@ export class FamilyRegWorkflowComponent {
 
  async ngOnInit(){
   this.primaryUserData  = this.familyService.getSelectedFamily();
+  this.selectedFamilyDetails =  this.primaryUserData ;
+  this.InitFlag=true;
 console.log(this.primaryUserData);
   this.route.params.subscribe(async params => {
     this.memberFlag = params['memberFlag']=="true"?true:false;
@@ -139,7 +143,6 @@ console.log(this.primaryUserData);
   await this.fetchSchoolGradeList();
   await this.fetchpersonTypeList();
   this.getCategoriesList( this.primaryUserData);
-  this.familyPersonList();
   await this.fetchSchooldGradeLabel();
   //this.memberselection(this.primaryUserData.user);
  }
@@ -250,9 +253,11 @@ Regdata:any=[];
 
    if(this.validationFlag()){
     let data:any = await this.familyService.saveFamilyPerson(param);
+    this.InitFlag=false;    
     this.Regdata = data;
-    this.getCategoriesList(data)
-     this.familyPersonList();
+    this.selectedFamilyDetails = data.user;
+    this.getCategoriesList(data.user)
+     //this.familyPersonList();
      this.setDefaultValue();
    }
  }
@@ -298,7 +303,8 @@ async familyPersonList(){
       chapterCode: this.selectedChapterCode,
       paymentFlag: false,
       personTypeCheckRequiredFlag: true,
-      persontype:(this.Regdata.length==0)?this.primaryUserData.personType:this.selectedMember.personType
+      persontype:this.selectedSignupCode.registrantType,
+      signUpCode:this.selectedSignupCode.signUpCode
     }
 
      let personData:any = await this.classRgiSrvice.getPersonList(param);
@@ -390,7 +396,8 @@ getSortedData(data: any, compareKey: string) {
   let color = (data[0].signupCodesList.length>0)?this.signupCodeCategoryList[0].color:this.signupCodeCategoryList[1].color;
   this.toggleshow('',categoryData,color);
   //this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
-  this.memberselection(eve,0);
+  this.memberselection(eve,0,'Init');
+  this.familyPersonList();
 }
 
 selectedSignupCode:any=[];
@@ -400,11 +407,13 @@ signupCodeSelect(eve:any){
 }
 
 annualPledgeData:any;
-async memberselection(eve:any, index:any){
+async memberselection(eve:any, index:any,init:any){
   this.personSelect={
     [index]:true
-  }
+  };
+  this.selectedFamilyDetails = eve;
   if(this.selectedSignupCode.length>0 || Object.keys(this.selectedSignupCode).length>0){
+    if(this.InitFlag){
   let param={
     "familyId":(eve.familyID)?eve.familyID:eve.familyId,
     "programCode": this.selectedProgram.code,
@@ -414,7 +423,8 @@ async memberselection(eve:any, index:any){
 
   let data:any = await this.classRgiSrvice.fetchSaveAnnualPledgeReg(param);
   this.annualPledgeData  = data;
-  this.getClassAmount(this.selectedSignupCode.signUpCode,this.selectedSignupCode,this.signupcodeList?.description,eve, index);
+}
+  this.getClassAmount(this.selectedSignupCode.signUpCode,this.selectedSignupCode,this.signupcodeList?.description,eve, index, init);
 }else{
   this.alertService.showErrorALert('Please select the SignupCode.');
 }
@@ -424,7 +434,7 @@ pledgeMsg:boolean=false;
 pledgeMsg_1:boolean=false;
 pledgeAmt:any=0;
 prerqusitevalidMsg:string='';
-async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, selectData:any, index:any) {
+async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, selectData:any, index:any, init:any) {
  this.pledgeMsg=false;
  this.pledgeMsg_1=false;
  this.selectedUserData = (index!=0) ?selectData: JSON.parse(localStorage.getItem('selectMember') || '');
@@ -433,8 +443,8 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, sele
    code: this.selectedUserData.chapterCode,
    duesStructureCode: "",
    programCode: this.selectedProgram.code,
-   familyId: this.selectedUserData.familyId,
-   personId: this.selectedUserData.personID,
+   familyId: (this.selectedFamilyDetails.familyID)?this.selectedFamilyDetails.familyID :this.selectedFamilyDetails.familyId,
+   personId:this.selectedFamilyDetails.personID,
    memberFlag: this.memberFlag 
  }
  
@@ -442,7 +452,7 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, sele
      this.pledgeAmt = data;
      this.prerqusitevalidMsg='';
      if(data.prerequsite==true && data.validation==true){
-      this.onSubmit(ngmodelName, categoryName, data);
+      if(init!='Init'){  this.onSubmit(ngmodelName, categoryName, data);}else{this.getPersonProgramRegistration('');}
        return;
      }else if(data.prerequsite==false && data.validation==true){
       this.prerqusitevalidMsg = data.prerequsiteMessage;
@@ -516,7 +526,7 @@ async getPersonProgramRegistration(ind_change:any) {
   const body = {
     programCode: this.selectedProgram.code, 
     chapterCode: this.selectedUserData.chapterCode,
-    familyId: this.selectedUserData.familyId,
+    familyId:(this.selectedFamilyDetails.familyID)?this.selectedFamilyDetails.familyID :this.selectedFamilyDetails.familyId,
     paymentFlag: false,
     sessionFlag: true
   }

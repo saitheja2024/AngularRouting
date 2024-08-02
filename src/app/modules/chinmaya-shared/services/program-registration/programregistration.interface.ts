@@ -4,5 +4,6 @@ export interface PersonList {
     chapterCode: string
     paymentFlag:boolean;
     personTypeCheckRequiredFlag:boolean,
-    persontype?:string
+    persontype?:string,
+    signUpCode?:string
 }  
