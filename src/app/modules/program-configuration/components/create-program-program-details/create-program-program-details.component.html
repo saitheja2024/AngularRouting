@@ -411,11 +411,17 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                <input class="form-check-input" type="checkbox" value="1">
+                                <input class="form-check-input" type="checkbox" (change)="onCheckboxChange5($event)">
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="showContent5">
+            <div class="col-lg-12 mt-2">
+                <app-create-program-additional-custom-fields></app-create-program-additional-custom-fields>
             </div>
         </div>
 
@@ -428,7 +434,7 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                <input class="form-check-input" type="checkbox" value="1">
+                                <input class="form-check-input" type="checkbox" (change)="onCheckboxChange6($event)">
                             </div>
                         </div>
                     </div>
@@ -436,5 +442,35 @@
             </div>
         </div>
 
+        <div class="row" *ngIf="showContent6">
+            <div class="col-lg-12 mt-2">
+                <app-create-program-seva-questions></app-create-program-seva-questions>
+            </div>
+        </div>
+
+        <div id="Note" class="col-lg-12 mt-8" style="display: block;">
+            <span class="text-danger"><span class="fw-semibold">Note:</span> Fields with * are required.</span>
+        </div>
+
+    </div>
+
+    <div class="card-footer p-4 pb-2" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <div class="m-0">
+                    <a href="#" class="btn btn-primary btn-sm mb-2 me-2">
+                        <i class="icon-backward"></i> Back
+                    </a>
+                        
+                    <a href="#" class="btn btn-primary btn-sm mb-2 me-2">
+                        <i class="icon-floppy-disk"></i> Save
+                    </a>
+                    
+                    <a href="#" class="btn btn-primary btn-sm mb-2">
+                        <i class="icon-floppy-disks"></i> Save & Next
+                    </a>                                                                        
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -13,6 +13,8 @@ import { CreateProgramProgramDetailsComponent } from './components/create-progra
 import { CreateProgramRegistrationStepsComponent } from './components/create-program-registration-steps/create-program-registration-steps.component';
 import { CreateProgramSignupCodesComponent } from './components/create-program-signup-codes/create-program-signup-codes.component';
 import { CreateProgramReviewConfigurationComponent } from './components/create-program-review-configuration/create-program-review-configuration.component';
+import { CreateProgramAdditionalCustomFieldsComponent } from './components/create-program-additional-custom-fields/create-program-additional-custom-fields.component';
+import { CreateProgramSevaQuestionsComponent } from './components/create-program-seva-questions/create-program-seva-questions.component';
 
 const routes: Routes = [
   {
@@ -75,7 +77,9 @@ const routes: Routes = [
     CreateProgramProgramDetailsComponent,
     CreateProgramRegistrationStepsComponent,
     CreateProgramSignupCodesComponent,
-    CreateProgramReviewConfigurationComponent
+    CreateProgramReviewConfigurationComponent,
+    CreateProgramAdditionalCustomFieldsComponent,
+    CreateProgramSevaQuestionsComponent
   ],
   imports: [
     ChinmayaSharedModule,

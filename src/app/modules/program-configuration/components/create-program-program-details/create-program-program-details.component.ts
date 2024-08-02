@@ -29,6 +29,8 @@ export class CreateProgramProgramDetailsComponent {
   showContent2: boolean = false;
   showContent3: boolean = false;
   showContent4: boolean = false;
+  showContent5: boolean = false;
+  showContent6: boolean = false;
 
   onCheckboxChange1(event: Event) {
     this.showContent1 = (event.target as HTMLInputElement).checked;
@@ -44,5 +46,13 @@ export class CreateProgramProgramDetailsComponent {
 
   onCheckboxChange4(event: Event) {
     this.showContent4 = (event.target as HTMLInputElement).checked;
+  }
+
+  onCheckboxChange5(event: Event) {
+    this.showContent5 = (event.target as HTMLInputElement).checked;
+  }
+
+  onCheckboxChange6(event: Event) {
+    this.showContent6 = (event.target as HTMLInputElement).checked;
   }
 }
