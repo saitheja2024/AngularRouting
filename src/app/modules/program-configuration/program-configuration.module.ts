@@ -15,6 +15,7 @@ import { CreateProgramSignupCodesComponent } from './components/create-program-s
 import { CreateProgramReviewConfigurationComponent } from './components/create-program-review-configuration/create-program-review-configuration.component';
 import { CreateProgramAdditionalCustomFieldsComponent } from './components/create-program-additional-custom-fields/create-program-additional-custom-fields.component';
 import { CreateProgramSevaQuestionsComponent } from './components/create-program-seva-questions/create-program-seva-questions.component';
+import { CreateProgramRegStepsEmailComponent } from './components/create-program-reg-steps-email/create-program-reg-steps-email.component';
 
 const routes: Routes = [
   {
@@ -79,7 +80,8 @@ const routes: Routes = [
     CreateProgramSignupCodesComponent,
     CreateProgramReviewConfigurationComponent,
     CreateProgramAdditionalCustomFieldsComponent,
-    CreateProgramSevaQuestionsComponent
+    CreateProgramSevaQuestionsComponent,
+    CreateProgramRegStepsEmailComponent
   ],
   imports: [
     ChinmayaSharedModule,
