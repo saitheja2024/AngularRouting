@@ -12,6 +12,7 @@ import { CreateProgramConfigurationDetailsComponent } from './components/create-
 import { CreateProgramProgramDetailsComponent } from './components/create-program-program-details/create-program-program-details.component';
 import { CreateProgramRegistrationStepsComponent } from './components/create-program-registration-steps/create-program-registration-steps.component';
 import { CreateProgramSignupCodesComponent } from './components/create-program-signup-codes/create-program-signup-codes.component';
+import { CreateProgramReviewConfigurationComponent } from './components/create-program-review-configuration/create-program-review-configuration.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
             {
               path:'signup-codes',
               component:CreateProgramSignupCodesComponent
+            },
+            {
+              path:'review-configuration',
+              component:CreateProgramReviewConfigurationComponent
             },
             {
               path: '',
@@ -69,7 +74,8 @@ const routes: Routes = [
     CreateProgramConfigurationDetailsComponent,
     CreateProgramProgramDetailsComponent,
     CreateProgramRegistrationStepsComponent,
-    CreateProgramSignupCodesComponent
+    CreateProgramSignupCodesComponent,
+    CreateProgramReviewConfigurationComponent
   ],
   imports: [
     ChinmayaSharedModule,

@@ -78,14 +78,14 @@ const Routing: Routes = [
       import('../modules/program-configuration/program-configuration.module').then((m) => m.ProgramConfigurationModule),
   },
   {
-    path: '',
-    redirectTo: 'registration-processing',
-    pathMatch: 'full',
-  },
-  {
     path: 'student-attendance',
     loadChildren: () =>
       import('../modules/student-attendance/student-attendance.module').then((m) => m.StudentAttendanceModule),
+  },
+  {
+    path: '',
+    redirectTo: 'registration-processing',
+    pathMatch: 'full',
   },
   {
     path: '**',

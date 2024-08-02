@@ -22,4 +22,10 @@ export class CreateProgramConfigurationDetailsComponent {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedOption1 = selectElement.value;
   }
+
+  showContent: boolean = false;
+
+  onCheckboxChange(event: Event) {
+    this.showContent = (event.target as HTMLInputElement).checked;
+  }
 }
