@@ -48,7 +48,7 @@ export class NewRegistrationComponent {
   }
 
  async initForm(){
-    let password = window.btoa('123456');
+    let password = window.btoa('');
     this.contactsForm = this.fb.group({
       familyID: new FormControl(0),
       personID: new FormControl(0),
