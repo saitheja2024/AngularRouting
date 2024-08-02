@@ -100,8 +100,10 @@ div.mat-mdc-select-panel {
   background-color: none !important;
 } 
 
-  .mat-mdc-tab-header {
-    border-bottom: 1px solid #eee;
+
+    .mat-mdc-tab-header {
+      background-color: #607D8B !important;
+      border-color: #607D8B !important;
     }
 
     .mat-mdc-table thead {
@@ -160,15 +162,15 @@ div.mat-mdc-select-panel {
 }
 
 .mdc-tab--active {
-  border-bottom: 2px solid #000 !important;
+  border-bottom: 3px solid #ED992A !important;
 }
 
 .mdc-tab--active .mdc-tab__text-label {
-  color: #000 !important;
+  color: #fff !important;
 }
 
 .mdc-tab__text-label {
-  color: #818691 !important;
+  color: #f1f1f1 !important;
   font-weight: 500 !important;
 }
 

@@ -1,1 +1,440 @@
-<p>create-program-program-details works!</p>
+<div class="card" style="border:1px solid #eee;">
+    <div class="card-header align-items-center float-end py-2 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+        <!--begin::Card title-->
+        <div class="card-title float-sm-end">
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+                <h3 class="panel-title fw-semibold">
+                    <img src="assets/chinmaya_media/images/SVG-color/Program Configuration Details-icon.svg" style="width: 25px;"> Program Configuration Details
+                </h3>
+            </div>
+            <!--end::Search-->
+        </div>
+    </div>
+    <div class="card-body pt-0">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 mt-2">
+                            <div class="d-flex flex-column">
+                                <label class="col-form-label fw-semibold">Organization Code</label>
+                                <select class="form-select form-select-sm cursor-pointer">
+                                    <option value="">- Select -</option>
+                                    <option value="">Chinmaya Mission</option>
+                                    <option value="">Chinmaya Somnath, Chantilly, VA</option>
+                                    <option value="">Chinmayam, Silver Spring, MD</option>
+                                    <option value="">Fredrick Chapter, Fredrick, MD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-2">
+                            <label class="col-form-label required fw-semibold fs-6">Program Code</label>
+                            <input type="text" name="" class="form-control form-control-sm" placeholder="Program Code">
+                        </div>
+                    </div> 
+                    
+                    <div class="row">
+                        <div class="col-lg-6 mt-2">
+                            <div class="d-flex flex-column">
+                                <label class="col-form-label fw-semibold">Program Year</label>
+                                <select class="form-select form-select-sm cursor-pointer">
+                                    <option value="">- Select Program Year -</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-2">
+                            <label class="col-form-label required fw-semibold fs-6">Description</label>
+                            <input type="text" name="" class="form-control form-control-sm" placeholder="Description">
+                        </div>
+                    </div> 
+                    
+                    <div class="row">
+                        <div class="col-lg-6 mt-2">
+                            <div class="d-flex flex-column">
+                                <label class="col-form-label fw-semibold required">Program Starts On </label>
+                                <input type="date" class="form-control form-control-sm" placeholder="YYYY/MM/DD">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-2">
+                            <div class="d-flex flex-column">
+                                <label class="col-form-label fw-semibold required">Program Ends On </label>
+                                <input type="date" class="form-control form-control-sm" placeholder="YYYY/MM/DD">
+                            </div>
+                        </div>
+                    </div> 
+                    
+                </div>
+                <div class="col-lg-4 mt-2 pt-6">
+                    <div class="row mb-2">
+                        <div class="col-lg-2"></div>  
+                        <div class="col-lg-8 text-center" style="border:1px solid #ddd;border-radius:10px;">
+                            <!--begin::Label-->
+                            <label class="col-form-label fw-semibold fs-6 text-center">Individual Passport Size Photo</label>
+                            <!--end::Label--> 
+                            <!--begin::Image input-->
+                            <div class="text-center">
+                                <label class="cursor-pointer">
+                                    <input type="file" id="file" (change)="onselectFile($event)">
+                                    <img class="image" [src]="url">
+                                </label>
+                            </div>
+                            <!--begin::Hint-->
+                            <div class="form-text text-nowrap">
+                                Image size not be exceed 2 MB<br>Format : JPG/JPEG/PNG
+                            </div>
+                            <!--end::Hint--> 
+                        </div>
+                        <div class="col-lg-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold required">Registration Starts On </label>
+                    <input type="date" class="form-control form-control-sm" placeholder="YYYY/MM/DD">
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold required">Registration Ends On </label>
+                    <input type="date" class="form-control form-control-sm" placeholder="YYYY/MM/DD">
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold required">Registration type</label>
+                    <select class="form-select form-select-sm" aria-label="Select example">
+                        <option value="">- Select -</option>
+                        <option value="">Family</option>
+                        <option value="">Individual</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold required">Registration Preference</label>
+                    <select class="form-select form-select-sm cursor-pointer">
+                        <option value="">- Select -</option>
+                        <option value="">Admin</option>
+                        <option value="">Online</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold">Registrant Type</label>
+                    <select class="form-select form-select-sm cursor-pointer">
+                        <option value="">- Select -</option>
+                        <option value="">ADULT</option>
+                        <option value="">CHILD</option>
+                        <option value="">BOTH</option>
+                        <option value="">YOUTH</option>
+                        <option value="">ALL</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold">School Grade Criteria</label>
+                    <select class="form-select form-select-sm cursor-pointer">
+                        <option value="">- Select -</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold required">Program Held At</label>
+                    <div class="input-group">
+                        <textarea class="form-control form-control-sm" rows="2" cols="2" placeholder="Location"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold">Pre Requisite Program</label>
+                    <select class="form-select form-select-sm cursor-pointer">
+                        <option value="">- Select -</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <label class="col-form-label required fw-semibold fs-6">Accounting Project Code</label>
+                <input type="text" name="" class="form-control form-control-sm" placeholder="Accounting Project Code">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold">Contribution Collected towards</label>
+                    <div class="input-group">
+                        <textarea class="form-control form-control-sm" rows="2" cols=2 placeholder="Contribution Collected towards"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <label class="col-form-label fw-semibold fs-6">Contribution Project Code</label>
+                <input type="text" name="" class="form-control form-control-sm" placeholder="Contribution Project Code">
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold">Cross-Chapter Registration Allowed</label>
+                    <select class="form-select form-select-sm cursor-pointer">
+                        <option value="">- Select -</option>
+                        <option value="">Yes</option>
+                        <option value="">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold">Which year based on program? </label>
+                    <div class="input-group">
+                        <textarea class="form-control form-control-sm" rows="2" cols="2" placeholder="Enter here"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <div class="row mt-15">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold">Is Tshirt Required?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" (change)="onCheckboxChange1($event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2" *ngIf="showContent1">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold">TShirt Tooltip Text </label>
+                    <div class="input-group">
+                        <textarea class="form-control form-control-sm" rows="2" cols=2 placeholder="TShirt Tooltip Text"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <div class="row mt-2 aaa">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold">Is Walk-In Allowed?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <div class="row aaa">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold">Is this program eligible for Arpanam?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <div class="row aaa">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold">Is Instalment Payment allowed?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" (change)="onCheckboxChange2($event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column" *ngIf="showContent2">
+                    <label class="col-form-label fw-semibold required">Number of Installments</label>
+                    <select class="form-select form-select-sm cursor-pointer">
+                        <option value="">- Select -</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">5</option>
+                        <option value="">6</option>
+                        <option value="">7</option>
+                        <option value="">8</option>
+                        <option value="">9</option>
+                        <option value="">10</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-2" *ngIf="showContent2">
+                <div class="d-flex flex-column">
+                    <label class="col-form-label fw-semibold required">Next Installment Date </label>
+                    <input type="date" class="form-control form-control-sm" placeholder="YYYY/MM/DD">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <div class="row aaa">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold">Is Health Information Required ?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold">Is Image Required for family ?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" (change)="onCheckboxChange3($event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="showContent3">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold">Image is mandatory for family ?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" (change)="onCheckboxChange4($event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 mt-2" *ngIf="showContent4">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <label class="col-form-label fw-semibold required">Image is mandatory for Person Type?</label>
+                    </div>
+                    <div class="d-flex col-lg-7 mt-4">
+                        <div class="col-lg-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label text-gray-800 fw-semibold">
+                                    Adult
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label text-gray-800 fw-semibold">
+                                    Youth
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="form-check-label text-gray-800 fw-semibold">
+                                    Child
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <div class="row aaa">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold">Define Additional Custom Fields?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mt-2">
+                <div class="d-flex flex-column">
+                    <div class="row aaa">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold">Would you like to configure Volunteer Questions?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

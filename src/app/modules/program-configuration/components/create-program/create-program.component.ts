@@ -29,6 +29,9 @@ onTabChanged(event: MatTabChangeEvent): void {
   case 3:
       link ="/program-configuration/create-program/signup-codes";
   break;
+  case 4:
+      link ="/program-configuration/create-program/review-configuration";
+  break;
   }
 
   this.router.navigate([link]);
