@@ -80,7 +80,7 @@
                                                     <td>{{item.firstName +' '+ item.lastName}}</td>
                                                     <td>{{ getGradeDesc(item.schoolGradeCode)}}</td>
                                                     <td>
-                                                      <input type="checkbox" [value]="item.personID" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i,'')" />
+                                                      <input type="checkbox" [value]="item.personID" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i,'event')" />
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -101,8 +101,17 @@
                                         <div class="col-lg-8">
                                                 <select formControlName="personType" name="country" id="country" aria-label="Type of Person" (change)="fieldInterChange($event);"  data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold mrg_b_5">
                                                     <option value="">Select</option>
-                                <option *ngFor="let item of personTypeList" [value]="item.code">
-                                                        {{item.description}}</option>    
+                                                    <ng-container *ngFor="let item of personTypeList">
+                                                       <option *ngIf="(item.code=='ADULT' || item.code=='YOUTH' )&& selectedSignupCode.registrantType=='BOTH'" [value]="item.code">
+                                                        {{item.description}}
+                                                       </option>  
+                                                       <option *ngIf="selectedSignupCode.registrantType=='ALL'" [value]="item.code">
+                                                        {{item.description}}
+                                                       </option>  
+                                                       <option *ngIf="item.code=='CHILD' && selectedSignupCode.registrantType=='CHILD'" [value]="item.code">
+                                                        {{item.description}}
+                                                       </option>  
+                                                    </ng-container>  
                                 </select>  
                                 <div *ngIf="PF['personType'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
                                     Please Select Type Of Person.

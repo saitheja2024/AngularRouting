@@ -125,7 +125,6 @@ export class FamilyRegWorkflowComponent {
   this.primaryUserData  = this.familyService.getSelectedFamily();
   this.selectedFamilyDetails =  this.primaryUserData ;
   this.InitFlag=true;
-console.log(this.primaryUserData);
   this.route.params.subscribe(async params => {
     this.memberFlag = params['memberFlag']=="true"?true:false;
   });
@@ -250,8 +249,8 @@ Regdata:any=[];
     user:this.programForm.value
    }
    this.programForm.markAsTouched();
-
-   if(this.validationFlag()){
+   console.log(this.selectedSignupCode);
+   if(this.validationFlag() && this.Object.keys(this.selectedSignupCode).length>0){
     let data:any = await this.familyService.saveFamilyPerson(param);
     this.InitFlag=false;    
     this.Regdata = data;
@@ -392,11 +391,13 @@ getSortedData(data: any, compareKey: string) {
   let data:any = await this.classRgiSrvice.fetchCategoriesList(userData);
   this.categoryWiseList = data;
   let categoryData = (data[0].signupCodesList.length>0)?data[0]:data[1];
-  this.selectedSignupCode = categoryData.signupCodesList[0];
+  if(this.selectedSignupCode.length==0 || Object.keys(this.selectedSignupCode).length==0){
+    this.selectedSignupCode = categoryData.signupCodesList[0];
+  }
   let color = (data[0].signupCodesList.length>0)?this.signupCodeCategoryList[0].color:this.signupCodeCategoryList[1].color;
   this.toggleshow('',categoryData,color);
   //this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
-  this.memberselection(eve,0,'Init');
+  this.memberselection(eve,null,'');
   this.familyPersonList();
 }
 
@@ -407,7 +408,7 @@ signupCodeSelect(eve:any){
 }
 
 annualPledgeData:any;
-async memberselection(eve:any, index:any,init:any){
+async memberselection(eve:any, index:any,type:any){
   this.personSelect={
     [index]:true
   };
@@ -424,7 +425,7 @@ async memberselection(eve:any, index:any,init:any){
   let data:any = await this.classRgiSrvice.fetchSaveAnnualPledgeReg(param);
   this.annualPledgeData  = data;
 }
-  this.getClassAmount(this.selectedSignupCode.signUpCode,this.selectedSignupCode,this.signupcodeList?.description,eve, index, init);
+  this.getClassAmount(this.selectedSignupCode.signUpCode,this.selectedSignupCode,this.signupcodeList?.description,eve,type);
 }else{
   this.alertService.showErrorALert('Please select the SignupCode.');
 }
@@ -434,10 +435,10 @@ pledgeMsg:boolean=false;
 pledgeMsg_1:boolean=false;
 pledgeAmt:any=0;
 prerqusitevalidMsg:string='';
-async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, selectData:any, index:any, init:any) {
+async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, selectData:any, type:any) {
  this.pledgeMsg=false;
  this.pledgeMsg_1=false;
- this.selectedUserData = (index!=0) ?selectData: JSON.parse(localStorage.getItem('selectMember') || '');
+ this.selectedUserData = (type=='event') ?selectData: JSON.parse(localStorage.getItem('selectMember') || '');
  const body = {
    signupCode: signupCode,
    code: this.selectedUserData.chapterCode,
@@ -451,17 +452,12 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, sele
  let data:any = await this.classRgiSrvice.getClassAmount(body);
      this.pledgeAmt = data;
      this.prerqusitevalidMsg='';
-     if(data.prerequsite==true && data.validation==true){
-      if(init!='Init'){  this.onSubmit(ngmodelName, categoryName, data);}else{this.getPersonProgramRegistration('');}
+     if(data.validation==true){
+      if(!this.InitFlag || type=='event'){  this.onSubmit(ngmodelName, categoryName, data, this.selectedUserData );}else{this.getPersonProgramRegistration('');}
        return;
-     }else if(data.prerequsite==false && data.validation==true){
-      this.prerqusitevalidMsg = data.prerequsiteMessage;
-     }else if(data.validation==false && data.prerequsite==true){
+     }else if(data.validation==false){
        this.prerqusitevalidMsg=data.validationMessage;
-     }else if(data.validation==false && data.prerequsite==false){
-       this.prerqusitevalidMsg=data.validationMessage;
-     }
-     else{
+     }else{
       // this.checkboxModel[ngmodelName.signUpCode] =false;
        this.pledgeMsg=true;
      }
@@ -469,10 +465,11 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, sele
 }
 
 personUserData:any;
-async onSubmit(clsName:any, categoryName:any, amtData:any) {
+async onSubmit(clsName:any, categoryName:any, amtData:any, selectedData:any) {
     this.personUserData = this.primaryUserData;
+    console.log(selectedData);
     let familyId = (this.personUserData.familyId)?this.personUserData.familyId : this.personUserData.familyID;
-  this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
+    this.selectedUserData = selectedData;
   var body:any ={
     user: {
       password: this.personUserData.password,
