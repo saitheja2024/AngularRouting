@@ -7,11 +7,11 @@
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Mobile: </span>
-                    <span class="jsutify-content-end" style="color:#00B0F0;"><u>{{callWorkDetails?.mobile}}</u></span>
+                    <span class="jsutify-content-end" style="color:#00B0F0;"><u>{{callWorkDetails?.mobile |   phoneNumberPipe}}</u></span>
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Home: </span>
-                    <span class="jsutify-content-end ms-1" style="color:#00B0F0;"><u>{{callWorkDetails?.home}}</u></span>
+    <span class="jsutify-content-end ms-1" style="color:#00B0F0;"><u appPhoneNumberFormat>{{callWorkDetails?.home |  phoneNumberPipe}}</u></span>
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Email: </span>
