@@ -1,0 +1,133 @@
+<div class="card" style="border-radius:5px;border:1px solid #eee;">
+    <div class="card-header p-4" style="background:#f9f9f9;">
+        <div class="card-title">
+            <h4 class="fw-semibold">
+                Add Additional Custom Fields
+            </h4>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourceCustonFields" matSort>
+
+                    <!-- User Customfields Column -->
+                    <ng-container matColumnDef="usercustomfield">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef></th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ddd;border-bottom:1px solid #ddd;"> {{element.usercustomfield}}</td>
+                    </ng-container>
+
+                    <!-- User Customfields Column -->
+                    <ng-container matColumnDef="usercustomfield1">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef></th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ddd;border-bottom:1px solid #ddd;">
+                            <input type="text" class="form-control form-control-sm" placeholder="">
+                        </td>
+                    </ng-container>
+
+                    <!-- Is Required Column -->
+                    <ng-container matColumnDef="isrequired">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef></th>
+                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ddd;border-bottom:1px solid #ddd;">
+                            <div class="form-check form-check-sm">
+                                <label class="col-form-label fw-semibold pt-0 pb-0">
+                                    <input type="checkbox" value="1" class="form-check-input">
+                                </label>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <!-- Admin customfield Column -->
+                    <ng-container matColumnDef="admincustomfield">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef></th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ddd;border-bottom:1px solid #ddd;"> {{element.admincustomfield}}</td>
+                    </ng-container>
+
+                    <!-- Admin customfield1 Column -->
+                    <ng-container matColumnDef="admincustomfield1">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef></th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ddd;border-bottom:1px solid #ddd;">
+                            <input type="text" class="form-control form-control-sm" placeholder="">
+                        </td>
+                    </ng-container>
+
+                    <!-- Is Required1 Column -->
+                    <ng-container matColumnDef="isrequired1">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef></th>
+                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;">
+                            <div class="form-check form-check-sm">
+                                <label class="col-form-label fw-semibold pt-0 pb-0">
+                                    <input type="checkbox" value="1" class="form-check-input">
+                                </label>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <!-- Header row first group -->
+                    <ng-container matColumnDef="header-row-first-group">
+                        <th mat-header-cell *matHeaderCellDef 
+                            style="text-align:center;border-right:1px solid #ddd;"
+                            [attr.colspan]="2"> 
+                            <div class="row">
+                                <div class="col-lg-12 mt-2">
+                                    User Customfields
+                                </div>
+                            </div>
+                        </th>
+                    </ng-container>
+
+                    <!-- Header row second group -->
+                    <ng-container matColumnDef="header-row-second-group">
+                        <th mat-header-cell *matHeaderCellDef 
+                            style="text-align:center;border-right:1px solid #ddd;"
+                            [attr.colspan]="1"> 
+                            <div class="row">
+                                <div class="col-lg-12 mt-2">
+                                    Is Required
+                                </div>
+                            </div>
+                        </th>
+                    </ng-container>
+
+                    <!-- Header row third group -->
+                    <ng-container matColumnDef="header-row-third-group">
+                        <th mat-header-cell *matHeaderCellDef 
+                            style="text-align:center;border-right:1px solid #ddd;"
+                            [attr.colspan]="2"> 
+                            <div class="row">
+                                <div class="col-lg-12 mt-2">
+                                    Admin Customfields
+                                </div>
+                            </div>
+                        </th>
+                    </ng-container>
+
+                    <!-- Header row fourth group -->
+                    <ng-container matColumnDef="header-row-fourth-group">
+                        <th mat-header-cell *matHeaderCellDef 
+                            style="text-align:center;"
+                            [attr.colspan]="1"> 
+                            <div class="row">
+                                <div class="col-lg-12 mt-2">
+                                    Is Required
+                                </div>
+                            </div>
+                        </th>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="['header-row-first-group', 'header-row-second-group', 'header-row-third-group', 
+                                                          'header-row-fourth-group']">
+                    </tr>
+                    
+                    
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsCustonFields;"></tr>
+                </table>
+    
+                <mat-paginator [pageSizeOptions]="[10,20,50]"
+                                showFirstLastButtons>
+                </mat-paginator>
+    
+            </div>
+        </div>
+    </div>
+</div>

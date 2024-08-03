@@ -1,0 +1,155 @@
+<div class="card" style="border-radius:5px;border:1px solid #eee;">
+    <div class="card-header cursor-pointer p-4 pt-0 pb-0" style="background:#f9f9f9;">
+        <div class="card-title">
+            <h4 class="fw-semibold">
+                Create Seva Questions
+            </h4>
+        </div>
+
+        <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <!--begin::Primary button-->
+                <a href="#" class="btn btn-primary btn-sm">
+                    <i class="icon-add"></i> Add
+                </a>
+                <!--end::Primary button-->
+            </div>
+            <div class="card-title float-sm-end">
+                <!--begin::Search-->
+                <div class="d-flex align-items-center position-relative">
+                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                    <input type="text" class="form-control form-control-sm w-250px ps-12" placeholder="Type to Filter" />
+                </div>
+                <!--end::Search-->
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourceSevaQuestions" matSort>
+
+                    <!-- Category Column -->
+                    <ng-container matColumnDef="category">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">
+                            Category <span class="text-danger ms-1"> *</span>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ddd;border-bottom:1px solid #ddd;"> 
+                            <select class="form-select form-select-sm cursor-pointer">
+                                <option value="">- Select Category-</option>
+                                <option value="">Bal Vihar</option>
+                                <option value="">Events</option>
+                                <option value="">IT</option>
+                                <option value="">Services</option>
+                                <option value="">Geeta Chanting Competition</option>
+                                <option value="">Summer Camp</option>
+                                <option value="">Youth Volunteer</option>
+                                <option value="">Aarti</option>
+                                <option value="">Annapurna</option>
+                                <option value="">Audio-Video</option>
+                                <option value="">Bhiksha</option>
+                                <option value="">Fecilities</option>
+                                <option value="">Fund Rising</option>
+                                <option value="">Information Technology (IT)</option>
+                                <option value="">Office Management</option>
+                                <option value="">Photography and Video</option>
+                                <option value="">Publicity and Outreach</option>
+                                <option value="">Purchase and Inventory</option>
+                                <option value="">Registration</option>
+                                <option value="">Session Coordinator</option>
+                                <option value="">Yagnas</option>
+                                <option value="">Others</option>
+                            </select>
+                        </td>
+                    </ng-container>
+
+                    <!-- Question Column -->
+                    <ng-container matColumnDef="question">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">Question</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
+                            <textarea rows="1" cols="1" class="form-control input-xs fs-7" placeholder="Enter here"></textarea>
+                        </td>
+                    </ng-container>
+
+                    <!-- Person Type Column -->
+                    <ng-container matColumnDef="persontype">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">Person Type</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
+                            <select class="form-select form-select-sm cursor-pointer">
+                                <option value="">- Select Person Type-</option>
+                                <option value="">ADULT</option>
+                                <option value="">CHILD</option>
+                                <option value="">BOTH</option>
+                                <option value="">YOUTH</option>
+                                <option value="">ALL</option>
+                            </select>
+                        </td>
+                    </ng-container>
+
+                    <!-- Is Date Column -->
+                    <ng-container matColumnDef="isdate">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">IsDate</th>
+                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
+                            <div class="form-check form-check-solid ps-0">
+                                <input type="radio" name="options" value="option1">
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <!-- Is Text Column -->
+                    <ng-container matColumnDef="istext">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">IsText</th>
+                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
+                            <div class="form-check form-check-solid ps-0">
+                                <input type="radio" name="options" value="option1">
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <!-- IsYN Column -->
+                    <ng-container matColumnDef="isyn">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">IsYN</th>
+                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
+                            <div class="form-check form-check-solid ps-0">
+                                <input type="radio" name="options" value="option1">
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <!-- Is Required Column -->
+                    <ng-container matColumnDef="isrequired">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">Is Required</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
+                            <select class="form-select form-select-sm cursor-pointer">
+                                <option value="">YES</option>
+                                <option value="">NO</option>
+                            </select>
+                        </td>
+                    </ng-container>
+
+                    <!-- Actions Column -->
+                    <ng-container matColumnDef="actions">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <button class="btn btn-sm button-default" style="border: 1px solid #FFCDDB;padding: 5px 9px !important;width:30px;">
+                                <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;">
+                                </i>
+                            </button>
+                        </td>
+                    </ng-container>
+                    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsSevaQuestions; sticky: true;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsSevaQuestions;"></tr>
+                </table>
+    
+                <mat-paginator [pageSizeOptions]="[10,20,50]"
+                                showFirstLastButtons>
+                </mat-paginator>
+    
+            </div>
+        </div>
+    </div>
+</div>
