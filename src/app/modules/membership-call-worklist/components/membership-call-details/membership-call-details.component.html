@@ -7,11 +7,11 @@
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Mobile: </span>
-                    <span class="jsutify-content-end" style="color:#00B0F0;"><u>{{callWorkDetails?.mobile}}</u></span>
+                    <span class="jsutify-content-end" style="color:#00B0F0;"><u>{{callWorkDetails?.mobile |   phoneNumberPipe}}</u></span>
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Home: </span>
-                    <span class="jsutify-content-end ms-1" style="color:#00B0F0;"><u>{{callWorkDetails?.home}}</u></span>
+    <span class="jsutify-content-end ms-1" style="color:#00B0F0;"><u appPhoneNumberFormat>{{callWorkDetails?.home |  phoneNumberPipe}}</u></span>
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Email: </span>
@@ -222,10 +222,13 @@
 <!-- <div class="overlay_bg" *ngIf="popupWindowFlag"></div> -->
 <div class="popupwraper" *ngIf="popupWindowFlag">
     <h5 style="padding-bottom: 15px; padding-top: 15px;">Previous Call Note <a href="javascript:void(0)" (click)="closePopup();" class="close_btn_icon">X</a></h5>
-  <div class="popup_window" *ngIf="callWorkDetails?.callHistoryList!=null">
-    <span *ngFor="let item of callWorkDetails?.callHistoryList[0]?.responseCallNotesList">
-     {{item.callNotes}} - {{item.createdDate | date:'MM/dd/yyyy' }}
-    </span>
+  <div class="popup_window" *ngIf="callWorkDetails?.callHistoryList!=null" style="overflow-y: auto;height:300px;overflow-x: auto;">
+    <div *ngFor="let item of callWorkDetails?.callHistoryList[0]?.responseCallNotesList; let i = index" 
+     [class.odd]="i % 2 !== 0" class="row p-2">
+    <div class="col-lg-8">{{item.callNotes}} </div>
+    <div class="col-lg-4">- {{item.createdDate | date:'MM/dd/yyyy' }}</div>
+</div>
+
   </div>
   <div  *ngIf="callWorkDetails?.callHistoryList==null">
      No Previous Call Notes.

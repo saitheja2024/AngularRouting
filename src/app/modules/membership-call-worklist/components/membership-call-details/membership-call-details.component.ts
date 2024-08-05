@@ -75,7 +75,9 @@ export class MembershipCallDetailsComponent {
         callHistory.familyId = this.callWorkDetails.familyId;
         callHistory.programCode=this.callWorkDetails.programCode;
         callHistory.callNotes="";
+        callHistory.lastCallDate=new Date();
         this.callWorkHistoryForm.patchValue(callHistory); 
+        
       //  this.getCurrentDateTime(checkcallHistory);
         if(this.callWorkDetails.callHistoryList==null){
           this.callWorkHistoryForm.controls['assignedTo'].setValue('');
@@ -136,7 +138,7 @@ export class MembershipCallDetailsComponent {
       if(this.callWorkDetails && this.callWorkDetails.callHistoryList){
         let  callNotesList = this.callWorkDetails.callHistoryList[0].responseCallNotesList.map((note:any) => note.callNotes);
         callNotesList=callNotesList.join('\n');
-        this.callWorkHistoryForm.get("callNotes").setValue(callNotesList);
+        //this.callWorkHistoryForm.get("callNotes").setValue(callNotesList);
        }
      }
 

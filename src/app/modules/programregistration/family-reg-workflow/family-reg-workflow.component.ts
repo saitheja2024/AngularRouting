@@ -7,6 +7,11 @@ import { MasterService } from '../../chinmaya-shared/services/master/master.serv
 import { PersonList } from '../../chinmaya-shared/services/program-registration/programregistration.interface';
 import { ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../chinmaya-shared/services/alert/alert.service';
+import { ProgramService } from '../../chinmaya-shared/services/program/program.service';
+import { environment } from 'src/environments/environment';
+
+declare function callbackUTC_1():any;
+
 @Component({
   selector: 'app-family-reg-workflow',
   templateUrl: './family-reg-workflow.component.html',
@@ -72,13 +77,25 @@ export class FamilyRegWorkflowComponent {
   selectedChapter:any;
   selectedFamilyDetails:any;
   InitFlag:boolean=false;
+
+  paymentListDetailsList:any;
+  TotalAmtData:any;
+  immediatePaymentAmount:any;
+  immediatePaymentAmountWithConv:any;
+  annualPledgeFlag:any;
+  paymentCompleteTab:boolean=false;
+
   get PF(): { [key: string]: AbstractControl } {
     return this.programForm.controls;
   }
 
+  payFullAmt:string="";
+  signature:any;
+  utc_time:any;
+
  constructor(private fb:FormBuilder, private store:StoreService, 
   private classRgiSrvice:ClassRegistrationService, private familyService:FamilyService, 
-  private MasterService:MasterService, private route: ActivatedRoute, private alertService:AlertService,){
+  private MasterService:MasterService, private route: ActivatedRoute, private alertService:AlertService, private programService:ProgramService){
     
     this.programForm = this.fb.group({
       //signupCode:new FormControl('',[Validators.required]),
@@ -124,8 +141,8 @@ export class FamilyRegWorkflowComponent {
  async ngOnInit(){
   this.primaryUserData  = this.familyService.getSelectedFamily();
   this.selectedFamilyDetails =  this.primaryUserData ;
+   localStorage.setItem('payOpts',JSON.stringify("fullAmt"));
   this.InitFlag=true;
-console.log(this.primaryUserData);
   this.route.params.subscribe(async params => {
     this.memberFlag = params['memberFlag']=="true"?true:false;
   });
@@ -250,8 +267,8 @@ Regdata:any=[];
     user:this.programForm.value
    }
    this.programForm.markAsTouched();
-
-   if(this.validationFlag()){
+   console.log(this.selectedSignupCode);
+   if(this.validationFlag() && this.Object.keys(this.selectedSignupCode).length>0){
     let data:any = await this.familyService.saveFamilyPerson(param);
     this.InitFlag=false;    
     this.Regdata = data;
@@ -392,11 +409,13 @@ getSortedData(data: any, compareKey: string) {
   let data:any = await this.classRgiSrvice.fetchCategoriesList(userData);
   this.categoryWiseList = data;
   let categoryData = (data[0].signupCodesList.length>0)?data[0]:data[1];
-  this.selectedSignupCode = categoryData.signupCodesList[0];
+  if(this.selectedSignupCode.length==0 || Object.keys(this.selectedSignupCode).length==0){
+    this.selectedSignupCode = categoryData.signupCodesList[0];
+  }
   let color = (data[0].signupCodesList.length>0)?this.signupCodeCategoryList[0].color:this.signupCodeCategoryList[1].color;
   this.toggleshow('',categoryData,color);
   //this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
-  this.memberselection(eve,0,'Init');
+  this.memberselection(eve,null,'');
   this.familyPersonList();
 }
 
@@ -407,7 +426,7 @@ signupCodeSelect(eve:any){
 }
 
 annualPledgeData:any;
-async memberselection(eve:any, index:any,init:any){
+async memberselection(eve:any, index:any,type:any){
   this.personSelect={
     [index]:true
   };
@@ -424,7 +443,7 @@ async memberselection(eve:any, index:any,init:any){
   let data:any = await this.classRgiSrvice.fetchSaveAnnualPledgeReg(param);
   this.annualPledgeData  = data;
 }
-  this.getClassAmount(this.selectedSignupCode.signUpCode,this.selectedSignupCode,this.signupcodeList?.description,eve, index, init);
+  this.getClassAmount(this.selectedSignupCode.signUpCode,this.selectedSignupCode,this.signupcodeList?.description,eve,type);
 }else{
   this.alertService.showErrorALert('Please select the SignupCode.');
 }
@@ -434,10 +453,10 @@ pledgeMsg:boolean=false;
 pledgeMsg_1:boolean=false;
 pledgeAmt:any=0;
 prerqusitevalidMsg:string='';
-async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, selectData:any, index:any, init:any) {
+async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, selectData:any, type:any) {
  this.pledgeMsg=false;
  this.pledgeMsg_1=false;
- this.selectedUserData = (index!=0) ?selectData: JSON.parse(localStorage.getItem('selectMember') || '');
+ this.selectedUserData = (type=='event') ?selectData: JSON.parse(localStorage.getItem('selectMember') || '');
  const body = {
    signupCode: signupCode,
    code: this.selectedUserData.chapterCode,
@@ -451,17 +470,12 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, sele
  let data:any = await this.classRgiSrvice.getClassAmount(body);
      this.pledgeAmt = data;
      this.prerqusitevalidMsg='';
-     if(data.prerequsite==true && data.validation==true){
-      if(init!='Init'){  this.onSubmit(ngmodelName, categoryName, data);}else{this.getPersonProgramRegistration('');}
+     if(data.validation==true){
+      if(!this.InitFlag || type=='event'){  this.onSubmit(ngmodelName, categoryName, data, this.selectedUserData );}else{this.getPersonProgramRegistration('');}
        return;
-     }else if(data.prerequsite==false && data.validation==true){
-      this.prerqusitevalidMsg = data.prerequsiteMessage;
-     }else if(data.validation==false && data.prerequsite==true){
+     }else if(data.validation==false){
        this.prerqusitevalidMsg=data.validationMessage;
-     }else if(data.validation==false && data.prerequsite==false){
-       this.prerqusitevalidMsg=data.validationMessage;
-     }
-     else{
+     }else{
       // this.checkboxModel[ngmodelName.signUpCode] =false;
        this.pledgeMsg=true;
      }
@@ -469,10 +483,11 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, sele
 }
 
 personUserData:any;
-async onSubmit(clsName:any, categoryName:any, amtData:any) {
+async onSubmit(clsName:any, categoryName:any, amtData:any, selectedData:any) {
     this.personUserData = this.primaryUserData;
+    console.log(selectedData);
     let familyId = (this.personUserData.familyId)?this.personUserData.familyId : this.personUserData.familyID;
-  this.selectedUserData = JSON.parse(localStorage.getItem('selectMember') || '');
+    this.selectedUserData = selectedData;
   var body:any ={
     user: {
       password: this.personUserData.password,
@@ -790,5 +805,226 @@ rightPanel:any;
   
   //   let data = await this.classRgiSrvice.saveSessionPreferrence(body);
   // }
+
+  payNow(){
+    this.paymentInfoListDetails();
+  }
+
+  async paymentInfoListDetails(){
+    let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
+    //scrollTop();
+    let body ={
+      familyId: familyId,
+      programCode: this.selectedProgram.code,
+      chapterCode: this.selectedChapterCode,
+      paymentFlag:false
+    }
+    
+    //var totalAmt=0;
+    let data:any = await this.programService.fetchpaymentInfoFamilyandproCode(body);
+         this.paymentListDetailsList=data;
+        //  for(var i=0; i< this.paymentListDetailsList.userProgramList.length; i++){
+        //   totalAmt += this.paymentListDetailsList.userProgramList[i].amount;
+        //  }
+        // this.TotalAmtData = totalAmt;
+        
+        this.annualPledgeFlag = (data.totalpledgeAmount!=0 && data.totalpledgeAmount!=null 
+          && data.arpanamPledgeAdjustment!=null && data.arpanamPledgeAdjustment!=0 && data.pledgeTotal > data.arpanamPledgeAdjustment) || 
+          (data.totalpledgeAmount==0 && data.arpanamPledgeAdjustment!=null && data.arpanamPledgeAdjustment!=0 
+            && data.pledgeTotal == data.arpanamPledgeAdjustment);
+
+        this.TotalAmtData = (((data.totalpledgeAmount!=0 && data.totalpledgeAmount!=null) &&
+          (data.arpanamPledgeAdjustment!=null && data.arpanamPledgeAdjustment!=0)
+          && data.pledgeTotal > data.arpanamPledgeAdjustment)?data.totalpledgeAmount:
+        (data.totalpledgeAmount==0 && (data.arpanamPledgeAdjustment!=null && data.arpanamPledgeAdjustment!=0) &&
+         data.pledgeTotal==data.arpanamPledgeAdjustment)?data.totalpledgeAmount:
+         ((data.totalpledgeAmount!=0 && data.totalpledgeAmount!=null) && data.totalpledgeAmount==data.pledgeTotal
+         &&data.arpanamPledgeAdjustment==0)?data.pledgeTotal:data.totalpledgeAmount);
+
+         if (data.deferredPaymentInstallmentInfo != null && data.deferredPaymentInstallmentInfo != '') {
+          this.immediatePaymentAmount = data.immediatePaymentAmount;
+          this.immediatePaymentAmountWithConv = data.immediatePaymentAmountWithConv;
+          localStorage.setItem('totalAMt', this.immediatePaymentAmount);
+          localStorage.setItem('totalAMtwithconv', this.immediatePaymentAmountWithConv);
+         }else{
+          this.immediatePaymentAmount = (data.arpanamPledgeAdjustment==0)? data.totalAmount:data.totalpledgeAmount;
+          this.immediatePaymentAmountWithConv = (data.arpanamPledgeAdjustment==0)? data.totalAmountWithConv:data.totalPledgeAmountWithConv;
+          localStorage.setItem('totalAMt', this.immediatePaymentAmount);
+          localStorage.setItem('totalAMtwithconv', this.immediatePaymentAmountWithConv);
+         }
+
+         this.paymentCompleteTab = (data.totalpledgeAmount==0 && data.arpanamPledgeAdjustment!=null && data.arpanamPledgeAdjustment!=0 
+          && data.pledgeTotal==data.arpanamPledgeAdjustment)
+         || (data.totalpledgeAmount==0 && data.arpanamPledgeAdjustment==0 && data.pledgeTotal==0)
+         ? true : false;
+      
+  }
+
+  
+  paymentModeSelect(val:string){
+    this.payFullAmt=val;
+    localStorage.setItem('payOpts',JSON.stringify(val));
+    this.ccCardPay='';
+  }
+
+  ccCardPay:any='';
+  amountwithconvience:any=0;
+  proceedPayBtnCC:boolean=false;
+  proceedPayBtnEcheck:boolean=false;
+  convienceFee:any;
+
+  cardValue(){
+    this.proceedPayBtnCC = false;
+    this.proceedPayBtnEcheck = false;
+    let body={
+      programCode: this.selectedProgram.code,
+      chapterCode: this.selectedChapterCode
+    };
+    this.programService.fetchConvienceFee(body).subscribe({
+      next: (data: any) => {
+         this.convienceFee=data;
+         var buttonval = $('button[id]');
+          buttonval.attr('api_access_id',environment.API_Access_ID);
+          buttonval.attr('location_id', environment.LOCATION_ID);
+         if(this.ccCardPay=='CC'){
+          this.proceedPayBtnCC = true;
+          var button = $('button[api_access_id]');
+          button.attr('allowed_methods',"visa, mast, disc"); 
+        // var amountConv = (this.TotalAmtData*data.convenienceFee)/100;
+        // this.amountwithconvience = this.TotalAmtData+amountConv;
+        // localStorage.setItem('totalAMt', this.TotalAmtData);
+        // localStorage.setItem('totalAMtwithconv', this.amountwithconvience);
+      }else{
+        this.proceedPayBtnEcheck = true;
+         var button = $('button[api_access_id]');
+         button.attr('allowed_methods',"echeck");
+        // this.amountwithconvience = this.TotalAmtData;
+        // localStorage.setItem('totalAMt', this.TotalAmtData);
+        // localStorage.setItem('totalAMtwithconv', this.TotalAmtData);
+      }
+     
+     
+        this.callPaymentInfo();
+  
+
+      },
+      error: (e:any) => {
+        console.error(e);
+      }
+    });
+
+  }
+
+  fetchresponsePayData:any='';
+  async callPaymentInfo(){
+    localStorage.setItem('payMode', JSON.stringify(this.ccCardPay));
+    let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
+    let body ={
+      familyId: familyId,
+      programCode: this.selectedProgram.code,
+      chapterCode: this.selectedChapterCode,
+      paymentFlag:true
+    }
+    
+    var totalAmt=0;
+    var fetchUpdateFlag = sessionStorage.getItem('fetchupdateResponse');
+    
+    if(fetchUpdateFlag==undefined || fetchUpdateFlag==null){
+      this.fetchresponsePayData = await  this.programService.fetchpaymentInfoFamilyandproCodeFlagTrue(body);
+      sessionStorage.setItem('fetchupdateResponse', JSON.stringify(this.fetchresponsePayData));
+    }
+
+        if(this.payFullAmt=='fullAmt'){
+          if(this.ccCardPay=='E-Check'){ 
+            var button = $("button[id*='pay_proceed_btn_echeck_full']"); 
+          }else{ 
+            var button = $("button[id*='pay_proceed_btn_cc_full']"); 
+          }  
+          //var button = $('button[api_access_id]');
+        //  var api_access_id=button.attr('api_access_id');
+     button.attr('billing_name',this.fetchresponsePayData.billingName);
+     button.attr('billing_street_line1',this.fetchresponsePayData.billingStreetLine1);
+     button.attr('billing_locality',this.fetchresponsePayData.billingLocality);
+     button.attr('billing_region',this.fetchresponsePayData.billingRegion);
+     button.attr('billing_postal_code',this.fetchresponsePayData.billingPostalCode);
+     button.attr('billing_phone_number',this.fetchresponsePayData.billingPhoneNumber);
+     button.attr('billing_email_address',this.fetchresponsePayData.billingEmailAddress);
+     //button.attr('line_item_4',responsedata.);
+      if(this.ccCardPay=='E-Check'){
+        button.attr('total_amount', this.immediatePaymentAmount);
+        button.attr('xdata_2',this.immediatePaymentAmount);
+      }else{
+        button.attr('total_amount', this.immediatePaymentAmountWithConv);
+        button.attr('xdata_2',this.immediatePaymentAmountWithConv);
+      }
+     
+  
+     button.attr('order_number',this.fetchresponsePayData.xdata3);
+     button.attr('consumer_id',this.fetchresponsePayData.familyId);
+     button.attr('xdata_1',this.fetchresponsePayData.xdata1);
+     button.attr('xdata_3',this.fetchresponsePayData.xdata3);
+     button.attr('reference_id',this.fetchresponsePayData.xdata1);
+   
+     callbackUTC_1();
+     this.signature = JSON.parse(localStorage.getItem('signature') || '');
+     this.utc_time = JSON.parse(localStorage.getItem('utc_time') || '');
+     setTimeout(() => {
+      if(this.ccCardPay=='E-Check'){
+        var id = document.getElementById('pay_proceed_btn_echeck_full'); 
+      }else{
+        var id = document.getElementById('pay_proceed_btn_cc_full'); 
+      }  
+       id?.setAttribute('api_access_id', environment.API_Access_ID);
+       id?.setAttribute('location_id', environment.LOCATION_ID);
+    
+      }, 1500);
+   
+        }else if(this.payFullAmt=='partAmt'){
+          if(this.ccCardPay=='E-Check'){
+            var button = $("button[id*='pay_proceed_btn_echeck']"); 
+          }else{ 
+            var button = $("button[id*='pay_proceed_btn_cc']"); 
+          }  
+          //var button = $('button[api_access_id]');
+          var api_access_id=button.attr('api_access_id');
+          var installAmt = (this.ccCardPay=='E-Check')?this.fetchresponsePayData.installmentAmount : (this.fetchresponsePayData.convenienceFee==0)?this.fetchresponsePayData.installmentAmount:this.fetchresponsePayData.installmentAmountWithConv;
+     button.attr('billing_name',this.fetchresponsePayData.billingName);
+     button.attr('billing_street_line1',this.fetchresponsePayData.billingStreetLine1);
+     button.attr('billing_locality',this.fetchresponsePayData.billingLocality);
+     button.attr('billing_region',this.fetchresponsePayData.billingRegion);
+     button.attr('billing_postal_code',this.fetchresponsePayData.billingPostalCode);
+     button.attr('billing_phone_number',this.fetchresponsePayData.billingPhoneNumber);
+     button.attr('billing_email_address',this.fetchresponsePayData.billingEmailAddress);
+     //button.attr('line_item_4',responsedata.);
+     button.attr('total_amount', installAmt);
+     button.attr('order_number',this.fetchresponsePayData.xdata3);
+     button.attr('consumer_id',this.fetchresponsePayData.familyId);
+     button.attr('xdata_1',this.fetchresponsePayData.xdata1);
+     button.attr('xdata_2',this.fetchresponsePayData.xdata2+".00");
+     button.attr('xdata_3',this.fetchresponsePayData.xdata3);
+    
+     button.attr('reference_id',this.fetchresponsePayData.xdata1);
+
+     var origtotalcount = this.fetchresponsePayData.userProgramList.length;
+     
+
+     callbackUTC_1();
+     setTimeout(() => {
+      if(this.ccCardPay=='E-Check'){
+        var id = document.getElementById('pay_proceed_btn_echeck'); 
+      }else{
+        var id = document.getElementById('pay_proceed_btn_cc'); 
+      }
+         
+       id?.setAttribute('api_access_id', environment.API_Access_ID);
+       id?.setAttribute('location_id', environment.LOCATION_ID);
+      
+      }, 1500);
+        }
+       
+
+  }
+
+
 
 }
