@@ -16,6 +16,7 @@ import { CreateProgramReviewConfigurationComponent } from './components/create-p
 import { CreateProgramAdditionalCustomFieldsComponent } from './components/create-program-additional-custom-fields/create-program-additional-custom-fields.component';
 import { CreateProgramSevaQuestionsComponent } from './components/create-program-seva-questions/create-program-seva-questions.component';
 import { CreateProgramRegStepsEmailComponent } from './components/create-program-reg-steps-email/create-program-reg-steps-email.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 const routes: Routes = [
   {
@@ -85,6 +86,7 @@ const routes: Routes = [
   ],
   imports: [
     ChinmayaSharedModule,
+    CKEditorModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule],

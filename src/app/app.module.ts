@@ -17,7 +17,6 @@ import { SpinnerInterceptor } from './modules/chinmaya-shared/interceptors/Spinn
 //import { RegistrationProcessingComponent } from './configuration/registration-processing/registration-processing.component';
 import * as $ from 'jquery';
 
-
 // #fake-end#
 
 

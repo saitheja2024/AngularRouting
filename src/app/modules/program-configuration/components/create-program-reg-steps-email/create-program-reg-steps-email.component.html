@@ -48,7 +48,14 @@
                 <div class="row">
                     <div class="col-lg-12 mt-2 fv-row fv-plugins-icon-container">
                         <label class="col-form-label required fw-semibold fs-6">Body</label>
-                        <textarea name="kt_docs_ckeditor_classic" id="kt_docs_ckeditor_classic"></textarea>
+                        <div>
+                            <h2>CKEditor 5 in Angular</h2>
+                            <ckeditor []="Editor" [(ngModel)]="editorData"></ckeditor>
+                          </div>
+                          <div>
+                            <h3>Output:</h3>
+                            <div [innerHTML]="editorData"></div>
+                          </div>
                     </div>
                 </div> 
                                     
