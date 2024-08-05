@@ -89,7 +89,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       loginParam.password=  window.btoa(loginParam.password);
     }
     const user = await this.authService.login(loginParam);
+    await this.fetchMenuItems(user);
     this.router.navigateByUrl("");
+  }
+
+   async fetchMenuItems(user:any){
+    let params= {
+      "personID" : user.personID
+    }
+    let menutItems = await this.authService.fetchMenutItems(params);
   }
 
   ngOnDestroy() {

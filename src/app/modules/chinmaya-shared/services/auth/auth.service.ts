@@ -62,6 +62,40 @@ export class AuthService implements OnDestroy {
     return this.store.getValue(logUser);
   }
 
+  async fetchMenutItems(personId: any) {
+    let options: Options = {
+      url: this.urlService.registrationProcessingURL.fetchModulesByPersonId,
+      body: personId
+    }
+
+    let response: any = await this.httpService.post(options);
+
+  
+    if(response && response.responseScreenModuleList){
+      this.store.setValue(KEYS.MenutItems,this.extractDescriptionsGroupedByChapterCode(response))
+    }
+  }
+
+  extractDescriptionsGroupedByChapterCode(responseData:any) {
+    const groupedDescriptions: { [key: string]: string[] } = {};
+  
+    for (const module of responseData.responseScreenModuleList) {
+      const chapterCode = module.chapterCode;
+  
+      if (!groupedDescriptions[chapterCode]) {
+        groupedDescriptions[chapterCode] = [];
+      }
+  
+      for (const screen of module.responseScreenList) {
+        for (const response of screen.screenResponseList) {
+          groupedDescriptions[chapterCode].push(response.description);
+        }
+      }
+    }
+  
+    return groupedDescriptions;
+  }
+
   
 
  

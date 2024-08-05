@@ -26,6 +26,7 @@ export class UrlService {
     saveRegistrationDetails:"registrationProcessing/saveRegistrationDetails",
     acceptFamily:"registrationProcessing/acceptFamily",
     assignChoice:"registrationProcessing/assignChoice",
+    fetchModulesByPersonId: "registrationProcessing/fetchModulesByPersonId"
     
   }
 

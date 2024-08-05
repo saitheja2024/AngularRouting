@@ -21,6 +21,8 @@ export class SidebarMenuComponent implements OnInit {
   loggedInUser: any;
   chapterCode:any;
   academicYearCode:any;
+  menutItems: any;
+  
   constructor(private masterService:MasterService,
     private store:StoreService,
     private router:Router,
@@ -42,6 +44,33 @@ export class SidebarMenuComponent implements OnInit {
     this.onChapterChange(this.chapterCode);
     this.onAcademicYerChange(this.academicYearCode);
     await this.fetchProgramsByAcademicYearAndChapterCode();
+  }
+
+
+  isModuleAllowed(module:any){
+
+    
+    let  retValue = false;
+    if(!this.menutItems || this.menutItems.length==0){
+      return false
+    }
+     
+    if(this.menutItems.includes(module)){
+      retValue=true;
+    }
+
+
+    return retValue;
+
+
+  }
+
+  prepareMenu(){
+    let menuItems:any = this.store.getValue(KEYS.MenutItems)
+    this.menutItems= menuItems[this.selectedChapterCode];
+    if(menuItems["All"]){
+      this.menutItems=menuItems["All"];
+    }
   }
 
   async chapterDesc(code:any){
@@ -70,6 +99,7 @@ export class SidebarMenuComponent implements OnInit {
     const user = await this.authService.login(cred);
     }
     this.chapterDesc(this.selectedChapterCode);
+     this.prepareMenu()
     this.router.navigate(["registration-processing/registration-search"]);
     await this.fetchProgramsByAcademicYearAndChapterCode();
   }
