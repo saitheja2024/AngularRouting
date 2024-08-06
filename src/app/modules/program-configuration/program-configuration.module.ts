@@ -22,6 +22,16 @@ import { CreateProgramSevaQuestionsComponent } from './components/create-program
 import { CreateProgramRegStepsEmailComponent } from './components/create-program-reg-steps-email/create-program-reg-steps-email.component';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import { SignupCodeDetailsComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/signup-code-details/signup-code-details.component';
+import { PreRequisitesComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/pre-requisites/pre-requisites.component';
+import { PaymentProcessingComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/payment-processing/payment-processing.component';
+import { ChoiceDetailsComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/choice-details/choice-details.component';
+import { PledgeStructureComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/pledge-structure/pledge-structure.component';
+import { ClassCodesComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/class-codes/class-codes.component';
+import { RegistrationStepsComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/registration-steps/registration-steps.component';
+
+import { FormsModule } from '@angular/forms';
+
 const routes: Routes = [
   {
     path: '',
@@ -54,9 +64,42 @@ const routes: Routes = [
                 {
                   path: 'signup-codes/signup-code-details',
                   component: CreateProgramSignupCodeDetailsComponent,
+                  children:[{
+                    path: 'signup-code-details',
+                    component: SignupCodeDetailsComponent,
+                    },
+                    {
+                      path:'pre-requisites',
+                      component:PreRequisitesComponent
+                    },
+                    {
+                      path:'payment-processing',
+                      component:PaymentProcessingComponent
+                    },
+                    {
+                      path:'choice-details',
+                      component:ChoiceDetailsComponent
+                    },
+                    {
+                      path:'pledge-structure',
+                      component:PledgeStructureComponent
+                    },
+                    {
+                      path:'class-codes',
+                      component:ClassCodesComponent
+                    },
+                    {
+                      path:'registration-steps',
+                      component:RegistrationStepsComponent
+                    },
+                    {
+                      path:"",
+                      redirectTo:"recent-payment",
+                      pathMatch:"full"
+                    }]
                 },
       
-                { path: '', redirectTo: 'signup-codes', pathMatch: 'full' }
+                { path: '', redirectTo: 'signup-code-details', pathMatch: 'full' }
               ]
             },
             {
@@ -100,9 +143,17 @@ const routes: Routes = [
     CreateProgramReviewConfigurationComponent,
     CreateProgramAdditionalCustomFieldsComponent,
     CreateProgramSevaQuestionsComponent,
-    CreateProgramRegStepsEmailComponent
+    CreateProgramRegStepsEmailComponent,
+    SignupCodeDetailsComponent,
+    PreRequisitesComponent,
+    PaymentProcessingComponent,
+    ChoiceDetailsComponent,
+    PledgeStructureComponent,
+    ClassCodesComponent,
+    RegistrationStepsComponent
   ],
   imports: [
+    FormsModule,
     ChinmayaSharedModule,
     CommonModule,
     MatTabsModule,

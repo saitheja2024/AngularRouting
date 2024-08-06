@@ -51,6 +51,6 @@ export class CreateProgramSignupCodesComponent {
   }
 
   SignupCodeDetails(){
-    this.router.navigateByUrl("/program-configuration/create-program/signup-codes/signup-code-details")
+    this.router.navigateByUrl("/program-configuration/create-program/signup-codes/signup-code-details/signup-code-details")
    }
 }
