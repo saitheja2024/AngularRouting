@@ -11,12 +11,16 @@ import { CreateProgramComponent } from './components/create-program/create-progr
 import { CreateProgramConfigurationDetailsComponent } from './components/create-program-configuration-details/create-program-configuration-details.component';
 import { CreateProgramProgramDetailsComponent } from './components/create-program-program-details/create-program-program-details.component';
 import { CreateProgramRegistrationStepsComponent } from './components/create-program-registration-steps/create-program-registration-steps.component';
-import { CreateProgramSignupCodesComponent } from './components/create-program-signup-codes/create-program-signup-codes.component';
+
+import { CreateProgramSignupCodesComponent } from './components/create-program-signupcodes/create-program-signup-codes/create-program-signup-codes.component';
+import { CreateProgramSignupCodesHomeComponent } from './components/create-program-signupcodes/create-program-signup-codes-home/create-program-signup-codes-home.component';
+import { CreateProgramSignupCodeDetailsComponent } from './components/create-program-signupcodes/create-program-signup-code-details/create-program-signup-code-details.component';
+
 import { CreateProgramReviewConfigurationComponent } from './components/create-program-review-configuration/create-program-review-configuration.component';
 import { CreateProgramAdditionalCustomFieldsComponent } from './components/create-program-additional-custom-fields/create-program-additional-custom-fields.component';
 import { CreateProgramSevaQuestionsComponent } from './components/create-program-seva-questions/create-program-seva-questions.component';
 import { CreateProgramRegStepsEmailComponent } from './components/create-program-reg-steps-email/create-program-reg-steps-email.component';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const routes: Routes = [
   {
@@ -40,8 +44,20 @@ const routes: Routes = [
               component:CreateProgramRegistrationStepsComponent
             },
             {
-              path:'signup-codes',
-              component:CreateProgramSignupCodesComponent
+              path:'',
+              component:CreateProgramSignupCodesHomeComponent,
+              children: [
+                {
+                  path: 'signup-codes',
+                  component: CreateProgramSignupCodesComponent,
+                },
+                {
+                  path: 'signup-codes/signup-code-details',
+                  component: CreateProgramSignupCodeDetailsComponent,
+                },
+      
+                { path: '', redirectTo: 'signup-codes', pathMatch: 'full' }
+              ]
             },
             {
               path:'review-configuration',
@@ -78,7 +94,9 @@ const routes: Routes = [
     CreateProgramConfigurationDetailsComponent,
     CreateProgramProgramDetailsComponent,
     CreateProgramRegistrationStepsComponent,
+    CreateProgramSignupCodesHomeComponent,
     CreateProgramSignupCodesComponent,
+    CreateProgramSignupCodeDetailsComponent,
     CreateProgramReviewConfigurationComponent,
     CreateProgramAdditionalCustomFieldsComponent,
     CreateProgramSevaQuestionsComponent,
@@ -86,7 +104,8 @@ const routes: Routes = [
   ],
   imports: [
     ChinmayaSharedModule,
-    CKEditorModule,
+    CommonModule,
+    MatTabsModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule],
