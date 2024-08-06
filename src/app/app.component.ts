@@ -58,9 +58,12 @@ export class AppComponent implements OnInit {
       let userAuth:any = { username: key, password: value };
       sessionStorage.setItem('userCred',JSON.stringify(userAuth));
       const user = await this.authService.login({ username: key, password: value });
+      this.fetchMenuItems(user);
       this.router.navigateByUrl("");
       return;
     }
+
+    
 
     let  route= "/registration-processing";
     let loggedInUser = this.authService.getLoggedInUser();
@@ -75,4 +78,12 @@ export class AppComponent implements OnInit {
     }
     this.router.navigateByUrl(route);
   }
+
+  async fetchMenuItems(user:any){
+    let params= {
+      "personID" : user.personID
+    }
+    let menutItems = await this.authService.fetchMenutItems(params);
+  }
+
 }
