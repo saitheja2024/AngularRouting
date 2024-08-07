@@ -60,6 +60,9 @@ export class FamilyRegWorkflowComponent {
     code:''
   };
 
+  familyFlag:any={};
+
+
   selectedProgram:any;
   selectedChapterCode:any;
   categoryWiseList:any;
@@ -141,6 +144,8 @@ export class FamilyRegWorkflowComponent {
  async ngOnInit(){
   this.primaryUserData  = this.familyService.getSelectedFamily();
   this.selectedFamilyDetails =  this.primaryUserData ;
+  localStorage.setItem('CurrentUser', JSON.stringify(this.primaryUserData));
+  
    localStorage.setItem('payOpts',JSON.stringify("fullAmt"));
   this.InitFlag=true;
   this.route.params.subscribe(async params => {
@@ -149,6 +154,7 @@ export class FamilyRegWorkflowComponent {
   //this.primaryUserData = JSON.parse(sessionStorage.getItem('newUserData') || '');
   this.selectedProgram = this.store.getValue(KEYS.program);
   this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+  localStorage.setItem('programcode', JSON.stringify(this.selectedProgram.code));
   this.currentUserData = this.classRgiSrvice.getLoggedInUser();
   let chapter = this.store.getValue(KEYS.chapterDesc);
   this.selectedChapter=chapter[0].description;
@@ -162,6 +168,7 @@ export class FamilyRegWorkflowComponent {
   this.getCategoriesList( this.primaryUserData);
   await this.fetchSchooldGradeLabel();
   //this.memberselection(this.primaryUserData.user);
+  this.formGroup = this.fb.group({});
  }
 
  setDefaultValue(){
@@ -556,7 +563,7 @@ async getPersonProgramRegistration(ind_change:any) {
       this.rightPanelAccordionNotPaid = this.callPaymentPanel(this.pendingPaymentData, 'personName','stagePaid');
       if(Object.keys(this.rightPanelAccordionNotPaid).length>0){ this.TotalValPendingData(); }
       this.objectKeys = Object.keys(this.rightPanelAccordionNotPaid);
-      //this.sessionCtrl(this.pendingPaymentData, ind_change);
+      this.sessionCtrl(this.pendingPaymentData, ind_change);
    
 }
 
@@ -715,11 +722,11 @@ rightPanel:any;
         
          fetChoiceData[i].sessionPreferences.forEach((item: any, index:any) =>{
            const ctrl = this.fb.control(' ');
-           this.formGroup.addControl(fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index, ctrl);
+           this.formGroup.addControl(fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode+'_'+index, ctrl);
            if(index!=0){
-             this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index].disable();
+             this.formGroup.controls[fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode+'_'+index].disable();
            }
-           this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index].setValue('');
+           this.formGroup.controls[fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode+'_'+index].setValue('');
          });
        }else if(fetChoiceData[i].familySessionPreference.length>0 && (fetChoiceData[i].paymentSubmittedDate==null || fetChoiceData[i].paymentSubmittedDate=='' )){
          let famData =fetChoiceData[i].familySessionPreference;
@@ -735,11 +742,11 @@ rightPanel:any;
            const ctrl = this.fb.control(
              (index_change=='index_Change' && index==0)? item.choiceCode : (index_change=='index_Change' && index !=0)?'':(item.choiceCode !=undefined)? item.choiceCode : ''
            );
-           this.formGroup.addControl(fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index, ctrl);
-           if(index!=0 && this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+(index-1)].value==''){
-             this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index].disable();
-           }else if(index!=0 && this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+(index-1)].value!='' ){
-             this.formGroup.controls[fetChoiceData[i].fullName+'_'+fetChoiceData[i].signUpCode+'_'+index].enable();
+           this.formGroup.addControl(fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode+'_'+index, ctrl);
+           if(index!=0 && this.formGroup.controls[fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode+'_'+(index-1)].value==''){
+             this.formGroup.controls[fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode+'_'+index].disable();
+           }else if(index!=0 && this.formGroup.controls[fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode+'_'+(index-1)].value!='' ){
+             this.formGroup.controls[fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode+'_'+index].enable();
            }
          });
            this.familySessionData[fetChoiceData[i].personName+'_'+fetChoiceData[i].signUpCode]= [];
@@ -748,7 +755,7 @@ rightPanel:any;
        
      }
      this.selectedChoice();
- 
+     console.log(this.familySessionData);
      this.formDataCheck = this.formGroup.value;
    }
 
@@ -773,38 +780,40 @@ rightPanel:any;
   }
 
 
-  // async sessionChoice(personData:any, i:any, event:any){
-  //   let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
-  //   let body:any={
-  //     familyId: familyId,
-  //     programCode: '',
-  //     familySessionPreference: [
+  async sessionChoice(personData:any, i:any, event:any){
+    let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
+    let body:any={
+      familyId: familyId,
+      programCode: '',
+      familySessionPreference: [
         
-  //     ],
-  //     signupCode: personData.signUpCode
-  //   }
-  //   let objSession:any ={};
-  //   for(var p=0; p<personData.sessionPreferences.length; p++){
-  //     // let choicepref:any=(personData.sessionPreferences[i].choiceLabel).split(' ');
-  //     // choicepref = choicepref[choicepref.length-1].split(':')[0];
-  //     if(event.target.value == personData.sessionPreferences[p].choices){
-  //       objSession ={
-  //         personId:personData.personID,
-  //         choiceCode:personData.sessionPreferences[p].choices,
-  //         choiceLabel:personData.sessionPreferences[i].choiceLabel,
-  //         modifiedBy: this.currentUserData.personID,
-  //         choicePreference: personData.sessionPreferences[i].choiceOrder,
-  //         createdBy: this.currentUserData.personID
-  //       };
-  //       body.programCode= personData.sessionPreferences[p].programCode;
-  //       break;
-  //     }
-  //   }
+      ],
+      signupCode: personData.signUpCode
+    }
+    let objSession:any ={};
+    for(var p=0; p<personData.sessionPreferences.length; p++){
+      // let choicepref:any=(personData.sessionPreferences[i].choiceLabel).split(' ');
+      // choicepref = choicepref[choicepref.length-1].split(':')[0];
+      if(event.target.value == personData.sessionPreferences[p].choices){
+        objSession ={
+          personId:personData.personID,
+          choiceCode:personData.sessionPreferences[p].choices,
+          choiceLabel:personData.sessionPreferences[i].choiceLabel,
+          modifiedBy: this.currentUserData.personID,
+          choicePreference: personData.sessionPreferences[i].choiceOrder,
+          createdBy: this.currentUserData.personID
+        };
+        body.programCode= personData.sessionPreferences[p].programCode;
+        break;
+      }
+    }
 
-  //   body.familySessionPreference.push(objSession);
+    body.familySessionPreference.push(objSession);
   
-  //   let data = await this.classRgiSrvice.saveSessionPreferrence(body);
-  // }
+    let data = await this.classRgiSrvice.saveSessionPreferrence(body);
+    this.getPersonProgramRegistration('index_change');
+
+  }
 
   payNow(){
     this.paymentInfoListDetails();
@@ -873,7 +882,8 @@ rightPanel:any;
   proceedPayBtnEcheck:boolean=false;
   convienceFee:any;
 
-  cardValue(){
+  cardValue(eve:any){
+    this.ccCardPay=eve;
     this.proceedPayBtnCC = false;
     this.proceedPayBtnEcheck = false;
     let body={
@@ -1026,5 +1036,73 @@ rightPanel:any;
   }
 
 
+  deletePersonProgramReg(pendData:any,i:any){
+    
+    const body = {
+      registrationId: pendData.registrationId,
+      personId: pendData.personID,
+      signUpCode: pendData.signUpCode,
+      programCode: pendData.programCode
+    }
+   let deleteResData = this.classRgiSrvice.deleteProgramRegistration(body)
+       // this.checkboxModel[pendData.signUpCode]=false;
+
+        for(let item in this.formGroup.controls){
+          if(item.includes(pendData.fullName)){
+              this.formGroup.removeControl(item);
+          }
+        }
+        this.getPersonProgramRegistration('');
+        this.fetchFamilyFlag();
+        //if(pendData.subCategory!=null){this.getCategoriesList();}
+    
+  }
+
+  async fetchFamilyFlag(){
+   
+    let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
+    let body ={
+      familyId: familyId,
+      programCode: this.selectedProgram.code,
+      chapterCode: this.selectedChapterCode,
+      paymentFlag:false
+    }
+      
+     let res = await this.classRgiSrvice.fetchSaveProgramConfigurationFields(body) 
+     this.familyFlag=res;
+    // this.programConfigurationFields = res;
+    
+   }
+
+   async deleteSessionChoice(personData:any, i:any, event:any, item:any){
+
+    let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
+    
+    if(i==0 && personData.familySessionPreference.length>0){
+      let paramSession={
+        signupCode:personData.signUpCode,
+        programCode: this.selectedProgram.code,
+        familyId: familyId,
+        personId: personData.personID
+      };
+
+       
+      let resData:any = await this.classRgiSrvice.deleteFamilySessionPreference(paramSession);
+      if(resData?.flag){
+        for(let k=0; k<this.familySessionData[personData.personName+'_'+personData.signUpCode].length; k++){
+          if(k!=i){
+            this.formGroup.controls[personData.personName+'_'+personData.signUpCode+'_'+k].setValue('');
+          }
+        }
+        this.sessionChoice(personData, i, event);
+      }
+    }else{
+      this.sessionChoice(personData, i, event);
+    }
+    
+    
+  }
+    
+ 
 
 }

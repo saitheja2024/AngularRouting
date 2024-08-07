@@ -1,4 +1,4 @@
-var Api_URL = 'https://nonregqa.cmwrcregistration.org/MR/';
+const Api_URL = 'https://reg-dev.cmwrcregistration.org/MR/';
 // PROD 
 // var forte_API_URL = "https://checkout.forte.net/v2/js";
 var forte_API_URL = "https://sandbox.forte.net/checkout/v2/js";
@@ -286,8 +286,9 @@ xhr.send(JSON.stringify(datares));
 
   function fetchAdultFamilyData(){
     var curentUserData = JSON.parse(localStorage.getItem('CurrentUser') || '');
+    let familyId = (curentUserData.familyId)?curentUserData.familyId : curentUserData.familyID;
     var paramAdult= {
-        familyId: curentUserData.familyID,
+        familyId: familyId,
       // "chapterID": this.userData.chapter,
       // "programCode": this.programcode
     }
@@ -312,9 +313,10 @@ xhr.send(JSON.stringify(paramAdult));
   function redirectionCheck(adultData){
     var curentUserData = JSON.parse(localStorage.getItem('CurrentUser') || '');
     var CurrProgramCode = JSON.parse(localStorage.getItem('programcode') || '');
-    
+    let familyId = (curentUserData.familyId)?curentUserData.familyId : curentUserData.familyID;
+
     var param= {
-      familyId: curentUserData.familyID,
+      familyId: familyId,
       programCode: CurrProgramCode,
       personId: parseInt(adultData.code)
     
