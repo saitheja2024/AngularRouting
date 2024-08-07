@@ -52,5 +52,17 @@ export class CreateProgramSignupCodesComponent {
 
   SignupCodeDetails(){
     this.router.navigateByUrl("/program-configuration/create-program/signup-codes/signup-code-details/signup-code-details")
-   }
+  }
+
+  back(){
+    this.router.navigateByUrl("/program-configuration/create-program/registration-steps")
+  }
+
+  backtoconfig(){
+    this.router.navigateByUrl("/program-configuration/create-program/configuration")
+  }
+
+  next(){
+    this.router.navigateByUrl("/program-configuration/create-program/review-configuration")
+  }
 }

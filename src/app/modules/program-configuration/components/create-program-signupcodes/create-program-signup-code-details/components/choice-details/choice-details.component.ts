@@ -6,8 +6,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 export interface ChoiceDetails {
-  username: string;
-  rolename: string;
+  code: string;
+  label: string;
+  description: string;
+  control: string;
+  displayorder: string;
+  active: string;
   actions: string;
 }
 
@@ -19,21 +23,16 @@ export interface ChoiceDetails {
 export class ChoiceDetailsComponent {
 
   ChoiceDetails: ChoiceDetails[] = [
-    {username: 'Shashi', rolename: 'Operator', actions:''},
-    {username: 'Mark', rolename: 'Cashier', actions:''},
-    {username: 'Mohan', rolename: 'Admin', actions:''},
-    {username: 'Joy', rolename: 'Accountant', actions:''},
-    {username: 'Prabha', rolename: 'Admin', actions:''},
+    {code: '', label: '', description: '', control: '', displayorder: '', active: '', actions:''}
   ];
 
-  displayedColumnsChoiceDetails: string[] = ['username', 'rolename', 'actions'];
+  displayedColumnsChoiceDetails: string[] = ['code', 'label', 'description', 'control', 'displayorder', 'active', 'actions'];
 
-  dataSourceUserRole = new MatTableDataSource<ChoiceDetails>(this.ChoiceDetails);
+  dataSourceChoiceDetails = new MatTableDataSource<ChoiceDetails>(this.ChoiceDetails);
 
   @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSourceChoiceDetails: any;
 
   ngAfterViewInit() {
     this.dataSourceChoiceDetails=new MatTableDataSource(this.ChoiceDetails);

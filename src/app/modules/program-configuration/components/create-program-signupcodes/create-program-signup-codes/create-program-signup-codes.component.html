@@ -1,7 +1,14 @@
-<div class="card" style="border-radius: 0px 0px 5px 5px !important;">
+<div class="row p-4 pt-0">
+    <div class="text-end">
+        <span class="fw-semibold fs-6">
+            Program Description : Sample
+        </span>
+    </div>
+</div>
+<div class="card cardcss">
     <div class="card-body p-0">
         <div class="card">
-            <div class="card-header cursor-pointer p-4 pb-0 pt-0" style="background:#f9f9f9;">
+            <div class="card-header cursor-pointer p-4 pb-0 pt-0 bg-white">
                 <div class="card-title">
                     <h3 class="panel-title fw-semibold">
                         <img src="assets/chinmaya_media/images/SVG-color/SignUp Details-icon.svg" style="width: 25px;"> SignUp Details
@@ -11,9 +18,9 @@
                 <div class="card-toolbar flex-row-fluid justify-content-end">
                     <div class="d-flex align-items-center">
                         <!--begin::Primary button-->
-                        <a href="javascript:void(0)" class="btn btn-primary btn-sm me-2" mat-raised-button (click)="SignupCodeDetails()">
+                        <button class="btn btn-primary btn-sm me-2" mat-raised-button (click)="SignupCodeDetails()">
                             <i class="icon-add"></i> Add SignUp Details
-                        </a>
+                        </button>
                         <!--end::Primary button-->
                     </div>
                     <div class="card-title float-sm-end">
@@ -111,17 +118,21 @@
         <div class="row">
             <div class="d-flex justify-content-center">
                 <div class="m-0">
-                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                    <button class="btn btn-primary btn-sm mb-2 me-2" (click)="back()">
                         <i class="icon-backward"></i> Back
-                    </a>
+                    </button>
+
+                    <button class="btn btn-primary btn-sm mb-2 me-2" (click)="backtoconfig()">
+                        <i class="icon-backward"></i> Back to Configuration
+                    </button>
                         
-                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                    <button class="btn btn-primary btn-sm mb-2 me-2">
                         <i class="icon-floppy-disk"></i> Save
-                    </a>
+                    </button>
                     
-                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2">
+                    <button class="btn btn-primary btn-sm mb-2" (click)="next()">
                         <i class="icon-floppy-disks"></i> Save & Next
-                    </a>                                                                        
+                    </button>                                                                        
                 </div>
             </div>
         </div>

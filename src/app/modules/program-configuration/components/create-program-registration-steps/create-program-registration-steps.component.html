@@ -1,5 +1,13 @@
+<div class="row p-4 pt-0">
+    <div class="text-end">
+        <span class="fw-semibold fs-6">
+            Program Description : Sample
+        </span>
+    </div>
+</div>
 <div class="card cardcss">
-    <div class="card-header align-items-center float-end py-2 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+    <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white" 
+         style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
         <!--begin::Card title-->
         <div class="card-title float-sm-end">
             <!--begin::Search-->
@@ -24,13 +32,13 @@
         
                 <div class="card-toolbar flex-row-fluid justify-content-end">
                     <div class="d-flex align-items-center ">
-                        <a href="javascript:void(0)" class="btn btn-primary btn-sm">
+                        <button class="btn btn-primary btn-sm">
                             <i class="icon-add"></i> Add
-                        </a>
+                        </button>
 
-                        <a href="javascript:void(0)" class="btn btn-danger btn-sm ms-2">
+                        <button class="btn btn-danger btn-sm ms-2">
                             <i class="icon-bin"></i> Delete
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -41,10 +49,12 @@
         
                             <!-- Registration Status Column -->
                             <ng-container matColumnDef="registrationstatus">
-                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                                    style="border-right:1px solid #ddd;">
                                     Registration Status <span class="text-danger ms-1"> *</span>
                                 </th>
-                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ddd;border-bottom:1px solid #ddd;"> 
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" 
+                                    style="border-right:1px solid #ddd;border-bottom:1px solid #ddd;"> 
                                     <select class="form-select form-select-sm cursor-pointer">
                                         <option value="">- Select Status-</option>
 										<option value="">ACCEPTED</option>
@@ -67,10 +77,12 @@
         
                             <!-- Payment Status Column -->
                             <ng-container matColumnDef="paymentstatus">
-                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                                    style="border-right:1px solid #ddd;">
                                     Payment Status <span class="text-danger ms-1"> *</span>
                                 </th>
-                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" 
+                                    style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
                                     <select class="form-select form-select-sm cursor-pointer">
                                         <option value="">- Select Status-</option>
 									    <option value="">BALANCE_DUE</option>
@@ -88,10 +100,12 @@
         
                             <!-- Sequence Column -->
                             <ng-container matColumnDef="sequence">
-                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #ddd;">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                                    style="border-right:1px solid #ddd;">
                                     Sequence <span class="text-danger ms-1"> *</span>
                                 </th>
-                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" 
+                                    style="border-bottom:1px solid #ddd;border-right:1px solid #ddd;"> 
                                     <input type="text" class="form-control form-control-sm" placeholder="Sequence">
                                 </td>
                             </ng-container>
@@ -99,7 +113,8 @@
                             <!-- Email Column -->
                             <ng-container matColumnDef="email">
                                 <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;" (click)="Email()"> 
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" 
+                                    style="border-bottom:1px solid #ddd;" (click)="Email()"> 
                                     <a class="cursor-pointer"><span class="fs-6"> Email </span></a>
                                 </td>
                             </ng-container>
@@ -127,17 +142,17 @@
         <div class="row">
             <div class="d-flex justify-content-center">
                 <div class="m-0">
-                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                    <button class="btn btn-primary btn-sm mb-2 me-2" (click)="back()">
                         <i class="icon-backward"></i> Back
-                    </a>
+                    </button>
                         
-                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                    <button class="btn btn-primary btn-sm mb-2 me-2">
                         <i class="icon-floppy-disk"></i> Save
-                    </a>
+                    </button>
                     
-                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2">
+                    <button class="btn btn-primary btn-sm mb-2" (click)="next()">
                         <i class="icon-floppy-disks"></i> Save & Next
-                    </a>                                                                        
+                    </button>                                                                        
                 </div>
             </div>
         </div>

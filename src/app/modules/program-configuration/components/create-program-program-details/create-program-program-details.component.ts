@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-program-program-details',
@@ -7,7 +8,16 @@ import { Component } from '@angular/core';
 })
 
 export class CreateProgramProgramDetailsComponent {
-  constructor () { }
+
+  constructor (private router:Router,) { }
+
+  back(){
+    this.router.navigateByUrl("/program-configuration/create-program/configuration")
+   }
+
+   next(){
+    this.router.navigateByUrl("/program-configuration/create-program/registration-steps")
+   }
 
   ngOnInit() {
     

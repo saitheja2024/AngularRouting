@@ -1,10 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateProgramRegStepsEmailComponent } from '../../../../create-program-reg-steps-email/create-program-reg-steps-email.component';
+
+export interface RegSteps {
+  checkbox: string;
+  registrationstatus: string;
+  paymentstatus: string;
+  sequence: string;
+  email: string;
+}
 
 @Component({
   selector: 'app-registration-steps',
   templateUrl: './registration-steps.component.html',
   styleUrls: ['./registration-steps.component.scss']
 })
+
 export class RegistrationStepsComponent {
 
+  RegSteps: RegSteps[] = [
+    {checkbox: '', registrationstatus: '', paymentstatus: '', sequence: '', email: ''}
+  ];
+
+  displayedColumnsRegSteps: string[] = ['checkbox', 'registrationstatus', 'paymentstatus', 'sequence', 'email'];
+
+  dataSourceRegSteps = new MatTableDataSource<RegSteps>(this.RegSteps);
+
+  @ViewChild(MatPaginatorModule) paginatorModule: MatPaginatorModule;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  ngAfterViewInit() {
+    this.dataSourceRegSteps=new MatTableDataSource(this.RegSteps);
+
+    this.dataSourceRegSteps.paginator = this.paginator;
+
+    this.dataSourceRegSteps.sort = this.sort;
+  }
+
+  async Email(){
+    const modalRef = await this.modalService.open(CreateProgramRegStepsEmailComponent,{ size: 'lg' });
+  }
+
+  constructor(
+    private router:Router,
+    private modalService: NgbModal
+    ){
+    
+  }
+
+  back(){
+    this.router.navigateByUrl("/program-configuration/create-program/signup-codes/signup-code-details/class-codes")
+   }
+
+   backtoconfig(){
+    this.router.navigateByUrl("/program-configuration/create-program/configuration")
+   }
+
+   next(){
+    this.router.navigateByUrl("/program-configuration/create-program/signup-codes")
+   }
 }

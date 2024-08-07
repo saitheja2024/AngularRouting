@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-program-configuration-details',
@@ -28,4 +29,14 @@ export class CreateProgramConfigurationDetailsComponent {
   onCheckboxChange(event: Event) {
     this.showContent = (event.target as HTMLInputElement).checked;
   }
+
+  constructor(
+    private router:Router,
+    ){
+    
+  }
+
+  next(){
+    this.router.navigateByUrl("/program-configuration/create-program/program-details")
+   }
 }

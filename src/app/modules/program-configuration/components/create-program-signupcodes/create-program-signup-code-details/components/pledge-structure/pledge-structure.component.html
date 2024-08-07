@@ -1,1 +1,242 @@
-<p>pledge-structure works!</p>
+<div class="card cardcss m-4">
+    <div class="card-header float-end p-4 pb-2 pt-2" 
+         style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #f9f9f9;">
+        <!--begin::Card title-->
+        <div class="card-title float-sm-end">
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+                <h3 class="panel-title fw-semibold">
+                    <img src="assets/chinmaya_media/images/SVG-color/Add Pledge Structure Details-icon.svg" style="width:25px;"> Add Pledge Structure Details 
+                </h3>
+            </div>
+            <!--end::Search-->
+        </div>
+    </div>
+
+    <!--begin::Card body-->
+    <div class="card-body p-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold required">Pledge Structure?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="" (change)="onCheckboxChangePledgeStructure($event)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2" *ngIf="showContentPledgeStructure">
+                        <div class="col-lg-12">
+                            <span class="fw-semibold text-danger">Note: </span>
+                            <span class="text-danger">Please enter at least one pledge structure code with default.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card cardcss mt-4" *ngIf="showContentPledgeStructure">
+            <!--begin::Card header-->
+            <div class="card-header align-items-center px-4" 
+                 style="border-bottom: 1px solid #ddd !important;background-color: #f9f9f9;">
+                <!--begin::Card title-->
+                <div class="card-title">
+                    <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                    <!--begin::Title-->
+                    <h3 class="panel-title fw-semibold fs-4">
+                        <img class="img_cls" src="assets/chinmaya_media/images/SVG-color/Pledge Details-icon.svg" style="width:25px;"> Pledge Details
+                    </h3>
+                    <!--end::Title-->
+                </div>
+                </div>
+                <!--end::Card title-->
+
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar flex-row-fluid justify-content-end">
+                    <div class="d-flex align-items-center">
+                        <!--begin::Primary button-->
+                        <button class="btn btn-primary btn-sm me-2">
+                            <i class="icon-add"></i> Add
+                        </button>
+
+                        <button class="btn btn-danger btn-sm me-2">
+                            <i class="icon-bin"></i> Delete
+                        </button>
+                        <!--end::Primary button-->
+                    </div>
+                    <div class="card-title float-sm-end">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative">
+                            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <input type="text" class="form-control form-control-sm w-250px ps-12" placeholder="Type to Filter" />
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <div class="mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSourcePledgeStructure" matSort>
+        
+                            <!-- Checkbox Column-->
+                            <ng-container matColumnDef="checkbox">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                    </div>
+                                </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="">
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <!-- Code Column-->
+                            <ng-container matColumnDef="code">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Code <span class="text-danger ms-1">*</span>
+                                </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <input type="text" class="form-control form-control-sm" placeholder="Code">
+                                </td>
+                            </ng-container>
+
+                            <!-- Default Column-->
+                            <ng-container matColumnDef="default">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Default <span class="text-danger ms-1">*</span>
+                                </th>
+                                <td class="text-nowrap fw-semibold" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <input type="text" class="form-control form-control-sm" placeholder="Default">
+                                </td>
+                            </ng-container>
+
+                            <!-- Amount Column-->
+                            <ng-container matColumnDef="amount">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Amount $ <span class="text-danger ms-1">*</span>
+                                </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <input type="text" class="form-control form-control-sm text-end" placeholder="Amount $">
+                                </td>
+                            </ng-container>
+
+                            <!-- Session Criteria Column-->
+                            <ng-container matColumnDef="sessioncriteria">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Session Criteria <span class="text-danger ms-1">*</span>
+                                </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <input type="text" class="form-control form-control-sm" placeholder="Session Criteria">
+                                </td>
+                            </ng-container>
+
+                            <!-- Effective From Column-->
+                            <ng-container matColumnDef="effectivefrom">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Effective From <span class="text-danger ms-1">*</span>
+                                </th>
+                                <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <input type="date" class="form-control form-control-sm" placeholder="MM/DD/YYYY">
+                                </td>
+                            </ng-container>
+
+                            <!-- Effective To Column-->
+                            <ng-container matColumnDef="effectiveto">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Effective To <span class="text-danger ms-1">*</span>
+                                </th>
+                                <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <input type="date" class="form-control form-control-sm" placeholder="MM/DD/YYYY">
+                                </td>
+                            </ng-container>
+        
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsPledgeStructure; sticky: true;" style="background-color: #F7F7F7;"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsPledgeStructure;"></tr>
+        
+                        </table>
+        
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                        showFirstLastButtons style="border-bottom: 1px solid #ddd;">
+                        </mat-paginator>
+        
+                    </div>
+                </div>
+
+                <div class="p-4 pt-0 pb-0">
+                    <div class="col-lg-12 mt-4">
+                        <span class="fw-semibold text-primary">Note: </span>
+                        <span class="text-primary">Enter Session Code under Session Criteria to restrict a pledge to specific session(s). Separate each session code with comma. Do not enter anything to apply a pledge to all sessions.</span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4 mt-2 fv-row fv-plugins-icon-container">
+                            <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                                <div class="row mt-2 aaa">
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                        <label class="col-form-label fw-semibold">Additional Custom Flag </label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                            <input class="form-check-input" type="checkbox" value="1">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 mt-4">
+                        <span class="text-danger">
+                            <span class="fw-semibold">Note:</span>
+                        </span>
+                    </div>
+                    
+                    <div class="col-lg-12 mt-4" style="display: block;">
+                        <ul class="mt-5" style="list-style-type:none">
+                            <li>Pledge structure effetctive start date and effective end date should be between following registration start and end dates.</li>
+                            <li><span class="fw-semibold">Registration Start Date : </span></li>
+                            <li><span class="fw-semibold">Registration End Date : </span></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!--end::Card body-->
+
+            <div class="card-footer p-5" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+                <div class="row">
+                    <div class="d-flex justify-content-center">
+                        <div class="m-0">
+                            <button class="btn btn-primary btn-sm mb-2 me-2" (click)="back()">
+                                <i class="icon-backward"></i> Back
+                            </button>
+                                
+                            <button class="btn btn-primary btn-sm mb-2 me-2">
+                                <i class="icon-floppy-disk"></i> Save
+                            </button>
+                            
+                            <button class="btn btn-primary btn-sm mb-2" (click)="next()">
+                                <i class="icon-floppy-disks"></i> Save &amp; Next
+                            </button>                                                                   
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

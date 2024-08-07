@@ -1,1 +1,255 @@
-<p>class-codes works!</p>
+<div class="card cardcss m-4">
+    <div class="card-header float-end p-4 pb-2 pt-2" 
+         style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #f9f9f9;">
+        <!--begin::Card title-->
+        <div class="card-title float-sm-end">
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+                <h3 class="panel-title fw-semibold">
+                    <img src="assets/chinmaya_media/images/SVG-color/Add Class Codes-icon.svg" style="width:25px;"> Add Class Codes
+                </h3>
+            </div>
+            <!--end::Search-->
+        </div>
+    </div>
+
+    <!--begin::Card body-->
+    <div class="card-body p-4">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="d-flex flex-column fv-row fv-plugins-icon-container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                            <label class="col-form-label fw-semibold"> Does this Sign-up Code have Class codes? </label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="" (change)="onCheckboxChangeClassCodes($event)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card cardcss mt-3" *ngIf="showContentClassCodes">
+            <!--begin::Card header-->
+            <div class="card-header align-items-center px-4" 
+                 style="border-bottom: 1px solid #ddd !important;background-color: #f9f9f9;">
+                <!--begin::Card title-->
+                <div class="card-title">
+                    <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                    <!--begin::Title-->
+                    <h3 class="panel-title fw-semibold fs-4">
+                        <img class="img_cls" src="assets/chinmaya_media/images/SVG-color/Class Codes-icon.svg" style="width:25px;"> Class Codes
+                    </h3>
+                    <!--end::Title-->
+                </div>
+                </div>
+                <!--end::Card title-->
+
+                <!--begin::Card toolbar-->
+                <div class="card-toolbar flex-row-fluid justify-content-end">
+                    <div class="d-flex align-items-center">
+                        <!--begin::Primary button-->
+                        <button class="btn btn-primary btn-sm me-2">
+                            <i class="icon-add"></i> Add
+                        </button>
+                        <!--end::Primary button-->
+                    </div>
+                    <div class="card-title float-sm-end">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative">
+                            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <input type="text" class="form-control form-control-sm w-250px ps-12" placeholder="Type to Filter" />
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                </div>
+                <!--end::Card toolbar-->
+            </div>
+            
+            <!--end::Card header-->
+            <!--begin::Card body-->
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <div class="mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSourceClassCodes" matSort>
+        
+                            <!-- Class Code Column-->
+                            <ng-container matColumnDef="classcode">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Class Code <span class="text-danger ms-1">*</span>
+                                </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <input type="text" class="form-control form-control-sm" placeholder="Class Code">
+                                </td>
+                            </ng-container>
+
+                            <!-- Sub Class Code Column-->
+                            <ng-container matColumnDef="subclasscode">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Sub Class Code
+                                </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <input type="text" class="form-control form-control-sm" placeholder="Sub Class Code">
+                                </td>
+                            </ng-container>
+
+                            <!-- Session Column-->
+                            <ng-container matColumnDef="session">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Session
+                                </th>
+                                <td class="text-nowrap fw-semibold" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <select class="form-select form-select-sm cursor-pointer">
+                                        <option>Select</option>
+                                    </select>
+                                </td>
+                            </ng-container>
+
+                            <!-- Minimum School Grade Column-->
+                            <ng-container matColumnDef="minimumschoolgrade">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Minimum School grade <span class="text-danger ms-1">*</span>
+                                </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <select class="form-select form-select-sm cursor-pointer">
+                                        <option value="">Select School Grade</option>
+                                        <option value="">Rising 1st Grade</option>
+                                        <option value="">Rising 2nd Grade</option>
+                                        <option value="">Rising 3rd Grade</option>
+                                        <option value="">Rising 4th Grade</option>
+                                        <option value="">Rising 5th Grade</option>
+                                        <option value="">Rising 6th Grade</option>
+                                        <option value="">Rising 7th Grade</option>
+                                        <option value="">Rising 8th Grade</option>
+                                        <option value="">Rising 9th Grade</option>
+                                        <option value="">Rising 10th Grade</option>
+                                        <option value="">Rising 11th Grade</option>
+                                        <option value="">Rising 12th Grade</option>
+                                        <option value="">1st Grade</option>
+                                        <option value="">2nd Grade</option>
+                                        <option value="">3rd Grade</option>
+                                        <option value="">4th Grade</option>
+                                        <option value="">5th Grade</option>
+                                        <option value="">6th Grade</option>
+                                        <option value="">7th Grade</option>
+                                        <option value="">8th Grade</option>
+                                        <option value="">9th Grade</option>
+                                        <option value="">10th Grade</option>
+                                        <option value="">11th Grade</option>
+                                        <option value="">12th Grade</option>
+                                        <option value="">PRE-KG</option>
+                                        <option value="">KG</option>
+                                        <option value="">Rising PRE-KG</option>
+                                        <option value="">Rising KG</option>
+                                        <option value="">Rising Shishu Vihar</option>
+                                        <option value="">Shishu Vihar</option>
+                                    </select>
+                                </td>
+                            </ng-container>
+
+                            <!-- Maximum School Grade Column-->
+                            <ng-container matColumnDef="maximumschoolgrade">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Maximum School Grade <span class="text-danger ms-1">*</span>
+                                </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <select class="form-select form-select-sm cursor-pointer">
+                                        <option value="">Select School Grade</option>
+                                        <option value="">Rising 1st Grade</option>
+                                        <option value="">Rising 2nd Grade</option>
+                                        <option value="">Rising 3rd Grade</option>
+                                        <option value="">Rising 4th Grade</option>
+                                        <option value="">Rising 5th Grade</option>
+                                        <option value="">Rising 6th Grade</option>
+                                        <option value="">Rising 7th Grade</option>
+                                        <option value="">Rising 8th Grade</option>
+                                        <option value="">Rising 9th Grade</option>
+                                        <option value="">Rising 10th Grade</option>
+                                        <option value="">Rising 11th Grade</option>
+                                        <option value="">Rising 12th Grade</option>
+                                        <option value="">1st Grade</option>
+                                        <option value="">2nd Grade</option>
+                                        <option value="">3rd Grade</option>
+                                        <option value="">4th Grade</option>
+                                        <option value="">5th Grade</option>
+                                        <option value="">6th Grade</option>
+                                        <option value="">7th Grade</option>
+                                        <option value="">8th Grade</option>
+                                        <option value="">9th Grade</option>
+                                        <option value="">10th Grade</option>
+                                        <option value="">11th Grade</option>
+                                        <option value="">12th Grade</option>
+                                        <option value="">PRE-KG</option>
+                                        <option value="">KG</option>
+                                        <option value="">Rising PRE-KG</option>
+                                        <option value="">Rising KG</option>
+                                        <option value="">Rising Shishu Vihar</option>
+                                        <option value="">Shishu Vihar</option>
+                                    </select> 
+                                </td>
+                            </ng-container>
+
+                            <!-- Capacity Column-->
+                            <ng-container matColumnDef="capacity">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                                    Capacity
+                                </th>
+                                <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <input type="text" class="form-control form-control-sm" placeholder="Capacity">
+                                </td>
+                            </ng-container>
+        
+                            <!-- Action Column -->
+                            <ng-container matColumnDef="actions">
+                                <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <button class="btn btn-sm button-default ms-2" 
+                                            style="border: 1px solid #FFCDDB;padding: 5px 9px !important;width:30px;">
+                                            <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;"></i>
+                                    </button>
+                                </td>
+                            </ng-container>
+        
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsClassCodes; sticky: true;" style="background-color: #F7F7F7;"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsClassCodes;"></tr>
+        
+                        </table>
+        
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                        showFirstLastButtons>
+                        </mat-paginator>
+        
+                    </div>
+                </div>
+            </div>
+            <!--end::Card body-->
+
+            <div class="card-footer p-5" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+                <div class="row">
+                    <div class="d-flex justify-content-center">
+                        <div class="m-0">
+                            <button class="btn btn-primary btn-sm mb-2 me-2" (click)="back()">
+                                <i class="icon-backward"></i> Back
+                            </button>
+                                
+                            <button class="btn btn-primary btn-sm mb-2 me-2">
+                                <i class="icon-floppy-disk"></i> Save
+                            </button>
+                            
+                            <button class="btn btn-primary btn-sm mb-2" (click)="next()">
+                                <i class="icon-floppy-disks"></i> Save &amp; Next
+                            </button>                                                                   
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

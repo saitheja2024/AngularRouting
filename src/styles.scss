@@ -162,10 +162,6 @@ div.mat-mdc-select-panel {
   border-bottom-style: none !important;
 }
 
-.mdc-tab--active {
-  border-bottom: 3px solid #ED992A !important;
-}
-
 .mdc-tab--active .mdc-tab__text-label {
   color: #fff !important;
 }
@@ -275,3 +271,132 @@ table {
 .form-check-input:hover {
 cursor: pointer;
 }
+
+
+//mat-tabs
+
+.mat-header-cell {
+  cursor: pointer;
+}
+
+.mat-sort-header-container {
+  width:100% !important;
+}
+
+.mdc-tab-indicator {
+  display: block !important;
+}
+
+.mat-mdc-tab-label-container {
+  flex-grow: 0 !important;
+  overflow: hidden;
+  background-color: #f4f5f8 !important;
+  border-radius: 5px;
+  border: none !important;
+}
+
+.mat-mdc-tab-header {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  background: #f4f5f8 !important;
+}
+
+.mat-mdc-header-row {
+  background-color: #CDDDFF;
+}
+
+.mat-mdc-tab {
+  padding: 10px 5px !important;
+  background-color: #f4f5f8 !important;
+}
+
+.mdc-tab--active {
+  background: #fff !important;
+  color: #fff !important;
+}
+
+.mdc-tab--active .mdc-tab__text-label {
+  color: #fff !important;
+}
+
+.mdc-tab__text-label {
+  color: #474860 !important;
+  font-weight: 500 !important;
+}
+
+//mat tabs
+
+.form-check.form-check-sm .form-check-input {
+    height: 1.3rem !important; 
+    width: 1.3rem !important;
+    border-radius: 3px;
+    border: 2px solid #4f4f4f !important;
+    margin-top: 2px;
+  }
+
+  .form-check.form-check-solid .form-check-input:not(:checked) {
+    background-color: transparent !important;
+  }
+
+  .mat-mdc-row {
+    font-family: Inter, Helvetica, "sans-serif" !important;
+  }
+
+  .mdc-notched-outline__leading, .mdc-notched-outline__trailing { 
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+  }
+
+  .mat-mdc-paginator { 
+    padding:5px;
+  }
+
+  .mat-mdc-tab .mdc-tab__text-label {
+    font-size: 14px !important;
+  }
+
+  .mdc-tab {
+    min-width: 100px !important;
+  }
+
+  .mdc-tab--active {
+    background-color: #697B9B !important;
+    border-radius: 5px !important;
+  }
+
+  mdc-tab--active:hover {
+    background-color: #f46c00 !important;
+  }
+
+  .mat-mdc-tab-group {
+    margin-bottom: 15px !important;
+    margin-top: 10px;
+  }
+
+  .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab {
+    flex-grow: 1;
+    border-right: 1px solid #d9d6d6;
+    padding: 10px 20px 10px 10px !important;
+    border-radius: 0px;
+    margin: 2px;
+  }
+
+  .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs > .mat-mdc-tab-header .mat-mdc-tab:last-child {
+    border-right: none !important;
+  }
+
+  .mat-mdc-tab-header-pagination-controls-enabled .mat-mdc-tab-header-pagination {
+    display: flex;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    background: #3369C9 !important;
+  }
+
+  .mat-mdc-tab-header {
+    box-shadow: 0px 1px 5px 0px #5b5b5b !important;
+    border-radius: 5px;
+  }
+
+  

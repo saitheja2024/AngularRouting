@@ -2,31 +2,3 @@
     border: 1px solid #eee;
     border-radius:5px;
 }
-  
-  .ki-abstract-10 .path1::before {
-    content: "\e911";
-    opacity: 1 !important;
-  }
-  
-  .mdc-data-table__header-row {
-    font-size: 15px;
-    font-weight: 600;
-  }
-  
-  .mat-mdc-text-field-wrapper {
-    padding: 5px 10px !important;
-  }
-
-  .mat-mdc-tab .mdc-tab__text-label {
-    font-size: 14px !important;
-  }
-
-.mat-mdc-header-cell {
-    min-width: 100px !important;
-    text-wrap: nowrap;
-  }
-
-  .col-form-label { 
-    line-height: 1.2 !important;
-    cursor: pointer;
-  }

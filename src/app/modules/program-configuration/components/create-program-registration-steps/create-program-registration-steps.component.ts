@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateProgramRegStepsEmailComponent } from '../create-program-reg-steps-email/create-program-reg-steps-email.component';
+import { Router } from '@angular/router';
 
 export interface RegSteps {
   registrationstatus: string;
@@ -40,12 +41,23 @@ export class CreateProgramRegistrationStepsComponent {
     this.dataSourceRegSteps.sort = this.sort;
   }
 
-  constructor(private modalService: NgbModal){
+  constructor(
+    private modalService: NgbModal,
+    private router:Router,
+  ){
     
   }
 
   async Email(){
     const modalRef = await this.modalService.open(CreateProgramRegStepsEmailComponent,{ size: 'lg' });
   }
+
+  back(){
+    this.router.navigateByUrl("/program-configuration/create-program/program-details")
+   }
+
+  next(){
+    this.router.navigateByUrl("/program-configuration/create-program/signup-codes")
+   }
 
 }

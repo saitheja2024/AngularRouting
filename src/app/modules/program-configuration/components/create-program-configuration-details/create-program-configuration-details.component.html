@@ -1,11 +1,13 @@
 <div class="card cardcss">
-    <div class="card-header align-items-center float-end py-2 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+    <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white" 
+         style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
         <!--begin::Card title-->
         <div class="card-title float-sm-end">
             <!--begin::Search-->
             <div class="d-flex align-items-center position-relative my-1">
                 <h3 class="panel-title fw-semibold">
-                    <img src="assets/chinmaya_media/images/SVG-color/Create Configuration Details-icon.svg" style="width: 25px;"> Create Configuration Details
+                    <img src="assets/chinmaya_media/images/SVG-color/Create Configuration Details-icon.svg" 
+                         style="width: 25px;"> Create Configuration Details
                 </h3>
             </div>
             <!--end::Search-->
@@ -14,7 +16,6 @@
 
     <!--begin::Card body-->
     <div class="card-body pt-0">
-
         <div class="row mt-3">
             <div class="col-lg-4 mt-1 fv-row fv-plugins-icon-container">
                 
@@ -224,21 +225,21 @@
             <div class="d-flex justify-content-center">
                 <div class="m-0">
                     <div *ngIf="selectedOption === 'option1'">
-                        <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                        <button class="btn btn-primary btn-sm mb-2 me-2">
                             <i class=" icon-spinner9"></i> Clone Program
-                        </a>
-                        <a href="javascript:void(0)" class="btn btn-danger btn-sm mb-2">
+                        </button>
+                        <button class="btn btn-danger btn-sm mb-2">
                             <i class="icon-cancel-circle2"></i> Cancel
-                        </a> 
+                        </button> 
                     </div>
                     
-                    <div *ngIf="selectedOption === 'option2'">
-                        <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                    <div *ngIf="selectedOption === 'option2'" (click)="next()">
+                        <button class="btn btn-primary btn-sm mb-2 me-2">
                             <i class="icon-floppy-disk"></i> Save & Next
-                        </a>
-                        <a href="javascript:void(0)" class="btn btn-danger btn-sm mb-2">
+                        </button>
+                        <button class="btn btn-danger btn-sm mb-2">
                             <i class="icon-cancel-circle2"></i> Cancel
-                        </a> 
+                        </button> 
                     </div>                                                                 
                 </div>
             </div>
