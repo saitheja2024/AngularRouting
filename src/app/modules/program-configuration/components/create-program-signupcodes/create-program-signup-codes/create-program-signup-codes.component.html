@@ -1,0 +1,129 @@
+<div class="card" style="border-radius: 0px 0px 5px 5px !important;">
+    <div class="card-body p-0">
+        <div class="card">
+            <div class="card-header cursor-pointer p-4 pb-0 pt-0" style="background:#f9f9f9;">
+                <div class="card-title">
+                    <h3 class="panel-title fw-semibold">
+                        <img src="assets/chinmaya_media/images/SVG-color/SignUp Details-icon.svg" style="width: 25px;"> SignUp Details
+                    </h3>
+                </div>
+
+                <div class="card-toolbar flex-row-fluid justify-content-end">
+                    <div class="d-flex align-items-center">
+                        <!--begin::Primary button-->
+                        <a href="javascript:void(0)" class="btn btn-primary btn-sm me-2" mat-raised-button (click)="SignupCodeDetails()">
+                            <i class="icon-add"></i> Add SignUp Details
+                        </a>
+                        <!--end::Primary button-->
+                    </div>
+                    <div class="card-title float-sm-end">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative">
+                            <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <input type="text" class="form-control form-control-sm w-250px ps-12" placeholder="Type to Filter" />
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <div class="mat-elevation-z8">
+                        <table mat-table [dataSource]="dataSourceSignUpCode" matSort>
+        
+                            <!-- SignUp ID Column-->
+                            <ng-container matColumnDef="signupid">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> SignUp ID </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> {{element.signupid}} </td>
+                            </ng-container>
+        
+                            <!-- SignUp Code Column-->
+                            <ng-container matColumnDef="signupcode">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> SignUp Code </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> {{element.signupcode}} </td>
+                            </ng-container>
+
+                            <!-- Description Column-->
+                            <ng-container matColumnDef="description">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> {{element.description}} </td>
+                            </ng-container>
+
+                            <!-- Start Time Column-->
+                            <ng-container matColumnDef="starttime">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Start Time </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> {{element.starttime}} </td>
+                            </ng-container>
+
+                            <!-- End Time Column-->
+                            <ng-container matColumnDef="endtime">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> End Time </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> {{element.endtime}} </td>
+                            </ng-container>
+
+                            <!-- Location Column-->
+                            <ng-container matColumnDef="location">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> {{element.location}} </td>
+                            </ng-container>
+
+                            <!-- Program Code Column-->
+                            <ng-container matColumnDef="programcode">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Program Code </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> {{element.programcode}} </td>
+                            </ng-container>
+        
+                            <!-- Action Column -->
+                            <ng-container matColumnDef="actions">
+                                <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
+                                <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                                    <button class="btn btn-sm button-default" style="border: 1px solid #EEE8FF;padding: 5px 10px !important;width:30px;">
+                                        <i class="icon-pencil pe-0" style="font-size: 13px !important;color:#5B31E8;">
+                                        </i>
+                                    </button>
+                                    <button class="btn btn-sm button-default ms-2" style="border: 1px solid #FFCDDB;padding: 5px 10px !important;width:30px;">
+                                        <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;">
+                                        </i>
+                                    </button>
+                                </td>
+                            </ng-container>
+        
+                            <tr mat-header-row *matHeaderRowDef="displayedColumnsSignUpCode; sticky: true;" style="background-color: #FCFCFC;"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumnsSignUpCode;"></tr>
+        
+                        </table>
+        
+                        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                        showFirstLastButtons>
+                        </mat-paginator>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card-footer p-4 pb-2" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <div class="m-0">
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                        <i class="icon-backward"></i> Back
+                    </a>
+                        
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                        <i class="icon-floppy-disk"></i> Save
+                    </a>
+                    
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2">
+                        <i class="icon-floppy-disks"></i> Save & Next
+                    </a>                                                                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

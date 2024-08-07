@@ -1,0 +1,74 @@
+<div class="card" style="border-radius:5px;">
+    <div class="card-body p-0">
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <ul class="nav nav-tabs nav-pills border-0 flex-row m-4 ms-4">
+
+                            <li class="nav-item w-md-200px me-2">
+                                <a class="nav-link bg-secondary text-dark mb-2 bg-hover-primary text-hover-inverse-primary active fs-6 fw-semibold" 
+                                   routerLinkActive="active-link" routerLink="signup-code-details"> SignUp Code Details
+                                </a>
+                            </li>
+                            <li class="nav-item w-md-200px me-2">
+                                <a class="nav-link bg-secondary text-dark mb-2 bg-hover-primary text-hover-inverse-primary fs-6 fw-semibold" 
+                                   routerLinkActive="active-link" routerLink="pre-requisites"> Pre Requisites
+                                </a>
+                            </li>
+                            <li class="nav-item w-md-200px me-2">
+                                <a class="nav-link bg-secondary text-dark mb-2 bg-hover-primary text-hover-inverse-primary fs-6 fw-semibold" 
+                                   routerLinkActive="active-link" routerLink="payment-processing"> Payment Processing
+                                </a>
+                            </li>
+                            <li class="nav-item w-md-200px me-2">
+                                <a class="nav-link bg-secondary text-dark mb-2 bg-hover-primary text-hover-inverse-primary fs-6 fw-semibold" 
+                                   routerLinkActive="active-link" routerLink="choice-details"> Choice Details
+                                </a>
+                            </li>
+                            <li class="nav-item w-md-200px me-2">
+                                <a class="nav-link bg-secondary text-dark mb-2 bg-hover-primary text-hover-inverse-primary fs-6 fw-semibold" 
+                                   routerLinkActive="active-link" routerLink="pledge-structure"> Pledge Structure
+                                </a>
+                            </li>
+                            <li class="nav-item w-md-200px me-2">
+                                <a class="nav-link bg-secondary text-dark mb-2 bg-hover-primary text-hover-inverse-primary fs-6 fw-semibold" 
+                                   routerLinkActive="active-link" routerLink="class-codes"> Class Codes
+                                </a>
+                            </li>
+                            <li class="nav-item w-md-200px me-2">
+                                <a class="nav-link bg-secondary text-dark mb-2 bg-hover-primary text-hover-inverse-primary fs-6 fw-semibold" 
+                                   routerLinkActive="active-link" routerLink="registration-steps"> Registration Steps
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col-lg-10"> 
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer p-4 pb-2" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <div class="m-0">
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                        <i class="icon-backward"></i> Back
+                    </a>
+                        
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2 me-2">
+                        <i class="icon-floppy-disk"></i> Save
+                    </a>
+                    
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mb-2">
+                        <i class="icon-floppy-disks"></i> Save & Next
+                    </a>                                                                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-create-program-reg-steps-email',
@@ -17,6 +16,4 @@ export class CreateProgramRegStepsEmailComponent {
     const modalRef = await this.modalService.dismissAll();
   }
 
-  public Editor = ClassicEditor;
-  editorData = '<p>Hello, world!</p>';
 }
