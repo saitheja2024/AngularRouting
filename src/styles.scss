@@ -46,6 +46,11 @@ $demo1-theme: mat.define-light-theme((
 @import "./assets/plugins/keenicons/outline/style.css";
 @import "./assets/plugins/keenicons/solid/style.css";
 @import "./assets/chinmaya_media/icons/icomoon/styles.css";
+@import "./assets/sass/components/accordion.scss";
+@import "./assets/sass/components/variables.scss";
+@import "./assets/plugins/keenicons/duotone/style.css";
+@import "./assets/plugins/keenicons/outline/style.css";
+@import "./assets/plugins/keenicons/solid/style.css";
 // @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400&display=swap');
 
 
@@ -63,6 +68,8 @@ $demo1-theme: mat.define-light-theme((
 // }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
 
 #kt_app_main {
   background-color: #f5f8fa !important;
@@ -328,6 +335,10 @@ cursor: pointer;
 
 //mat tabs
 
+.mat-mdc-tab-header-pagination-chevron {
+  border-color: #fff !important;
+}
+
 .form-check.form-check-sm .form-check-input {
     height: 1.3rem !important; 
     width: 1.3rem !important;
@@ -391,7 +402,7 @@ cursor: pointer;
     display: flex;
     border: 1px solid #ccc !important;
     border-radius: 5px !important;
-    background: #3369C9 !important;
+    background: #697B9B !important;
   }
 
   .mat-mdc-tab-header {
