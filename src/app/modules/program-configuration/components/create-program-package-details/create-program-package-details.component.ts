@@ -21,6 +21,7 @@ export interface PackageDetails {
   templateUrl: './create-program-package-details.component.html',
   styleUrls: ['./create-program-package-details.component.scss']
 })
+
 export class CreateProgramPackageDetailsComponent {
   PackageDetails: PackageDetails[] = [
     { checkbox: '', programcode: '', packagecode: '', packagedescription: '', amount: '', effectivestartdate: '', effectiveenddate: '', 
@@ -73,5 +74,31 @@ export class CreateProgramPackageDetailsComponent {
     this.dataSourcePackageDetails.data = updatedData;
   }
 
-  
+  selection: PackageDetails[] = [];
+
+  toggleSelection(row: PackageDetails) {
+    const index = this.selection.indexOf(row);
+    if (index === -1) {
+      this.selection.push(row);
+    } else {
+      this.selection.splice(index, 1);
+    }
+  }
+
+  isAllSelected() {
+    return this.selection.length === this.dataSourcePackageDetails.data.length;
+  }
+
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection = [];
+    } else {
+      this.selection = [...this.dataSourcePackageDetails.data];
+    }
+  }
+
+  deleteSelectedRows() {
+    this.dataSourcePackageDetails.data = this.dataSourcePackageDetails.data.filter(row => !this.selection.includes(row));
+    this.selection = [];
+  }
 }
