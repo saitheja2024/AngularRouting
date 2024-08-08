@@ -31,6 +31,11 @@ import { ClassCodesComponent } from './components/create-program-signupcodes/cre
 import { RegistrationStepsComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/registration-steps/registration-steps.component';
 
 import { FormsModule } from '@angular/forms';
+import { ReviewConfigChoiceCodeDetailsComponent } from './components/review-config-choice-code-details/review-config-choice-code-details.component';
+import { ReviewConfigPledgeStructureComponent } from './components/review-config-pledge-structure/review-config-pledge-structure.component';
+import { ReviewConfigClasscodeDetailsComponent } from './components/review-config-classcode-details/review-config-classcode-details.component';
+import { ReviewConfigRegStepsComponent } from './components/review-config-reg-steps/review-config-reg-steps.component';
+import { CreateProgramPackageDetailsComponent } from './components/create-program-package-details/create-program-package-details.component';
 
 const routes: Routes = [
   {
@@ -103,6 +108,10 @@ const routes: Routes = [
               ]
             },
             {
+              path:'package-details',
+              component:CreateProgramPackageDetailsComponent
+            },
+            {
               path:'review-configuration',
               component:CreateProgramReviewConfigurationComponent
             },
@@ -150,7 +159,12 @@ const routes: Routes = [
     ChoiceDetailsComponent,
     PledgeStructureComponent,
     ClassCodesComponent,
-    RegistrationStepsComponent
+    RegistrationStepsComponent,
+    ReviewConfigChoiceCodeDetailsComponent,
+    ReviewConfigPledgeStructureComponent,
+    ReviewConfigClasscodeDetailsComponent,
+    ReviewConfigRegStepsComponent,
+    CreateProgramPackageDetailsComponent
   ],
   imports: [
     FormsModule,

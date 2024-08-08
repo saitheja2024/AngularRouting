@@ -1,0 +1,79 @@
+<div class="card cardcss mt-2" style="border-radius:5px;">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourceClassCodeDetails" matSort>
+
+                    <!-- Class Code Column-->
+                    <ng-container matColumnDef="classcode">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Class Code <span class="text-danger">*</span>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.classcode}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Subclasscode Column-->
+                    <ng-container matColumnDef="subclasscode">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Sub Class Code
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.subclasscode}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Session Column-->
+                    <ng-container matColumnDef="session">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Session
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.session}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Minimum School Grade Column-->
+                    <ng-container matColumnDef="minimumschoolgrade">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Minimum School Grade <span class="text-danger">*</span>     
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.minimumschoolgrade}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Maximum School Grade Column-->
+                    <ng-container matColumnDef="maximumschoolgrade">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Maximum School Grade <span class="text-danger">*</span>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.maximumschoolgrade}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Capacity Column -->
+                    <ng-container matColumnDef="capacity">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Capacity <span class="text-danger">*</span>    
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.capacity}} 
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsClassCodeDetails; sticky: true;" style="background-color: #fcfcfc;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsClassCodeDetails;"></tr>
+
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                showFirstLastButtons>
+                </mat-paginator>
+
+            </div>
+        </div>
+    </div>
+</div>

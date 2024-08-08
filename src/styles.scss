@@ -69,7 +69,13 @@ $demo1-theme: mat.define-light-theme((
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.table-responsive {
+  border-radius: 5px;
+}
 
+.card-header:first-child {
+  border-radius: none !important;
+}
 
 #kt_app_main {
   background-color: #f5f8fa !important;
