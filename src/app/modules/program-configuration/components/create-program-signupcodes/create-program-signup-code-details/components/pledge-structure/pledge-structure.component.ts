@@ -61,4 +61,47 @@ export class PledgeStructureComponent {
    next(){
     this.router.navigateByUrl("/program-configuration/create-program/signup-codes/signup-code-details/class-codes")
    }
+
+   AddRow() {
+    const newRow: PledgeStructure = {
+      checkbox:'',
+      code:'',
+      default:'',
+      amount:'',
+      sessioncriteria:'',
+      effectivefrom:'',
+      effectiveto:''
+    };
+
+    const updatedData = [...this.dataSourcePledgeStructure.data, newRow];
+    this.dataSourcePledgeStructure.data = updatedData;
+  }
+
+  selection: PledgeStructure[] = [];
+
+  toggleSelection(row: PledgeStructure) {
+    const index = this.selection.indexOf(row);
+    if (index === -1) {
+      this.selection.push(row);
+    } else {
+      this.selection.splice(index, 1);
+    }
+  }
+
+  isAllSelected() {
+    return this.selection.length === this.dataSourcePledgeStructure.data.length;
+  }
+
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection = [];
+    } else {
+      this.selection = [...this.dataSourcePledgeStructure.data];
+    }
+  }
+
+  DeleteRow() {
+    this.dataSourcePledgeStructure.data = this.dataSourcePledgeStructure.data.filter(row => !this.selection.includes(row));
+    this.selection = [];
+  }
 }

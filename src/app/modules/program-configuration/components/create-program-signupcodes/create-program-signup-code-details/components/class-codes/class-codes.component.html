@@ -52,7 +52,7 @@
                 <div class="card-toolbar flex-row-fluid justify-content-end">
                     <div class="d-flex align-items-center">
                         <!--begin::Primary button-->
-                        <button class="btn btn-primary btn-sm me-2">
+                        <button class="btn btn-primary btn-sm me-2" (click)="AddRow()">
                             <i class="icon-add"></i> Add
                         </button>
                         <!--end::Primary button-->
@@ -78,6 +78,20 @@
                 <div class="table-responsive">
                     <div class="mat-elevation-z8">
                         <table mat-table [dataSource]="dataSourceClassCodes" matSort>
+
+                            <!-- Checkbox Column-->
+                            <ng-container matColumnDef="checkbox">
+                                <th mat-header-cell *matHeaderCellDef>
+                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="" (change)="masterToggle()" [checked]="isAllSelected()">
+                                </div>
+                                </th>
+                                <td mat-cell *matCellDef="let row" style="border-bottom:1px solid #ddd;">
+                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="" (click)="$event.stopPropagation()" (change)="toggleSelection(row)" [checked]="selection.includes(row)">
+                                </div>
+                                </td>
+                            </ng-container>
         
                             <!-- Class Code Column-->
                             <ng-container matColumnDef="classcode">
@@ -210,7 +224,8 @@
                                 <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
                                 <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
                                     <button class="btn btn-sm button-default ms-2" 
-                                            style="border: 1px solid #FFCDDB;padding: 5px 9px !important;width:30px;">
+                                            style="border: 1px solid #FFCDDB;padding: 5px 9px !important;width:30px;"
+                                            (click)="DeleteRow()">
                                             <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;"></i>
                                     </button>
                                 </td>

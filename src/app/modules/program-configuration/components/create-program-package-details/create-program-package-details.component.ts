@@ -59,7 +59,7 @@ export class CreateProgramPackageDetailsComponent {
     this.router.navigateByUrl("/program-configuration/create-program/review-configuration")
    }
 
-   addRow() {
+   AddRow() {
     const newRow: PackageDetails = {
       checkbox:'',
       programcode:'',
@@ -97,7 +97,7 @@ export class CreateProgramPackageDetailsComponent {
     }
   }
 
-  deleteSelectedRows() {
+  DeleteRow() {
     this.dataSourcePackageDetails.data = this.dataSourcePackageDetails.data.filter(row => !this.selection.includes(row));
     this.selection = [];
   }
