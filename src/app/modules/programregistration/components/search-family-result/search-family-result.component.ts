@@ -97,7 +97,7 @@ async onRegisterButtonClick(registerWithMembership:any){
     await this.saveAnnualPledgeRegistration(registerWithMembership)
     //this.alertService.showSuccessAlert("certificate is " +certificateIsValid);
     if(!certificateIsValid){
-      this.router.navigateByUrl("programregistration/certify-member");
+      this.router.navigateByUrl("programregistration/certify-member/"+registerWithMembership);
     }
     else{
       this.router.navigateByUrl("programregistration/family-reg-workflow/"+registerWithMembership);

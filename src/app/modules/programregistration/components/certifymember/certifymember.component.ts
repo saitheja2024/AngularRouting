@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { phoneNumberValidator } from 'src/app/Validators/custom-validators';
 import { formatPhoneNumber } from 'src/app/utils/util';
 import * as moment from 'moment';
@@ -43,10 +43,11 @@ export class CertifymemberComponent {
   get CM(): { [key: string]: AbstractControl } {
     return this.primaryContactGroup?.controls;
   }
+  memberFlag:boolean=false;
 
   constructor(private programRegistrationService: ProgramRegistrationService, 
     public fb: FormBuilder, private router: Router,
-  private store:StoreService) { }
+  private store:StoreService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
     await this.fetchSchoolGradeList();
@@ -55,7 +56,10 @@ export class CertifymemberComponent {
     let selectedProgram  = this.store.getValue(KEYS.program);
     this.programCode = selectedProgram.code;
     this.code = this.currentUser.chapter;
-
+    
+    this.route.params.subscribe(async params => {
+      this.memberFlag = params['memberFlag']=="true"?true:false;
+    });
     await this.getStatesList();
     await this.fetchRaisingSchooldGradeLabel();
     this.currentUser = this.programRegistrationService.getSelectedFamily();
@@ -248,7 +252,7 @@ async fetchRaisingSchooldGradeLabel(){
 
   if(!this.primaryContactGroup.invalid){
     await this.programRegistrationService.saveFamilyCertification(request);
-    this.router.navigateByUrl("programregistration/family-reg-workflow");
+    this.router.navigateByUrl("programregistration/family-reg-workflow/"+this.memberFlag);
     }else{
     this.validateErrorFlag=true;
   }
