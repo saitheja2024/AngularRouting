@@ -430,6 +430,7 @@ selectedSignupCode:any=[];
 signupCodeSelect(eve:any){
   this.selectedSignupCode = eve;
   this.personSelect={}
+  this.familyPersonList();
 }
 
 annualPledgeData:any;

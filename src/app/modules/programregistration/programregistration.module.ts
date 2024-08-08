@@ -22,7 +22,7 @@ import { NewRegistrationComponent } from './components/new-registration/new-regi
 import { SearchFamilyResultComponent } from './components/search-family-result/search-family-result.component';
 import { ProgramDashboardComponent } from './components/program-dashboard/program-dashboard.component';
 import { CertifymemberComponent } from './components/certifymember/certifymember.component';
-
+import { CapitalizeDirective } from 'src/app/utils/directives/CapitalizeDirective/capitalize.directive';
 const routes: Routes = [
   {
     path: '',
@@ -74,7 +74,7 @@ const routes: Routes = [
         component: ProgramDashboardComponent,
       },
       {
-        path: 'certify-member',
+        path: 'certify-member/:memberFlag',
         component: CertifymemberComponent,
       },
       // {
@@ -85,7 +85,7 @@ const routes: Routes = [
     ]
   },
 ];
-const DIRECTIVES : any[] = [PhoneNumberFormatDirective]
+const DIRECTIVES : any[] = [PhoneNumberFormatDirective, CapitalizeDirective]
 
 @NgModule({
   declarations: [

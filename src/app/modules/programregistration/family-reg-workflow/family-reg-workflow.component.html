@@ -26,7 +26,7 @@
 
                     <div class="mt-8 col-lg-12">
                         <div class="row">
-                            <div class="col-lg-7">
+                            <div class="col-lg-6">
 
                                 <fieldset class="border p-4 mrg_t_2" >
                                     <legend class="float-none fs-5 w-auto p-4 pb-0 mb-0">
@@ -50,12 +50,32 @@
                                             </thead>
                                             <tbody>
                                                 <tr *ngFor="let item of familyMemberpersonsList; index as i;">
+												   <ng-container *ngIf="selectedSignupCode.registrantType=='CHILD' && item.personType=='CHILD'">
                                                     <td><a href="javascript:void(0);">{{item.personID}}</a></td>
                                                     <td>{{item.firstName +' '+ item.lastName}}</td>
                                                     <td>{{ getGradeDesc(item.schoolGradeCode)}}</td>
                                                     <td>
-                                                      <input type="checkbox" [value]="item.personID" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i,'event')" />
+                                                      <input type="checkbox" [value]="item.personID" [disabled]="item.enable && item.selected" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i,'event')" />
                                                     </td>
+												</ng-container>
+
+												<ng-container *ngIf="selectedSignupCode.registrantType=='ALL'">
+                                                    <td><a href="javascript:void(0);">{{item.personID}}</a></td>
+                                                    <td>{{item.firstName +' '+ item.lastName}}</td>
+                                                    <td>{{ getGradeDesc(item.schoolGradeCode)}}</td>
+                                                    <td>
+                                                      <input type="checkbox" [value]="item.personID" [disabled]="item.enable && item.selected" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i,'event')" />
+                                                    </td>
+												</ng-container>
+
+												<ng-container *ngIf="selectedSignupCode.registrantType=='Both' && (item.personType=='ADULT' || item.personType=='YOUTH')">
+                                                    <td><a href="javascript:void(0);">{{item.personID}}</a></td>
+                                                    <td>{{item.firstName +' '+ item.lastName}}</td>
+                                                    <td>{{ getGradeDesc(item.schoolGradeCode)}}</td>
+                                                    <td>
+                                                      <input type="checkbox" [value]="item.personID" [disabled]="item.enable && item.selected" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i,'event')" />
+                                                    </td>
+												</ng-container>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -117,7 +137,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row" *ngIf="personTypeVal=='CHILD' && PF['schoolGrade'].value=='18'">
+                                    <div class="row mrg_t_10" *ngIf="personTypeVal=='CHILD' && PF['schoolGrade'].value=='18'">
                                         <div class="col-lg-4">
                                             <label class="col-form-label fw-semibold required fs-6">Date Of Birth</label>
                                         </div>
@@ -194,7 +214,7 @@
                             </div>
 
                             </div>
-                            <div  class="col-lg-5">
+                            <div  class="col-lg-6">
                                <!--begin::Col-->
 										<div>
 											<p *ngIf="pendingPaymentData.length==0" class="error_msg" style="margin-top:25px;">Please select option/options from list on the left.</p>
@@ -212,7 +232,7 @@
 													</div>
 													<!--end::Card title-->
 													<div style="display: inline-block !important; width: 55%;">
-														<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top: 8px;"><b>Sub-Total&nbsp;:&nbsp;</b>${{(pendingTotalAmt[0]=='' || pendingTotalAmt[0]==null  || Object.keys(this.rightPanelAccordionNotPaid).length==0)?'0':pendingTotalAmt[0]}}.00</span>
+														<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top: 8px;"><b>Sub-Total&nbsp;:&nbsp;</b>{{((pendingTotalAmt[0]=='' || pendingTotalAmt[0]==null  || Object.keys(this.rightPanelAccordionNotPaid).length==0)?'0':pendingTotalAmt[0] | currency:'USD':'symbol') }}</span>
 													</div>
 												</div>
 												<!--end::Card header-->
