@@ -1,0 +1,48 @@
+.accordion {
+    width: auto;
+    margin: auto;
+  }
+  
+  .accordion-item {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fcfcfc;
+    padding: 7px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 15px;
+  }
+  
+  .accordion-content.active {
+    max-height: 200px; /* Adjust this value based on your content */
+    padding: 15px;
+  }
+  
+  .image {
+    width:135px;
+    border:1px solid #eee;
+    border-radius:5px;
+    padding:5px;
+  }
+
+  #file{
+    display:none;
+  }
+
+  .cardcss {
+    border:1px solid #eee;
+    border-radius:5px;
+  }

@@ -3,5 +3,732 @@
         <span class="fw-semibold fs-6">
             Program Description : Sample
         </span>
+        <button class="btn btn-primary btn-sm mb-2 ms-4">
+            <i class="icon-paperplane"></i> Publish Program
+        </button>
+    </div>
+</div>
+<div class="card cardcss">
+    <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white" 
+         style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+        <!--begin::Card title-->
+        <div class="card-title float-sm-end">
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+                <h3 class="panel-title fw-semibold">
+                    <img src="assets/chinmaya_media/images/SVG-color/Review Configuration Details-icon.svg" style="width: 25px;"> 
+                    Review Configuration
+                </h3>
+            </div>
+            <!--end::Search-->
+        </div>
+    </div>
+
+    <!--begin::Card body-->
+    <div class="card-body p-4">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="accordion">
+              <div class="accordion-item">
+                <div class="accordion-header" (click)="toggle(0)">
+                  <span class="fs-5 fw-semibold">BV Programs</span>
+                  <span style="font-size:20px;">{{ isActive(0) ? '-' : '+' }}</span>
+                </div>
+                <div class="accordion-content" [ngClass]="{ 'active': isActive(0) }">
+                  <div class="d-flex flex-column">
+                    <div class="form-check form-check-custom form-check-solid">
+                      <label class="fw-semibold cursor-pointer">
+                      <input type="checkbox" name="" value="" class="me-2" (change)="onCheckboxChangeData($event)">
+                      Bal Vihar Classes
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                  
+              <div class="accordion-item">
+                <div class="accordion-header" (click)="toggle(1)">
+                  <span class="fs-5 fw-semibold">Shloka Classes</span>
+                  <span style="font-size:20px;">{{ isActive(1) ? '-' : '+' }}</span>
+                </div>
+                <div class="accordion-content" [ngClass]="{ 'active': isActive(1) }">
+                  <div class="form-check form-check-custom form-check-solid">
+                    <label class="fw-semibold cursor-pointer">
+                      <input type="checkbox" name="" value="" class="me-2">Shloka Classes
+                    </label>
+                  </div>
+                </div>
+              </div>
+                  
+              <div class="accordion-item">
+                <div class="accordion-header" (click)="toggle(2)">
+                  <span class="fs-5 fw-semibold">Language</span>
+                  <span style="font-size:20px;">{{ isActive(2) ? '-' : '+' }}</span>
+                </div>
+                <div class="accordion-content" [ngClass]="{ 'active': isActive(2) }">
+                  <div class="form-check form-check-custom form-check-solid">
+                    <label class="fw-semibold cursor-pointer">
+                      <input type="checkbox" name="" value="" class="me-2">Hindi Class on Sunday 11:00 AM to 11:50 AM
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+                  
+          </div>
+
+          <div class="col-lg-9" *ngIf="showContentData">
+            <div class="card cardcss">
+              <div class="card-header align-items-center float-end p-4 pt-2 pb-2" 
+                   style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc;">
+                <div class="card-title float-sm-end">
+                  <div class="d-flex align-items-center position-relative my-1">
+                    <h3 class="panel-title fw-semibold">
+                      <img class="img_cls" src="assets/chinmaya_media/images/SVG-color/Review Configuration Details-icon.svg" 
+                           style="width:25px;"> 
+                      Review Configuration Details
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body p-4 pt-0">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="row">
+                          <div class="col-lg-6 mt-2">
+                            <div class="d-flex flex-column">
+                              <label class="col-form-label required fw-semibold">Organization Code</label>
+                              <select class="form-select form-select-sm cursor-pointer">
+                                <option value="">- Select -</option>
+                                <option value="">Chinmaya Mission</option>
+                                <option value="">Chinmaya Somnath, Chantilly, VA</option>
+                                <option value="">Chinmayam, Silver Spring, MD</option>
+                                <option value="">Fredrick Chapter, Fredrick, MD</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-lg-6 mt-2">
+                            <label class="col-form-label required fw-semibold fs-6">Program Code</label>
+                            <input type="text" name="" class="form-control form-control-sm" placeholder="Program Code">
+                          </div>
+                        </div> 
+                              
+                        <div class="row">
+                          <div class="col-lg-6 mt-2">
+                            <label class="col-form-label required fw-semibold fs-6">Program Description</label>
+                            <input type="text" name="" class="form-control form-control-sm" placeholder="Program Description">
+                          </div>
+                          <div class="col-lg-6 mt-2">
+                            <label class="col-form-label required fw-semibold fs-6">Signup Code</label>
+                            <input type="text" name="" class="form-control form-control-sm" placeholder="Signup Code">
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-lg-6 mt-2">
+                            <label class="col-form-label required fw-semibold fs-6">Description</label>
+                            <input type="text" name="" class="form-control form-control-sm" placeholder="Description">
+                          </div>
+                          <div class="col-lg-6 mt-2">
+                            <label class="col-form-label required fw-semibold fs-6">Info URL</label>
+                            <input type="text" name="" class="form-control form-control-sm" placeholder="Info URL">
+                          </div>
+                        </div> 
+                      </div>
+
+                      <div class="col-lg-4 mt-6">
+                        <div class="row m-0">
+                            <div class="col-lg-1"></div>  
+                            <div class="col-lg-10 text-center" style="border:1px solid #ddd;border-radius:10px;">
+                                <label class="col-form-label fw-semibold fs-6 text-center">Individual Passport Size Photo</label>
+                                <div class="text-center">
+                                    <label class="cursor-pointer">
+                                        <input type="file" id="file" (change)="onselectFile($event)">
+                                        <img class="image" [src]="url">
+                                    </label>
+                                </div>
+                                <div class="form-text text-nowrap">
+                                    Image size not be exceed 2 MB<br>Format : JPG/JPEG/PNG
+                                </div>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 mt-2">
+                    <div class="d-flex flex-column">
+                      <label class="col-form-label fw-semibold required">Start Time </label>
+                      <input type="date" class="form-control form-control-sm" placeholder="MM/DD/YYYY">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <div class="d-flex flex-column">
+                      <label class="col-form-label fw-semibold required">End Time </label>
+                      <input type="date" class="form-control form-control-sm" placeholder="MM/DD/YYYY">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <div class="d-flex flex-column">
+                      <label class="col-form-label fw-semibold required">Registration Starts On </label>
+                      <input type="date" class="form-control form-control-sm" placeholder="MM/DD/YYYY">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="d-flex flex-column">
+                      <label class="col-form-label fw-semibold required">Registration Ends On </label>
+                      <input type="date" class="form-control form-control-sm" placeholder="MM/DD/YYYY">
+                    </div>
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label required fw-semibold fs-6">Registration Type</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Registration Type">
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label fw-semibold fs-6">Mini School Grade</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Mini School Grade">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label fw-semibold fs-6">Max School Grade</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Max School Grade">
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label fw-semibold fs-6">Mini Age Without Sibling</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Mini Age Without Sibling">
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label fw-semibold fs-6">Min Age with a qualifying sibling</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Min Age with a qualifying sibling">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label required fw-semibold fs-6">Location</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Location">
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label required fw-semibold fs-6">Registration Preference</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Registration Preference">
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label required fw-semibold fs-6">Min Age with a qualifying sibling</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Signup Code Category">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 mt-2">
+                    <div class="d-flex flex-column">
+                      <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                          <label class="col-form-label fw-semibold">Is Walk-In Allowed?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                          <div class="form-check form-check-sm form-check-custom form-check-solid">
+                            <input class="form-check-input" type="checkbox" value="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 mt-2">
+                    <div class="d-flex flex-column">
+                      <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                          <label class="col-form-label fw-semibold">Included in Sponsorship Package</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                          <div class="form-check form-check-sm form-check-custom form-check-solid">
+                            <input class="form-check-input" type="checkbox" value="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 mt-2">
+                    <div class="d-flex flex-column">
+                      <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                          <label class="col-form-label fw-semibold">
+                            Are multiple registrants within the same category to be applied on the pledge structure?
+                          </label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                          <div class="form-check form-check-sm form-check-custom form-check-solid">
+                            <input class="form-check-input" type="checkbox" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="card cardcss mt-4">
+              <div class="card-header align-items-center float-end p-4 pb-2 pt-2" 
+                   style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc !important;">
+                <!--begin::Card title-->
+                <div class="card-title float-sm-end">
+                  <!--begin::Search-->
+                  <div class="d-flex align-items-center position-relative my-1">
+                    <h3 class="panel-title fw-semibold">
+                      <img class="img_cls" src="assets/chinmaya_media/images/SVG-color/Payment Processing Detailsicon.svg" style="width:25px;"> 
+                      Payment Processing Details
+                    </h3>
+                  </div>
+                  <!--end::Search-->
+                </div>
+              </div>
+
+              <!--begin::Card body-->
+              <div class="card-body p-4 pt-0">
+                <div class="row">
+                  <div class="col-lg-4 mt-2">
+                    <div class="d-flex flex-column">
+                      <div class="row aaa">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                          <label class="col-form-label fw-semibold">Has Special Requirement?</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                          <div class="form-check form-check-sm form-check-custom form-check-solid">
+                            <input class="form-check-input" type="checkbox" value="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-4 mt-2">
+                    <div class="d-flex flex-column">
+                      <div class="row aaa">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                          <label class="col-form-label fw-semibold">Has Docs To Upload</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                          <div class="form-check form-check-sm form-check-custom form-check-solid">
+                            <input class="form-check-input" type="checkbox" value="1">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label required fw-semibold fs-6">Payment Processing Method </label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Payment Processing Method ">
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label required fw-semibold fs-6">Accounting Project Code </label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Accounting Project Code ">
+                  </div>
+                  <div class="col-lg-4 mt-2">
+                    <label class="col-form-label required fw-semibold fs-6">Enrollment Max Capacity</label>
+                    <input type="text" name="" class="form-control form-control-sm" placeholder="Enrollment Max Capacity">
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+
+            <div class="card cardcss mt-4">
+              <div class="card-header align-items-center float-end p-4 pb-2 pt-2" 
+                   style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc;">
+                <!--begin::Card title-->
+                <div class="card-title float-sm-end">
+                  <!--begin::Search-->
+                  <div class="d-flex align-items-center position-relative my-1">
+                    <h3 class="panel-title fw-semibold">
+                      <img src="assets/chinmaya_media/images/SVG-color/Add Pre Requisites Details-icon.svg" style="width:25px;"> 
+                      Add Pre Requisites Details  
+                    </h3>
+                  </div>
+                  <!--end::Search-->
+                </div>
+              </div>
+
+              <!--begin::Card body-->
+              <div class="card-body p-4">
+                <div class="card cardcss">
+                  <div class="card-header align-items-center float-end p-4 pt-2 pb-2" 
+                       style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                      <!--begin::Search-->
+                      <div class="d-flex align-items-center position-relative my-1">
+                        <h3 class="panel-title fw-semibold">
+                          <img src="assets/chinmaya_media/images/SVG-color/Signup Code-icon.svg" style="width:25px;"> 
+                          Signup Code  
+                        </h3>
+                      </div>
+                      <!--end::Search-->
+                    </div>
+                  </div>
+    
+                  <!--begin::Card body-->
+                  <div class="card-body p-4">																
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="d-flex flex-column">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1">
+                                <label class="col-form-label fw-semibold" style="margin-left:10px;">Sample</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card cardcss mt-4">
+                  <div class="card-header align-items-center float-end p-4 pb-2 pt-2" 
+                       style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc;">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                      <!--begin::Search-->
+                      <div class="d-flex align-items-center position-relative">
+                        <h3 class="panel-title fw-semibold">
+                          <img class="img_cls" src="assets/chinmaya_media/images/SVG-color/SignUp Code Pre Requisite Level-icon.svg" style="width:25px;"> 
+                          Sign Up Code Pre Requisite Level  
+                        </h3>
+                      </div>
+                      <!--end::Search-->
+                    </div>
+                  </div>
+    
+                  <!--begin::Card body-->
+                  <div class="card-body p-4">																
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="d-flex flex-column">
+                          <div class="row aaa">
+                            <div class="col-lg-12">
+                              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="col-form-label fw-semibold" style="margin-left:10px;">Family</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="d-flex flex-column">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="col-form-label fw-semibold" style="margin-left:10px;">Individual</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                
+                <div class="card cardcss mt-4">
+                  <div class="card-header align-items-center float-end p-4 pt-2 pb-2" 
+                       style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc;">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                      <!--begin::Search-->
+                      <div class="d-flex align-items-center position-relative my-1">
+                        <h3 class="panel-title fw-semibold">
+                          <img src="assets/chinmaya_media/images/SVG-color/Chapter Program-icon.svg" style="width:25px;"> 
+                          Chapter Program  
+                        </h3>
+                      </div>
+                      <!--end::Search-->
+                    </div>
+                  </div>
+    
+                  <!--begin::Card body-->
+                  <div class="card-body p-4">																
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="d-flex flex-column">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="col-form-label fw-semibold" style="margin-left:10px;">Sample</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card cardcss mt-4">
+                  <div class="card-header align-items-center float-end p-4 pb-2 pt-2" 
+                       style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc;">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                      <!--begin::Search-->
+                      <div class="d-flex align-items-center position-relative">
+                        <h3 class="panel-title fw-semibold">
+                          <img src="assets/chinmaya_media/images/SVG-color/Center Program-icon.svg" style="width:25px;"> 
+                          Center Program  
+                        </h3>
+                      </div>
+                      <!--end::Search-->
+                    </div>
+                  </div>
+    
+                  <!--begin::Card body-->
+                  <div class="card-body p-4">																
+                    <div class="row">
+                      <div class="col-lg-4">
+                        <div class="d-flex flex-column">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="">
+                                <label class="col-form-label fw-semibold" style="margin-left:10px;">Sample</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card cardcss mt-4">
+                  <div class="card-header align-items-center float-end p-4 pb-2 pt-2" 
+                       style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc;">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                      <!--begin::Search-->
+                      <div class="d-flex align-items-center position-relative">
+                        <h3 class="panel-title fw-semibold">
+                          <img src="assets/chinmaya_media/images/SVG-color/Choice Code Detailsicon.svg" style="width:25px;"> 
+                          Choice Code Details
+                        </h3>
+                      </div>
+                      <!--end::Search-->
+                    </div>
+                  </div>
+    
+                  <!--begin::Card body-->
+                  <div class="card-body p-4">
+                    <div class="row">
+                      <div class="col-lg-4 mt-2">
+                        <div class="d-flex flex-column">
+                          <div class="row">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                              <label class="col-form-label fw-semibold">Has Docs To Upload</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      Choice Code Details Table
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card cardcss mt-4">
+                  <div class="card-header align-items-center float-end p-4 pb-2 pt-2" 
+                       style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc;">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                      <!--begin::Search-->
+                      <div class="d-flex align-items-center position-relative">
+                        <h3 class="panel-title fw-semibold">
+                          <img src="assets/chinmaya_media/images/SVG-color/Pledge Structure Details-icon.svg" style="width:25px;"> 
+                          Pledge Structure Details
+                        </h3>
+                      </div>
+                      <!--end::Search-->
+                    </div>
+                  </div>
+    
+                  <!--begin::Card body-->
+                  <div class="card-body p-4">
+                    <div class="row">
+                      <div class="col-lg-4 mt-2">
+                        <div class="d-flex flex-column">
+                          <div class="row aaa">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                              <label class="col-form-label required fw-semibold">Pledge Structure</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="table-responsive mt-3">
+                        Pledge Structure Details Table
+                      </div>
+                      
+                      <div class="col-lg-12 mt-4 no-padding">
+                        <span class="fw-semibold text-primary">Note: </span>
+                        <span class="text-primary">Enter Session Code under Session Criteria to restrict a pledge to specific session(s). Separate each session code with comma. Do not enter anything to apply a pledge to all sessions.</span>
+                      </div>
+                      
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-lg-4 mt-2">
+                        <div class="d-flex flex-column">
+                          <div class="row aaa">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                              <label class="col-form-label required fw-semibold">Additional Custom Flag</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card cardcss mt-4">
+                  <div class="card-header align-items-center float-end p-4 pb-2 pt-2" 
+                       style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc;">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                      <!--begin::Search-->
+                      <div class="d-flex align-items-center position-relative">
+                        <h3 class="panel-title fw-semibold">
+                          <img src="assets/chinmaya_media/images/SVG-color/Class Codes-icon.svg" style="width:25px;"> 
+                          Class Code Details
+                        </h3>
+                      </div>
+                      <!--end::Search-->
+                    </div>
+                  </div>
+    
+                  <!--begin::Card body-->
+                  <div class="card-body p-4">
+                    <div class="row">
+                      <div class="col-lg-4 mt-2">
+                        <div class="d-flex flex-column">
+                          <div class="row aaa">
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                              <label class="col-form-label fw-semibold">Does this Sign-up Code have Class codes?</label>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 mt-4">
+                              <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="table-responsive">
+                        Class Code Details table
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card shadow-sm cardcss mt-4">
+                  <div class="card-header align-items-center float-end p-4 pb-2 pt-2" 
+                       style="border-bottom: 1px solid var(--bs-card-border-color) !important;background-color: #fcfcfc;">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                      <!--begin::Search-->
+                      <div class="d-flex align-items-center position-relative">
+                        <h3 class="panel-title fw-semibold">
+                          <img src="assets/chinmaya_media/images/SVG-color/Registration Steps-icon.svg" style="width:25px;"> 
+                          Registration Steps
+                        </h3>
+                      </div>
+                      <!--end::Search-->
+                    </div>
+                  </div>
+    
+                  <!--begin::Card body-->
+                  <div class="card-body p-4">
+                    <div class="row">
+                      <div class="table-responsive">
+                        Registration Steps table
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer p-4 pb-2" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <div class="m-0">
+                    <button class="btn btn-primary btn-sm mb-2 me-2" (click)="back()">
+                        <i class="icon-backward"></i> Back
+                    </button>
+                        
+                    <button class="btn btn-primary btn-sm mb-2 me-2" (click)="home()">
+                        <i class="icon-home4"></i> Home
+                    </button>                                                                      
+                </div>
+            </div>
+        </div>
     </div>
 </div>
