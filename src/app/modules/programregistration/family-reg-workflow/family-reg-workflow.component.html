@@ -232,7 +232,7 @@
 													</div>
 													<!--end::Card title-->
 													<div style="display: inline-block !important; width: 55%;">
-														<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top: 8px;"><b>Sub-Total&nbsp;:&nbsp;</b>${{(pendingTotalAmt[0]=='' || pendingTotalAmt[0]==null  || Object.keys(this.rightPanelAccordionNotPaid).length==0)?'0':pendingTotalAmt[0]}}.00</span>
+														<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top: 8px;"><b>Sub-Total&nbsp;:&nbsp;</b>{{((pendingTotalAmt[0]=='' || pendingTotalAmt[0]==null  || Object.keys(this.rightPanelAccordionNotPaid).length==0)?'0':pendingTotalAmt[0] | currency:'USD':'symbol') }}</span>
 													</div>
 												</div>
 												<!--end::Card header-->
