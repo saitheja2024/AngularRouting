@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { MatTabsModule } from '@angular/material/tabs';
+import { FormsModule } from '@angular/forms';
 import { ProgramConfigHomeComponent } from './components/program-config-home/program-config-home.component';
 import { ClassesAndTeacherAssignmentsComponent } from './components/classes-and-teacher-assignments/classes-and-teacher-assignments.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
@@ -20,7 +22,6 @@ import { CreateProgramReviewConfigurationComponent } from './components/create-p
 import { CreateProgramAdditionalCustomFieldsComponent } from './components/create-program-additional-custom-fields/create-program-additional-custom-fields.component';
 import { CreateProgramSevaQuestionsComponent } from './components/create-program-seva-questions/create-program-seva-questions.component';
 import { CreateProgramRegStepsEmailComponent } from './components/create-program-reg-steps-email/create-program-reg-steps-email.component';
-import { MatTabsModule } from '@angular/material/tabs';
 
 import { SignupCodeDetailsComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/signup-code-details/signup-code-details.component';
 import { PreRequisitesComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/pre-requisites/pre-requisites.component';
@@ -30,7 +31,6 @@ import { PledgeStructureComponent } from './components/create-program-signupcode
 import { ClassCodesComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/class-codes/class-codes.component';
 import { RegistrationStepsComponent } from './components/create-program-signupcodes/create-program-signup-code-details/components/registration-steps/registration-steps.component';
 
-import { FormsModule } from '@angular/forms';
 import { ReviewConfigChoiceCodeDetailsComponent } from './components/review-config-choice-code-details/review-config-choice-code-details.component';
 import { ReviewConfigPledgeStructureComponent } from './components/review-config-pledge-structure/review-config-pledge-structure.component';
 import { ReviewConfigClasscodeDetailsComponent } from './components/review-config-classcode-details/review-config-classcode-details.component';
