@@ -1,0 +1,79 @@
+<div class="card cardcss">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourcePledgeStructure" matSort>
+
+                    <!-- Code Column-->
+                    <ng-container matColumnDef="code">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Code <span class="text-danger">*</span>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.code}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Default Column-->
+                    <ng-container matColumnDef="default">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Default <span class="text-danger">*</span> 
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.default}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Amount $ Column-->
+                    <ng-container matColumnDef="amount">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Amount $ <span class="text-danger">*</span>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.amount}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Session Column-->
+                    <ng-container matColumnDef="session">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Session <span class="text-danger">*</span>     
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.session}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Effective From Column-->
+                    <ng-container matColumnDef="effectivefrom">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Effective From <span class="text-danger">*</span>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.effectivefrom}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Effective End Column -->
+                    <ng-container matColumnDef="effectiveend">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Effective End <span class="text-danger">*</span>    
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.effectiveend}} 
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsPledgeStructure; sticky: true;" style="background-color: #fcfcfc;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsPledgeStructure;"></tr>
+
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                showFirstLastButtons>
+                </mat-paginator>
+
+            </div>
+        </div>
+    </div>
+</div>

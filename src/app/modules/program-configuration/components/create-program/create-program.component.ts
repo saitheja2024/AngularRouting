@@ -30,6 +30,9 @@ onTabChanged(event: MatTabChangeEvent): void {
       link ="/program-configuration/create-program/signup-codes";
   break;
   case 4:
+      link ="/program-configuration/create-program/package-details";
+  break;
+  case 5:
       link ="/program-configuration/create-program/review-configuration";
   break;
   }

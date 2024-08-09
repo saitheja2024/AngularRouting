@@ -1,0 +1,79 @@
+<div class="card cardcss mt-2" style="border-radius:5px;">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourceChoiceCodeDetails" matSort>
+
+                    <!-- Choices Column-->
+                    <ng-container matColumnDef="choices">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Choices <span class="text-danger">*</span>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.choices}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Choice Label Column-->
+                    <ng-container matColumnDef="choicelabel">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Choice Label <span class="text-danger">*</span> 
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.choicelabel}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Description Column-->
+                    <ng-container matColumnDef="description">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Description <span class="text-danger">*</span>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.description}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Control Column-->
+                    <ng-container matColumnDef="control">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Control <span class="text-danger">*</span>     
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.control}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Choice Order Column-->
+                    <ng-container matColumnDef="choiceorder">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> 
+                            Choice Order <span class="text-danger">*</span>
+                        </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.choiceorder}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Active Column -->
+                    <ng-container matColumnDef="active">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Active </th>
+                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="1">
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsChoiceCodeDetails; sticky: true;" style="background-color: #fcfcfc;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsChoiceCodeDetails;"></tr>
+
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                showFirstLastButtons>
+                </mat-paginator>
+
+            </div>
+        </div>
+    </div>
+</div>

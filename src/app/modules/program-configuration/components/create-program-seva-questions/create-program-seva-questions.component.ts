@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 export interface SevaQuestions {
+  checkbox: string;
   category: string;
   question: string;
   persontype: string;
@@ -23,10 +24,10 @@ export interface SevaQuestions {
 
 export class CreateProgramSevaQuestionsComponent {
   SevaQuestions: SevaQuestions[] = [
-    {category: '', question: '', persontype:'', isdate: '', istext: '', isyn: '', isrequired: '', actions:''}
+    {checkbox: '', category: '', question: '', persontype:'', isdate: '', istext: '', isyn: '', isrequired: '', actions:''}
   ];
 
-  displayedColumnsSevaQuestions: string[] = ['category', 'question', 'persontype', 'isdate', 'istext', 'isyn', 'isrequired', 'actions'];
+  displayedColumnsSevaQuestions: string[] = ['checkbox', 'category', 'question', 'persontype', 'isdate', 'istext', 'isyn', 'isrequired', 'actions'];
 
   dataSourceSevaQuestions = new MatTableDataSource<SevaQuestions>(this.SevaQuestions);
 
@@ -40,5 +41,50 @@ export class CreateProgramSevaQuestionsComponent {
     this.dataSourceSevaQuestions.paginator = this.paginator;
 
     this.dataSourceSevaQuestions.sort = this.sort;
+  }
+
+  AddRow() {
+    const newRow: SevaQuestions = {
+      checkbox:'',
+      category:'',
+      question:'',
+      persontype:'',
+      isdate:'',
+      istext:'',
+      isyn:'',
+      isrequired:'',
+      actions: ''
+
+    };
+    const updatedData = [...this.dataSourceSevaQuestions.data, newRow];
+    this.dataSourceSevaQuestions.data = updatedData;
+  }
+
+  selection: SevaQuestions[] = [];
+
+  toggleSelection(row: SevaQuestions) {
+    const index = this.selection.indexOf(row);
+    if (index === -1) {
+      this.selection.push(row);
+    } else {
+      this.selection.splice(index, 1);
+    }
+  }
+
+  isAllSelected() {
+    return this.selection.length === this.dataSourceSevaQuestions.data.length;
+  }
+
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection = [];
+    } else {
+      this.selection = [...this.dataSourceSevaQuestions.data];
+    }
+  }
+
+  DeleteRow() {
+    this.dataSourceSevaQuestions.data = this.dataSourceSevaQuestions.data.filter(row => !this.selection.includes(row));
+    this.selection = [];
   }
 }

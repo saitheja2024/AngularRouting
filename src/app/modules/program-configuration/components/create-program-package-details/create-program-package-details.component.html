@@ -1,0 +1,170 @@
+<div class="card cardcss mt-4">
+    <!--begin::Card header-->
+    <div class="card-header align-items-center p-4 pb-2 pt-2 bg-white">
+        <!--begin::Card title-->
+        <div class="card-title">
+            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+            <!--begin::Title-->
+            <h3 class="panel-title fw-semibold fs-4">
+                <img class="img_cls" src="assets/chinmaya_media/images/SVG-color/Pledge Details-icon.svg" style="width:25px;"> Package Details
+            </h3>
+            <!--end::Title-->
+        </div>
+        </div>
+        <!--end::Card title-->
+
+        <!--begin::Card toolbar-->
+        <div class="card-toolbar flex-row-fluid justify-content-end">
+            <div class="d-flex align-items-center">
+                <!--begin::Primary button-->
+                <button class="btn btn-primary btn-sm me-2" (click)="AddRow()">
+                    <i class="icon-add"></i> Add
+                </button>
+
+                <button class="btn btn-danger btn-sm me-2" (click)="DeleteRow()">
+                    <i class="icon-bin"></i> Delete
+                </button>
+                <!--end::Primary button-->
+            </div>
+        </div>
+        <!--end::Card toolbar-->
+    </div>
+    
+    <!--end::Card header-->
+    <!--begin::Card body-->
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourcePackageDetails" matSort>
+
+                    <!-- Checkbox Column-->
+                    <ng-container matColumnDef="checkbox">
+                        <th mat-header-cell *matHeaderCellDef>
+                          <div class="form-check form-check-sm form-check-custom form-check-solid">
+                              <input class="form-check-input" type="checkbox" value="" (change)="masterToggle()" [checked]="isAllSelected()">
+                          </div>
+                        </th>
+                        <td mat-cell *matCellDef="let row" style="border-bottom:1px solid #ddd;">
+                          <div class="form-check form-check-sm form-check-custom form-check-solid">
+                              <input class="form-check-input" type="checkbox" value="" (click)="$event.stopPropagation()" (change)="toggleSelection(row)" [checked]="selection.includes(row)">
+                          </div>
+                        </td>
+                      </ng-container>
+
+                    <!-- Program Code Column-->
+                    <ng-container matColumnDef="programcode">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Program Code </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <input type="text" class="form-control form-control-sm" readonly placeholder="Program Code">
+                        </td>
+                    </ng-container>
+
+                    <!-- Package Code Column-->
+                    <ng-container matColumnDef="packagecode">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Package Code </th>
+                        <td class="text-nowrap fw-semibold" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <select class="form-select form-select-sm cursor-pointer">
+                                <option value="">Select</option>
+                                <option value="">PKG_ONE</option>
+                                <option value="">PKGTWO_</option>
+                                <option value="">PKG_THREE</option>
+                                <option value="">PKG_FOUR</option>
+                            </select>
+                        </td>
+                    </ng-container>
+
+                    <!-- Package Description Column-->
+                    <ng-container matColumnDef="packagedescription">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Package Description </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <input type="text" class="form-control form-control-sm" placeholder="Package Description">
+                        </td>
+                    </ng-container>
+
+                    <!-- Amount Column-->
+                    <ng-container matColumnDef="amount">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <input type="text" class="form-control form-control-sm text-end" placeholder="Amount">
+                        </td>
+                    </ng-container>
+
+                    <!-- Effective Start Date Column-->
+                    <ng-container matColumnDef="effectivestartdate">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Effective Start Date </th>
+                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <input type="date" class="form-control form-control-sm" placeholder="MM/DD/YYYY">
+                        </td>
+                    </ng-container>
+
+                    <!-- Effective End Date Column-->
+                    <ng-container matColumnDef="effectiveenddate">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Effective End Date </th>
+                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <input type="date" class="form-control form-control-sm" placeholder="MM/DD/YYYY">
+                        </td>
+                    </ng-container>
+
+                    <!-- Category Column-->
+                    <ng-container matColumnDef="category">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <input type="text" class="form-control form-control-sm" readonly placeholder="category">
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsPackageDetails; sticky: true;" style="background-color: #fcfcfc;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsPackageDetails;"></tr>
+
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                showFirstLastButtons>
+                </mat-paginator>
+
+            </div>
+        </div>
+
+        <div style="border-top: 1px solid #ddd;" class="p-0 m-0">
+
+            <div class="col-lg-12 m-4">
+                <span class="text-danger">
+                    <span class="fw-semibold">
+                        Note:<span class="text-danger">*</span>
+                    </span>
+                </span>
+            </div>
+            
+            <div class="col-lg-12 mt-4" style="display: block;">
+                <ul class="mt-5" style="list-style-type:none">
+                    <li>Package effective start and effective end date should be between the following registration start and end dates.</li>
+                    <li><span class="fw-semibold">Registration Start Date : </span></li>
+                    <li><span class="fw-semibold">Registration End Date : </span></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <!--end::Card body-->
+
+    <div class="card-footer p-5" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+        <div class="row">
+            <div class="d-flex justify-content-center">
+                <div class="m-0">
+                    <button class="btn btn-primary btn-sm mb-2 me-2" (click)="back()">
+                        <i class="icon-backward"></i> Back
+                    </button>
+                        
+                    <button class="btn btn-primary btn-sm mb-2 me-2">
+                        <i class="icon-floppy-disk"></i> Save
+                    </button>
+                    
+                    <button class="btn btn-primary btn-sm mb-2" (click)="next()">
+                        <i class="icon-floppy-disks"></i> Save &amp; Next
+                    </button>                                                                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

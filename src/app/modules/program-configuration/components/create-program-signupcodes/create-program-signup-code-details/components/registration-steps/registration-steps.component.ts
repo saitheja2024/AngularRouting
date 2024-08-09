@@ -65,4 +65,45 @@ export class RegistrationStepsComponent {
    next(){
     this.router.navigateByUrl("/program-configuration/create-program/signup-codes")
    }
+
+   AddRow() {
+    const newRow: RegSteps = {
+      checkbox:'',
+      registrationstatus:'',
+      paymentstatus:'',
+      sequence:'',
+      email:''
+    };
+	
+    const updatedData = [...this.dataSourceRegSteps.data, newRow];
+    this.dataSourceRegSteps.data = updatedData;
+  }
+
+  selection: RegSteps[] = [];
+
+  toggleSelection(row: RegSteps) {
+    const index = this.selection.indexOf(row);
+    if (index === -1) {
+      this.selection.push(row);
+    } else {
+      this.selection.splice(index, 1);
+    }
+  }
+
+  isAllSelected() {
+    return this.selection.length === this.dataSourceRegSteps.data.length;
+  }
+
+  masterToggle() {
+    if (this.isAllSelected()) {
+      this.selection = [];
+    } else {
+      this.selection = [...this.dataSourceRegSteps.data];
+    }
+  }
+
+  DeleteRow() {
+    this.dataSourceRegSteps.data = this.dataSourceRegSteps.data.filter(row => !this.selection.includes(row));
+    this.selection = [];
+  }
 }
