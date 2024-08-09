@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program/program.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { AuthService } from 'src/app/modules/auth';
 import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
 import { DatapasstoComponent } from 'src/app/modules/chinmaya-shared/services/program-registration/datapassing.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -29,9 +30,11 @@ export class ReviewComponent {
   signupURL:string;
 
   Datamessage:any;
+  readonly dialogRef = inject(MatDialogRef<ReviewComponent>);
 
   constructor(private programService:ProgramService, private store:StoreService,
-     private authService:AuthService, private routePass:RouteChangeCall, private Dataservice:DatapasstoComponent){
+     private authService:AuthService, private routePass:RouteChangeCall, 
+     private Dataservice:DatapasstoComponent, @Inject(MAT_DIALOG_DATA) public data:any){
 
   }
   ngOnInit(){
@@ -44,12 +47,23 @@ export class ReviewComponent {
 
     this.programCode = this.selectedProgram.code;
     this.chapterCode =  this.selectedChapterCode;
-    this.familyId= this.selectedFamily.familyId;
-    this.personID =  this.selectedProgram.personID;
+    if(this.data){
+      this.familyId= this.data.familyId;
+      this.personID =  this.data.personID;
+    }else{
+      this.familyId= this.selectedFamily.familyId;
+      this.personID =  this.selectedProgram.personID;
+    }
+    
 
     this.ReviewTabInit();
     this.subscribeCompData();
   }
+
+  async closeModal(){
+    this.dialogRef.close();
+  }
+
 
   subscribeCompData(){
     this.pendingPaymentData = this.Dataservice.getStoreValue();
@@ -190,12 +204,20 @@ newwindow(){
 }
 
 paymentTab(){
-  //this.onSaveAndNext("");
-  this.routePass.sendData({'currenttab':'Review','Event':'SaveNext'}); 
+  if(this.data){
+    this.Dataservice.reviewInvokeMessage('ConfirmPayment');
+    this.closeModal();
+  }else{
+    this.routePass.sendData({'currenttab':'Review','Event':'SaveNext'}); 
+  }
 }
 
 backToReviewTab(){
-  this.routePass.sendData({'currenttab':'Review','Event':'back'}); 
+  if(this.data){
+    this.closeModal();
+  }else{
+    this.routePass.sendData({'currenttab':'Review','Event':'back'}); 
+  }
 }
 
 }

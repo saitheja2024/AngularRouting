@@ -1,12 +1,12 @@
 <!--begin::Step 1-->
-<div class="flex-column" data-kt-stepper-element="content">
+<div class="flex-column" data-kt-stepper-element="content" [ngClass]="data?'overflow_scroll':''">
     <!-- <app-review [tabReview]="currentTab=='review'" (back)="onBackTab($event)" (saveAndNext)="onSaveAndNext($event)"></app-review> -->
     <div class="setup-content" id="step-5" >
         <div class="panel panel-flat" *ngIf="selectedList.length>0"> 
             <div class="panel-body" style="border:1px solid #eee;border-radius:4px;padding:10px;">
                 <div class="col-lg-12">
                     <fieldset class="no-margin-bottom">
-                        <legend class="fw-semibold" style="font-size:12px;line-height:21px;">Selected Session Preference:</legend>
+                        <legend class="fw-semibold" style="font-size:12px;line-height:21px;"><b>Selected Session Preference:</b></legend>
                         <hr class="hr_mrg_0">
                         <ul style="padding-left: 5px !important;">
                             <ng-container *ngFor="let list of selectedList; index as l">
@@ -401,8 +401,8 @@
                 <button *ngIf="reviewTabData?.completeFlag==true" type="button" class="btn btn-primary nextBtn pull-right btn-sm">
                 <i class="icon-arrow-left52"></i> Back to Program Registration</button>
             </a>
-            <button *ngIf="reviewTabData?.completeFlag==false" class="btn btn-sm btn-primary pull-right" type="button" (click)="paymentTab();">Confirm & Proceed to Payment</button>
-            <button class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10" type="button" (click)="backToReviewTab();" style="float:right;">Back</button>
+            <button *ngIf="reviewTabData?.completeFlag==false" class="btn btn-sm btn-primary pull-right" type="button" style="margin-bottom:10px;" (click)="paymentTab();">Confirm & Proceed to Payment</button>
+            <button class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10" type="button" (click)="backToReviewTab();" style="float:right; margin-bottom:10px;">Back</button>
         </div>
     </div>
 </div>

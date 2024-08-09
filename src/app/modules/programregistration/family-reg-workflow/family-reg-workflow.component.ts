@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { StoreService, KEYS } from '../../chinmaya-shared/services/store/store.service';
 import { ClassRegistrationService } from '../../chinmaya-shared/services/program-registration/classregistration.service';
@@ -9,7 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../chinmaya-shared/services/alert/alert.service';
 import { ProgramService } from '../../chinmaya-shared/services/program/program.service';
 import { environment } from 'src/environments/environment';
-
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { ReviewComponent } from '../components/review/review/review.component';
+import { DatapasstoComponent } from '../../chinmaya-shared/services/program-registration/datapassing.service';
 declare function callbackUTC_1():any;
 
 @Component({
@@ -20,6 +22,8 @@ declare function callbackUTC_1():any;
 export class FamilyRegWorkflowComponent {
   programForm:FormGroup;
   personSelect:any={};
+  readonly dialog = inject(MatDialog);
+
   signupCodeCategoryList:any=[
     {color:"#984807"},
     {color:"#7030A0"},
@@ -95,10 +99,11 @@ export class FamilyRegWorkflowComponent {
   payFullAmt:string="";
   signature:any;
   utc_time:any;
-
+  ReviewCloseMessage:any;
  constructor(private fb:FormBuilder, private store:StoreService, 
   private classRgiSrvice:ClassRegistrationService, private familyService:FamilyService, 
-  private MasterService:MasterService, private route: ActivatedRoute, private alertService:AlertService, private programService:ProgramService){
+  private MasterService:MasterService, private route: ActivatedRoute, private alertService:AlertService, 
+  private programService:ProgramService, private DataService:DatapasstoComponent){
     
     this.programForm = this.fb.group({
       //signupCode:new FormControl('',[Validators.required]),
@@ -169,6 +174,7 @@ export class FamilyRegWorkflowComponent {
   await this.fetchSchooldGradeLabel();
   //this.memberselection(this.primaryUserData.user);
   this.formGroup = this.fb.group({});
+ 
  }
 
  setDefaultValue(){
@@ -1104,6 +1110,16 @@ rightPanel:any;
     
   }
     
- 
+  Review(){
+    this.DataService.invokeMessage(this.pendingPaymentData);
+    let dialogRef = this.dialog.open(ReviewComponent, {
+      data: this.primaryUserData,
+      width:'80vw',
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      this.ReviewCloseMessage = this.DataService.getReviewStoreValue();
+      if(this.ReviewCloseMessage=='ConfirmPayment'){ this.payNow();}
+    });
+  }
 }
