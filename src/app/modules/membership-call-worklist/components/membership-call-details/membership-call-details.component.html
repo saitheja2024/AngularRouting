@@ -56,7 +56,7 @@
             <div class="col-lg-7 mb-4" >
                 <div class="p-2 card" style="border:1px solid #ddd;border-radius:5px;max-height: 250px;overflow-y: scroll;" *ngIf="callWorkDetails">
                     <div class="ms-4 mb-1" *ngFor="let session of callWorkDetails?.sessionChoiceList">
-                        <span class="jsutify-content-start">{{session.sessionChoice}}</span>
+                        <span class="jsutify-content-start">{{sessionChoice}}</span>
                     </div>
                    <ng-container *ngFor="let item of Object?.keys(groupbyNameSignupDetails); index as i;">
                     <div class="fs-6 ms-4 mt-4 text-dark fw-semibold">
