@@ -54,12 +54,11 @@ export class CreateProgramSevaQuestionsComponent {
       isyn:'',
       isrequired:'',
       actions: ''
-
     };
+
     const updatedData = [...this.dataSourceSevaQuestions.data, newRow];
     this.dataSourceSevaQuestions.data = updatedData;
   }
-
 
   // Delete rows in mat table
 

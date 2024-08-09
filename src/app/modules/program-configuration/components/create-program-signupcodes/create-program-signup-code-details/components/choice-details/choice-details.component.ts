@@ -77,7 +77,6 @@ export class ChoiceDetailsComponent {
     this.dataSourceChoiceDetails.data = updatedData;
   }
 
-
   // Delete rows in mat table
 
   i: number;
