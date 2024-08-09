@@ -29,6 +29,7 @@ export class MembershipCallDetailsComponent {
   currentDateTime:any;
   timeDisplay:any;
   currentDate:any;
+  sessionChoice: string;
     constructor(private fb:FormBuilder,
       private store:StoreService,
       private membeshipService: MemberShipCallWorkListServices,
@@ -84,11 +85,24 @@ export class MembershipCallDetailsComponent {
           this.callWorkHistoryForm.controls['doNotCallAgainFlag'].setValue('');
           this.callWorkHistoryForm.controls['callCount'].setValue('');
           this.callWorkHistoryForm.controls['callNotes'].setValue('');
-        }
+        } 
+
+        this.sessionChoice = this.extractAndFormatSessionChoices(this.callWorkDetails.childList)
       } 
 
       this.groupbyNameforSession();
     }
+
+
+
+    extractAndFormatSessionChoices(childList: any[]): string {
+      return childList
+        .map(child => child.personType=="ADULT" ? 
+        (child.sessionChoice ? child.sessionChoice.replace(/,/g, '<br/>') : '') : ""
+       )
+        .join('');
+    }
+    
     prepareForm(){
       this.callWorkHistoryForm = this.fb.group({
         callId: [0],
