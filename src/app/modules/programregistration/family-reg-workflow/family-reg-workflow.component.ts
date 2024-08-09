@@ -5,13 +5,13 @@ import { ClassRegistrationService } from '../../chinmaya-shared/services/program
 import { FamilyService } from '../../chinmaya-shared/services/family/family.service';
 import { MasterService } from '../../chinmaya-shared/services/master/master.service';
 import { PersonList } from '../../chinmaya-shared/services/program-registration/programregistration.interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../../chinmaya-shared/services/alert/alert.service';
 import { ProgramService } from '../../chinmaya-shared/services/program/program.service';
 import { environment } from 'src/environments/environment';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import { ReviewComponent } from '../components/review/review/review.component';
 import { DatapasstoComponent } from '../../chinmaya-shared/services/program-registration/datapassing.service';
+import { RouteChangeCall } from '../../chinmaya-shared/services/program-registration/routechange.service';
 declare function callbackUTC_1():any;
 
 @Component({
@@ -103,7 +103,8 @@ export class FamilyRegWorkflowComponent {
  constructor(private fb:FormBuilder, private store:StoreService, 
   private classRgiSrvice:ClassRegistrationService, private familyService:FamilyService, 
   private MasterService:MasterService, private route: ActivatedRoute, private alertService:AlertService, 
-  private programService:ProgramService, private DataService:DatapasstoComponent){
+  private programService:ProgramService, private DataService:DatapasstoComponent, private routePass:RouteChangeCall, 
+  private router:Router){
     
     this.programForm = this.fb.group({
       //signupCode:new FormControl('',[Validators.required]),
@@ -1111,15 +1112,24 @@ rightPanel:any;
   }
     
   Review(){
-    this.DataService.invokeMessage(this.pendingPaymentData);
-    let dialogRef = this.dialog.open(ReviewComponent, {
-      data: this.primaryUserData,
-      width:'80vw',
-    });
+    //this.routePass.sendData({'currenttab':'Consent','Event':'SaveNext'}); 
+      let dataSend ={
+        data:this.primaryUserData,
+        pending:this.pendingPaymentData
+      }
+    this.DataService.invokeMessage(dataSend);
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.ReviewCloseMessage = this.DataService.getReviewStoreValue();
-      if(this.ReviewCloseMessage=='ConfirmPayment'){ this.payNow();}
-    });
+    //this.Route.navigate(['/programregistration/review']);
+    this.router.navigateByUrl('/programregistration/review');
+
+    // let dialogRef = this.dialog.open(ReviewComponent, {
+    //   data: this.primaryUserData,
+    //   width:'80vw',
+    // });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.ReviewCloseMessage = this.DataService.getReviewStoreValue();
+    //   if(this.ReviewCloseMessage=='ConfirmPayment'){ this.payNow();}
+    // });
   }
 }

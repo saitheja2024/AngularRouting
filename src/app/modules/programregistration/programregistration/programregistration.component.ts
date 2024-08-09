@@ -131,6 +131,7 @@ export class ProgramregistrationComponent {
         }
         
         this.currentTab=this.programRegistrationList[index];
+        this.currentTab =ev.currenttab;
          URL = this.routeURL[this.currentTab];
       }else if(ev.Event=='current'){
         this.currentTab = ev.currenttab;

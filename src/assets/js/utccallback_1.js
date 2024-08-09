@@ -13,11 +13,13 @@ var secure_Trans_Key = "f0fed3faa449ef5b4db7b80957d53734";
 let hostSplit = (window.location.origin).split(':');
 let localhost = hostSplit[0]+hostSplit[1];
 if(localhost=="http://localhost"){
-  var  redirect_URL= window.location.origin+"/program-registration";
-  var  redirect_URL1= window.location.origin+"/sevasignup";
+  var  redirect_URL= window.location.origin+"/programregistration/search-family";
+  var  redirect_URL1= window.location.origin+"/programregistration/search-family";
 }else{
-  var  redirect_URL= window.location.origin+"/MemberReg/program-registration";
-  var  redirect_URL1= window.location.origin+"/MemberReg/sevasignup";
+  // var  redirect_URL= window.location.origin+"/MemberReg/program-registration";
+  // var  redirect_URL1= window.location.origin+"/MemberReg/sevasignup";
+  var  redirect_URL= window.location.origin+"/programregistration/search-family";
+  var  redirect_URL1= window.location.origin+"/programregistration/search-family";
 }
 
 function callbackUTC_1(){

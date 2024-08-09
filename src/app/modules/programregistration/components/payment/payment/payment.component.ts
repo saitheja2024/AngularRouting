@@ -11,7 +11,7 @@ import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/m
 import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program/program.service';
 import { StoreService, KEYS } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
-
+import { DatapasstoComponent } from 'src/app/modules/chinmaya-shared/services/program-registration/datapassing.service';
 declare function callbackUTC_1():any;
 declare function scrollTop():any;
 
@@ -47,11 +47,15 @@ export class PaymentComponent {
 
 constructor(private masterService: MasterService,private programService: ProgramService,  
   private sanitizer: DomSanitizer, private authService:AuthService,
-  private store:StoreService, private router:Router, private routePass:RouteChangeCall){
+  private store:StoreService, private router:Router, private routePass:RouteChangeCall, private Dataservice:DatapasstoComponent){
 
 }
 
 ngOnInit(){
+  let dataReceive = this.Dataservice.getStoreValue();
+
+
+
   localStorage.setItem('payOpts',JSON.stringify("fullAmt"));
   this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
   this.selectedChapterCode = this.store.getValue(KEYS.chapter);
@@ -61,8 +65,15 @@ ngOnInit(){
 
   this.programCode = this.selectedProgram.code;
   this.chapterCode =  this.selectedChapterCode;
-  this.familyId= this.selectedFamily.familyId;
-  this.personID =  this.selectedProgram.personID;
+  if(dataReceive){
+    this.familyId= (dataReceive.data.familyId)?dataReceive.data.familyId: dataReceive.data.familyID;
+    this.personID =  dataReceive.data.personID;
+  }else{
+    this.familyId= this.selectedFamily.familyId;
+    this.personID =  this.selectedProgram.personID;
+  }
+  // this.familyId= this.selectedFamily.familyId;
+  // this.personID =  this.selectedProgram.personID;
 
   this.paymentInfoListDetails();
 }

@@ -30,11 +30,11 @@ export class ReviewComponent {
   signupURL:string;
 
   Datamessage:any;
-  readonly dialogRef = inject(MatDialogRef<ReviewComponent>);
+  // readonly dialogRef = inject(MatDialogRef<ReviewComponent>);
 
   constructor(private programService:ProgramService, private store:StoreService,
      private authService:AuthService, private routePass:RouteChangeCall, 
-     private Dataservice:DatapasstoComponent, @Inject(MAT_DIALOG_DATA) public data:any){
+     private Dataservice:DatapasstoComponent){
 
   }
   ngOnInit(){
@@ -47,27 +47,31 @@ export class ReviewComponent {
 
     this.programCode = this.selectedProgram.code;
     this.chapterCode =  this.selectedChapterCode;
-    if(this.data){
-      this.familyId= this.data.familyId;
-      this.personID =  this.data.personID;
+   
+    
+
+    this.subscribeCompData();
+  }
+
+  // async closeModal(){
+  //   this.dialogRef.close();
+  // }
+
+
+  subscribeCompData(){
+     let dataReceive = this.Dataservice.getStoreValue();
+
+    if(dataReceive){
+      this.familyId= (dataReceive.data.familyId)?dataReceive.data.familyId: dataReceive.data.familyID;
+      this.personID =  dataReceive.data.personID;
     }else{
       this.familyId= this.selectedFamily.familyId;
       this.personID =  this.selectedProgram.personID;
     }
-    
 
+    console.log(dataReceive.pending);
+    this.pendingPaymentData = dataReceive.pending;
     this.ReviewTabInit();
-    this.subscribeCompData();
-  }
-
-  async closeModal(){
-    this.dialogRef.close();
-  }
-
-
-  subscribeCompData(){
-    this.pendingPaymentData = this.Dataservice.getStoreValue();
-    console.log(this.pendingPaymentData)
     this.selectedChoice();
   }
 
@@ -204,20 +208,13 @@ newwindow(){
 }
 
 paymentTab(){
-  if(this.data){
-    this.Dataservice.reviewInvokeMessage('ConfirmPayment');
-    this.closeModal();
-  }else{
-    this.routePass.sendData({'currenttab':'Review','Event':'SaveNext'}); 
-  }
+ 
+    this.routePass.sendData({'currenttab':'Payment','Event':'SaveNext'}); 
 }
 
 backToReviewTab(){
-  if(this.data){
-    this.closeModal();
-  }else{
+ 
     this.routePass.sendData({'currenttab':'Review','Event':'back'}); 
-  }
 }
 
 }
