@@ -97,8 +97,10 @@ export class MembershipCallDetailsComponent {
 
     extractAndFormatSessionChoices(childList: any[]): string {
       return childList
-        .map(child => child.sessionChoice ? child.sessionChoice.replace(/,/g, '<br>') : '')
-        .join('<br><br>');
+        .map(child => child.personType=="ADULT" ? 
+        (child.sessionChoice ? child.sessionChoice.replace(/,/g, '<br/>') : '') : ""
+       )
+        .join('');
     }
     
     prepareForm(){

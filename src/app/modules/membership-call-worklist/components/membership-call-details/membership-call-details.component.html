@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-lg-7 mb-4" >
                 <div class="p-2 card" style="border:1px solid #ddd;border-radius:5px;max-height: 250px;overflow-y: scroll;" *ngIf="callWorkDetails">
-                    <div class="ms-4 mb-1" *ngFor="let session of callWorkDetails?.sessionChoiceList">
+                    <div class="ms-4 mb-1" >
                         <span class="jsutify-content-start">{{sessionChoice}}</span>
                     </div>
                    <ng-container *ngFor="let item of Object?.keys(groupbyNameSignupDetails); index as i;">
@@ -69,6 +69,8 @@
                                 <div class="jsutify-content-start" *ngIf="child.personType!='ADULT' && child.personType!='YOUTH'">{{child.gradeLabel}}&nbsp;:&nbsp;{{child.schoolGradeDescription ? child.schoolGradeDescription:""}}</div>
                                 <div class="jsutify-content-start" *ngIf="child.personType!='ADULT' && child.personType!='YOUTH'">Class : {{child.classCode ? child.classCode:'NA' }}</div>
                                 <div class="jsutify-content-start">Signup Code : {{child.signupCodeDescription }}</div>
+                                <div class="jsutify-content-start" *ngIf="child.personType=='CHILD'">{{child.sessionChoice }}</div>
+
                                 
                             </div>
                     </div>
