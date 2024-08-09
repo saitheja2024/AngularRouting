@@ -36,6 +36,7 @@ export class CreateProgramSignupCodesComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+
   ngAfterViewInit() {
     this.dataSourceSignUpCode=new MatTableDataSource(this.SignUpCode);
 
@@ -64,5 +65,13 @@ export class CreateProgramSignupCodesComponent {
 
   next(){
     this.router.navigateByUrl("/program-configuration/create-program/review-configuration")
+  }
+
+  i: number;
+  Delete(index: number) {
+    const data = this.dataSourceSignUpCode.data;
+    data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);
+
+    this.dataSourceSignUpCode.data = data;
   }
 }

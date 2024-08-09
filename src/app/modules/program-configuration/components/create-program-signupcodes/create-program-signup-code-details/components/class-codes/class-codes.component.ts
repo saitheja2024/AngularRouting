@@ -6,7 +6,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 export interface ClassCodes {
-  checkbox: string;
   classcode: string;
   subclasscode: string;
   session: string;
@@ -24,10 +23,10 @@ export interface ClassCodes {
 
 export class ClassCodesComponent {
   ClassCodes: ClassCodes[] = [
-    {checkbox:'', classcode: '', subclasscode: '', session: '', minimumschoolgrade: '', maximumschoolgrade: '', capacity: '', actions:''}
+    {classcode: '', subclasscode: '', session: '', minimumschoolgrade: '', maximumschoolgrade: '', capacity: '', actions:''}
   ];
 
-  displayedColumnsClassCodes: string[] = ['checkbox', 'classcode', 'subclasscode', 'session', 'minimumschoolgrade', 'maximumschoolgrade', 'capacity', 'actions'];
+  displayedColumnsClassCodes: string[] = ['classcode', 'subclasscode', 'session', 'minimumschoolgrade', 'maximumschoolgrade', 'capacity', 'actions'];
 
   dataSourceClassCodes = new MatTableDataSource<ClassCodes>(this.ClassCodes);
 
@@ -65,7 +64,6 @@ export class ClassCodesComponent {
 
    AddRow() {
     const newRow: ClassCodes = {
-      checkbox:'',
       classcode:'',
       subclasscode:'',
       session:'',
@@ -79,31 +77,14 @@ export class ClassCodesComponent {
     this.dataSourceClassCodes.data = updatedData;
   }
 
-  selection: ClassCodes[] = [];
 
-  toggleSelection(row: ClassCodes) {
-    const index = this.selection.indexOf(row);
-    if (index === -1) {
-      this.selection.push(row);
-    } else {
-      this.selection.splice(index, 1);
-    }
-  }
+  // Delete rows in mat table
 
-  isAllSelected() {
-    return this.selection.length === this.dataSourceClassCodes.data.length;
-  }
+  i: number;
+  DeleteRow(index: number) {
+    const data = this.dataSourceClassCodes.data;
+    data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);
 
-  masterToggle() {
-    if (this.isAllSelected()) {
-      this.selection = [];
-    } else {
-      this.selection = [...this.dataSourceClassCodes.data];
-    }
-  }
-
-  DeleteRow() {
-    this.dataSourceClassCodes.data = this.dataSourceClassCodes.data.filter(row => !this.selection.includes(row));
-    this.selection = [];
+    this.dataSourceClassCodes.data = data;
   }
 }

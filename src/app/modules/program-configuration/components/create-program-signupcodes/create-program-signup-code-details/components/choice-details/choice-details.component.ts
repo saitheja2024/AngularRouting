@@ -6,7 +6,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 export interface ChoiceDetails {
-  checkbox: string;
   code: string;
   label: string;
   description: string;
@@ -24,10 +23,10 @@ export interface ChoiceDetails {
 export class ChoiceDetailsComponent {
 
   ChoiceDetails: ChoiceDetails[] = [
-    {checkbox: '', code: '', label: '', description: '', control: '', displayorder: '', active: '', actions:''}
+    {code: '', label: '', description: '', control: '', displayorder: '', active: '', actions:''}
   ];
 
-  displayedColumnsChoiceDetails: string[] = ['checkbox', 'code', 'label', 'description', 'control', 'displayorder', 'active', 'actions'];
+  displayedColumnsChoiceDetails: string[] = ['code', 'label', 'description', 'control', 'displayorder', 'active', 'actions'];
 
   dataSourceChoiceDetails = new MatTableDataSource<ChoiceDetails>(this.ChoiceDetails);
 
@@ -65,7 +64,6 @@ export class ChoiceDetailsComponent {
 
    AddRow() {
     const newRow: ChoiceDetails = {
-      checkbox:'',
       code:'',
       label:'',
       description:'',
@@ -79,31 +77,14 @@ export class ChoiceDetailsComponent {
     this.dataSourceChoiceDetails.data = updatedData;
   }
 
-  selection: ChoiceDetails[] = [];
 
-  toggleSelection(row: ChoiceDetails) {
-    const index = this.selection.indexOf(row);
-    if (index === -1) {
-      this.selection.push(row);
-    } else {
-      this.selection.splice(index, 1);
-    }
-  }
+  // Delete rows in mat table
 
-  isAllSelected() {
-    return this.selection.length === this.dataSourceChoiceDetails.data.length;
-  }
+  i: number;
+  DeleteRow(index: number) {
+    const data = this.dataSourceChoiceDetails.data;
+    data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);
 
-  masterToggle() {
-    if (this.isAllSelected()) {
-      this.selection = [];
-    } else {
-      this.selection = [...this.dataSourceChoiceDetails.data];
-    }
-  }
-
-  DeleteRow() {
-    this.dataSourceChoiceDetails.data = this.dataSourceChoiceDetails.data.filter(row => !this.selection.includes(row));
-    this.selection = [];
+    this.dataSourceChoiceDetails.data = data;
   }
 }

@@ -87,11 +87,14 @@
                             <ng-container matColumnDef="actions">
                                 <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Actions </th>
                                 <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
-                                    <button class="btn btn-sm button-default" style="border: 1px solid #EEE8FF;padding: 5px 10px !important;width:30px;">
+                                    <button class="btn btn-sm button-default" 
+                                            style="border: 1px solid #EEE8FF;padding: 5px 10px !important;width:30px;">
                                         <i class="icon-pencil pe-0" style="font-size: 13px !important;color:#5B31E8;">
                                         </i>
                                     </button>
-                                    <button class="btn btn-sm button-default ms-2" style="border: 1px solid #FFCDDB;padding: 5px 10px !important;width:30px;">
+                                    <button class="btn btn-sm button-default ms-2" 
+                                            style="border: 1px solid #FFCDDB;padding: 5px 10px !important;width:30px;"
+                                            (click)="Delete(i)">
                                         <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;">
                                         </i>
                                     </button>
