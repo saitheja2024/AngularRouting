@@ -15,7 +15,7 @@
     </div>
 
     <!--begin::Card body-->
-    <div class="card-body pt-0">
+    <div class="card-body p-6">
         <div class="row mt-3">
             <div class="col-lg-4 mt-1 fv-row fv-plugins-icon-container">
                 
@@ -45,14 +45,16 @@
                 <div class="d-flex fv-row fv-plugins-icon-container">
                     <!--begin::Radio-->
                     <div class="form-check form-check-custom form-check-solid col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                        <input type="radio" name="options" value="option1" (change)="onSelectionChange('option1')">
-                        <label class="form-check-label">Yes</label>
+                        <label class="form-check-label text-gray-800 cursor-pointer">
+                            <input class="me-2 cursor-pointer" type="radio" name="options" value="option1" (change)="onSelectionChange('option1')"> Yes
+                        </label>
                     </div>
                     <!--end::Radio-->
                     <!--begin::Radio-->
                     <div class="form-check form-check-custom form-check-solid col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                        <input type="radio" name="options" value="option2" (change)="onSelectionChange('option2')">
-                        <label class="form-check-label">No</label>
+                        <label class="form-check-label text-gray-800 cursor-pointer">
+                            <input class="me-2 cursor-pointer" type="radio" name="options" value="option2" (change)="onSelectionChange('option2')"> No
+                        </label>
                     </div>
                     <!--end::Radio-->
                 </div>
