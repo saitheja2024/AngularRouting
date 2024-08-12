@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { DatapasstoComponent } from '../../chinmaya-shared/services/program-registration/datapassing.service';
 import { RouteChangeCall } from '../../chinmaya-shared/services/program-registration/routechange.service';
+import { AuthService } from '../../auth';
 
 @Component({
   selector: 'app-family-reg-workflow',
@@ -90,7 +91,7 @@ export class FamilyRegWorkflowComponent {
   immediatePaymentAmountWithConv:any;
   annualPledgeFlag:any;
   paymentCompleteTab:boolean=false;
-
+  primaryContatDetails:any;
   get PF(): { [key: string]: AbstractControl } {
     return this.programForm.controls;
   }
@@ -99,11 +100,15 @@ export class FamilyRegWorkflowComponent {
   signature:any;
   utc_time:any;
   ReviewCloseMessage:any;
+  signupURL:any;
+  loggedInUser:any;
+  familyID:any;
+
  constructor(private fb:FormBuilder, private store:StoreService, 
   private classRgiSrvice:ClassRegistrationService, private familyService:FamilyService, 
   private MasterService:MasterService, private route: ActivatedRoute, private alertService:AlertService, 
   private programService:ProgramService, private DataService:DatapasstoComponent, private routePass:RouteChangeCall, 
-  private router:Router){
+  private router:Router,  private authService:AuthService){
     
     this.programForm = this.fb.group({
       //signupCode:new FormControl('',[Validators.required]),
@@ -174,8 +179,28 @@ export class FamilyRegWorkflowComponent {
   await this.fetchSchooldGradeLabel();
   //this.memberselection(this.primaryUserData.user);
   this.formGroup = this.fb.group({});
- 
+
+  this.signupURL = 'https://cmwrc.chinmayadc.org/support/arpanam/';
+    this.loggedInUser = this.authService.getLoggedInUser();
+    this.familyID=this.loggedInUser.familyID;
+   this.getPrimaryContactUpdatedDetails();
  }
+
+ async getPrimaryContactUpdatedDetails() {
+  const body = {
+    familyId: this.loggedInUser.familyID,
+    programCode: "",
+    chapterCode: this.selectedChapterCode,
+    paymentFlag: false
+  }
+ let data = await this.programService.getPrimaryContact(body);
+ this.primaryContatDetails = data;
+}
+
+newwindow(){
+window.open(this.signupURL, "_blank");
+}
+
 
  setDefaultValue(){
   let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;

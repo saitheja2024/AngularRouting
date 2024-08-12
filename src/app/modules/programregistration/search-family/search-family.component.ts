@@ -27,7 +27,9 @@ export class SearchFamilyComponent {
   //@Output() familyList = new EventEmitter<any>();
   selectedChapterCode:any;
   selectedChapter:any;
-
+  primaryContatDetails:any;
+  signupURL:any;
+  familyID:any;
   constructor( 
     private familyService: FamilyService,
     private fb: FormBuilder,
@@ -41,7 +43,9 @@ export class SearchFamilyComponent {
   
 
   async ngOnInit() {
+    this.signupURL = 'https://cmwrc.chinmayadc.org/support/arpanam/';
     this.loggedInUser = this.authService.getLoggedInUser();
+    this.familyID=this.loggedInUser.familyID;
     this.selectedProgram  = this.store.getValue(KEYS.program);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     let chapter = this.store.getValue(KEYS.chapterDesc);
@@ -60,6 +64,7 @@ export class SearchFamilyComponent {
     this.chapterList = await this.programService.fetchChapterList(param);
     
     this.personTypeList = await this.masterService.getPersonType();
+    this.getPrimaryContactUpdatedDetails();
   }
 
   prepareSearchForm() {
@@ -92,5 +97,20 @@ export class SearchFamilyComponent {
       this.familyList = await this.familyService.searchFamilies(param);
 
   }
+
+  async getPrimaryContactUpdatedDetails() {
+    const body = {
+      familyId: this.loggedInUser.familyID,
+      programCode: "",
+      chapterCode: this.selectedChapterCode,
+      paymentFlag: false
+    }
+   let data = await this.programService.getPrimaryContact(body);
+   this.primaryContatDetails = data;
+}
+
+newwindow(){
+  window.open(this.signupURL, "_blank");
+}
 
 }
