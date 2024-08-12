@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/modules/auth';
 import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
 import { DatapasstoComponent } from 'src/app/modules/chinmaya-shared/services/program-registration/datapassing.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -30,11 +31,12 @@ export class ReviewComponent {
   signupURL:string;
 
   Datamessage:any;
+  dataReceiveFlag:boolean=false;
   // readonly dialogRef = inject(MatDialogRef<ReviewComponent>);
 
   constructor(private programService:ProgramService, private store:StoreService,
      private authService:AuthService, private routePass:RouteChangeCall, 
-     private Dataservice:DatapasstoComponent){
+     private Dataservice:DatapasstoComponent, private router:Router){
 
   }
   ngOnInit(){
@@ -64,12 +66,12 @@ export class ReviewComponent {
     if(dataReceive){
       this.familyId= (dataReceive.data.familyId)?dataReceive.data.familyId: dataReceive.data.familyID;
       this.personID =  dataReceive.data.personID;
+      this.dataReceiveFlag=true;
     }else{
       this.familyId= this.selectedFamily.familyId;
       this.personID =  this.selectedProgram.personID;
     }
 
-    console.log(dataReceive.pending);
     this.pendingPaymentData = dataReceive.pending;
     this.ReviewTabInit();
     this.selectedChoice();
@@ -200,7 +202,11 @@ async fetchPrimaryContactDetails() {
 }
 
 backtoClassRegistration(){
-  this.routePass.sendData({'currenttab':'Additional Details','Event':'back'}); 
+  if(this.dataReceiveFlag){
+    this.router.navigateByUrl('/programregistration/search-family');
+  }else{
+    this.routePass.sendData({'currenttab':'Additional Details','Event':'back'}); 
+  }
 }
 
 newwindow(){
@@ -213,8 +219,11 @@ paymentTab(){
 }
 
 backToReviewTab(){
- 
+   if(this.dataReceiveFlag){
+    this.router.navigateByUrl('/programregistration/search-family');
+   }else{
     this.routePass.sendData({'currenttab':'Review','Event':'back'}); 
+   }
 }
 
 }

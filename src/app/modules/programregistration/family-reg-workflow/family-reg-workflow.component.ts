@@ -12,7 +12,6 @@ import { environment } from 'src/environments/environment';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { DatapasstoComponent } from '../../chinmaya-shared/services/program-registration/datapassing.service';
 import { RouteChangeCall } from '../../chinmaya-shared/services/program-registration/routechange.service';
-declare function callbackUTC_1():any;
 
 @Component({
   selector: 'app-family-reg-workflow',
@@ -474,7 +473,7 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, sele
  this.selectedUserData = selectData;
  const body = {
    signupCode: signupCode,
-   code: (this.selectedUserData.chapterCode)?this.selectedUserData.chapterCode:this.selectedUserData.chapter,
+   code: (this.selectedUserData.chapterCode)?this.selectedUserData.chapterCode:(this.selectedUserData.chapter)?this.selectedUserData.chapter:this.selectedChapterCode,
    duesStructureCode: "",
    programCode: this.selectedProgram.code,
    familyId: (this.selectedFamilyDetails.familyID)?this.selectedFamilyDetails.familyID :this.selectedFamilyDetails.familyId,

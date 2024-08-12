@@ -370,12 +370,13 @@ if(arr!=null){
 
 
   backtoSignatureTab(){
-    this.routePass.sendData({'currenttab':'Payment','Event':'back'}); 
-
+   // this.routePass.sendData({'currenttab':'Payment','Event':'back'}); 
+   this.router.navigateByUrl('/programregistration/search-family');
   }
 
   onBackTab(ev:any){
-    this.routePass.sendData({'currenttab':'Registration','Event':'current'}); 
+   // this.routePass.sendData({'currenttab':'Registration','Event':'current'}); 
+   this.router.navigateByUrl('/programregistration/search-family');
   }
 
 
