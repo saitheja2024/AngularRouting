@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
     let loggedInUser = this.authService.getLoggedInUser();
     if(loggedInUser==undefined){
       loggedInUser = JSON.parse(sessionStorage.getItem('profileData') || '');
+      this.fetchMenuItems(loggedInUser);
       let logKey = KEYS.loggedInUser;
       this.store.setValue(KEYS.chapter,loggedInUser.chapter);
       this.store.setValue(logKey,loggedInUser);
