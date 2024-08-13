@@ -5,6 +5,7 @@ import { createEmailValidator, phoneNumberValidator } from 'src/app/Validators/c
 import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/family.service';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { StoreService, KEYS } from 'src/app/modules/chinmaya-shared/services/store/store.service';
+import { ClassRegistrationService } from 'src/app/modules/chinmaya-shared/services/program-registration/classregistration.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,12 +22,12 @@ export class NewRegistrationComponent {
   validateFlag:boolean=false;
   mobileCheckFlag:boolean=false;
   zipCodeFlag:boolean=false;
-
+  currentUserData:any;
   constructor(private router:Router,
      private fb:FormBuilder,
      private familyService:FamilyService,
     private store: StoreService,
-  private masterService:MasterService){}
+  private masterService:MasterService, private classRgiSrvice:ClassRegistrationService){}
   
   get zipCode() {
     return this.contactsForm.get('zipCode')!;
@@ -38,6 +39,7 @@ export class NewRegistrationComponent {
   async ngOnInit(){
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    this.currentUserData = this.classRgiSrvice.getLoggedInUser();
     await this.initForm();
     await  this.fetchstateList();
     
@@ -83,7 +85,8 @@ export class NewRegistrationComponent {
     let formValues = this.contactsForm.value;
     formValues.username=formValues.emailAddress;
     let user = {
-      user:formValues
+      user:formValues,
+      modifiedBy: this.currentUserData.personID
     }
 
     this.contactsForm.markAsTouched();
