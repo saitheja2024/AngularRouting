@@ -73,14 +73,11 @@ import { HttpHeaders } from '@angular/common/http';
 
           async  deleteProgramRegistration(param: any) {
             var options:Options = {
-                headers: new HttpHeaders({
-                  'Content-Type': 'application/json'
-                }),
                 url: this.urlService.classRegistration.deletePersonProgramRegistration,
                 body: param
               }
            
-            let response: any = await await this.httpService.post(options);
+            let response: any = await await this.httpService.delete(options);
              return response;
           }
 
