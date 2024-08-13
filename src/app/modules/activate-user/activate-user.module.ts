@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UnlockAcounntHomeComponent } from './components/unlock-acounnt-home.component';
+import { ActivateUserComponent } from './components/activate-user/activate-user.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    component: UnlockAcounntHomeComponent,
+    component: ActivateUserComponent,
     children: [
       {
         path: '',
@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        component: UnlockAcounntHomeComponent,
+        component: ActivateUserComponent,
       },
       
 
@@ -29,7 +29,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    UnlockAcounntHomeComponent
+    ActivateUserComponent
   ],
   imports: [
     CommonModule,
@@ -37,4 +37,4 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ]
 })
-export class UnlockAccountModule { }
+export class ActivateUserModule { }

@@ -1,0 +1,137 @@
+<div class="card cardcss mt-3">
+    <div class="card-header p-4 pb-2 pt-2">
+        <div class="card-title m-0">
+            <h3 class="fw-bold m-0">Activate Account</h3>
+        </div>
+    </div>
+    <div class="card-body p-6">
+        <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+            <div class="d-flex flex-column">
+                <div class="d-flex align-items-center mb-2">
+                    <h4 class="text-gray-900 fs-2 fw-semibold me-1">Filters :</h4>                        
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-6 d-flex d-flex1 mb-2">
+                    <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                        <label class="fw-semibold fs-6 mt-2 mb-2">Family ID</label>
+                    </div>
+                    <div class="col-lg-10 d-flex">
+                        <input formControlName="familyId" type="text" placeholder="Family ID" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex d-flex1 mb-2">
+                    <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                        <label class="fw-semibold fs-6 mt-2 mb-2">First Name</label>
+                    </div>
+                    <div class="col-lg-10 d-flex">
+                        <input formControlName="firstName" type="text" placeholder="First Name" class="form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-6 d-flex d-flex1 mb-2">
+                    <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                        <label class="fw-semibold fs-6 mt-2 mb-2">Last Name</label>
+                    </div>
+                    <div class="col-lg-10 d-flex">
+                        <input formControlName="lastName" type="text" placeholder="Last Name" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col-lg-6 d-flex d-flex1 mb-2">
+                    <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                        <label class="fw-semibold fs-6 mt-2 mb-2">Email</label>
+                    </div>
+                    <div class="col-lg-10 d-flex">
+                        <input formControlName="emailAddress" type="text" placeholder="Email" class="form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-end p-4">
+        <div class="row">
+            <div class="d-flex">
+                <!--begin::Filter menu-->
+                <div class="m-0">
+                    <a href="javascript:void(0);" class="btn btn-primary btn-sm m-1" style="font-size:13px;">
+                        <i class="icon-search4 fs-6"></i> Search
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card cardcss mt-4">
+    <div class="card-header p-4 pt-2 pb-2">
+        <div class="card-title">
+            <h3 class="fw-bold">
+                User List
+            </h3>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourceUserList" matSort>
+
+                    <!-- Family ID Column -->
+                    <ng-container matColumnDef="familyid">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 200px;">Family ID</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.familyid}} </td>
+                    </ng-container>
+              
+                    <!-- First Name Column -->
+                    <ng-container matColumnDef="firstname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 200px;">First Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.firstname}} </td>
+                    </ng-container>
+
+                    <!-- Last Name Column -->
+                    <ng-container matColumnDef="lastname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 200px;">Last Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.lastname}} </td>
+                    </ng-container>
+
+                    <!-- Email Column -->
+                    <ng-container matColumnDef="email">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 200px;">Email</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.email}} </td>
+                    </ng-container>
+
+                    <!-- User Name Column -->
+                    <ng-container matColumnDef="username">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="min-width: 200px;">User Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.username}} </td>
+                    </ng-container>
+                    
+                    <!-- Account Column -->
+                    <ng-container matColumnDef="account">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header> Account </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> 
+                            <button type="button" class="btn btn-sm btn-primary" style="padding:7px 15px;">Activate Account</button>
+                        </td>
+                    </ng-container>
+              
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsUserList; sticky: true;" style="background-color:#fcfcfc;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsUserList;"></tr>
+                </table>
+              
+                <div class="row p-0 m-0">
+                    <mat-paginator [pageSizeOptions]="[5, 10, 20]" 
+                                showFirstLastButtons>
+                    </mat-paginator>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

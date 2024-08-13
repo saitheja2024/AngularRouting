@@ -68,6 +68,11 @@ const Routing: Routes = [
       import('../modules/unlock-account/unlock-account.module').then((m) => m.UnlockAccountModule),
   },
   {
+    path: 'activate-user',
+    loadChildren: () =>
+      import('../modules/activate-user/activate-user.module').then((m) => m.ActivateUserModule),
+  },
+  {
     path: 'programregistration',
     loadChildren: () =>
       import('../modules/programregistration/programregistration.module').then((m) => m.ProgramregistrationModule),
