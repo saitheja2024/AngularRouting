@@ -440,3 +440,9 @@
     overflow: auto;
     height: 80vh;
   }
+
+ ::ng-deep .cust_bg_brd{
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+  }

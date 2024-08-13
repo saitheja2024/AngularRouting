@@ -1,5 +1,5 @@
 <!--begin::Step 1-->
-<div class="flex-column" data-kt-stepper-element="content">
+<div class="flex-column cust_bg_brd" data-kt-stepper-element="content">
     <!-- <app-review [tabReview]="currentTab=='review'" (back)="onBackTab($event)" (saveAndNext)="onSaveAndNext($event)"></app-review> -->
     <div class="setup-content" id="step-5" >
         <div class="panel panel-flat" *ngIf="selectedList.length>0"> 
@@ -404,6 +404,7 @@
             <button *ngIf="reviewTabData?.completeFlag==false" class="btn btn-sm btn-primary pull-right" type="button" style="margin-bottom:10px;" (click)="paymentTab();">Confirm & Proceed to Payment</button>
             <button class="btn btn-sm btn-light border border-primary border-active active text-primary backbtn1 mr-10" type="button" (click)="backToReviewTab();" style="float:right; margin-bottom:10px;">Back</button>
         </div>
+         <div class="clearfix"></div>
     </div>
 </div>
 <!--begin::Step 1-->
