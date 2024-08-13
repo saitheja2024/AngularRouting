@@ -188,7 +188,7 @@ export class FamilyRegWorkflowComponent {
 
  async getPrimaryContactUpdatedDetails() {
   const body = {
-    familyId: this.loggedInUser.familyID,
+    familyId: (this.primaryUserData.familyID)?this.primaryUserData.familyID:this.primaryUserData.familyId,
     programCode: "",
     chapterCode: this.selectedChapterCode,
     paymentFlag: false
@@ -359,7 +359,7 @@ async familyPersonList(){
       paymentFlag: false,
       personTypeCheckRequiredFlag: true,
       persontype:this.selectedSignupCode.registrantType,
-      signUpCode:this.selectedSignupCode.signUpCode
+      signUpCode:this.selectedSignupCode.signUpCode,
     }
 
      let personData:any = await this.classRgiSrvice.getPersonList(param);
