@@ -161,6 +161,29 @@
       </a>
     </div>
 
+    <div class="menu-item menu-accordion" data-kt-menu-trigger="click" >
+      <span class="menu-link">
+        <span class="menu-icon">
+          <img class="img_cls" src="assets/chinmaya_media/images/SVG/Registration Processing-icon.svg" style="width:18px;">
+        </span>
+        <span class="menu-title fs-6 fw-semibold"  >Classes and Teacher Assignments
+        </span>
+        <span class="menu-arrow"></span>
+      </span>
+      <div class="menu-sub menu-sub-accordion">
+        <div class="menu-item" *ngFor="let program of programs; index as k">
+          <a [ngClass]="(subMenuActiveFlag!=undefined && subMenuActiveFlag[k])?'active':''" class="menu-link without-sub" (click)="onProgramSelection(program,'/classess-and-teacher-assignements', k)">
+            <span class="menu-bullet">
+              <img class="img_cls" src="assets/chinmaya_media/images/SVG/14-create program-icon.svg">
+            </span>
+            <span class="menu-title fs-6 fw-semibold">{{program.description}}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+   
+
     <!--<div class="menu-item menu-accordion" data-kt-menu-trigger="click" routerLinkActive="here show">
       <span class="menu-link">
         <span class="menu-icon">
@@ -241,16 +264,7 @@
           </a>
         </div>
       </div>
-      <div class="menu-sub menu-sub-accordion">
-        <div class="menu-item" routerLinkActive="here">
-          <a class="menu-link without-sub" routerLink="/program-configuration/classes-and-teacher-assignments">
-            <span class="menu-bullet">
-              <img class="img_cls" src="assets/chinmaya_media/images/SVG/14-create program-icon.svg">
-            </span>
-            <span class="menu-title fs-6 fw-semibold">Classes and Teacher Assignments</span>
-          </a>
-        </div>
-      </div>
+     
     </div>
     
       <!--<div class="menu-sub menu-sub-accordion">

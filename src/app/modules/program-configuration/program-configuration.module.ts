@@ -4,11 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
 import { ProgramConfigHomeComponent } from './components/program-config-home/program-config-home.component';
-import { ClassesAndTeacherAssignmentsComponent } from './components/classes-and-teacher-assignments/classes-and-teacher-assignments.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
-import { TeacherProfileComponent } from './components/teacher-profile/teacher-profile.component';
-import { TeacherTableComponent } from './components/teacher-table/teacher-table.component';
-import { TeacherAssignmentDetailsComponent } from './components/teacher-assignment-details/teacher-assignment-details.component';
+import { TeacherAssignmentDetailsComponent } from '../classes-and-teacher-assignment/components/teacher-assignment-details/teacher-assignment-details.component';
 import { CreateProgramComponent } from './components/create-program/create-program.component';
 import { CreateProgramConfigurationDetailsComponent } from './components/create-program-configuration-details/create-program-configuration-details.component';
 import { CreateProgramProgramDetailsComponent } from './components/create-program-program-details/create-program-program-details.component';
@@ -122,14 +119,6 @@ const routes: Routes = [
             },
           ]
       },
-      {
-        path: 'classes-and-teacher-assignments',
-        component: ClassesAndTeacherAssignmentsComponent,
-      },
-      {
-        path: 'classes-and-teacher-assignments/teacher-assignment-details',
-        component: TeacherAssignmentDetailsComponent,
-      },
       { path: '', redirectTo: 'create-program', pathMatch: 'full' }
     ]
   },
@@ -138,10 +127,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ProgramConfigHomeComponent,
-    ClassesAndTeacherAssignmentsComponent,
-    TeacherProfileComponent,
-    TeacherTableComponent,
-    TeacherAssignmentDetailsComponent,
     CreateProgramComponent,
     CreateProgramConfigurationDetailsComponent,
     CreateProgramProgramDetailsComponent,

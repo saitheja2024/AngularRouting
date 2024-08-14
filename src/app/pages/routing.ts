@@ -88,6 +88,11 @@ const Routing: Routes = [
       import('../modules/student-attendance/student-attendance.module').then((m) => m.StudentAttendanceModule),
   },
   {
+    path: 'classess-and-teacher-assignements',
+    loadChildren: () =>
+      import('../modules/classes-and-teacher-assignment/classes-and-teacher-assignment.module').then((m) => m.ClassesAndTeacherAssignmentModule),
+  },
+  {
     path: '',
     redirectTo: 'registration-processing',
     pathMatch: 'full',

@@ -49,7 +49,7 @@ export class SidebarMenuComponent implements OnInit {
 
   isModuleAllowed(module:any){
 
-    
+    //return true;
     let  retValue = false;
     if(!this.menutItems || this.menutItems.length==0){
       return false

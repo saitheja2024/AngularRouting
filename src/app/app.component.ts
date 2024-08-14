@@ -81,6 +81,10 @@ export class AppComponent implements OnInit {
   }
 
   async fetchMenuItems(user:any){
+    if(!user){
+      console.error("No User found");
+      return;
+    }
     let params= {
       "personID" : user.personID
     }
