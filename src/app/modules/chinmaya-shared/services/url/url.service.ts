@@ -161,6 +161,10 @@ export class UrlService {
     saveAnnualPledgeRegistration:"programSelection/saveAnnualPledgeRegistration"
     
   }
+
+  adminRegistrationURL = {
+    fetchEnrolledClassesList:"adminRegistration/fetchEnrolledClassesList?programCode=$programCode&signupCode=$signupCode"
+  }
   
  
   

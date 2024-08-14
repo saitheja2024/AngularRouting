@@ -1,0 +1,104 @@
+<div class="card mt-4">
+    <div class="card-header p-2 ps-4 pe-4">
+        <div class="card-title">
+            <span class="fs-6 fw-semibold">
+                Roles Assignments: <span class="text-primary">Teacher Assignment: SUN_AM – ATI-MADHURAM – A1</span>
+            </span>
+        </div>
+        <div class="card-toolbar">
+            <div class="d-flex justify-content-end">
+                <div class="ms-4 mt-2">
+                    <span class="fs-5">Parents Emails: 40</span>
+                </div>
+                <div class="ms-4 mt-2">
+                    <span class="fs-5">Students: 20</span>
+                </div>
+                <div class="ms-4">
+                    <i class="icon-download4 mt-3" style="width:30px;"></i>
+                </div>
+                <div class="ms-4">
+                    <i class="icon-spinner9 mt-3" style="width:30px;"></i>
+                </div>
+                <a class="btn btn-sm btn-primary ms-4" mat-raised-button (click)="back()">
+                    <span class="ms-2" style="font-size:13px;">Back</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="table-responsive"> 
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourceTSA" matSort>
+
+                    <!-- Childs First Name Column -->
+                    <ng-container matColumnDef="childsfirstname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Childs First Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.childsfirstname}} </td>
+                    </ng-container>
+              
+                    <!-- Childs Last Name Column -->
+                    <ng-container matColumnDef="childslastname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Childs Last Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.childslastname}} </td>
+                    </ng-container>
+
+                    <!-- Gender Column -->
+                    <ng-container matColumnDef="gender">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Gender</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.gender}} </td>
+                    </ng-container>
+
+                    <!-- Grade Column -->
+                    <ng-container matColumnDef="grade">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Grade</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.grade}} </td>
+                    </ng-container>
+
+                    <!-- Parent 1 First Name Column -->
+                    <ng-container matColumnDef="parent1firstname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Parent 1 Fist Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.parent1firstname}}</td>
+                    </ng-container>
+
+                    <!-- Parent 1 Last Name Column -->
+                    <ng-container matColumnDef="parent1lastname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Parent 1 Last Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.parent1lastname}} </td>
+                    </ng-container>
+
+                    <!-- Parent 1 Email Column -->
+                    <ng-container matColumnDef="parent1email">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Parent 1 Email</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.parent1email}} </td>
+                    </ng-container>
+
+                    <!-- Parent 2 First Name Column -->
+                    <ng-container matColumnDef="parent2firstname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Parent 2 First Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.parent2firstname}} </td>
+                    </ng-container>
+
+                    <!-- Parent 2 Last Name Column -->
+                    <ng-container matColumnDef="parent2lastname">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Parent 2 Last Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.parent2lastname}} </td>
+                    </ng-container>
+
+                    <!-- Parent 2 Email Column -->
+                    <ng-container matColumnDef="parent2email">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Parent 2 Email</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.parent2email}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsTSA; sticky: true;" style="background-color:#CDDDFF;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsTSA;"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[10,20,50]"
+                                showFirstLastButtons>
+                </mat-paginator>
+
+            </div>
+        </div>
+    </div>
+</div>
