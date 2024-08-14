@@ -5,7 +5,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
 import { ProgramConfigHomeComponent } from './components/program-config-home/program-config-home.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
-import { TeacherAssignmentDetailsComponent } from '../classes-and-teacher-assignment/components/teacher-assignment-details/teacher-assignment-details.component';
 import { CreateProgramComponent } from './components/create-program/create-program.component';
 import { CreateProgramConfigurationDetailsComponent } from './components/create-program-configuration-details/create-program-configuration-details.component';
 import { CreateProgramProgramDetailsComponent } from './components/create-program-program-details/create-program-program-details.component';
