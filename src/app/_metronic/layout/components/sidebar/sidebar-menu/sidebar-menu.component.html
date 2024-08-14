@@ -152,21 +152,21 @@
       </a>
     </div>-->
 
-    <div class="menu-item" routerLink="/membership-call-worklist" routerLinkActive="here show" *ngIf="isModuleAllowed('MemberShip Call Worklist')">
+    <div class="menu-item" routerLink="/membership-call-worklist" routerLinkActive="here show" *ngIf="isModuleAllowed('Membership Call Worklist')">
       <a class="menu-link without-sub">
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/Family.svg" style="width:16px;">
         </span>
-        <span class="menu-title fs-6 fw-semibold">MemberShip Call Worklist</span>
+        <span class="menu-title fs-6 fw-semibold">Membership Call Worklist</span>
       </a>
     </div>
 
-    <div class="menu-item menu-accordion" data-kt-menu-trigger="click" >
+    <div class="menu-item menu-accordion" data-kt-menu-trigger="click" *ngIf="isModuleAllowed('Classes and Teacher Assignments')">
       <span class="menu-link">
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/Registration Processing-icon.svg" style="width:18px;">
         </span>
-        <span class="menu-title fs-6 fw-semibold"  >Classes and Teacher Assignments
+        <span class="menu-title fs-6 fw-semibold">Classes and Teacher Assignments
         </span>
         <span class="menu-arrow"></span>
       </span>
@@ -226,7 +226,7 @@
       </div>
     </div> -->
 
-    <div class="menu-item menu-accordion" data-kt-menu-trigger="click" routerLinkActive="here show">
+    <div class="menu-item menu-accordion" data-kt-menu-trigger="click" routerLinkActive="here show" *ngIf="isModuleAllowed('Program Configuration')">
       <span class="menu-link">
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/13-configuration-icon.svg" style="width:18px;">
@@ -310,7 +310,7 @@
       </a>
     </div>
 
-    <div class="menu-item" routerLink="/activate-user" routerLinkActive="here show">
+    <div class="menu-item" routerLink="/activate-user" routerLinkActive="here show" *ngIf="isModuleAllowed('Activate User')">
       <a class="menu-link without-sub" >
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/unlock account-icon.svg" style="width:20px;">
@@ -319,14 +319,14 @@
       </a>
     </div>
 
-    <!-- <div class="menu-item" routerLink="/student-attendance" routerLinkActive="here show">
+    <div class="menu-item" routerLink="/student-attendance" routerLinkActive="here show" *ngIf="isModuleAllowed('Student Attendance')">
       <a class="menu-link without-sub" >
         <span class="menu-icon">
           <img class="img_cls" src="assets/chinmaya_media/images/SVG/unlock account-icon.svg" style="width:20px;">
         </span>
         <span class="menu-title fs-6 fw-semibold">Student Attendance</span>
       </a>
-    </div> -->
+    </div>
 
    
 <div style="height: 50px;"></div>
