@@ -33,7 +33,7 @@ export class ClassesAndTeacherAssignementHomeComponent {
 
   
 
-  displayedColumnscata: string[] = ['session', 'classCode', 'subClassCode', 'groupEmailId'];
+  displayedColumns: string[] = ['session', 'classCode', 'subClassCode', 'groupEmailId'];
 
   dataSource = new MatTableDataSource<any>();
 
@@ -81,12 +81,17 @@ export class ClassesAndTeacherAssignementHomeComponent {
 // http://localhost:8080/adminRegistration/fetchEnrolledClassesList?programCode=CS_BALAVIHAR_2024-25&signupCode=2024-25_BALA_VIHAR_CLASS
 
     let params = {
-      programCode:this.selectedProgram.code,
-      signupCode:"2024-25_BALA_VIHAR_CLASS",
-      "page": 0,
+      requestPageModel:{
+        "page": 0,
       "size": 50,
       "sortFieldName": "",
       "sortOrder": ""
+      },
+      requestProgramCodeAndSignupCode:{
+        programCode:this.selectedProgram.code,
+        signupCode:"2024-25_BALA_VIHAR_CLASS",
+      }
+      
     }
 
 

@@ -25,8 +25,6 @@ import { AuthService } from 'src/app/modules/auth';
 
   async fetchEnrolledClassesList(params:any) {
    let url = this.urlService.adminRegistrationURL.fetchEnrolledClassesList;
-   url = url.replace("$programCode",params.programCode);
-   url = url.replace("$signupCode",params.signupCode);
    let options: Options = {
           url: url,
           body: params

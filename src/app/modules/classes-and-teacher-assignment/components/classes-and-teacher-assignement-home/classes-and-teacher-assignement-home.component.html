@@ -1,1 +1,231 @@
-abcd
+<div class="card card-flush cardborder">
+	<div class="card-header align-items-center float-end  px-4 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+		<div class="card-title float-sm-end">
+			<div class="d-flex align-items-center position-relative my-1">
+				<h3 class="panel-title">
+                    Program Configuration
+				</h3>
+			</div>
+		</div>
+	</div>
+    <div class="card-body p-4">
+        <div class="row">
+            <div class="col-lg-12">
+                <fieldset class="border p-4">
+                    <legend class="float-none fs-5 w-auto p-4 pt-0 pb-0 mb-0">Filters</legend>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                            <label class="form-check form-check-custom form-check-inline cursor-pointer me-5 is-valid text-nowrap m-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                            <label class="form-check form-check-custom form-check-inline cursor-pointer me-5 is-valid text-nowrap m-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 12:15 PM - 1:50 PM</span>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+                            <label class="form-check form-check-custom form-check-inline cursor-pointer me-5 is-valid text-nowrap m-2">
+                                <input class="form-check-input" type="checkbox">
+                                <span class="fw-semibold ps-2 fs-7 text-uppercase">Friday 6:45 PM - 8:20 PM</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="justify-content-start">
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#984807;min-width:100px;">
+                                Bala Vihar
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#7030A0;min-width:100px;">
+                                Shloka  
+                            </button>
+    
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#92D050;min-width:100px;">
+                                Languages
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#0070C0;min-width:100px;">
+                                Art
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#002060;min-width:100px;">
+                                Performing Art
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#C0504D;min-width:100px;">
+                                Yoga
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#4BACC6;min-width:100px;">
+                                Youth Leadership
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="col-lg-12 mt-4">
+            <div class="row">
+                <div class="col-lg-8">
+                    <fieldset class="border p-4">
+                        <legend class="float-none fs-5 w-auto p-4 pt-0 pb-0 mb-0">Applied Filters:</legend>
+                        <div class="justify-content-start">
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#F79646;min-width:100px;">
+                                SESSION 1
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#984807;min-width:100px;">
+                                Bala Vihar
+                            </button>
+                        </div>
+                    </fieldset>
+
+                    <div class="row mt-2">
+                        <div class="card" style="background:none;border-radius: 0px;">
+                            <div class="card-header border-0 cursor-pointer ps-0 pe-0 pt-2 pb-2">
+                                <div class="card-title">
+                                    <span class="fs-5">Parents Emails: 40</span>
+                                    <span class="fs-5 ms-4">Students: 20</span>
+                                </div>
+                                <div class="card-toolbar">
+                                    <div class="justify-content-end">
+                                        <div class="btn btn-sm btn-icon-dark btn-text-dark mt-2">
+                                            <a href="javascript:void(0)">
+                                                <i class="icon-spinner9"></i>
+                                                <span class="mt-4 ms-2 fs-6" style="color: var(--bs-text-dark);">Refresh List</span>
+                                            </a>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-default text-white me-3" 
+                                                style="background-color:#00B0F0;min-width:100px;" mat-raised-button (click)="ViewProfiles()">
+                                            View Profiles
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="table-responsive" style="border-radius:0px !important;">
+                            <div class="mat-elevation-z8">
+                                <table class="table-striped table-hover" mat-table [dataSource]="dataSource" matSort>
+                
+                                    <!-- Session Column -->
+                                    <ng-container matColumnDef="session">
+                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Session</th>
+                                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> {{element.session}}</td>
+                                    </ng-container>
+
+                                    <!-- Class Name Column -->
+                                    <ng-container matColumnDef="classCode">
+                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Class Name</th>
+                                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> {{element.classCode}}</td>
+                                    </ng-container>
+
+                                    <!-- Sub-Class Column -->
+                                    <ng-container matColumnDef="subClassCode">
+                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Sub-Class</th>
+                                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> {{element.subClassCode}}</td>
+                                    </ng-container>
+
+                                    <!-- Class Email Distribution List Column -->
+                                    <ng-container matColumnDef="groupEmailId">
+                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Class Email Distribution List</th>
+                                        <td class="text-nowrap" mat-cell *matCellDef="let element"> {{element.groupEmailId}}</td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;" style="background-color:#CDDDFF;"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <mat-paginator [pageSizeOptions]="[10,20,50]"
+                                    showFirstLastButtons>
+                    </mat-paginator>
+                </div>
+
+                <div class="col-lg-4">
+                    <fieldset class="border p-4">
+                        <legend class="float-none fs-5 w-auto p-4 pt-0 pb-0 mb-0">Teacher Assignment: SUN_AM-ATI-MADHURAM - A1</legend>
+                        <fieldset class="border p-4">
+                            <legend class="float-none fs-5 w-auto p-4 pb-0 mb-0 pt-0">Search</legend>
+                            <div class="col-lg-12 d-flex d-flex1 mb-2">
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                    <label class="fw-semibold fs-6 mt-2 mb-2">Email ID</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" placeholder="Email ID" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 d-flex d-flex1 mb-2">
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                    <label class="fw-semibold fs-6 mt-2 mb-2">Person ID</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" placeholder="Person ID" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 d-flex d-flex1 mb-2">
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                    <label class="fw-semibold fs-6 mt-2 mb-2">Family ID</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="text" placeholder="Family ID" class="form-control form-control-sm">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="mt-2">
+                            <app-teacher-profile></app-teacher-profile>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="justify-content-center d-flex">
+                                <button type="button" class="btn btn-sm btn-primary text-white me-3 mb-2 mt-2">
+                                    Create Teacher Profile
+                                </button>
+    
+                                <button type="button" class="btn btn-sm btn-primary text-white me-3 mb-2 mt-2">
+                                    Search & Add
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <app-teacher-table></app-teacher-table>
+                        </div>
+
+                        <div class="row mt-2">
+                            <div class="justify-content-center d-flex">
+                                <button type="button" class="btn btn-sm btn-primary text-white me-3 mb-2 mt-2">
+                                    Refresh Distro
+                                </button>
+    
+                                <button type="button" class="btn btn-sm btn-primary text-white me-3 mb-2 mt-2">
+                                    View Distro
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-primary text-white me-3 mb-2 mt-2">
+                                    Cancel
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-primary text-white me-3 mb-2 mt-2">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
