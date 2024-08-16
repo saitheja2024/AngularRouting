@@ -94,8 +94,13 @@
                           <td valign="middle" mat-cell *matCellDef="let element"> {{element.paymentStatus}} </td>
                         </ng-container>
                       
+                        <ng-container matColumnDef="choiceCode">
+                          <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Session Choice1</th>
+                          <td valign="middle" mat-cell *matCellDef="let element"> {{element.choiceCode}} </td>
+                        </ng-container>
+
                         <ng-container matColumnDef="sessionAssignmentDescription">
-                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Session Choice1 /Assigned Session</th>
+                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Assigned Session</th>
                             <td valign="middle" mat-cell *matCellDef="let element"> {{element.sessionAssignmentDescription}} </td>
                           </ng-container>
 
