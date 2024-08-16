@@ -19,14 +19,14 @@
                     <!--begin::Stats-->
                     <div class="fw-bolder text-gray-400 text-xxl-end text-nowrap text-size-mini"><span class=" me-1" style="color: #FC9A27;">{{(primaryContatDetails?.pledgeLevel!=null)?primaryContatDetails?.pledgeLevel:''}}</span><img src="assets/images/{{primaryContatDetails?.pledgeLevel}}.png" style="width:15px"></div>
                     <!--end::Stats-->
-                  </div>
+                </div>
                 
-                  <div class="d-flex align-items-center mb-1" *ngIf="!primaryContatDetails?.pledgeLevel">
+                <div class="d-flex align-items-center mb-1" *ngIf="!primaryContatDetails?.pledgeLevel">
                     <!--begin::Label-->
                     <div class="fw-semibold" style="font-size:12px; color:#9eb72c;line-height: 18px;">Arpanam Level {{primaryContatDetails?.currentYear}}&nbsp;:&nbsp;</div>
                     <div class="fw-semibold text-gray-400 text-xxl-end text-nowrap text-size-mini"><a style="float:right" href="javascript:void(0);" (click)="newwindow();">Sign-up</a></div>
                     <!--end::Label-->
-                  </div>
+                </div>
             </div>
         </div>
         <div class="col-lg-4" style="text-align: right;">
@@ -54,18 +54,18 @@
 
                                 <fieldset class="border p-4 pt-0" >
                                     <legend class="float-none fs-5 w-auto p-4 pb-0 pt-0 mb-0">
-                                        <button *ngIf="toggleMenu" class="btn btn-secondary"  [ngStyle]="{'background-color': colorCodeBtn, color:'#fff' }" style="cursor: default;">{{signupcodeList?.description}}</button>
+                                        <button *ngIf="toggleMenu" class="btn btn-sm btn-secondary"  [ngStyle]="{'background-color': colorCodeBtn, color:'#fff' }" style="cursor: default;">{{signupcodeList?.description}}</button>
                                     </legend>
 
                                     <div *ngIf="toggleMenu" class="pad_t_10">
                                         <ng-container *ngFor="let class of signupcodeList?.signupCodesList; index as j">
-                                            <button type="button" [value]="class.signUpCode" [ngStyle]="{'background-color': signupCodeClr[j].color, color:'#fff' }" [(ngModel)]="checkboxModel" (click)="signupCodeSelect(class);" class="btn btn-secondary cust_btn">{{class.description}} </button>                                        
+                                            <button type="button" [value]="class.signUpCode" [ngStyle]="{'background-color': signupCodeClr[j].color, color:'#fff' }" [(ngModel)]="checkboxModel" (click)="signupCodeSelect(class);" class="btn btn-secondary btn-sm mb-4">{{class.description}} </button>                                        
                                         </ng-container>
                                     </div>
 
                                     <div class="tabale-responsive">
                                         <table class="table table-row-bordered table-striped table-hover fs-6 gy-5 dataTable" 
-                                               id="kt_ecommerce_products_table">
+                                               id="kt_ecommerce_products_table" style="border:1px solid #ddd;">
                                             <thead style="background:#dfdfdf;">
                                                 <th class="fw-semibold text-nowrap">Person ID</th>
                                                 <th class="fw-semibold text-nowrap">Family Member</th>
@@ -117,24 +117,24 @@
                                             <label class="fw-semibold fs-6 mt-2 mb-2 required">Type of Person</label>
                                         </div>
                                         <div class="col-lg-8">
-                                                <select formControlName="personType" name="country" id="country" aria-label="Type of Person" (change)="fieldInterChange($event);"  data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold mrg_b_5">
-                                                    <option value="">Select</option>
-                                                    <ng-container *ngFor="let item of personTypeList">
-                                                       <option *ngIf="(item.code=='ADULT' || item.code=='YOUTH' )&& selectedSignupCode.registrantType=='BOTH'" [value]="item.code">
+                                            <select formControlName="personType" name="country" id="country" aria-label="Type of Person" (change)="fieldInterChange($event);"  data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold mrg_b_5">
+                                                <option value="">Select</option>
+                                            	<ng-container *ngFor="let item of personTypeList">
+                                                	<option *ngIf="(item.code=='ADULT' || item.code=='YOUTH' )&& selectedSignupCode.registrantType=='BOTH'" [value]="item.code">
                                                         {{item.description}}
-                                                       </option>  
-                                                       <option *ngIf="selectedSignupCode.registrantType=='ALL'" [value]="item.code">
+                                                    </option>  
+                                                    <option *ngIf="selectedSignupCode.registrantType=='ALL'" [value]="item.code">
                                                         {{item.description}}
-                                                       </option>  
-                                                       <option *ngIf="item.code=='CHILD' && selectedSignupCode.registrantType=='CHILD'" [value]="item.code">
+                                            		</option>  
+                                                    <option *ngIf="item.code=='CHILD' && selectedSignupCode.registrantType=='CHILD'" [value]="item.code">
                                                         {{item.description}}
-                                                       </option>  
-                                                    </ng-container>  
-                                </select>  
-                                <div *ngIf="PF['personType'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
-                                    Please Select Type Of Person.
-                                                        </div>                                      
-                                  </div>
+                                                    </option>  
+                                                </ng-container>  
+                                			</select>  
+                                			<div *ngIf="PF['personType'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
+                                    			Please Select Type Of Person.
+                                            </div>                                      
+                                  		</div>
                                     </div>
                                     <div class="row mrg_t_10">
                                         <div class="col-lg-4">
@@ -170,7 +170,7 @@
                                             <div *ngIf="PF['dateOfBirth'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
                                                 Please Select Date Of Birth.
                                             </div> 	
-                                    </div>
+                                    	</div>
                                     </div>
                                     <div class="row mrg_t_10" *ngIf="personTypeVal=='CHILD' && PF['schoolGrade'].value=='19'">
                                         <div class="col-lg-4">
@@ -182,9 +182,9 @@
                                                 <option [value]="t.code" *ngFor="let t of raisingGradeData">{{t.description}}</option>
                                             </select>
                                             <!-- <input *ngIf="CAF['schoolGrade'].value!='19'" type="text" value="" class="form-control form-control-md p-2" formControlName="risingSchoolGradeDescription" readonly /> -->
-                            <div *ngIf="PF['risingSchoolGrade'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
-                                                Please Select Raising School Grade.
-                            </div>
+											<div *ngIf="PF['risingSchoolGrade'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
+																Please Select Raising School Grade.
+											</div>
                                         </div>
                                     </div>
                                     <div class="row mrg_t_10">
@@ -229,11 +229,11 @@
                             <div class="justify-content-start mrg_30">
                                 <div class="inline-block" >
                                   <ng-container *ngFor="let category of categoryWiseList; index as i">
-                                    <a class="btn btn-secondary btn_pos_rt" *ngIf="category.description!='BV Programs' && !memberFlag" href="javascript:void(0);" role="button" (click)="toggleshow(i, category, signupCodeCategoryList[i].color);" [ngStyle]="{'background-color': signupCodeCategoryList[i].color, color:'#fff' }" >
+                                    <a class="btn btn-secondary btn-sm btn_pos_rt" *ngIf="category.description!='BV Programs' && !memberFlag" href="javascript:void(0);" role="button" (click)="toggleshow(i, category, signupCodeCategoryList[i].color);" [ngStyle]="{'background-color': signupCodeCategoryList[i].color, color:'#fff' }" >
                                         {{category.description}}
                                     </a>
 
-									<a class="btn btn-secondary btn_pos_rt" *ngIf="memberFlag" href="javascript:void(0);" role="button" (click)="toggleshow(i, category, signupCodeCategoryList[i].color);" [ngStyle]="{'background-color': signupCodeCategoryList[i].color, color:'#fff' }" >
+									<a class="btn btn-secondary btn-sm btn_pos_rt" *ngIf="memberFlag" href="javascript:void(0);" role="button" (click)="toggleshow(i, category, signupCodeCategoryList[i].color);" [ngStyle]="{'background-color': signupCodeCategoryList[i].color, color:'#fff' }" >
                                         {{category.description}}
                                     </a>
                                   </ng-container>                                   
@@ -244,68 +244,65 @@
                             </div>
                             <div  class="col-lg-6">
                                <!--begin::Col-->
-										<div>
-											<p *ngIf="pendingPaymentData.length==0" class="error_msg" style="margin-top:25px;">Please select option/options from list on the left.</p>
-											<p *ngIf="pledgeMsg_1" class="error_msg pad_top txt-align">Note: Please select a class to register.</p>
-											<p *ngIf="prerqusitevalidMsg!=''" class="error_msg pad_top txt-align">{{prerqusitevalidMsg}}</p>
-											<!-- <div *ngIf="!prerequsiteData.prerequisitesFlag"  class="error_msg">
-												<p style="padding-top: 15px; padding-left: 5px;" *ngFor="let item of prerequsiteData?.validationErrors">{{item}}</p>
-											</div> -->
-											<div class="card shadow-sm border border-gray-300">
-												<!--begin::Card header-->
-												<div class="card-header p-3" style="min-height:20px !important;border-bottom:1px solid #ccc;background-color: #f4f4f4;border-top-left-radius:5px;border-top-right-radius:5px;">
-													<!--begin::Card title-->
-													<div class="card-title">
-														<span style="font-size:14px;font-weight:600;line-height:21px;">Staged, Not Paid:</span>
-													</div>
-													<!--end::Card title-->
-													<div style="display: inline-block !important; width: 55%;">
-														<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top: 8px;"><b>Sub-Total&nbsp;:&nbsp;</b>{{((pendingTotalAmt[0]=='' || pendingTotalAmt[0]==null  || Object.keys(this.rightPanelAccordionNotPaid).length==0)?'0':pendingTotalAmt[0] | currency:'USD':'symbol') }}</span>
-													</div>
-												</div>
-												<!--end::Card header-->
+								<div>
+									<p *ngIf="pendingPaymentData.length==0" class="error_msg" style="margin-top:25px;">Please select option/options from list on the left.</p>
+									<p *ngIf="pledgeMsg_1" class="error_msg pad_top txt-align">Note: Please select a class to register.</p>
+									<p *ngIf="prerqusitevalidMsg!=''" class="error_msg pad_top txt-align">{{prerqusitevalidMsg}}</p>
+									<!-- <div *ngIf="!prerequsiteData.prerequisitesFlag"  class="error_msg">
+										<p style="padding-top: 15px; padding-left: 5px;" *ngFor="let item of prerequsiteData?.validationErrors">{{item}}</p>
+									</div> -->
+									<div class="card border border-gray-300">
+										<!--begin::Card header-->
+										<div class="card-header p-3" style="min-height:20px !important;border-bottom:1px solid #ccc;background-color: #f4f4f4;border-top-left-radius:5px;border-top-right-radius:5px;">
+											<!--begin::Card title-->
+											<div class="card-title">
+												<span style="font-size:14px;font-weight:600;line-height:21px;">Staged, Not Paid:</span>
+											</div>
+											<!--end::Card title-->
+											<div style="display: inline-block !important; width: 55%;">
+												<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top: 8px;"><b>Sub-Total&nbsp;:&nbsp;</b>{{((pendingTotalAmt[0]=='' || pendingTotalAmt[0]==null  || Object.keys(this.rightPanelAccordionNotPaid).length==0)?'0':pendingTotalAmt[0] | currency:'USD':'symbol') }}</span>
+											</div>
+										</div>
+										<!--end::Card header-->
 												
-												<form role="form" [formGroup]="formGroup">
-													<!--begin::Card body-->
-													<div class="card-body p-2 pt-0 pb-0">
-														<!--begin::Table-->
-														<div id="kt_table_customers_payment_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer desktopView">
-															<div class="table-responsive">
-																<table class="table align-middle table-row-bordered dataTable no-footer" id="kt_table_customers_payment">
-																	<thead class="text-gray-700 border-bottom border-gray-200 fs-7 fw-bold">
-																		<tr class="text-start text-dark text-capitalize gs-0" style="border-bottom:1px solid #ccc;">
-																			<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Invoice No.: activate to sort column ascending">Family Member</th>
-																			<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Sign-Up For</th>
-																			<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending">Class Name</th>
-																			<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending"></th>
-																		</tr>
-																	</thead>
-																	<tbody class="fs-6 fw-semibold text-dark" *ngIf="pendingPaymentData.length>0"> 
-																		
-																		<ng-container *ngFor="let pendingData of pendingPaymentData; index as i">
-																		<tr [ngClass]="(pendingData?.sessionPreferences.length>0)?'border_btm_rem':''"  *ngIf="pendingData.paymentSubmittedDate==null && ((pendingData.registrationStatus=='PENDING' && (pendingData.paymentStatus=='BALANCE_DUE' || pendingData.paymentStatus=='NO_DUES'))
-																			||(pendingData.registrationStatus=='ACCEPTED' && pendingData.paymentStatus=='BALANCE_DUE')	
-																			|| (pendingData.registrationStatus=='PENDING' && pendingData.paymentStatus=='NO_DUES'))" >
-																			<td>
-																				<span class="text-dark1 mb-1">{{pendingData.personName}}</span>
-																			</td>
-																			<td>
-																				<span class="text-dark1 mb-1">{{pendingData.signUpCodeDescription}}</span>
-																			</td>
-																			<td>
-																				<span class="text-dark1 mb-1">{{pendingData.classAssignment}}&nbsp;({{ (pendingData.subClassAssignment!=null && pendingData.subClassAssignment!='')?pendingData.subClassAssignment:'NA' }})</span>
-																			</td>  
-																			<td class="text-center">
-																			   <img src="./assets/media/image (2).png" alt="remove" *ngIf="pendingData.signUpCode!='ANNUALPLEDGE' && pendingData.category!='20'" (click)="deletePersonProgramReg(pendingData,i);" style="cursor:pointer;"> 
-																			</td>   
-																		</tr>
-																		<ng-container *ngIf="pendingData.paymentSubmittedDate==null &&((pendingData.registrationStatus=='PENDING' && (pendingData.paymentStatus=='BALANCE_DUE' || pendingData.paymentStatus=='NO_DUES'))
-																		||(pendingData.registrationStatus=='ACCEPTED' && pendingData.paymentStatus=='BALANCE_DUE')
-																		|| (pendingData.registrationStatus=='PENDING' && pendingData.paymentStatus=='NO_DUES')) && pendingData.signUpCode!='ANNUALPLEDGE' && pendingData.signUpCode !=undefined">
-																		
+										<form role="form" [formGroup]="formGroup">
+											<!--begin::Card body-->
+											<div class="card-body p-2 pt-0 pb-0">
+												<!--begin::Table-->
+												<div id="kt_table_customers_payment_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer desktopView">
+													<div class="table-responsive">
+														<table class="table align-middle table-row-bordered dataTable no-footer" id="kt_table_customers_payment">
+															<thead class="text-gray-700 border-bottom border-gray-200 fs-7 fw-bold">
+																<tr class="text-start text-dark text-capitalize gs-0" style="border-bottom:1px solid #ccc;">
+																	<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Invoice No.: activate to sort column ascending">Family Member</th>
+																	<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Sign-Up For</th>
+																	<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending">Class Name</th>
+																	<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending"></th>
+																</tr>
+															</thead>
+															<tbody class="fs-6 fw-semibold text-dark" *ngIf="pendingPaymentData.length>0"> 
+																<ng-container *ngFor="let pendingData of pendingPaymentData; index as i">
+																	<tr [ngClass]="(pendingData?.sessionPreferences.length>0)?'border_btm_rem':''"  *ngIf="pendingData.paymentSubmittedDate==null && ((pendingData.registrationStatus=='PENDING' && (pendingData.paymentStatus=='BALANCE_DUE' || pendingData.paymentStatus=='NO_DUES'))
+																		||(pendingData.registrationStatus=='ACCEPTED' && pendingData.paymentStatus=='BALANCE_DUE')	
+																		|| (pendingData.registrationStatus=='PENDING' && pendingData.paymentStatus=='NO_DUES'))" >
+																		<td>
+																			<span class="text-dark1 mb-1">{{pendingData.personName}}</span>
+																		</td>
+																		<td>
+																			<span class="text-dark1 mb-1">{{pendingData.signUpCodeDescription}}</span>
+																		</td>
+																		<td>
+																			<span class="text-dark1 mb-1">{{pendingData.classAssignment}}&nbsp;({{ (pendingData.subClassAssignment!=null && pendingData.subClassAssignment!='')?pendingData.subClassAssignment:'NA' }})</span>
+																		</td>  
+																		<td class="text-center">
+																		   <img src="./assets/media/image (2).png" alt="remove" *ngIf="pendingData.signUpCode!='ANNUALPLEDGE' && pendingData.category!='20'" (click)="deletePersonProgramReg(pendingData,i);" style="cursor:pointer;"> 
+																		</td>   
+																	</tr>
+																	<ng-container *ngIf="pendingData.paymentSubmittedDate==null &&((pendingData.registrationStatus=='PENDING' && (pendingData.paymentStatus=='BALANCE_DUE' || pendingData.paymentStatus=='NO_DUES'))
+																	||(pendingData.registrationStatus=='ACCEPTED' && pendingData.paymentStatus=='BALANCE_DUE')
+																	|| (pendingData.registrationStatus=='PENDING' && pendingData.paymentStatus=='NO_DUES')) && pendingData.signUpCode!='ANNUALPLEDGE' && pendingData.signUpCode !=undefined">
 																		<tr style="border:0px solid;">
-																			
-                                                                            <!-- for Jumbing issue fix *ngIf="(pendingData?.familySessionPreference.length>0 || pendingData?.sessionPreferences.length>0)" -->
+																			<!-- for Jumbing issue fix *ngIf="(pendingData?.familySessionPreference.length>0 || pendingData?.sessionPreferences.length>0)" -->
 																			<td colspan="3" *ngIf="pendingData?.sessionPreferences.length>0 && pendingData?.familySessionPreference.length==0">
 																				<ng-container >
 																					<label class="error_title" style="padding-bottom: 10px;">All preferences are required</label>
@@ -357,446 +354,433 @@
 																				</div>
 																			</td>		
 																		</tr>
-																		</ng-container>
-																	</ng-container>    
-																	</tbody>
-																	<!--end::Table body-->
-																</table>
-															</div>
-														</div>
-													   <!---Mobile View Not Paid-->
-													   <div class="mobileMenu review_mobile_view pe-2 ps-2" *ngIf="rightPanelAccordionNotPaid!=null && rightPanelAccordionNotPaid!=undefined">
-															<ng-container *ngFor="let item of Object?.keys(rightPanelAccordionNotPaid); index as i;">
-																<div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3" >
-																	<div class="mb-4 mrg_btm_0"  style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
-																		<a href="#{{item | trim}}" id="head_{{item | trim}}"  class="accordion-header py-3 d-flex" [ngClass]="(i==0)?'':'collapsed'"  data-toggle="collapse" >
-																			<h3 class="mb-0 ms-3 size_12" style="line-height: 21px;">{{item}}</h3>
-																		</a>
-																		<div id="{{item  | trim}}"  class="panel-collapse collapse" [ngClass]="(i==0)?'in':''">
-																			<div class="card border border-gray-500 border-active">
-																				<div class="card-body p-3">
-																					<div *ngFor="let pendingData of rightPanelAccordionNotPaid[item]; index as i;">
-																						<div class="row mb-0">
-																							<!--begin::Label-->
-																							<label class="col-lg-6 col-xs-6 col-4 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Sign-Up For: </label>
-																							<!--end::Label-->
-																							<!--begin::Col-->
-																							<div class="col-lg-6 col-xs-5 col-6 col-sm-6 col-md-6">
-																								<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{pendingData?.signUpCodeDescription}}</span>
-																							</div>
-																							<!--end::Col-->
-																							<span style="position: relative; bottom: 7px;" class="col-xs-2 col-2 text-gray-800 size_12 d-flex justify-content-end bold_txt" *ngIf="pendingData.signUpCode!='ANNUALPLEDGE' && pendingData.category!='20'"><img src="./assets/media/image (2).png" alt="remove"  (click)="deletePersonProgramReg(pendingData,i);" style="cursor:pointer;"> </span> 
-																						</div>
-
-																						<div class="divider_Session"></div>
-																						<ng-container *ngIf="pendingData?.paymentSubmittedDate==null 	&&((pendingData?.registrationStatus=='PENDING' && 	(pendingData?.paymentStatus=='BALANCE_DUE' || pendingData?.paymentStatus=='NO_DUES'))
-																						||(pendingData?.registrationStatus=='ACCEPTED' && pendingData?.paymentStatus=='BALANCE_DUE')
-																						|| (pendingData?.registrationStatus=='PENDING' && pendingData?.paymentStatus=='NO_DUES')) && pendingData?.signUpCode!='ANNUALPLEDGE' && pendingData?.signUpCode !=undefined">
-																							<div style="width:100%;">
-																								<div style="border:0px solid;">
-
-																									<div colspan="3" *ngIf="(pendingData?.familySessionPreference.length>0 || pendingData?.sessionPreferences.length>0)">
-																										<label class="error_title" style="padding-bottom: 10px;">All preferences are required</label>
-
-																										<ng-container *ngIf="pendingData?.sessionPreferences.length>0 && pendingData?.familySessionPreference.length==0">
-																											<div class="row" *ngFor="let item1 of pendingData?.sessionPreferences; index as d">
-																												<!--begin::Label-->
-																												<label class="col-lg-3 col-form-label fw-semibold fs-6 text-nowrap">Session Preference {{d+1}}:</label>
-																												<!--end::Label-->
-																												<!--begin::Col-->
-																												<div class="col-lg-9 fv-row fv-plugins-icon-container">
-																													<select  (change)="sessionChoice(pendingData, d, $event);"
-																														[formControlName]="pendingData.personName+'_'+pendingData.signUpCode+'_'+d" class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="Select..." id="kt_ecommerce_add_product_status_select4">
-																														<ng-container *ngFor="let choice of pendingData?.sessionPreferences">
-																															<option   [value]="choice.choices">
-																																{{choice.description}}
-																															</option>
-																														</ng-container>
-																													</select>  
-																												</div>
-																												<!--end::Col-->
-																											</div>
-																										</ng-container>
-																									</div>	
-																										
-																								</div>
-																								<div *ngIf="pendingData?.familySessionPreference.length>0" >
-																									<div colspan="10" style="width: 100%;" class="tdview" *ngFor="let item2 of familySessionData[pendingData.personName+'_'+pendingData.signUpCode]; index as d">
-																										<div class="row" >
-																											<!--begin::Label-->
-																											<label class="col-lg-3 col-form-label fw-semibold text-nowrap fs-6">Session Preference {{d+1}}:</label>
-																											<!--end::Label-->
-																											<!--begin::Col-->
-																											<div class="col-lg-9 fv-row fv-plugins-icon-container">
-																												<select  (change)="deleteSessionChoice(pendingData, d, $event, item2);"
-																												[formControlName]="pendingData.personName+'_'+pendingData.signUpCode+'_'+d" class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="Select..." id="kt_ecommerce_add_product_status_select4">
-																													<ng-container *ngFor="let choice of familySessionData[pendingData.personName+'_'+pendingData.signUpCode];">
-																														<option   [value]="choice.choices" *ngIf="d==0">
-																															{{choice.description}}
-																														</option>
-																														<option   [value]="choice.choices" *ngIf="d!=0 && formGroup.controls[pendingData.personName+'_'+pendingData.signUpCode+'_'+d].value==choice.choiceCode">
-																														{{choice.description}}
-																														</option>
-																														<option  [value]="choice.choices" *ngIf="formGroup.controls[pendingData.personName+'_'+pendingData.signUpCode+'_'+d].value=='' && !choice.choiceCode">
-																															{{choice.description}}
-																														</option>
-																													</ng-container>
-																												</select>  
-																											</div>
-																											<!--end::Col-->
-																										</div>
-																									</div>		
-																								</div>
-																							</div>
-																						</ng-container>
-
-																						<div class="row mb-5">
-																							<!--begin::Label-->
-																							<label class="col-lg-6 col-xs-6 col-4 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Class Name: </label>
-																							<!--end::Label-->
-																							<!--begin::Col-->
-																							<div class="col-lg-6 col-xs-5 col-6 col-sm-6 col-md-6">
-																								<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{ (pendingData?.classAssignment==null || pendingData?.classAssignment=='')?'NA': pendingData?.classAssignment}}&nbsp;({{ (pendingData.subClassAssignment!=null && pendingData.subClassAssignment!='')?pendingData.subClassAssignment:'NA' }})</span>
-																							</div>
-																							<!--end::Col-->
-																						</div>
-																					</div>	
+																	</ng-container>
+																</ng-container>    
+															</tbody>
+															<!--end::Table body-->
+														</table>
+													</div>
+												</div>
+												<!---Mobile View Not Paid-->
+												<div class="mobileMenu review_mobile_view pe-2 ps-2" *ngIf="rightPanelAccordionNotPaid!=null && rightPanelAccordionNotPaid!=undefined">
+													<ng-container *ngFor="let item of Object?.keys(rightPanelAccordionNotPaid); index as i;">
+														<div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3" >
+															<div class="mb-4 mrg_btm_0"  style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
+																<a href="#{{item | trim}}" id="head_{{item | trim}}"  class="accordion-header py-3 d-flex" [ngClass]="(i==0)?'':'collapsed'"  data-toggle="collapse" >
+																	<h3 class="mb-0 ms-3 size_12" style="line-height: 21px;">{{item}}</h3>
+																</a>
+																<div id="{{item  | trim}}"  class="panel-collapse collapse" [ngClass]="(i==0)?'in':''">
+																	<div class="card border border-gray-500 border-active">
+																		<div class="card-body p-3">
+																			<div *ngFor="let pendingData of rightPanelAccordionNotPaid[item]; index as i;">
+																				<div class="row mb-0">
+																					<!--begin::Label-->
+																					<label class="col-lg-6 col-xs-6 col-4 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Sign-Up For: </label>
+																					<!--end::Label-->
+																					<!--begin::Col-->
+																					<div class="col-lg-6 col-xs-5 col-6 col-sm-6 col-md-6">
+																						<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{pendingData?.signUpCodeDescription}}</span>
+																					</div>
+																					<!--end::Col-->
+																					<span style="position: relative; bottom: 7px;" class="col-xs-2 col-2 text-gray-800 size_12 d-flex justify-content-end bold_txt" *ngIf="pendingData.signUpCode!='ANNUALPLEDGE' && pendingData.category!='20'"><img src="./assets/media/image (2).png" alt="remove"  (click)="deletePersonProgramReg(pendingData,i);" style="cursor:pointer;"> </span> 
 																				</div>
-																				<div class="clearfix"></div>
+
+																				<div class="divider_Session"></div>
+																					<ng-container *ngIf="pendingData?.paymentSubmittedDate==null 	&&((pendingData?.registrationStatus=='PENDING' && 	(pendingData?.paymentStatus=='BALANCE_DUE' || pendingData?.paymentStatus=='NO_DUES'))
+																					||(pendingData?.registrationStatus=='ACCEPTED' && pendingData?.paymentStatus=='BALANCE_DUE')
+																					|| (pendingData?.registrationStatus=='PENDING' && pendingData?.paymentStatus=='NO_DUES')) && pendingData?.signUpCode!='ANNUALPLEDGE' && pendingData?.signUpCode !=undefined">
+																						<div style="width:100%;">
+																							<div style="border:0px solid;">
+																								<div colspan="3" *ngIf="(pendingData?.familySessionPreference.length>0 || pendingData?.sessionPreferences.length>0)">
+																								<label class="error_title" style="padding-bottom: 10px;">All preferences are required</label>
+																								<ng-container *ngIf="pendingData?.sessionPreferences.length>0 && pendingData?.familySessionPreference.length==0">
+																									<div class="row" *ngFor="let item1 of pendingData?.sessionPreferences; index as d">
+																										<!--begin::Label-->
+																										<label class="col-lg-3 col-form-label fw-semibold fs-6 text-nowrap">Session Preference {{d+1}}:</label>
+																										<!--end::Label-->
+																										<!--begin::Col-->
+																										<div class="col-lg-9 fv-row fv-plugins-icon-container">
+																											<select  (change)="sessionChoice(pendingData, d, $event);"
+																													 [formControlName]="pendingData.personName+'_'+pendingData.signUpCode+'_'+d" class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="Select..." id="kt_ecommerce_add_product_status_select4">
+																												<ng-container *ngFor="let choice of pendingData?.sessionPreferences">
+																													<option   [value]="choice.choices">
+																														{{choice.description}}
+																													</option>
+																												</ng-container>
+																											</select>  
+																										</div>
+																										<!--end::Col-->
+																									</div>
+																								</ng-container>
+																							</div>		
+																						</div>
+																						<div *ngIf="pendingData?.familySessionPreference.length>0" >
+																							<div colspan="10" style="width: 100%;" class="tdview" *ngFor="let item2 of familySessionData[pendingData.personName+'_'+pendingData.signUpCode]; index as d">
+																								<div class="row" >
+																									<!--begin::Label-->
+																									<label class="col-lg-3 col-form-label fw-semibold text-nowrap fs-6">Session Preference {{d+1}}:</label>
+																									<!--end::Label-->
+																									<!--begin::Col-->
+																									<div class="col-lg-9 fv-row fv-plugins-icon-container">
+																										<select  (change)="deleteSessionChoice(pendingData, d, $event, item2);"
+																												[formControlName]="pendingData.personName+'_'+pendingData.signUpCode+'_'+d" class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="Select..." id="kt_ecommerce_add_product_status_select4">
+																											<ng-container *ngFor="let choice of familySessionData[pendingData.personName+'_'+pendingData.signUpCode];">
+																												<option [value]="choice.choices" *ngIf="d==0">
+																														{{choice.description}}
+																												</option>
+																												<option [value]="choice.choices" *ngIf="d!=0 && formGroup.controls[pendingData.personName+'_'+pendingData.signUpCode+'_'+d].value==choice.choiceCode">
+																														{{choice.description}}
+																												</option>
+																												<option [value]="choice.choices" *ngIf="formGroup.controls[pendingData.personName+'_'+pendingData.signUpCode+'_'+d].value=='' && !choice.choiceCode">
+																														{{choice.description}}
+																												</option>
+																											</ng-container>
+																										</select>  
+																									</div>
+																									<!--end::Col-->
+																								</div>
+																							</div>		
+																						</div>
+																					</div>
+																				</ng-container>
+
+																				<div class="row mb-5">
+																					<!--begin::Label-->
+																					<label class="col-lg-6 col-xs-6 col-4 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Class Name: </label>
+																					<!--end::Label-->
+																					<!--begin::Col-->
+																					<div class="col-lg-6 col-xs-5 col-6 col-sm-6 col-md-6">
+																						<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{ (pendingData?.classAssignment==null || pendingData?.classAssignment=='')?'NA': pendingData?.classAssignment}}&nbsp;({{ (pendingData.subClassAssignment!=null && pendingData.subClassAssignment!='')?pendingData.subClassAssignment:'NA' }})</span>
+																					</div>
+																					<!--end::Col-->
+																				</div>
 																			</div>	
-																			<div class="clearfix"></div>
 																		</div>
 																		<div class="clearfix"></div>
 																	</div>	
+																	<div class="clearfix"></div>
 																</div>
-															</ng-container>
+																<div class="clearfix"></div>
+															</div>	
 														</div>
-														<!---mobile View End-->
-														<!--end::Table-->
-														<div class="clearfix"></div>
-													</div>
-													<!--end::Card body-->
-												</form>
+													</ng-container>
+												</div>
+												<!---mobile View End-->
+												<!--end::Table-->
+												<div class="clearfix"></div>
 											</div>
+											<!--end::Card body-->
+										</form>
+									</div>
 
-											<!-----Submitted-->
-											<div *ngIf="(rightPanel?.SUBMIT.length>0 || rightPanel?.ACCEPTED.length>0 || rightPanel?.WAITLISTED.length>0)" class="card shadow-sm mt-5 border border-gray-300">
-												<ng-container *ngIf="rightPanel?.SUBMIT.length>0">
-													<!--begin::Card header-->
-													<div class="card-header p-3" style="background-color:#f4f4f4;border-top-left-radius:5px;border-top-right-radius:5px;">
-														<!--begin::Card title-->
-														<div class="card-title">
-															<span style="font-size:14px;font-weight:600;line-height:21px;">Paid, Not Confirmed:</span>
-														</div>
-														<!--end::Card title-->
+									<!-----Submitted-->
+									<div *ngIf="(rightPanel?.SUBMIT.length>0 || rightPanel?.ACCEPTED.length>0 || rightPanel?.WAITLISTED.length>0)" class="card shadow-sm mt-5 border border-gray-300">
+										<ng-container *ngIf="rightPanel?.SUBMIT.length>0">
+											<!--begin::Card header-->
+											<div class="card-header p-3" style="background-color:#f4f4f4;border-top-left-radius:5px;border-top-right-radius:5px;">
+												<!--begin::Card title-->
+												<div class="card-title">
+													<span style="font-size:14px;font-weight:600;line-height:21px;">Paid, Not Confirmed:</span>
+												</div>
+												<!--end::Card title-->
 
-														<div style="display: inline-block !important; width: 45%;">
-															<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top:8px;"><b>Sub-Total&nbsp;:&nbsp;</b>${{(pendingReviewTotalAmt['SUBMIT'][0]=='' || pendingReviewTotalAmt['SUBMIT'][0]==null)?'0':pendingReviewTotalAmt['SUBMIT'][0]}}.00</span>
-														</div>
+												<div style="display: inline-block !important; width: 45%;">
+													<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top:8px;"><b>Sub-Total&nbsp;:&nbsp;</b>${{(pendingReviewTotalAmt['SUBMIT'][0]=='' || pendingReviewTotalAmt['SUBMIT'][0]==null)?'0':pendingReviewTotalAmt['SUBMIT'][0]}}.00</span>
+												</div>
+											</div>
+											<!--end::Card header-->
+
+											<!--begin::Card body-->
+											<div class="card-body p-3 pt-0 pb-0 desktopView">
+												<!--begin::Table-->
+												<div id="kt_table_customers_payment_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+													<div class="table-responsive">
+														<table class="table align-middle table-row-bordered dataTable no-footer" id="kt_table_customers_payment">
+															<thead class=" text-gray-700 border-bottom border-gray-200 fs-7 fw-bold">
+																<tr class="text-start text-dark1 text-capitalize gs-0">
+																	<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Invoice No.: activate to sort column ascending">Person Name</th>
+																	<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Sign-Up Code</th>
+																	<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Class Name</th>
+																</tr>
+															</thead>
+															<tbody class="fs-6 fw-semibold text-gray-600"> 
+																<ng-container *ngFor="let sub of rightPanel?.SUBMIT; index as i">
+																<tr>
+																	<td>
+																		<span class="text-dark1 mb-1">{{sub.personName}}</span>
+																	</td>
+																	<td>
+																		<span class="text-dark1 mb-1">{{sub.signUpCodeDescription}}</span>
+																	</td>
+																	<td>
+																		<span class="text-dark1 mb-1">{{sub.classAssignment}}&nbsp;({{ (sub.subClassAssignment!=null && sub.subClassAssignment!='')?sub.subClassAssignment:'NA' }})</span>
+																	</td>
+																</tr>
+																<tr *ngIf="sub.familySessionPreference.length>0">
+                                                                    <td width="100%" colspan="15" >
+																		<table width="100%">
+																			<tr *ngFor="let item of sub?.familySessionPreference;">
+																				<td> <span class="text-dark1 mb-1">{{item?.choiceLabel}}&nbsp;{{item?.description}}</span></td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</ng-container>
+															</tbody>
+															<!--end::Table body-->
+														</table>
 													</div>
-													<!--end::Card header-->
-
-													<!--begin::Card body-->
-													<div class="card-body p-3 pt-0 pb-0 desktopView">
-														<!--begin::Table-->
-														<div id="kt_table_customers_payment_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-															<div class="table-responsive">
-																<table class="table align-middle table-row-bordered dataTable no-footer" id="kt_table_customers_payment">
-																	<thead class=" text-gray-700 border-bottom border-gray-200 fs-7 fw-bold">
-																		<tr class="text-start text-dark1 text-capitalize gs-0">
-																			<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Invoice No.: activate to sort column ascending">Person Name</th>
-																			<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Sign-Up Code</th>
-																			<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Class Name</th>
-																		</tr>
-																	</thead>
-																	<tbody class="fs-6 fw-semibold text-gray-600"> 
-																		<ng-container *ngFor="let sub of rightPanel?.SUBMIT; index as i">
-																		<tr  >
-																			<td>
-																				<span class="text-dark1 mb-1">{{sub.personName}}</span>
-																			</td>
-																			<td>
-																				<span class="text-dark1 mb-1">{{sub.signUpCodeDescription}}</span>
-																			</td>
-																			<td>
-																				<span class="text-dark1 mb-1">{{sub.classAssignment}}&nbsp;({{ (sub.subClassAssignment!=null && sub.subClassAssignment!='')?sub.subClassAssignment:'NA' }})</span>
-																			</td>
-																		</tr>
-																		<tr *ngIf="sub.familySessionPreference.length>0">
-                                                                            <td width="100%" colspan="15" >
-																				<table width="100%">
-																					<tr *ngFor="let item of sub?.familySessionPreference;">
-																						<td> <span class="text-dark1 mb-1">{{item?.choiceLabel}}&nbsp;{{item?.description}}</span></td>
-																					</tr>
-																				</table>
-																			</td>
-																		</tr>
-																	</ng-container>
-																	</tbody>
-																	<!--end::Table body-->
-																</table>
-															</div>
-														</div>
-														<!--end::Table-->
-													</div>
-													<!--end::Card body-->
-													<!--Submit Mobile View-->
-													<div class="mobileMenu review_mobile_view pe-3 ps-3">
-														<ng-container *ngFor="let item of Object?.keys(rightPanelAccordionSubmit); index as i;">
-															<div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3" >
-																<div class="mb-4 mrg_btm_0"  style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
-																	<a href="#kt_accordion_itempaidNot_{{i}}"  class="accordion-header py-3 d-flex collapsed" data-toggle="collapse" >
-																		<h3 class="mb-0 ms-4 size_12" style="line-height: 21px;">{{item}}</h3>
-																	</a>
-																	<div id="kt_accordion_itempaidNot_{{i}}"  class="panel-collapse collapse">
-																		<div class="card border border-gray-500 border-active">
-																			<div class="card-body p-3">
-																				<div *ngFor="let item of rightPanelAccordionSubmit[item]; index as i;">
-																					<div class="row">
-																						<!--begin::Label-->
-																						<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Sign-Up Code : </label>
-																						<!--end::Label-->
-																						<!--begin::Col-->
-																						<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
-																							<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.signUpCodeDescription}}</span>
-																						</div>
-																						<!--end::Col-->
-																					</div>
-																					<div class="row">
-																						<!--begin::Label-->
-																						<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Class Name : </label>
-																						<!--end::Label-->
-																						<!--begin::Col-->
-																						<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
-																							<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.classAssignment}}&nbsp;({{ (item.subClassAssignment!=null && item.subClassAssignment!='')?item.subClassAssignment:'NA' }})</span>
-																						</div>
-																						<!--end::Col-->
-																					</div>
-																				</div>	
+												</div>
+												<!--end::Table-->
+											</div>
+											<!--end::Card body-->
+											<!--Submit Mobile View-->
+											<div class="mobileMenu review_mobile_view pe-3 ps-3">
+												<ng-container *ngFor="let item of Object?.keys(rightPanelAccordionSubmit); index as i;">
+													<div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3" >
+														<div class="mb-4 mrg_btm_0"  style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
+															<a href="#kt_accordion_itempaidNot_{{i}}"  class="accordion-header py-3 d-flex collapsed" data-toggle="collapse" >
+																<h3 class="mb-0 ms-4 size_12" style="line-height: 21px;">{{item}}</h3>
+															</a>
+															<div id="kt_accordion_itempaidNot_{{i}}"  class="panel-collapse collapse">
+																<div class="card border border-gray-500 border-active">
+																	<div class="card-body p-3">
+																		<div *ngFor="let item of rightPanelAccordionSubmit[item]; index as i;">
+																			<div class="row">
+																				<!--begin::Label-->
+																				<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Sign-Up Code : </label>
+																				<!--end::Label-->
+																				<!--begin::Col-->
+																				<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+																					<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.signUpCodeDescription}}</span>
+																				</div>
+																				<!--end::Col-->
+																			</div>
+																			<div class="row">
+																				<!--begin::Label-->
+																				<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Class Name : </label>
+																				<!--end::Label-->
+																				<!--begin::Col-->
+																				<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+																					<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.classAssignment}}&nbsp;({{ (item.subClassAssignment!=null && item.subClassAssignment!='')?item.subClassAssignment:'NA' }})</span>
+																				</div>
+																				<!--end::Col-->
 																			</div>
 																		</div>	
 																	</div>
 																</div>	
 															</div>
-														</ng-container>
+														</div>	
 													</div>
-													<!----Submit Mobile View end-->
 												</ng-container>
 											</div>
-											<ng-container *ngIf="rightPanel?.ACCEPTED.length>0">
-												<div class="card shadow-sm mt-5 border border-gray-300">
-													<!--begin::Card header-->
-													<div class="card-header p-3" style="background-color: #f4f4f4;border-top-left-radius:5px;border-top-right-radius:5px;">
-														<!--begin::Card title-->
-														<div class="card-title">
-															<span style="font-size:14px;font-weight:600;line-height:21px;">Registration Confirmed:</span>
-														</div>
-														<!--end::Card title-->
-														<div style="display: inline-block !important; width: 40%;"> 
-															<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top:8px;"><b>Sub-Total&nbsp;:&nbsp;</b>${{(pendingReviewTotalAmt['ACCEPTED'][0]=='' || pendingReviewTotalAmt['ACCEPTED'][0]==null)?'0':pendingReviewTotalAmt['ACCEPTED'][0]}}.00</span>
-														</div>
+											<!----Submit Mobile View end-->
+										</ng-container>
+									</div>
+									<ng-container *ngIf="rightPanel?.ACCEPTED.length>0">
+										<div class="card shadow-sm mt-5 border border-gray-300">
+											<!--begin::Card header-->
+											<div class="card-header p-3" style="background-color: #f4f4f4;border-top-left-radius:5px;border-top-right-radius:5px;">
+												<!--begin::Card title-->
+												<div class="card-title">
+													<span style="font-size:14px;font-weight:600;line-height:21px;">Registration Confirmed:</span>
+												</div>
+												<!--end::Card title-->
+												<div style="display: inline-block !important; width: 40%;"> 
+													<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top:8px;"><b>Sub-Total&nbsp;:&nbsp;</b>${{(pendingReviewTotalAmt['ACCEPTED'][0]=='' || pendingReviewTotalAmt['ACCEPTED'][0]==null)?'0':pendingReviewTotalAmt['ACCEPTED'][0]}}.00</span>
+												</div>
+											</div>
+											<!--end::Card header-->
+											<!--begin::Card body-->
+											<div class="card-body p-3 pt-0 pb-0 desktopView">
+												<!--begin::Table-->
+												<div id="kt_table_customers_payment_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+													<div class="table-responsive">
+														<table class="table align-middle table-row-dashed gy-5 dataTable no-footer" id="kt_table_customers_payment">
+															<thead class=" text-gray-700 border-bottom border-gray-200 fs-7 fw-bold">
+																<tr class="text-start text-dark1 gs-0">
+																	<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Invoice No.: activate to sort column ascending">Person Name</th>
+																	<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Sign-Up Code</th>
+																	<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Class Name</th>
+																	<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Session</th>
+																</tr>
+															</thead>
+															<tbody class="fs-6 fw-semibold text-dark1"> 				 
+																<tr  *ngFor="let acceptData of rightPanel?.ACCEPTED; index as i">
+																	<ng-container *ngIf="acceptData.registrationStatus=='ACCEPTED'">
+																	<td>
+																		<span class="text-dark1 mb-1">{{acceptData.personName}}</span>
+																	</td>
+																	<td>
+																		<span class="text-dark1 mb-1">{{acceptData.signUpCodeDescription}}</span>
+																	</td>
+																	<td>
+																		<span class="text-dark1 mb-1">{{acceptData.classAssignment}}&nbsp;({{ (acceptData.subClassAssignment!=null && acceptData.subClassAssignment!='')?acceptData.subClassAssignment:'NA' }})</span>
+																	</td>
+																	<td>
+																		<span class="text-dark1 mb-1">{{(acceptData.sessionAssignmentDescription!=null && acceptData.sessionAssignmentDescription!='')? acceptData.sessionAssignmentDescription:'NA'}}</span>
+																	</td>
+																	</ng-container>   
+																</tr>
+															</tbody>
+															<!--end::Table body-->
+														</table>
 													</div>
-													<!--end::Card header-->
-
-													<!--begin::Card body-->
-													<div class="card-body p-3 pt-0 pb-0 desktopView">
-														<!--begin::Table-->
-														<div id="kt_table_customers_payment_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-															<div class="table-responsive">
-																<table class="table align-middle table-row-dashed gy-5 dataTable no-footer" id="kt_table_customers_payment">
-																	<thead class=" text-gray-700 border-bottom border-gray-200 fs-7 fw-bold">
-																		<tr class="text-start text-dark1 gs-0">
-																			<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Invoice No.: activate to sort column ascending">Person Name</th>
-																			<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Sign-Up Code</th>
-																			<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Class Name</th>
-																			<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Session</th>
-																		</tr>
-																	</thead>
-																	<tbody class="fs-6 fw-semibold text-dark1"> 				 
-																		<tr  *ngFor="let acceptData of rightPanel?.ACCEPTED; index as i">
-																			<ng-container *ngIf="acceptData.registrationStatus=='ACCEPTED'">
-																			<td>
-																				<span class="text-dark1 mb-1">{{acceptData.personName}}</span>
-																			</td>
-																			<td>
-																				<span class="text-dark1 mb-1">{{acceptData.signUpCodeDescription}}</span>
-																			</td>
-																			<td>
-																				<span class="text-dark1 mb-1">{{acceptData.classAssignment}}&nbsp;({{ (acceptData.subClassAssignment!=null && acceptData.subClassAssignment!='')?acceptData.subClassAssignment:'NA' }})</span>
-																			</td>
-																			<td>
-																				<span class="text-dark1 mb-1">{{(acceptData.sessionAssignmentDescription!=null && acceptData.sessionAssignmentDescription!='')? acceptData.sessionAssignmentDescription:'NA'}}</span>
-																			</td>
-																			</ng-container>   
-																		</tr>
-																	</tbody>
-																	<!--end::Table body-->
-																</table>
-															</div>
-														</div>
-														<!--end::Table-->
-													</div>
-													<!--end::Card body-->
-
-													<!--accepted Mobile View-->
-													<div class="mobileMenu review_mobile_view p-3 pt-0 pb-0">
-														<ng-container *ngFor="let item of Object?.keys(rightPanelAccordionAccept); index as i;">
-															<div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3" >
-																<div class="mb-5 mrg_btm_0"  style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
-																	<a href="#kt_accordion_item_Reg{{i}}"  class="accordion-header py-3 d-flex collapsed" data-toggle="collapse" >
-																		<h3 class="mb-0 ms-4 size_12" style="line-height: 21px;">{{item}}</h3>
-																	</a>
-																	<div id="kt_accordion_item_Reg{{i}}"  class="panel-collapse collapse">
-																		<div class="card border border-gray-500 border-active">
-																			<div class="card-body p-3">
-																				<div *ngFor="let item of rightPanelAccordionAccept[item]; index as i;">
-																					<div class="row">
-																						<!--begin::Label-->
-																						<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Sign-Up Code : </label>
-																						<!--end::Label-->
-																						<!--begin::Col-->
-																						<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
-																							<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.signUpCodeDescription}}</span>
-																						</div>
-																						<!--end::Col-->
-																					</div>
-
-																					<div class="row mb-2">
-																						<!--begin::Label-->
-																						<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Class Name : </label>
-																						<!--end::Label-->
-																						<!--begin::Col-->
-																						<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
-																							<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.classAssignment}}&nbsp;({{ (item.subClassAssignment!=null && item.subClassAssignment!='')?item.subClassAssignment:'NA' }})</span>
-																						</div>
-																						<!--end::Col-->
-																					</div>
-
-																					<div class="row mb-2">
-																						<!--begin::Label-->
-																						<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Session : </label>
-																						<!--end::Label-->
-																						<!--begin::Col-->
-																						<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
-																							<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{(item.sessionAssignmentDescription!=null && item.sessionAssignmentDescription!='')? item.sessionAssignmentDescription:'NA'}}</span>
-																						</div>
-																						<!--end::Col-->
-																					</div>
-																				</div>	
+												</div>
+												<!--end::Table-->
+											</div>
+											<!--end::Card body-->
+												<!--accepted Mobile View-->
+											<div class="mobileMenu review_mobile_view p-3 pt-0 pb-0">
+												<ng-container *ngFor="let item of Object?.keys(rightPanelAccordionAccept); index as i;">
+													<div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3" >
+														<div class="mb-5 mrg_btm_0"  style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
+															<a href="#kt_accordion_item_Reg{{i}}"  class="accordion-header py-3 d-flex collapsed" data-toggle="collapse" >
+																<h3 class="mb-0 ms-4 size_12" style="line-height: 21px;">{{item}}</h3>
+															</a>
+															<div id="kt_accordion_item_Reg{{i}}"  class="panel-collapse collapse">
+																<div class="card border border-gray-500 border-active">
+																	<div class="card-body p-3">
+																		<div *ngFor="let item of rightPanelAccordionAccept[item]; index as i;">
+																			<div class="row">
+																				<!--begin::Label-->
+																				<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Sign-Up Code : </label>
+																				<!--end::Label-->
+																				<!--begin::Col-->
+																				<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+																					<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.signUpCodeDescription}}</span>
+																				</div>
+																				<!--end::Col-->
+																			</div>
+																			<div class="row mb-2">
+																				<!--begin::Label-->
+																				<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Class Name : </label>
+																				<!--end::Label-->
+																				<!--begin::Col-->
+																				<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+																					<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.classAssignment}}&nbsp;({{ (item.subClassAssignment!=null && item.subClassAssignment!='')?item.subClassAssignment:'NA' }})</span>
+																				</div>
+																				<!--end::Col-->
+																			</div>
+																			<div class="row mb-2">
+																			<!--begin::Label-->
+																				<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Session : </label>
+																				<!--end::Label-->
+																				<!--begin::Col-->
+																				<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+																					<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{(item.sessionAssignmentDescription!=null && item.sessionAssignmentDescription!='')? item.sessionAssignmentDescription:'NA'}}</span>
+																				</div>
+																				<!--end::Col-->
 																			</div>
 																		</div>	
 																	</div>
 																</div>	
 															</div>
-														</ng-container>
+														</div>	
 													</div>
-												</div>
-												<!----Accepted Mobile View end-->
-											</ng-container>
-
-											<ng-container  *ngIf="rightPanel?.WAITLISTED.length>0">
-												<div class="card shadow-sm mt-5 border border-gray-300">
-													<!--begin::Card header-->
-													<div class="card-header p-3" style="background-color: #f4f4f4;border-top-left-radius:5px;border-top-right-radius:5px;">
-														<!--begin::Card title-->
-														<div class="card-title">
-															<span style="font-size:14px;font-weight:600;line-height:21px;">Program Selection: Wait-listed</span>
-														</div>
-														<!--end::Card title-->
-														<div style="display: inline-block !important; width: 20%;">
-															<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top:8px;"><b>Sub-Total&nbsp;:&nbsp;</b>${{(pendingReviewTotalAmt['WAITLISTED'][0]=='' || pendingReviewTotalAmt['WAITLISTED'][0]==null)?'0':pendingReviewTotalAmt['WAITLISTED'][0]}}.00</span>
-														</div>
-													</div>
-													<!--end::Card header-->
-
-													<!--begin::Card body-->
-													<div class="card-body p-3 pt-0 pb-0 desktopView">
-														<!--begin::Table-->
-														<div id="kt_table_customers_payment_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-															<div class="table-responsive">
-																<table class="table align-middle table-row-dashed gy-5 dataTable no-footer" id="kt_table_customers_payment">
-																	<thead class=" text-gray-700 border-bottom border-gray-200 fs-7 fw-bold">
-																		<tr class="text-start text-dark1 text-uppercase gs-0">
-																			<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Invoice No.: activate to sort column ascending">Person Name</th>
-																			<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Sign-Up Code</th>
-
-																		</tr>
-																	</thead>
-																	<tbody class="fs-6 fw-semibold text-dark1"> 				 
-																		<tr *ngFor="let waitListData of rightPanel?.WAITLISTED; index as i">
-																		<ng-container *ngIf="waitListData.registrationStatus=='WAITLISTED'">
-																			<td>
-																				<span class="text-dark1 mb-1">{{waitListData.personName}}</span>
-																			</td>
-																			<td>
-																				<span class="text-dark1 mb-1">{{waitListData.signUpCodeDescription}}</span>
-																			</td>
-																		</ng-container>   
-																		</tr>
-																	</tbody>
-																	<!--end::Table body-->
-																</table>
-															</div>
-														</div>
-														<!--end::Table-->
-													</div>
-													<!--end::Card body-->
-
-													<!--wait Mobile View-->
-													<div class="mobileMenu review_mobile_view p-3 pt-0 pb-0">
-														<ng-container *ngFor="let item of Object?.keys(rightPanelAccordionWaitList); index as i;">
-															<div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3" >
-																<div class="mb-5 mrg_btm_0"  style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
-																	<a href="#kt_accordion_item_Wait_{{i}}"  class="accordion-header py-3 d-flex collapsed" data-toggle="collapse" >
-																		<h3 class="mb-0 ms-4 size_12" style="line-height: 21px;">{{item}}</h3>
-																	</a>
-																	<div id="kt_accordion_item_Wait_{{i}}"  class="panel-collapse collapse">
-																		<div class="card border border-gray-500 border-active">
-																			<div class="card-body p-5">
-																				<div *ngFor="let item of rightPanelAccordionWaitList[item]; index as i;">
-																					<div class="row mb-2">
-																						<!--begin::Label-->
-																						<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Sign-Up Code : </label>
-																						<!--end::Label-->
-																						<!--begin::Col-->
-																						<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
-																							<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.signUpCodeDescription}}</span>
-																						</div>
-																						<!--end::Col-->
-																					</div>
-																				</div>	
-																			</div>
-																		</div>	
-																	</div>
-																</div>	
-															</div>
-														</ng-container>
-													</div>
-													<!----Wait Mobile View end-->
-												</div>
-											</ng-container>
-											<!-----Submitted End-->
+												</ng-container>
+											</div>
 										</div>
-										<!--end::Col-->
-                                            <div>
-                                
-                                                <div class="d-flex justify-content-center mt-4">
-                                                    <button type="button" class="btn btn-sm btn-primary me-2" style="font-size: 13px;">
-                                                        <i class="icon-floppy-disk fs-6"></i> Save
-                                                    </button>
-                                                    
-                                                    <!-- <button type="button" class="btn btn-sm btn-primary" style="font-size: 13px;" (click)="payNow()">
-                                                        <i class="icon-paperplane fs-6"></i> Proceed to Payment
-                                                    </button> -->
+										<!----Accepted Mobile View end-->
+									</ng-container>
 
-													<button type="button" class="btn btn-sm btn-primary" style="font-size: 13px; margin-left: 7px;" (click)="Review()">
-                                                        <i class="icon-paperplane fs-6"></i> Review
-                                                    </button>
-                                                </div>
-                 
-                                            </div>
+									<ng-container  *ngIf="rightPanel?.WAITLISTED.length>0">
+										<div class="card shadow-sm mt-5 border border-gray-300">
+											<!--begin::Card header-->
+											<div class="card-header p-3" style="background-color: #f4f4f4;border-top-left-radius:5px;border-top-right-radius:5px;">
+												<!--begin::Card title-->
+												<div class="card-title">
+													<span style="font-size:14px;font-weight:600;line-height:21px;">Program Selection: Wait-listed</span>
+												</div>
+												<!--end::Card title-->
+												<div style="display: inline-block !important; width: 20%;">
+													<span class="text-gray-800 size_12 d-flex justify-content-end bold_txt" style="position: relative; top:8px;"><b>Sub-Total&nbsp;:&nbsp;</b>${{(pendingReviewTotalAmt['WAITLISTED'][0]=='' || pendingReviewTotalAmt['WAITLISTED'][0]==null)?'0':pendingReviewTotalAmt['WAITLISTED'][0]}}.00</span>
+												</div>
+											</div>
+											<!--end::Card header-->
+											<!--begin::Card body-->
+											<div class="card-body p-3 pt-0 pb-0 desktopView">
+												<!--begin::Table-->
+												<div id="kt_table_customers_payment_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+													<div class="table-responsive">
+														<table class="table align-middle table-row-dashed gy-5 dataTable no-footer" id="kt_table_customers_payment">
+															<thead class=" text-gray-700 border-bottom border-gray-200 fs-7 fw-bold">
+																<tr class="text-start text-dark1 text-uppercase gs-0">
+																	<th class="min-w-100px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Invoice No.: activate to sort column ascending">Person Name</th>
+																	<th class="min-w-200px" tabindex="0" aria-controls="kt_table_customers_payment" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending">Sign-Up Code</th>
+																</tr>
+															</thead>
+															<tbody class="fs-6 fw-semibold text-dark1"> 				 
+																<tr *ngFor="let waitListData of rightPanel?.WAITLISTED; index as i">
+																<ng-container *ngIf="waitListData.registrationStatus=='WAITLISTED'">
+																	<td>
+																		<span class="text-dark1 mb-1">{{waitListData.personName}}</span>
+																	</td>
+																	<td>
+																		<span class="text-dark1 mb-1">{{waitListData.signUpCodeDescription}}</span>
+																	</td>
+																</ng-container>   
+																</tr>
+															</tbody>
+															<!--end::Table body-->
+														</table>
+													</div>
+												</div>
+												<!--end::Table-->
+											</div>
+											<!--end::Card body-->
+
+											<!--wait Mobile View-->
+											<div class="mobileMenu review_mobile_view p-3 pt-0 pb-0">
+												<ng-container *ngFor="let item of Object?.keys(rightPanelAccordionWaitList); index as i;">
+													<div class="panel-group panel-group-control panel-group-control-right panel_wrap_bg" id="kt_accordion_3" >
+														<div class="mb-5 mrg_btm_0"  style="border: 1px solid #ebebeb;border-radius: 4px !important;background-color: #fff !important;">
+															<a href="#kt_accordion_item_Wait_{{i}}"  class="accordion-header py-3 d-flex collapsed" data-toggle="collapse" >
+																<h3 class="mb-0 ms-4 size_12" style="line-height: 21px;">{{item}}</h3>
+															</a>
+															<div id="kt_accordion_item_Wait_{{i}}"  class="panel-collapse collapse">
+																<div class="card border border-gray-500 border-active">
+																	<div class="card-body p-5">
+																		<div *ngFor="let item of rightPanelAccordionWaitList[item]; index as i;">
+																			<div class="row mb-2">
+																				<!--begin::Label-->
+																				<label class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6 fw-normal size_12" style="color:#7d7d7d;">Sign-Up Code : </label>
+																				<!--end::Label-->
+																				<!--begin::Col-->
+																				<div class="col-lg-6 col-xs-6 col-6 col-sm-6 col-md-6">
+																					<span class="fw-normal d-flex justify-content-end text-end" style="color:#161616;">{{item.signUpCodeDescription}}</span>
+																				</div>
+																				<!--end::Col-->
+																			</div>
+																		</div>	
+																	</div>
+																</div>	
+															</div>
+														</div>	
+													</div>
+												</ng-container>
+											</div>
+											<!----Wait Mobile View end-->
+										</div>
+									</ng-container>
+									<!-----Submitted End-->
+								</div>
+								<!--end::Col-->
+                                
+                                <div class="d-flex justify-content-center mt-4">
+                                    <button type="button" class="btn btn-sm btn-primary me-2" style="font-size: 13px;">
+                                        <i class="icon-floppy-disk fs-6"></i> Save
+                                    </button>
+                                                    
+                                    <!-- <button type="button" class="btn btn-sm btn-primary" style="font-size: 13px;" (click)="payNow()">
+                                        <i class="icon-paperplane fs-6"></i> Proceed to Payment
+                                    </button> -->
+
+									<button type="button" class="btn btn-sm btn-primary" style="font-size: 13px; margin-left: 7px;" (click)="Review()">
+                                         <i class="icon-paperplane fs-6"></i> Review
+                                    </button>
                                 </div>
-                            
+                            </div>
                         </div>
                     </div>
                 </div>

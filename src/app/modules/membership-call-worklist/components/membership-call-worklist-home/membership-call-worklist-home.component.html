@@ -49,7 +49,7 @@
                                 Unassigned All
                             </button>
                             <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" (click)="fetchMemberShipCallWork('Sessionselected');" style="background-color:#079896;">
-                                Assign To Me
+                                Session Selected
                             </button>
                             <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" (click)="fetchMemberShipCallWork('Donotcallagain');" style="background-color:#d60a37;">
                                 Do Not Call
@@ -61,14 +61,15 @@
                         </div>
                         <div class="table-responsive">
                              <!--begin::Card body-->
-                            <div class="card-body border-top p-2">
+                            <div class="card-body p-0">
                                 <div class="table-container table-responsive">
-                                    <table id="ExampleMaterialTable" class="table table-striped table-hover table-row-bordered" mat-table [dataSource]="dataSource" matSort>
+                                    <table id="ExampleMaterialTable" class="table table-striped mb-0" mat-table [dataSource]="dataSource" matSort>
 
                                         <!-- Position Column -->
                                         <ng-container matColumnDef="familyId">
                                             <th valign="middle" class="bold_txt" mat-header-cell *matHeaderCellDef mat-sort-header >Family ID</th>
-                                            <td valign="middle" mat-cell *matCellDef="let element; let j=index;"><a href="javascript:void(0);" (click)="showCallDetails(element,j)">{{element.familyId}}</a>
+                                            <td valign="middle" mat-cell *matCellDef="let element; let j=index;" style="border-bottom: 1px solid #ddd;">
+                                                <a href="javascript:void(0);" (click)="showCallDetails(element,j)">{{element.familyId}}</a>
                                                 <img *ngIf="element.pledgeLevel" src="assets/images/{{element.pledgeLevel}}.png" style="width:15px;margin-left:16px">
                                             </td>
                                         </ng-container>
@@ -76,33 +77,36 @@
                                         <!-- Name Column -->
                                         <ng-container matColumnDef="firstName">
                                             <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>First Name</th>
-                                            <td valign="middle" mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+                                            <td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.firstName}} </td>
                                         </ng-container>
                                     
                                         <!-- Weight Column -->
                                         <ng-container matColumnDef="lastName">
                                             <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
-                                            <td valign="middle" mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                                            <td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.lastName}} </td>
                                         </ng-container>
                                     
                                         <!-- Symbol Column -->
                                         <ng-container matColumnDef="years">
                                             <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header># of Years</th>
-                                            <td valign="middle" mat-cell *matCellDef="let element"> {{element.years}} </td>
+                                            <td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.years}} </td>
                                         </ng-container>
                                     
                                         <ng-container matColumnDef="assignedTo">
                                             <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Assigned to</th>
-                                            <td valign="middle" mat-cell *matCellDef="let element"> {{element.assignedTo}} </td>
+                                            <td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.assignedTo}} </td>
                                         </ng-container>
 
                                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                        <tr mat-row *matRowDef="let row;  columns: displayedColumns; let j=index"  [ngClass]="{'active_row': row_active[j] == true}" >
+                                        <tr mat-row *matRowDef="let row;  columns: displayedColumns; let j=index" [ngClass]="{'active_row': row_active[j] == true}" >
                                         </tr>
                                     </table>
+
                                     <mat-paginator #paginator 
-                                    (page)="handlePageEvent($event)" [length]="totalRecFooter?.totalProjectSummary"  [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
-                                    [pageSizeOptions]="paginationConfig.pageSizeOptions"></mat-paginator>
+                                        (page)="handlePageEvent($event)" [length]="totalRecFooter?.totalProjectSummary" [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+                                        [pageSizeOptions]="paginationConfig.pageSizeOptions">
+                                    </mat-paginator>
+
                                 </div>
                                 
                             </div>
@@ -127,6 +131,6 @@
         </div>
     </div>
     <div class="col-lg-6" style="position:relative;">
-            <app-membership-call-details [callWorkDetails]="callWorkDetails" (callWorkDetailsSavedNotification)="oncallWorkDetailsSavedNotification($event)"></app-membership-call-details>
+        <app-membership-call-details [callWorkDetails]="callWorkDetails" (callWorkDetailsSavedNotification)="oncallWorkDetailsSavedNotification($event)"></app-membership-call-details>
     </div>
 </div>

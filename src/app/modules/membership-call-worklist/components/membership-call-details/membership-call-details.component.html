@@ -11,13 +11,12 @@
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Home: </span>
-    <span class="jsutify-content-end ms-1" style="color:#00B0F0;"><u appPhoneNumberFormat>{{callWorkDetails?.home |  phoneNumberPipe}}</u></span>
+                    <span class="jsutify-content-end ms-1" style="color:#00B0F0;"><u appPhoneNumberFormat>{{callWorkDetails?.home |  phoneNumberPipe}}</u></span>
                 </div>
                 <div class="ms-4 mt-2">
                     <span class="jsutify-content-start">Email: </span>
                     <span class="jsutify-content-end ms-2" style="color:#00B0F0;"><u>{{callWorkDetails?.email}}</u></span>
                 </div>
-
                 <div class="fs-6 ms-4 text-dark fw-semibold mt-2">
                     <span style="color:#C00000;">Last Call Date: {{callWorkHistoryForm.value.lastCallDate | date:'MM/dd/yyyy'}}</span>
                     <!-- <input type="date" formControlName="lastCallDate" format="MM/DD/YYYY"  autocomplete="off" name="lastCallDate" class="form-control form-control-sm" style="width: 35%;padding: 5px; display: inline-block;min-height: 20px !important;margin-left: 5px;"/> -->
@@ -28,9 +27,7 @@
                 <div class="fs-6 text-dark fw-semibold">
                     <span class="number">
                         <span class="jsutify-content-start me-4">Call Count <span class="ms-8">:</span> </span>
-                        <span class="minus me-2">-</span>
                         <input type="number"  style="width:50px;" formControlName="callCount">
-                        <span class="plus ms-2">+</span>
                     </span>
                 </div>
                 
