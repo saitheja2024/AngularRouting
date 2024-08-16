@@ -13,57 +13,17 @@
             <div class="col-lg-12">
                 <fieldset class="border p-4">
                     <legend class="float-none fs-5 w-auto p-4 pt-0 pb-0 mb-0">Filters</legend>
-                    <div class="row">
-                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                            <label class="form-check form-check-custom form-check-inline cursor-pointer me-5 is-valid text-nowrap m-2">
-                                <input class="form-check-input" type="checkbox">
-                                <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 9:15 AM - 10:45 AM</span>
-                            </label>
-                        </div>
-
-                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                            <label class="form-check form-check-custom form-check-inline cursor-pointer me-5 is-valid text-nowrap m-2">
-                                <input class="form-check-input" type="checkbox">
-                                <span class="fw-semibold ps-2 fs-7 text-uppercase">Sunday 12:15 PM - 1:50 PM</span>
-                            </label>
-                        </div>
-
-                        <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                            <label class="form-check form-check-custom form-check-inline cursor-pointer me-5 is-valid text-nowrap m-2">
-                                <input class="form-check-input" type="checkbox">
-                                <span class="fw-semibold ps-2 fs-7 text-uppercase">Friday 6:45 PM - 8:20 PM</span>
-                            </label>
-                        </div>
-                    </div>
+                 
                     <div class="row mt-2">
                         <div class="justify-content-start">
-                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#984807;min-width:100px;">
-                                Bala Vihar
+                            <button *ngFor="let signupCode of signupCodes;let i = index" type="button" class="btn btn-sm   me-3 mb-2 " 
+                            [ngClass]="selectedCodeIndex === i ? 'btn-dark' : 'btn-white border border-dark'"
+                            (click)="onSignupCodeButtonClick(i,signupCode)"
+                            >
+                                {{signupCode.code}}
                             </button>
 
-                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#7030A0;min-width:100px;">
-                                Shloka  
-                            </button>
-    
-                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#92D050;min-width:100px;">
-                                Languages
-                            </button>
-
-                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#0070C0;min-width:100px;">
-                                Art
-                            </button>
-
-                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#002060;min-width:100px;">
-                                Performing Art
-                            </button>
-
-                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#C0504D;min-width:100px;">
-                                Yoga
-                            </button>
-
-                            <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#4BACC6;min-width:100px;">
-                                Youth Leadership
-                            </button>
+                            
                         </div>
                     </div>
                 </fieldset>
@@ -73,7 +33,7 @@
         <div class="col-lg-12 mt-4">
             <div class="row">
                 <div class="col-lg-8">
-                    <fieldset class="border p-4">
+                    <!-- <fieldset class="border p-4">
                         <legend class="float-none fs-5 w-auto p-4 pt-0 pb-0 mb-0">Applied Filters:</legend>
                         <div class="justify-content-start">
                             <button type="button" class="btn btn-sm btn-default text-white me-3 mb-2" style="background-color:#F79646;min-width:100px;">
@@ -84,7 +44,7 @@
                                 Bala Vihar
                             </button>
                         </div>
-                    </fieldset>
+                    </fieldset> -->
 
                     <div class="row mt-2">
                         <div class="card" style="background:none;border-radius: 0px;">
@@ -147,9 +107,12 @@
                         </div>
                     </div>
     
-                    <mat-paginator [pageSizeOptions]="[10,20,50]"
-                                    showFirstLastButtons>
-                    </mat-paginator>
+                    <mat-paginator   
+                    [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+                    [pageSizeOptions]="paginationConfig.pageSizeOptions" 
+                    [length]="paginationConfig.length"   
+                    (page)="handlePageEvent($event)">
+            </mat-paginator>
                 </div>
 
                 <div class="col-lg-4">

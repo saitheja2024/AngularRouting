@@ -3,11 +3,13 @@ import { HttpService, Options } from '../https-service/http-service';
 import { UrlService } from '../url/url.service';
 import { KEYS, StoreService } from '../store/store.service';
 import { AuthService } from 'src/app/modules/auth';
+import { RegistrationService } from '../registration-processing/registration.service';
 
 @Injectable({
     providedIn: 'root'
   })
   export class AdminregistrationServices {
+  
   
     
     EmailSearchCriteria:any;
@@ -15,7 +17,8 @@ import { AuthService } from 'src/app/modules/auth';
     constructor(private httpService:HttpService,
         private urlService:UrlService, 
         private store:StoreService,
-        private authService:AuthService) { }
+        private authService:AuthService,
+      private registrationService:RegistrationService) { }
 
        
       
@@ -32,6 +35,12 @@ import { AuthService } from 'src/app/modules/auth';
     let response = await this.httpService.post(options);
     return response;
 }   
+
+
+async fetchSignupCodes(param: any) {
+  let list = await  this.registrationService.fetchSignupCodes(param);
+  return list;
+}
         
          
          

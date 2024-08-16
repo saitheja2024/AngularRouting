@@ -31,6 +31,13 @@ export class ClassesAndTeacherAssignementHomeComponent {
     length:10
   }
 
+  requestPageModel={
+    page: 0,
+    size: 10,
+    sortFieldName: '',
+    sortOrder:''
+  }
+
   
 
   displayedColumns: string[] = ['session', 'classCode', 'subClassCode', 'groupEmailId'];
@@ -45,6 +52,9 @@ export class ClassesAndTeacherAssignementHomeComponent {
   selectedChapterCode: any;
   loggedInUser: any;
   list: any;
+  signupCodes: any;
+  selectedCodeIndex: any;
+  selectedSignupCode: any;
 
   constructor(
     private router:Router,
@@ -65,32 +75,47 @@ export class ClassesAndTeacherAssignementHomeComponent {
   async ngOnInit(){
     this.store.onProgramUpdate().subscribe(async (program:any)=>{
       this.selectedProgram=program;
+      await this.fetchSignupCodes();
       await this.populateData()
+     
     });
 
     this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
     this.selectedChapterCode = this.store.getValue(KEYS.chapter);
     this.selectedProgram = this.store.getValue(KEYS.program);
     this.loggedInUser = this.adminRegistrationService.getLoggedInUser();
-    await this.populateData();
+    await this.fetchSignupCodes();
 
+  }
+
+
+  async fetchSignupCodes(){
+    
+    let param:any = {
+       organizationCode:this.selectedChapterCode,
+       programCode:this.selectedProgram.code,
+      userName:this.loggedInUser.username
+    }
+
+    this.selectedChapterCode = this.store.getValue(KEYS.chapter);
+    this.signupCodes = await this.adminRegistrationService.fetchSignupCodes(param);
+  }
+
+  async onSignupCodeButtonClick(index: number,signupCode:any) {
+    this.selectedCodeIndex = index;
+    this.selectedSignupCode = signupCode;
+    await this.populateData();
   }
 
   async populateData(){
    
-// http://localhost:8080/adminRegistration/fetchEnrolledClassesList?programCode=CS_BALAVIHAR_2024-25&signupCode=2024-25_BALA_VIHAR_CLASS
 
     let params = {
-      requestPageModel:{
-        "page": 0,
-      "size": 50,
-      "sortFieldName": "",
-      "sortOrder": ""
-      },
-      requestProgramCodeAndSignupCode:{
-        programCode:this.selectedProgram.code,
-        signupCode:"2024-25_BALA_VIHAR_CLASS",
-      }
+       requestPageModel:this.requestPageModel,
+        requestProgramCodeAndSignupCode:{
+           programCode:this.selectedProgram.code,
+           signupCode:this.selectedSignupCode.code,
+        }
       
     }
 
@@ -98,10 +123,9 @@ export class ClassesAndTeacherAssignementHomeComponent {
     let results:any = await this.adminRegistrationService.fetchEnrolledClassesList(params);
     //this.totalRecCount = results.totalProjectSummary;
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
-    
     this.paginationConfig.length=results.totalProjectSummary;
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    //this.dataSource.sort = this.sort;
+   
     this.dataSource._updateChangeSubscription();
     
   }
@@ -112,9 +136,9 @@ export class ClassesAndTeacherAssignementHomeComponent {
     let pageSize = event.pageSize;  
     let previousIndex = event.previousPageIndex;
     let previousSize = pageSize * pageIndex;
-    // this.searchCriteria.requestPageModel.page=pageIndex;
-    // this.searchCriteria.requestPageModel.size=pageSize;
-    // this.performSearch();
+     this.requestPageModel.page=pageIndex;
+    this.requestPageModel.size=pageSize;
+     this.populateData();
    
    }
 
