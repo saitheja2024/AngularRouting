@@ -93,6 +93,11 @@ const Routing: Routes = [
       import('../modules/classes-and-teacher-assignment/classes-and-teacher-assignment.module').then((m) => m.ClassesAndTeacherAssignmentModule),
   },
   {
+    path: 'role-access',
+    loadChildren: () =>
+      import('../modules/role-access/role-access.module').then((m) => m.RoleAccessModule),
+  },
+  {
     path: '',
     redirectTo: 'registration-processing',
     pathMatch: 'full',

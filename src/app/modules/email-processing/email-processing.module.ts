@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmailSearchComponent } from './components/email-search/email-search.component';
 import { EmailSearchResultsComponent } from './components/email-search-results/email-search-results.component';
 import { ChinmayaSharedModule } from '../chinmaya-shared/chinmaya-shared.module';
+
 const routes: Routes = [
   {
     path: '',

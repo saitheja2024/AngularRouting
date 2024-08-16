@@ -1,0 +1,50 @@
+<div class="card mt-4" style="background:none;border-radius: 0px;">
+    <div class="card-header border-0 cursor-pointer ps-0 pe-0 pt-2 pb-2">
+        <div class="card-title">
+            <h3 class="fw-bold">
+                Screen Lookup
+            </h3>
+        </div>
+    </div>
+</div>
+<div class="card cardcss">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourceRolesLookup" matSort>
+
+                    <!-- Role Name Column -->
+                    <ng-container matColumnDef="rolename">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #ccc;background: #C6D8FD;">Role Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" 
+                            style="border-right:1px solid #ccc;border-bottom: 1px solid #ddd;">
+                            <input type="text" class="form-control form-control-sm" placeholder="Screen Name">
+                        </td>
+                    </ng-container>
+
+                    <!-- Status Column -->
+                    <ng-container matColumnDef="status">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="background: #C6D8FD;">Status</th>
+                        <td class="text-nowrap text-end" mat-cell *matCellDef="let element" 
+                            style="border-bottom: 1px solid #ddd;">
+                            <select class="form-select form-select-sm cursor-pointer">
+                                <option>Active</option>
+                                <option>Inactive</option>
+                            </select>
+                        </td>
+                    </ng-container>
+                    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsRolesLookup; sticky: true;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsRolesLookup;"></tr>
+                </table>
+    
+                <mat-paginator [pageSizeOptions]="[10,20,50]"
+                                showFirstLastButtons>
+                </mat-paginator>
+    
+            </div>
+        </div>
+    </div>
+</div>
