@@ -60,7 +60,7 @@
 
                     <!-- Non Member Column-->
                     <ng-container matColumnDef="nonmenber">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Non-Member</th>
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Non-Member</th>
                         <td class="text-center" mat-cell *matCellDef="let row" style="border-bottom:1px solid #ddd;border-right:1px solid #aebddd;">
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -71,7 +71,7 @@
                     <!-- Member Column -->
                     <ng-container matColumnDef="member">
                         <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Member</th>
-                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
+                        <td class="text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
                             </div>
@@ -80,7 +80,7 @@
 
                     <!-- Teacher Column -->
                     <ng-container matColumnDef="teacher">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Teacher</th>
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Teacher</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -88,9 +88,9 @@
                         </td>
                     </ng-container>
 
-                    <!-- Prog Reg Coordinator Column -->
-                    <ng-container matColumnDef="progregcoordinator">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Prog Reg Coordinator</th>
+                    <!-- Reg Coordinator Column -->
+                    <ng-container matColumnDef="regcoordinator">
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Registration Coordinator</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -98,9 +98,9 @@
                         </td>
                     </ng-container>
 
-                    <!-- Core Team Column -->
-                    <ng-container matColumnDef="coreteam">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Core Team</th>
+                    <!-- Bal Vihar Coordinators Column -->
+                    <ng-container matColumnDef="balviharcoordinators">
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Bal Vihar Coordinators</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -108,9 +108,9 @@
                         </td>
                     </ng-container>
 
-                    <!-- Leadership Team Column -->
-                    <ng-container matColumnDef="leadershipteam">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Leadership Team</th>
+                    <!-- Management Team Column -->
+                    <ng-container matColumnDef="managementteam">
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Management Team</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -120,7 +120,7 @@
 
                     <!-- System Admin Column -->
                     <ng-container matColumnDef="systemadmin">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">System Admin</th>
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">System Admin</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -128,9 +128,9 @@
                         </td>
                     </ng-container>
 
-                    <!-- View Program Config Column -->
-                    <ng-container matColumnDef="viewprogramconfig">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">View Program Config</th>
+                    <!-- Membership Team Column -->
+                    <ng-container matColumnDef="membershipteam">
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Membership Team</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -140,7 +140,7 @@
 
                     <!-- Accounting Column -->
                     <ng-container matColumnDef="accounting">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Accounting</th>
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Accounting</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -148,9 +148,9 @@
                         </td>
                     </ng-container>
 
-                    <!-- Add & Edit Event Column -->
-                    <ng-container matColumnDef="addeditevent">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Add & Edit Event</th>
+                    <!-- Event Reg Coordinator Column -->
+                    <ng-container matColumnDef="eventregcoordinator">
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Event Reg Coordinator</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -158,9 +158,9 @@
                         </td>
                     </ng-container>
 
-                    <!-- View Event Report Column -->
-                    <ng-container matColumnDef="veiweventreport">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">View Event Report</th>
+                    <!-- Event Coordinator Column -->
+                    <ng-container matColumnDef="eventcoordinator">
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Event Coordinator</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -170,7 +170,17 @@
 
                     <!-- Arpanam Admin Column -->
                     <ng-container matColumnDef="arpanamadmin">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Arpanam Admin</th>
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Arpanam Admin</th>
+                        <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
+                            <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                <input class="form-check-input" type="checkbox" value="">
+                            </div> 
+                        </td>
+                    </ng-container>
+
+                    <!-- Arpanam Coordinator Column -->
+                    <ng-container matColumnDef="arpanamcoordinator">
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Arpanam Coordinator</th>
                         <td class="text-nowrap text-center" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                 <input class="form-check-input" type="checkbox" value="">
@@ -180,7 +190,7 @@
 
                     <!-- Chapter Column -->
                     <ng-container matColumnDef="chapter">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Chapter</th>
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Chapter</th>
                         <td class="text-nowrap text-end" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <select class="form-select form-select-sm cursor-pointer">
                                 <option>Select</option>
@@ -190,7 +200,7 @@
 
                     <!-- Program Code Column -->
                     <ng-container matColumnDef="programcode">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Program Code</th>
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Program Code</th>
                         <td class="text-nowrap text-end" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <select class="form-select form-select-sm cursor-pointer">
                                 <option>Select</option>
@@ -200,7 +210,7 @@
 
                     <!-- SignUp Code Column -->
                     <ng-container matColumnDef="signupcode">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Sign Up Code</th>
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Sign Up Code</th>
                         <td class="text-nowrap text-end" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> 
                             <select class="form-select form-select-sm cursor-pointer">
                                 <option>Select</option>
@@ -209,7 +219,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="delete">
-                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+                        <th class="fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
                         <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> 
                             <button class="btn btn-sm button-default ms-2" style="border: 1px solid #FFCDDB;padding: 5px 8px !important;width:30px;">
                                 <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;">
@@ -247,8 +257,17 @@
                         </th>
                     </ng-container>
 
+                    <!-- Header row fourth group -->
+                    <ng-container matColumnDef="header-row-fourth-group">
+                        <th mat-header-cell *matHeaderCellDef 
+                            style="text-align:center;border-right:1px solid #aebddd;background-color:#C6D8FD;"
+                            [attr.colspan]="1"> 
+                        </th>
+                    </ng-container>
+
                     
-                    <tr mat-header-row *matHeaderRowDef="['header-row-first-group', 'header-row-second-group', 'header-row-third-group']">
+                    <tr mat-header-row *matHeaderRowDef="['header-row-first-group', 'header-row-second-group', 
+                                                          'header-row-third-group', 'header-row-fourth-group']">
                     </tr>
                     
                     <tr mat-header-row *matHeaderRowDef="displayedColumnsGasItems; sticky: true;" style="background-color:#CDDDFF;"></tr>

@@ -8,15 +8,16 @@ export interface GasItems {
   nonmenber: string;
   member: string;
   teacher: string;
-  progregcoordinator: string;
-  coreteam: string;
-  leadershipteam: string;
+  regcoordinator: string;
+  balviharcoordinators: string;
+  managementteam: string;
   systemadmin: string;
-  viewprogramconfig: string;
+  membershipteam: string;
   accounting: string;
-  addeditevent: string;
-  veiweventreport: string;
+  eventregcoordinator: string;
+  eventcoordinator: string;
   arpanamadmin: string;
+  arpanamcoordinator: string;
   chapter: string;
   programcode: string;
   signupcode: string;
@@ -31,16 +32,16 @@ export interface GasItems {
 
 export class AssignRoleComponent {
   GasItems: GasItems[] = [
-    {nonmenber: '', member: '', teacher: '', progregcoordinator: '', coreteam: '', leadershipteam: '', systemadmin: '',
-      viewprogramconfig: '', accounting: '', addeditevent: '', veiweventreport: '', arpanamadmin: '', chapter: '', programcode: '',
-      signupcode: '', delete:''
+    {nonmenber: '', member: '', teacher: '', regcoordinator: '', balviharcoordinators: '', managementteam: '', systemadmin: '',
+      membershipteam: '', accounting: '', eventregcoordinator: '', eventcoordinator: '', arpanamadmin: '', arpanamcoordinator: '', 
+      chapter: '', programcode: '', signupcode: '', delete:''
     },
 
   ];
 
-  displayedColumnsGasItems: string[] = ['nonmenber', 'member', 'teacher', 'progregcoordinator', 'coreteam', 'leadershipteam', 'systemadmin', 
-                                        'viewprogramconfig', 'accounting', 'addeditevent', 'veiweventreport', 'arpanamadmin', 'chapter', 'programcode', 
-                                        'signupcode', 'delete'
+  displayedColumnsGasItems: string[] = ['nonmenber', 'member', 'teacher', 'regcoordinator', 'balviharcoordinators', 'managementteam', 'systemadmin', 
+                                        'membershipteam', 'accounting', 'eventregcoordinator', 'eventcoordinator', 'arpanamadmin', 'arpanamcoordinator', 
+                                        'chapter', 'programcode', 'signupcode', 'delete'
   ];
 
   dataSourceGasItems = new MatTableDataSource<GasItems>(this.GasItems);
