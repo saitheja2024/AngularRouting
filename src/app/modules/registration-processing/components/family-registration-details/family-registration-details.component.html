@@ -117,7 +117,7 @@
 																		<div class="col-lg-7 fv-row fv-plugins-icon-container" >
 																			<select    formControlName="sessionAssignment" aria-label="" data-control="select2" data-placeholder="Select an option..." class="form-select form-select-sm fw-semibold">
 																				<option value="">Select an Option</option>         
-																				<option [value]="assignedSession.choicecode" *ngFor = "let assignedSession of getAssignedSessionListFun(programGroup.get('registrationId').value)">{{assignedSession.description}}<span *ngIf="assignedSession.status=='Closed'">{{'-'+assignedSession.status}}</span></option>                                                   
+																				<option [value]="assignedSession.choicecode" *ngFor = "let assignedSession of getAssignedSessionListFun(programGroup.get('registrationId').value)" [ngClass]="(assignedSession.status=='Closed')?'light_grey_clr':''">{{assignedSession.description}}<span *ngIf="assignedSession.status=='Closed'">{{'-'+assignedSession.status}}</span></option>                                                   
 																			</select> 
 																		</div>
 																		<!--end::Col-->
@@ -189,7 +189,7 @@
 															<!--begin::Input group-->
 															<div class="row">
 																<!--begin::Label-->
-																<label class="col-lg-2 col-form-label fw-semibold fs-6">Payment Submitted Date :
+																<label class="col-lg-2 col-form-label fw-semibold fs-6">Payment Date:
 																</label>
 																<!--end::Label-->
 																<!--begin::Col-->
