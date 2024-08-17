@@ -48,7 +48,7 @@
                         <span class="nav-text text-gray-800 fw-semibold fs-6" style="width:100px;">Session : </span>
                         <select class="form-select form-select-sm cursor-pointer" [(ngModel)]="sessionChoice">
                             <option value="">Select Session</option>
-                            <option *ngFor="let session of sessionChoiceList" [value]="session.choicecode">{{session.description}}</option>
+                            <option *ngFor="let session of sessionChoiceList" [value]="session.choicecode" [ngClass]="(session.status=='Closed')?'light_grey_clr':''">{{session.description}}<span *ngIf="session.status=='Closed'">{{'-'+session.status}}</span></option>
                         </select>
                         <!--end::Title-->
                     </div>
