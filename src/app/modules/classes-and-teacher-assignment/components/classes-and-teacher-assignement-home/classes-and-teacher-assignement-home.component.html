@@ -104,19 +104,21 @@
                                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                                 </table>
 
-                                <mat-paginator   
-                                    [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
-                                    [pageSizeOptions]="paginationConfig.pageSizeOptions" 
-                                    [length]="paginationConfig.length"   
-                                    (page)="handlePageEvent($event)">
-                                </mat-paginator>
+                               
                             </div>
+                            
                         </div>
+                        <mat-paginator   
+                            [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+                            [pageSizeOptions]="paginationConfig.pageSizeOptions" 
+                            [length]="paginationConfig.length"   
+                            (page)="handlePageEvent($event)">
+                        </mat-paginator>
                     </div>
 
                     <div class="row mt-2">
                         <div class="justify-content-center d-flex">
-                            <button type="button" class="btn btn-sm btn-primary text-white me-3 mb-2 mt-2">
+                            <button type="button" [disabled]="enrolledClassesList.length==0" class="btn btn-sm btn-primary text-white me-3 mb-2 mt-2" (click)="onRefreshDistroButtonClick()">
                                 Refresh Distro
                             </button>
                         </div>

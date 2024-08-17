@@ -55,6 +55,7 @@ export class ClassesAndTeacherAssignementHomeComponent {
   signupCodes: any;
   selectedCodeIndex: any;
   selectedSignupCode: any;
+  enrolledClassesList: any=[];
 
   constructor(
     private router:Router,
@@ -108,8 +109,6 @@ export class ClassesAndTeacherAssignementHomeComponent {
   }
 
   async populateData(){
-   
-
     let params = {
        requestPageModel:this.requestPageModel,
         requestProgramCodeAndSignupCode:{
@@ -118,28 +117,36 @@ export class ClassesAndTeacherAssignementHomeComponent {
         }
       
     }
-
-
     let results:any = await this.adminRegistrationService.fetchEnrolledClassesList(params);
-    //this.totalRecCount = results.totalProjectSummary;
+    this.enrolledClassesList=results.projectSummaryList;
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     this.paginationConfig.length=results.totalProjectSummary;
-    //this.dataSource.sort = this.sort;
-   
     this.dataSource._updateChangeSubscription();
     
   }
 
   handlePageEvent(event:any){
-    console.log(JSON.stringify(event,null,4));
     let pageIndex = event.pageIndex;
     let pageSize = event.pageSize;  
     let previousIndex = event.previousPageIndex;
     let previousSize = pageSize * pageIndex;
-     this.requestPageModel.page=pageIndex;
+    this.requestPageModel.page=pageIndex;
     this.requestPageModel.size=pageSize;
-     this.populateData();
+    this.populateData();
    
+   }
+
+
+   async onRefreshDistroButtonClick(){
+     let params = {
+       "chapterId": this.selectedChapterCode,
+       "enrolledClassesList": this.enrolledClassesList
+     }
+
+     await this.adminRegistrationService.refreshEmailDistributionList(params);
+     this.populateData();
+
+
    }
 
  

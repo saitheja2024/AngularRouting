@@ -163,7 +163,8 @@ export class UrlService {
   }
 
   adminRegistrationURL = {
-    fetchEnrolledClassesList:"adminRegistration/fetchEnrolledClassesList"
+    fetchEnrolledClassesList:"adminRegistration/fetchEnrolledClassesList",
+    refreshEmailDistributionList:"adminRegistration/refreshEmailDistributionList"
   }
   
  
