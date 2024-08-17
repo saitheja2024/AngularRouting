@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/modules/auth';
 import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
 import { DatapasstoComponent } from 'src/app/modules/chinmaya-shared/services/program-registration/datapassing.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
@@ -32,11 +32,17 @@ export class ReviewComponent {
 
   Datamessage:any;
   dataReceiveFlag:boolean=false;
+  routerVariable:any;
   // readonly dialogRef = inject(MatDialogRef<ReviewComponent>);
 
   constructor(private programService:ProgramService, private store:StoreService,
      private authService:AuthService, private routePass:RouteChangeCall, 
-     private Dataservice:DatapasstoComponent, private router:Router){
+     private Dataservice:DatapasstoComponent, private router:Router, private activatedRoute: ActivatedRoute){
+
+      this.activatedRoute.queryParams.subscribe((item: any) => {
+        console.log(item);
+        this.routerVariable = (item.data=="true")?true:false;
+      });
 
   }
   ngOnInit(){
@@ -203,7 +209,7 @@ async fetchPrimaryContactDetails() {
 
 backtoClassRegistration(){
   if(this.dataReceiveFlag){
-    this.router.navigateByUrl('/programregistration/search-family');
+    this.router.navigateByUrl("programregistration/family-reg-workflow/"+this.routerVariable);
   }else{
     this.routePass.sendData({'currenttab':'Additional Details','Event':'back'}); 
   }
@@ -220,8 +226,8 @@ paymentTab(){
 
 backToReviewTab(){
    if(this.dataReceiveFlag){
-    this.router.navigateByUrl('/programregistration/search-family');
-   }else{
+    this.router.navigateByUrl("programregistration/family-reg-workflow/"+this.routerVariable);
+  }else{
     this.routePass.sendData({'currenttab':'Review','Event':'back'}); 
    }
 }

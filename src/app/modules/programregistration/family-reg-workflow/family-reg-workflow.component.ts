@@ -922,7 +922,9 @@ rightPanel:any;
     this.DataService.invokeMessage(dataSend);
 
     //this.Route.navigate(['/programregistration/review']);
-    this.router.navigateByUrl('/programregistration/review');
+    this.router.navigate(['/programregistration/review'], { queryParams: { data:this.memberFlag} });
+
+    //this.router.navigateByUrl('/programregistration/review', {queryParams:{data:this.memberFlag}});
 
     // let dialogRef = this.dialog.open(ReviewComponent, {
     //   data: this.primaryUserData,

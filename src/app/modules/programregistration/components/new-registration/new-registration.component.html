@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label fw-semibold">Mobile Phone</label>
+            <label class="form-label fw-semibold required">Mobile Phone</label>
             <input type="text" class="form-control form-control-sm" appCapitalize placeholder="Mobile Phone" formControlName="phoneNumber" maxlength="14" appPhoneNumberFormat>
             <div *ngIf="CF['phoneNumber'].invalid && CF['phoneNumber'].value=='' && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
                 Please Enter Phone Number.
