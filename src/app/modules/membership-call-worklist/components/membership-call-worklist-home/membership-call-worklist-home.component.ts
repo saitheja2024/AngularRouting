@@ -147,7 +147,7 @@ sortItems(letter: string, index:any) {
 }
 
 refreshList(){
-  this.dataSource.data = this.totalRecList.projectSummaryList;
+  this.fetchMemberShipCallWork('');
   this.activeOrder={};
 }
 
