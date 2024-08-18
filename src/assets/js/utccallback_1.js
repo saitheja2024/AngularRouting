@@ -54,7 +54,8 @@ function callbackUTC_1(){
   button.attr('utc_time', utc);
   localStorage.setItem('utc_time', JSON.stringify(utc));
  var secureTransactionKey=secure_Trans_Key;
- var Message=api_access_id+"|"+method+"|"+version_number+"|"+total_amount+"|"+utc+"|"+order_number+"|"+"|";
+ let total_amt = ((total_amount==undefined || total_amount==null)?'':total_amount);
+ var Message=api_access_id+"|"+method+"|"+version_number+"|"+ total_amt +"|"+utc+"|"+order_number+"|"+"|";
   var hash=md5(Message,secureTransactionKey); 
   button.attr('signature',hash);
   
