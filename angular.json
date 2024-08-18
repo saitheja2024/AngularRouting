@@ -40,10 +40,10 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/js/jquery-1.11.0.min.js",             
-              "src/assets/js/utccallback.js",
-              "src/assets/js/utccallback_1.js",
-              "src/assets/js/utccallback_rejected_payment.js"
+              "./assets/js/jquery.min.js",             
+              "./assets/js/utccallback.js",
+              "./assets/js/utccallback_1.js",
+              "./assets/js/utccallback_rejected_payment.js"
             ]
           },
           "configurations": {
@@ -155,10 +155,7 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "src/assets/js/jquery.min.js",             
-              "src/assets/js/utccallback.js",
-              "src/assets/js/utccallback_1.js",
-              "src/assets/js/utccallback_rejected_payment.js"
+            
             ]
           }
         },

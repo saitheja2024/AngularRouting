@@ -12,6 +12,8 @@ import { ProgramService } from 'src/app/modules/chinmaya-shared/services/program
 import { StoreService, KEYS } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { RouteChangeCall } from 'src/app/modules/chinmaya-shared/services/program-registration/routechange.service';
 import { DatapasstoComponent } from 'src/app/modules/chinmaya-shared/services/program-registration/datapassing.service';
+import * as $ from "jquery";
+
 declare function callbackUTC_1():any;
 declare function scrollTop():any;
 
@@ -279,9 +281,11 @@ if(arr!=null){
     //    }
      // }
      callbackUTC_1();
-     this.signature = JSON.parse(localStorage.getItem('signature') || '');
-     this.utc_time = JSON.parse(localStorage.getItem('utc_time') || '');
+     
      setTimeout(() => {
+      this.signature = JSON.parse(localStorage.getItem('signature') || '');
+      this.utc_time = JSON.parse(localStorage.getItem('utc_time') || '');
+
       if(this.ccCardPay=='E-Check'){
         var id = document.getElementById('pay_proceed_btn_echeck_full'); 
       }else{
