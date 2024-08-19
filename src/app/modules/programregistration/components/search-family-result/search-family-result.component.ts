@@ -114,7 +114,8 @@ async saveAnnualPledgeRegistration(registerWithMembership:any){
     "familyId":familyDetails.familyId,
     "programCode":selectedProgram.code,
     "chapterCode":selectedChapterCode,
-    "memberFlag": registerWithMembership
+    "memberFlag": registerWithMembership,
+     modifiedBy:familyDetails.personID
 
   }
   await this.programRegistrationService.saveAnnualPledgeRegistration(params);

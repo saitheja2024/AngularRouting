@@ -536,6 +536,7 @@ async onSubmit(clsName:any, categoryName:any, amtData:any, selectedData:any) {
       chapter: (this.selectedUserData.chapterCode)?this.selectedUserData.chapterCode:this.selectedUserData.chapter,//this.personUserData.chapter,
       personType: this.personUserData.personType,
       dateOfBirth: this.personUserData.dateOfBirth,
+      modifiedBy:this.personUserData.personID,
     },
     userProgramList: [{
     adjustedAmount: amtData.adjustedAmount,
