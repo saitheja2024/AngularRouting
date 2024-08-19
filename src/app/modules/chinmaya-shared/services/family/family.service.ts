@@ -7,6 +7,7 @@ import { FamilyMemberSearchInterface, FamilySearchInterface, SearchPersonByPerso
   providedIn: 'root'
 })
 export class FamilyService {
+  
 
 
 
@@ -15,6 +16,7 @@ export class FamilyService {
   selectedFamilyMember: any;
   selectedFamily: any;
   familyMember: any;
+  searchCriteria: any;
 
 
 
@@ -24,6 +26,13 @@ export class FamilyService {
   ) { }
 
 
+  setSearchCriteria(param: any) {
+    this.searchCriteria = param;
+  }
+
+  getSearchCriteria() {
+    return this.searchCriteria;
+  }
 
   async searchFamilies(params: FamilySearchInterface) {
 
@@ -35,8 +44,8 @@ export class FamilyService {
     let families: any = await this.httpService.post(options);
 
     if (families && families.projectSummaryList) {
-      this.familyList = families.projectSummaryList;
-      return families.projectSummaryList;
+      //this.familyList = families.projectSummaryList;
+      return families;
     }
 
     return [];

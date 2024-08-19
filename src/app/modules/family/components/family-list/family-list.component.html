@@ -87,6 +87,13 @@
 					<tr mat-row *matRowDef="let row; columns: displayColumns;" ></tr>
 			</table>  
 		</div>
+
+		<mat-paginator   
+		[showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+		[pageSizeOptions]="paginationConfig.pageSizeOptions" 
+		[length]="paginationConfig.length"   
+		(page)="handlePageEvent($event)">
+	</mat-paginator>
 	</div>
 	<!--end::Card body-->
 </div>

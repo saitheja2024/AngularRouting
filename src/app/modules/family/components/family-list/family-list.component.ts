@@ -21,6 +21,14 @@ export class FamilyListomponent {
 
   displayColumns: string[] = ["familyId", "personID", "firstName", "middleName", "lastName", "gender", "personType", "homePhone", "emailAddress"]
   dataSource:any = new MatTableDataSource<any>(); 
+  paginationConfig={
+    pageSize : 10,
+    pageIndex : 0,
+    pageSizeOptions :[10,30, 50,150,200,300,350,450],
+    showFirstLastButtons : true,
+    length:10
+  }
+
   
   @ViewChild(MatSort) sort: MatSort;
 
@@ -34,15 +42,16 @@ export class FamilyListomponent {
     //const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
     //this.dataToDisplay = [...this.dataToDisplay, ELEMENT_DATA[randomElementIndex]];
     //this.dataSource.setData(this.dataToDisplay);
-    this.dataSource.data=[];
   }
 
   showFamilyList(familyList: any) {
     this.familyList = familyList;
     this.totalRecCount = familyList;
-    this.dataSource.data=this.familyList.slice(); 
-    this.dataSource.sort = this.sort;
-    this.sort.sort(({ id: 'firstName', start: 'desc'}) as MatSortable);
+    this.dataSource = new MatTableDataSource<any>(this.familyList.projectSummaryList.slice());
+    this.paginationConfig.length=this.familyList.totalProjectSummary;
+    this.dataSource._updateChangeSubscription();
+    // this.dataSource.sort = this.sort;
+    // this.sort.sort(({ id: 'firstName', start: 'desc'}) as MatSortable);
   }
 
   showFamilyMemberList(family: any) {
@@ -57,5 +66,18 @@ sortItems(letter: string, index:any) {
   this.totalRecFooter = this.dataSource.data.length;
   this.dataSource.sort = this.sort;
 }
+
+async handlePageEvent(event:any){
+  let pageIndex = event.pageIndex;
+  let pageSize = event.pageSize;  
+  let previousIndex = event.previousPageIndex;
+  let previousSize = pageSize * pageIndex;
+  let searchCriteria = this.familyService.getSearchCriteria();
+  searchCriteria.requestPageModel.page=pageIndex;
+  searchCriteria.requestPageModel.size=pageSize;
+  let familyList = await this.familyService.searchFamilies(searchCriteria);
+  this.showFamilyList(familyList);
+ 
+ }
 
 }
