@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
@@ -5,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { AdminregistrationServices } from 'src/app/modules/chinmaya-shared/services/admin-registration/admin-registration.service';
+import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 
 
@@ -40,7 +42,7 @@ export class ClassesAndTeacherAssignementHomeComponent {
 
   
 
-  displayedColumns: string[] = ['session', 'classCode', 'subClassCode', 'groupEmailId'];
+  displayedColumns: string[] = ['checkbox','session', 'classCode', 'subClassCode', 'groupEmailId'];
 
   dataSource = new MatTableDataSource<any>();
 
@@ -56,11 +58,16 @@ export class ClassesAndTeacherAssignementHomeComponent {
   selectedCodeIndex: any;
   selectedSignupCode: any;
   enrolledClassesList: any=[];
+  initialSelection = [];
+  allowMultiSelect = false;
+  selection = new SelectionModel<any>(this.allowMultiSelect, this.initialSelection);
+  resultData: any;
 
   constructor(
     private router:Router,
     private store:StoreService,
-    private adminRegistrationService:AdminregistrationServices
+    private adminRegistrationService:AdminregistrationServices,
+    private alertService:AlertService
     ){
     
   }
@@ -87,6 +94,20 @@ export class ClassesAndTeacherAssignementHomeComponent {
     this.loggedInUser = this.adminRegistrationService.getLoggedInUser();
     await this.fetchSignupCodes();
 
+  }
+
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected == numRows;
+  }
+  
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
 
@@ -118,6 +139,7 @@ export class ClassesAndTeacherAssignementHomeComponent {
       
     }
     let results:any = await this.adminRegistrationService.fetchEnrolledClassesList(params);
+    this.resultData = results;
     this.enrolledClassesList=results.projectSummaryList;
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
     this.paginationConfig.length=results.totalProjectSummary;
@@ -138,10 +160,14 @@ export class ClassesAndTeacherAssignementHomeComponent {
 
 
    async onRefreshDistroButtonClick(){
-     let params = {
-       "chapterId": this.selectedChapterCode,
-       "enrolledClassesList": this.enrolledClassesList
-     }
+
+    if(this.selection.selected.length==0){
+        this.alertService.showErrorALert("Pleaese selecte at least one record");
+        return;
+    }
+
+     let params = this.selection.selected[0];
+       params["chapterId"]= this.selectedChapterCode;
 
      await this.adminRegistrationService.refreshEmailDistributionList(params);
      this.populateData();

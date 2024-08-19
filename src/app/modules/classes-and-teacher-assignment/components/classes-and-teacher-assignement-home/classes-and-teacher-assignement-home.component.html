@@ -50,8 +50,8 @@
                         <div class="card" style="background:none;border-radius: 0px;">
                             <div class="card-header border-0 cursor-pointer ps-0 pe-0 pt-2 pb-2">
                                 <div class="card-title">
-                                    <span class="fs-5">Parents Emails: 40</span>
-                                    <span class="fs-5 ms-4">Students: 20</span>
+                                    <span class="fs-5">Parents Emails: {{resultData?.parentEmailsCount}}</span>
+                                    <span class="fs-5 ms-4">Students: {{resultData?.studentCount}}</span>
                                 </div>
                                 <!--<div class="card-toolbar">
                                     <div class="justify-content-end">
@@ -75,6 +75,27 @@
                         <div class="table-responsive p-0" style="border-radius:0px !important;border:1px solid #ddd;">
                             <div class="mat-elevation-z8">
                                 <table class="table-striped table-hover" mat-table [dataSource]="dataSource" matSort>
+                                     <!-- Checkbox Column-->
+                                    <ng-container matColumnDef="checkbox">
+                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>
+                                            <div class="form-check form-check-sm form-check-custom form-check-solid me-6">
+                                                <label class="pt-0 pb-0">
+                                                    <input type="checkbox" value="1" class="form-check-input me-2" (change)="$event ? toggleAllRows() : null"
+                                                    [checked]="selection.hasValue() && isAllSelected()"
+                                                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <td class="text-nowrap" mat-cell *matCellDef="let element"> 
+                                            <div class="form-check form-check-sm form-check-custom form-check-solid me-6">
+                                                <label class="pt-0 pb-0">
+                                                    <input type="checkbox" value="1" class="form-check-input me-2" (click)="$event.stopPropagation()"
+                                                    (change)="$event ? selection.toggle(element) : null"
+                                                    [checked]="selection.isSelected(element)">
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </ng-container>
                 
                                     <!-- Session Column -->
                                     <ng-container matColumnDef="session">
