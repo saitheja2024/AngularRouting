@@ -69,6 +69,12 @@ $demo1-theme: mat.define-light-theme((
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+@media(max-width:992px) {
+  .imageres {
+    display: none;
+  }
+}
+
 .table-responsive {
   border-radius: 5px;
 }

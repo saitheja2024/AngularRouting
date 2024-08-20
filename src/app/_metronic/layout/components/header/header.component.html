@@ -1,5 +1,5 @@
 <!--begin::Header container-->
-<div class="app-container" id="kt_app_header_container" [ngClass]="headerContainerCssClass">
+<div class="app-container" style="padding-top:0px !important;" id="kt_app_header_container" [ngClass]="headerContainerCssClass">
   <ng-container *ngIf="appSidebarDefaultCollapseDesktopEnabled">
     <div class="app-sidebar-collapse-d-flex align-items-center me-3">
       <!--begin::sidebar toggle-->
@@ -23,7 +23,7 @@
       <div class="align-items-center fs_st_cust">Welcome to {{loginUserData.chapterDescription}}</div>
 
       <a routerLink="/dashboard" class="d-lg-none">
-        <img alt="Logo" src="./assets/media/logos/header.png" class="h-50px" />
+        <img alt="Logo" src="./assets/media/logos/header.png" class="h-50px imageres" />
       </a>
     </div>
     <!--end::Mobile logo-->

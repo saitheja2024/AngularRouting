@@ -98,6 +98,11 @@ const Routing: Routes = [
       import('../modules/role-access/role-access.module').then((m) => m.RoleAccessModule),
   },
   {
+    path: 'financial-reports',
+    loadChildren: () =>
+      import('../modules/financial-reports/financial-reports.module').then((m) => m.FinancialReportsModule),
+  },
+  {
     path: '',
     redirectTo: 'registration-processing',
     pathMatch: 'full',

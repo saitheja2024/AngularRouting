@@ -1,0 +1,188 @@
+<div class="card cardcss">
+    <!--begin::Card header-->
+    <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+        <!--begin::Card title-->
+        <div class="card-title float-sm-end">
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+                <h3 class="panel-title">
+                    Financial Report
+                </h3>
+            </div>
+            <!--end::Search-->
+        </div>
+        <!--end::Card title-->
+    </div>
+    <!--end::Card header-->
+    <!--begin::Card body-->
+    <div class="card-body p-4 pb-2">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4 mb-4 fv-row fv-plugins-icon-container">
+                    <select class="form-select form-select-sm">
+                        <option value="">Select Chapter Code</option>
+                        <option value="">Chinmaya Mission</option>
+                        <option value="">Chinmaya Somnath, Chantilly, VA</option>
+                        <option value="">Chinmaya Silver Spring, MD</option>	
+                        <option value="">Frederic Chapter, Frederic, MD</option>
+                    </select>
+                </div>
+                                                                
+                <div class="col-lg-4 mb-4 fv-row fv-plugins-icon-container">
+                    <select class="form-select form-select-sm">
+                        <option value="">Select Program	 Code</option>
+                    </select>
+                </div>
+            
+                <div class="col-lg-4 mb-4 fv-row fv-plugins-icon-container">
+                    <select class="form-select form-select-sm">
+                        <option value="">Select SignUp Code Category</option>
+                        <option value="">BV Programs</option>
+                        <option value="">Shloka Classes</option>
+                        <option value="">Language</option>
+                        <option value="">Art</option>
+                        <option value="">Performing Art</option>
+                        <option value="">Adult Classes</option>
+                        <option value="">Membership</option>
+                        <option value="">Parent Volunteer</option>
+                        <option value="">Youth Volunteer</option>
+                        <option value="">Summer Camp Child Registration</option>
+                        <option value="">Youth Registration</option>
+                        <option value="">T-Shirt</option>
+                        <option value="">Session Selection</option>
+                        <option value="">YLP</option>
+                        <option value="">Geeta Chanting Competition</option>
+                        <option value="">Volunteer Signup</option>
+                        <option value="">BOOK</option>
+                        <option value="">CHYK_MEMBERSHIP</option>
+                        <option value="">OPTIONAL_BOOK</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-4 mb-4 fv-row fv-plugins-icon-container">
+                    <select class="form-select form-select-sm">
+                        <option value="">Select SignUp Code</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-4 mb-4 fv-row fv-plugins-icon-container">
+                    <select class="form-select form-select-sm">
+                        <option value="">Select Session Type</option>
+                    </select>
+                </div>
+                                                                    
+                <div class="col-lg-4 mb-4 fv-row fv-plugins-icon-container">
+                    <select class="form-select form-select-sm">
+                        <option value="">Select Session</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!--end::Card body-->
+    <div class="card-footer p-4 pt-2 pb-2" style="border-top: 1px solid var(--bs-card-border-color) !important;">
+        <div class="row mt-2">
+            <div class="d-flex justify-content-end">
+                <div class="m-0">
+                    <button href="#" class="btn btn-primary btn-sm mb-2">
+                        <i class="icon-search4"></i> Search
+                    </button>																														
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card cardcss mt-4">
+    <div class="card-header cursor-pointer p-4 pt-2 pb-2" style="border-bottom: 1px solid #ddd;">
+        <div class="card-title">
+
+        </div>
+        <div class="card-toolbar">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-sm btn-primary">
+                    <i class="icon-file-excel"></i>
+                    <span class="ms-2" style="font-size:13px;">Export to Excel</span>
+                </button>
+                <button class="btn btn-sm btn-primary ms-2">
+                    <i class="icon-file-pdf"></i>
+                    <span class="ms-2" style="font-size:13px;">Export to Pdf</span>
+                </button>
+                <button class="btn btn-sm btn-primary ms-2">
+                    <i class="icon-printer2"></i>
+                    <span class="ms-2" style="font-size:13px;">Print</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSourceFinReports" matSort>
+
+                    <!-- Chapter Code Column-->
+                    <ng-container matColumnDef="chaptercode">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Chapter Code </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.chaptercode}}
+                        </td>
+                    </ng-container>
+
+                    <!-- Prgram Code Column-->
+                    <ng-container matColumnDef="programcode">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Program Code </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.programcode}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Signup Code Category Column-->
+                    <ng-container matColumnDef="signupcodecategory">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Signup Code Category </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.signupcodecategory}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Sign Up Code Column-->
+                    <ng-container matColumnDef="signupcode">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Sign Up Code </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.signupcode}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Sesstion Type Column-->
+                    <ng-container matColumnDef="sessiontype">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Session Type </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.sessiontype}} 
+                        </td>
+                    </ng-container>
+
+                    <!-- Session Column-->
+                    <ng-container matColumnDef="session">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header> Session </th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            {{element.session}} 
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsFinReports; sticky: true;" style="background-color: #fdfdfd;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsFinReports;"></tr>
+
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                                showFirstLastButtons>
+                </mat-paginator>
+
+            </div>
+        </div>
+    </div>
+</div>
