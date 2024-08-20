@@ -61,7 +61,7 @@ export class SearchFamilyResultComponent {
   showFamilyList(familyList: any) {
     this.familyList = familyList;
     this.totalRecCount = familyList;
-    this.dataSource.data=this.familyList.slice(); 
+    this.dataSource.data=this.familyList.projectSummaryList; 
     this.dataSource.sort = this.sort;
     this.sort.sort(({ id: 'firstName', start: 'desc'}) as MatSortable);
   }
