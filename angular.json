@@ -41,9 +41,7 @@
             ],
             "scripts": [
               "src/assets/js/jquery.min.js",             
-              "src/assets/js/utccallback.js",
-              "src/assets/js/utccallback_1.js",
-              "src/assets/js/utccallback_rejected_payment.js"
+              "src/assets/js/utccallback_1.js"
             ]
           },
           "configurations": {
