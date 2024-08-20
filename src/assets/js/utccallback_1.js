@@ -12,14 +12,16 @@ var secure_Trans_Key = "f0fed3faa449ef5b4db7b80957d53734";
 
 let hostSplit = (window.location.origin).split(':');
 let localhost = hostSplit[0]+hostSplit[1];
+const basePathUrl = (window.location.pathname).split('/');
+ let basePathName =  basePathUrl[1];
 if(localhost=="http://localhost"){
-  var  redirect_URL= window.location.origin+"/programregistration/search-family";
-  var  redirect_URL1= window.location.origin+"/programregistration/search-family";
+  var  redirect_URL= window.location.origin+"/"+basePathName+"/programregistration/search-family";
+  var  redirect_URL1= window.location.origin+"/"+basePathName+"/programregistration/search-family";
 }else{
   // var  redirect_URL= window.location.origin+"/MemberReg/program-registration";
   // var  redirect_URL1= window.location.origin+"/MemberReg/sevasignup";
-  var  redirect_URL= window.location.origin+"/programregistration/search-family";
-  var  redirect_URL1= window.location.origin+"/programregistration/search-family";
+  var  redirect_URL= window.location.origin+"/"+basePathName+"/programregistration/search-family";
+  var  redirect_URL1= window.location.origin+"/"+basePathName+"/programregistration/search-family";
 }
 
 function callbackUTC_1(){
@@ -87,7 +89,6 @@ function oncallback(e) {
          showConfirmButton: false,
          timer: 2800
         });
-     
      var resfam = JSON.parse(sessionStorage.getItem('fetchupdateResponse'));
      getUpdateinfo(responseData, resfam);
      fetchAdultFamilyData();
