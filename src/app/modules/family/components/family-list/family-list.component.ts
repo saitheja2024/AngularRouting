@@ -46,7 +46,7 @@ export class FamilyListomponent {
 
   showFamilyList(familyList: any) {
     this.familyList = familyList;
-    this.totalRecCount = familyList;
+    this.totalRecCount = familyList.projectSummaryList;
     this.dataSource = new MatTableDataSource<any>(this.familyList.projectSummaryList.slice());
     this.paginationConfig.length=this.familyList.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
