@@ -22,7 +22,7 @@ export class MembershipCallWorklistHomeComponent {
   searchCriteria:any={
     "requestPageModel": {
       "page": 0,
-      "size": 100,
+      "size": 10,
       "sortFieldName": "",
       "sortOrder": ""
     },
@@ -93,14 +93,14 @@ export class MembershipCallWorklistHomeComponent {
     this.totalRecList = dataList;
 
     this.dataSource = new MatTableDataSource<any>(dataList.projectSummaryList);
-    this.dataSource.paginator= this.paginator;
+    // this.dataSource.paginator= this.paginator;
     this.dataSource.sort = this.sort;
      //this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
     // this.dataSource.paginator.length = this.totalRecCount.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
   }
 
-  handlePageEvent(event:any){
+  async handlePageEvent(event:any){
     console.log(JSON.stringify(event,null,4));
     let pageIndex = event.pageIndex;
     let pageSize = event.pageSize;
@@ -109,14 +109,8 @@ export class MembershipCallWorklistHomeComponent {
   
     let previousSize = pageSize * pageIndex;
     this.searchCriteria.requestPageModel.page=pageIndex;
-    let pageCount = (event.length/pageSize);
-     let lastPage = Math.trunc(pageCount);
-     if(lastPage==pageIndex){
-      this.searchCriteria.requestPageModel.size= this.searchCriteria.requestPageModel.size+100;
-      if(this.searchCriteria.requestPageModel.size<this.totalRecList.totalProjectSummary){
-        this.fetchMemberShipCallWork('');
-      }
-     }
+    this.searchCriteria.requestPageModel.size=pageSize;
+    await this.fetchMemberShipCallWork('');
    }
  
    row_active:any={};

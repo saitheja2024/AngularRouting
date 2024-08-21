@@ -62,7 +62,7 @@
                         <div class="table-responsive">
                              <!--begin::Card body-->
                             <div class="card-body p-0">
-                                <div class="table-container table-responsive">
+                                <div class="table-container table-responsive" style="max-height: 500px;">
                                     <table id="ExampleMaterialTable" class="table table-striped mb-0" mat-table [dataSource]="dataSource" matSort>
 
                                         <!-- Position Column -->
@@ -97,17 +97,18 @@
                                             <td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.assignedTo}} </td>
                                         </ng-container>
 
-                                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
                                         <tr mat-row *matRowDef="let row;  columns: displayedColumns; let j=index" [ngClass]="{'active_row': row_active[j] == true}" >
                                         </tr>
                                     </table>
 
-                                    <mat-paginator #paginator 
-                                        (page)="handlePageEvent($event)" [length]="totalRecFooter?.totalProjectSummary" [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
-                                        [pageSizeOptions]="paginationConfig.pageSizeOptions">
-                                    </mat-paginator>
+                                   
 
                                 </div>
+                                <mat-paginator #paginator 
+                                (page)="handlePageEvent($event)" [length]="totalRecFooter?.totalProjectSummary" [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+                                [pageSizeOptions]="paginationConfig.pageSizeOptions">
+                            </mat-paginator>
                                 
                             </div>
                             <!--end::Card body-->
