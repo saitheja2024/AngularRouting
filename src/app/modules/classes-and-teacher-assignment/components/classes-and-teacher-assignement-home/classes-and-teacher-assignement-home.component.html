@@ -77,7 +77,8 @@
                                 <table class="table-striped table-hover" mat-table [dataSource]="dataSource" matSort >
                                      <!-- Checkbox Column-->
                                     <ng-container matColumnDef="checkbox">
-                                        <th  mat-header-cell *matHeaderCellDef mat-sort-header style="width: 20px !important;">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header 
+                                            style="width: 20px !important;border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;">
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
                                                 <label class="pt-0 pb-0">
                                                     <input type="checkbox" value="1" class="form-check-input " (change)="$event ? toggleAllRows() : null"
@@ -86,7 +87,7 @@
                                                 </label>
                                             </div>
                                         </th>
-                                        <td  mat-cell *matCellDef="let element" style="width:20px !important"> 
+                                        <td  mat-cell *matCellDef="let element" style="width:20px !important;border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;"> 
                                             <div class="form-check form-check-sm form-check-custom form-check-solid ">
                                                     <input type="checkbox" value="1" class="form-check-input " (click)="$event.stopPropagation()"
                                                     (change)="$event ? selection.toggle(element) : null"
@@ -97,26 +98,30 @@
                 
                                     <!-- Session Column -->
                                     <ng-container matColumnDef="session">
-                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Session</th>
-                                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> {{element.session}}</td>
+                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Session</th>
+                                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;"> {{element.session}}</td>
                                     </ng-container>
 
                                     <!-- Class Name Column -->
                                     <ng-container matColumnDef="classCode">
-                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Class Name</th>
-                                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> {{element.classCode}}</td>
+                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Class Name</th>
+                                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;"> {{element.classCode}}</td>
                                     </ng-container>
 
                                     <!-- Sub-Class Column -->
                                     <ng-container matColumnDef="subClassCode">
-                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header style="border-right:1px solid #aebddd;">Sub-Class</th>
-                                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;"> {{element.subClassCode}}</td>
+                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Sub-Class</th>
+                                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;"> {{element.subClassCode}}</td>
                                     </ng-container>
 
                                     <!-- Class Email Distribution List Column -->
                                     <ng-container matColumnDef="groupEmailId">
-                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header>Class Email Distribution List</th>
-                                        <td  mat-cell *matCellDef="let element"> {{element.groupEmailId}} </td>
+                                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                                            style="padding: 0 5px 0 10px !important;">Class Email Distribution List</th>
+                                        <td  mat-cell *matCellDef="let element" style="padding: 0 5px 0 10px !important;"> {{element.groupEmailId}} </td>
                                     </ng-container>
 
                                     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;" style="background-color:#CDDDFF;"></tr>
