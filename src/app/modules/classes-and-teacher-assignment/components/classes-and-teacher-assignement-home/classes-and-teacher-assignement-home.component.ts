@@ -142,6 +142,7 @@ export class ClassesAndTeacherAssignementHomeComponent {
     this.resultData = results;
     this.enrolledClassesList=results.projectSummaryList;
     this.dataSource = new MatTableDataSource<any>(results.projectSummaryList);
+    this.dataSource.sort = this.sort;
     this.paginationConfig.length=results.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
     
