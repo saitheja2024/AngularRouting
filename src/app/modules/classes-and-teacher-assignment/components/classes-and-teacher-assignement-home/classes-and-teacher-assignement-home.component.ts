@@ -42,7 +42,7 @@ export class ClassesAndTeacherAssignementHomeComponent {
 
   
 
-  displayedColumns: string[] = ['checkbox','session', 'classCode', 'subClassCode', 'groupEmailId'];
+  displayedColumns: string[] = ['select','session', 'classCode', 'subClassCode', 'groupEmailId',"refreshDLDateTime"];
 
   dataSource = new MatTableDataSource<any>();
 
@@ -95,20 +95,18 @@ export class ClassesAndTeacherAssignementHomeComponent {
     await this.fetchSignupCodes();
 
   }
-
-
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected == numRows;
-  }
   
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  toggleAllRows() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+  parentEmailsCount:any;
+  studentCount:any
+
+  onRowClicked(row: any) {
+    this.selection.select(row);
+    this.parentEmailsCount=row.parentEmailsCount
+    this.studentCount=row.studentCount;
+    console.log('Selected row:', row);
   }
+
+  
 
 
   async fetchSignupCodes(){
@@ -151,8 +149,6 @@ export class ClassesAndTeacherAssignementHomeComponent {
   handlePageEvent(event:any){
     let pageIndex = event.pageIndex;
     let pageSize = event.pageSize;  
-    let previousIndex = event.previousPageIndex;
-    let previousSize = pageSize * pageIndex;
     this.requestPageModel.page=pageIndex;
     this.requestPageModel.size=pageSize;
     this.populateData();
