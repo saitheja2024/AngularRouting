@@ -135,7 +135,8 @@ export class UrlService {
     fetchMemberShipCallWork : "membership/fetchMemberShipCallWork",
     fetchMemberShipCallWorkDetailsByFamilyId : "membership/fetchMemberShipCallWorkDetailsByFamilyId",
     saveMembershipCallHistory: "membership/saveMemberShipCallHistory",
-    MemberShipProgramDescription:'membership/getMemberShipProgramDescription'
+    MemberShipProgramDescription:'membership/getMemberShipProgramDescription',
+    sendMembershipEmail:'membership/sendMembershipEmail'
   }
 
   registration = {
