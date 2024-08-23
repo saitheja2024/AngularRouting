@@ -80,9 +80,9 @@ export class SearchFamiliesComponent {
       let searchParams: FamilySearchInterface = this.searchForm.value;
       param.requestFamilySearch = searchParams;
       this.familyService.setSearchCriteria(param);
-      let familyList = await this.familyService.searchFamilies(param);
+     
 
-      this.familyList.emit(familyList);
+      this.familyList.emit("searchFamily");
     }else{
       Swal.fire({
         // position: 'top-end',
