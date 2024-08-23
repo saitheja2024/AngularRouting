@@ -172,6 +172,10 @@ export class UrlService {
     fetchStudentAttendance:"StudentAttendance/fetchStudentAttendanceDetails",
     postAttendance: "StudentAttendance/saveStudentAttendanceDetails"
   }
+
+  manageFamily = {
+    fetchProgramDetails : "manageFamily/fetchProgramDetails"
+  }
  
   
 }

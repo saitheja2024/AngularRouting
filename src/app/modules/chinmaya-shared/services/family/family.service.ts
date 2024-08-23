@@ -145,4 +145,15 @@ export class FamilyService {
     }
 
 
+    async fetchProgramDetails(params: any) {
+      let options: Options = {
+        url: this.urlService.manageFamily.fetchProgramDetails,
+        body: params
+      }
+      let response: any = await this.httpService.post(options);
+      return response;
+    }
+    
+
+
 }
