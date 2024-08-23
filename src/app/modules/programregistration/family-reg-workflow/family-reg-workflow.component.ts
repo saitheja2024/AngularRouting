@@ -921,7 +921,8 @@ rightPanel:any;
         pending:this.pendingPaymentData
       }
     this.DataService.invokeMessage(dataSend);
-
+   localStorage.setItem('chapterCode', JSON.stringify(this.selectedChapterCode));
+   localStorage.setItem('personID', JSON.stringify(this.primaryUserData.personID));
     //this.Route.navigate(['/programregistration/review']);
     this.router.navigate(['/programregistration/review'], { queryParams: { data:this.memberFlag} });
 
