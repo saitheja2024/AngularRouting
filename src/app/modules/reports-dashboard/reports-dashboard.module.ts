@@ -7,12 +7,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FinancialReportsComponent } from './components/financial-reports/financial-reports.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SafeUrlPipe } from './components/dashboard/safe-url.pipe';
 
 const routes:Routes=[
   {
     path: '',
-    component: FinancialReportsComponent,
+    component: DashboardComponent,
     children: [
       {
         path: '',
@@ -21,14 +22,15 @@ const routes:Routes=[
       },
       {
         path:'financial-reports',
-        component:FinancialReportsComponent
+        component:DashboardComponent
       },
     ]
   }
 ]
 
 @NgModule({
-  declarations: [FinancialReportsComponent],
+  declarations: [DashboardComponent, 
+                 SafeUrlPipe],
   imports: [
     CommonModule,
     ChinmayaSharedModule,
@@ -40,9 +42,9 @@ const routes:Routes=[
     RouterModule.forChild([
       {
         path: '',
-        component: FinancialReportsComponent,
+        component: DashboardComponent,
       },
     ]),
   ],
 })
-export class FinancialReportsModule { }
+export class ReportsDashboardModule { }
