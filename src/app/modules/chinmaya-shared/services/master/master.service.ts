@@ -28,6 +28,14 @@ export class MasterService {
   private custodyList:any=null;
   private fetchYesorNo:any=null;
   private RelationshipListForChild:any=null;
+  classCode:never[];
+  studentList: never[];
+  studentlist: any;
+  classcode: any;
+  classcodeList: any;
+  studentlistdetails: any;
+  attendanceCheck: any;
+  attendanceSent: never[];
   constructor(
     private httpService: HttpService,
     private urlService: UrlService,
@@ -455,5 +463,77 @@ export class MasterService {
     return refreshCode;
 
   }
+
+  //code for fetching of class code goes below
+
+  async fetchClassCode(param: any, reload?: any){
+  
+
+    this.classCode = [];
+
+    let options: any = {
+      url: this.urlService.StudentAttendance.fetchClassCode,
+      body: param
+    };
+
+        let classCode: any = await this.httpService.post(options);
+    if (classCode && classCode.selectDropdownList) {
+
+      this.classcode = classCode;
+
+    }
+    return (classCode.selectDropdownList);
+  }
+//  for fetching of students goes below
+async fetchStudentList(param2:any, reload?: any): Promise<any> {
+
+
+  this.studentList = [];
+
+  let options1: any = {
+    url: this.urlService.StudentAttendance.fetchStudentAttendance,
+    body: param2,
+  };
+
+
+  let studentList: any= await this.httpService.post(options1);
+
+  if(studentList && studentList.studentDetailsList){
+    this.studentlist=studentList;
+    this.studentlistdetails=studentList.studentDetailsList;
+  }
+
+  return {
+    studentlist: this.studentlist,
+    studentlistdetails: this.studentlistdetails
+  };
+}
+
+// Attendance data to backend
+async postingAttendance(param3 :any, reload?: any): Promise<any> {
+
+
+  this.attendanceSent = [];
+
+  let options1: any = {
+    url: this.urlService.StudentAttendance.postAttendance,
+    body: param3,
+  };
+
+
+  let attendanceSent: any= await this.httpService.post(options1);
+
+
+
+  if(attendanceSent){
+    this.attendanceCheck=attendanceSent;
+
+  }
+
+  return {
+    studentlist: this.studentlist,
+    studentlistdetails: this.studentlistdetails
+  };
+}
   
 } 

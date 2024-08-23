@@ -167,6 +167,11 @@ export class UrlService {
     refreshEmailDistributionList:"adminRegistration/refreshEmailDistributionList"
   }
   
+  StudentAttendance ={
+    fetchClassCode: "StudentAttendance/fetchClassCodes",
+    fetchStudentAttendance:"StudentAttendance/fetchStudentAttendanceDetails",
+    postAttendance: "StudentAttendance/saveStudentAttendanceDetails"
+  }
  
   
 }

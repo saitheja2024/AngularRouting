@@ -1,181 +1,129 @@
+<!-- student-attendance.component.html -->
 <div class="card card-flush cardborder" style="border:1px solid #eee;">
-	<div class="card-header align-items-center float-end  px-4 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
-		<div class="card-title float-sm-end">
-			<div class="d-flex align-items-center position-relative my-1">
-				<h5 class="panel-title">
-                    Attendance Roster July 19th, 2024
-				</h5>
-			</div>
-		</div>
-	</div>
+    <div class="card-header align-items-center float-end px-4 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+      <div class="card-title float-sm-end">
+        <div class="d-flex align-items-center position-relative my-1 center">
+          <div class="container date">
+            <div class="row center">
+              <div class="col-lg-12 ">
+                <h5 class="panel-title">
+                  Attendance Roster <span class="break">{{ studentList?.currDate }}</span>
+                </h5>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
     <div class="card-body p-4">
-
-        <div class="row d-flex2" style="width: 100%;">
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <label class="text-nowrap mb-2">
-                    <span class="fw-semibold text-success fs-6">Tapovanam - A1</span>
-                </label>
-            </div>
-
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6 mb-2">
-                <label class="text-nowrap mb-2">
-                    <span class="fw-semibold text-success fs-6">P: 10</span>
-                </label>
-            </div>
-
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <label class="text-nowrap mb-2">
-                    <span class="fw-semibold text-danger fs-6">A: 2</span>
-                </label>
-            </div>
-
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <label class="text-nowrap mb-2">
-                    <span class="fw-semibold text-danger fs-6">Teacher 1</span>
-                </label>
-            </div>
-
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
-                <label class="text-nowrap mb-2">
-                    <span class="fw-semibold text-danger fs-6">Teacher 2</span>
-                </label>
-            </div>
+      <div class="d-flex2" style="width: 100%;">
+      <div class="container">
+        <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 col-4 mb-6" *ngIf="classcode.length > 1; else singleclass">
+          <!-- <div class="col-lg-3"> -->
+          <select class="form-select form-select-sm cursor-pointer greencolor" [(ngModel)]="this.selectedClasscode" (change)="onClasschange($event)">
+            <option value="">Select</option>
+            <option *ngFor="let item of classcode; trackBy: trackByCode" [value]="item.code">{{ item.description }}</option>
+          </select>
         </div>
-
-        <div class="p-4" style="border:1px solid #ccc;border-radius: 5px;max-height: 300px;overflow-y: scroll;">
-            <div class="col-lg-12 mb-2">
-                <div class="row">
-                    <div class="width mt-1">
-                        <span class="fs-6">Child 1</span>
-                    </div>
-                    <div class="width mt-1">
-                        <span class="fs-6">Last Name 1</span>
-                    </div>
-                    <div class="width">
-                        <div class="onoffswitch">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0" checked>
-                            <label class="onoffswitch-label" for="myonoffswitch">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-12 mb-2">
-                <div class="row">
-                    <div class="width mt-1">
-                        <span class="fs-6">Child 2</span>
-                    </div>
-                    <div class="width mt-1">
-                        <span class="fs-6">Last Name 1</span>
-                    </div>
-                    <div class="width">
-                        <div class="onoffswitch">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch1" tabindex="1" checked>
-                            <label class="onoffswitch-label" for="myonoffswitch1">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-12 mb-2">
-                <div class="row">
-                    <div class="width mt-1">
-                        <span class="fs-6">Child 3</span>
-                    </div>
-                    <div class="width mt-1">
-                        <span class="fs-6">Last Name 2 (New)</span>
-                    </div>
-                    <div class="width">
-                        <div class="onoffswitch">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch2" tabindex="2" checked>
-                            <label class="onoffswitch-label" for="myonoffswitch2">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-12 mb-2">
-                <div class="row">
-                    <div class="width mt-1">
-                        <span class="fs-6">Child 4</span>
-                    </div>
-                    <div class="width mt-1">
-                        <span class="fs-6">Last Name 3</span>
-                    </div>
-                    <div class="width">
-                        <div class="onoffswitch">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch3" tabindex="3" checked>
-                            <label class="onoffswitch-label" for="myonoffswitch3">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-12 mb-2">
-                <div class="row">
-                    <div class="width mt-1">
-                        <span class="fs-6">Child 5</span>
-                    </div>
-                    <div class="width mt-1">
-                        <span class="fs-6">Last Name 4</span>
-                    </div>
-                    <div class="width">
-                        <div class="onoffswitch">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch4" tabindex="4" checked>
-                            <label class="onoffswitch-label" for="myonoffswitch4">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-12 mb-2">
-                <div class="row">
-                    <div class="width mt-1">
-                        <span class="fs-6">Child 6</span>
-                    </div>
-                    <div class="width mt-1">
-                        <span class="fs-6">Last Name 5</span>
-                    </div>
-                    <div class="width">
-                        <div class="onoffswitch">
-                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch5" tabindex="5" checked>
-                            <label class="onoffswitch-label" for="myonoffswitch5">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="col-lg-8 col-md-4 col-sm-4 col-xs-4 col-4 subclass">
+          <div *ngIf="studentlistdetails[0]?.subClassAssignment">
+  
+            <p> <span class="greensubclass">- {{ studentlistdetails[0]?.subClassAssignment}}</span> </p>
+  
+          </div>
         </div>
+  
+        <!-- for subclass -->
+  
+  
+        <ng-template #singleclass>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-5  mb-4">
+            <div class="col-lg-6">
+            <select class="form-select form-select-sm cursor-pointer greencolor" disabled>
+              <option>{{ classcode[0]?.description }}</option>
+              <!-- classcode[0]?.description -->
+            </select>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-3">
+            <p> {{ studentlistdetails[0]?.subClassAssignment}}</p>
+          </div>
+        </div>
+        </ng-template>
+  
+  
+      <!-- Attendance Summary -->
+  
+        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 col-2 mb-2 alignright">
+          <label class="text-nowrap mb-2">
+            <span class="fw-semibold text-success fs-6">P: {{ present }}</span>
+          </label>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2 col-2 alignright">
+          <label class="text-nowrap mb-2">
+            <span class="fw-semibold text-danger fs-6">A: {{ absent }}</span>
+          </label>
+        </div>
+      </div>
+  
+        <div class="row teachers" >
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+          <label class="text-nowrap mb-2">
+            <span class="fw-semibold text-danger fs-6">{{ studentList?.firstname }} {{ studentList?.lastname }}</span>
+          </label>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+          <label class="text-nowrap mb-2">
+            <span class="fw-semibold text-danger fs-6">{{ studentList2 ? studentList2.firstname + ' ' + studentList2.lastname : ' '}}</span>
+          </label>
+        </div>
+      </div>
     </div>
-
-    <div class="card-footer p-4 pt-0">
+    </div>
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+  
+      <!-- Student List -->
+      <div class="p-4" style="border:1px solid #ccc; border-radius: 5px; max-height: 300px; overflow-y: scroll;" *ngIf="studentlistdetails.length > 0">
+        <div *ngFor="let item of studentlistdetails; let i = index" [attr.data-index]="i">
+          <div class="row">
+            <div class="width mt-1">
+              <span class="fs-6">{{ item.firstName }}</span>
+            </div>
+            <div class="width mt-1">
+              <span class="fs-6">{{ item.lastName }}</span>
+            </div>
+            <div class="width">
+              <div class="onoffswitch">
+                  <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch{{ i }}" tabindex="{{ i }}" checked (change)="toggleAttendance($event, i)">
+                  <label class="onoffswitch-label" for="myonoffswitch{{ i }}">
+                      <span class="onoffswitch-inner"></span>
+                      <span class="onoffswitch-switch"></span>
+                  </label>
+              </div>
+          </div>
+          </div>
+          <br>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  </div>
+      <!-- Submit and Cancel Buttons -->
+      <div class="card-footer p-4 pb-0">
         <div class="justify-content-center d-flex">
-            <button type="button" class="btn btn-sm btn-danger me-3"> 
-                <i class="icon-cancel-circle2"></i> 
-                Cancel 
-            </button>
-            <button type="button" class="btn btn-sm btn-primary"> 
-                <i class="icon-paperplane"></i> 
-                Submit 
-            </button>
+          <!-- <button type="button" class="btn btn-sm btn-danger me-3" (click)="Cancel()">
+            <i class="icon-cancel-circle2"></i> Cancel
+          </button> -->
+          <button type="button" class="btn btn-sm btn-primary" (click)="SubmitAttendance()">
+            <i class="icon-paperplane"></i> Submit
+          </button>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+  

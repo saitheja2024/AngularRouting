@@ -1,6 +1,6 @@
 .width {
     width:33.33% !important;
-} 
+}
 
 .onoffswitch {
     position: relative; width: 45px;
@@ -44,13 +44,13 @@
         position: absolute; top: 0; bottom: 0;
         right: 35px;
         border: 2px solid #999999; border-radius: 20px;
-        transition: all 0.3s ease-in 0s; 
+        transition: all 0.3s ease-in 0s;
     }
     .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
         margin-left: 0;
     }
     .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-        right: 0px; 
+        right: 0px;
     }
 
     @media(max-width:1200px) and (min-width:992px) {
@@ -66,3 +66,83 @@
       }
 
 
+/* Hide the default arrow */
+.custom-select {
+  appearance: none;  /* For most browsers */
+  -moz-appearance: none;  /* For Firefox */
+  -webkit-appearance: none;  /* For Safari and Chrome */
+  background: transparent;  /* Remove default background */
+  background-image: none;  /* Remove default arrow */
+  border: 1px solid #ccc;  /* Optional: Add border to match your design */
+  padding: 8px;  /* Adjust padding */
+  font-size: 14px;  /* Adjust font size */
+  cursor: pointer;  /* Change cursor to pointer */
+}
+
+/* Optional: Custom dropdown arrow */
+.custom-select-wrapper {
+  position: relative;
+}
+
+.custom-select-wrapper::after {
+  content: '▼';  /* Custom arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;  /* Allow clicks to pass through */
+  font-size: 12px;  /* Adjust font size */
+  color: #333;  /* Adjust color */
+}
+
+.subclass{
+
+  padding-top: 0.5rem;
+
+
+}
+.alignright{
+
+  padding-top: 0.5rem;
+  text-align: right;
+}
+.greensubclass
+{
+  font-weight: bold;
+  color: limegreen;
+
+}
+.greencolor{
+  color: limegreen;
+  font-weight: bold;
+}
+.panel-title{
+  color: rgb(62, 194, 247);
+
+}
+@media (min-width:300px) and (max-width:1200px){
+
+
+  .break{
+    display: block;
+
+    padding-left: 1.5rem;
+  }
+
+  .teachers{
+    text-align: right;
+
+  }
+  .card-header{
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+@media (min-width:1200px){
+.teachers{
+  text-align: right;
+
+}
+}
