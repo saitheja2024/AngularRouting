@@ -37,16 +37,16 @@ export class FamilyListomponent {
   }
 
   async ngOnInit() {
-   // this.familyList = await this.familyService.getFamilyList();
-   this.familyList = '';
-    //const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
-    //this.dataToDisplay = [...this.dataToDisplay, ELEMENT_DATA[randomElementIndex]];
-    //this.dataSource.setData(this.dataToDisplay);
+    this.showFamilyList("");
   }
 
-  showFamilyList(familyList: any) {
-    this.familyList = familyList;
-    this.totalRecCount = familyList.projectSummaryList;
+  async showFamilyList(familyList: any) {
+    let param=this.familyService.getSearchCriteria();
+    if(!param){
+      return;
+    }
+    this.familyList = await this.familyService.searchFamilies(param);
+    this.totalRecCount = this.familyList.projectSummaryList;
     this.dataSource = new MatTableDataSource<any>(this.familyList.projectSummaryList.slice());
     this.paginationConfig.length=this.familyList.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
