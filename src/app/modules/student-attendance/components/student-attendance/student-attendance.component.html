@@ -27,10 +27,10 @@
             <option *ngFor="let item of classcode; trackBy: trackByCode" [value]="item.code">{{ item.description }}</option>
           </select>
         </div>
-        <div class="col-lg-8 col-md-4 col-sm-4 col-xs-4 col-4 subclass">
+        <div class="col-lg-8 col-md-4 col-sm-4 col-xs-4 col-4 subclass" *ngIf="classcode.length > 1">
           <div *ngIf="studentlistdetails[0]?.subClassAssignment">
   
-            <p> <span class="greensubclass">- {{ studentlistdetails[0]?.subClassAssignment}}</span> </p>
+            <p> <span class="greensubclass">- {{ studentlistdetails[0]?.subClassAssignment}}khkhj</span> </p>
   
           </div>
         </div>
@@ -39,17 +39,11 @@
   
   
         <ng-template #singleclass>
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-5  mb-4">
+          <div class="col-lg-10 col-md-4 col-sm-4 col-xs-4 col-8  mb-4">
             <div class="col-lg-6">
-            <select class="form-select form-select-sm cursor-pointer greencolor" disabled>
-              <option>{{ classcode[0]?.description }}</option>
-              <!-- classcode[0]?.description -->
-            </select>
+              <span class="greensubclass mrg_top_10">{{ classcode[0]?.description }} -{{ studentlistdetails[0]?.subClassAssignment}}</span>
+            </div>
           </div>
-          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-3">
-            <p> {{ studentlistdetails[0]?.subClassAssignment}}</p>
-          </div>
-        </div>
         </ng-template>
   
   
