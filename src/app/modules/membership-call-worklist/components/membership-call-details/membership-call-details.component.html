@@ -211,6 +211,9 @@
             <button type="button" class="btn btn-sm btn-primary me-3 mb-2 mt-2" (click)="onSaveButtonClick()">
                 Save
             </button>
+            <button type="button" class="btn btn-sm btn-primary me-3 mb-2 mt-2" *ngIf="flagSendEMail" (click)="onEmailButtonClick()">
+                Send Email
+            </button>
             <!-- <button type="button" class="btn btn-sm btn-primary me-3 mb-2 mt-2">
                 Email Reg Team
             </button> -->

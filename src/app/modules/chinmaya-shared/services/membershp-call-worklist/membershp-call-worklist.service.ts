@@ -76,5 +76,14 @@ export class MemberShipCallWorkListServices {
     return response;
     }
 
+    async sendEmail(formValues: any) {
+      let options: Options = {
+        url: this.urlService.memberShip.sendMembershipEmail,
+        body: formValues
+      }
+      let response: any = await this.httpService.post(options);
+      return response;
+      }
+
 
 }

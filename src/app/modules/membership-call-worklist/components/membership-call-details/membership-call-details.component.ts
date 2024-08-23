@@ -58,11 +58,11 @@ export class MembershipCallDetailsComponent {
       this.groupbyNameSignupDetails=groupedByName;
       console.log(groupedByName);
     }
-
+   flagSendEMail:boolean=false;
     ngOnChanges(changes:any){
       if(changes && changes["callWorkDetails"].currentValue){
         this.callWorkDetails=changes["callWorkDetails"].currentValue
-       
+        this.flagSendEMail=true;
          let callHistory:any = {
           assignedTo:"",
           callId:0
@@ -158,6 +158,18 @@ export class MembershipCallDetailsComponent {
 
      closePopup(){
       this.popupWindowFlag=false;
+     }
+
+     async onEmailButtonClick(){
+       let param = {
+        "familyID": this.callWorkDetails.familyId,
+        "chapterID":this.selectedChapterCode,
+        "programCode": this.callWorkDetails.programCode,
+        "signupCode": "",
+        "modifiedBy": 0
+      }
+       await this.membeshipService.sendEmail(param);
+
      }
 
     //  getCurrentDateTime(data:any){
