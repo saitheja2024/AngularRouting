@@ -475,8 +475,9 @@ async memberselection(eve:any, index:any,type:any){
   let param={
     "familyId":(eve.familyID)?eve.familyID:eve.familyId,
     "programCode": this.selectedProgram.code,
-    "chapterCode": (eve.chapter)?eve.chapter:eve.chapterCode,
-    "memberFlag": this.memberFlag 
+    "chapterCode": (eve.chapter)?eve.chapter:(eve.chapterCode)?eve.chapterCode :this.selectedChapterCode,
+    "memberFlag": this.memberFlag,
+    modifiedBy:eve.personID 
   };
 
   let data:any = await this.classRgiSrvice.fetchSaveAnnualPledgeReg(param);
