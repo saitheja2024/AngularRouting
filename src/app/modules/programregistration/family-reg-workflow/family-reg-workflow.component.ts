@@ -580,7 +580,7 @@ async getPersonProgramRegistration(ind_change:any) {
 
   const body = {
     programCode: this.selectedProgram.code, 
-    chapterCode: this.selectedUserData.chapterCode,
+    chapterCode: this.selectedChapterCode,
     familyId:(this.selectedFamilyDetails.familyID)?this.selectedFamilyDetails.familyID :this.selectedFamilyDetails.familyId,
     paymentFlag: false,
     sessionFlag: true
