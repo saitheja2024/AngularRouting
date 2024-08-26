@@ -43,7 +43,6 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     this.modeService.init();
-    console.log(window.location.href);
     let currentURL = window.location.href;
 
     // Following condition is used if user landing from member registration portal. 

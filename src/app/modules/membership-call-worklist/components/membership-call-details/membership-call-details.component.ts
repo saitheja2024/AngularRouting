@@ -161,12 +161,12 @@ export class MembershipCallDetailsComponent {
      }
 
      async onEmailButtonClick(){
-       let param = {
-        "familyID": this.callWorkDetails.familyId,
-        "chapterID":this.selectedChapterCode,
-        "programCode": this.callWorkDetails.programCode,
-        "signupCode": "",
-        "modifiedBy": 0
+       let param :any= {
+        familyID: this.callWorkDetails.familyId,
+        chapterID:this.selectedChapterCode,
+        programCode: this.callWorkDetails.programCode,
+        signupCode: "",
+        modifiedBy: 0
       }
        await this.membeshipService.sendEmail(param);
 
