@@ -88,6 +88,7 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
+  flagtoggleChange:any=false;
   // fetching data of classcode and studentList
   async fetchData() {
     try {
@@ -109,12 +110,12 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
       this.studentList = studentlist || {};
       this.studentList2 = studentlist.orders2;
       this.studentlistdetails = studentlistdetails || [];
-      this.present = this.studentlistdetails.length;
-      this.absent = 0;
+      this.present = this.presentCount(); 
+      this.absent = this.absentCount();
 
       // Initialize present status for all students
       this.studentlistdetails.forEach((student) => {
-        student.present = true;
+        student.present =(student.attendanceStatus=='A')?false :true;
       });
 
       // Fetch status after data is available
@@ -198,12 +199,12 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
     const checkbox = event.target as HTMLInputElement;
     this.studentlistdetails[index].present = !checkbox.checked;
 
-    if (!checkbox.checked) {
-      this.studentCheck[index].attendanceStatus = 'A';
-    } else {
+    if (this.studentCheck[index].attendanceStatus=='A') {
       this.studentCheck[index].attendanceStatus = 'P';
+    } else {
+      this.studentCheck[index].attendanceStatus = 'A';
     }
-    if (checkbox.checked) {
+    if (this.studentCheck[index].attendanceStatus=='P') {
       this.absent--;
       this.present++;
     } else {
@@ -215,5 +216,20 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
   // For tracking of classcode
   trackByCode(index: number, item: any): string {
     return item.code;
+  }
+
+  absentCount(){
+   let absentData = this.studentlistdetails.filter((item:any) =>{
+    return item.attendanceStatus=='A';
+   });
+   return absentData.length;
+
+  }
+
+  presentCount(){
+    let presentData = this.studentlistdetails.filter((item:any) =>{
+      return item.attendanceStatus=='P';
+     });
+     return presentData.length;
   }
 }

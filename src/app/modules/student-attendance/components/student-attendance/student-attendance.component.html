@@ -94,8 +94,8 @@
               <div class="onoffswitch">
                   <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch{{ i }}" tabindex="{{ i }}" checked (change)="toggleAttendance($event, i)">
                   <label class="onoffswitch-label" for="myonoffswitch{{ i }}">
-                      <span class="onoffswitch-inner"></span>
-                      <span class="onoffswitch-switch"></span>
+                      <span *ngIf="(studentCheck[i].attendanceStatus=='A')" class="onoffswitch-inner onoffswitch-inner-absent"></span>
+                      <span *ngIf="(studentCheck[i].attendanceStatus=='P')" class="onoffswitch-inner onoffswitch-inner-pass"></span>
                   </label>
               </div>
           </div>

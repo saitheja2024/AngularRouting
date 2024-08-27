@@ -16,7 +16,7 @@
 }
 
     .onoffswitch-inner {
-        display: block; width: 200%; margin-left: -100%;
+        display: block; width: 200%; 
         transition: margin 0.3s ease-in 0s;
     }
     .onoffswitch-inner:before, .onoffswitch-inner:after {
@@ -24,14 +24,14 @@
         font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
         box-sizing: border-box;
     }
-    .onoffswitch-inner:before {
+    .onoffswitch-inner-pass:before {
         content: "P";
         background-color: #34A7C1; color: #FFFFFF;
         text-align: center;
         border:1px solid #34A7C1;
         border-radius: 5px;
     }
-    .onoffswitch-inner:after {
+    .onoffswitch-inner.onoffswitch-inner-absent:after {
         content: "A";
         background-color: #EEEEEE; color: #999999;
         text-align: center;
@@ -46,10 +46,10 @@
         border: 2px solid #999999; border-radius: 20px;
         transition: all 0.3s ease-in 0s;
     }
-    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    .onoffswitch-checkbox:checked + .onoffswitch-label  .onoffswitch-inner-absent {
         margin-left: 0;
     }
-    .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    .onoffswitch-checkbox:checked + .onoffswitch-label  .onoffswitch-inner-pass{
         right: 0px;
     }
 
