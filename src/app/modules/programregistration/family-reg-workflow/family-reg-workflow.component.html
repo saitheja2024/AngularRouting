@@ -91,8 +91,7 @@
                                                       <input type="checkbox" [value]="item.personID" [disabled]="item.enable && item.selected" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i,'event')" />
                                                     </td>
 												</ng-container>
-
-												<ng-container *ngIf="selectedSignupCode.registrantType=='Both' && (item.personType=='ADULT' || item.personType=='YOUTH')">
+												<ng-container *ngIf="selectedSignupCode.registrantType=='BOTH' && (item.personType=='ADULT' || item.personType=='YOUTH')">
                                                     <td><a href="javascript:void(0);">{{item.personID}}</a></td>
                                                     <td>{{item.firstName +' '+ item.lastName}}</td>
                                                     <td>{{ getGradeDesc(item.schoolGradeCode)}}</td>
@@ -120,7 +119,7 @@
                                             <select formControlName="personType" name="country" id="country" aria-label="Type of Person" (change)="fieldInterChange($event);"  data-control="select2" data-placeholder="Select..." class="form-select form-select-md p-2 fw-semibold mrg_b_5">
                                                 <option value="">Select</option>
                                             	<ng-container *ngFor="let item of personTypeList">
-                                                	<option *ngIf="(item.code=='ADULT' || item.code=='YOUTH' )&& selectedSignupCode.registrantType=='BOTH'" [value]="item.code">
+                                                	<option *ngIf="(item.code=='ADULT' || item.code=='YOUTH')&& selectedSignupCode.registrantType=='BOTH'" [value]="item.code">
                                                         {{item.description}}
                                                     </option>  
                                                     <option *ngIf="selectedSignupCode.registrantType=='ALL'" [value]="item.code">

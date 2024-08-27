@@ -8,7 +8,7 @@ import { ErrorHandlerService } from 'src/app/modules/chinmaya-shared/services/er
 import { FamilyService } from 'src/app/modules/chinmaya-shared/services/family/family.service';
 import { ProgramRegistrationService } from 'src/app/modules/chinmaya-shared/services/program-registration/program-registration.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
-
+import { AuthService } from 'src/app/modules/auth';
 @Component({
   selector: 'app-search-family-result',
   templateUrl: './search-family-result.component.html',
@@ -21,15 +21,15 @@ export class SearchFamilyResultComponent {
   totalRecCount:any;
   totalRecFooter:any;
   selection = new SelectionModel<any>(false, []);
-
+  loggedInUser:any;
 
   constructor(
     private familyService: FamilyService,
     private router: Router,
     private alertService:AlertService,
     private store:StoreService,
-    private programRegistrationService:ProgramRegistrationService
-   
+    private programRegistrationService:ProgramRegistrationService,
+    private authService:AuthService
   ) {}
 
   displayColumns: string[] = ["familyId", "firstName", "lastName", "homePhone", "emailAddress","select"]
@@ -56,6 +56,8 @@ export class SearchFamilyResultComponent {
     //this.dataToDisplay = [...this.dataToDisplay, ELEMENT_DATA[randomElementIndex]];
     //this.dataSource.setData(this.dataToDisplay);
     this.dataSource.data=[];
+    this.loggedInUser = this.authService.getLoggedInUser();
+
   }
 
   showFamilyList(familyList: any) {
@@ -115,7 +117,7 @@ async saveAnnualPledgeRegistration(registerWithMembership:any){
     "programCode":selectedProgram.code,
     "chapterCode":selectedChapterCode,
     "memberFlag": registerWithMembership,
-     modifiedBy:familyDetails.personID
+     modifiedBy:this.loggedInUser.personID
 
   }
   await this.programRegistrationService.saveAnnualPledgeRegistration(params);

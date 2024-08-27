@@ -153,9 +153,9 @@ export class FamilyRegWorkflowComponent {
 
  async ngOnInit(){
   this.primaryUserData  = this.familyService.getSelectedFamily();
-  this.selectedFamilyDetails =  this.primaryUserData ;
+  this.selectedFamilyDetails =  this.primaryUserData;
   localStorage.setItem('CurrentUser', JSON.stringify(this.primaryUserData));
-  
+  console.log(this.primaryUserData);
    localStorage.setItem('payOpts',JSON.stringify("fullAmt"));
   this.InitFlag=true;
   this.route.params.subscribe(async params => {
@@ -166,6 +166,7 @@ export class FamilyRegWorkflowComponent {
   this.selectedChapterCode = this.store.getValue(KEYS.chapter);
   localStorage.setItem('programcode', JSON.stringify(this.selectedProgram.code));
   this.currentUserData = this.classRgiSrvice.getLoggedInUser();
+  console.log(this.currentUserData)
   let chapter = this.store.getValue(KEYS.chapterDesc);
   this.selectedChapter=chapter[0].description;
   this.store.onProgramUpdate().subscribe(program=>{
@@ -477,7 +478,7 @@ async memberselection(eve:any, index:any,type:any){
     "programCode": this.selectedProgram.code,
     "chapterCode": (eve.chapter)?eve.chapter:(eve.chapterCode)?eve.chapterCode :this.selectedChapterCode,
     "memberFlag": this.memberFlag,
-    modifiedBy:eve.personID 
+    modifiedBy:this.loggedInUser.personID 
   };
 
   let data:any = await this.classRgiSrvice.fetchSaveAnnualPledgeReg(param);
