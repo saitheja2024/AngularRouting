@@ -48,9 +48,10 @@ export class FamilyListomponent {
     this.familyList = await this.familyService.searchFamilies(param);
     this.totalRecCount = this.familyList.projectSummaryList;
     this.dataSource = new MatTableDataSource<any>(this.familyList.projectSummaryList.slice());
+    this.dataSource.sort = this.sort;
     this.paginationConfig.length=this.familyList.totalProjectSummary;
     this.dataSource._updateChangeSubscription();
-    // this.dataSource.sort = this.sort;
+   
     // this.sort.sort(({ id: 'firstName', start: 'desc'}) as MatSortable);
   }
 

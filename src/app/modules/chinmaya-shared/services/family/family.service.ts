@@ -8,6 +8,7 @@ import { FamilyMemberSearchInterface, FamilySearchInterface, SearchPersonByPerso
 })
 export class FamilyService {
   
+  
 
 
 
@@ -17,6 +18,7 @@ export class FamilyService {
   selectedFamily: any;
   familyMember: any;
   searchCriteria: any;
+  registerWithMembership: any;
 
 
 
@@ -32,6 +34,14 @@ export class FamilyService {
 
   getSearchCriteria() {
     return this.searchCriteria;
+  }
+
+  setRegisterWithMembership(registerWithMembership: any) {
+    this.registerWithMembership = registerWithMembership;
+  }
+
+  isRegisterWithMembership(){
+    return this.registerWithMembership;
   }
 
   async searchFamilies(params: FamilySearchInterface) {
