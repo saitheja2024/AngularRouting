@@ -92,6 +92,7 @@ export class FamilyRegWorkflowComponent {
   annualPledgeFlag:any;
   paymentCompleteTab:boolean=false;
   primaryContatDetails:any;
+  isRegisterWithMembership: any;
   get PF(): { [key: string]: AbstractControl } {
     return this.programForm.controls;
   }
@@ -153,6 +154,7 @@ export class FamilyRegWorkflowComponent {
 
  async ngOnInit(){
   this.primaryUserData  = this.familyService.getSelectedFamily();
+  this.isRegisterWithMembership = this.familyService.isRegisterWithMembership();
   this.selectedFamilyDetails =  this.primaryUserData;
   localStorage.setItem('CurrentUser', JSON.stringify(this.primaryUserData));
   console.log(this.primaryUserData);

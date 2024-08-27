@@ -83,6 +83,7 @@ sortItems(letter: string, index:any) {
 
 
 async onRegisterButtonClick(registerWithMembership:any){
+  this.familyService.setRegisterWithMembership(registerWithMembership)
   let familyDetails =  this.selection.selected[0];
   this.familyService.setSelectedFamily(familyDetails);
   let selectedChapterCode = this.store.getValue(KEYS.chapter);
