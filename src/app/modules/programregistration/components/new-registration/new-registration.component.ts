@@ -88,6 +88,7 @@ export class NewRegistrationComponent {
       user:formValues,
       modifiedBy: this.currentUserData.personID
     }
+    this.familyService.setRegisterWithMembership(flag);
 
     this.contactsForm.markAsTouched();
     this.mobileCheckFlag=false;

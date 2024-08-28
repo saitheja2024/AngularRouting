@@ -842,15 +842,19 @@ rightPanel:any;
       signUpCode: pendData.signUpCode,
       programCode: pendData.programCode
     }
-   let deleteResData = this.classRgiSrvice.deleteProgramRegistration(body)
+   let deleteResData = this.classRgiSrvice.deleteProgramRegistration(body);
+   console.log(deleteResData);
         for(let item in this.formGroup.controls){
           if(item.includes(pendData.fullName)){
               this.formGroup.removeControl(item);
           }
         }
-        this.getPersonProgramRegistration('');
+        setTimeout(()=>{
+          this.getPersonProgramRegistration('');
         this.fetchFamilyFlag();
-    
+        this.familyPersonList();
+        },200);
+       
   }
 
   async fetchFamilyFlag(){
