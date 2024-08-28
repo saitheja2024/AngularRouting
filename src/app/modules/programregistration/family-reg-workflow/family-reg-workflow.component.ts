@@ -366,7 +366,7 @@ async familyPersonList(){
 
      let personData:any = await this.classRgiSrvice.getPersonList(param);
      this.familyMemberpersonsList = personData.personProgramList;
-
+     this.personSelect={};
      this.childrenList = personData.personProgramList.filter((personObj: any) => {
       return personObj.personType !== 'ADULT' && personObj.personType !== 'YOUTH';
     })
@@ -569,6 +569,7 @@ async onSubmit(clsName:any, categoryName:any, amtData:any, selectedData:any) {
     console.log(submitData);
      if(submitData){
       this.getPersonProgramRegistration('');
+      this.familyPersonList();
       //this.fetchFamilyFlag();
      // this.scrollToViewSession('');   
      }

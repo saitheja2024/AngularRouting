@@ -83,6 +83,24 @@
                                                     </td>
 												</ng-container>
 
+												<ng-container *ngIf="selectedSignupCode.registrantType=='ADULT' && item.personType=='ADULT'">
+                                                    <td><a href="javascript:void(0);">{{item.personID}}</a></td>
+                                                    <td>{{item.firstName +' '+ item.lastName}}</td>
+                                                    <td>{{ getGradeDesc(item.schoolGradeCode)}}</td>
+                                                    <td>
+                                                      <input type="checkbox" [value]="item.personID" [disabled]="item.enable && item.selected" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i,'event')" />
+                                                    </td>
+												</ng-container>
+
+												<ng-container *ngIf="selectedSignupCode.registrantType=='YOUTH' && item.personType=='YOUTH'">
+                                                    <td><a href="javascript:void(0);">{{item.personID}}</a></td>
+                                                    <td>{{item.firstName +' '+ item.lastName}}</td>
+                                                    <td>{{ getGradeDesc(item.schoolGradeCode)}}</td>
+                                                    <td>
+                                                      <input type="checkbox" [value]="item.personID" [disabled]="item.enable && item.selected" [(ngModel)]="personSelect[i]" (change)="memberselection(item,i,'event')" />
+                                                    </td>
+												</ng-container>
+
 												<ng-container *ngIf="selectedSignupCode.registrantType=='ALL'">
                                                     <td><a href="javascript:void(0);">{{item.personID}}</a></td>
                                                     <td>{{item.firstName +' '+ item.lastName}}</td>
