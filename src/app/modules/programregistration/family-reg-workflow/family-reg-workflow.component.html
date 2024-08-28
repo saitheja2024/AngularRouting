@@ -122,6 +122,12 @@
                                                 	<option *ngIf="(item.code=='ADULT' || item.code=='YOUTH')&& selectedSignupCode.registrantType=='BOTH'" [value]="item.code">
                                                         {{item.description}}
                                                     </option>  
+													<option *ngIf="item.code=='ADULT'&& selectedSignupCode.registrantType=='ADULT'" [value]="item.code">
+                                                        {{item.description}}
+                                                    </option> 
+													<option *ngIf="item.code=='YOUTH'&& selectedSignupCode.registrantType=='YOUTH'" [value]="item.code">
+                                                        {{item.description}}
+                                                    </option>  
                                                     <option *ngIf="selectedSignupCode.registrantType=='ALL'" [value]="item.code">
                                                         {{item.description}}
                                             		</option>  
