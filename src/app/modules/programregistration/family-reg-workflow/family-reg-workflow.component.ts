@@ -167,12 +167,14 @@ export class FamilyRegWorkflowComponent {
   this.selectedChapterCode = this.store.getValue(KEYS.chapter);
   localStorage.setItem('programcode', JSON.stringify(this.selectedProgram.code));
   this.currentUserData = this.classRgiSrvice.getLoggedInUser();
-  console.log(this.currentUserData)
   let chapter = this.store.getValue(KEYS.chapterDesc);
   this.selectedChapter=chapter[0].description;
   this.store.onProgramUpdate().subscribe(program=>{
     this.selectedProgram=program;
   });
+  this.loggedInUser = this.authService.getLoggedInUser();
+  this.familyID=this.loggedInUser.familyID;
+
   this.setDefaultValue();
   await  this.fetchRelationshipPrimaryContactList();
   await this.fetchSchoolGradeList();
@@ -183,8 +185,7 @@ export class FamilyRegWorkflowComponent {
   this.formGroup = this.fb.group({});
 
   this.signupURL = 'https://cmwrc.chinmayadc.org/support/arpanam/';
-    this.loggedInUser = this.authService.getLoggedInUser();
-    this.familyID=this.loggedInUser.familyID;
+   
    this.getPrimaryContactUpdatedDetails();
  }
 
@@ -460,6 +461,8 @@ signupCodeSelect(eve:any){
 
 annualPledgeData:any;
 async memberselection(eve:any, index:any,type:any){
+  const personId = this.loggedInUser.personID;
+
   this.personSelect={
     [index]:true
   };
@@ -471,9 +474,8 @@ async memberselection(eve:any, index:any,type:any){
     "programCode": this.selectedProgram.code,
     "chapterCode": (eve.chapter)?eve.chapter:(eve.chapterCode)?eve.chapterCode :this.selectedChapterCode,
     "memberFlag": this.memberFlag,
-    modifiedBy:this.loggedInUser.personID 
+    modifiedBy:personId
   };
-
   let data:any = await this.classRgiSrvice.fetchSaveAnnualPledgeReg(param);
   this.annualPledgeData  = data;
 }
