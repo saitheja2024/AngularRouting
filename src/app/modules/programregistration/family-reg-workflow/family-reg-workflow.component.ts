@@ -157,8 +157,7 @@ export class FamilyRegWorkflowComponent {
   this.isRegisterWithMembership = this.familyService.isRegisterWithMembership();
   this.selectedFamilyDetails =  this.primaryUserData;
   localStorage.setItem('CurrentUser', JSON.stringify(this.primaryUserData));
-  console.log(this.primaryUserData);
-   localStorage.setItem('payOpts',JSON.stringify("fullAmt"));
+  localStorage.setItem('payOpts',JSON.stringify("fullAmt"));
   this.InitFlag=true;
   this.route.params.subscribe(async params => {
     this.memberFlag = params['memberFlag']=="true"?true:false;
@@ -927,19 +926,23 @@ rightPanel:any;
     this.DataService.invokeMessage(dataSend);
    localStorage.setItem('chapterCode', JSON.stringify(this.selectedChapterCode));
    localStorage.setItem('personID', JSON.stringify(this.primaryUserData.personID));
-    //this.Route.navigate(['/programregistration/review']);
+   this.reviewandupdateWaitList();
     this.router.navigate(['/programregistration/review'], { queryParams: { data:this.memberFlag} });
 
-    //this.router.navigateByUrl('/programregistration/review', {queryParams:{data:this.memberFlag}});
-
-    // let dialogRef = this.dialog.open(ReviewComponent, {
-    //   data: this.primaryUserData,
-    //   width:'80vw',
-    // });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.ReviewCloseMessage = this.DataService.getReviewStoreValue();
-    //   if(this.ReviewCloseMessage=='ConfirmPayment'){ this.payNow();}
-    // });
   }
+
+  async reviewandupdateWaitList(){
+    
+    let familyId = (this.primaryUserData.familyId)?this.primaryUserData.familyId : this.primaryUserData.familyID;
+    let body:any={
+      familyId: familyId,
+      programCode:this.selectedProgram.code,
+      chapterCode: this.selectedChapterCode,
+      personId: this.primaryUserData.personID
+    };
+   
+    await  this.programService.reviewAndUpdateWaitListedStatus(body);
+
+  }
+
 }
