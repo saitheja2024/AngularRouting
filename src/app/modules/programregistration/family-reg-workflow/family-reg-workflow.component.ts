@@ -410,10 +410,6 @@ getSortedData(data: any, compareKey: string) {
   })
 }
 
- resetForm(){
-
- }
- 
   toggleMenu:boolean=false;
   signupcodeList:any;
   checkboxModel:any;
@@ -427,10 +423,6 @@ getSortedData(data: any, compareKey: string) {
   this.personSelect={}
  }
  
- selectCategorySignupCode(evn:any){
-  //this.checkboxModel[evn]=true;
- }
-
  async getCategoriesList(eve:any, type:any) {
 
   //this.selectedUserData = JSON.parse(sessionStorage.getItem('newUserData') || '');
@@ -518,7 +510,6 @@ async getClassAmount(signupCode: string, ngmodelName:any, categoryName:any, sele
      }else if(data.validation==false){
        this.prerqusitevalidMsg=data.validationMessage;
      }else{
-      // this.checkboxModel[ngmodelName.signUpCode] =false;
        this.pledgeMsg=true;
      }
   
@@ -570,8 +561,6 @@ async onSubmit(clsName:any, categoryName:any, amtData:any, selectedData:any) {
      if(submitData){
       this.getPersonProgramRegistration('');
       this.familyPersonList();
-      //this.fetchFamilyFlag();
-     // this.scrollToViewSession('');   
      }
             
 }
@@ -593,9 +582,7 @@ async getPersonProgramRegistration(ind_change:any) {
       this.personProgramRegData = data;
       this.pendingAmtList = await this.filterPaymentByStatusAmount(data.personProgramRegistrationList, "PENDING");
       this.pendingPaymentData = await this.filterPaymentByStatus(data.personProgramRegistrationList, "PENDING");
-     // this.selectCheckBox();
       this.callFilterData();
-      //this.fetchFamilySessionPreference();
       this.rightPanelAccordionNotPaid = this.callPaymentPanel(this.pendingPaymentData, 'personName','stagePaid');
       if(Object.keys(this.rightPanelAccordionNotPaid).length>0){ this.TotalValPendingData(); }
       this.objectKeys = Object.keys(this.rightPanelAccordionNotPaid);
@@ -607,7 +594,6 @@ pendingTotalAmt:any=[];
   TotalValPendingData(){
     this.pendingTotalAmt =[];
     let total=0;
-    //let sortData = this.reviewTabData?.userProgramList.sort((a:any, b:any) => a.personID - b.personID);
     this.pendingAmtList.filter( (item:any, index:any, self:any) =>{
       if(item.paymentSubmittedDate==null && ((item.registrationStatus=='PENDING' && (item.paymentStatus=='BALANCE_DUE' || item.paymentStatus=='NO_DUES'))
       ||(item.registrationStatus=='ACCEPTED' && item.paymentStatus=='BALANCE_DUE')
@@ -748,7 +734,6 @@ rightPanel:any;
  }
 
  familySessionData:any={};
- //headerofSelectedChoice:any={};
    sessionCtrl(fetChoiceData:any, index_change:any){
      this.familySessionData={};
      const group = this.fb.group({});
@@ -767,10 +752,7 @@ rightPanel:any;
        }else if(fetChoiceData[i].familySessionPreference.length>0 && (fetChoiceData[i].paymentSubmittedDate==null || fetChoiceData[i].paymentSubmittedDate=='' )){
          let famData =fetChoiceData[i].familySessionPreference;
          let sessionData = fetChoiceData[i].sessionPreferences;
-       //  if( this.headerofSelectedChoice[fetChoiceData[i].personName]==undefined){
-       //    Object.assign(this.headerofSelectedChoice , {[fetChoiceData[i].personName]:[]})
-       //    this.headerofSelectedChoice[fetChoiceData[i].personName].push({signup:fetChoiceData[i].signUpCodeDescription, personName: fetChoiceData[i].personName });
-       // }
+      
          const mergedArray = famData.concat(sessionData.filter((obj2:any) =>
             famData.findIndex((obj1:any) => obj1.choices === obj2.choices) === -1
            ));
@@ -828,8 +810,7 @@ rightPanel:any;
     }
     let objSession:any ={};
     for(var p=0; p<personData.sessionPreferences.length; p++){
-      // let choicepref:any=(personData.sessionPreferences[i].choiceLabel).split(' ');
-      // choicepref = choicepref[choicepref.length-1].split(':')[0];
+     
       if(event.target.value == personData.sessionPreferences[p].choices){
         objSession ={
           personId:personData.personID,
@@ -860,8 +841,6 @@ rightPanel:any;
       programCode: pendData.programCode
     }
    let deleteResData = this.classRgiSrvice.deleteProgramRegistration(body)
-       // this.checkboxModel[pendData.signUpCode]=false;
-
         for(let item in this.formGroup.controls){
           if(item.includes(pendData.fullName)){
               this.formGroup.removeControl(item);
@@ -869,7 +848,6 @@ rightPanel:any;
         }
         this.getPersonProgramRegistration('');
         this.fetchFamilyFlag();
-        //if(pendData.subCategory!=null){this.getCategoriesList();}
     
   }
 
@@ -885,7 +863,6 @@ rightPanel:any;
       
      let res = await this.classRgiSrvice.fetchSaveProgramConfigurationFields(body) 
      this.familyFlag=res;
-    // this.programConfigurationFields = res;
     
    }
 
@@ -919,7 +896,6 @@ rightPanel:any;
   }
     
   Review(){
-    //this.routePass.sendData({'currenttab':'Consent','Event':'SaveNext'}); 
       let dataSend ={
         data:this.primaryUserData,
         pending:this.pendingPaymentData

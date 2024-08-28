@@ -5,9 +5,6 @@
         </div>
 		<div  class="col-lg-4">
             <h3 class="panel-title">
-                <!-- <img class="me-3"
-                    src="assets/chinmaya_media/images/SVG-color/Family Member Registration Details-icon.svg"
-                    style="width: 25px;"> -->
                     Family Member Details<span class="ms-1" style="color:#9eb72c;">(Family ID: {{(primaryUserData.familyID)? primaryUserData.familyID:primaryUserData.familyId}})</span> 
             </h3>
 
@@ -204,7 +201,6 @@
                                                 <option value="">Select Raising School Grade</option>
                                                 <option [value]="t.code" *ngFor="let t of raisingGradeData">{{t.description}}</option>
                                             </select>
-                                            <!-- <input *ngIf="CAF['schoolGrade'].value!='19'" type="text" value="" class="form-control form-control-md p-2" formControlName="risingSchoolGradeDescription" readonly /> -->
 											<div *ngIf="PF['risingSchoolGrade'].invalid && (programForm.dirty || programForm.touched) && validateFlag" class="error_clr mrg_btm">
 																Please Select Raising School Grade.
 											</div>
@@ -239,10 +235,6 @@
                                     </div>
                                 </fieldset>
                                 <div class="d-flex justify-content-center mt-4">
-                                    <!-- <button type="button" (click)="resetForm();" class="btn btn-sm btn-danger backbtn1 me-2" style="font-size: 13px;">
-                                        <i class="icon-cancel-circle2 fs-6"></i> Cancel 
-                                    </button>
-                                     -->
                                     <button type="button" (click)="enrollProgram();" class="btn btn-sm btn-primary" style="font-size: 13px;">
                                         <i class="icon-paperplane fs-6"></i> Add Family Member
                                     </button>
@@ -271,9 +263,6 @@
 									<p *ngIf="pendingPaymentData.length==0" class="error_msg" style="margin-top:25px;">Please select option/options from list on the left.</p>
 									<p *ngIf="pledgeMsg_1" class="error_msg pad_top txt-align">Note: Please select a class to register.</p>
 									<p *ngIf="prerqusitevalidMsg!=''" class="error_msg pad_top txt-align">{{prerqusitevalidMsg}}</p>
-									<!-- <div *ngIf="!prerequsiteData.prerequisitesFlag"  class="error_msg">
-										<p style="padding-top: 15px; padding-left: 5px;" *ngFor="let item of prerequsiteData?.validationErrors">{{item}}</p>
-									</div> -->
 									<div class="card border border-gray-300">
 										<!--begin::Card header-->
 										<div class="card-header p-3" style="min-height:20px !important;border-bottom:1px solid #ccc;background-color: #f4f4f4;border-top-left-radius:5px;border-top-right-radius:5px;">
@@ -791,15 +780,7 @@
 								<!--end::Col-->
                                 
                                 <div class="d-flex justify-content-center mt-4">
-                                    <!-- <button type="button" class="btn btn-sm btn-primary me-2" style="font-size: 13px;">
-                                        <i class="icon-floppy-disk fs-6"></i> Save
-                                    </button> -->
-                                                    
-                                    <!-- <button type="button" class="btn btn-sm btn-primary" style="font-size: 13px;" (click)="payNow()">
-                                        <i class="icon-paperplane fs-6"></i> Proceed to Payment
-                                    </button> -->
-
-									<button type="button" class="btn btn-sm btn-primary" style="font-size: 13px; margin-left: 7px;" (click)="Review()">
+                                    <button type="button" class="btn btn-sm btn-primary" style="font-size: 13px; margin-left: 7px;" (click)="Review()">
                                          <i class="icon-paperplane fs-6"></i> Review
                                     </button>
                                 </div>
