@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { MemberShipCallWorkListServices } from 'src/app/modules/chinmaya-shared/services/membershp-call-worklist/membershp-call-worklist.service';
 import { KEYS, StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import * as moment from 'moment';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-membership-call-details',
@@ -33,6 +35,8 @@ export class MembershipCallDetailsComponent {
     constructor(private fb:FormBuilder,
       private store:StoreService,
       private membeshipService: MemberShipCallWorkListServices,
+      private clipboard: Clipboard,
+      private alertService:AlertService
     
     ){}
 
@@ -40,10 +44,18 @@ export class MembershipCallDetailsComponent {
       this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
       this.selectedChapterCode = this.store.getValue(KEYS.chapter);
       this.popupWindowFlag=false;
-      this.prepareForm();
-      //this.groupbyNameforSession();
+      this.prepareForm(); 
+      //this.groupbyNameforSession();  
     }
    groupbyNameSignupDetails:any;
+
+   copyToClipboard(value: string) {
+    if (value) {
+      this.clipboard.copy(value);
+      // Optionally, show a success message
+      this.alertService.showSuccessAlert('Phone number copied to clipboard!');
+    }
+  }
     groupbyNameforSession(){
       this.groupbyNameSignupDetails='';
       const groupedByName = this.callWorkDetails?.childList.reduce((acc:any, item:any) => {

@@ -1,52 +1,83 @@
 <div class="card p-4" [formGroup]="callWorkHistoryForm">
     <div class="col-lg-12">
         <div class="row">
+            <!-- Left Section -->
             <div class="col-lg-4 mb-4">
-                <div class="fs-6 text-dark fw-semibold">
+                <!-- Member Family -->
+                <div class="fs-6 text-dark fw-semibold mb-3">
                     Member Family: {{callWorkDetails?.memberFamily}}
                 </div>
-                <div class="ms-4 mt-2">
-                    <span class="jsutify-content-start">Mobile: </span>
-                    <span class="jsutify-content-end" style="color:#00B0F0;"><u>{{callWorkDetails?.mobile |   phoneNumberPipe}}</u></span>
+                
+                <!-- Mobile Number -->
+                <div class="d-flex align-items-center mb-3">
+                    <span class="me-2 fw-semibold">Mobile:</span>
+                    <span class="text-primary d-flex align-items-center flex-grow-1">
+                        <a class="address_txt me-2" href="tel:{{ callWorkDetails?.mobile }}">
+                            {{ callWorkDetails?.mobile | phoneNumberPipe }}
+                        </a>
+                        <a href="tel:{{ callWorkDetails?.mobile }}" class="text-decoration-none text-primary me-2">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="text-decoration-none text-primary" (click)="copyToClipboard(callWorkDetails?.mobile)">
+                            <i class="fas fa-copy"></i>
+                        </a>
+                    </span>
                 </div>
-                <div class="ms-4 mt-2">
-                    <span class="jsutify-content-start">Home: </span>
-                    <span class="jsutify-content-end ms-1" style="color:#00B0F0;"><u appPhoneNumberFormat>{{callWorkDetails?.home |  phoneNumberPipe}}</u></span>
-                </div>
-                <div class="ms-4 mt-2">
-                    <span class="jsutify-content-start">Email: </span>
-                    <span class="jsutify-content-end ms-2" style="color:#00B0F0;"><u>{{callWorkDetails?.email}}</u></span>
-                </div>
-                <div class="fs-6 ms-4 text-dark fw-semibold mt-2">
-                    <span style="color:#C00000;">Last Call Date: {{callWorkHistoryForm.value.lastCallDate | date:'MM/dd/yyyy'}}</span>
-                    <!-- <input type="date" formControlName="lastCallDate" format="MM/DD/YYYY"  autocomplete="off" name="lastCallDate" class="form-control form-control-sm" style="width: 35%;padding: 5px; display: inline-block;min-height: 20px !important;margin-left: 5px;"/> -->
-                </div>
-            </div>
-
-            <div class="col-lg-8">
-                <div class="fs-6 text-dark fw-semibold">
-                    <span class="number">
-                        <span class="jsutify-content-start me-4">Call Count <span class="ms-8">:</span> </span>
-                        <input type="number"  style="width:50px;" formControlName="callCount">
+    
+                <!-- Home Number -->
+                <div class="d-flex align-items-center mb-3">
+                    <span class="me-2 fw-semibold">Home:</span>
+                    <span class="text-primary d-flex align-items-center flex-grow-1">
+                        <a class="address_txt me-2" href="tel:{{ callWorkDetails?.home }}">
+                            {{ callWorkDetails?.home | phoneNumberPipe }}
+                        </a>
+                        <a href="tel:{{ callWorkDetails?.home }}" class="text-decoration-none text-primary me-2">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="text-decoration-none text-primary" (click)="copyToClipboard(callWorkDetails?.home)">
+                            <i class="fas fa-copy"></i>
+                        </a>
                     </span>
                 </div>
                 
-                <div class="fs-6 mt-2 text-dark fw-semibold">
-                    <span class="text" style="display:block ruby;">
-                        <span class="jsutify-content-start me-4">Assigned To <span class="ms-4">:</span> </span>
-                        <input type="text" formControlName="assignedTo" class="form-control form-control-sm" style="width: 50%;padding: 5px;min-height: 20px !important;">
+                <!-- Email -->
+                <div class="d-flex align-items-center mb-3">
+                    <span class="fw-semibold">Email:</span>
+                    <span class="text-primary ms-2">
+                        <a class="address_txt" href="mailto:{{ callWorkDetails?.email }}">{{callWorkDetails?.email}}</a>
                     </span>
                 </div>
-                <div class="fs-6 mt-2 text-dark fw-semibold">
-                   
-                    <span class="text" style="display:block ruby;">
-                        <span >Do not call again, Family Not Registering </span>
-                        <input type="checkbox" formControlName="doNotCallAgainFlag">
-                    </span>
+    
+                <!-- Last Call Date -->
+                <div class="fs-6 text-dark fw-semibold mt-3">
+                    <span style="color:#C00000;">Last Call Date: {{callWorkHistoryForm.value.lastCallDate | date:'MM/dd/yyyy'}}</span>
+                </div>
+            </div>
+    
+            <!-- Right Section -->
+            <div class="col-lg-8">
+                <!-- Call Count -->
+                <div class="fs-6 text-dark fw-semibold d-flex align-items-center mb-3">
+                    <span class="me-4 fw-semibold">Call Count:</span>
+                    <input type="number" class="form-control form-control-sm" formControlName="callCount" style="width: 70px;">
+                </div>
+                
+                <!-- Assigned To -->
+                <div class="fs-6 text-dark fw-semibold d-flex align-items-center mb-3">
+                    <span class="me-4 fw-semibold">Assigned To:</span>
+                    <input type="text" class="form-control form-control-sm" formControlName="assignedTo" style="width: 50%;">
+                </div>
+    
+                <!-- Do Not Call Again -->
+                <div class="fs-6 text-dark fw-semibold d-flex align-items-center">
+                    <span class="me-4 fw-semibold">Do not call again, Family Not Registering</span>
+                    <input type="checkbox" formControlName="doNotCallAgainFlag" class="form-check-input ms-2">
                 </div>
             </div>
         </div>
     </div>
+    
+
     <hr>
     <div class="col-lg-12">
         <div class="row">
