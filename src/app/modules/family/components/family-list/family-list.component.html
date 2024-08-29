@@ -1,16 +1,16 @@
-<div class="card card-flush cardborder">
+<div class="card cardcss">
 	<div class="card-header align-items-center float-end  px-4 bg-white"
 		style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
 		<!--begin::Card title-->
 		<div class="card-title float-sm-end">
 			<!--begin::Search-->
 			<div class="d-flex align-items-center position-relative my-1">
-				<h3 class="panel-title">
+				<h4 class="panel-title fw-semibold">
 					<img class="me-3"
 						 src="assets/chinmaya_media/images/SVG-color/Family Member Registration Details-icon.svg"
 						 style="width: 25px;">
 					Family Member List
-				</h3>
+				</h4>
 			</div>
 			<!--end::Search-->
 		</div>
@@ -35,53 +35,71 @@
 			<table mat-table [dataSource]="dataSource"  matSort class="mat-table" >
 				
 				  <ng-container matColumnDef="familyId">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Family ID</th>
-					<td valign="middle" mat-cell *matCellDef="let element"><a (click)="showFamilyMemberList(element)" style="cursor: pointer; color:rgb(28, 147, 245)">{{element.familyId}}</a></td>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>Family ID</th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;">
+						<a (click)="showFamilyMemberList(element)" style="cursor: pointer; color:rgb(28, 147, 245)">{{element.familyId}}</a>
+					</td>
 				  </ng-container>
 
 				  <ng-container matColumnDef="personID">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Person ID</th>
-					<td valign="middle" mat-cell *matCellDef="let element">{{element.personID}}</td>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>Person ID</th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;">
+						{{element.personID}}
+					</td>
 				  </ng-container>
 
 				  <ng-container matColumnDef="firstName">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>First Name</th>
-					<td valign="middle" mat-cell *matCellDef="let element">{{element.firstName}}</td>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>First Name</th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;">
+						{{element.firstName}}
+					</td>
 				  </ng-container>
 
 				  <ng-container matColumnDef="middleName">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Middle Name</th>
-					<td valign="middle" mat-cell *matCellDef="let element">{{element.middleName}}</td>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>Middle Name</th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;">
+						{{element.middleName}}
+					</td>
 				  </ng-container>
 
 				  <ng-container matColumnDef="lastName">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
-					<td valign="middle" mat-cell *matCellDef="let element">{{element.lastName}}</td>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;">
+						{{element.lastName}}
+					</td>
 				  </ng-container>
 
 				  <ng-container matColumnDef="gender">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Gender</th>
-					<td valign="middle" mat-cell *matCellDef="let element">{{element.gender}}</td>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>Gender</th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;">
+						{{element.gender}}
+					</td>
 				  </ng-container>
 
 				  <!-- <ng-container matColumnDef="dateOfBirth">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Date Of Birth</th>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>Date Of Birth</th>
 					<td valign="middle" mat-cell *matCellDef="let element">{{element.dateOfBirth}}</td>
 				  </ng-container> -->
 
 				  <ng-container matColumnDef="personType">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Person Type</th>
-					<td valign="middle" mat-cell *matCellDef="let element">{{element.personType}}</td>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>Person Type</th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;">
+						{{element.personType}}
+					</td>
 				  </ng-container>
 
 				  <ng-container matColumnDef="homePhone">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Home Phone</th>
-					<td valign="middle" mat-cell *matCellDef="let element">{{element.homePhone}}</td>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>Home Phone</th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;">
+						{{element.homePhone}}
+					</td>
 				  </ng-container>
 
 				  <ng-container matColumnDef="emailAddress">
-					<th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Email</th>
-					<td valign="middle" mat-cell *matCellDef="let element">{{element.emailAddress}}</td>
+					<th valign="middle" class="fw-semibold fs-5"  mat-header-cell *matHeaderCellDef  mat-sort-header>Email</th>
+					<td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;">
+						{{element.emailAddress}}
+					</td>
 				  </ng-container>
 					<tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true;"></tr>
 					<tr mat-row *matRowDef="let row; columns: displayColumns;" ></tr>
@@ -89,11 +107,11 @@
 		</div>
 
 		<mat-paginator   
-		[showFirstLastButtons]="paginationConfig.showFirstLastButtons"
-		[pageSizeOptions]="paginationConfig.pageSizeOptions" 
-		[length]="paginationConfig.length"   
-		(page)="handlePageEvent($event)">
-	</mat-paginator>
+			[showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+			[pageSizeOptions]="paginationConfig.pageSizeOptions" 
+			[length]="paginationConfig.length"   
+			(page)="handlePageEvent($event)">
+		</mat-paginator>
 	</div>
 	<!--end::Card body-->
 </div>

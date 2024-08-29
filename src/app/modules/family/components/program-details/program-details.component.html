@@ -1,84 +1,86 @@
-<div class="row m-0 mt-2">
-    <div class="col-12">
+<div class="row mt-8">
+    <div class="col-lg-12">
         <h3 class="table-title">Program  Details</h3> <!-- Table Title -->
     </div>
-    <div class="table-responsive p-0" style="border-radius:0px !important;border:1px solid #ddd;max-height:500px;overflow-y: auto;">
-        <div class="mat-elevation-z8">
-            <table class="table-striped table-hover" mat-table [dataSource]="dataSource" matSort>
-                
-                <!-- Person ID Column -->
-                <ng-container matColumnDef="personID">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Person ID</th>
-                    <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.personID}}</td>
-                </ng-container>
-                
-                <!-- Family ID Column -->
-                <!-- <ng-container matColumnDef="familyId">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Family ID</th>
-                    <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.familyId}}</td>
-                </ng-container> -->
-
-                <!-- First Name Column -->
-                <ng-container matColumnDef="firstName">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">First Name</th>
-                    <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.firstName}}</td>
-                </ng-container>
-
-                <!-- Last Name Column -->
-                <ng-container matColumnDef="lastName">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Last Name</th>
-                    <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.lastName}}</td>
-                </ng-container>
-
-                <!-- Program Code Column -->
-                <ng-container matColumnDef="programCodeDescription">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Program Code</th>
-                    <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.programCodeDescription}}</td>
-                </ng-container>
-
-                <!-- Signup Code Column -->
-                <ng-container matColumnDef="signupCodeDescription">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Signup Code</th>
-                    <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.signupCodeDescription}}</td>
-                </ng-container>
-
-                <!-- Payment Status Column -->
-                <ng-container matColumnDef="paymentStatus">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Payment Status</th>
-                    <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.paymentStatus}}</td>
-                </ng-container>
-
-                <!-- Registration Status Column -->
-                <ng-container matColumnDef="registrationStatus">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Registration Status</th>
-                    <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.registrationStatus}}</td>
-                </ng-container>
-
-                <!-- Created Date Column -->
-                <!-- <ng-container matColumnDef="createdDate">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Created Date</th>
-                    <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.createdDate | date:'short'}}</td>
-                </ng-container> -->
-
-                <!-- Amount Column -->
-                <ng-container matColumnDef="amount">
-                    <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
-                        style="padding: 0 5px 0 10px !important;width:120px;">Amount</th>
-                    <td mat-cell *matCellDef="let element" style="padding: 0 5px 0 10px !important;">{{element.amount}}</td>
-                </ng-container>
-
-                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;" style="background-color:#CDDDFF;"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </table>
+    <div class="col-lg-12 mt-2">
+        <div class="table-responsive p-0" style="border-radius:5px !important;border:1px solid #eee;max-height:500px;overflow-y: auto;">
+            <div class="mat-elevation-z8">
+                <table class="table-striped table-hover" mat-table [dataSource]="dataSource" matSort>
+                    
+                    <!-- Person ID Column -->
+                    <ng-container matColumnDef="personID">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Person ID</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.personID}}</td>
+                    </ng-container>
+                    
+                    <!-- Family ID Column -->
+                    <!-- <ng-container matColumnDef="familyId">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Family ID</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.familyId}}</td>
+                    </ng-container> -->
+    
+                    <!-- First Name Column -->
+                    <ng-container matColumnDef="firstName">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">First Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.firstName}}</td>
+                    </ng-container>
+    
+                    <!-- Last Name Column -->
+                    <ng-container matColumnDef="lastName">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Last Name</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.lastName}}</td>
+                    </ng-container>
+    
+                    <!-- Program Code Column -->
+                    <ng-container matColumnDef="programCodeDescription">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Program Code</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.programCodeDescription}}</td>
+                    </ng-container>
+    
+                    <!-- Signup Code Column -->
+                    <ng-container matColumnDef="signupCodeDescription">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Signup Code</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.signupCodeDescription}}</td>
+                    </ng-container>
+    
+                    <!-- Payment Status Column -->
+                    <ng-container matColumnDef="paymentStatus">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Payment Status</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.paymentStatus}}</td>
+                    </ng-container>
+    
+                    <!-- Registration Status Column -->
+                    <ng-container matColumnDef="registrationStatus">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Registration Status</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.registrationStatus}}</td>
+                    </ng-container>
+    
+                    <!-- Created Date Column -->
+                    <!-- <ng-container matColumnDef="createdDate">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #aebddd;padding: 0 5px 0 10px !important;width:120px;">Created Date</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-right:1px solid #ccc;padding: 0 5px 0 10px !important;">{{element.createdDate | date:'short'}}</td>
+                    </ng-container> -->
+    
+                    <!-- Amount Column -->
+                    <ng-container matColumnDef="amount">
+                        <th class="text-nowrap" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="padding: 0 5px 0 10px !important;width:120px;">Amount</th>
+                        <td mat-cell *matCellDef="let element" style="padding: 0 5px 0 10px !important;">{{element.amount}}</td>
+                    </ng-container>
+    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;" style="background-color:#CDDDFF;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

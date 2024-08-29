@@ -1,3 +1,8 @@
+.cardcss {
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
 .form-control, .form-select {
   border-radius:5px !important;
 }
@@ -16,8 +21,6 @@ text-transform: capitalize !important;
     margin-top: 20px !important;
   }
 }
-
-
 
 @media (max-width: 767px) {
 .divsize{
