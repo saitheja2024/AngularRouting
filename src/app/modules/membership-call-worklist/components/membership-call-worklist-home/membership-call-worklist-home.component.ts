@@ -145,4 +145,22 @@ refreshList(){
   this.activeOrder={};
 }
 
+async sendBulkEmail(){
+  let bulkEmailParam:any={
+    requestFamilyIdChaperCodeAndProgramCodeList:[]
+  };
+  console.log(this.totalRecList.projectSummaryList)
+ for(var i=0; i <this.totalRecList.projectSummaryList.length; i++){
+  let param:any= {
+    familyID: this.totalRecList.projectSummaryList[i].familyId,
+    chapterID: this.totalRecList.projectSummaryList[i].chapterID,
+    programCode: this.totalRecList.projectSummaryList[i].programCode,
+    signupCode: "",
+    modifiedBy: 0
+  }
+  bulkEmailParam.requestFamilyIdChaperCodeAndProgramCodeList.push(param);
+ }
+   await this.membeshipService.sendEmail(bulkEmailParam);
+}
+
 }

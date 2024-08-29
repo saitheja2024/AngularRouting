@@ -181,7 +181,6 @@ export class FamilyRegWorkflowComponent {
   await this.fetchpersonTypeList();
   this.getCategoriesList(this.primaryUserData,'Init');
   await this.fetchSchooldGradeLabel();
-  //this.memberselection(this.primaryUserData.user);
   this.formGroup = this.fb.group({});
 
   this.signupURL = 'https://cmwrc.chinmayadc.org/support/arpanam/';
