@@ -184,6 +184,7 @@ if(arr!=null){
   cardValue(){
     this.proceedPayBtnCC = false;
     this.proceedPayBtnEcheck = false;
+    this.payModeOPts='';
     let body={
       chapterCode:this.chapterCode,
       programCode:this.programCode
@@ -327,31 +328,6 @@ if(arr!=null){
      button.attr('reference_id',this.fetchresponsePayData.xdata1);
 
      var origtotalcount = this.fetchresponsePayData.userProgramList.length;
-     
-    // if(this.ccCardPay!='E-Check'){
-    //  for(var i=0; i<this.fetchresponsePayData.userProgramList.length; i++){
-      
-    //   if(i==0){
-    //     const val:any = i;
-    //     let num = val+1;
-    //     button.attr('line_item_'+num, this.fetchresponsePayData.userProgramList[i].classes +",Immediate,"+moment(new Date()).format('MM/DD/YYYY')+','+ this.fetchresponsePayData.totalAmount+".00"+','+installAmt);
-    //    }
-
-    //    if(i!=0){
-    //     const val1:any = i;
-    //     let num = val1+1;
-    //     button.attr('line_item_'+num, this.fetchresponsePayData.userProgramList[i].signUpCodeDescription +",Future,"+moment(this.fetchresponsePayData.lastDateOfCurrentMonth).format('MM/DD/YYYY')+","+this.fetchresponsePayData.totalAmount+".00"+","+installAmt)
-    //    }
-    //   }
-      
-      //  for (var j=0; j<2; j++){
-      //   if(j==0){
-      //     button.attr('line_item_'+(1+origtotalcount),",,Total Amount,"+this.fetchresponsePayData.totalAmount+".00"+','+installAmt);
-      //   }else if(j==1){
-      //     button.attr('line_item_'+(origtotalcount+2), ",,First Instalment Pledge Amount,"+moment(new Date()).format('MM/DD/YYYY')+','+installAmt);
-      //   }
-       //} 
-      //}
 
      callbackUTC_1();
      setTimeout(() => {
@@ -362,10 +338,7 @@ if(arr!=null){
       }
          
        id?.setAttribute('api_access_id', environment.API_Access_ID);
-       id?.setAttribute('location_id', environment.LOCATION_ID);
-       //id?.setAttribute('signature', this.signature);
-       //id?.setAttribute('utc_time', this.utc_time);
-      // this.proceedPayBtn=true;
+       id?.setAttribute('location_id', environment.LOCATION_ID)
       }, 1500);
         }
        
@@ -381,6 +354,171 @@ if(arr!=null){
   onBackTab(ev:any){
    // this.routePass.sendData({'currenttab':'Registration','Event':'current'}); 
    this.router.navigateByUrl('/programregistration/search-family');
+  }
+
+  payModeOPts:any;
+  PaymCheck:any;
+
+  cardValueOpt(){
+  this.ccCardPay='';
+  }
+
+  completePaymentNow(){
+
+    if(this.payModeOPts== "M-Check" && (this.PaymCheck==undefined || this.PaymCheck==null || this.PaymCheck=='')){
+      Swal.fire({
+        // position: 'top-end',
+         icon: 'error',
+         title: 'Please Enter M-Check.',
+         showConfirmButton: true,
+       });
+    }else{
+      this.callupdatepayAPI();
+    }
+  }
+
+  async callupdatepayAPI(){
+    
+    let body ={
+      familyId: this.familyId,
+    programCode:  this.programCode,
+    chapterCode: this.chapterCode,
+    paymentFlag:true
+
+    }
+    
+   let famData = await this.programService.fetchpaymentInfoFamilyandproCode(body)
+        this.getCallUpdateAPI(famData);
+      
+  }
+
+  async getCallUpdateAPI(resfam:any){
+    var payopts:any = JSON.parse(localStorage.getItem('payOpts') || '');
+      // var total = JSON.parse(localStorage.getItem('totalAMt') || '{}');
+      // var totalwithcon = JSON.parse(localStorage.getItem('totalAMtwithconv') || '{}');
+      this.loggedInUser= this.currentUserData;
+
+      var programCodeVal = this.programCode;
+      
+      var personCode =this.personID;
+
+      var chapterCode = this.chapterCode;
+      
+      var datares:any ={
+          "user": {
+         "familyID": this.loggedInUser.familyID,
+          "personID": personCode,
+          "Xdata1":programCodeVal,
+          // "firstName": resdata.firstName,
+          // "middleName": resdata.middleName,
+          // "lastName": resdata.lastName,
+          // "gender": resdata.gender,
+          // "emailAddress": resdata.emailAddress,
+          // "phoneNumber": resdata.phoneNumber,
+          // "homePhone":resdata.homePhone,
+          // "address": resdata.address,
+          // "address2": resdata.address2,
+          // "address3":resdata.address3,
+          // "city": resdata.city,
+          // "state": resdata.state,
+          // "zipCode": resdata.zipCode,
+          "chapter":chapterCode,
+          "totalAmount": resfam.totalAmount,
+          "totalAmountWithConvenienceFee": resfam.totalAmountWithConv
+        },
+        programCode:programCodeVal,
+        userProgramList:[],
+        modeOfPayment: (this.payModeOPts== "M-Check")?"MCHECK":"CASH",
+        installmentAmount:resfam.installmentAmount,
+        installmentAmountWithConv:resfam.installmentAmountWithConv,
+        pledgeTotal: resfam.pledgeTotal,
+        arpanamPledgeAdjustment: resfam.arpanamPledgeAdjustment,
+        totalpledgeAmount: resfam.totalpledgeAmount,
+        totalPledgeAmountWithConv: resfam.totalPledgeAmountWithConv,
+        completeFlag:true,
+        immediatePaymentInstallmentInfo: '',
+        deferredPaymentInstallmentInfo: '',
+        checkNumber:(this.PaymCheck)?this.PaymCheck:''
+      }
+
+      if(resfam.immediatePaymentInstallmentInfo!=null){
+        datares.immediatePaymentInstallmentInfo={};
+        datares.immediatePaymentInstallmentInfo = {
+          id: resfam?.immediatePaymentInstallmentInfo?.id,
+          familyID: resfam?.immediatePaymentInstallmentInfo?.familyID,
+          personID: resfam?.immediatePaymentInstallmentInfo?.personID,
+          invoiceNumber: resfam?.immediatePaymentInstallmentInfo?.invoiceNumber,
+          totalInvoiceAmount: resfam?.immediatePaymentInstallmentInfo?.totalInvoiceAmount,
+          installmentNumber: resfam?.immediatePaymentInstallmentInfo?.installmentNumber,
+          scheduleTransactionAmount: resfam?.immediatePaymentInstallmentInfo?.scheduleTransactionAmount,
+          scheduleTransactionAmountWithConv: resfam?.immediatePaymentInstallmentInfo?.scheduleTransactionAmountWithConv,
+          scheduleTransactionDate:resfam?.immediatePaymentInstallmentInfo?.scheduleTransactionDate,
+          scheduleAuthCode: resfam?.immediatePaymentInstallmentInfo?.scheduleAuthCode,
+          status: resfam?.immediatePaymentInstallmentInfo?.status,
+          scheduleType: resfam?.immediatePaymentInstallmentInfo?.scheduleType
+        }
+      }else{
+        datares.immediatePaymentInstallmentInfo=null;
+      }
+
+      if(resfam.deferredPaymentInstallmentInfo!=null){
+        datares.deferredPaymentInstallmentInfo={};
+        datares.deferredPaymentInstallmentInfo = {
+          id: resfam?.deferredPaymentInstallmentInfo?.id,
+          familyID: resfam?.deferredPaymentInstallmentInfo?.familyID,
+          personID: resfam?.deferredPaymentInstallmentInfo?.personID,
+          invoiceNumber: resfam?.deferredPaymentInstallmentInfo?.invoiceNumber,
+          totalInvoiceAmount: resfam?.deferredPaymentInstallmentInfo?.totalInvoiceAmount,
+          installmentNumber: resfam?.deferredPaymentInstallmentInfo?.installmentNumber,
+          scheduleTransactionAmount: resfam?.deferredPaymentInstallmentInfo?.scheduleTransactionAmount,
+          scheduleTransactionAmountWithConv: resfam?.deferredPaymentInstallmentInfo?.scheduleTransactionAmountWithConv,
+          scheduleTransactionDate:resfam?.deferredPaymentInstallmentInfo?.scheduleTransactionDate,
+          scheduleAuthCode: resfam?.deferredPaymentInstallmentInfo?.scheduleAuthCode,
+          status: resfam?.deferredPaymentInstallmentInfo?.status,
+          scheduleType: resfam?.deferredPaymentInstallmentInfo?.scheduleType
+        }
+        //Object.assign(datares.deferredPaymentInstallmentInfo, deferredPaymentInstallmentInfo);
+      }else{
+        datares.deferredPaymentInstallmentInfo=null;
+      }
+
+
+      Object.assign(datares.userProgramList, resfam.userProgramList);
+      // if(payopts=="partAmt"){
+      //   datares.paymentInstallmentInfoList= [];
+      //   Object.assign(datares.paymentInstallmentInfoList, resfam.paymentInstallmentInfoList);
+      // }
+      for(var i=0; i<datares.userProgramList.length; i++){
+       // datares.userProgramList[i].registrationId = 25098;
+        datares.userProgramList[i].registrationStatus= '';//response.response_description;
+        if(this.payModeOPts=="M-Check"){
+          datares.userProgramList[i].modeOfPayment= "MCHECK";
+          datares.userProgramList[i].invoiceNumber= '';
+          datares.userProgramList[i].checkNumber=(this.PaymCheck)?this.PaymCheck:''
+        }
+        if(this.payModeOPts=='Cash'){
+          datares.userProgramList[i].modeOfPayment= "CASH";
+        }
+        datares.userProgramList[i].paymentAuthCode= '';//response.authorization_code;
+        datares.userProgramList[i].paymentTraceNumber= '';//response.trace_number;
+        datares.userProgramList[i].invoiceNumber= '';//response.xdata_3;
+
+        datares.userProgramList[i].paymentSubmittedDate= new Date();
+        datares.userProgramList[i].paymentTxnDate= new Date();
+        
+      }
+
+      let data:any = await this.programService.completePaymentInfo(datares);
+       if(data!=''){
+        Swal.fire({
+          // position: 'top-end',
+           icon: 'success',
+           title: 'Changes are successfully saved.',
+           showConfirmButton: false,
+           timer: 2000
+         });
+         this.router.navigateByUrl('/programregistration/search-family');
+       }
   }
 
 
