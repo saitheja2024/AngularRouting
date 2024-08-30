@@ -7,6 +7,9 @@ import { ScreenLookupComponent } from './components/screen-lookup/screen-lookup.
 import { RolesLookupComponent } from './components/roles-lookup/roles-lookup.component';
 import { AssignRoleComponent } from './components/assign-role/assign-role.component';
 import { ScreenAccessComponent } from './components/screen-access/screen-access.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 const routes: Routes = [
   {
@@ -48,8 +51,11 @@ const routes: Routes = [
     ScreenAccessComponent
   ],
   imports: [
+    MatSelectModule,
+    MatOptionModule,
     CommonModule,
     ChinmayaSharedModule,
+    NgMultiSelectDropDownModule.forRoot(),
     RouterModule.forChild(routes)
   ]
 })
