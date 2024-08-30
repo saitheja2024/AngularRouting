@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="card-body p-4">
+    <div class="card-body p-4" *ngIf="classcode.length>0 &&  studentlistdetails.length>0">
       <div class="d-flex2" style="width: 100%;">
       <div class="container">
         <div class="row">
@@ -119,5 +119,10 @@
         </div>
       </div>
     </div>
+
+     <div *ngIf="classcode.length==0 &&  studentlistdetails.length==0">
+        <p class="no_Rec_cls">No Records Found In Student Attendance.</p>
+     </div>
+
   </div>
   
