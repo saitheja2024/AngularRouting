@@ -361,6 +361,7 @@ if(arr!=null){
 
   cardValueOpt(){
   this.ccCardPay='';
+  this.PaymCheck='';
   }
 
   completePaymentNow(){
@@ -522,6 +523,9 @@ if(arr!=null){
   }
 
 
+  allowNummericsOnly(event:any){
+    event.target.value = event.target.value.replace(/[^0-9]*/g, '');
+  }
 }
 
 

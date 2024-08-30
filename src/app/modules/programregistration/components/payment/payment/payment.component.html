@@ -164,7 +164,7 @@
                     </div>
                   <!---M-CHECK Start-->
                     <div class="col-md-12 mrg_t_15" *ngIf="payModeOPts=='M-Check'">
-                        <input type="text" name="" value="" [(ngModel)]="PaymCheck" class="form-control" placeholder="M-Check" />
+                        <input type="text" name="" value="" [(ngModel)]="PaymCheck" class="form-control" placeholder="M-Check" (input)="allowNummericsOnly($event);"/>
                     </div>
                   <!---M-CHECK End-->
                     <div class="table-responsive table-row-bordered paymentmethod col-lg-12 mt-4" *ngIf="paymentListDetailsList?.deferredPaymentInstallmentInfo!=null && (ccCardPay=='CC' || ccCardPay=='E-Check')" style="border:1px solid #ccc;border-radius:5px;">
@@ -303,6 +303,12 @@
                                         [(ngModel)]="payModeOPts" style="margin-right:7px;">
                                     Cash 
                             </label>
+                             <!---M-CHECK Start-->
+                    <div class="col-md-12 mrg_t_15" *ngIf="payModeOPts=='M-Check'">
+                        <input type="text" name="" value="" [(ngModel)]="PaymCheck" class="form-control" placeholder="M-Check" (input)="allowNummericsOnly($event);"/>
+                    </div>
+                  <!---M-CHECK End-->
+
                             <div class="col-lg-12" *ngIf="(ccCardPay=='E-Check')">
                                 <div class="text-center" style="margin-top:15px;">
                                     <img src="assets/images/e-check.png" *ngIf="ccCardPay=='E-Check'" class="mb-4" width="50%" alt="cardimg">
