@@ -559,7 +559,6 @@ async onSubmit(clsName:any, categoryName:any, amtData:any, selectedData:any) {
   
 
     let submitData = await this.classRgiSrvice.saveProgramRegistration(body);
-    console.log(submitData);
      if(submitData){
       this.getPersonProgramRegistration('');
       this.familyPersonList();
