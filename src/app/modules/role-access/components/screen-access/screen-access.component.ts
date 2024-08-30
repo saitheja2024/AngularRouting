@@ -1,4 +1,4 @@
-import {Component,Input,Output,EventEmitter, ViewChild} from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -45,7 +45,6 @@ export class ScreenAccessComponent {
       myItems: [this.selectedItems]
   });
   }
-
 
   ScreenAccess: ScreenAccess[] = [
     {role: '', screens: '', screenaccess: '', actions:''}
