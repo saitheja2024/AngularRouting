@@ -2,8 +2,16 @@
     <div class="card-header border-0 cursor-pointer ps-0 pe-0 pt-2 pb-2">
         <div class="card-title">
             <h3 class="fw-bold">
-                Screen Lookup
+                Screen Access
             </h3>
+        </div>
+        <div class="card-toolbar">
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-sm btn-primary" (click)="AddRow()">
+                    <i class="icon-plus2"></i>
+                    <span class="ms-2" style="font-size:13px;">Add</span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -19,19 +27,51 @@
                             style="border-right:1px solid #ccc;background: #C6D8FD;">Role</th>
                         <td class="text-nowrap" mat-cell *matCellDef="let element" 
                             style="border-right:1px solid #ccc;border-bottom: 1px solid #ddd;">
-                            <input type="text" class="form-control form-control-sm" placeholder="Role">
+                            <select class="form-select form-select-sm cursor-pointer">
+                                <option>Select</option>
+                            </select>
+                        </td>
+                    </ng-container>
+
+                    <!-- Screens Column -->
+                    <ng-container matColumnDef="screens">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="border-right:1px solid #ccc;background: #C6D8FD;">Screens</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" 
+                            style="border-right:1px solid #ccc;border-bottom: 1px solid #ddd;max-width:150px !important;">
+                            <div style="width:100%">
+                                <form [formGroup]="form">
+                                    <ng-multiselect-dropdown
+                                        [settings]="settings"
+                                        [data]="dropdownData"
+                                        formControlName="myItems">
+                                    </ng-multiselect-dropdown>
+                                </form>
+                            </div>
                         </td>
                     </ng-container>
 
                     <!-- Screen Access Column -->
                     <ng-container matColumnDef="screenaccess">
                         <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header 
-                            style="background: #C6D8FD;">Status</th>
+                            style="border-right:1px solid #ccc;background: #C6D8FD;">Status</th>
                         <td class="text-nowrap text-end" mat-cell *matCellDef="let element" 
-                            style="border-bottom: 1px solid #ddd;">
+                            style="border-right:1px solid #ccc;border-bottom: 1px solid #ddd;">
                             <select class="form-select form-select-sm cursor-pointer">
                                 <option>Select</option>
                             </select>
+                        </td>
+                    </ng-container>
+
+                    <!-- Action Column -->
+                    <ng-container matColumnDef="actions">
+                        <th class="text-nowrap fw-semibold" mat-header-cell *matHeaderCellDef mat-sort-header 
+                            style="background: #C6D8FD;">Actions</th>
+                        <td class="text-nowrap" mat-cell *matCellDef="let element" style="border-bottom:1px solid #ddd;"> 
+                            <button class="btn btn-sm button-default ms-2" (click)="DeleteRow(i)" 
+                                    style="border: 1px solid #FFCDDB;padding: 5px 8px !important;width:30px;">
+                                    <i class="icon-bin pe-0" style="font-size: 13px !important;color:#F30000;"></i>
+                            </button>
                         </td>
                     </ng-container>
                     
@@ -40,10 +80,18 @@
                 </table>
     
                 <mat-paginator [pageSizeOptions]="[10,20,50]"
-                                showFirstLastButtons>
+                               showFirstLastButtons>
                 </mat-paginator>
     
             </div>
         </div>
+
+        <div class="card-footer p-4 pb-2 text-center">
+            <button class="btn btn-sm btn-primary mb-2">
+                <i class="icon-floppy-disk" style="color:#fff;"></i>
+                <span class="ms-2" style="font-size:13px;">Save</span>
+            </button>
+        </div>
+
     </div>
 </div>

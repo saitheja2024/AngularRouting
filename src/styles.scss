@@ -75,6 +75,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 }
 
+.dropdown-list {
+  position: fixed !important;
+  width: 285px !important;
+}
+
+.multiselect-dropdown .dropdown-btn {
+border: 1px solid #ddd !important;
+font-size: 13px !important;
+color: var(--bs-gray-700) !important;
+}
+
+
+.multiselect-dropdown .dropdown-btn .dropdown-multiselect__caret::before {
+  border-width: 5px 5px 0 5px !important;
+  top: 60% !important;
+}
+
 .table-responsive {
   border-radius: 5px;
 }
