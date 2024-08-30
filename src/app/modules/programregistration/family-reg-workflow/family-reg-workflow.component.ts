@@ -13,6 +13,7 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { DatapasstoComponent } from '../../chinmaya-shared/services/program-registration/datapassing.service';
 import { RouteChangeCall } from '../../chinmaya-shared/services/program-registration/routechange.service';
 import { AuthService } from '../../auth';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-family-reg-workflow',
@@ -901,15 +902,40 @@ rightPanel:any;
   }
     
   Review(){
-      let dataSend ={
-        data:this.primaryUserData,
-        pending:this.pendingPaymentData
-      }
-    this.DataService.invokeMessage(dataSend);
-   localStorage.setItem('chapterCode', JSON.stringify(this.selectedChapterCode));
-   localStorage.setItem('personID', JSON.stringify(this.primaryUserData.personID));
-   this.reviewandupdateWaitList();
-    this.router.navigate(['/programregistration/review'], { queryParams: { data:this.memberFlag} });
+
+    let Adult_Flag= true;
+    let takeName='';
+     for(let item in this.formGroup.controls){
+        if(item.includes('_')){
+         if(this.formGroup.controls[item].value==''){
+           takeName=item;
+           Adult_Flag=false;
+         }
+        }
+     }
+ 
+   if(Adult_Flag){
+    let dataSend ={
+      data:this.primaryUserData,
+      pending:this.pendingPaymentData
+    }
+  this.DataService.invokeMessage(dataSend);
+ localStorage.setItem('chapterCode', JSON.stringify(this.selectedChapterCode));
+ localStorage.setItem('personID', JSON.stringify(this.primaryUserData.personID));
+ this.reviewandupdateWaitList();
+  this.router.navigate(['/programregistration/review'], { queryParams: { data:this.memberFlag} });
+     
+   }else{
+     Swal.fire({
+       // position: 'top-end',
+        icon: 'error',
+        title: 'Please Select Sessions.',
+        showConfirmButton: true,
+        //timer: 1500
+      });
+   }
+
+     
 
   }
 

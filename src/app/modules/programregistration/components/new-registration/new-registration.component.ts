@@ -67,7 +67,7 @@ export class NewRegistrationComponent {
       address: new FormControl('',[Validators.required]),
       address2: new FormControl(''),
       address3: new FormControl(''),
-      city: new FormControl('',[Validators.required]),
+      city: new FormControl(''),
       state: new FormControl('',[Validators.required]),
       zipCode: new FormControl('',[Validators.required, Validators.pattern(/^([0-9]{5})(?:[-\s]*([0-9]{4}))?$/)]),
       status: new FormControl('Active'),
@@ -130,6 +130,10 @@ export class NewRegistrationComponent {
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const day = String(today.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
+  }
+
+  allowNummericsOnly(event:any){
+    event.target.value = event.target.value.replace(/[^0-9]*/g, '');
   }
 
 }

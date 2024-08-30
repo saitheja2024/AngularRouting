@@ -84,9 +84,9 @@
         </div>
         <div class="mb-3">
             <input type="text" class="form-control form-control-sm" appCapitalize placeholder="City" formControlName="city">
-            <div *ngIf="CF['city'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
+            <!-- <div *ngIf="CF['city'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
                 Please Enter City.
-            </div>
+            </div> -->
         </div>
         <div class="mb-3">
             <div class="row">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <input  onKeyPress="if(this.value.length==5) return false;"  type="text" class="form-control form-control-sm" placeholder="Zip Code" formControlName="zipCode" maxlength="5" required [class.is-invalid]="zipCode.invalid && (zipCode.dirty || zipCode.touched)">
+                    <input (input)="allowNummericsOnly($event)" type="text" class="form-control form-control-sm" placeholder="Zip Code" formControlName="zipCode" maxlength="5" required >
                     <div *ngIf="this.contactsForm.controls['zipCode'].value=='' && CF['zipCode'].invalid && (contactsForm.dirty || contactsForm.touched) && validateFlag" class="error_clr mrg_btm">
                         Please Enter Zip Code.
                     </div>
