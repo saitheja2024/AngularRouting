@@ -181,7 +181,7 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
         modifiedBy: this.currentUserData.personID,
         dateOfAttendance: new Date().toISOString(),
         registrationId: item1.registrationId,
-        attendanceRecordId: (item1.attendanceRecordId)?item1.attendanceRecordId:0,
+        attendanceRecordId: (item1.attendanceRecordId)?item1.attendanceRecordId:(item1.attendanceRecordId==null)?null:0,
       });
     }
   }
