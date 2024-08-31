@@ -56,8 +56,6 @@ export class ReviewComponent {
     this.programCode = this.selectedProgram.code;
     this.chapterCode =  this.selectedChapterCode;
    
-    
-
     this.subscribeCompData();
   }
 
@@ -81,6 +79,8 @@ export class ReviewComponent {
     this.pendingPaymentData = dataReceive.pending;
     this.ReviewTabInit();
     this.selectedChoice();
+    this.reviewTabWaitList();
+
   }
 
     selectedChoice(){

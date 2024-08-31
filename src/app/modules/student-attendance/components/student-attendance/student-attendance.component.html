@@ -81,9 +81,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
   
       <!-- Student List -->
-      <div class="p-4" style="border:1px solid #ccc; border-radius: 5px; max-height: 300px; overflow-y: scroll;" *ngIf="studentlistdetails.length > 0">
+      <div class="p-4" style="border:1px solid #ccc; border-radius: 5px; max-height: 300px; overflow-y: scroll; padding-top: 0px !important;" *ngIf="studentlistdetails.length > 0">
         <div *ngFor="let item of studentlistdetails; let i = index" [attr.data-index]="i">
-          <div class="row">
+          <div class="row" [ngClass]="(i%2==0)?'even_row':'odd_row'">
             <div class="width mt-1">
               <span class="fs-6">{{ item.firstName }}</span>
             </div>
@@ -100,7 +100,6 @@
               </div>
           </div>
           </div>
-          <br>
         </div>
       </div>
   
