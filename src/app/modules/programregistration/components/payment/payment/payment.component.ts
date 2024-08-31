@@ -46,7 +46,8 @@ export class PaymentComponent {
   payFullAmt:string="fullAmt";
   signature:any;
   utc_time:any;
-
+ 
+  selectedUserData:any;
 constructor(private masterService: MasterService,private programService: ProgramService,  
   private sanitizer: DomSanitizer, private authService:AuthService,
   private store:StoreService, private router:Router, private routePass:RouteChangeCall, private Dataservice:DatapasstoComponent){
@@ -56,7 +57,7 @@ constructor(private masterService: MasterService,private programService: Program
 ngOnInit(){
   let dataReceive = this.Dataservice.getStoreValue();
 
-
+  this.selectedUserData = JSON.parse(localStorage.getItem('CurrentUser') ||'');
 
   localStorage.setItem('payOpts',JSON.stringify("fullAmt"));
   this.selectedAcademicYear = this.store.getValue(KEYS.academicYear);
@@ -404,25 +405,13 @@ if(arr!=null){
       var personCode =this.personID;
 
       var chapterCode = this.chapterCode;
-      
+      this.familyId = (this.selectedUserData.familyId)?this.selectedUserData.familyId: this.selectedUserData.familyID;
+
       var datares:any ={
           "user": {
-         "familyID": this.loggedInUser.familyID,
+         "familyID":this.familyId,
           "personID": personCode,
           "Xdata1":programCodeVal,
-          // "firstName": resdata.firstName,
-          // "middleName": resdata.middleName,
-          // "lastName": resdata.lastName,
-          // "gender": resdata.gender,
-          // "emailAddress": resdata.emailAddress,
-          // "phoneNumber": resdata.phoneNumber,
-          // "homePhone":resdata.homePhone,
-          // "address": resdata.address,
-          // "address2": resdata.address2,
-          // "address3":resdata.address3,
-          // "city": resdata.city,
-          // "state": resdata.state,
-          // "zipCode": resdata.zipCode,
           "chapter":chapterCode,
           "totalAmount": resfam.totalAmount,
           "totalAmountWithConvenienceFee": resfam.totalAmountWithConv
