@@ -16,6 +16,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatExpansionModule} from '@angular/material/expansion';
 
 export const MODULES = [
     CommonModule,
@@ -38,4 +39,6 @@ export const MODULES = [
     MatDialogModule,
     MatButtonToggleModule,
     MatRadioModule,
+    MatExpansionModule
+
 ]

@@ -55,6 +55,8 @@ export class ProgramDetailsComponent {
   selectedChapterCode: any;
   loggedInUser: any;
   selectedFamily: any;
+  dataSourceMap: any=[];
+  programDetailsResponseList: any;
 
   constructor(
     private router:Router,
@@ -95,11 +97,15 @@ export class ProgramDetailsComponent {
  
 
   
-    let results:any = await this.familyService.fetchProgramDetails(params);
-    this.dataSource = new MatTableDataSource<any>(results.responseProgramDetailsList);
-    this.dataSource.sort = this.sort;
-    //this.paginationConfig.length=results.totalProjectSummary;
-    this.dataSource._updateChangeSubscription();
+     let result:any = await this.familyService.fetchProgramDetails(params);
+     this.programDetailsResponseList=result.programDetailsResponseList
+    // this.dataSource = new MatTableDataSource<any>(results.responseProgramDetailsList);
+    // this.dataSource.sort = this.sort;
+    // this.dataSource._updateChangeSubscription();
+
+    // this.programDetailsResponseList.forEach((program:any) => {
+    //   this.dataSourceMap[program.programCode] = new MatTableDataSource(program.responseProgramDetailsList);
+    // });
     
   }
 
