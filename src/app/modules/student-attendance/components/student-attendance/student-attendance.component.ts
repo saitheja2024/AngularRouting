@@ -206,12 +206,17 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
     } else {
       this.studentCheck[index].attendanceStatus = 'A';
     }
+
     if (this.studentCheck[index].attendanceStatus=='P') {
-      this.absent--;
+      if(this.absent>0){
+        this.absent--;
+      }
       this.present++;
     } else {
       this.absent++;
-      this.present--;
+      if(this.present>0){
+        this.present--;
+      }
     }
   }
 
