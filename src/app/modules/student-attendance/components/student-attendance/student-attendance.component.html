@@ -57,7 +57,7 @@
             text-align: center;
             height: 28px;">
               <label class="text-nowrap mb-2">
-                <span class="fw-semibold text-dark fs-6">Total Students: {{present}}</span>
+                <span class="fw-semibold text-dark fs-6">Total Students: {{studentList.studentCount}}</span>
               </label>
             </div>
           </div>
@@ -68,7 +68,7 @@
             text-align: center;
             height: 28px;">
               <label class="text-nowrap mb-2">
-                <span class="fw-semibold text-success fs-6">P: {{present}}</span>
+                <span class="fw-semibold text-success fs-6">P: {{studentHasAttendasuStatus ? present:studentList.studentCount}}</span>
               </label>
             </div>
             <div class="col-6 mb-2 mr-2 " style="background-color: #f8d7da; padding: 5px;

@@ -32,6 +32,7 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
   attendancePayload: string;
   studentList2: any;
   currentUserData:any;
+  studentHasAttendasuStatus: boolean;
   constructor(
     private masterService: MasterService,
     private store: StoreService,
@@ -116,7 +117,18 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
       // Initialize present status for all students
       this.studentlistdetails.forEach((student) => {
         student.present =(student.attendanceStatus=='A')?false :true;
+        
       });
+
+      this.studentHasAttendasuStatus=false;
+      for(let i=0;i<this.studentlistdetails.length;i++){
+        if(this.studentlistdetails[i].attendanceStatus){
+          this.studentHasAttendasuStatus=true;
+          break;
+        }
+        
+        
+      }
 
       // Fetch status after data is available
       this.fetchstatus();
@@ -206,18 +218,24 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
     } else {
       this.studentCheck[index].attendanceStatus = 'A';
     }
-
+    this.studentHasAttendasuStatus = true;
     if (this.studentCheck[index].attendanceStatus=='P') {
       if(this.absent>0){
         this.absent--;
       }
       this.present++;
+
     } else {
       this.absent++;
       if(this.present>0){
         this.present--;
       }
+
     }
+
+    // if(this.present==0){
+    //   this.studentHasAttendasuStatus=false;
+    // }
   }
 
   // For tracking of classcode
@@ -237,6 +255,9 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
     let presentData = this.studentlistdetails.filter((item:any) =>{
       return item.attendanceStatus=='P';
      });
+     if(presentData.length==0){
+      return this.studentlistdetails.length;
+     }
      return presentData.length;
   }
 }
