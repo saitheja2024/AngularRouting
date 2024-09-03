@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SearchFamilyViewHomePageComponent } from './components/search-family-view-home-page/search-family-view-home-page.component';
-import { SearchFamilyViewDetailsComponent } from './components/search-family-view-details/search-family-view-details.component';
+import { SearchFamilyViewHomePageComponent } from '../search-family-view/components/search-family-view-home-page/search-family-view-home-page.component';
+import { SearchFamilyViewDetailsComponent } from '../search-family-view/components/search-family-view-details/search-family-view-details.component';
 
 
 const routes: Routes = [
