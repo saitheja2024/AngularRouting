@@ -358,7 +358,7 @@
                             <img src="assets/images/cards.png" *ngIf="ccCardPay=='CC'" styl="margin-top: 20px;"  class="mb-4" width="50%" alt="cardimg">
                         </div>
                     </div> -->
-                    <div *ngIf="ccCardPay=='CC' && payModeOPts!='M-Check' && payModeOPts!='Cash' && payModeOPts==undefined">
+                    <div *ngIf="ccCardPay=='CC'">
                         <button id="pay_proceed_btn_cc" [disabled]="!proceedPayBtnCC" billing_company_name_attr="hide" billing_name="Mohan M" billing_street_line1="fsdf" billing_street_line2_attr="hide" callback="oncallback" billing_locality="sdf" billing_region="IL"
                         billing_postal_code="45453" billing_phone_number="(345)-345-3453" billing_email_address="HariOm@soft.in"
                         method="sale" allowed_methods="visa, mast, disc"
@@ -377,7 +377,7 @@
                         <!-- <button  class="btn btn-primary pull-right mr-10 btn-sm" (click)="backtoSignatureTab();">Back</button> -->
                     </div>
 
-                    <div *ngIf="ccCardPay=='E-Check' && payModeOPts!='M-Check' && payModeOPts!='Cash' && payModeOPts==undefined">
+                    <div *ngIf="ccCardPay=='E-Check'">
                         <button id="pay_proceed_btn_echeck" sec_code="WEB"  [disabled]="!proceedPayBtnEcheck" billing_company_name_attr="hide" billing_name="Mohan M" billing_street_line1="fsdf" billing_street_line2_attr="hide" callback="oncallback" billing_locality="sdf" billing_region="IL"
                         billing_postal_code="45453" billing_phone_number="(345)-345-3453" billing_email_address="HariOm@soft.in"
                         method="sale" allowed_methods="visa, mast, disc"
