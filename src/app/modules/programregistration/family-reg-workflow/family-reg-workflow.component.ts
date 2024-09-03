@@ -852,7 +852,7 @@ rightPanel:any;
           this.getPersonProgramRegistration('');
         this.fetchFamilyFlag();
         this.familyPersonList();
-        },200);
+        },600);
        
   }
 
