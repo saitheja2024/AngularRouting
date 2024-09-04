@@ -1,15 +1,17 @@
-import { Component, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/modules/auth';
 import { MasterService } from 'src/app/modules/chinmaya-shared/services/master/master.service';
 import { StoreService } from 'src/app/modules/chinmaya-shared/services/store/store.service';
 import { Subscription } from 'rxjs';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AlertService } from 'src/app/modules/chinmaya-shared/services/alert/alert.service';
 import Swal from 'sweetalert2';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-student-attendance',
   templateUrl: './student-attendance.component.html',
@@ -33,6 +35,12 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
   studentList2: any;
   currentUserData:any;
   studentHasAttendasuStatus: boolean;
+  
+  displayedColumns: string[] = ['firstName', 'lastName','attendanceStatus'];
+  dataSource:any = new MatTableDataSource<any>(); 
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator:MatPaginator;
+
   constructor(
     private masterService: MasterService,
     private store: StoreService,
@@ -86,6 +94,11 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
     this.fetchData();
   }
 
+  ngAfterViewInit() {
+    // this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+   }
+
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
@@ -113,6 +126,13 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
       this.studentlistdetails = studentlistdetails || [];
       this.present = this.presentCount(); 
       this.absent = this.absentCount();
+
+      this.dataSource = new MatTableDataSource<any>(studentlistdetails);
+      // this.dataSource.paginator= this.paginator;
+      this.dataSource.sort = this.sort;
+       //this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
+      // this.dataSource.paginator.length = this.totalRecCount.totalProjectSummary;
+      this.dataSource._updateChangeSubscription();
 
       // Initialize present status for all students
       this.studentlistdetails.forEach((student) => {

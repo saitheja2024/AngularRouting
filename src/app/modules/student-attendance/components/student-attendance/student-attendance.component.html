@@ -106,9 +106,60 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+
+          <div class="table-responsive">
+            <!--begin::Card body-->
+           <div class="card-body p-0">
+               <div class="table-container table-responsive" style="max-height: 500px;">
+                   <table id="ExampleMaterialTable" class="table table-striped mb-0" mat-table [dataSource]="dataSource" matSort>
+
+                   
+                       <!-- Name Column -->
+                       <ng-container matColumnDef="firstName">
+                           <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>First Name</th>
+                           <td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.firstName}} </td>
+                       </ng-container>
+                   
+                       <!-- Weight Column -->
+                       <ng-container matColumnDef="lastName">
+                           <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Last Name</th>
+                           <td valign="middle" mat-cell *matCellDef="let element" style="border-bottom: 1px solid #ddd;"> {{element.lastName}} </td>
+                       </ng-container>
+                   
+                       <!-- Symbol Column -->
+                       <ng-container matColumnDef="attendanceStatus">
+                           <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>Status</th>
+                           <td valign="middle" mat-cell *matCellDef="let element; let i=index"  style="border-bottom: 1px solid #ddd;"> 
+                            <div class="onoffswitch">
+                              <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch{{ i }}" tabindex="{{ i }}" checked (change)="toggleAttendance($event, i)">
+                              <label class="onoffswitch-label" for="myonoffswitch{{ i }}">
+                                  <span *ngIf="(studentCheck[i].attendanceStatus=='A')" class="onoffswitch-inner onoffswitch-inner-absent"></span>
+                                  <span *ngIf="(studentCheck[i].attendanceStatus=='P')" class="onoffswitch-inner onoffswitch-inner-pass"></span>
+                              </label>
+                          </div>
+                           </td>
+                       </ng-container>
+                   
+                       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+                       <tr mat-row *matRowDef="let row;  columns: displayedColumns; let j=index">
+                       </tr>
+                   </table>
+
+                  
+
+               </div>
+               <!-- <mat-paginator #paginator 
+               [length]="totalRecFooter?.totalProjectSummary" [showFirstLastButtons]="paginationConfig.showFirstLastButtons"
+               [pageSizeOptions]="paginationConfig.pageSizeOptions">
+           </mat-paginator> -->
+               
+           </div>
+           <!--end::Card body-->
+       
+       </div>
   
       <!-- Student List -->
-      <div class="p-4" style="border:1px solid #ccc; border-radius: 5px; max-height: 300px; overflow-y: scroll; padding-top: 0px !important;" *ngIf="studentlistdetails.length > 0">
+      <!-- <div class="p-4" style="border:1px solid #ccc; border-radius: 5px; max-height: 300px; overflow-y: scroll; padding-top: 0px !important;" *ngIf="studentlistdetails.length > 0">
         <div *ngFor="let item of studentlistdetails; let i = index" [attr.data-index]="i">
           <div class="row" [ngClass]="(i%2==0)?'even_row':'odd_row'">
             <div class="width mt-1">
@@ -128,7 +179,7 @@
           </div>
           </div>
         </div>
-      </div>
+      </div> -->
   
     </div>
   </div>
