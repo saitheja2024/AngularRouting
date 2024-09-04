@@ -111,9 +111,8 @@
             <!--begin::Card body-->
            <div class="card-body p-0">
                <div class="table-container table-responsive" style="max-height: 500px;">
-                   <table id="ExampleMaterialTable" class="table table-striped mb-0" mat-table [dataSource]="dataSource" matSort>
+                   <table id="ExampleMaterialTable" class="table table-striped mb-0" mat-table matSort [dataSource]="dataSource" >
 
-                   
                        <!-- Name Column -->
                        <ng-container matColumnDef="firstName">
                            <th valign="middle" class="bold_txt"  mat-header-cell *matHeaderCellDef  mat-sort-header>First Name</th>

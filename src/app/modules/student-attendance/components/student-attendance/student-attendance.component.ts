@@ -39,7 +39,7 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['firstName', 'lastName','attendanceStatus'];
   dataSource:any = new MatTableDataSource<any>(); 
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator:MatPaginator;
+  //@ViewChild(MatPaginator) paginator:MatPaginator;
 
   constructor(
     private masterService: MasterService,
@@ -88,6 +88,8 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
+
     this.currentUserData = this.authService.getLoggedInUser();
 
     this.personid = this.currentUserData.personID;
@@ -129,11 +131,12 @@ export class StudentAttendanceComponent implements OnInit, OnDestroy {
 
       this.dataSource = new MatTableDataSource<any>(studentlistdetails);
       // this.dataSource.paginator= this.paginator;
-      this.dataSource.sort = this.sort;
+      setTimeout(()=>{ this.dataSource.sort = this.sort; },1300);
        //this.sort.sort(({ id: 'primaryName', start: 'asc'}) as MatSortable);
       // this.dataSource.paginator.length = this.totalRecCount.totalProjectSummary;
       this.dataSource._updateChangeSubscription();
 
+      
       // Initialize present status for all students
       this.studentlistdetails.forEach((student) => {
         student.present =(student.attendanceStatus=='A')?false :true;
