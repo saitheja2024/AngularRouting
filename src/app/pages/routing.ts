@@ -92,6 +92,11 @@ const Routing: Routes = [
       import('../modules/role-access/role-access.module').then((m) => m.RoleAccessModule),
   },
   {
+    path: 'dynamic-reports',
+    loadChildren: () =>
+      import('../modules/dynamic-reports/dynamic-reports.module').then((m) => m.DynamicReportsModule),
+  },
+  {
     path: 'financial-reports',
     loadChildren: () =>
       import('../modules/financial-reports/financial-reports.module').then((m) => m.FinancialReportsModule),

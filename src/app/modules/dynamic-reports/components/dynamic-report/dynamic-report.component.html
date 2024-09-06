@@ -1,0 +1,354 @@
+<div class="col-lg-12">
+    <div class="row1" style="display:flex;">
+        <div class="col-lg-6 me-2 mb-4 resizable-div" [ngStyle]="{'width': divWidth}" style="width:100%;">
+            <div class="card cardcss">
+                <!--begin::Card header-->
+                <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1">
+                            <h3 class="panel-title fw-semibold">
+                                Reports
+                            </h3>
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                    <!--end::Card title-->
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body p-4 pb-2">
+                    <hr class="mb-6" style="color: #ccc;">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #F79646 !important;" (click)="ReportsList()">
+                                    Category 1
+                                </button>
+                            </div>
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" (click)="Content4()">
+                                    Category 2
+                                </button>
+                            </div>
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #948A54 !important;">Category 3</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="mb-6" style="color: #ccc;">
+
+                    <div class="col-lg-12" [ngStyle]="{'display': displayDiv4 ? 'block' : 'none'}" style="display: none;">
+                        <div class="row">
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #F79646 !important;">
+                                    Sub Category 1
+                                </button>
+                            </div>
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth">Sub Category 2</button>
+                            </div>
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #948A54 !important;">Sub Category 3</button>
+                            </div>
+                        </div>
+                        <hr class="mb-6" style="color: #ccc;">
+                    </div>
+
+                    
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #002060 !important;">Category 4</button>
+                            </div>
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #77933C !important;">Category 5</button>
+                            </div>
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #984807 !important;">Category 6</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-6" style="color: #ccc;">
+                    <div class="col-lg-12">
+                        <div class="row" style="width:auto !important;">
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #8064A2 !important;">Category 7</button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-6" style="color: #ccc;">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-lg-2 mb-2 ms-2">
+                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #0070C0 !important;">Category 8</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Card body-->
+            </div>
+        </div>
+        <div [ngStyle]="{'display': displayDiv ? 'block' : 'none'}" class="col-lg-6 toggle-div">
+            <div class="card cardcss">
+                <!--begin::Card header-->
+                <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+                    <!--begin::Card title-->
+                    <div class="card-title float-sm-end">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1">
+                            <h3 class="panel-title fw-semibold">
+                                Reports List
+                            </h3>
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                    <!--end::Card title-->
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body p-4 pb-2">
+                    <hr class="mb-6" style="color: #ccc;">
+                    <div class="p-4 pb-0 pt-0">
+                        <div class="col-lg-12">
+                            <div class="row1" style="display:flex;">
+                                <div class="col-lg-9">
+                                    <a class="fs-6 cursor-pointer" (click)="Content1()">
+                                        1. Family Count of Registered families for the selected program 
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 justify-content-end" style="display:flex;">
+                                    <i class="icon-download4 cursor-pointer" 
+                                       title="Report Output is available for 12 hours" style="font-size:24px;">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-4 pb-0 pt-0" [ngStyle]="{'display': displayDiv1 ? 'none' : 'block'}">
+                            <h6 class="fw-normal">
+                                Selected Report : Student Count by Sign-Up Code, Session, Class, Subclas
+                            </h6>
+                            <div class="col-lg-12" style="display:flex;">
+                                <div class="col-lg-7" style="border-right: 1px solid #ccc;">
+                                    <div class="card p-4">
+                                        <h6 class="text-center fw-normal">
+                                            List of Parameters
+                                        </h6>
+                                        <div class="col-lg-12 mt-4">
+                                            <div class="row1 mb-2" style="display:flex;">
+                                                <div class="col-lg-3">
+                                                    <label class="fs-6 mt-2">
+                                                        Param 1:
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row1 mb-2" style="display:flex;">
+                                                <div class="col-lg-3">
+                                                    <label class="fs-6 mt-2">
+                                                        Param 2:
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row1 mb-2" style="display:flex;">
+                                                <div class="col-lg-3">
+                                                    <label class="fs-6 mt-2">
+                                                        Param 3:
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="p-4">
+                                        <div class="mb-2">
+                                            <label class="fw-semibold fs-6 mb-4">Run Report Now:</label><br>
+                                            <i class="icon-file-spreadsheet2 cursor-pointer" style="font-size:20px"></i>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="fw-semibold fs-6 mb-4">Report is scheduled to run at:</label><br>
+                                            <input type="date" class="form-control form-control-sm cursor-pointer" placeholder="MM/DD/YYYY">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <hr class="mb-6" style="color: #ccc;">
+
+                    <div class="mt-4 p-4 pb-0 pt-0">
+                        <div class="col-lg-12">
+                            <div class="row1" style="display:flex;">
+                                <div class="col-lg-9">
+                                    <a class="fs-6 cursor-pointer" (click)="Content2()">
+                                        2. Student Count by Sign-Up Code, Session, Class, Subclas 
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 justify-content-end" style="display:flex;">
+                                    <i class="icon-download4 cursor-pointer" 
+                                       title="Report Output is available for 12 hours" style="font-size:24px;">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-4 pb-0 pt-0" [ngStyle]="{'display': displayDiv2 ? 'none' : 'block'}">
+                            <h6 class="fw-normal">
+                                Selected Report : Family Count of Registered families for the selected program
+                            </h6>
+                            <div class="col-lg-12" style="display:flex;">
+                                <div class="col-lg-7" style="border-right: 1px solid #ccc;">
+                                    <div class="card p-4">
+                                        <h6 class="text-center fw-normal">
+                                            List of Parameters
+                                        </h6>
+                                        <div class="col-lg-12 mt-4">
+                                            <div class="row1 mb-2" style="display:flex;">
+                                                <div class="col-lg-3">
+                                                    <label class="fs-6 mt-2">
+                                                        Param 1:
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row1 mb-2" style="display:flex;">
+                                                <div class="col-lg-3">
+                                                    <label class="fs-6 mt-2">
+                                                        Param 2:
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row1 mb-2" style="display:flex;">
+                                                <div class="col-lg-3">
+                                                    <label class="fs-6 mt-2">
+                                                        Param 3:
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="p-4">
+                                        <div class="mb-2">
+                                            <label class="fw-semibold fs-6 mb-4">Run Report Now:</label><br>
+                                            <i class="icon-file-spreadsheet2 cursor-pointer" style="font-size:20px"></i>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="fw-semibold fs-6 mb-4">Report is scheduled to run at:</label><br>
+                                            <input type="date" class="form-control form-control-sm cursor-pointer" placeholder="MM/DD/YYYY">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <hr class="mb-6" style="color: #ccc;">
+
+                    <div class="p-4 pb-0 pt-0">
+                        <div class="col-lg-12">
+                            <div class="row1" style="display:flex;">
+                                <div class="col-lg-9">
+                                    <a class="fs-6 cursor-pointer" (click)="Content3()">
+                                        3. Pre-Acceptance Count report by session 
+                                    </a>
+                                </div>
+                                <div class="col-lg-3 justify-content-start" style="display:flex;">
+                                    <span class="fs-6">Output will be available on 8/20/2024 1:00 am</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 p-4 pb-0 pt-0" [ngStyle]="{'display': displayDiv3 ? 'none' : 'block'}">
+                            <h6 class="fw-normal">
+                                Selected Report : Pre-Acceptance Count report by session
+                            </h6>
+                            <div class="col-lg-12" style="display:flex;">
+                                <div class="col-lg-7" style="border-right: 1px solid #ccc;">
+                                    <div class="card p-4">
+                                        <h6 class="text-center fw-normal">
+                                            List of Parameters
+                                        </h6>
+                                        <div class="col-lg-12 mt-4">
+                                            <div class="row1 mb-2" style="display:flex;">
+                                                <div class="col-lg-3">
+                                                    <label class="fs-6 mt-2">
+                                                        Param 1:
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row1 mb-2" style="display:flex;">
+                                                <div class="col-lg-3">
+                                                    <label class="fs-6 mt-2">
+                                                        Param 2:
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                            <div class="row1 mb-2" style="display:flex;">
+                                                <div class="col-lg-3">
+                                                    <label class="fs-6 mt-2">
+                                                        Param 3:
+                                                    </label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="p-4">
+                                        <div class="mb-2">
+                                            <label class="fw-semibold fs-6 mb-4">Run Report Now:</label><br>
+                                            <i class="icon-file-spreadsheet2 cursor-pointer" style="font-size:20px"></i>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label class="fw-semibold fs-6 mb-4">Report is scheduled to run at:</label><br>
+                                            <input type="date" class="form-control form-control-sm cursor-pointer" placeholder="MM/DD/YYYY">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                <!--end::Card body-->
+            </div>
+        </div>
+    </div>
+</div>
+
+

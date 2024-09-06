@@ -40,7 +40,6 @@ const routes: Routes = [
   imports: [
     ChinmayaSharedModule,
     RouterModule.forChild(routes)
-   
   ]
 })
 export class EmailProcessingModule { }

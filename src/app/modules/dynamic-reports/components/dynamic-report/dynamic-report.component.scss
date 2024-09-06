@@ -1,0 +1,32 @@
+.btnwidth {
+    min-width: 150px !important;
+}
+
+@media (max-width:992px) {
+    .btnwidth {
+        min-width: 80px !important;
+    }
+
+    .row1 {
+        display: block !important;
+    }
+
+    .resizable-div {
+        width: 100% !important;
+    }
+
+    .toggle-div {
+        width: 100% !important;
+    }
+}
+
+.row > * {
+    width: initial;
+}
+
+.cardcss {
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+
