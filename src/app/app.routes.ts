@@ -7,6 +7,7 @@ import { ContentComponent } from './content/content.component';
 import { Layout2Component } from './temp/layout2/layout2.component';
 import { Child1Component } from './child1/child1.component';
 import { Child2Component } from './child2/child2.component';
+import { Child3Component } from './child3/child3.component';
 
 export const routes: Routes = [
 
@@ -41,6 +42,10 @@ component:FooterComponent
 {
   path:'child2',
   component:Child2Component
+},
+{
+  path:'child3',
+  component:Child3Component
 },
 {
   path:'',
