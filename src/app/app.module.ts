@@ -10,14 +10,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatOptionModule } from '@angular/material/core';
 // #fake-start#
 import { FakeAPIService } from './_fake/fake-api.service';
 import { ChinmayaSharedModule } from './modules/chinmaya-shared/chinmaya-shared.module';
 import { SpinnerInterceptor } from './modules/chinmaya-shared/interceptors/SpinnerInterceptor/spinner.interceptor';
 //import { RegistrationProcessingComponent } from './configuration/registration-processing/registration-processing.component';
 // #fake-end#
-
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +32,10 @@ import { SpinnerInterceptor } from './modules/chinmaya-shared/interceptors/Spinn
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,
+    FormsModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatOptionModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },

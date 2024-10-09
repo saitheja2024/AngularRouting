@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
+
     this.loggedInUser=this.authService.getLoggedInUser()
     // if(this.loggedInUser){
     //   this.defaultAuth.username="nmohamme12345";
@@ -51,11 +51,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     // if(this.loggedInUser){
     //   this.onLogin(false);
     // }
-    
-  
 
-    
-   
+
+
+
+
   }
 
   // convenience getter for easy access to form fields
@@ -69,19 +69,19 @@ export class LoginComponent implements OnInit, OnDestroy {
         '',
         Validators.compose([
           Validators.required
-          
+
         ]),
       ],
       password: [
         '',
         Validators.compose([
           Validators.required
-         
+
         ]),
       ],
     });
   }
- 
+
   async onLogin(loginFromAdminPortal:any) {
     this.hasError = false;
     var loginParam = this.loginForm.value;

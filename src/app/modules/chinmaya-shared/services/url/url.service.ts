@@ -15,11 +15,11 @@ export class UrlService {
     fetchAllOrgnaztion: "organization/fetchChaptersListByPersonId",
     fetchAcadamicYear: "registrationProcessing/fetchProgramYearDropdown",
     fetchProgramCodesByChapterCodeAndAcacademicyear:"registrationProcessing/fetchProgramCodesByChapterCodeAndAcademicyear"
-    
+
   }
 
   registrationProcessingURL = {
-    
+
     fetchAllPrograms: "registration/fetchProgramsByChapter",
     fetchRegistrationDetailsBasedOnSearch:"registrationProcessing/fetchRegistrationDetailsBasedOnSearch",
     fetchRegistrationDetailsBasedOnFamilyId:"registrationProcessing/fetchRegistrationDetailsBasedOnFamilyId",
@@ -27,7 +27,7 @@ export class UrlService {
     acceptFamily:"registrationProcessing/acceptFamily",
     assignChoice:"registrationProcessing/assignChoice",
     fetchModulesByPersonId: "registrationProcessing/fetchModulesByPersonId"
-    
+
   }
 
   reportsURL = {
@@ -39,7 +39,7 @@ export class UrlService {
     fetchAssignedSubClass:"reports/fetchSubClassDropdown",
     fetchSessionChoiceDropDown: "reports/fetchSessionChoicesDropdown"
   }
- 
+
   familyURL = {
     searchFamilies: "manageFamily/manageFamilySearch",
     fetchFamilyDetailsByFamilyID: "manageFamily/fetchfamilyDetails",
@@ -160,14 +160,14 @@ export class UrlService {
     saveFamilyCertification :"programSelection/saveFamilyCertification",
     saveProgramRegistration: "programSelection/saveProgramRegistration",
     saveAnnualPledgeRegistration:"programSelection/saveAnnualPledgeRegistration"
-    
+
   }
 
   adminRegistrationURL = {
     fetchEnrolledClassesList:"adminRegistration/fetchEnrolledClassesList",
     refreshEmailDistributionList:"adminRegistration/refreshEmailDistributionList"
   }
-  
+
   StudentAttendance ={
     fetchClassCode: "StudentAttendance/fetchClassCodes",
     fetchStudentAttendance:"StudentAttendance/fetchStudentAttendanceDetails",
@@ -177,6 +177,28 @@ export class UrlService {
   manageFamily = {
     fetchProgramDetails : "manageFamily/fetchProgramDetails"
   }
- 
+
+reports = {
+  fetchCategoryList:'/reports/fetchCategoryList',
+  fetchSubCategoryListByCategory:'/reports/fetchSubCategoryListByCategory',
+  fetchReportListByCategoryAndSubCategory:'reports/fetchReportListByCategoryAndSubCategory',
+  fetchReportFilterListByReportId:'/reports/fetchReportFilterListByReportId',
+  fetchClassList:"reports/fetchClassDropdown",
+  fetchAssignedSubClass:"reports/fetchSubClassDropdown",
+  fetchSessionChoiceDropDown: "reports/fetchSessionChoicesDropdown",
+  saveReportSchedule: "reports/saveReportSchedule",
+  fetchReportScheduleList:"reports/fetchReportScheduleList",
+  fetchReportScheduleById:"reports/fetchReportScheduleById",
   
+}
+
+organization = {
+  fetchChaptersList:'organization/fetchChaptersList'
+}
+programConfig = {
+  fetchProgramCodesByChapterCode:'programConfig/fetchProgramCodesByChapterCode'
+}
+program = {
+getSignUpCodesByProgram:'program/getSignUpCodesByProgram'
+}
 }

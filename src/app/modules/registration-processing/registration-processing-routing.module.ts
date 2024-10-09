@@ -18,6 +18,7 @@ const routes: Routes = [
         redirectTo: 'registration-search',
         pathMatch: 'full',
       },
+      
       {
         path: 'registration-search',
         component: RegistrationSearchComponent,

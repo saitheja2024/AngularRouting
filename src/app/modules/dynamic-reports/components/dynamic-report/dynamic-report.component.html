@@ -1,354 +1,748 @@
 <div class="col-lg-12">
-    <div class="row1" style="display:flex;">
-        <div class="col-lg-6 me-2 mb-4 resizable-div" [ngStyle]="{'width': divWidth}" style="width:100%;">
-            <div class="card cardcss">
-                <!--begin::Card header-->
-                <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
-                    <!--begin::Card title-->
-                    <div class="card-title float-sm-end">
-                        <!--begin::Search-->
-                        <div class="d-flex align-items-center position-relative my-1">
-                            <h3 class="panel-title fw-semibold">
-                                Reports
-                            </h3>
-                        </div>
-                        <!--end::Search-->
-                    </div>
-                    <!--end::Card title-->
-                </div>
-                <!--end::Card header-->
-                <!--begin::Card body-->
-                <div class="card-body p-4 pb-2">
-                    <hr class="mb-6" style="color: #ccc;">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #F79646 !important;" (click)="ReportsList()">
-                                    Category 1
-                                </button>
-                            </div>
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" (click)="Content4()">
-                                    Category 2
-                                </button>
-                            </div>
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #948A54 !important;">Category 3</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="mb-6" style="color: #ccc;">
-
-                    <div class="col-lg-12" [ngStyle]="{'display': displayDiv4 ? 'block' : 'none'}" style="display: none;">
-                        <div class="row">
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #F79646 !important;">
-                                    Sub Category 1
-                                </button>
-                            </div>
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth">Sub Category 2</button>
-                            </div>
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #948A54 !important;">Sub Category 3</button>
-                            </div>
-                        </div>
-                        <hr class="mb-6" style="color: #ccc;">
-                    </div>
-
-                    
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #002060 !important;">Category 4</button>
-                            </div>
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #77933C !important;">Category 5</button>
-                            </div>
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #984807 !important;">Category 6</button>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="mb-6" style="color: #ccc;">
-                    <div class="col-lg-12">
-                        <div class="row" style="width:auto !important;">
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #8064A2 !important;">Category 7</button>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="mb-6" style="color: #ccc;">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-2 mb-2 ms-2">
-                                <button class="btn btn-primary btn-sm btnwidth" style="background-color: #0070C0 !important;">Category 8</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end::Card body-->
+  <div class="row1" style="display:flex;">
+    <div class="col-lg-6 me-2 mb-4 resizable-div" [ngStyle]="{'width': divWidth}" style="width:100%;">
+      <div class="card cardcss">
+        <!--begin::Card header-->
+        <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white"
+          style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+          <!--begin::Card title-->
+          <div class="card-title float-sm-end">
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+              <h3 class="panel-title fw-semibold">
+                Reports
+              </h3>
             </div>
+            <!--end::Search-->
+          </div>
+          <!--end::Card title-->
         </div>
-        <div [ngStyle]="{'display': displayDiv ? 'block' : 'none'}" class="col-lg-6 toggle-div">
-            <div class="card cardcss">
-                <!--begin::Card header-->
-                <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white" style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
-                    <!--begin::Card title-->
-                    <div class="card-title float-sm-end">
-                        <!--begin::Search-->
-                        <div class="d-flex align-items-center position-relative my-1">
-                            <h3 class="panel-title fw-semibold">
-                                Reports List
-                            </h3>
-                        </div>
-                        <!--end::Search-->
-                    </div>
-                    <!--end::Card title-->
-                </div>
-                <!--end::Card header-->
-                <!--begin::Card body-->
-                <div class="card-body p-4 pb-2">
-                    <hr class="mb-6" style="color: #ccc;">
-                    <div class="p-4 pb-0 pt-0">
-                        <div class="col-lg-12">
-                            <div class="row1" style="display:flex;">
-                                <div class="col-lg-9">
-                                    <a class="fs-6 cursor-pointer" (click)="Content1()">
-                                        1. Family Count of Registered families for the selected program 
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 justify-content-end" style="display:flex;">
-                                    <i class="icon-download4 cursor-pointer" 
-                                       title="Report Output is available for 12 hours" style="font-size:24px;">
-                                    </i>
-                                </div>
-                            </div>
-                        </div>
+        <!--end::Card header-->
+        <!--begin::Card body-->
+        <div class="card-body p-4 pb-2">
+          <hr class="mb-6" style="color: #ccc;">
+          <div class="col-lg-12">
+            <div class="row">
+              <div class="col-lg-2 mb-2 ms-2" *ngFor="let item of categoryList;  let i = index">
 
-                        <div class="mt-4 p-4 pb-0 pt-0" [ngStyle]="{'display': displayDiv1 ? 'none' : 'block'}">
-                            <h6 class="fw-normal">
-                                Selected Report : Student Count by Sign-Up Code, Session, Class, Subclas
-                            </h6>
-                            <div class="col-lg-12" style="display:flex;">
-                                <div class="col-lg-7" style="border-right: 1px solid #ccc;">
-                                    <div class="card p-4">
-                                        <h6 class="text-center fw-normal">
-                                            List of Parameters
-                                        </h6>
-                                        <div class="col-lg-12 mt-4">
-                                            <div class="row1 mb-2" style="display:flex;">
-                                                <div class="col-lg-3">
-                                                    <label class="fs-6 mt-2">
-                                                        Param 1:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row1 mb-2" style="display:flex;">
-                                                <div class="col-lg-3">
-                                                    <label class="fs-6 mt-2">
-                                                        Param 2:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row1 mb-2" style="display:flex;">
-                                                <div class="col-lg-3">
-                                                    <label class="fs-6 mt-2">
-                                                        Param 3:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="p-4">
-                                        <div class="mb-2">
-                                            <label class="fw-semibold fs-6 mb-4">Run Report Now:</label><br>
-                                            <i class="icon-file-spreadsheet2 cursor-pointer" style="font-size:20px"></i>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label class="fw-semibold fs-6 mb-4">Report is scheduled to run at:</label><br>
-                                            <input type="date" class="form-control form-control-sm cursor-pointer" placeholder="MM/DD/YYYY">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
+                <button class="btn btn-primary btn-sm btnwidth" [ngStyle]="{ 'background-color':getButtonColor(i) }"
+                  value="{{item.id}}" (click)="handleButtonClick(item.id)">
+                  {{item.description}}
+                  <span class="arrow" *ngIf="activeButtonId === item.id && isActive">▼</span>
 
-                    <hr class="mb-6" style="color: #ccc;">
-
-                    <div class="mt-4 p-4 pb-0 pt-0">
-                        <div class="col-lg-12">
-                            <div class="row1" style="display:flex;">
-                                <div class="col-lg-9">
-                                    <a class="fs-6 cursor-pointer" (click)="Content2()">
-                                        2. Student Count by Sign-Up Code, Session, Class, Subclas 
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 justify-content-end" style="display:flex;">
-                                    <i class="icon-download4 cursor-pointer" 
-                                       title="Report Output is available for 12 hours" style="font-size:24px;">
-                                    </i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 p-4 pb-0 pt-0" [ngStyle]="{'display': displayDiv2 ? 'none' : 'block'}">
-                            <h6 class="fw-normal">
-                                Selected Report : Family Count of Registered families for the selected program
-                            </h6>
-                            <div class="col-lg-12" style="display:flex;">
-                                <div class="col-lg-7" style="border-right: 1px solid #ccc;">
-                                    <div class="card p-4">
-                                        <h6 class="text-center fw-normal">
-                                            List of Parameters
-                                        </h6>
-                                        <div class="col-lg-12 mt-4">
-                                            <div class="row1 mb-2" style="display:flex;">
-                                                <div class="col-lg-3">
-                                                    <label class="fs-6 mt-2">
-                                                        Param 1:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row1 mb-2" style="display:flex;">
-                                                <div class="col-lg-3">
-                                                    <label class="fs-6 mt-2">
-                                                        Param 2:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row1 mb-2" style="display:flex;">
-                                                <div class="col-lg-3">
-                                                    <label class="fs-6 mt-2">
-                                                        Param 3:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="p-4">
-                                        <div class="mb-2">
-                                            <label class="fw-semibold fs-6 mb-4">Run Report Now:</label><br>
-                                            <i class="icon-file-spreadsheet2 cursor-pointer" style="font-size:20px"></i>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label class="fw-semibold fs-6 mb-4">Report is scheduled to run at:</label><br>
-                                            <input type="date" class="form-control form-control-sm cursor-pointer" placeholder="MM/DD/YYYY">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <hr class="mb-6" style="color: #ccc;">
-
-                    <div class="p-4 pb-0 pt-0">
-                        <div class="col-lg-12">
-                            <div class="row1" style="display:flex;">
-                                <div class="col-lg-9">
-                                    <a class="fs-6 cursor-pointer" (click)="Content3()">
-                                        3. Pre-Acceptance Count report by session 
-                                    </a>
-                                </div>
-                                <div class="col-lg-3 justify-content-start" style="display:flex;">
-                                    <span class="fs-6">Output will be available on 8/20/2024 1:00 am</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-4 p-4 pb-0 pt-0" [ngStyle]="{'display': displayDiv3 ? 'none' : 'block'}">
-                            <h6 class="fw-normal">
-                                Selected Report : Pre-Acceptance Count report by session
-                            </h6>
-                            <div class="col-lg-12" style="display:flex;">
-                                <div class="col-lg-7" style="border-right: 1px solid #ccc;">
-                                    <div class="card p-4">
-                                        <h6 class="text-center fw-normal">
-                                            List of Parameters
-                                        </h6>
-                                        <div class="col-lg-12 mt-4">
-                                            <div class="row1 mb-2" style="display:flex;">
-                                                <div class="col-lg-3">
-                                                    <label class="fs-6 mt-2">
-                                                        Param 1:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row1 mb-2" style="display:flex;">
-                                                <div class="col-lg-3">
-                                                    <label class="fs-6 mt-2">
-                                                        Param 2:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                            <div class="row1 mb-2" style="display:flex;">
-                                                <div class="col-lg-3">
-                                                    <label class="fs-6 mt-2">
-                                                        Param 3:
-                                                    </label>
-                                                </div>
-                                                <div class="col-lg-9">
-                                                    <input type="text" class="form-control form-control-sm">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="p-4">
-                                        <div class="mb-2">
-                                            <label class="fw-semibold fs-6 mb-4">Run Report Now:</label><br>
-                                            <i class="icon-file-spreadsheet2 cursor-pointer" style="font-size:20px"></i>
-                                        </div>
-                                        <div class="mb-2">
-                                            <label class="fw-semibold fs-6 mb-4">Report is scheduled to run at:</label><br>
-                                            <input type="date" class="form-control form-control-sm cursor-pointer" placeholder="MM/DD/YYYY">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    
-                </div>
-                <!--end::Card body-->
+                </button>
+              </div>
             </div>
+            <hr class="mb-6" style="color: #ccc;">
+            <div class="row">
+
+              <div class="col-lg-2 mb-2 ms-2">
+
+
+                <button *ngFor="let item of subCategoryList;  let i = index" class="btn btn-primary btn-sm btnwidth"
+                  [ngStyle]="{ 'background-color':getButtonColor(i+5) }" value="{{item.id}}"
+                  (click)="ReportsList(item.id)">
+                  {{item.description}}
+
+                </button>
+
+              </div>
+
+            </div>
+            <!-- <i class="fa-solid fa-arrow-down"></i> -->
+          </div>
+
+          <!-- <i class="fa-solid fa-arrow-down"></i> -->
+          <hr class="mb-6" style="color: #ccc; text-align: center;">
+
+
         </div>
+        <!--end::Card body-->
+      </div>
     </div>
+
+
+    <!--content add here -->
+    <div [ngStyle]="{'display': displayDiv ? 'block' : 'none'}" class="col-lg-6 toggle-div">
+      <div class="card cardcss report-list-container">
+        <!--begin::Card header-->
+        <div class="card-header align-items-center float-end p-4 pb-2 pt-2 bg-white"
+          style="border-bottom: 1px solid var(--bs-card-border-color) !important;">
+          <!--begin::Card title-->
+          <div class="card-title float-sm-end">
+            <!--begin::Search-->
+            <div class="d-flex align-items-center position-relative my-1">
+              <h3 class="panel-title fw-semibold">
+                Reports List
+              </h3>
+            </div>
+            <!--end::Search-->
+          </div>
+          <!--end::Card title-->
+        </div>
+        <!--end::Card header-->
+        <!--begin::Card body-->
+        <!-- *ngFor="let item of ReportListByCategoryAndSubCategory; let i = index" -->
+        <div class="card-body p-4 pb-2" *ngFor="let item of ReportListByCategoryAndSubCategory; let i = index">
+          <hr class="mb-6" style="color: #ccc;">
+          <div class="p-4 pb-0 pt-0">
+            <div class="col-lg-12">
+              <div class="row1" style="display:flex;">
+                <div class="col-lg-9">
+                  <a class="fs-6 cursor-pointer" (click)="Content(i); assigningReportIdandName(item.reportId,item.reportName); fetchReportFilterListByReportId(item.reportId)">
+                    <!-- 1. Family Count of Registered families for the selected program -->
+                    {{item.reportId}}. {{item.reportName}}
+                  </a>
+                </div>
+                <div class="col-lg-3 justify-content-start" style="display:flex;"
+                  *ngIf="isTimeoutExpires; else otherView">
+                  <span class="fs-6"><br>Output will be available on {{sheduleSelectedDate}} 1:00 am </span>
+                  <!-- 8/20/2024 1:00 am -->
+                </div>
+                <ng-template #otherView>
+                  <div class="col-lg-3 bt-6 cursor-pointer justify-content-end shedulereport" style="display:flex;"
+                    (click)="fetchReportShedule(item.reportId,item.reportName); toggleScheduledReports(i)">
+                    <!-- <i class="icon-download4 cursor-pointer" title="Report Output is available for 12 hours"
+                      style="font-size:24px;">
+                    </i> -->
+                    <!-- style="border: 2px solid rgb(0, 0, 0); color: #009EF7; border" -->
+                    <p>Sheduled Reports</p>
+                  </div>
+                </ng-template>
+                <!-- </ng-template> -->
+              </div>
+            </div>
+
+            <!-- <div class="mt-4 pt-4 pb-0 pt-0"  *ngIf="displayDiv6"><p>Sheduled Report Lists :</p> -->
+              <div *ngIf="activeReportIndex === i">
+            <div class="mt-4 pt-4 pb-0 pt-0" style="display: inline;" *ngIf="displayDiv6" >
+              <!-- <p>Sheduled Report Lists :  <span style="text-align: right;"> <button class="btn btn-primary">Add New Schedule Report</button></span>
+                </p> -->
+              <div class="report-header" >
+                <p>Scheduled Report Lists:</p>
+                <!-- <div  *ngFor="let item of ReportListByCategoryAndSubCategory; let index = index"> -->
+                <button class="btn-custom" (click)="Content(i); fetchReportFilterListByReportId(item.reportId)"><i
+                    class="fa-sharp fa-solid fa-plus" style="color: #ffffff;"></i> Add New Schedule Report</button>
+                  <!-- </div> -->
+              </div>
+
+
+              <table class="table custom-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Shedule Date</th>
+                    <th scope="col">Report Name</th>
+                    <th scope="col">Report Status</th>
+                    <!-- <th scope="col">Download/ Modified</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of this.reportsSheduled; let in = index">
+                    <!-- <th scope="row">{{i}}</th> -->
+                    <td>{{item.id}}</td>
+                    <td>{{item.scheduleDate}}</td>
+                    <td>{{item.reportName}}</td>
+                    <td>{{item.reportStatus}}<br>
+                      <span class="editreportList" (click)="Content2(i); editfetchedReportListById(item.id); toggleEditScheduleReports(i)">Edit</span>
+                    </td>
+                    <!-- <td>Modify</td> -->
+                  </tr>
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+            <div class="popup-content">
+              <div class="mt-4 pt-4 pb-0 pt-0" [ngStyle]="{'display': displayDiv1 ? 'none' : 'block'}"
+                *ngIf="activeContentIndex === i">
+                <h6 class="fw-normal required">
+                  Enter Family Report Name :
+                  <!-- <span style="color: red;"> *</span>  -->
+                  <!-- <form [formGroup]="myForm"> -->
+                  <input type="text" placeholder="Family Report Name" [(ngModel)]="familyReportName"
+                    (ngModelChange)="validateFamilyReportName($event)" name="familyReportName" required>
+                  .csv
+                  <div *ngIf="familyReportNameError" class="error-message" style="color: red;">
+                    * This field is required and must not contain a dot.
+                  </div>
+                  <!-- </form> -->
+                </h6>
+                <div class="col-lg-12" style="display:flex;">
+                  <div class="col-lg-7  col-md-12 col-xs-6 col-sm-12" style="border-right: 1px solid #ccc;">
+                    <div class="card p-4">
+                      <div class="col-lg-12 mt-4">
+                        <div class="col-lg-12">
+                          <!-- mat select implementation -->
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2 required">
+                                Chapter Code:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button" class="fs-8 mt-1" (click)="toggleDropdown()"
+                                  placeholder="">
+                                  {{ selectedProgramCode || 'Select Chapter Codes' }}
+
+                                </label>
+                                <div class="dropdown-content" *ngIf="isDropdownOpen" style="max-height: 200px; overflow-y: auto;">
+                                  <input
+                                  type="text"
+                                  placeholder="Search..."
+                                  [(ngModel)]="searchTerm"
+                                  class="form-control form-control-sm mb-2"
+                                  (input)="filterChapters()"
+                                />
+                                  <div class="form-check d-flex mt-2 ps-0" *ngFor="let chapter of filteredChapterList">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="chapter.code" [(ngModel)]="chapter.selected"
+                                      (change)="onCheckboxChange(chapter.code, $event)" required>
+                                    <label class="text-dark fw-semibold ms-2" [for]="chapter.code"> {{
+                                      chapter.description }}</label>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">Program Code:</label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container form-control form-control-sm">
+                                <label class="dropdown-button1 fs-8 mt-1" (click)="toggleDropdownforprogram()"
+                                  placeholder="">
+                                  {{ selectedProgramCode || 'Select Program Code' }}
+                                </label>
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforprogram" style="max-height: 200px; overflow-y: auto;">
+                                  <input
+                                  type="text"
+                                  placeholder="Search..."
+                                  [(ngModel)]="searchTermProgramCode"
+                                  class="form-control form-control-sm mb-2"
+                                  (input)="filterProgramCode()"
+                                />
+                                  <div class="form-check d-flex mt-2 ps-0" *ngFor="let chapter of filteredProgramCode">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="chapter.code" [(ngModel)]="chapter.selected"
+                                      (change)="onCheckboxChangeforSignup(chapter.code, $event)">
+                                    <label [for]="chapter.code" class="text-dark fw-semibold ms-2"> {{
+                                      chapter.description }} </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">
+                                Signup Code:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button2" class="fs-8 mt-1" (click)="toggleDropdownforsignup()">
+                                  {{ selectedProgramCode || 'Select Signup Code' }}
+
+                                </label>
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforsignup" style="max-height: 200px; overflow-y: auto;">
+                                  <input
+                                  type="text"
+                                  placeholder="Search..."
+                                  [(ngModel)]="searchTermSignUpCode"
+                                  class="form-control form-control-sm mb-2"
+                                  (input)="filterSignUpCode()"
+                                />
+                                  <div class="form-check d-flex mt-2 ps-0" *ngFor="let signup of filteredSignUpCode"
+                                    (change)="onCheckboxChangeforclass(signup.signUpCode, $event)">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="signup.signUpCode" [(ngModel)]="signup.selected">
+                                    <label [for]="signup.signUpCode" class="text-dark fw-semibold ms-2"> {{
+                                      signup.description }} </label>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">
+                                Class:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button1" class="fs-8 mt-1" (click)="toggleDropdownforclass()"
+                                  placeholder="">
+                                  {{ selectedProgramCode || 'Select class Code' }}
+
+                                </label>
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforclass" style="max-height: 200px; overflow-y: auto;">
+                                  <input
+                                  type="text"
+                                  placeholder="Search..."
+                                  [(ngModel)]="searchTermClassCode"
+                                  class="form-control form-control-sm mb-2"
+                                  (input)="filterClassCode()"
+                                />
+                                  <div class="form-check d-flex mt-2 ps-0"
+                                    *ngFor="let class of  this.filteredClassCode"
+                                    (change)="onCheckboxChangeforSubClass(class.description, $event)">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="class.code" [(ngModel)]="class.selected">
+                                    <label class="text-dark fw-semibold ms-2" [for]="class.code">{{
+                                      class.description }}</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">
+                                Sub Class:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button1" class="fs-8 mt-1" (click)="toggleDropdownforsubclass()"
+                                  placeholder="">
+                                  {{ selectedProgramCode || 'Select sub class Code' }}
+
+                                </label>
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforsubclass" style="max-height: 200px; overflow-y: auto;">
+                                  <input
+                                  type="text"
+                                  placeholder="Search..."
+                                  [(ngModel)]="searchTermSubClassCode"
+                                  class="form-control form-control-sm mb-2"
+                                  (input)="filterSubClassCode()"
+                                />
+                                  <div class="form-check d-flex mt-2 ps-0"
+                                    *ngFor="let subclass of this.filteredSubClassCode"
+                                    (change)="onCheckboxChangeforSession(subclass.description, $event)">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="subclass.code" [(ngModel)]="subclass.selected">
+                                    <label class=" text-dark fw-semibold ms-2" [for]="subclass.code"> {{
+                                      subclass.description }} </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">
+                                Session:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button1" class="fs-8 mt-1" (click)="toggleDropdownforsession()"
+                                  placeholder="">
+                                  {{ selectedProgramCode || 'Select session' }}
+
+                                </label>
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforsession" style="max-height: 200px; overflow-y: auto;">
+                                  <input
+                                  type="text"
+                                  placeholder="Search..."
+                                  [(ngModel)]="searchTermSessionCode"
+                                  class="form-control form-control-sm mb-2"
+                                  (input)="filterSessionCode()"
+                                />
+                                  <div class="form-check d-flex mt-2 ps-0" *ngFor="let session of this.filteredSessionCode"
+                                    (change)="onCheckboxChangeforSessionCheckboxes(session.description, $event)">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="session.code" [(ngModel)]="session.selected">
+                                    <label class=" text-dark fw-semibold ms-2" [for]="session.code"> {{
+                                      session.description }} </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="col-lg-12 mt-4">
+                          <div *ngFor="let item of this.reportFilterList;let i = index">
+                            <div [ngSwitch]="item.filterType">
+                              <div *ngSwitchCase="'radio'">
+                                <div class="row1 mb-2" style="display:flex;" class="form-control form-control-sm">
+
+                                  <div class="col-lg-3">
+                                    <label class="fs-6 mt-2">
+                                      {{item.filterName}} :
+                                    </label>
+                                  </div>
+                                  <input type="radio" id="html" name="fav_language" value="HTML">
+                                  <label for="html">HTML</label><br>
+                                  <input type="radio" id="css" name="fav_language" value="CSS">
+                                  <label for="css">CSS</label><br>
+                                  <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                                  <label for="javascript">JavaScript</label>
+                                </div>
+                              </div>
+                              <div *ngSwitchCase="'date'">
+                                <div class="row1 mb-2" style="display:flex;">
+                                  <div class="col-lg-3">
+                                    <label class="fs-6 mt-2">
+                                      {{item.filterName}} :
+                                    </label>
+                                  </div>
+                                  <div class="col-lg-9">
+                                    <input type="date" id="start-date" name="start-date">
+                                  </div>
+                                </div>
+                              </div>
+                              <div *ngSwitchCase="'string'">
+                                <div class="row1 mb-2" style="display:flex;">
+                                  <div class="col-lg-3">
+                                    <label class="fs-6 mb-2">
+                                      {{item.filterName}} :
+                                    </label>
+                                  </div>
+                                  <div class="col-lg-9 mt-3 ml-2">
+                                    <input type="text" id="string-input" name="string-input"
+                                      placeholder="Enter {{item.filterName}}" class="form-control form-control-sm">
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- <div *ngSwitchCase="'Dropdown'">
+                                <div class="row1 mb-2" style="display:flex;">
+                                  <div class="col-lg-3">
+                                    <label class="fs-6 mt-2">
+                                      {{item.filterName}} :
+                                    </label>
+                                  </div>
+                                  <div class="col-lg-9">
+                                    <select id="dropdown" name="dropdown" class="form-control form-control-sm">
+                                      <option selected>Select {{item.filterName}}</option>
+                                      <option value="option1">Option 1</option>
+                                      <option value="option2">Option 2</option>
+                                      <option value="option3">Option 3</option>
+                                    </select>
+                                  </div>
+
+                                </div>
+                              </div> -->
+                              <div *ngSwitchCase="'Checkbox'">
+                                <div class="row1 mb-2" style="display:flex;">
+                                  <div class="col-lg-3">
+                                    <label class="fs-6 mt-2">
+                                      {{item.filterName}} :
+                                    </label>
+                                  </div>
+                                  <div class="col-lg-9" class="form-control form-control-sm">
+                                    <input type="checkbox" id="checkbox1" name="checkbox1">
+                                    <label for="checkbox1">Checkbox 1</label><br>
+                                    <input type="checkbox" id="checkbox2" name="checkbox2">
+                                    <label for="checkbox2">Checkbox 2</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- <div *ngSwitchDefault>
+                                <p>This is the Default Case</p>
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-5 col-md-12 col-xs-6 col-sm-12">
+                    <div class="p-4">
+                      <div class="mb-2">
+                        <label class="fw-semibold fs-6 mb-4">Run Report Now:</label><br>
+                        <!-- (click)="exportExcel()" -->
+                        <i class="icon-file-spreadsheet2 cursor-pointer" style="font-size:20px"></i>
+                      </div>
+                      <div class="mb-2" [formGroup]="form">
+                        <label class="fw-semibold fs-6 mb-4">Report is scheduled to run at:</label><br>
+                        <label class="fw-semibold fs-6 mb-4" aria-required="form-check">Schedule Type: <span
+                            class="text-danger">*</span></label>
+                        <div class="dropdown mr-5" id="dropdown2">
+                          <button class=" dropdown-content show form-control form-control-sm" type="button"
+                            (click)="toggleDropdownforScheduleType()"
+                            aria-expanded="isDropdownOpenforSchedule ? 'true' : 'false'">
+                            {{ 'Select Schedule Type' }}
+                          </button>
+
+                          <div *ngIf="isDropdownOpenforSchedule" class="dropdown-menu show "
+                            aria-labelledby="dropdown2">
+                            <div *ngFor="let option of scheduleList">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" [value]="option.key"
+                                  [checked]="scheduleType === option.key"
+                                  (change)="onCheckboxChangesss($event, option.key)" id="{{ option.key }}" />
+                                <label class="form-check-label" for="{{ option.key }}">
+                                  {{ option.value }}
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!--        [checked]="scheduleType.includes(option.key)" -->
+                        <!--       (change)="toggleOption(option.key, 2)"
+                                [checked]="selectedOptions2.includes(option.key)" -->
+                        <label class="fw-semibold fs-6 mb-4">Schedule Date & Time <span
+                            class="text-danger">*</span></label>
+                        <div class="date-container">
+                          <input type="datetime-local" id="dateInput" formControlName="scheduleDate"
+                            class="form-control form-control-sm cursor-pointer" placeholder="MM/DD/YYYY"
+                            [(ngModel)]="sheduleSelectedDate" class="form-control form-control-sm" required>
+
+                          <img width="30" height="35"
+                            src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/external-calendar-time-time-management-kmg-design-detailed-outline-kmg-design.png"
+                            alt="external-calendar-time-time-management-kmg-design-detailed-outline-kmg-design"
+                            style="cursor: pointer;" (click)="checkBeforeSaving()" />
+
+
+                        </div>
+                        <div *ngIf="savereportscheduleError" class="error-message" style="color: red;">
+                          * This field is required FileName, atleast one chapterList and schedule type and schedule date
+                          and Time.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- for Editing file by fetch edit report API -->
+<div *ngIf="editActiveReportIndex === i">
+            <div class="popup-content" >
+              <div class="mt-4 pt-4 pb-0 pt-0" *ngIf="displayDiv7">
+                <h6 class="fw-normal required" >
+                  Enter New Family Report Name:
+                  <!-- <span style="color: red;"> *</span>  -->
+                  <!-- <form [formGroup]="myForm"> -->
+                  <input type="text" placeholder="Enter Family Report Name" [(ngModel)]="familyReportName"
+                    (ngModelChange)="validateFamilyReportName($event)" name="familyReportName" required>
+                  .csv
+                  <div *ngIf="familyReportNameError" class="error-message" style="color: red;">
+                    * This field is required and must not contain a dot.
+                  </div>
+                  <!-- </form> -->
+                </h6>
+                <h6 class="fw-normal ">
+                  Old Report Name : <input type="text" style="width: '{{this.editReportShedule.csvFileName.length+5}}';"
+                    placeholder="{{this.editReportShedule.csvFileName}}" disabled>
+                </h6>
+                <div class="col-lg-12" style="display:flex;">
+                  <div class="col-lg-7" style="border-right: 1px solid #ccc;">
+                    <div class="card p-4">
+                      <div class="col-lg-12 mt-4">
+                        <div class="col-lg-12">
+                          <!-- mat select implementation -->
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">
+                                Chapter Code:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button" class="fs-8 mt-1" placeholder="">
+                                  {{ selectedProgramCode || 'Select Chapter Codes' }}
+
+                                </label>
+                                <!--  (click)="toggleDropdown()"-->
+                                <div class="dropdown-content" *ngIf="isDropdownOpen" style="max-height: 200px; overflow-y: auto;">
+                                  <div class="form-check d-flex mt-2 ps-0" *ngFor="let chapter of chapterList">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="chapter.code" [(ngModel)]="chapter.selected"
+                                      (change)="onCheckboxChange(chapter.code, $event)" required>
+                                    <label class="text-dark fw-semibold ms-2" [for]="chapter.code"> {{
+                                      chapter.description }}</label>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">Program Code:</label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container form-control form-control-sm">
+                                <label class="dropdown-button1 fs-8 mt-1" placeholder="">
+                                  {{ selectedProgramCode || 'Select Program Code' }}
+                                </label>
+                                <!-- (click)="toggleDropdownforprogram()" -->
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforprogram" style="max-height: 200px; overflow-y: auto;">
+                                  <div class="form-check d-flex mt-2 ps-0" *ngFor="let chapter of programListSelected">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="chapter.code" [(ngModel)]="chapter.selected"
+                                      (change)="onCheckboxChangeforSignup(chapter.code, $event)">
+                                    <label [for]="chapter.code" class="text-dark fw-semibold ms-2"> {{
+                                      chapter.description }} </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">
+                                Signup Code:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button2" class="fs-8 mt-1">
+                                  {{ selectedProgramCode || 'Select Signup Code' }}
+
+                                </label>
+                                <!-- (click)="toggleDropdownforsignup()" -->
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforsignup" style="max-height: 200px; overflow-y: auto;">
+                                  <div class="form-check d-flex mt-2 ps-0" *ngFor="let signup of signupListSelected"
+                                    (change)="onCheckboxChangeforclass(signup.signUpCode, $event)">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="signup.signUpCode" [(ngModel)]="signup.selected">
+                                    <label [for]="signup.signUpCode" class="text-dark fw-semibold ms-2"> {{
+                                      signup.description }} </label>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">
+                                Class:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button1" class="fs-8 mt-1" placeholder="">
+                                  {{ selectedProgramCode || 'Select class Code' }}
+
+                                </label>
+                                <!-- (click)="toggleDropdownforclass()" -->
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforclass" style="max-height: 200px; overflow-y: auto;">
+                                  <div class="form-check d-flex mt-2 ps-0"
+                                    *ngFor="let class of  this.classListSelected2"
+                                    (change)="onCheckboxChangeforSubClass(class.description, $event)">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="class.code" [(ngModel)]="class.selected">
+                                    <label class="text-dark fw-semibold ms-2" [for]="class.code">{{
+                                      class.description }}</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">
+                                Sub Class:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button1" class="fs-8 mt-1" placeholder="">
+                                  {{ selectedProgramCode || 'Select sub class Code' }}
+
+                                </label>
+                                <!-- (click)="toggleDropdownforsubclass()" -->
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforsubclass" style="max-height: 200px; overflow-y: auto;">
+                                  <div class="form-check d-flex mt-2 ps-0"
+                                    *ngFor="let subclass of subclassListSelected2"
+                                    (change)="onCheckboxChangeforSession(subclass.description, $event)">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="subclass.code" [(ngModel)]="subclass.selected">
+                                    <label class=" text-dark fw-semibold ms-2" [for]="subclass.code"> {{
+                                      subclass.description }} </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row1 mb-2" style="display: flex; align-items: center;">
+                            <div class="col-lg-3">
+                              <label class="fs-6 mt-2">
+                                Session:
+                              </label>
+                            </div>
+                            <div class="col-lg-9">
+                              <div class="custom-dropdown-container" class="form-control form-control-sm">
+                                <label class="dropdown-button1" class="fs-8 mt-1" placeholder="">
+                                  {{ selectedProgramCode || 'Select session' }}
+
+                                </label>
+                                <!--  -->
+                                <div class="dropdown-content" *ngIf="isDropdownOpenforsession" style="max-height: 200px; overflow-y: auto;">
+                                  <div class="form-check d-flex mt-2 ps-0" *ngFor="let session of sessionListSelected2"
+                                    (change)="onCheckboxChangeforSessionCheckboxes(session.description, $event)">
+                                    <input type="checkbox" class="form-check ng-valid ng-dirty ng-touched"
+                                      [id]="session.code" [(ngModel)]="session.selected">
+                                    <label class=" text-dark fw-semibold ms-2" [for]="session.code"> {{
+                                      session.description }} </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-5">
+                    <div class="p-4">
+                      <div class="mb-2">
+                        <label class="fw-semibold fs-6 mb-4">Run Report Now:</label><br>
+                        <!-- (click)="exportExcel()" -->
+                        <i class="icon-file-spreadsheet2 cursor-pointer" style="font-size:20px"></i>
+                      </div>
+                      <div class="mb-2" [formGroup]="form">
+                        <label class="fw-semibold fs-6 mb-4">Report is scheduled to run at:</label><br>
+                        <label class="fw-semibold fs-6 mb-4">Schedule Date & Time <span
+                            class="text-danger">*</span></label>
+                        <div class="date-container">
+                          <input type="datetime-local" id="dateInput" formControlName="scheduleDate"
+                            class="form-control form-control-sm cursor-pointer" placeholder="MM/DD/YYYY"
+                            [(ngModel)]="scheduleDateforedit" class="form-control form-control-sm" required>
+
+                          <img width="30" height="35"
+                            src="https://img.icons8.com/external-kmg-design-detailed-outline-kmg-design/64/external-calendar-time-time-management-kmg-design-detailed-outline-kmg-design.png"
+                            alt="external-calendar-time-time-management-kmg-design-detailed-outline-kmg-design"
+                            style="cursor: pointer;" (click)="checkBeforeUpdatingtheRoleList(scheduleDateforedit)" />
+                        </div>
+                        <div *ngIf="updatereportscheduleError" class="error-message" style="color: red;">
+                          * This field is required schedule date and Time.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <!-- <hr class="mb-6" style="color: #ccc;"> -->
+          <div class="mt-4 p-4 pb-0 pt-0">
+          </div>
+          <!-- <hr class="mb-6" style="color: #ccc;"> -->
+          <div class="p-4 pb-0 pt-0">
+          </div>
+        </div>
+        <!--end::Card body-->
+      </div>
+    </div>
+  </div>
 </div>
-
-
