@@ -1,0 +1,16 @@
+p {
+  width: 100%;
+  height: fit-content;
+  padding: 15px 0px;
+  position: fixed;
+  bottom: 0;
+  background-color: #fff242;
+  /* background-color: #1d1e2c; */
+  text-align: center;
+  margin-bottom: 0;
+  color: white;
+}
+
+.footer{
+  margin-bottom: 0px;
+}
