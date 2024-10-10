@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { Layout2Component } from './temp/layout2/layout2.component';
 import { LoginComponent } from "./auth/login/login.component";
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
