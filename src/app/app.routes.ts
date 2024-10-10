@@ -7,6 +7,9 @@ import { ContentComponent } from './content/content.component';
 import { Layout2Component } from './temp/layout2/layout2.component';
 import { Child1Component } from './child1/child1.component';
 import { Child2Component } from './child2/child2.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 
 export const routes: Routes = [
 
@@ -44,6 +47,18 @@ component:FooterComponent
 },
 {
   path:'',
-  component:Layout2Component
+  component:LoginComponent
 },
+{
+  path:'login',
+  component:LoginComponent
+},
+{
+  path:'signup',
+  component:SignupComponent
+},
+{
+  path:'forgot',
+  component:ForgotPasswordComponent
+}
 ];

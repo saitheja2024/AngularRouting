@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+
+      <form class="forms">
+        <img src="loginlogo.jfif" alt="Login logo" width="100px" >
+
+        <div class="mainforms">
+          <br>
+        <label for="username">Enter UserName / Email</label><br>
+        <input type="text" id="username" class="username" placeholder="Enter Your userName" [(ngModel)]="username">
+       </div>
+        <br>
+        <div class="mainforms2">
+        <label for="password"> Enter Your Password</label><br>
+        <input type="password" name="password" id="password" placeholder="Enter Your Password" [(ngModel)]="password">
+      </div>
+        <br>
+        <p class="forgot" routerLink="/forgot">Forgot your Password</p>
+
+        <button class="btn btn-primary" (click)="login()"> Login</button>
+        <br>
+        <br>
+        <p>----- want to create an account ------</p>
+        <br>
+        <button class="btn btn-info" routerLink="/signup"> Create An Account</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

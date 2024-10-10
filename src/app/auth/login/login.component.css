@@ -1,0 +1,50 @@
+
+.container{
+  background-color: rgba(245, 239, 239, 0.448);
+  width: 100%;
+  height: auto;
+  padding: 2rem;
+}
+
+
+
+.forms{
+  border: 2px solid black;
+  border-radius: 5px;
+  /* text-align: center; */
+  /* margin: auto; */
+  width: fit-content;
+margin: auto;
+/* margin: 2rem 0rem; */
+  text-align: center;
+  padding: 2rem 0rem;
+  background-color: rgb(255, 255, 255);
+}
+
+label{
+  text-align: center;
+}
+.forgot{
+  color: blue;
+cursor: pointer;
+text-decoration: none;
+text-align: right;
+padding-right: 1rem;
+}
+.mainforms{
+  /* margin: auto; */
+  text-align: center;
+  width: max-content;
+  padding: 0rem 5rem;
+}
+
+.mainforms
+label{
+  padding-right: 2rem;
+}
+
+
+.mainforms2
+label{
+  padding-right: 3.4rem;
+}
