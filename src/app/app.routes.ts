@@ -10,6 +10,7 @@ import { Child2Component } from './child2/child2.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { Child3Component } from './child3/child3.component';
 
 export const routes: Routes = [
 
@@ -46,6 +47,20 @@ component:FooterComponent
   component:Child2Component
 },
 {
+  path:'child3',
+  component:Child3Component
+},
+{
+  path:"about",
+  loadComponent:()=>
+    import('./about/about.component').then((mod) => mod.AboutComponent)
+},
+{
+  path:"contactus",
+  loadComponent:()=>
+    import("./contactus/contactus.component").then((mod)=>mod.ContactusComponent)
+},
+{
   path:'',
   component:LoginComponent
 },
@@ -62,3 +77,4 @@ component:FooterComponent
   component:ForgotPasswordComponent
 }
 ];
+
