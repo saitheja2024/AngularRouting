@@ -48,7 +48,18 @@ component:FooterComponent
   component:Child3Component
 },
 {
+  path:"about",
+  loadComponent:()=>
+    import('./about/about.component').then((mod) => mod.AboutComponent)
+},
+{
+  path:"contactus",
+  loadComponent:()=>
+    import("./contactus/contactus.component").then((mod)=>mod.ContactusComponent)
+},
+{
   path:'',
   component:Layout2Component
 },
 ];
+
